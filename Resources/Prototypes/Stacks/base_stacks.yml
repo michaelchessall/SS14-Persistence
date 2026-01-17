@@ -32,11 +32,11 @@
 - type: stack
   abstract: true
   id: BaseSheetStack
-  maxCount: 30
+  maxCount: 50
 
-# Used by tiles
+# Used by tiles, metal rods, generally things that are crafted by sheets in to multiples of 4
 - type: stack
   abstract: true
   id: BaseTileStack
   icon: { sprite: /Textures/Objects/Tiles/tile.rsi, state: steel }
-  maxCount: 30
+  maxCount: 60

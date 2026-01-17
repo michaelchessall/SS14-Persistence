@@ -2,25 +2,25 @@
   parent: CrateGenericSteel
   id: CrateMaterialGlass
   name: glass sheet crate
-  description: 90 sheets of glass, packed with care.
+  description: 100 sheets of glass, packed with care.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
         id: SheetGlass
-        amount: 3
+        amount: 2
 
 - type: entity
   parent: CrateGenericSteel
   id: CrateMaterialSteel
   name: steel sheet crate
-  description: 90 sheets of steel.
+  description: 100 sheets of steel.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
         id: SheetSteel
-        amount: 3
+        amount: 2
 
 - type: entity
   parent: CrateGenericSteel
@@ -40,13 +40,13 @@
   parent: CrateGenericSteel
   id: CrateMaterialPlastic
   name: plastic sheet crate
-  description: 90 sheets of plastic.
+  description: 100 sheets of plastic.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
         id: SheetPlastic
-        amount: 3
+        amount: 2
 
 - type: entity
   parent: CrateGenericSteel
@@ -63,19 +63,19 @@
   parent: CrateGenericSteel
   id: CrateMaterialBrass
   name: brass crate
-  description: 90 sheets of brass.
+  description: 100 sheets of brass.
   components:
   - type: EntityTableContainerFill
     containers:
       entity_storage:
         id: SheetBrass
-        amount: 3
+        amount: 2
 
 - type: entity
   parent: CrateGenericSteel
   id: CrateMaterialPlasteel
   name: plasteel crate
-  description: 30 sheets of plasteel.
+  description: 50 sheets of plasteel.
   components:
   - type: EntityTableContainerFill
     containers:
