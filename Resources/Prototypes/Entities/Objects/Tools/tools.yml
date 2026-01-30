@@ -131,6 +131,24 @@
     - Construction
 
 - type: entity
+  name: Rune Of True Wrenching
+  parent: Wrench
+  id: WrenchGolden
+  suffix: Golden
+  description: It thrums with the force of 1000 filters...
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/wrench_golden.rsi
+    state: icon
+  - type: Item
+    sprite: Objects/Tools/wrench_golden.rsi
+    storedSprite:
+      sprite: Objects/Tools/wrench_golden.rsi
+      state: storage
+  - type: Tool
+    speedModifier: 3.0
+
+- type: entity
   name: multitool
   parent: BaseItem
   id: Multitool
