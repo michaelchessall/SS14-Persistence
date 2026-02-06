@@ -1,6 +1,7 @@
 # Devices which are not portable but don't link up to anything
 - type: entity
   id: AtmosDeviceFanTiny
+  parent: BaseDeltaPressureGlass # Screw you. No more fan burn chambers.
   name: tiny fan
   description: A tiny fan, releasing a thin gust of air.
   placement:
@@ -43,9 +44,27 @@
   - type: Tag
     tags:
       - SpreaderIgnore
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            TinyFanFlatpack:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam
+
 
 - type: entity
   id: AtmosDeviceFanDirectional
+  parent: BaseDeltaPressureReinforcedGlassQuarter # Screw you. No more fan burn chambers.
   name: directional fan
   description: A thin fan, stopping the movement of gases across it.
   placement:
@@ -91,3 +110,19 @@
   - type: Tag
     tags:
       - SpreaderIgnore
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 20
+      behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawn:
+            DirectionalFanFlatpack:
+              min: 0
+              max: 1
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+        - !type:PlaySoundBehavior
+          sound:
+            collection: MetalSlam

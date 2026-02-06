@@ -97,7 +97,7 @@
         - WallLayer
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallBrick
   name: brick wall
   components:
@@ -127,7 +127,7 @@
     base: brick
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallBronze
   name: bronze wall
   components:
@@ -169,7 +169,7 @@
     base: solidbronze
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallClock
   name: clock wall
   components:
@@ -198,7 +198,7 @@
     base: clock
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPhoron, BaseWall]
   id: WallClown
   name: bananium wall
   components:
@@ -242,7 +242,7 @@
         density: 8000 # really good ramming wall, bananium is rare so it's probably fine
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedGlass, BaseWall]
   id: WallMeat
   name: meat wall
   description: Sticky.
@@ -276,7 +276,7 @@
     base: meat
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPhoron, BaseWall] # Has 100 extra health so it gets some extra pressure resistance
   id: WallCult
   name: cult wall
   components:
@@ -332,7 +332,7 @@
     base: debug
 
 - type: entity
-  parent: BaseWall
+  parent: BaseWall # No deltaP threshold. Diamonds are tough.
   id: WallDiamond
   name: diamond wall
   components:
@@ -362,7 +362,7 @@
     base: diamond
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPhoron, BaseWall] # you can have your solid gold burn chamber I guess.  
   id: WallGold
   name: gold wall
   components:
@@ -413,9 +413,11 @@
   - type: IconSmooth
     key: walls
     base: gold
+  - type: RadiationBlocker
+    resistance: 5 # Gold is heavy.
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallIce
   name: ice wall
   components:
@@ -441,7 +443,7 @@
     base: ice
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallPlasma
   name: plasma wall
   components:
@@ -482,10 +484,10 @@
     key: walls
     base: plasma
   - type: RadiationBlocker
-    resistance: 5
+    resistance: 6 # Slightly better than basic r-wall.
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureGlass, BaseWall]
   id: WallPlastic
   name: plastic wall
   components:
@@ -522,6 +524,8 @@
         node: girder
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: RadiationBlocker
+    resistance: 1 # plastic is light
   - type: IconSmooth
     key: walls
     base: plastic
@@ -751,8 +755,8 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
   - type: ReinforcedWallReplacementMarker
-  - type: RadiationBlocker
-    resistance: 5
+  - type: RadiationBlocker 
+    resistance: 3 # Titanium is light
   - type: Fixtures
     fixtures:
       fix1:
@@ -763,7 +767,7 @@
         - FullTileMask
         layer:
         - WallLayer
-        density: 2000
+        density: 1000 # Titanium is light
 
 - type: entity
   parent: WallReinforced
@@ -880,7 +884,7 @@
     price: 150
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall] # no idea when this would be exposed to pressure, but it would be silly for it to be unbreakable
   id: WallSandstone
   name: sandstone wall
   components:
@@ -910,7 +914,7 @@
     base: sandstone
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallSilver
   name: silver wall
   components:
@@ -1091,7 +1095,7 @@
         density: 2000
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallSolid
   name: solid wall
   components:
@@ -1134,7 +1138,7 @@
     base: solid
 
 - type: entity
-  parent: WallDiagonalBase
+  parent: [BaseDeltaPressureReinforcedPlasma, WallDiagonalBase]
   id: WallSolidDiagonal
   name: solid wall
   components:
@@ -1172,7 +1176,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: WallSolid
+  parent: [BaseDeltaPressureReinforcedPlasma, WallSolid]
   id: WallSolidRust
   suffix: rusted
   components:
@@ -1211,7 +1215,7 @@
         acts: ["Destruction"]
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallSolidChitin
   name: solid chitin
   components:
@@ -1341,7 +1345,7 @@
     state: state0
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedPlasma, BaseWall]
   id: WallUranium
   name: uranium wall
   components:
@@ -1389,10 +1393,10 @@
     key: walls
     base: uranium
   - type: RadiationBlocker
-    resistance: 6
+    resistance: 7 # Slightly better than plasma
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedGlass, BaseWall]
   id: WallWood
   name: wood wall
   description: The traditional greytide defense.
@@ -1426,12 +1430,14 @@
         node: Barricade
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: RadiationBlocker
+    resistance: 1 # Wood is light
   - type: IconSmooth
     key: woods
     base: wood
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureGlass, BaseWall]
   id: WallWeb
   name: web wall
   description: Keeps the spiders in and the greytide out.
@@ -1475,6 +1481,8 @@
   - type: IconSmooth
     key: webs
     base: wall
+  - type: RadiationBlocker
+    resistance: 1 # Spiderwebs are light
   - type: Construction
     graph: WebStructures
     node: wall
@@ -1673,7 +1681,7 @@
     state: forcewall
 
 - type: entity
-  parent: BaseWall
+  parent: [BaseDeltaPressureReinforcedGlass, BaseWall]
   id: WallCobblebrick
   name: cobblestone brick wall
   description: Stone by stone, perfectly fitted together to form a wall.
