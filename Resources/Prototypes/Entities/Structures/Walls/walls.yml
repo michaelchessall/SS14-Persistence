@@ -198,7 +198,7 @@
     base: clock
 
 - type: entity
-  parent: [BaseDeltaPressureReinforcedPhoron, BaseWall]
+  parent: [BaseDeltaPressureReinforcedPhoronGlass, BaseWall]
   id: WallClown
   name: bananium wall
   components:
@@ -276,7 +276,7 @@
     base: meat
 
 - type: entity
-  parent: [BaseDeltaPressureReinforcedPhoron, BaseWall] # Has 100 extra health so it gets some extra pressure resistance
+  parent: [BaseDeltaPressureReinforcedPhoronGlass, BaseWall] # Has 100 extra health so it gets some extra pressure resistance
   id: WallCult
   name: cult wall
   components:
@@ -362,7 +362,7 @@
     base: diamond
 
 - type: entity
-  parent: [BaseDeltaPressureReinforcedPhoron, BaseWall] # you can have your solid gold burn chamber I guess.  
+  parent: [BaseDeltaPressureReinforcedPhoronGlass, BaseWall] # you can have your solid gold burn chamber I guess.  
   id: WallGold
   name: gold wall
   components:
