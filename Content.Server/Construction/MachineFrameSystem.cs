@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
 using Content.Shared.Popups;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
@@ -18,6 +19,7 @@ public sealed class MachineFrameSystem : EntitySystem
     [Dependency] private readonly StackSystem _stack = default!;
     [Dependency] private readonly ConstructionSystem _construction = default!;
     [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
 
     public override void Initialize()
     {
@@ -137,6 +139,12 @@ public sealed class MachineFrameSystem : EntitySystem
     private bool TryInsertBoard(EntityUid uid, EntityUid used, MachineFrameComponent component)
     {
         if (!TryComp<MachineBoardComponent>(used, out var machineBoard))
+            return false;
+
+        if (!_whitelistSystem.CheckBoth(used, component.BoardBlacklist, component.BoardWhitelist))
+            return false;
+
+        if (!_container.CanInsert(used, component.BoardContainer))
             return false;
 
         if (!_container.TryRemoveFromContainer(used))

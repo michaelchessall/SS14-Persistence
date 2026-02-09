@@ -56,7 +56,7 @@
   categories: [ HideSpawnMenu ]
   id: IncompleteWallmountThruster
   name: wallmount thruster frame
-  description: a incomplete thruster of the wallmounted variety 
+  description: a incomplete thruster of the wallmounted variety
   placement:
     mode: SnapgridCenter
   components:
@@ -92,6 +92,3 @@
         acts: [ "Destruction" ]
   - type: WallMount
     direction: 180
-  - type: Construction
-    graph: APC
-    node: apcFrame
