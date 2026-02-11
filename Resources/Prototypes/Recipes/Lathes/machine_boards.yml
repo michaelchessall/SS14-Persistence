@@ -388,6 +388,12 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
+  id: ThrusterWallmountMachineCircuitboard
+  result: ThrusterWallmountMachineCircuitboard
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
   id: GyroscopeMachineCircuitboard
   result: GyroscopeMachineCircuitboard
   unlockUses: 2

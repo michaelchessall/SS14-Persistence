@@ -153,6 +153,7 @@
   - GyroscopeMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
   - StationAnchorCircuitboard
+  - ThrusterWallmountMachineCircuitboard
 
 - type: technology
   id: AdvancedAtmospherics

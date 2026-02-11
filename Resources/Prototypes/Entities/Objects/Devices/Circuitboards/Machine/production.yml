@@ -869,7 +869,7 @@
 - type: entity
   id: ThrusterWallmountMachineCircuitboard
   parent: BaseWallmountMachineCircuitboard
-  name: wall-mounted thruster machine board
+  name: wallmount thruster machine board
   components:
   - type: MachineBoard
     prototype: WallmountThruster

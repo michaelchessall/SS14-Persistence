@@ -125,7 +125,7 @@
           minCount: 1
           whitelist:
             components:
-            - WallmountMachineBoard
+            - MachineBoard
 
 - type: entity
   id: WallmountMachineFrameDestroyed
