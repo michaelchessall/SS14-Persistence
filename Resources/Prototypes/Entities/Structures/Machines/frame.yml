@@ -126,7 +126,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: MachineFrame
-      blacklist:
+      boardBlacklist:
         tags:
         - WallmountMachineBoard # Don't allow wallmount boards in non-wallmount frame
     - type: ContainerContainer

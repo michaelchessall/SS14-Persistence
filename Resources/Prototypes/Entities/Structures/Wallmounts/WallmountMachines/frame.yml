@@ -1,7 +1,7 @@
 ﻿- type: entity
   parent: BaseWallmountMetallic
   id: UnfinishedWallmountMachineFrame
-  name: wall-mounted machine frame
+  name: wallmount machine frame
   description: A wall-mounted machine under construction. Needs more parts.
   suffix: Unfinished
   placement:
@@ -62,7 +62,7 @@
   parent: BaseWallmountMetallic
   id: WallmountMachineFrame
   description: A wall-mounted machine under construction. Needs more parts.
-  name: wall-mounted machine frame
+  name: wallmount machine frame
   suffix: Ready
   components:
     - type: Rotatable
@@ -107,7 +107,7 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: MachineFrame
-      blacklist:
+      boardBlacklist:
         tags:
         - MachineBoard # Don't allow regular machine boards in wallmount frame
     - type: ContainerContainer
@@ -125,12 +125,12 @@
           minCount: 1
           whitelist:
             components:
-            - MachineBoard
+            - WallmountMachineBoard
 
 - type: entity
   id: WallmountMachineFrameDestroyed
   parent: BaseWallmountMetallic
-  name: destroyed wall-mounted machine frame
+  name: destroyed wallmount machine frame
   description: A wall-mounted machine frame. It's seen better days.
   placement:
     mode: SnapgridCenter
