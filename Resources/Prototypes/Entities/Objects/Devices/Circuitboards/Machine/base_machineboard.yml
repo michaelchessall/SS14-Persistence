@@ -19,4 +19,31 @@
       chemicalComposition:
         Silicon: 20
     - type: Circuitboard
+    - type: Tag
+      tags:
+        - MachineBoard
 
+- type: entity
+  id: BaseWallmountMachineCircuitboard
+  parent: BaseItem
+  name: wall-mounted machine board
+  abstract: true
+  suffix: Machine Board
+  components:
+    - type: MachineBoard
+    - type: Sprite
+      sprite: Objects/Misc/module.rsi
+      state: wallmount_generic
+    - type: Item
+      storedRotation: -90
+    - type: StaticPrice
+      price: 100
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 230
+      chemicalComposition:
+        Silicon: 20
+    - type: Circuitboard
+    - type: Tag
+      tags:
+        - WallmountMachineBoard

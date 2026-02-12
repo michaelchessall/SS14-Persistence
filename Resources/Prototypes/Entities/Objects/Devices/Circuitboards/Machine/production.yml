@@ -867,6 +867,17 @@
       Steel: 5
 
 - type: entity
+  id: ThrusterWallmountMachineCircuitboard
+  parent: BaseWallmountMachineCircuitboard
+  name: wallmount thruster machine board
+  components:
+  - type: MachineBoard
+    prototype: WallmountThruster
+    stackRequirements:
+      Manipulator: 4
+      Steel: 5
+
+- type: entity
   id: GyroscopeMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: gyroscope machine board

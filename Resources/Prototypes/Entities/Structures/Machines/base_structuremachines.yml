@@ -79,3 +79,22 @@
   id: SmallConstructibleMachine
   components:
     - type: RequireProjectileTarget
+
+- type: entity
+  abstract: true
+  id: ConstructibleWallmountMachine
+  components:
+  - type: Animateable
+  - type: Machine
+  - type: ContainerContainer
+    containers:
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: WallmountMachineGraph
+    node: wallmountmachineFrame
+    containers:
+    - machine_parts
+    - machine_board
+  - type: LightningTarget
+    priority: 1

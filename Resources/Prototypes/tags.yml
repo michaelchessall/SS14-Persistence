@@ -921,6 +921,9 @@
 #endregion
 
 - type: Tag
+  id: MachineBoard # ConstructionGraph: Machine frames. Added to machine boards
+
+- type: Tag
   id: MailingUnitElectronics # ConstructionGraph: DisposalMachine
 
 - type: Tag # Used on DungeonRoom prototypes.
@@ -1522,6 +1525,9 @@
 
 - type: Tag
   id: WallmountGeneratorElectronics # ConstructionGraph: WallmountGenerator
+
+- type: Tag
+  id: WallmountMachineBoard # ConstructionGraph: WallmountMachine
 
 - type: Tag
   id: WallmountSubstationElectronics # ConstructionGraph: WallmountSubstation

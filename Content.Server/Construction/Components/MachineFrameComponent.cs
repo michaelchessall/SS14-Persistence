@@ -1,6 +1,7 @@
 ﻿using Content.Shared.Construction.Components;
 using Content.Shared.Stacks;
 using Content.Shared.Tag;
+using Content.Shared.Whitelist;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 
@@ -11,6 +12,12 @@ namespace Content.Server.Construction.Components
     {
         public const string PartContainerName = "machine_parts";
         public const string BoardContainerName = "machine_board";
+
+        [DataField]
+        public EntityWhitelist? BoardWhitelist;
+
+        [DataField]
+        public EntityWhitelist? BoardBlacklist;
 
         [ViewVariables]
         public bool HasBoard => BoardContainer?.ContainedEntities.Count != 0;

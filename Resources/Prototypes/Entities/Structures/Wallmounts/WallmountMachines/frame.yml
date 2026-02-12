@@ -1,15 +1,13 @@
 ﻿- type: entity
-  id: UnfinishedMachineFrame
-  name: machine frame
-  description: A machine under construction. Needs more parts.
+  parent: BaseWallmountMetallic
+  id: UnfinishedWallmountMachineFrame
+  name: wallmount machine frame
+  description: A wall-mounted machine under construction. Needs more parts.
   suffix: Unfinished
   placement:
     mode: SnapgridCenter
   components:
-    - type: Transform
-      anchored: true
-    - type: Physics
-      bodyType: Static
+    - type: Rotatable
     - type: Fixtures
       fixtures:
         fix1:
@@ -21,24 +19,16 @@
           - MachineMask
           layer:
           - MachineLayer
-    - type: Clickable
-    - type: InteractionOutline
-    - type: Anchorable
-    - type: Rotatable
-    - type: Pullable
     - type: Construction
       containers:
         - machine_board
         - machine_parts
-      graph: Machine
+      graph: WallmountMachineGraph
       node: missingWires
     - type: ContainerContainer
       containers:
         machine_board: !type:Container
         machine_parts: !type:Container
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
     - type: Destructible
       thresholds:
       - trigger: # Excess damage, don't spawn entities
@@ -62,21 +52,20 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: Structures/Machines/parts.rsi
+      drawdepth: WallMountedItems
+      sprite: Structures/Wallmounts/parts.rsi
       state: box_0
-      snapCardinals: true
+    - type: WallMount
+      direction: 180
 
 - type: entity
-  id: MachineFrame
-  name: machine frame
+  parent: BaseWallmountMetallic
+  id: WallmountMachineFrame
+  description: A wall-mounted machine under construction. Needs more parts.
+  name: wallmount machine frame
   suffix: Ready
-  placement:
-    mode: SnapgridCenter
   components:
-    - type: Transform
-      anchored: true
-    - type: Physics
-      bodyType: Static
+    - type: Rotatable
     - type: Fixtures
       fixtures:
         fix1:
@@ -88,21 +77,13 @@
           - MachineMask
           layer:
           - MachineLayer
-    - type: Clickable
-    - type: InteractionOutline
-    - type: Anchorable
-    - type: Rotatable
-    - type: Pullable
     - type: Construction
-      graph: Machine
-      node: machineFrame
-      defaultTarget: machine
+      graph: WallmountMachineGraph
+      node: wallmountmachineFrame
+      defaultTarget: wallmountmachine
       containers:
         - machine_board
         - machine_parts
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
     - type: Destructible
       thresholds:
       - trigger: # Excess damage, don't spawn entities
@@ -128,15 +109,15 @@
     - type: MachineFrame
       boardBlacklist:
         tags:
-        - WallmountMachineBoard # Don't allow wallmount boards in non-wallmount frame
+        - MachineBoard # Don't allow regular machine boards in wallmount frame
     - type: ContainerContainer
       containers:
         machine_board: !type:Container
         machine_parts: !type:Container
     - type: Sprite
-      sprite: Structures/Machines/parts.rsi
+      drawdepth: WallMountedItems
+      sprite: Structures/Wallmounts/parts.rsi
       state: box_1
-      snapCardinals: true
     - type: Appearance
     - type: ItemMapper
       mapLayers:
@@ -147,24 +128,17 @@
             - MachineBoard
 
 - type: entity
-  id: MachineFrameDestroyed
-  parent: BaseStructureDynamic
-  name: destroyed machine frame
+  id: WallmountMachineFrameDestroyed
+  parent: BaseWallmountMetallic
+  name: destroyed wallmount machine frame
+  description: A wall-mounted machine frame. It's seen better days.
   placement:
     mode: SnapgridCenter
   components:
-    - type: InteractionOutline
-    - type: Transform
-      anchored: true
-      noRot: true
-    - type: Physics
-      bodyType: Static
+    - type: Rotatable
     - type: Construction
-      graph: Machine
-      node: destroyedMachineFrame
-    - type: Damageable
-      damageContainer: StructuralInorganic
-      damageModifierSet: Metallic
+      graph: WallmountMachineGraph
+      node: destroyedWallmountMachineFrame
     - type: Destructible
       thresholds:
       - trigger: # Excess damage, don't spawn entities
@@ -185,5 +159,6 @@
         - !type:DoActsBehavior
           acts: ["Destruction"]
     - type: Sprite
-      sprite: Structures/Machines/parts.rsi
+      drawdepth: WallMountedItems
+      sprite: Structures/Wallmounts/parts.rsi
       state: destroyed

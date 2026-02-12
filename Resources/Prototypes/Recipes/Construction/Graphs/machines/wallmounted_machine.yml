@@ -1,0 +1,112 @@
+﻿- type: constructionGraph
+  id: WallmountMachineGraph
+  start: start
+  graph:
+    - node: start
+      actions:
+        - !type:SpawnPrototype
+          prototype: SheetSteel1
+        - !type:DeleteEntity
+      edges:
+        - to: missingWires
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+        - to: destroyedWallmountMachineFrame
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 2.5
+
+    - node: missingWires
+      entity: UnfinishedWallmountMachineFrame
+      actions:
+        - !type:EmptyAllContainers
+      edges:
+        - to: wallmountmachineFrame
+          completed:
+          - !type:SnapToGrid { }
+          steps:
+            - material: Cable
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:DeleteEntity
+          steps:
+            - tool: Screwing
+              doAfter: 2
+
+    - node: wallmountmachineFrame
+      entity: WallmountMachineFrame
+      actions:
+        - !type:AddContainer
+          container: machine_parts
+        - !type:AddContainer
+          container: machine_board
+        - !type:MachineFrameRegenerateProgress
+      edges:
+        - to: wallmountmachine
+          conditions:
+            - !type:MachineFrameComplete
+              guideIconBoard:
+                sprite: Objects/Misc/module.rsi
+                state: wallmount_generic
+              guideIconParts:
+                sprite: Objects/Misc/stock_parts.rsi
+                state: scan_module
+          steps:
+            - tool: Screwing
+              doAfter: 0.5
+
+        - to: wallmountmachineFrame
+          conditions:
+            - !type:ContainerNotEmpty
+              container: machine_board
+          steps:
+            - tool: Prying
+              doAfter: 2
+              completed:
+                - !type:EmptyAllContainers
+                - !type:MachineFrameRegenerateProgress
+
+        - to: missingWires
+          conditions:
+            - !type:ContainerEmpty
+              container: machine_board
+              examineText: construction-condition-machine-container-empty
+          completed:
+            - !type:SpawnPrototype
+              prototype: CableApcStack1
+          steps:
+            - tool: Cutting
+              doAfter: 0.25
+
+    - node: wallmountmachine
+      entity: !type:BoardNodeEntity { container: machine_board }
+      edges:
+        - to: wallmountmachineFrame
+          completed:
+            - !type:RaiseEvent
+              event: !type:MachineDeconstructedEvent
+              broadcast: false
+          conditions:
+            - !type:WirePanel
+          steps:
+            - tool: Prying
+              doAfter: 2
+
+    - node: destroyedWallmountMachineFrame
+      entity: WallmountMachineFrameDestroyed
+      edges:
+        - to: start
+          steps:
+            - tool: Welding
+              doAfter: 5
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 3
+            - !type:DeleteEntity {}

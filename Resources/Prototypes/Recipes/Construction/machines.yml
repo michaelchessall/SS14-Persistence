@@ -16,6 +16,17 @@
   placementMode: SnapgridCenter
   canBuildInImpassable: false
 
+- type: construction
+  id: WallmountMachineFrame
+  graph: WallmountMachineGraph
+  startNode: start
+  targetNode: wallmountmachine
+  category: construction-category-machines
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+    - !type:WallmountCondition
+
 # Switching
 - type: construction
   id: TwoWayLeverRecipe
