@@ -62,7 +62,7 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
         - ReagentId: Nutriment
-          Quantity: 2
+          Quantity: 20
   - type: Item
     size: Small
     heldPrefix: lungs
@@ -86,7 +86,7 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5        
         - ReagentId: Nutriment
-          Quantity: 2  
+          Quantity: 20
   - type: Stomach
   - type: Metabolizer
     maxReagents: 3
@@ -156,7 +156,7 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2  
+          Quantity: 10
   - type: Metabolizer
     maxReagents: 2
     metabolizerTypes: [ Animal ]
