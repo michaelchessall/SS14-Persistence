@@ -185,7 +185,7 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2  
+          Quantity: 20
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Animal ]
