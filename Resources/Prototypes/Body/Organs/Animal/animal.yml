@@ -3,6 +3,7 @@
   parent: BaseItem
   abstract: true
   components:
+  - type: produce
   - type: Organ
   - type: Edible
   - type: Sprite
@@ -29,7 +30,6 @@
   abstract: true
   components:
   - type: Gibbable
-  - type: produce
 
 - type: entity
   id: OrganAnimalLungs
