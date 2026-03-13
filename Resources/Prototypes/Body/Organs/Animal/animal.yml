@@ -3,7 +3,7 @@
   parent: BaseItem
   abstract: true
   components:
-  - type: Produce
+  - type: Produce # allow animal organs to be turned into biomass
   - type: Organ
   - type: Edible
   - type: Sprite
@@ -62,7 +62,7 @@
         - ReagentId: UncookedAnimalProteins
           Quantity: 5
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 10
   - type: Item
     size: Small
     heldPrefix: lungs
@@ -131,7 +131,7 @@
         maxVol: 5
         reagents:    
         - ReagentId: Nutriment
-          Quantity: 2  
+          Quantity: 5
   - type: Metabolizer
     maxReagents: 1
     metabolizerTypes: [ Animal ]
@@ -185,7 +185,7 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20
+          Quantity: 10
   - type: Metabolizer
     maxReagents: 5
     metabolizerTypes: [ Animal ]
