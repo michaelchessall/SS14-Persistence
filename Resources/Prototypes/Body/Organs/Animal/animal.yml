@@ -3,7 +3,6 @@
   parent: BaseItem
   abstract: true
   components:
-  - type: produce
   - type: Organ
   - type: Edible
   - type: Sprite
