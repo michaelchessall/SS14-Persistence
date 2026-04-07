@@ -1,0 +1,27 @@
+- type: entity
+  name: Logistics dolly
+  id: LogiDolly
+  parent: [BaseStructureDynamic, StructureWheeled]
+  description: Deliver stuff
+  components:
+    - type: Sprite
+      noRot: true
+      sprite: Objects/Specific/Cargo/logistic_dolly.rsi
+      layers:
+        - state: base
+    - type: Transform
+      noRot: true
+    - type: Appearance
+    - type: Storage
+      grid:
+      - 0,0,9,5
+      quckInsert: true
+      maxItemSize: Huge
+    - type: UserInterface
+      interfaces:
+        enum.StorageUiKey.Key:
+          type: StorageBoundUserInterface
+    - type: ContainerContainer
+      containers:
+        storagebase: !type:Container
+          ents: []

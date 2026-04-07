@@ -8,34 +8,8 @@
   },
   "states": [
     {
-      "name": "icon"
-    },
-    {
-      "name": "logidolly_base"
-    },
-    {
-      "name": "storage_1"
-    },
-    {
-      "name": "package_2"
-    },
-    {
-      "name": "package_3"
-    },
-    {
-      "name": "package_4"
-    },
-    {
-      "name": "package_5"
-    },
-    {
-      "name": "package_6"
-    },
-    {
-      "name": "package_7"
-    },
-    {
-      "name": "package_8"
+      "name": "base",
+      "directions": 4
     }
   ]
 }
