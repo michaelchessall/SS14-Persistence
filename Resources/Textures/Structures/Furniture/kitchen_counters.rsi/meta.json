@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "PERSISTENCE SS14 by Joules (github JoulesMango)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "vertical"
+    },
+    {
+      "name": "horizontal"
+    },
+    {
+      "name": "corner"
+    }
+  ]
+}
