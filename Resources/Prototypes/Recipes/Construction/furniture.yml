@@ -787,3 +787,53 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+# storage Counter
+
+- type: construction
+  id: StorageCounter
+  graph: StorageCounter
+  startNode: start
+  targetNode: storagecounter
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StorageCounterEngi
+  graph: StorageCounter
+  startNode: start
+  targetNode: storagecounterengi
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StorageCounterMedical
+  graph: StorageCounter
+  startNode: start
+  targetNode: storagecountermedical
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: StorageCounterBotany
+  graph: StorageCounter
+  startNode: start
+  targetNode: storagecounterbotany
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked

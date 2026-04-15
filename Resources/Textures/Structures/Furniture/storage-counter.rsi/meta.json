@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "PERSISTENCE SS14 by Joules (github JoulesMango)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "frame-step0"
+    },
+    {
+      "name": "frame-step1"
+    },
+    {
+      "name": "frame-step2"
+    },
+    {
+      "name": "frame-step3","directions": 4
+    },
+    {
+      "name": "closed-black", "directions": 4
+    },
+    {
+      "name": "open-black", "directions": 4
+    },
+    {
+      "name": "closed-botany", "directions": 4
+    },
+    {
+      "name": "open-botany", "directions": 4
+    },
+    {
+      "name": "closed-engineering", "directions": 4
+    },
+    {
+      "name": "open-engineering", "directions": 4
+    },
+        {
+      "name": "closed-medical", "directions": 4
+    },
+    {
+      "name": "open-medical", "directions": 4
+    },
+    {
+      "name": "closed-white", "directions": 4
+    },
+    {
+      "name": "open-white", "directions": 4
+    },
+    {
+      "name": "counter-grey", "directions": 4
+    },
+    {
+      "name": "counter", "directions": 4
+    }
+  ]
+}
