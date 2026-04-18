@@ -75,9 +75,6 @@
         doAfter: 1
       - tool: Sawing
         doAfter: 1
-      - material: Steel
-        amount: 1
-        doAfter: 1
 
   - node: frame-step3
     entity: StorageCounterFrame
@@ -100,22 +97,39 @@
         doAfter: 1
       - material: WoodPlank
         amount: 5
+        doAfter: 1
       - tool: Sawing
         doAfter: 1
       - material: Plastic
         amount: 5
+        doAfter: 1
+      - tool: Screwing
+        doAfter: 1
+
+    - to: storagecounterscience
+      steps:
+      - material: WoodPlank
+        amount: 5
+        doAfter: 1
+      - tool: Sawing
+        doAfter: 1
+      - material: Plastic
+        amount: 5
+        doAfter: 1
       - tool: Screwing
         doAfter: 1
 
     - to: storagecounterbotany
       steps:
-      - material: WoodPlank
-        amount: 5
-      - tool: Sawing
-        doAfter: 1
       - material: Plastic
         amount: 5
+        doAfter: 1
       - tool: Screwing
+        doAfter: 1
+      - material: WoodPlank
+        amount: 5
+        doAfter: 1
+      - tool: Sawing
         doAfter: 1
 
     - to: storagecounterengi
@@ -127,6 +141,7 @@
         doAfter: 1
       - material: Plastic
         amount: 5
+        doAfter: 1
       - tool: Screwing
         doAfter: 1
 
@@ -136,11 +151,30 @@
         doAfter: 1
       - material: WoodPlank
         amount: 5
+        doAfter: 1
       - tool: Sawing
         doAfter: 1
       - material: Plastic
         amount: 5
+        doAfter: 1
       - tool: Screwing
+        doAfter: 1
+
+  - node: storagecounterscience
+    entity: StorageCounterScience
+    edges:
+    - to: frame-step3
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPlastic1
+        amount: 5
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 5
+      steps:
+      - tool: Sawing
+        doAfter: 1
+      - tool: Prying
         doAfter: 1
 
   - node: storagecounter

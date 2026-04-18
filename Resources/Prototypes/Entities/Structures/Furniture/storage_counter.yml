@@ -103,6 +103,26 @@
     node: storagecounterengi
 
 - type: entity
+  name: science storage counter
+  id: StorageCounterScience
+  parent: BaseStorageCounter
+  components:
+  - type: Sprite
+    state: frame-step3
+    layers:
+    - state: frame-step3
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed-science
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: counter
+  - type: EntityStorageVisuals
+    stateDoorOpen: open-science
+    stateDoorClosed: closed-science
+  - type: Construction
+    graph: StorageCounter
+    node: storagecounterscience
+
+- type: entity
   name: botany storage counter
   id: StorageCounterBotany
   parent: BaseStorageCounter
