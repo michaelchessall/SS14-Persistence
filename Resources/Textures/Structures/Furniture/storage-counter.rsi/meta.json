@@ -20,6 +20,12 @@
       "name": "frame-step3","directions": 4
     },
     {
+      "name": "closed-cargo", "directions": 4
+    },
+    {
+      "name": "open-cargo", "directions":4
+    },
+    {
       "name": "closed-science", "directions": 4
     },
     {

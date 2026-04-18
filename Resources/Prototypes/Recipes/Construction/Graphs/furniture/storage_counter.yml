@@ -106,6 +106,19 @@
       - tool: Screwing
         doAfter: 1
 
+    - to: storagecountercargo
+      steps:
+      - material: MetalRod
+        amount: 5
+        doAfter: 1
+      - tool: Welding
+        doAfter: 1
+      - material: Plastic
+        amount: 5
+        doAfter: 1
+      - tool: Screwing
+        doAfter: 1
+
     - to: storagecounterscience
       steps:
       - material: WoodPlank
@@ -173,6 +186,23 @@
         amount: 5
       steps:
       - tool: Sawing
+        doAfter: 1
+      - tool: Prying
+        doAfter: 1
+
+  - node: storagecountercargo
+    entity: StorageCounterCargo
+    edges:
+    - to: frame-step3
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPlastic1
+        amount: 5
+      - !type:SpawnPrototype
+        prototype: PartRodMetal1
+        amount: 5
+      steps:
+      - tool: Welding
         doAfter: 1
       - tool: Prying
         doAfter: 1

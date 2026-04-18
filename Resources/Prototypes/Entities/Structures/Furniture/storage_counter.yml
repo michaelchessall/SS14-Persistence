@@ -26,7 +26,7 @@
   - type: Storage
     grid:
     - 0,0,5,5
-    - 7,0,13,5
+    - 7,0,12,5
     maxItemSize: Huge
   - type: UserInterface
     interfaces:
@@ -61,7 +61,6 @@
     graph: StorageCounter
     node: frame-step0
 
-
 - type: entity
   name: storage counter
   id: StorageCounter
@@ -81,6 +80,26 @@
   - type: Construction
     graph: StorageCounter
     node: storagecounter
+
+- type: entity
+  name: cargo storage counter
+  id: StorageCounterCargo
+  parent: BaseStorageCounter
+  components:
+  - type: Sprite
+    state: frame-step3
+    layers:
+    - state: frame-step3
+      map: ["enum.StorageVisualLayers.Base"]
+    - state: closed-cargo
+      map: ["enum.StorageVisualLayers.Door"]
+    - state: counter-grey
+  - type: EntityStorageVisuals
+    stateDoorOpen: open-cargo
+    stateDoorClosed: closed-cargo
+  - type: Construction
+    graph: StorageCounter
+    node: storagecountercargo
 
 - type: entity
   name: engineering storage counter

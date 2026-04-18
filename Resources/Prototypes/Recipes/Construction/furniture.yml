@@ -801,7 +801,19 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
-    
+
+- type: construction
+  id: StorageCounterCargo
+  graph: StorageCounter
+  startNode: start
+  targetNode: storagecountercargo
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
 - type: construction
   id: StorageCounterScience
   graph: StorageCounter
