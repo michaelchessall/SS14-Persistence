@@ -157,4 +157,14 @@
     sprite: Structures/Decoration/banner.rsi
     state: banner-green
 
+- type: entity
+  id: BannerSolarLegion
+  parent: BannerBase
+  name: solar legion banner
+  description: A banner displaying the Solar Legion logo. Spear tip blunted for safety.
+  components:
+  - type: Sprite
+    sprite: Structures/Decoration/banner.rsi
+    state: banner_sl
+
 
