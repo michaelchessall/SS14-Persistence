@@ -23,4 +23,7 @@ public sealed partial class CargoBountyLabelComponent : Component
     /// </summary>
     [DataField]
     public EntityUid? AssociatedStationId;
+
+    [DataField]
+    public string? DealerName;
 }

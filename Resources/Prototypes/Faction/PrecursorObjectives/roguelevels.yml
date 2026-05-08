@@ -1,0 +1,31 @@
+- type: rogueLevel
+  id: RogueLevel1
+  name: Civillian (1)
+  next: RogueLevel2
+
+- type: rogueLevel
+  id: RogueLevel2
+  name: Associate (2)
+  next: RogueLevel3
+  cost: 500
+  itemLevel: 1
+
+- type: rogueLevel
+  id: RogueLevel3
+  name: Soldier (3)
+  next: RogueLevel4
+  cost: 2000
+  itemLevel: 2
+
+- type: rogueLevel
+  id: RogueLevel4
+  name: Captain (4)
+  next: RogueLevel5
+  cost: 10000
+  itemLevel: 3
+
+- type: rogueLevel
+  id: RogueLevel5
+  name: Boss (5)
+  cost: 50000
+  itemLevel: 4

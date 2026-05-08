@@ -1,0 +1,45 @@
+- type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
+  id: ClothingBeltSheathSpatha
+  name: executive's spatha sheath
+  description: An ornate sheath designed to hold an officer's spatha. An extremely rare sight.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Belt/sheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Belt/sheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: ExecutiveSpatha
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - ExecutiveSpatha
+  - type: ItemMapper
+    mapLayers:
+      sheath-spatha:
+        whitelist:
+          tags:
+          - ExecutiveSpatha
+  - type: Appearance
+
+- type: entity
+  parent: BaseClothingBeltEngineering
+  id: ClothingBeltChiefEngineerSOL
+  name: solar legion chief engineer's toolbelt
+  description: Holds tools, looks snazzy. Designed for use by chief engineers all across the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Belt/ce.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Belt/ce.rsi
+  - type: Storage
+    grid:
+    - 0,0,9,1

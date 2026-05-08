@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432. paper_stamp-syndicate by Veritius. paper_receipt, paper_receipt_horizontal by eoineoineoin. paper_stamp-greytide by ubaser. paper_stamp-psychologist by clinux. syndicate_card by Aserovich. paper_stamp_wizard by brassicaprime69 (Discord), acquisition_form acquisition_form_words and acquisition_form_header by sowelipililimute (GitHub)",
+  "copyright": "Taken from tgstation at https://github.com/tgstation/tgstation/commit/e1142f20f5e4661cb6845cfcf2dd69f864d67432. paper_stamp-syndicate by Veritius. paper_receipt, paper_receipt_horizontal by eoineoineoin. paper_stamp-greytide by ubaser. paper_stamp-psychologist by clinux. syndicate_card by Aserovich. paper_stamp_wizard by brassicaprime69 (Discord), acquisition_form acquisition_form_words and acquisition_form_header by sowelipililimute (GitHub), SOL variants by FrostRusty (Github)",
   "size": {
     "x": 32,
     "y": 32
@@ -231,6 +231,24 @@
     },
     {
       "name": "paper_stamp-wizard"
+    },
+    {
+      "name": "paper_stamp-exec-SOL"
+    },
+    {
+      "name": "paper_stamp-ce-SOL"
+    },
+    {
+      "name": "paper_stamp-cmo-SOL"
+    },
+    {
+      "name": "paper_stamp-hos-SOL"
+    },
+    {
+      "name": "paper_stamp-qm-SOL"
+    },
+    {
+      "name": "paper_stamp-rd-SOL"
     }
   ]
 }

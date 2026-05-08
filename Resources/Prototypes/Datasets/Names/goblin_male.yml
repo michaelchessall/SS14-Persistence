@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_goblin_male
+  values:
+    prefix: names-goblin-male-dataset-
+    count: 209

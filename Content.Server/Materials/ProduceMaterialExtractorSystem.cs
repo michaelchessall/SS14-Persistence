@@ -6,6 +6,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Popups;
 using Robust.Server.Audio;
 using System.Linq;
+using Content.Shared.Body;
 
 namespace Content.Server.Materials;
 
@@ -30,10 +31,12 @@ public sealed class ProduceMaterialExtractorSystem : EntitySystem
         if (!this.IsPowered(ent, EntityManager))
             return;
 
-        if (!TryComp<ProduceComponent>(args.Used, out var produce))
+        if (!TryComp<ProduceComponent>(args.Used, out var produce) && !TryComp<OrganComponent>(args.Used, out var produce2))
             return;
 
-        if (!_solutionContainer.TryGetSolution(args.Used, produce.SolutionName, out var solution))
+        // TODO The "food" string should be replaced with a variable from Produce at some point
+
+        if (!_solutionContainer.TryGetSolution(args.Used, "food", out var solution))
             return;
 
         // Can produce even have fractional amounts? Does it matter if they do?

@@ -1,0 +1,19 @@
+<PanelContainer xmlns="https://spacestation14.io" StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="TitleLabel" Text="(JOB) Looking for engineers to help with a shuttle." StyleClasses="LabelKeyText" />
+            <Control HorizontalExpand="True" />
+            <Button Text="View" Name="ViewButton" Access="Public" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Label Access="Public" Name="AuthorLabel" Text="Posted by Chester Cheetah" />
+            <Control HorizontalExpand="True" />
+            <Button Text="Delete" Name="DeleteButton" Access="Public" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Label Access="Public" Name="DateLabel" Text="14:17 2246-05-01" />
+            <Control HorizontalExpand="True" />
+            <Label Access="Public" Name="CommentsLabel" Text="0 Comments" />
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>

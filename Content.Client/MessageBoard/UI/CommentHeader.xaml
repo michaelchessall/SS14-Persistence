@@ -1,0 +1,12 @@
+<PanelContainer xmlns="https://spacestation14.io" StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal">
+            <Label Name="CommentLabel" Text="Looks Very Cool!" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal">
+            <Label Access="Public" Name="AuthorLabel" Text="Posted by Chester Cheetah on 2248-05-01 14:17" />
+            <Control HorizontalExpand="True" />
+            <Button Text="Delete" Name="DeleteButton" Access="Public" />
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>

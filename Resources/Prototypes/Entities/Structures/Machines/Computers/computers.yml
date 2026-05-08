@@ -901,6 +901,40 @@
         type: WiresBoundUserInterface
 
 - type: entity
+  id: ComputerMessageBoard
+  parent: BaseComputerAiAccess
+  name: Message Board Console
+  description: Used to communicate across the Sector.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: explosive
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: MessageBoard
+  - type: ActivatableUI
+    key: enum.MessageBoardUiKey.Main
+  - type: UserInterface
+    interfaces:
+      enum.MessageBoardUiKey.Main:
+        type: MessageBoardBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Computer
+    board: StationModComputerCircuitboard
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#00FF00"
+
+- type: entity
   id: ComputerStationModification
   parent: BaseComputerAiAccess
   name: faction modification computer

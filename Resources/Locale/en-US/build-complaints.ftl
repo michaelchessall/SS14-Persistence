@@ -1,0 +1,14 @@
+drunk = drunk
+hallucinations = hallucinations
+owoaccent = owoaccent
+drowsiness = drowsiness
+hemorrhage = hemorrhage
+scrambled = scrambled
+woozy = woozy
+thin-blood = thin blood
+stunned = stunned
+barkaccent = barkaccent
+forced-sleep = forced sleep
+pain-numbness = pain numbness
+max-stamina-onehalftimes = 1.5x max stamina
+max-stamina-twotimes = 2x max stamina

@@ -162,7 +162,6 @@
   - type: GuideHelp
     guides:
     - Robotics
-    - Xenoborgs
   - type: Inventory
     templateId: borg
   - type: NpcFactionMember

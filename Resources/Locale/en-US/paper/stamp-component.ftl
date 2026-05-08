@@ -20,3 +20,10 @@ stamp-component-stamped-name-ce = Chief Engineer
 stamp-component-stamped-name-greytide = Greytide
 stamp-component-stamped-name-psychologist = Psychologist
 stamp-component-stamped-name-wizard = Wizard
+
+stamp-component-stamped-name-rd-sol = SOL Research Director
+stamp-component-stamped-name-exec-sol = SOL Executive
+stamp-component-stamped-name-hos-sol = SOL Chief of Police
+stamp-component-stamped-name-cmo-sol = SOL Medical Director
+stamp-component-stamped-name-qm-sol = SOL Quartermaster
+stamp-component-stamped-name-ce-sol = SOL Chief Engineer

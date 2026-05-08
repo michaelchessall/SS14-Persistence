@@ -31,4 +31,7 @@ public sealed partial class InfrastructureLevelPrototype : IPrototype
     [DataField]
     public int Income = -5000;
 
+    [DataField]
+    public int Level = 1;
+
 }

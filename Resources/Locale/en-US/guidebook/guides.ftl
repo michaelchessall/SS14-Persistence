@@ -63,6 +63,7 @@ guide-entry-jobs = Jobs
 guide-entry-cargo = Cargo
 guide-entry-cargo-bounties = Cargo Bounties
 guide-entry-salvage = Salvage
+guide-entry-gas-mining = Gas Mining
 guide-entry-survival = Survival
 guide-entry-janitorial = Janitorial
 guide-entry-bartender = Bartender
@@ -104,6 +105,7 @@ guide-entry-radio = Radio and Speech
 guide-entry-references = Tables & References
 guide-entry-chemicals = Chemicals
 guide-entry-drinks = Drinks
+guide-entry-entities = Entity Recipes
 guide-entry-foodrecipes = Food Recipes
 
 guide-entry-elements = Elements

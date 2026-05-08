@@ -4,3 +4,10 @@
   - Adjectives
   - Verbs
   amount: 4
+
+- type: codewordGenerator
+  id: PersistenceCodewordGenerator
+  words:
+  - Adjectives
+  - Verbs
+  amount: 2

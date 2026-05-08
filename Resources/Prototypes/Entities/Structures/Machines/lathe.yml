@@ -216,6 +216,7 @@
     - Instruments
     - Equipment
     - Hardsuits
+    - PaperworkDynamic
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo

@@ -1,0 +1,120 @@
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleExecSOL
+  name: executive's mantle
+  description: A comfortable and chique mantle befitting of only the most experienced executives.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/execmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/execmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleCESOL
+  name: solar legion chief engineer's mantle
+  description: A dark orange mantle with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/cemantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/cemantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleCMOSOL
+  name: solar legion medical director's mantle
+  description: A sterile light blue mantle with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer, as well as small green crosses showing their medical expertise.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/cmomantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/cmomantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleHOSSOL
+  name: chief of police's mantle
+  description: A glorious dark mantle with Solar Legion colors and emblems emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/hosmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/hosmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleRDSOL
+  name: solar legion research director's mantle
+  description: A glorious purple mantle with Solar Legion colors and emblems emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/rdmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/rdmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleQMSOL
+  name: solar legion quartermaster's mantle
+  description: A dark brown cloak with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/qmmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/qmmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleMedOfficerSOL
+  name: solar legion medical officer's mantle
+  description: A soft blue mantle with solar legion colors. Features bronze trims to show the wearer's rank as a Solar Legion medical XO.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/medicalofficer.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/medicalofficer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleExecSecSOL
+  name: solar legion executive secretary's mantle
+  description: A soft mantle with Solar Legion colors and symbols. The regal red colors denote the wearer's proximity to the Solar Legion executive.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/execsecmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/execsecmantle.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleCargoForemanSOL
+  name: solar legion cargo foreman's mantle
+  description: A soft brown mantle with solar legion colors. Features bronze trims to show the wearer's rank as a Solar Legion cargo XO.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/cargoforeman.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/cargoforeman.rsi 
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleSciOfficerSOL
+  name: solar legion science officer's mantle
+  description: A soft purple mantle with solar legion colors. Features bronze trims to show the wearer's rank as a Solar Legion science XO.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/sciofficer.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/sciofficer.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMantleEngiForemanSOL
+  name: solar legion engineering foreman's mantle
+  description: A soft yellow mantle with solar legion colors. Features bronze trims to show the wearer's rank as a Solar Legion engineering XO.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/engiforeman.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/engiforeman.rsi 

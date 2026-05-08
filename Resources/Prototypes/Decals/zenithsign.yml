@@ -1,0 +1,92 @@
+﻿- type: decal
+  id: ZenithStationSign1
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith1
+
+- type: decal
+  id: ZenithStationSign2
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith2
+
+- type: decal
+  id: ZenithStationSign3
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith3
+
+- type: decal
+  id: ZenithStationSign4
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith4
+
+- type: decal
+  id: ZenithStationSign5
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith5
+
+- type: decal
+  id: ZenithStationSign6
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith6
+
+- type: decal
+  id: ZenithStationSign7
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith7
+
+
+- type: decal
+  id: ZenithStationSign8
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith8
+
+- type: decal
+  id: ZenithStationSign9
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith9
+
+- type: decal
+  id: ZenithStationSign10
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith10
+
+- type: decal
+  id: ZenithStationSign11
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith11
+
+- type: decal
+  id: ZenithStationSign12
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith12
+
+- type: decal
+  id: ZenithStationSign13
+  tags: ["station"]
+  sprite:
+    sprite: Decals/zenithsign.rsi
+    state: zenith13
+

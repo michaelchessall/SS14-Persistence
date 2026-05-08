@@ -114,7 +114,7 @@
     sprite: Structures/Storage/tanks.rsi
     state: fueltank
   product: WeldingFuelTankFull
-  cost: 1000
+  cost: 7500
   category: cargoproduct-category-name-materials
   group: engineermarket
 
@@ -304,7 +304,7 @@
     sprite: Structures/Storage/canister.rsi
     state: black
   product: CarbonDioxideCanister
-  cost: 500 # even though it's poisonous, it comes locked and only damages you slowly even with high amounts (tested)
+  cost: 600 # even though it's poisonous, it comes locked and only damages you slowly even with high amounts (tested)
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -314,7 +314,7 @@
     sprite: Structures/Storage/canister.rsi
     state: black
   product: LiquidCarbonDioxideCanister
-  cost: 1125 # much less deadly than the plasma can (this has been tested) even though this is cold+poison
+  cost: 7000 # much less deadly than the plasma can (this has been tested) even though this is cold+poison
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -328,15 +328,15 @@
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
-#- type: cargoProduct
-#  id: AtmosphericsWaterVaporETS
-#  icon:
-#    sprite: Structures/Storage/canister.rsi
-#    state: water_vapor
-#  product: WaterVaporCanister
-#  cost: 1300
-#  category: cargoproduct-category-name-atmospherics
-#  group: engineermarket
+- type: cargoProduct
+  id: AtmosphericsWaterVaporETS
+  icon:
+    sprite: Structures/Storage/canister.rsi
+    state: water_vapor
+  product: WaterVaporCanister
+  cost: 400
+  category: cargoproduct-category-name-atmospherics
+  group: engineermarket
 
 - type: cargoProduct
   id: AtmosphericsPlasmaETS

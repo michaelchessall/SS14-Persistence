@@ -67,7 +67,7 @@
   flavor: juice
   color: "#512284"
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 0.05
       effects:
       - !type:HealthChange

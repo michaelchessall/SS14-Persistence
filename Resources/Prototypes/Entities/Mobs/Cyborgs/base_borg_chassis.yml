@@ -252,6 +252,7 @@
     requiredMobState:
     - Critical
     - Dead
+  - type: CanEnterCryostorage
 
 - type: entity
   abstract: true
@@ -540,7 +541,6 @@
     guides:
     - Cyborgs
     - Robotics
-    - Xenoborgs
   - type: Access
     tags:
     - Xenoborg

@@ -8,6 +8,7 @@ using Content.Server.Spawners.EntitySystems;
 using Content.Server.Speech.Components;
 using Content.Server.Station.Components;
 using Content.Server.Station.Systems;
+using Content.Shared.Bed.Cryostorage;
 using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
@@ -149,6 +150,8 @@ namespace Content.Server.GameTicking
             bool silent = false)
         {
             var character = GetPlayerProfile(player);
+            if (character == null)
+                character = new HumanoidCharacterProfile();
 
             var jobBans = _banManager.GetJobBans(player.UserId);
             if (jobBans == null || jobId != null && jobBans.Contains(jobId)) //TODO: use IsRoleBanned directly?
@@ -305,43 +308,67 @@ namespace Content.Server.GameTicking
                 $"Player {player.Name} late joined as {character.Name:characterName}. Loaded char");
 
 
-
-            var possibleContainers = FindContSpawn();
-            if (possibleContainers.Count > 0)
+            var cryos = EntityQueryEnumerator<CryostorageComponent, TransformComponent>();
+            EntityCoordinates? personalSpawn = null;
+            while (cryos.MoveNext(out var uid, out var cryo, out var xform))
             {
-                _robustRandom.Shuffle(possibleContainers);
-                foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
+                if (!cryo.PersonalMode)
+                    continue;
+                if (cryo.PersonalName == Name(mob))
                 {
-                    if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container2, manager))
-                        continue;
-
-                    if (!_container.Insert(mob, container2, containerXform: xform))
-                        continue;
-
-                    var ev = new ContainerSpawnEvent(mob);
+                    var ev = new PersonalCryoEvent(false);
                     RaiseLocalEvent(uid, ref ev);
-
+                    personalSpawn = xform.Coordinates;
+                    cryo.PersonalOccupied = false;
+                    break;
                 }
             }
-
+            if (personalSpawn != null)
+            {
+                _transform.SetCoordinates(mob, personalSpawn.Value);
+            }
             else
             {
-                var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
-                var possiblePositions = new List<EntityCoordinates>();
-                while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+                var possibleContainers = FindContSpawn();
+                if (possibleContainers.Count > 0)
                 {
-                    if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
-                        continue;
+                    _robustRandom.Shuffle(possibleContainers);
+                    foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
+                    {
+                        if (!_container.TryGetContainer(uid, spawnPoint.ContainerId, out var container2, manager))
+                            continue;
 
-                    possiblePositions.Add(xform.Coordinates);
+                        if (!_container.Insert(mob, container2, containerXform: xform))
+                            continue;
+
+                        var spawnLoc = xform.Coordinates;
+                        _transform.SetCoordinates(mob, spawnLoc);
+                        break;
+                        //var ev = new ContainerSpawnEvent(mob);
+                        //RaiseLocalEvent(uid, ref ev);
+
+                    }
                 }
 
-                if (possiblePositions.Count <= 0)
-                    return;
+                else
+                {
+                    var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
+                    var possiblePositions = new List<EntityCoordinates>();
+                    while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
+                    {
+                        if (spawnPoint.SpawnType != SpawnPointType.LateJoin)
+                            continue;
 
-                var spawnLoc = _robustRandom.Pick(possiblePositions);
+                        possiblePositions.Add(xform.Coordinates);
+                    }
 
-                _transform.SetCoordinates(mob, spawnLoc);
+                    if (possiblePositions.Count <= 0)
+                        return;
+
+                    var spawnLoc = _robustRandom.Pick(possiblePositions);
+
+                    _transform.SetCoordinates(mob, spawnLoc);
+                }
             }
 
 

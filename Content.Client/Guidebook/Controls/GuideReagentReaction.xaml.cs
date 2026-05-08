@@ -31,12 +31,16 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
         _protoMan = protoMan;
     }
 
-    public GuideReagentReaction(ReactionPrototype prototype, IPrototypeManager protoMan, IEntitySystemManager sysMan) : this(protoMan)
+    public GuideReagentReaction(ReactionPrototype prototype, IPrototypeManager protoMan, IEntitySystemManager sysMan, string prod = "") : this(protoMan)
     {
         Container container = ReactantsContainer;
         SetReagents(prototype.Reactants, ref container, protoMan);
         Container productContainer = ProductsContainer;
         var products = new Dictionary<string, FixedPoint2>(prototype.Products);
+        if (prod != "")
+        {
+            products.Add(prod, 1);
+        }
         foreach (var (reagent, reactantProto) in prototype.Reactants)
         {
             if (reactantProto.Catalyst)
@@ -156,16 +160,31 @@ public sealed partial class GuideReagentReaction : BoxContainer, ISearchableCont
     {
         foreach (var (product, amount) in reagents.OrderByDescending(p => p.Value))
         {
-            var productProto = protoMan.Index<ReagentPrototype>(product);
-            var msg = new FormattedMessage();
-            msg.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-recipes-reagent-display",
-                ("reagent", productProto.LocalizedName), ("ratio", amount)));
+            if (!protoMan.HasIndex<ReagentPrototype>(product))
+            {
+                var productProto = protoMan.Index<EntityPrototype>(product);
+                var msg = new FormattedMessage();
+                msg.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-recipes-reagent-display",
+                    ("reagent", productProto.Name), ("ratio", amount)));
+                var label = new GuidebookRichPrototypeLink();
+                if (addLinks)
+                    label.LinkedPrototype = productProto;
+                label.SetMessage(msg);
+                container.AddChild(label);
+            }
+            else
+            {
+                var productProto = protoMan.Index<ReagentPrototype>(product);
+                var msg = new FormattedMessage();
+                msg.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-recipes-reagent-display",
+                    ("reagent", productProto.LocalizedName), ("ratio", amount)));
 
-            var label = new GuidebookRichPrototypeLink();
-            if (addLinks)
-                label.LinkedPrototype = productProto;
-            label.SetMessage(msg);
-            container.AddChild(label);
+                var label = new GuidebookRichPrototypeLink();
+                if (addLinks)
+                    label.LinkedPrototype = productProto;
+                label.SetMessage(msg);
+                container.AddChild(label);
+            }
         }
         container.Visible = true;
     }

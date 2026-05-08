@@ -1,0 +1,158 @@
+
+- type: cargoBounty
+  id: BountySteel
+  reward: 100
+  description: bounty-description-steel
+  entries:
+    - name: bounty-item-steel
+      amount: 100
+      whitelist:
+        tags:
+        - Steel
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyGold
+  reward: 300
+  description: bounty-description-gold
+  entries:
+    - name: bounty-item-gold
+      amount: 35
+      whitelist:
+        tags:
+        - Gold
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountySilver
+  reward: 300
+  description: bounty-description-silver
+  entries:
+    - name: bounty-item-silver
+      amount: 30
+      whitelist:
+        tags:
+        - Silver
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyBrass
+  reward: 150
+  description: bounty-description-brass
+  entries:
+    - name: bounty-item-brass
+      amount: 60
+      whitelist:
+        tags:
+        - Brass
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyPlasteel
+  reward: 400
+  description: bounty-description-plasteel
+  entries:
+    - name: bounty-item-plasteel
+      amount: 25
+      whitelist:
+        tags:
+        - Plasteel
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyPlasma
+  reward: 300
+  description: bounty-description-plasma
+  entries:
+    - name: bounty-item-plasma
+      amount: 30
+      whitelist:
+        tags:
+        - Plasma
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyPlastic
+  reward: 150
+  description: bounty-description-plastic
+  entries:
+    - name: bounty-item-plastic
+      amount: 60
+      whitelist:
+        tags:
+        - Plastic
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyWood
+  reward: 100
+  description: bounty-description-wood
+  entries:
+    - name: bounty-item-wood
+      amount: 100
+      whitelist:
+        tags:
+        - Wood
+  bountyType: PayPer
+  group: MaterialBounty
+
+
+- type: cargoBounty
+  id: BountyUranium
+  reward: 265
+  description: bounty-description-uranium
+  entries:
+    - name: bounty-item-uranium
+      amount: 35
+      whitelist:
+        tags:
+        - Uranium
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyBananium
+  reward: 500
+  description: bounty-description-bananium
+  entries:
+    - name: bounty-item-bananium
+      amount: 20
+      whitelist:
+        tags:
+        - Bananium
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyCoal
+  reward: 75
+  description: bounty-description-coal
+  entries:
+    - name: bounty-item-coal
+      amount: 130
+      whitelist:
+        tags:
+        - Coal
+  bountyType: PayPer
+  group: MaterialBounty
+
+- type: cargoBounty
+  id: BountyDiamonds
+  reward: 1000
+  description: bounty-description-diamond
+  entries:
+    - name: bounty-item-diamond
+      amount: 10
+      whitelist:
+        tags:
+        - Diamond
+  bountyType: PayPer
+  group: MaterialBounty
+

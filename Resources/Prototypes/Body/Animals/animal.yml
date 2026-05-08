@@ -16,6 +16,13 @@
   id: OrganAnimalInternal
   abstract: true
   components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
   - type: Sprite
     sprite: Mobs/Species/Human/organs.rsi
 

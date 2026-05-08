@@ -10,6 +10,17 @@
     Steel: 50
     Plastic: 100
 
+- type: latheRecipe
+  abstract: true
+  id: BaseReinforcedFolderRecipe
+  categories:
+  - Bureaucracy
+  completetime: 2
+  materials:
+    Titanium: 100
+    Steel: 50
+  unlockUses: 3
+
 # Recipes
 - type: latheRecipe
   parent: BaseFolderRecipe
@@ -86,3 +97,18 @@
   completetime: 2
   materials:
     Plastic: 500
+
+- type: latheRecipe
+  parent: BaseReinforcedFolderRecipe
+  id: BoxFolderTitaniumRed
+  result: BoxFolderTitaniumRedEmpty
+
+- type: latheRecipe
+  parent: BaseReinforcedFolderRecipe
+  id: BoxFolderTitaniumGreen
+  result: BoxFolderTitaniumGreenEmpty
+
+- type: latheRecipe
+  parent: BaseReinforcedFolderRecipe
+  id: BoxFolderTitaniumBlue
+  result: BoxFolderTitaniumBlueEmpty

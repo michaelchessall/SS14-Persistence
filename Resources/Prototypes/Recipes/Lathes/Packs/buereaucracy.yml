@@ -15,3 +15,12 @@
   - DeskBell
   - BrbSign
   - BriefcaseBrown
+
+# Dynamic
+
+- type: latheRecipePack
+  id: PaperworkDynamic
+  recipes:
+  - BoxFolderTitaniumRed
+  - BoxFolderTitaniumBlue
+  - BoxFolderTitaniumGreen

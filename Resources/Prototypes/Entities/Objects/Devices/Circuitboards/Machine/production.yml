@@ -1078,6 +1078,22 @@
       Steel: 4
 
 - type: entity
+  id: PersonalCryoMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: personal cryopod machine board
+  description: A circuit board for a personal cryopod.
+  components:
+    - type: Sprite
+      state: engineering
+    - type: MachineBoard
+      prototype: CryogenicSleepUnitPersonal
+      stackRequirements:
+        Cable: 5
+        CableMV: 5
+        CableHV: 5
+        Steel: 10
+
+- type: entity
   id: MCTNMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: multi-channel transfer node machine board

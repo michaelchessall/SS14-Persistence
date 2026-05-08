@@ -29,8 +29,6 @@ public sealed partial class BountyEntry : BoxContainer
 
         if (!_prototype.Resolve<CargoBountyPrototype>(bounty.Bounty, out var bountyPrototype))
             return;
-
-        
         IdLabel.SetMarkup(Loc.GetString("bounty-console-id-label", ("id", bounty.Id)));
         var items = new List<string>();
         foreach (var entry in bountyPrototype.Entries)

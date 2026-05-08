@@ -3,7 +3,6 @@
   name: roles-antag-survivor-name
   antagonist: true
   objective: roles-antag-survivor-objective
-  # guides: [  ]
 
 - type: antag
   id: Wizard
@@ -14,6 +13,5 @@
   requirements: # I hate time locked roles but this should be enough time for someone to be acclimated
   - !type:OverallPlaytimeRequirement
     time: 5h
-  guides: [ Wizard ]
 
 # See wizard_startinggear for wiz start gear options

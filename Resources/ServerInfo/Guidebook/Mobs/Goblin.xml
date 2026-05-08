@@ -1,0 +1,15 @@
+<Document>
+  # Goblin
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceGoblin" Caption=""/>
+  </Box>
+
+  Goblins can eat raw meat with no ill effects, but sugar and food made with sugar tastes disgusting to them and makes them vomit.
+
+  They take [color=#1e90ff]20% less Poison damage and 20% less Burn damage[/color],
+  but they take [color=#ffa500]25% more Brute damage.[/color]
+
+  Goblins deal reduced Slash damage with their unarmed attack.
+
+</Document>

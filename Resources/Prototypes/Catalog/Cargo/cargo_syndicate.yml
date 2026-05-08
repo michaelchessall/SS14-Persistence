@@ -1,22 +1,12 @@
 - type: cargoProduct
-  id: EnergySword
-  icon:
-    sprite: Objects/Weapons/Melee/e_sword.rsi
-    state: e_sword
-  product: EnergySword
-  cost: 15000
-  category: cargoproduct-category-name-syndicate
-  group: syndicatemarket3
-
-- type: cargoProduct
   id: EnergyDagger
   icon:
     sprite: Objects/Weapons/Melee/e_dagger_loud.rsi
     state: e_sword
   product: EnergyDaggerBox
-  cost: 7500
+  cost: 9500
   category: cargoproduct-category-name-syndicate
-  group: syndicatemarket2
+  group: syndicatemarket3
 
 - type: cargoProduct
   id: DoubleEnergySword
@@ -34,6 +24,280 @@
     sprite: Objects/Weapons/Melee/e_shield.rsi
     state: eshield-on
   product: EnergyShield
-  cost: 10000
+  cost: 6500
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+- type: cargoProduct
+  id: DecoyKit
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+  product: ClothingBackpackDuffelSyndicateDecoyKitFilled
+  cost: 600
   category: cargoproduct-category-name-syndicate
   group: syndicatemarket
+
+- type: cargoProduct
+  id: MedicalKit
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-med
+  product: ClothingBackpackDuffelSyndicateMedicalBundleFilled
+  cost: 1500
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: syndicateEVABundle
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+  product: ClothingBackpackDuffelSyndicateEVABundle
+  cost: 1500
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+
+
+- type: cargoProduct
+  id: SyndicateToolbox
+  icon:
+    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
+    state: icon
+  product: ToolboxSyndicateFilled
+  cost: 1000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+
+- type: cargoProduct
+  id: CrateSyndicateSecure
+  icon:
+    sprite: Structures/Storage/Crates/syndicate_secure.rsi
+    state: icon
+  product: CrateSyndicateSecure
+  cost: 200
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+- type: cargoProduct
+  id: ClothingBackpackDuffelSyndicateFilledStarterKit
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+  product: ClothingBackpackDuffelSyndicateFilledStarterKit
+  cost: 25000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket4
+
+- type: cargoProduct
+  id: ClothingBackpackDuffelSyndicateAmmoFilled
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon-ammo
+  product: ClothingBackpackDuffelSyndicateAmmoFilled
+  cost: 1000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: SyndicateMicrowaveFlatpack
+  icon:
+    sprite: Objects/Devices/flatpack.rsi
+    state: base
+  product: SyndicateMicrowaveFlatpack
+  cost: 1500
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: EmpImplanter
+  icon:
+    sprite: Objects/Specific/Medical/syndi_implanter.rsi
+    state: implanter1
+  product: EmpImplanter
+  cost: 10000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+- type: cargoProduct
+  id: ScramImplanter
+  icon:
+    sprite: Objects/Specific/Medical/syndi_implanter.rsi
+    state: implanter1
+  product: ScramImplanter
+  cost: 10000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+
+- type: cargoProduct
+  id: ClothingBackpackDuffelSyndicatePyjamaBundle
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+  product: ClothingBackpackDuffelSyndicatePyjamaBundle
+  cost: 900
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+
+- type: cargoProduct
+  id: ClothingBackpackDuffelSyndicateCarpSuit
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+  product: ClothingBackpackDuffelSyndicateCarpSuit
+  cost: 600
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+
+- type: cargoProduct
+  id: ChameleonProjector
+  icon:
+    sprite: Objects/Devices/chameleon_projector.rsi
+    state: icon
+  product: ChameleonProjector
+  cost: 7000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+- type: cargoProduct
+  id: JetpackBlackFilled
+  icon:
+    sprite: Objects/Tanks/Jetpacks/black.rsi
+    state: icon
+  product: JetpackBlackFilled
+  cost: 2500
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+
+- type: cargoProduct
+  id: WeaponPistolViper
+  icon:
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    state: icon
+  product: WeaponPistolViper
+  cost: 900
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+- type: cargoProduct
+  id: ClothingHandsKnuckleDustersSyndicate
+  icon:
+    sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi
+    state: syndicateknuckleduster
+  product: ClothingHandsKnuckleDustersSyndicate
+  cost: 800
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+- type: cargoProduct
+  id: ClothingBeltMilitaryWebbing
+  icon:
+    sprite: Clothing/Belt/militarywebbing.rsi
+    state: icon
+  product: ClothingBeltMilitaryWebbing
+  cost: 2000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: WeaponPistolCobra
+  icon:
+    sprite: Objects/Weapons/Guns/Pistols/cobra.rsi
+    state: icon
+  product: WeaponPistolCobra
+  cost: 3000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: ClothingHandsGlovesBoxingRiggedBlue
+  icon:
+    sprite: Clothing/Hands/Gloves/Boxing/boxingblue.rsi
+    state: icon
+  product: ClothingHandsGlovesBoxingRiggedBlue
+  cost: 1800
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: HypoDartBox
+  icon:
+    sprite: Objects/Fun/Darts/dartbox.rsi
+    state: icon
+  product: HypoDartBox
+  cost: 1800
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: ThrowingKnivesKit
+  icon:
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+  product: ThrowingKnivesKit
+  cost: 3000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket2
+
+- type: cargoProduct
+  id: BriefcaseSyndieSniperBundleFilled
+  icon: { sprite: /Textures/Objects/Weapons/Guns/Snipers/heavy_sniper.rsi, state: base }
+  product: BriefcaseSyndieSniperBundleFilled
+  cost: 30000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket5
+
+- type: cargoProduct
+  id: ChemicalSynthesisKit
+  icon: { sprite: Objects/Storage/boxes.rsi, state: box }
+  product: ChemicalSynthesisKit
+  cost: 700
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+- type: cargoProduct
+  id: SlipocalypseClusterSoap
+  icon: { sprite: Objects/Specific/Janitorial/soap.rsi, state: syndie-4 }
+  product: SlipocalypseClusterSoap
+  cost: 700
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+- type: cargoProduct
+  id: BriefcaseWeaponHushpupFilled
+  icon: { sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi, state: icon }
+  product: BriefcaseWeaponHushpupFilled
+  cost: 10000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+- type: cargoProduct
+  id: EnergySword
+  icon: { sprite: /Textures/Objects/Weapons/Melee/e_sword.rsi, state: icon }
+  product: EnergySword
+  cost: 10000
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket3
+
+- type: cargoProduct
+  id: ClothingBackpackDuffelSyndicateCostumeClown
+  icon: { sprite: Clothing/Back/Duffels/clown.rsi, state: icon }
+  product: ClothingBackpackDuffelSyndicateCostumeClown
+  cost: 600
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+- type: cargoProduct
+  id: PersonalCryoMachineCircuitboard
+  icon: { sprite: Objects/Misc/module.rsi, state: engineering }
+  product: PersonalCryoMachineCircuitboard
+  cost: 600
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+

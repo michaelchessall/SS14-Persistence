@@ -78,6 +78,19 @@
   metabolisms:
     Metabolites:
       effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 1
+      - !type:Vomit
+        probability: 1
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
       - !type:SatiateHunger
         conditions:
         - !type:ReagentCondition #Only satiates when eaten with nutriment

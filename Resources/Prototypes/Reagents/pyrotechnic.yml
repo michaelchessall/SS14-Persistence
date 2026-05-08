@@ -120,7 +120,7 @@
         multiplier: 0.2
       - !type:AdjustTemperature
         amount: 6000
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         damage:

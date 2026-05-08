@@ -2,7 +2,9 @@ using Content.Client.Actions;
 using Content.Client.Cargo.UI;
 using Content.Client.Message;
 using Content.Client.Store.Ui;
+using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CrewAssignments;
+using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.FixedPoint;
 using Content.Shared.Store;
@@ -16,6 +18,8 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using System.Linq;
+using System.Runtime.Intrinsics.X86;
+using System.Security.AccessControl;
 using System.Text;
 using static Robust.Client.UserInterface.Controls.BaseButton;
 using static Robust.Client.UserInterface.Controls.MenuBar;
@@ -28,17 +32,21 @@ public sealed partial class JobNetMenu : DefaultWindow
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
     public TimeSpan UntilNextPay = TimeSpan.Zero;
-
+    public TimeSpan UntilNextPrec = TimeSpan.Zero;
+    public TimeSpan UntilNextRogue = TimeSpan.Zero;
+    public SpriteSystem? _spriteSystem;
     public JobNetBoundUserInterface? Owner;
-
+    public event Action<CargoProductRow?>? OnItemSelected;
+    public Action<string>? OnLabelButtonPressed;
     public JobNetMenu()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
         MasterTabContainer.SetTabTitle(0, "Job Network");
-        MasterTabContainer.SetTabTitle(1, "Historic Achievements");
-        MasterTabContainer.SetTabTitle(2, "Threshold Codex");
+        MasterTabContainer.SetTabTitle(1, "History");
+        MasterTabContainer.SetTabTitle(2, "Sector");
         MasterTabContainer.SetTabTitle(3, "Upgrades");
+        MasterTabContainer.SetTabTitle(4, "Precursor");
     }
 
     public void UpdateState(JobNetUpdateState state)
@@ -159,6 +167,236 @@ public sealed partial class JobNetMenu : DefaultWindow
             }
             NextBenefitsLabel.SetMarkup(nextLevelDesc);
         }
+
+        PrecursorBalanceLabel.Text = $"P {state.Precursor}";
+        var itemLevel = 0;
+        foreach (var objective in state.Objectives)
+        {
+            _prototypeManager.Resolve(objective, out var proto);
+            if (proto == null) continue;
+            PrecursorObjective precursorObjective = new();
+            precursorObjective.ObjectiveLabel.Text = proto.Name;
+            precursorObjective.RewardLabel.Text = $"Reward: {proto.Reward} Precursor";
+            precursorObjective.SectorChaosLabel.Text = $"Will cause minor sector chaos.";
+            PrecursorObjectives.AddChild(precursorObjective);
+
+        }
+        UntilNextPrec = state.PrecursorResetTime;
+        UntilNextRogue = state.RogueObjectiveResetTime;
+        ObjectiveTimerLabel.Text = UntilNextPrec.ToString("mm\\:ss");
+
+        _prototypeManager.Resolve(state.RogueLevel, out var rogueLevel);
+        if (rogueLevel != null)
+        {
+            itemLevel = rogueLevel.ItemLevel;
+            PLevelText.Text = rogueLevel.Name;
+            _prototypeManager.Resolve(rogueLevel.Next, out var nextLevel);
+            if (nextLevel != null)
+            {
+                PLevelBar.MaxValue = nextLevel.Cost;
+                PLevelBarText.Text = $"{state.XP} / {nextLevel.Cost}";
+                PLevelBar.MinValue = rogueLevel.Cost;
+                PLevelBar.Value = state.XP;
+            }
+            else
+            {
+                PLevelBar.MaxValue = 0;
+                PLevelBarText.Text = $"Maximum Level Attained";
+                PLevelBar.MinValue = rogueLevel.Cost;
+                PLevelBar.Value = state.XP;
+            }
+            if (rogueLevel.ID == "RogueLevel1")
+            {
+                NetworkContentBox.Visible = false;
+                NetworkRequirementLabel.Visible = true;
+            }
+            else
+            {
+                NetworkContentBox.Visible = true;
+                NetworkRequirementLabel.Visible = false;
+            }
+            if (state.NetworkType == RogueNetworkType.None)
+            {
+                NetworkObjectivesRequirement.Visible = true;
+                RogueNetworkObjectivesBox.Visible = false;
+                PurchaseRequirements.Visible = true;
+                PurchasesContent.Visible = false;
+                DealerSelect.Visible = true;
+                BountyHSelect.Visible = true;
+                AssassinSelect.Visible = true;
+            }
+            else
+            {
+                NetworkObjectivesRequirement.Visible = false;
+                RogueNetworkObjectivesBox.Visible = true;
+                PurchaseRequirements.Visible = false;
+                PurchasesContent.Visible = true;
+                DealerSelect.Visible = false;
+                BountyHSelect.Visible = false;
+                AssassinSelect.Visible = false;
+
+            }
+            switch (state.NetworkType)
+            {
+                case RogueNetworkType.None:
+                    RogueNetworkLabel.Text = "None";
+                    break;
+                case RogueNetworkType.BountyHunter:
+                    RogueNetworkLabel.Text = "Bounty Hunter";
+                    break;
+                case RogueNetworkType.Assassin:
+                    RogueNetworkLabel.Text = "Assassin";
+                    break;
+                case RogueNetworkType.Dealer:
+                    RogueNetworkLabel.Text = "Dealer";
+                    break;
+
+            }
+            SecretPhraseLabel.Text = state.SecretPhrase;
+            List<CargoProductPrototype> level1 = new();
+            List<CargoProductPrototype> level2 = new();
+            List<CargoProductPrototype> level3 = new();
+            List<CargoProductPrototype> level4 = new();
+            if(_spriteSystem != null)
+            {
+                
+                foreach (var prod in _prototypeManager.EnumeratePrototypes<CargoProductPrototype>())
+                {
+                    if (prod.Group == "syndicatemarket")
+                    {
+                        level1.Add(prod);
+                    }
+                    else if (prod.Group == "syndicatemarket2")
+                    {
+                        level2.Add(prod);
+                    }
+                    else if (prod.Group == "syndicatemarket3")
+                    {
+                        level3.Add(prod);
+                    }
+                    else if (prod.Group == "syndicatemarket4")
+                    {
+                        level4.Add(prod);
+                    }
+                }
+                Rank2Content.RemoveAllChildren();
+                Rank3Content.RemoveAllChildren();
+                Rank4Content.RemoveAllChildren();
+                Rank5Content.RemoveAllChildren();
+                foreach (var prototype in level1)
+                {
+                    var button = new CargoProductRow
+                    {
+                        Product = prototype,
+                        ProductName = { Text = prototype.Name },
+                        MainButton = { ToolTip = prototype.Description },
+                        PointCost = { Text = $"P {prototype.Cost}" },
+                        Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
+                    };
+                    if(itemLevel < 1)
+                    {
+                        button.MainButton.Disabled = true;
+                        button.MainButton.ToolTip = "Requires Rogue Level 2";
+                    }
+                    button.MainButton.OnPressed += args =>
+                    {
+                        OnItemSelected?.Invoke(button);
+                    };
+                    Rank2Content.AddChild(button);
+                }
+                foreach (var prototype in level2)
+                {
+                    var button = new CargoProductRow
+                    {
+                        Product = prototype,
+                        ProductName = { Text = prototype.Name },
+                        MainButton = { ToolTip = prototype.Description },
+                        PointCost = { Text = $"P {prototype.Cost}" },
+                        Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
+                    };
+                    if (itemLevel < 2)
+                    {
+                        button.MainButton.Disabled = true;
+                        button.MainButton.ToolTip = "Requires Rogue Level 3";
+                    }
+                    button.MainButton.OnPressed += args =>
+                    {
+                        OnItemSelected?.Invoke(button);
+                    };
+                    Rank3Content.AddChild(button);
+                }
+                foreach (var prototype in level3)
+                {
+                    var button = new CargoProductRow
+                    {
+                        Product = prototype,
+                        ProductName = { Text = prototype.Name },
+                        MainButton = { ToolTip = prototype.Description },
+                        PointCost = { Text = $"P {prototype.Cost}" },
+                        Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
+                    };
+                    if (itemLevel < 3)
+                    {
+                        button.MainButton.Disabled = true;
+                        button.MainButton.ToolTip = "Requires Rogue Level 4";
+                    }
+                    button.MainButton.OnPressed += args =>
+                    {
+                        OnItemSelected?.Invoke(button);
+                    };
+                    Rank4Content.AddChild(button);
+                }
+                foreach (var prototype in level4)
+                {
+                    var button = new CargoProductRow
+                    {
+                        Product = prototype,
+                        ProductName = { Text = prototype.Name },
+                        MainButton = { ToolTip = prototype.Description },
+                        PointCost = { Text = $"P {prototype.Cost}" },
+                        Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
+                    };
+                    if (itemLevel < 4)
+                    {
+                        button.MainButton.Disabled = true;
+                        button.MainButton.ToolTip = "Requires Rogue Level 5";
+                    }
+                    button.MainButton.OnPressed += args =>
+                    {
+                        OnItemSelected?.Invoke(button);
+                    };
+                    Rank5Content.AddChild(button);
+                }
+                if(state.KillTarget == null)
+                {
+                    HuntPanel.Visible = false;
+                }
+                else
+                {
+                    HuntDescLabel.Text = $"Hunt {state.KillTarget} and enter their Secret Passphrase.";
+                }
+
+            }
+            if(state.DealerObjective == null)
+            {
+                DealerObjectives.RemoveAllChildren();
+            }
+            else
+            {
+                DealerObjectives.RemoveAllChildren();
+                var entry = new BountyEntry(state.DealerObjective, TimeSpan.Zero);
+                entry.RewardLabel.Text = entry.RewardLabel.Text + " (Complete this Bounty for P 500)";
+                if (state.DealerObjectiveStation != null)
+                    entry.CriminalLabel.Text = $"Deliver To: {state.DealerObjectiveStation}";
+                entry.PrintButton.Text = "Teleport Label";
+                entry.OnLabelButtonPressed += () => OnLabelButtonPressed?.Invoke(state.DealerObjective.Id);
+                DealerObjectives.AddChild(entry);
+            }
+            SectorChaosLabel.Text = $"{state.SectorChaos}";
+            SectorDevelopmentLabel.Text = $"{state.SectorDevelopment}";
+            SectorStatusLabel.SetMarkup(state.SectorStatus);
+        }
+
     }
 
     private void OnSelectCodex(string title, string description)
@@ -174,7 +412,16 @@ public sealed partial class JobNetMenu : DefaultWindow
         if (UntilNextPay > TimeSpan.Zero)
         {
             TimeLabel.Text = UntilNextPay.ToString("mm\\:ss");
-            return;
+        }
+        if (UntilNextPrec.TotalSeconds > 0)
+        {
+            UntilNextPrec -= TimeSpan.FromSeconds(deltaSeconds);
+            ObjectiveTimerLabel.Text = UntilNextPrec.ToString("mm\\:ss");
+        }
+        if (UntilNextRogue.TotalSeconds > 0)
+        {
+            UntilNextRogue -= TimeSpan.FromSeconds(deltaSeconds);
+            NetworkObjectiveTimerLabel.Text = UntilNextRogue.ToString("mm\\:ss");
         }
     }
 

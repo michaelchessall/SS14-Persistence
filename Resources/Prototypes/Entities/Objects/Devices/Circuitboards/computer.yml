@@ -107,7 +107,7 @@
     - type: Sprite
       state: cpu_supply
     - type: ComputerBoard
-      prototype: ComputerStationModification
+      prototype: ComputerGridControl
     - type: StaticPrice
       price: 90
 

@@ -149,7 +149,7 @@
     sprite: Structures/Storage/tanks.rsi
     state: fueltank
   product: WeldingFuelTankFull
-  cost: 1500
+  cost: 7500
   category: cargoproduct-category-name-materials
   group: market
 

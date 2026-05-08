@@ -1,6 +1,7 @@
 ﻿name: Build & Test Map Renderer
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master, staging, stable ]
   merge_group:

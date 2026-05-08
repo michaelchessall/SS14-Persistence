@@ -32,6 +32,7 @@
   - type: ApcPowerReceiver
     powerLoad: 200
   - type: ExtensionCableReceiver
+  - type: AccessReader
   - type: WiresPanel
   - type: WiresVisuals
   - type: Machine

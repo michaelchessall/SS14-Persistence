@@ -41,6 +41,15 @@ public sealed partial class CryostorageComponent : Component
     /// </summary>
     [DataField]
     public SoundSpecifier? RemoveSound = new SoundPathSpecifier("/Audio/Effects/teleport_departure.ogg");
+
+    [DataField]
+    public bool PersonalMode = false;
+
+    [DataField]
+    public string? PersonalName = null;
+
+    [DataField]
+    public bool PersonalOccupied = false;
 }
 
 [Serializable, NetSerializable]

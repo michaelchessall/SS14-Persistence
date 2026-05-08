@@ -9,8 +9,9 @@
     Enzyme:
       amount: 5
       catalyst: true
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodCheese
 
 - type: reaction
@@ -24,8 +25,9 @@
     Enzyme:
       amount: 5
       catalyst: true
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodChevre
 
 - type: reaction
@@ -38,8 +40,9 @@
       amount: 15
     Water:
       amount: 10
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodDough
 
 - type: reaction
@@ -54,8 +57,9 @@
       amount: 10
     Egg:
       amount: 6
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodDoughCornmeal
 
 - type: reaction
@@ -68,8 +72,9 @@
       amount: 15
     Water:
       amount: 10
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodDoughTortilla
 
 - type: reaction
@@ -84,6 +89,7 @@
       amount: 5
     Water:
       amount: 10
+  group: Precipitate
   effects:
   - !type:SpawnEntity
     entity: FoodDoughCotton
@@ -102,8 +108,9 @@
       amount: 5
     Milk:
       amount: 5
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodCakeBatter
 
 - type: reaction
@@ -117,8 +124,9 @@
     TableSalt:
       amount: 5
       catalyst: true
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodButter
 
 - type: reaction
@@ -133,8 +141,9 @@
       amount: 12
     TableSalt:
       amount: 5
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodDoughPie
 
 # TG has a cake recipe that uses soy milk instead of eggs.
@@ -152,8 +161,9 @@
       amount: 15
     Sugar:
       amount: 5
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodCakeBatter
 
 - type: reaction
@@ -167,8 +177,9 @@
     Enzyme:
       amount: 5
       catalyst: true
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodTofu
 
 - type: reaction
@@ -183,8 +194,9 @@
       amount: 5
     Egg:
       amount: 6
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodMeatMeatball
 
 - type: reaction
@@ -199,8 +211,9 @@
       amount: 2
     Sugar:
       amount: 2
+  group: Precipitate
   effects:
-    - !type:SpawnEntity
+  - !type:SpawnEntity
       entity: FoodSnackChocolateBar
 
 # Condiments

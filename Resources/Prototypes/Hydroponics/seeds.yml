@@ -478,8 +478,6 @@
   packetPrototype: TowercapSeeds
   productPrototypes:
     - Log
-  mutationPrototypes:
-    - steelcap
   lifespan: 80
   maturation: 15
   ligneous: true
@@ -504,8 +502,8 @@
   lifespan: 80
   maturation: 15
   ligneous: true
-  production: 3
-  yield: 3
+  production: 1
+  yield: 1
   potency: 1
   growthStages: 3
   waterConsumption: 0.60
@@ -742,8 +740,8 @@
   packetPrototype: AppleSeeds
   productPrototypes:
     - FoodApple
-  mutationPrototypes:
-    - goldenApple
+  # mutationPrototypes:
+  #   - goldenApple
   harvestRepeat: Repeat
   lifespan: 55
   maturation: 6
@@ -999,7 +997,7 @@
     Happiness:
       Min: 1
       Max: 5
-#     PotencyDivisor: 20
+      PotencyDivisor: 20
 #   ColorfulReagent:
 #     Min: 0
 #     Max: 5
@@ -1272,8 +1270,6 @@
   packetPrototype: AmbrosiaVulgarisSeeds
   productPrototypes:
     - FoodAmbrosiaVulgaris
-  mutationPrototypes:
-    - ambrosiaDeus
   lifespan: 25
   maturation: 10
   production: 3
@@ -1307,7 +1303,7 @@
   plantRsi: Objects/Specific/Hydroponics/ambrosia_deus.rsi
   packetPrototype: AmbrosiaDeusSeeds
   productPrototypes:
-    - FoodAmbrosiaDeus
+    - FoodAmbrosiaVulgaris
   lifespan: 25
   maturation: 10
   production: 3
@@ -1338,8 +1334,6 @@
   packetPrototype: GalaxythistleSeeds
   productPrototypes:
     - FoodGalaxythistle
-  mutationPrototypes:
-    - glasstle
   lifespan: 25
   maturation: 10
   production: 3
@@ -1365,7 +1359,7 @@
   lifespan: 25
   maturation: 10
   production: 3
-  yield: 3
+  yield: 1
   potency: 10
   growthStages: 3
   waterConsumption: 0.5
@@ -1415,9 +1409,9 @@
   packetPrototype: GatfruitSeeds
   productPrototypes:
     - FoodGatfruit
-  mutationPrototypes:
-    - fakeCapfruit
-    - realCapfruit
+  # mutationPrototypes:
+  #   - fakeCapfruit
+  #   - realCapfruit
   lifespan: 65
   maturation: 25
   production: 25

@@ -1,0 +1,17 @@
+<Document>
+  # Bounty Hunter & Assassin
+  This guide will explain the network objectives that members of the Bounty Hunter and Assassin networks will get
+  Bounty Hunters and Assassins get the same objectives, but will not target members of their own network.
+
+  ## The Hunt
+  If possible you will be assigned a target from a different network to hunt.
+  You must extract their secret phrase.
+  If they wont give it to you voluntarily you can use a secret phrase extractor to force it out.
+  You can obtain a secret phrase extractor from any autolathe.
+  The target must be handcuffed or in a critical or dead state for the extractor to work.
+
+  ## The Hunter Becomes the Hunted
+  If you are hunted by someone you can enter their secret phrase to compromise them, receiving the reward and neutralizing the hunt.
+
+</Document>
+

@@ -2,6 +2,7 @@ using Content.Server.Administration;
 using Content.Server.Cargo.Components;
 using Content.Shared.Administration;
 using Content.Shared.Cargo;
+using Content.Shared.Cargo.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
@@ -230,7 +231,11 @@ public sealed class PricingSystem : EntitySystem
         {
             price += GetStaticPrice(uid);
         }
-        price *= _configurationManager.GetCVar(CCVars.PriceMult);
+        if(!TryComp<CashComponent>(uid, out var cash))
+        {
+            price *= _configurationManager.GetCVar(CCVars.PriceMult);
+
+        }
         if (includeContents && TryComp<ContainerManagerComponent>(uid, out var containers))
         {
             foreach (var container in containers.Containers.Values)

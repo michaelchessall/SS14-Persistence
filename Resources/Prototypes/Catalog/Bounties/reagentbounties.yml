@@ -1,0 +1,89 @@
+- type: cargoBounty
+  id: BountyUnstableMutagen
+  reward: 30
+  description: bounty-description-artifact
+  reagentId: UnstableMutagen
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-unstablemutagen
+    amount: 300
+
+- type: cargoBounty
+  id: BountyAmmonia
+  reward: 5
+  description: bounty-description-artifact
+  reagentId: Ammonia
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-ammonia
+    amount: 2000
+
+- type: cargoBounty
+  id: BountyFrostOil
+  reward: 10
+  description: bounty-description-artifact
+  reagentId: FrostOil
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-frostoil
+    amount: 1000
+
+
+
+- type: cargoBounty
+  id: BountyWeldingFuel
+  reward: 2.5
+  description: bounty-description-artifact
+  reagentId: WeldingFuel
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-weldingfuel
+    amount: 4000
+
+- type: cargoBounty
+  id: BountyAcetone
+  reward: 4
+  description: bounty-description-artifact
+  reagentId: Acetone
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-acetone
+    amount: 2500
+
+- type: cargoBounty
+  id: BountyArithrazine
+  reward: 15
+  description: bounty-description-artifact
+  reagentId: Arithrazine
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-arithrazine
+    amount: 600
+
+- type: cargoBounty
+  id: BountyEpinephrine
+  reward: 10
+  description: bounty-description-artifact
+  reagentId: Epinephrine
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-epinephrine
+    amount: 1000
+
+- type: cargoBounty
+  id: BountyOpporozidone
+  reward: 50
+  description: bounty-description-artifact
+  reagentId: Opporozidone
+  group: ReagentBounty
+  bountyType: PayPerReagent
+  entries:
+  - name: bounty-item-opporozidone
+    amount: 200

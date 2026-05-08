@@ -1,0 +1,71 @@
+- type: entity
+  name: solar legion executive's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampExecSOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-exec-sol
+    stampedColor: "#3681bb"
+    stampState: "paper_stamp-exec-SOL"
+  - type: Sprite
+    state: stamp-cap
+
+- type: entity
+  name: solar legion chief engineer's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampCESOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-ce-sol
+    stampedColor: "#c69b17"
+    stampState: "paper_stamp-ce-SOL"
+  - type: Sprite
+    state: stamp-ce
+
+- type: entity
+  name: solar legion chief medical officer's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampCMOSOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cmo-sol
+    stampedColor: "#33ccff"
+    stampState: "paper_stamp-cmo-SOL"
+  - type: Sprite
+    state: stamp-cmo
+
+- type: entity
+  name: solar legion head of security's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampHosSOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-hos-sol
+    stampedColor: "#cc0000"
+    stampState: "paper_stamp-hos-SOL"
+  - type: Sprite
+    state: stamp-hos
+
+- type: entity
+  name: solar legion quartermaster's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampQmSOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-qm-sol
+    stampedColor: "#a23e3e"
+    stampState: "paper_stamp-qm-SOL"
+  - type: Sprite
+    state: stamp-qm
+
+- type: entity
+  name: solar legion research director's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampRdSOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-rd-sol
+    stampedColor: "#1f66a0"
+    stampState: "paper_stamp-rd-SOL"
+  - type: Sprite
+    state: stamp-rd

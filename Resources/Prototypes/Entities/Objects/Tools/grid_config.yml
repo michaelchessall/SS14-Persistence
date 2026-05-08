@@ -8,7 +8,7 @@
       sound:
         path: /Audio/Items/multitool_drop.ogg
     - type: Sprite
-      sprite: Objects/Tools/access_configurator.rsi
+      sprite: _Persistence14/Objects/Tools/grid-configurator.rsi
       state: icon
     - type: Item
       size: Small
@@ -27,8 +27,6 @@
         whitelist:
           components:
           - IdCard
-#      denialSound: # pleasing the linter - field denialSound not found in component
-#        path: /Audio/Machines/custom_deny.ogg
       doAfter: 0.5
     - type: UserInterface
       interfaces:
@@ -44,6 +42,28 @@
     - type: ContainerContainer
       containers:
         GridConfig-privilegedId: !type:ContainerSlot
+
+- type: entity
+  parent: BaseItem
+  id: PrecursorExtractor
+  name: secret phrase extractor
+  description: Can be used on a handcuffed, critical or dead person to extract a secret phrase.
+  components:
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/multitool_drop.ogg
+    - type: Sprite
+      sprite: Objects/Tools/access_configurator.rsi
+      state: icon
+    - type: Item
+      size: Small
+    - type: Clothing
+      sprite: Objects/Tools/access_configurator.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: PrecursorExtractor
+
 
 - type: entity
   parent: BaseItem

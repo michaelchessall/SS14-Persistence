@@ -1,0 +1,9 @@
+<PanelContainer xmlns="https://spacestation14.io" StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+    <BoxContainer
+    HorizontalExpand="True"
+    Orientation="Vertical">
+        <Label Access="Public" Name="ObjectiveLabel" Text="Get high from space mirage." />
+        <Label Access="Public" Name="RewardLabel" Text="Reward: 100 Precursor" />
+        <Label Access="Public" Name="SectorChaosLabel" Text="Sector chaos will slightly increase" />
+    </BoxContainer>
+</PanelContainer>

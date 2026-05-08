@@ -75,3 +75,9 @@
   name: Zachariehs - Dreaming in Space
   path:
     path: /Audio/Jukebox/dreaminginspace.ogg
+
+- type: jukebox
+  id: welcometothethreshold
+  name: mrjajkes - Welcome To The Threshold
+  path:
+    path: /Audio/Lobby/Welcome_To_The_Threshold.ogg

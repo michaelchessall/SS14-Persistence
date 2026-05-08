@@ -59,6 +59,11 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         GenerateControl(reagent);
     }
 
+    public GuideReagentEmbed(ReactionPrototype reagent) : this()
+    {
+        GenerateControl(reagent);
+    }
+
     public bool CheckMatchesSearch(string query)
     {
         return this.ChildrenContainText(query);
@@ -241,6 +246,144 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
                 description.AddMarkupPermissive(Loc.GetString(severity.ExamineText, ("type", ContrabandItemType.Reagent)));
             }
         }
+
+        ReagentDescription.SetMessage(description);
+    }
+
+    private void GenerateControl(ReactionPrototype reagent)
+    {
+        RepresentedPrototype = reagent;
+
+        NameBackground.PanelOverride = new StyleBoxFlat
+        {
+            BackgroundColor = Color.Black
+        };
+
+        if (reagent.Effects.Length < 1)
+            return;
+        IEnumerable<Shared.EntityEffects.Effects.EntitySpawning.SpawnEntity> spawnEvents = reagent.Effects.OfType<Shared.EntityEffects.Effects.EntitySpawning.SpawnEntity>();
+        if (spawnEvents.Count() == 0)
+            return;
+
+        var spawnId = spawnEvents.First().Entity;
+        ReagentName.SetMarkup(Loc.GetString("guidebook-reagent-name",
+            ("color", Color.White), ("name", _prototype.Index<EntityPrototype>(spawnId).Name)));
+
+        _sawmill.Info($"{reagent.ID}");
+        #region Recipe
+        var reactions = _prototype.EnumeratePrototypes<ReactionPrototype>()
+                .Where(p => !p.Source && p.Effects.Length >= 1)
+                .OrderBy(p => p.Priority)
+                .ThenBy(p => p.Products.Count)
+                .ToList();
+
+        if (reactions.Any())
+        {
+            foreach (var reactionPrototype in reactions)
+            {
+                IEnumerable<Shared.EntityEffects.Effects.EntitySpawning.SpawnEntity> stuff = reactionPrototype.Effects.OfType<Shared.EntityEffects.Effects.EntitySpawning.SpawnEntity>();
+                if (stuff.Count() >= 1 && stuff.First().Entity == spawnId)
+                {
+                    RecipesDescriptionContainer.AddChild(new GuideReagentReaction(reactionPrototype, _prototype, _systemManager, spawnId));
+                }
+            }
+        }
+        else
+        {
+            RecipesContainer.Visible = false;
+        }
+        #endregion
+
+        #region Effects
+        if (_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntryRegistry) &&
+            guideEntryRegistry.GuideEntries != null &&
+            guideEntryRegistry.GuideEntries.Values.Any(pair => pair.EffectDescriptions.Any() || pair.Metabolites?.Any() == true))
+        {
+            EffectsDescriptionContainer.Children.Clear();
+            foreach (var (stage, effect) in guideEntryRegistry.GuideEntries)
+            {
+                var hasMetabolites = effect.Metabolites?.Any() == true;
+                if (!effect.EffectDescriptions.Any() && !hasMetabolites)
+                    continue;
+
+                var groupLabel = new RichTextLabel();
+                groupLabel.SetMarkup(Loc.GetString("guidebook-reagent-effects-metabolism-stage-rate",
+                    ("stage", _prototype.Index<MetabolismStagePrototype>(stage).LocalizedName), ("rate", effect.MetabolismRate)));
+                var descriptionLabel = new RichTextLabel
+                {
+                    Margin = new Thickness(25, 0, 10, 0)
+                };
+
+                var descMsg = new FormattedMessage();
+                var descriptionsCount = effect.EffectDescriptions.Length;
+                var i = 0;
+                foreach (var effectString in effect.EffectDescriptions)
+                {
+                    descMsg.AddMarkupOrThrow(effectString);
+                    i++;
+                    if (i < descriptionsCount || hasMetabolites)
+                        descMsg.PushNewline();
+                }
+                if (hasMetabolites)
+                {
+                    var metabolites = new List<string>();
+                    foreach (var (metabolite, ratio) in effect.Metabolites!)
+                    {
+                        metabolites.Add(Loc.GetString("guidebook-reagent-effects-metabolite-item", ("rate", (double)ratio), ("reagent", _prototype.Index(metabolite).LocalizedName)));
+                    }
+                    metabolites.Sort();
+
+                    descMsg.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-effects-metabolites", ("items", ContentLocalizationManager.FormatList(metabolites))));
+                }
+                descriptionLabel.SetMessage(descMsg);
+
+                EffectsDescriptionContainer.AddChild(groupLabel);
+                EffectsDescriptionContainer.AddChild(descriptionLabel);
+            }
+        }
+        else
+        {
+            EffectsContainer.Visible = false;
+        }
+        #endregion
+
+        #region PlantMetabolisms
+        if (_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntryRegistryPlant) &&
+            guideEntryRegistryPlant.PlantMetabolisms != null &&
+            guideEntryRegistryPlant.PlantMetabolisms.Count > 0)
+        {
+            PlantMetabolismsDescriptionContainer.Children.Clear();
+            var metabolismLabel = new RichTextLabel();
+            metabolismLabel.SetMarkup(Loc.GetString("guidebook-reagent-plant-metabolisms-rate"));
+            var descriptionLabel = new RichTextLabel
+            {
+                Margin = new Thickness(25, 0, 10, 0)
+            };
+            var descMsg = new FormattedMessage();
+            var descriptionsCount = guideEntryRegistryPlant.PlantMetabolisms.Count;
+            var i = 0;
+            foreach (var effectString in guideEntryRegistryPlant.PlantMetabolisms)
+            {
+                descMsg.AddMarkupOrThrow(effectString);
+                i++;
+                if (i < descriptionsCount)
+                    descMsg.PushNewline();
+            }
+            descriptionLabel.SetMessage(descMsg);
+
+            PlantMetabolismsDescriptionContainer.AddChild(metabolismLabel);
+            PlantMetabolismsDescriptionContainer.AddChild(descriptionLabel);
+        }
+        else
+        {
+            PlantMetabolismsContainer.Visible = false;
+        }
+        #endregion
+        SourcesContainer.Visible = false;
+
+        FormattedMessage description = new();
+        description.AddText(_prototype.Index<EntityPrototype>(spawnId).Description);
+
 
         ReagentDescription.SetMessage(description);
     }

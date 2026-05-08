@@ -560,6 +560,9 @@
 - type: Tag
   id: ExCable # Placement blacklist on CableDetStack. Placement whitelist on WiredDetonator
 
+- type: Tag
+  id: ExecutiveSpatha # Persi14. Executive spatha
+
 ## F ##
 
 - type: Tag

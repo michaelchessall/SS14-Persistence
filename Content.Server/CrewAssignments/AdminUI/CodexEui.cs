@@ -30,8 +30,8 @@ public sealed class CodexEui : BaseEui
 
     public override CodexEuiState GetNewState()
     {
-        if (_crewMeta.MetaRecords == null) return new CodexEuiState(new List<CodexEntry>());
-        return new CodexEuiState(_crewMeta.MetaRecords.CodexEntries);
+        if (_crewMeta.MetaRecords == null) return new CodexEuiState(new List<CodexEntry>(), "");
+        return new CodexEuiState(_crewMeta.MetaRecords.CodexEntries, _crewMeta.MetaRecords.SectorStatus);
     }
 
     public override void HandleMessage(EuiMessageBase msg)
@@ -58,6 +58,12 @@ public sealed class CodexEui : BaseEui
                 }
             case CodexEuiMsg.Save saveData:
                 {
+                    if(saveData.ID == -1)
+                    {
+                        _crewMeta.MetaRecords.SectorStatus = saveData.Description;
+                        _chat.DispatchGlobalAnnouncement($"The Sector Status has changed!", "Sector Status");
+                        break;
+                    }
                     foreach (var entry in _crewMeta.MetaRecords.CodexEntries)
                     {
                         if (entry.ID == saveData.ID)

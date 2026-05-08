@@ -1,0 +1,159 @@
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretRNDSOL
+  name: solar legion research director's beret
+  description: A beret for the leaders of cutting edge research. Comes with a feather to show how fancy it is.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_rnd.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_rnd.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretHoSSOL
+  name: solar legion chief of police's beret
+  description: A black beret with a commander's rank emblem. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_hos.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_hos.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretLieutenantSOL
+  name: solar legion lieutenant's beret
+  description: A dark-blue beret with a lieutenant's rank emblem. For officers that are more inclined towards style than safety.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_lieutenant.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_lieutenant.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretMedOfficerSOL
+  name: solar legion medical officer's beret
+  description: A light blue beret with Solar Legion colors and a bronze executive officer badge. Worn by the second in command of a solar legion medical department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_medofficer.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_medofficer.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretExecSecSOL
+  name: executive secretary's beret
+  description: A solar legion colored beret with a bronze badge on the front. There are feathers attached to the badge that show just how fancy this beret is.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_execsec.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_execsec.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: [ClothingHeadBase, BaseCommandContraband]
+  id: ClothingHeadHatBeretMDSOL
+  name: solar legion medical director's beret
+  description: A cyan beret with a cross on the front. The sight of it calms you down and makes it clear that you will be cured.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_cmo.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_cmo.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - HamsterWearable
+    - WhitelistChameleon
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretCargoForemanSOL
+  name: solar legion cargo foreman's beret
+  description: A brown colored beret with solar legion colors. It has a bronze executive officer badge attached to the front.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_cargoforeman.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_cargoforeman.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretSciOfficerSOL
+  name: solar legion science officer's beret
+  description: A purple beret with Solar Legion colors and a bronze executive officer badge. Worn by the second in command of a solar legion science department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_sciofficer.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_sciofficer.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatExeccapSOL
+  name: executive's cap
+  description: A grand, stylish cap worn by the Solar Legion Executive. Shows the station who's in charge.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/execcap.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/execcap.rsi
+  - type: Item
+    sprite: _Persistence14/Clothing/Head/Hats/execcap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+  - type: BlockMovement

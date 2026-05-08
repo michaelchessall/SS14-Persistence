@@ -1,6 +1,6 @@
 - type: soundCollection
   id: LobbyMusic
   files:
-    - /Audio/Lobby/ambient-space-arpeggio.ogg
+    - /Audio/Lobby/Welcome_To_The_Threshold.ogg
 
 

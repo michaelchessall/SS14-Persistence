@@ -274,7 +274,6 @@
   - type: GuideHelp
     guides:
     - Security
-    - Antagonists
 
 - type: entity
   id: BookHowToKeepStationClean
@@ -313,6 +312,28 @@
   - type: GuideHelp
     guides:
     - Salvage
+    - GasMining
+
+- type: entity
+  id: BookGasMining
+  parent: BaseGuidebook
+  name: gas mining for dummies
+  description: A guide for experience miners who want to get into gas mining.
+  components:
+  - type: Sprite
+    layers:
+    - state: paper
+    - state: cover_base
+      color: "#52320b"
+    - state: decor_wingette
+      color: "#e69a3e"
+    - state: icon_glow
+    - state: icon_diamond
+    - state: icon_text
+      color: "#fcdf74"
+  - type: GuideHelp
+    guides:
+    - GasMining
 
 - type: entity
   id: BookMedicalReferenceBook

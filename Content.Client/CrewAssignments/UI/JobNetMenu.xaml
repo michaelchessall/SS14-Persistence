@@ -47,30 +47,65 @@
                     <Control MinHeight ="30" />
                 </BoxContainer>
             </BoxContainer>
+            <BoxContainer Orientation="Vertical" Access="Public">
+                <TabContainer Name="HistoryTabContainer"  VerticalExpand="True">
+                    <ScrollContainer Name="Achievements" VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                        <BoxContainer Orientation="Vertical" Access="Public">
+                            <Label Text="Ongoing:" Margin="10 10 10 0"
+                                     StyleClasses="LabelKeyText" />
+                            <BoxContainer Name="CurrentObjectives" Orientation="Vertical" Access="Public">
+
+                            </BoxContainer>
+                            <Label Text="Completed:" Margin="10 10 10 0"
+                                     StyleClasses="LabelKeyText" />
+                            <BoxContainer Name="CompletedObjectives" Orientation="Vertical" Access="Public">
+
+                            </BoxContainer>
+                        </BoxContainer>
+
+                    </ScrollContainer>
+                    <ScrollContainer Name="Codex" VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                        <BoxContainer Orientation="Vertical">
+                            <RichTextLabel Name="UnlockedNumberLabel" Access="Public"></RichTextLabel>
+                            <Control MinHeight="20"></Control>
+                            <BoxContainer Orientation="Vertical" Access="Public" Name="CodexContainer">
+                            </BoxContainer>
+                        </BoxContainer>
+
+                    </ScrollContainer>
+                </TabContainer>
+            </BoxContainer>
+
             <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
-                <BoxContainer Orientation="Vertical" Access="Public">
-                    <Label Text="Ongoing:" Margin="10 10 10 0"
-                             StyleClasses="LabelKeyText" />
-                    <BoxContainer Name="CurrentObjectives" Orientation="Vertical" Access="Public">
-
+                <BoxContainer Orientation="Vertical" Margin="15">
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="ZENITH SECTOR" Margin="0 0 10 0"
+                           StyleClasses="LabelKeyText" />
                     </BoxContainer>
-                    <Label Text="Completed:" Margin="10 10 10 0"
-                             StyleClasses="LabelKeyText" />
-                    <BoxContainer Name="CompletedObjectives" Orientation="Vertical" Access="Public">
-
+                    <Control MinHeight="40" />
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="Sector Development:" Margin="0 0 10 0"
+                           StyleClasses="LabelKeyText" />
+                        <Label Name="SectorDevelopmentLabel" Text="10" Margin="0 0 10 0" />
                     </BoxContainer>
+                    <Control MinHeight="20" />
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="Sector Chaos:" Margin="0 0 10 0"
+                           StyleClasses="LabelKeyText" />
+                        <Label Name="SectorChaosLabel" Text="100/1500" Margin="0 0 10 0" />
+                    </BoxContainer>
+                    <Control MinHeight="20" />
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="Sector Status:" Margin="0 0 10 0"
+                           StyleClasses="LabelKeyText" />
+                    </BoxContainer>
+                    <PanelContainer StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="120" Margin="10 10 10 0">
+                        <RichTextLabel Name="SectorStatusLabel" />
+                    </PanelContainer>
                 </BoxContainer>
 
             </ScrollContainer>
-            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
-                <BoxContainer Orientation="Vertical">
-                    <RichTextLabel Name="UnlockedNumberLabel" Access="Public"></RichTextLabel>
-                    <Control MinHeight="20"></Control>
-                    <BoxContainer Orientation="Vertical" Access="Public" Name="CodexContainer">
-                    </BoxContainer>
-                </BoxContainer>
-
-            </ScrollContainer>
+         
             <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
                 <BoxContainer Orientation="Vertical" Margin="15">
                     <Control MinHeight="5"/>
@@ -119,6 +154,182 @@
                     </BoxContainer>
                 </BoxContainer>
 
+            </ScrollContainer>
+
+            <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
+                <BoxContainer Orientation="Vertical">
+                    <BoxContainer Orientation="Horizontal">
+                        <Control MinWidth="10"/>
+                        <Label Text="Stored Precursor:"
+                          StyleClasses="LabelKeyText" />
+                        <Label Name="PrecursorBalanceLabel" Text="1000" />
+                        <Control HorizontalExpand="True" />
+                        <Label Text="Secret Phrase:"
+                            StyleClasses="LabelKeyText" />
+                        <Label Name="SecretPhraseLabel" Text="Apple Tractor" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <Control MinWidth="10"/>
+                        <Label Text="Rogue Level:"
+                               StyleClasses="LabelKeyText" />
+                        <Label Text="Civillian"
+                               Name="PLevelText" />
+                        <Control HorizontalExpand="True" />
+                        <Button Name="PrecursorGuidebook" Text="Guide" Access="Public" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Horizontal">
+                        <ProgressBar Name="PLevelBar"
+                            HorizontalExpand="True"
+                            MaxValue="1"
+                            MinValue="0"
+                            SetHeight="25"
+                            Margin="10 0 10 0"
+                            VerticalAlignment="Center">
+                            <Label Name="PLevelBarText"
+                                   Margin="4 0"
+                                   Text="0 %" />
+                        </ProgressBar>
+                    </BoxContainer>
+                    <TabContainer Name="PrecursorTabs"  VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical" Name="Objectives" VerticalExpand="True">
+                            <TabContainer Name="PrecursorObjectivesTabs"  VerticalExpand="True">
+                                <BoxContainer Orientation="Vertical" Name="Basic" VerticalExpand="True">
+                                    <BoxContainer Orientation="Horizontal">
+                                        <Label Text="New Basic Objective:"
+                                            StyleClasses="LabelKeyText" />
+                                        <Label Name="ObjectiveTimerLabel" Text="00:00:30" />
+                                        <Control HorizontalExpand="True" />
+                                    </BoxContainer>
+                                    <BoxContainer Orientation="Vertical" Name="PrecursorObjectives">
+
+                                    </BoxContainer>
+                                </BoxContainer>
+                                <BoxContainer Orientation="Vertical" Name="Network" VerticalExpand="True">
+                                    <BoxContainer Orientation="Horizontal" Name="NetworkObjectivesRequirement">
+                                        <Label Text="Join a Network to see more objectives"
+                                          StyleClasses="LabelKeyText" />
+                                    </BoxContainer>
+                                    <BoxContainer Orientation="Vertical" Name="RogueNetworkObjectivesBox">
+                                        <BoxContainer Orientation="Horizontal">
+                                            <Label Text="New Network Objective:"
+                                              StyleClasses="LabelKeyText" />
+                                            <Label Name="NetworkObjectiveTimerLabel" Text="00:00:30" />
+                                            <Control HorizontalExpand="True" />
+                                        </BoxContainer>
+                                        <BoxContainer Orientation="Vertical" Name="RogueNetworkObjectives">
+                                            <PanelContainer Name="HuntedPanel" StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+                                                <BoxContainer
+                                                HorizontalExpand="True"
+                                                Orientation="Vertical">
+                                                    <Label Access="Public" Text="Hunted? Enter the Secret Passphrase of those hunting you." />
+                                                    <BoxContainer Orientation="Horizontal">
+                                                        <LineEdit Name="HuntedLE"
+                                                        PlaceHolder="Secret Passphrase"
+                                                        Access="Public"
+                                                        HorizontalExpand="True" />
+                                                        <Button Access="Public" Name="HuntedLEB" Text="Submit" />
+                                                    </BoxContainer>
+                                            
+                                                    <Label Access="Public" Text="Reward: 500 Precursor" />
+                                                </BoxContainer>
+                                            </PanelContainer>
+                                            <PanelContainer Name="HuntPanel" StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+                                                <BoxContainer
+                                                HorizontalExpand="True"
+                                                Orientation="Vertical">
+                                                    <Label Name="HuntDescLabel" Access="Public" Text="Hunt Faurns Goldberg and enter their Secret Passphrase." />
+                                                    <BoxContainer Orientation="Horizontal">
+                                                        <LineEdit Name="HuntLE"
+                                                        PlaceHolder="Secret Passphrase"
+                                                        Access="Public"
+                                                        HorizontalExpand="True" />
+                                                        <Button Access="Public" Name="HuntLEB" Text="Submit" />
+                                                    </BoxContainer>
+                                                    <Label Access="Public" Text="Reward: 500 Precursor" />
+                                                    <Label Access="Public" Text="Sector chaos will increase" />
+                                                </BoxContainer>
+                                            </PanelContainer>
+                                            <BoxContainer Name="DealerObjectives" Orientation="Vertical">
+                                                
+                                            </BoxContainer>
+                                        </BoxContainer>
+                                    </BoxContainer>
+                                </BoxContainer>
+                                
+                            </TabContainer>
+                        
+
+                            
+                            
+                        </BoxContainer>
+                        
+                        <BoxContainer Orientation="Vertical" Name="Networks" VerticalExpand="True">
+                            <BoxContainer Orientation="Horizontal" Name="NetworkRequirementLabel">
+                                <Label Text="Reach the rank of Associate to join a Network"
+                                    StyleClasses="LabelKeyText" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" Name="NetworkContentBox">
+                                
+                               <BoxContainer Orientation="Horizontal">
+                                    <Control MinWidth="10"/>
+                                    <Label Text="Selected Network:"
+                                      StyleClasses="LabelKeyText" />
+                                    <Label Name="RogueNetworkLabel" Text="None" />
+                                </BoxContainer>
+                                <PanelContainer StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+                                    <BoxContainer Orientation="Vertical">
+                                        <Label Text="Dealer -- Produce, Sell and Smuggle Drugs" />
+                                        <Button Name="DealerSelect" Text="Select" Access="Public" />
+                                    </BoxContainer>
+                                </PanelContainer>
+                                 <PanelContainer StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+                                    <BoxContainer Orientation="Vertical">
+                                        <Label Text="Bounty Hunter -- Hunt Dealers and Assassins" />
+                                        <Button Name="BountyHSelect" Text="Select" Access="Public" />
+                                    </BoxContainer>
+                                </PanelContainer>
+                                <PanelContainer StyleClasses="BackgroundPanel" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0">
+                                    <BoxContainer Orientation="Vertical">
+                                        <Label Text="Assassin -- Hunt Dealers and Bounty Hunters" />
+                                        <Button Name="AssassinSelect" Text="Select" Access="Public" />
+                                    </BoxContainer>
+                                </PanelContainer>
+                            
+                            </BoxContainer>
+                            
+                        </BoxContainer>
+                        
+                        <BoxContainer Orientation="Vertical" Name="Purchases" VerticalExpand="True">
+                            <BoxContainer Orientation="Horizontal" Name="PurchaseRequirements">
+                                <Label Text="Join a Network to see available purchases"
+                                    StyleClasses="LabelKeyText" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" Name="PurchasesContent">
+                                <Label Text="Rank 2:"
+                                    StyleClasses="LabelKeyText" />
+                                <BoxContainer Orientation="Vertical" Name="Rank2Content">
+                                    
+                                </BoxContainer>
+                                <Label Text="Rank 3:"
+                                    StyleClasses="LabelKeyText" />
+                                <BoxContainer Orientation="Vertical" Name="Rank3Content">
+
+                                </BoxContainer>
+                                <Label Text="Rank 4:"
+                                    StyleClasses="LabelKeyText" />
+                                <BoxContainer Orientation="Vertical" Name="Rank4Content">
+
+                                </BoxContainer>
+                                <Label Text="Rank 5:"
+                                    StyleClasses="LabelKeyText" />
+                                <BoxContainer Orientation="Vertical" Name="Rank5Content">
+
+                                </BoxContainer>
+                            </BoxContainer>
+                        </BoxContainer>
+                    
+                    </TabContainer>
+                </BoxContainer>
             </ScrollContainer>
         </TabContainer>
     </BoxContainer>

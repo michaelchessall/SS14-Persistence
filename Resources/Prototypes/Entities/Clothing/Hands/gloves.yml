@@ -93,8 +93,8 @@
   - type: MeleeWeapon
     damage:
       types:
-        Blunt: 8
-    bluntStaminaDamageFactor: 2
+        Blunt: 0.8
+    bluntStaminaDamageFactor: 0.75
 
 - type: entity
   parent: [ ClothingHandsGlovesBoxingRiggedBase, ClothingHandsGlovesBoxingRed ]
@@ -665,7 +665,6 @@
   - type: GuideHelp
     guides:
     - Security
-    - Antagonists
 
 - type: entity #Admeme
   parent: ClothingHandsKnuckleDusters

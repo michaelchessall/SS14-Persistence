@@ -1,0 +1,13 @@
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  id: ClothingOuterArmorExecutiveCarapaceSOL
+  name: executive's carapace
+  description: An armored chestpiece that provides protection whilst still offering maximum mobility and flexibility. Issued only to the station's finest.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Armor/executive_carapace.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Armor/executive_carapace.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon

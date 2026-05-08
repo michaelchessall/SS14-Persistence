@@ -1,0 +1,27 @@
+- type: entity
+  parent: [BaseSecurityCommandContraband, ClothingOuterArmorHoS]
+  id: ClothingOuterCoatHoSTrenchSOL
+  name: chief of police's armored trenchcoat
+  description: A greatcoat enhanced with a special alloy for some extra protection and style for those with a commanding presence. Features Solar Legion colors and symbols to show the wearer's true allegience.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Coats/hos_trenchcoat.rsi
+
+- type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabCmoSOL
+  name: solar legion medical director's lab coat
+  description: Custom made blue lab coat for a medical director of the Solar Legion, offers improved protection against chemical spills and minor cuts.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Coats/labcoat_cmo.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Coats/labcoat_cmo.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Slash: 0.95
+        Heat: 0.95
+        Caustic: 0.65

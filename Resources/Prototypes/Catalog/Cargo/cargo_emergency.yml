@@ -82,14 +82,14 @@
   category: cargoproduct-category-name-emergency
   group: market
 
-## Engineermarket
+# ## Engineermarket
 
-- type: cargoProduct
-  id: EmergencyInflatablewallETS
-  icon:
-    sprite: Objects/Misc/inflatable_wall.rsi
-    state: item_wall
-  product: CrateEmergencyInflatablewall
-  cost: 500
-  category: cargoproduct-category-name-emergency
-  group: engineermarket
+# - type: cargoProduct
+#   id: EmergencyInflatablewallETS
+#   icon:
+#     sprite: Objects/Misc/inflatable_wall.rsi
+#     state: item_wall
+#   product: CrateEmergencyInflatablewall
+#   cost: 500
+#   category: cargoproduct-category-name-emergency
+#   group: engineermarket

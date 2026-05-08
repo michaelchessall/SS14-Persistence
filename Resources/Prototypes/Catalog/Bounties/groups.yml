@@ -1,6 +1,6 @@
 - type: cargoBountyGroup
   id: StationBounty
-  name: Cargo
+  name: Manufacturing
 
 - type: cargoBountyGroup
   id: ServiceBounty
@@ -8,7 +8,7 @@
 
 - type: cargoBountyGroup
   id: ExplorationBounty
-  name: Exploration
+  name: Salvage
 
 - type: cargoBountyGroup
   id: HunterBounty
@@ -25,7 +25,15 @@
 - type: cargoBountyGroup
   id: CrimeBounty
   name: ???
-  
+
+- type: cargoBountyGroup
+  id: GasBounty
+  name: Gasses
+
+- type: cargoBountyGroup
+  id: ReagentBounty
+  name: Reagents
+
 - type: cargoBountyGroup
   id: SalvageJobTier1
   name: Salvage
@@ -35,3 +43,15 @@
 - type: cargoBountyGroup
   id: SalvageJobTier3
   name: Salvage 3
+
+- type: cargoBountyGroup
+  id: PrecursorBounty
+  name: Dealer
+
+- type: cargoBountyGroup
+  id: TrivialBounty
+  name: Trivial
+
+- type: cargoBountyGroup
+  id: MaterialBounty
+  name: Materials

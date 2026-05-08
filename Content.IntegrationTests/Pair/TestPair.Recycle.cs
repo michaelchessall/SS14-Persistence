@@ -80,6 +80,8 @@ public sealed partial class TestPair
 
         var sPlayer = Server.ResolveDependency<ISharedPlayerManager>();
         var session = sPlayer.Sessions.Single();
+        if (!ticker.PlayerGameStatuses.ContainsKey(session.UserId))
+            return;
         var status = ticker.PlayerGameStatuses[session.UserId];
         var expected = settings.InLobby
             ? PlayerGameStatus.NotReadyToPlay

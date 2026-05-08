@@ -7,10 +7,12 @@ namespace Content.Shared.CrewAssignments.Systems;
 public sealed class CodexEuiState : EuiStateBase
 {
     public List<CodexEntry> Entries { get; }
+    public string SectorStatus { get; }
 
-    public CodexEuiState(List<CodexEntry> entries)
+    public CodexEuiState(List<CodexEntry> entries, string sectorStatus)
     {
         Entries = entries;
+        SectorStatus = sectorStatus;
     }
 }
 [DataDefinition, NetSerializable, Serializable]
@@ -117,6 +119,12 @@ public static class CodexEuiMsg
     public sealed class CreateNew : EuiMessageBase
     {
     }
+
+    [Serializable, NetSerializable]
+    public sealed class SectorButton : EuiMessageBase
+    {
+    }
+
     [Serializable, NetSerializable]
     public sealed class SaveChangesCompleted : EuiMessageBase
     {

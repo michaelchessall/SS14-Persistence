@@ -260,6 +260,7 @@
   - type: Physics
     bodyType: Static
   - type: AnomalyGenerator
+    requiredMaterial: Phoron
     generatingSound:
       path: /Audio/Machines/anomaly_generate.ogg
     generatingFinishedSound:
@@ -269,7 +270,7 @@
       tags:
         - Sheet
     materialWhiteList:
-    - Plasma
+    - Phoron
   - type: OreSiloClient
   - type: Fixtures
     fixtures:

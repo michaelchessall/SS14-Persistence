@@ -6,6 +6,7 @@
   children:
   - Chemicals
   - Drinks
+  - EntityRecipes
   - FoodRecipes
   - Writing
   - Lawsets
@@ -14,6 +15,12 @@
   id: Drinks
   name: guide-entry-drinks
   text: "/ServerInfo/Guidebook/ReferenceTables/Drinks.xml"
+  filterEnabled: True
+
+- type: guideEntry
+  id: EntityRecipes
+  name: guide-entry-entities
+  text: "/ServerInfo/Guidebook/ReferenceTables/Entities.xml"
   filterEnabled: True
 
 - type: guideEntry

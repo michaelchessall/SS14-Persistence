@@ -4,7 +4,6 @@
   abstract: true
   parent: BaseItem
   id: BaseSoap
-  name: soap
   components:
   - type: Tag
     tags:
@@ -72,6 +71,7 @@
 - type: entity
   parent: BaseSoap
   id: Soap
+  name: soap
   description: A cheap bar of soap. Doesn't smell.
   components:
   - type: Sprite
@@ -84,6 +84,7 @@
 - type: entity
   parent: BaseSoap
   id: SoapNT
+  name: nanotrasen soap
   description: A Nanotrasen brand bar of soap. Smells of plasma.
   components:
   - type: Sprite
@@ -107,6 +108,7 @@
 - type: entity
   parent: BaseSoap
   id: SoapDeluxe
+  name: deluxe soap
   description: A deluxe Waffle Co. brand bar of soap. Smells of strawberries.
   components:
   - type: Sprite
@@ -123,6 +125,7 @@
 - type: entity
   parent: [BaseSoap, BaseSyndicateContraband]
   id: SoapSyndie
+  name: syndie soap
   description: An untrustworthy bar of soap. Smells of fear.
   components:
   - type: Sprite
@@ -205,6 +208,7 @@
 - type: entity
   parent: BaseSoap
   id: SoapHomemade
+  name: homemade soap
   description: A homemade bar of soap. Smells of... well....
   components:
   - type: Sprite

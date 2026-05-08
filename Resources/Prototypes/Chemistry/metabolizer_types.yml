@@ -44,3 +44,7 @@
 - type: metabolizerType
   id: Arachnid
   name: metabolizer-type-arachnid
+
+- type: metabolizerType
+  id: Goblin
+  name: metabolizer-type-goblin

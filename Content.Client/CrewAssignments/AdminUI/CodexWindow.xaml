@@ -6,6 +6,7 @@
         <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
             <BoxContainer Orientation="Vertical" Access="Public">
                 <Button Name="CreateButton" Text="Create New Entry" Access="Public"></Button>
+                <Button Name="SectorButton" Text="Edit Sector Status" Access="Public"></Button>
                 <BoxContainer Orientation="Vertical" Access="Public" Name="CodexContainer">
 
                 </BoxContainer>

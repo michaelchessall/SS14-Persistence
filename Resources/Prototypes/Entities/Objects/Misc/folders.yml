@@ -480,3 +480,57 @@
     - HighRiskItem
   - type: StealTarget
     stealGroup: BoxFolderQmClipboard
+
+- type: entity
+  parent: BoxFolderBaseEmpty
+  id: BoxFolderTitaniumBaseEmpty
+  abstract: true
+  name: reinforced folder
+  description: A folder created out of a solid sheet of titanium. Features a sealing mechanism which holds it's contents safely inside. Durable, robust, and explosion resistant. Not fireproof however.
+  components:
+  - type: ItemMapper
+    mapLayers:
+      folder-overlay-titanium:
+        whitelist:
+          tags:
+          - Document
+  - type: PhysicalComposition
+    materialComposition:
+      Titanium: 100
+  - type: StaticPrice
+    price: 50 
+  - type: ExplosionResistance
+    damageCoefficient: 0.0
+
+- type: entity
+  parent: BoxFolderTitaniumBaseEmpty
+  id: BoxFolderTitaniumRedEmpty
+  suffix: Red
+  components:
+  - type: Sprite
+    layers:
+    - state: folder-titanium
+    - state: folder-base
+      color: "#bd2030"
+
+- type: entity
+  parent: BoxFolderTitaniumBaseEmpty
+  id: BoxFolderTitaniumGreenEmpty
+  suffix: Green
+  components:
+  - type: Sprite
+    layers:
+    - state: folder-titanium
+    - state: folder-base
+      color: "#0c9c3e"
+
+- type: entity
+  parent: BoxFolderTitaniumBaseEmpty
+  id: BoxFolderTitaniumBlueEmpty
+  suffix: Blue
+  components:
+  - type: Sprite
+    layers:
+    - state: folder-titanium
+    - state: folder-base
+      color: "#2f4d9e"

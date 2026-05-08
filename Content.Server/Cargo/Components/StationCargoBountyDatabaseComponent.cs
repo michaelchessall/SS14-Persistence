@@ -27,7 +27,6 @@ public sealed partial class StationCargoBountyDatabaseComponent : Component
     /// A list of all the bounties that have been completed or
     /// skipped for a station.
     /// </summary>
-    [DataField]
     public List<CargoBountyHistoryData> History = new();
 
     /// <summary>

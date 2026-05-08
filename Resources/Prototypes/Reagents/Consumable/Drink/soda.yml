@@ -16,6 +16,19 @@
   metabolisms:
     Digestion:
       effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
       - !type:SatiateThirst
         factor: 2
       - !type:ModifyStatusEffect
@@ -40,6 +53,19 @@
   metabolisms:
     Digestion:
       effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
       - !type:SatiateThirst
         factor: 4
 
@@ -113,6 +139,22 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: LemonLime
@@ -246,6 +288,22 @@
   physicalDesc: reagent-physical-desc-fizzy
   flavor: starkistsoda
   color: "#9F3400"
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: FourteenLoko
@@ -266,6 +324,19 @@
       metabolites:
         Theobromine: 0.2
       effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
       - !type:SatiateThirst
         factor: 2
       - !type:HealthChange

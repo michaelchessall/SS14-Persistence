@@ -10,7 +10,6 @@ namespace Content.Client.Cargo.UI
     public sealed partial class CargoProductRow : BoxContainer
     {
         public CargoProductPrototype? Product { get; set; }
-
         public CargoProductRow()
         {
             RobustXamlLoader.Load(this);

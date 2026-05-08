@@ -1,4 +1,5 @@
 construction-condition-machine-container-empty = Remove the parts from the frame using a [color=cyan]Crowbar[/color].
+construction-condition-cryopod-container-empty = The cryopod must be empty to deconstruct. Wait for the person to exit.
 
 # MachineFrameComplete
 construction-condition-machine-frame-requirement-label = Requires:

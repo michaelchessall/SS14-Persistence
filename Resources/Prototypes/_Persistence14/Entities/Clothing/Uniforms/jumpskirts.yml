@@ -1,0 +1,98 @@
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtClerkSOL
+  name: solar legion clerk's jumpskirt
+  description: A formal jumpskirt with Solar Legion colorations. Worn by members of the Bureaucratic department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/clerk.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/clerk.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtChiefEngineerSOL
+  name: solar legion chief engineer's jumpskirt
+  description: It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of Chief Engineer within the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/ce.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/ce.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtChiefEngineerTurtleSOL
+  name: solar legion chief engineer's turtleneck skirt
+  description: An orange turtleneck designed specifically for work in conditions of the Solar Legion engineering department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/ce_turtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/ce_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCmoSOL
+  name: solar legion medical director's jumpskirt
+  description: It's a light blue jumpskirt with Solar Legion colorations. The silver trims denote the wearer as the head of a Solar Legion medical department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cmo.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cmo.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCmoTurtleSOL
+  name: solar legion medical director's turtleneck skirt
+  description: It's a blue turtleneck with Solar Legion colorations. The silver trims denote the wearer as the head of a Solar Legion medical department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cmo_turtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cmo_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtHosSOL
+  name: solar legion chief of police's jumpskirt
+  description: A black turtleneck designed for a solar legion police chief. Features solar legion colors and silver badges to denote their rank and allegiance.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/hos_alt.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/hos_alt.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtQuartermasterTurtleneckSOL
+  name: solar legion quartermaster's turtleneck skirt
+  description: It's a brown turtleneck skirt with Solar Legion colorations. The silver trims denote the wearer as the head of a Solar Legion cargo department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/qmturtleskirt.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/qmturtleskirt.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtRndSOL
+  name: solar legion research director's jumpskirt
+  description: It's a purple jumpskirt with Solar Legion colorations. The silver trims denote the wearer as the head of a Solar Legion science department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/rnd.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/rnd.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtRndTurtleSOL
+  name: solar legion research director's turtleneck skirt
+  description: A purple turtleneck designed specifically for work in conditions of the Solar Legion science department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/rndturtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/rndturtle.rsi

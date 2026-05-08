@@ -14,12 +14,6 @@
     layers:
     - state: sleeper_0
       map: ["base"]
-  - type: UserInterface
-    interfaces:
-      enum.CryostorageUIKey.Key:
-        type: CryostorageBoundUserInterface
-  - type: ActivatableUI
-    key: enum.CryostorageUIKey.Key
   - type: AccessReader
     breakOnAccessBreaker: false
     access: [["Cryogenics"]]
@@ -71,6 +65,56 @@
   id: CryogenicSleepUnitSpawnerLateJoin
   suffix: Spawner, LateJoin
   components:
-    - type: ContainerSpawnPoint
-      containerId: storage
-      spawnType: LateJoin
+  - type: ContainerSpawnPoint
+    containerId: storage
+    spawnType: LateJoin
+
+- type: entity
+  parent: CryogenicSleepUnit
+  id: CryogenicSleepUnitPersonal
+  name: personal sleep unit
+  components:
+  - type: Machine
+    board: PersonalCryoMachineCircuitboard
+  - type: Cryostorage
+    personalMode: true
+  - type: ContainerContainer
+    containers:
+      storage: !type:ContainerSlot
+      machine_board: !type:Container
+      machine_parts: !type:Container
+  - type: Construction
+    graph: Machine
+    node: machine
+    containers:
+    - machine_parts
+    - machine_board
+  - type: Anchorable
+    flags:
+    - Anchorable
+    - Unanchorable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
+  - type: EmptyOnMachineDeconstruct
+    containers:
+     - storage
+  - type: Sprite
+    noRot: true
+    sprite: _Persistence14/Structures/cryostorage.rsi
+    layers:
+    - state: sleeper_0
+      map: ["base"]

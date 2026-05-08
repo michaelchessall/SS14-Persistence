@@ -174,7 +174,6 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
         if (!TryComp<CryostorageComponent>(cryostorageEnt, out var cryostorageComponent))
             return;
 
-        // if we have a session, we use that to add back in all the job slots the player had.
         if (userId != null)
         {
             var saveFilePath = new ResPath($"{userId}]{name}");
@@ -193,6 +192,14 @@ public sealed class CryostorageSystem : SharedCryostorageSystem
             _transform.DetachEntity(ent, Transform(ent));
             QueueDel(ent.Owner);
         }
+        if (cryostorageComponent.PersonalMode)
+        {
+            cryostorageComponent.PersonalName = name;
+            cryostorageComponent.PersonalOccupied = true;
+            var ev = new PersonalCryoEvent(true);
+            RaiseLocalEvent(cryostorageEnt.Value, ref ev);
+        }
+            
 
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
 

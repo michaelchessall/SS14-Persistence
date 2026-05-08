@@ -30,11 +30,25 @@
       distro: '#0055cc'
       air: '#03fcd3'
       mix: '#947507'
+      oxygen: '#5E7CFF'
+      nitrogen: '#FF1A1A'
+      carbon dioxide: '#575151'
+      water vapor: '#F2F2F2'
+      ammonia: '#FFEB6E'
+      chlorine: '#696969'
+      flourine: '#BDBF9D'
+      chlorine trifluoride: '#74B505'
+      plasma: '#E600E2'
+      tritium: '#00E646'
+      frezon: '#9CFFFF'
+      hydrogen: '#30648C'
+      methane: '#3D1215'
+      nitrous oxide: '#9C1728'
   - type: StaticPrice
     price: 40
   - type: LimitedCharges
-    maxCharges: 15
-    lastCharges: 15
+    maxCharges: 30
+    lastCharges: 30
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
@@ -80,7 +94,7 @@
     heldPrefix: ammo
   - type: PhysicalComposition
     materialComposition:
-      Steel: 10
-      Plastic: 10
+      Steel: 20
+      Plastic: 20
   - type: StaticPrice
     price: 30

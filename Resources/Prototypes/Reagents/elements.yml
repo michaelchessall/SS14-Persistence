@@ -46,7 +46,7 @@
         damage:
           types:
             Poison: 3
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         damage:
@@ -114,7 +114,7 @@
           types:
             Caustic: 1.5
             Poison: 1.5
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         damage:
@@ -150,7 +150,7 @@
   boilingPoint: -253.0
   meltingPoint: -259.2
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         damage:
@@ -286,7 +286,7 @@
   boilingPoint: 3287.0
   meltingPoint: 1668.0
   metabolisms:
-    Poison:
+    Bloodstream:
       metabolismRate: 0.05
       effects:
       - !type:HealthChange
@@ -309,7 +309,7 @@
   physicalDesc: reagent-physical-desc-opaque
   recognizable: true
   metabolisms:
-    Food:
+    Digestion:
       effects:
       - !type:AdjustReagent
         reagent: Nutriment

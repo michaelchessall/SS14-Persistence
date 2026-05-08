@@ -7,6 +7,9 @@
   </PropertyGroup>
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
+    <None Remove="MessageBoard\UI\MessageBoard.xaml~RF197aa77f.TMP" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Nett" />
     <PackageReference Include="JetBrains.Annotations" PrivateAssets="All" />
     <PackageReference Include="SixLabors.ImageSharp" />
@@ -24,7 +27,22 @@
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
   <ItemGroup>
+    <AdditionalFiles Update="CrewAssignments\UI\PrecursorObjective.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
     <AdditionalFiles Update="GridControl\UI\StationTaggerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="MessageBoard\UI\CommentHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="MessageBoard\UI\CreateEntry.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="MessageBoard\UI\EntryHeader.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="MessageBoard\UI\EntryWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
   </ItemGroup>
@@ -80,6 +98,9 @@
     <EmbeddedResource Update="CrewAssignments\UI\StationModificationMenu.xaml" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="MessageBoard\UI\MessageBoard.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="_NF\Bank\UI\BankATMMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
@@ -89,5 +110,8 @@
     <EmbeddedResource Update="_NF\Bank\UI\WithdrawBankATMMenu.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MessageBoard\Systems\" />
   </ItemGroup>
 </Project>

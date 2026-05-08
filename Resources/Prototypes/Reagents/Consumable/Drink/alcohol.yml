@@ -616,6 +616,22 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: Barefoot
@@ -806,6 +822,20 @@
     Digestion:
       metabolites:
         Ethanol: 0.14
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
   fizziness: 0.2
 
 - type: reagent
@@ -1041,6 +1071,22 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: HippiesDelight
@@ -1183,6 +1229,22 @@
   metamorphicMaxFillLevels: 5
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: LongIslandIcedTea
@@ -1314,6 +1376,22 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   fizziness: 0.3
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: MonkeyBusiness
@@ -1450,6 +1528,20 @@
     Digestion:
       metabolites:
         Ethanol: 0.4
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: Radler
@@ -1542,6 +1634,19 @@
   metabolisms:
     Digestion:
       effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
       - !type:GenericStatusEffect
         key: Muted
         component: Muted
@@ -1610,6 +1715,22 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: true
   fizziness: 0.6
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: TequilaSunrise
@@ -1645,6 +1766,22 @@
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
   fizziness: 0.2
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: ThreeMileIsland
@@ -1753,6 +1890,20 @@
     Digestion:
       metabolites:
         Ethanol: 0.14
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
   fizziness: 0.3
 
 - type: reagent
@@ -1968,12 +2119,25 @@
         Ethanol: 0.3
         Theobromine: 0.1
       effects:
-        - !type:SatiateThirst
-          factor: 1
-        - !type:ModifyStatusEffect
-          effectProto: StatusEffectDrowsiness
-          time: 1
-          type: Remove
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
+      - !type:SatiateThirst
+        factor: 1
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectDrowsiness
+        time: 1
+        type: Remove
   fizziness: 0.25
 
 - type: reagent
@@ -2013,6 +2177,20 @@
     Digestion:
       metabolites:
         Ethanol: 0.2
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: MoscowMule
@@ -2185,6 +2363,20 @@
     Digestion:
       metabolites:
         Ethanol: 0.2
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: TheSunAlsoRises
@@ -2223,6 +2415,20 @@
     Digestion:
       metabolites:
         Ethanol: 0.4
+      effects:
+      - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [Goblin] # Doom approaches
+        type: Local
+        visualType: MediumCaution
+        messages: [ "generic-reagent-effect-sick" ]
+        probability: 0.5
+      - !type:Vomit
+        probability: 0.5
+        conditions:
+          - !type:MetabolizerTypeCondition
+            type: [Goblin]  # Goblins vomit when eating sugar
 
 - type: reagent
   id: ZombieCocktail

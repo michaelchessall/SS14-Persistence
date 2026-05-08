@@ -84,3 +84,4 @@ research-technology-quantum-fiber-weaving = Quantum Fiber Weaving
 research-technology-bluespace-chemistry = Bluespace Chemistry
 research-technology-cremation = Crematorium
 research-technology-advanced-telecommunications = Advanced Telecommunications
+research-technology-paper-protection = Paperwork protection

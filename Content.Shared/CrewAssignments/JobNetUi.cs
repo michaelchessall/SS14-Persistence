@@ -1,5 +1,8 @@
+using Content.Shared.Cargo;
+using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewAssignments.Systems;
+using Content.Shared.Precursor;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -27,8 +30,21 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
     public bool SpendAuth;
     public int Spent;
     public int Spendable;
-
-    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable)
+    public int Precursor;
+    public List<ProtoId<PrecursorObjectivePrototype>> Objectives;
+    public TimeSpan PrecursorResetTime;
+    public ProtoId<RogueLevelPrototype> RogueLevel;
+    public int XP;
+    public RogueNetworkType NetworkType;
+    public string SecretPhrase;
+    public string? KillTarget;
+    public CargoBountyData? DealerObjective;
+    public string? DealerObjectiveStation;
+    public TimeSpan RogueObjectiveResetTime;
+    public int SectorChaos;
+    public int SectorDevelopment;
+    public string SectorStatus;
+    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, int precursor, List<ProtoId<PrecursorObjectivePrototype>> objectives, TimeSpan precursorResetTime, ProtoId<RogueLevelPrototype> rogueLevel, int xP, RogueNetworkType networkType, string secretPhrase, string? killTarget, CargoBountyData? bountyData, string? stationName, TimeSpan rogueReset, int sectorChaos, int sectorDevelopment, string sectorStatus)
     {
         Stations = stations;
         AssignmentName = assignmentName;
@@ -43,6 +59,20 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
         SpendAuth = spendAuth;
         Spent = spent;
         Spendable = spendable;
+        Precursor = precursor;
+        Objectives = objectives;
+        PrecursorResetTime = precursorResetTime;
+        RogueLevel = rogueLevel;
+        XP = xP;
+        NetworkType = networkType;
+        SecretPhrase = secretPhrase;
+        KillTarget = killTarget;
+        DealerObjective = bountyData;
+        DealerObjectiveStation = stationName;
+        RogueObjectiveResetTime = rogueReset;
+        SectorChaos = sectorChaos;
+        SectorDevelopment = sectorDevelopment;
+        SectorStatus = sectorStatus;
     }
 }
 
@@ -70,3 +100,61 @@ public sealed class JobNetPurchaseMessage : BoundUserInterfaceMessage
     {
     }
 }
+
+
+[Serializable, NetSerializable]
+public sealed class JobNetSelectRogueNetMessage : BoundUserInterfaceMessage
+{
+    public RogueNetworkType Net;
+    public JobNetSelectRogueNetMessage(RogueNetworkType net)
+    {
+        Net = net;
+    }
+}
+
+
+[Serializable, NetSerializable]
+public sealed class JobNetDealerLabelMessage : BoundUserInterfaceMessage
+{
+    public string ID;
+    public JobNetDealerLabelMessage(string id)
+    {
+        ID = id;
+    }
+}
+
+
+[Serializable, NetSerializable]
+public sealed class JobNetPurchasePrecursorMessage : BoundUserInterfaceMessage
+{
+    public string ID;
+    public JobNetPurchasePrecursorMessage(string id)
+    {
+        ID = id;
+    }
+}
+
+
+
+[Serializable, NetSerializable]
+public sealed class JobNetSubmitHuntMessage : BoundUserInterfaceMessage
+{
+    public string ID;
+    public JobNetSubmitHuntMessage(string id)
+    {
+        ID = id;
+    }
+}
+
+
+
+[Serializable, NetSerializable]
+public sealed class JobNetSubmitHuntedMessage : BoundUserInterfaceMessage
+{
+    public string ID;
+    public JobNetSubmitHuntedMessage(string id)
+    {
+        ID = id;
+    }
+}
+

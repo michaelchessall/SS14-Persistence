@@ -16,7 +16,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant ]
+          type: [ Human, Animal, Rat, Plant, Goblin ]
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -47,7 +47,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Arachnid, Moth ]
+          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Goblin ]
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -412,7 +412,7 @@
       - !type:Flammable
         multiplier: 0.9
   metabolisms:
-    Gas:
+    Respiration:
       effects:
       - !type:HealthChange
         damage:

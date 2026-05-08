@@ -1,0 +1,142 @@
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitChiefEngineerSOL
+  name: solar legion chief engineer's jumpsuit
+  description: A orange jumpsuit with dark gray overalls. Designed to endure the harsh conditions a Solar Legion chief engineer may work in.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ce.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ce.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitChiefEngineerTurtleSOL
+  name: solar legion chief engineer's turtleneck
+  description: A comfortable, yet rugged orange turtleneck worn by Solar Legion chief engineers.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ce_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitClerkSOL
+  name: solar legion clerk's jumpsuit
+  description: A sensible suit worn by clerks of the Solar Legion's bureaucratic department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/clerk.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/clerk.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCMOSOL
+  name: solar legion medical director's jumpsuit
+  description: A light blue jumpsuit worn by medical directors of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cmo.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cmo.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitCMOTurtleSOL
+  name: solar legion medical director's turtleneck
+  description: A soft, sterile blue turtleneck worn by medical directors of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cmo_turtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cmo_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitExecSOL
+  name: solar legion executive's jumpsuit
+  description: A durable and regal red jumpsuit. The added padding on the back acts as both comfort and a gentle reminder to stand up straight and hold your head up. 
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/exec.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/exec.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitExecFormalSOL
+  name: solar legion executive's formal jumpsuit
+  description: A truly regal piece of formal attire only worn by executives of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/execformal.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/execformal.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitHoSAltSOL
+  name: solar legion chief of police's jumpsuit
+  description: A darkly colored jumpsuit. The Solar Legion colors and symbols all over it are said to improve the morale of the police chiefs who lead the war on crime.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/hos_alt.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/hos_alt.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpshortsMedicalOfficerSOL
+  name: solar legion medical officer's jumpshorts
+  description: A comfortable outfit worn by medical officers of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/medofficer.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/medofficer.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitQMSOL
+  name: solar legion quartermaster's jumpsuit
+  description: A smart light brown suit with silver accessorises worn by quartermasters of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/qm.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/qm.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitQMTurtleneckSOL
+  name: solar legion quartermaster's turtleneck
+  description: 
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/qmturtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/qmturtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitRndTurtleneckSOL
+  name: solar legion research director's turtleneck
+  description: A comfortable purple turtleneck worn by research directors of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/rdturtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/rdturtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitRndSOL
+  name: solar legion research director's jumpsuit
+  description: A comfortable purple outfit worn by researcher directors of the Solar Legion
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/rnd.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/rnd.rsi

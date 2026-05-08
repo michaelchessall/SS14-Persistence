@@ -18,5 +18,5 @@ public sealed partial class PlantMutateExudeGases : EntityEffectBase<PlantMutate
     public float MinValue = 0.01f;
 
     [DataField]
-    public float MaxValue = 0.5f;
+    public float MaxValue = 0.1f;
 }

@@ -222,11 +222,11 @@
     damage:
       types:
         Blunt: 12
-  - type: Produce
-    seedId: steelcap
-  - type: Log
-    spawnedPrototype: SheetSteel1
-    spawnCount: 1
+  # - type: Produce
+  #   seedId: steelcap
+  # - type: Log
+  #   spawnedPrototype: SheetSteel1
+  #   spawnCount: 1
 
 - type: entity
   name: nettle
@@ -1732,8 +1732,8 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Omnizine
-          Quantity: 3
+        # - ReagentId: Omnizine
+        #   Quantity: 3
         - ReagentId: SpaceDrugs
           Quantity: 5
         - ReagentId: Nutriment

@@ -4,7 +4,7 @@
         "x": 32,
         "y": 32
     },
-    "copyright": "Taken from tgstation, brigmedic locker is a resprited CMO locker by PuroSlavKing (Github), n2 sprites based on fire and emergency sprites, genpop lockers by EmoGarbage404 (github), sci bio locker is a resprited bio viro locker by Alpha-Two (github), Evac lockers by EmoGarbage404 (GitHub)",
+    "copyright": "Taken from tgstation, brigmedic locker is a resprited CMO locker by PuroSlavKing (Github), n2 sprites based on fire and emergency sprites, genpop lockers by EmoGarbage404 (github), sci bio locker is a resprited bio viro locker by Alpha-Two (github), Evac lockers by EmoGarbage404 (GitHub), SOL variants by FrostRusty (GitHub)",
     "license": "CC-BY-SA-3.0",
     "states": [
         {
@@ -603,6 +603,60 @@
         },
         {
             "name": "representative_door"
+        },
+        {
+            "name": "ce-SOL"
+        },
+        {
+            "name": "ce-SOL_door"
+        },
+        {
+            "name": "ce-SOL_open"
+        },
+        {
+            "name": "cmo-SOL"
+        },
+        {
+            "name": "cmo-SOL_door"
+        },
+        {
+            "name": "cmo-SOL_open"
+        },
+        {
+            "name": "exec-SOL"
+        },
+        {
+            "name": "exec-SOL_open"
+        },
+        {
+            "name": "exec-SOL_door"
+        },
+        {
+            "name": "hos-SOL"
+        },
+        {
+            "name": "hos-SOL_door"
+        },
+        {
+            "name": "hos-SOL_open"
+        },
+        {
+            "name": "qm-SOL"
+        },
+        {
+            "name": "qm-SOL_door"
+        },
+        {
+            "name": "qm-SOL_open"
+        },
+        {
+            "name": "rd-SOL"
+        },
+        {
+            "name": "rd-SOL_door"
+        },
+        {
+            "name": "rd-SOL_open"
         }
     ]
 }

@@ -452,6 +452,7 @@
       Phoron: 100
   - type: Tag
     tags:
+    - Sheet
     - RawMaterial
     - Phoron
 

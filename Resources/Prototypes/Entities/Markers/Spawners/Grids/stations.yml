@@ -129,7 +129,6 @@
         - engineermarket
       - type: StationCargoBountyDatabase
         groups:
-          EngineeringBounty : 3
           StationBounty : 2
 
 - type: entity

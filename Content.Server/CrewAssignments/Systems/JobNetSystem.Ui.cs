@@ -122,6 +122,8 @@ public sealed partial class JobNetSystem
         var spendAuth = false;
         var spent = 0;
         var spendable = 0;
+        var sectorChaos = 0;
+        var sectorStatus = "";
         foreach (var station in stations)
         {
             if (TryComp<CrewRecordsComponent>(station, out var crewRecord) && crewRecord != null)
@@ -180,6 +182,8 @@ public sealed partial class JobNetSystem
             {
                 currentLevel = record.Level;
             }
+            sectorChaos = _meta.MetaRecords.SectorChaos;
+            sectorStatus = _meta.MetaRecords.SectorStatus;
         }
         else
         {
@@ -189,7 +193,20 @@ public sealed partial class JobNetSystem
         }
         var balance = 0;
         _bank.TryGetBalance(user.Value, out balance);
-        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable);
+        string? stationName = null;
+        if(component.DealerBounty != null)
+        {
+            if(component.DealerBounty.TradeStationUID != 0)
+            {
+                var ts = _cargo.GetTradeStationByID(component.DealerBounty.TradeStationUID);
+                if (ts != null)
+                {
+                    stationName = Name(ts.Value);
+                }
+            }
+        }
+
+        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, component.Precursor, component.PrecursorObjectives, component.PrecursorResetTime, component.RogueLevel, component.XP, component.NetworkType, component.SecretPhrase, component.KillTarget, component.DealerBounty, stationName, component.RogueNetResetTime, sectorChaos, _cargo.GetSectorDevelopment(), sectorStatus);
         _ui.SetUiState(jobnet, JobNetUiKey.Key, state);
     }
 

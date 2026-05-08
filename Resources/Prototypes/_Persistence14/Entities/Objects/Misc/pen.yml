@@ -1,0 +1,8 @@
+- type: entity
+  name: solar legion executive's fountain pen
+  parent: PenEmbeddable
+  id: PenExec
+  description: A luxurious fountain pen with a comfortable orange grip. Meant for the solar legion executive.
+  components:
+  - type: Sprite
+    state: pen_exec

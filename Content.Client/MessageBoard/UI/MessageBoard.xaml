@@ -1,0 +1,39 @@
+<controls:FancyWindow xmlns="https://spacestation14.io"
+                           xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
+                           xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
+                           SetSize="600 690"
+                           MinSize="600 690">
+    <BoxContainer Orientation="Vertical">
+        <ScrollContainer VerticalExpand="True">
+            <TabContainer>
+                <BoxContainer Orientation="Vertical" Name="PublicBoard">
+                    <Button Text="Create A New Entry" Name="CreateEntryPublicButton" Access="Public" />
+                    <PanelContainer VerticalExpand="True"
+                                    HorizontalExpand="True"
+                               SizeFlagsStretchRatio="1"
+                               Name="PublicBoardEntriesPC">
+                        <PanelContainer.PanelOverride>
+                            <gfx:StyleBoxFlat BackgroundColor="#000000" />
+                        </PanelContainer.PanelOverride>
+                        <ScrollContainer VerticalExpand="True">
+                            <BoxContainer Orientation="Vertical" Margin="5" MinHeight ="10">
+                                <BoxContainer Name="PublicBoardEntriesBC"
+                                              Orientation="Vertical"
+                                              VerticalExpand="True"
+                                              Access="Public">
+                                </BoxContainer>
+                            </BoxContainer>
+                        </ScrollContainer>
+                    </PanelContainer>
+                </BoxContainer>
+                <BoxContainer Orientation="Vertical" Name="DirectMessages">
+                    <Label Text="Send Message: " StyleClasses="LabelKeyText"/>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <LineEdit Name="SendMessageLE" PlaceHolder="Recipient Name" HorizontalExpand="True"/>
+                        <Button Text="Compose Message" Name="SendMessageButton" Access="Public" />
+                    </BoxContainer>
+                </BoxContainer>
+            </TabContainer>
+        </ScrollContainer> 
+    </BoxContainer>
+</controls:FancyWindow>

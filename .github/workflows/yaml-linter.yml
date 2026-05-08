@@ -1,6 +1,7 @@
 name: YAML Linter
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master, staging, stable ]
   merge_group:

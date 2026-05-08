@@ -1,0 +1,11 @@
+- type: species
+  id: Goblin
+  name: species-name-goblin
+  roundStart: true
+  prototype: MobGoblin
+  defaultSkinTone: "#486a1b"
+  dollPrototype: AppearanceGoblin
+  skinColoration: HumanToned
+  maleFirstNames: names_goblin_male
+  femaleFirstNames: names_goblin_female
+  lastNames: names_goblin_last

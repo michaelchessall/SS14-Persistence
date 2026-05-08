@@ -11,6 +11,7 @@
       amount: 15
     TableSalt:
       amount: 5
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: Soap
@@ -29,6 +30,7 @@
       amount: 5
     Plasma:
       amount: 5
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: SoapNT
@@ -47,6 +49,7 @@
       amount: 5
     JuiceBerry:
       amount: 5
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: SoapDeluxe
@@ -65,6 +68,7 @@
       amount: 5
     Blood:
       amount: 10
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: SoapHomemade
@@ -83,6 +87,7 @@
       amount: 5
     Stimulants:
       amount: 5
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: SoapSyndie
@@ -115,6 +120,7 @@
       amount: 2
     Amatoxin:
       amount: 1
+  group: Precipitate
   effects:
     - !type:SpawnEntity
       entity: SoapOmega

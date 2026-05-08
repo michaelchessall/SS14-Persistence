@@ -99,10 +99,16 @@ public abstract partial class SharedDoorSystem : EntitySystem
                 door.State = DoorState.Closed;
                 door.Partial = false;
             }
+            if (door.State == DoorState.Welded)
+            {
+                door.State = DoorState.Welded;
+                door.Partial = false;
+            }
         }
 
         // should this door have collision and the like enabled?
         var collidable = door.State == DoorState.Closed
+            || door.State == DoorState.Welded
             || door.State == DoorState.Closing && door.Partial
             || door.State == DoorState.Opening && !door.Partial;
 

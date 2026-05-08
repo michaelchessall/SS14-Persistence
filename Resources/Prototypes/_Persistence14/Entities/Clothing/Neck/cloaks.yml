@@ -1,0 +1,62 @@
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakExecSOL
+  name: solar legion executive's cloak
+  description: A regal and comfy red cloak with a nice gold trim. It's been designed to show off as much of the executive's spatha as possible.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/exec.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakHosSOL
+  name: solar legion chief of police's cloak
+  description: A glorious dark cloak with Solar Legion colors and emblems emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/hos.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakCeSOL
+  name: solar legion chief engineer's cloak
+  description: A dark orange cloak with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/ce.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingCloakCmoSOL
+  name: solar legion medical director's cloak
+  description: A sterile light blue cloak with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer, as well as small green crosses showing their medical expertise.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/cmo.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakRdSOL
+  name: solar legion research director's cloak
+  description: A light purple cloak with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/rd.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakQmSOL
+  name: solar legion quartermaster's cloak
+  description: A dark brown cloak with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/qm.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakExecFormalSOL
+  name: solar legion executive's formal cloak
+  description: A lavish and decorated cloak designed for a Solar Legion executive meant for special occasions.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/execcloakformal.rsi

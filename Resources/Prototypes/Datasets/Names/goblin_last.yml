@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: names_goblin_last
+  values:
+    prefix: names-goblin-last-dataset-
+    count: 210

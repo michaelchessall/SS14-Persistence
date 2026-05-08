@@ -6,8 +6,11 @@
   markets:
     - market
   groups:
-    StationBounty : 4
-    ServiceBounty : 2
+    StationBounty : 1
+    MaterialBounty : 1
+    ServiceBounty : 1
+    GasBounty : 1
+    ReagentBounty : 1
   income: -5000
 
 - type: infrastructureLevel
@@ -19,10 +22,13 @@
     - market
     - market2
   groups:
-    StationBounty : 6
-    ServiceBounty : 3
+    StationBounty : 2
+    MaterialBounty : 2
+    ServiceBounty : 2
+    GasBounty : 2
+    ReagentBounty : 2
   income: 0
-
+  level: 2
 - type: infrastructureLevel
   id: ILevelGeneral3
   demotionXP: 650
@@ -33,9 +39,14 @@
     - market2
     - market3
   groups:
-    StationBounty : 8
-    ServiceBounty : 4
+    StationBounty : 3
+    MaterialBounty : 3
+    ServiceBounty : 2
+    GasBounty : 2
+    ReagentBounty : 2
+    HunterBounty : 1
   income: 10000
+  level: 3
 
 - type: infrastructureLevel
   id: ILevelGeneral4
@@ -48,9 +59,14 @@
     - market3
     - market4
   groups:
-    StationBounty : 10
-    ServiceBounty : 5
+    StationBounty : 4
+    MaterialBounty : 4
+    ServiceBounty : 3
+    GasBounty : 3
+    ReagentBounty : 3
+    HunterBounty : 2
   income: 30000
+  level: 4
 
 - type: infrastructureLevel
   id: ILevelScience1
@@ -59,11 +75,12 @@
   name: Simple Research Outpost (1)
   markets:
     - sciencemarket
+    - explorermarket
   groups:
-    ScienceBounty : 4
-    StationBounty : 1
-    ServiceBounty : 1
-  income: -5000
+    ScienceBounty : 2
+    MaterialBounty : 2
+    ReagentBounty : 1
+  income: 0
 
 - type: infrastructureLevel
   id: ILevelScience2
@@ -73,11 +90,16 @@
   markets:
     - sciencemarket
     - sciencemarket2
+    - explorermarket
+    - explorermarket2
   groups:
-    ScienceBounty : 6
-    StationBounty : 2
-    ServiceBounty : 1
+    ScienceBounty : 3
+    MaterialBounty : 2
+    ReagentBounty : 1
+    GasBounty : 1
+    ExplorationBounty : 1
   income: 0
+  level: 2
 
 - type: infrastructureLevel
   id: ILevelScience3
@@ -88,11 +110,17 @@
     - sciencemarket
     - sciencemarket2
     - sciencemarket3
+    - explorermarket
+    - explorermarket2
+    - explorermarket3
   groups:
-    ScienceBounty : 8
-    StationBounty : 2
-    ServiceBounty : 2
+    ScienceBounty : 4
+    MaterialBounty : 2
+    ReagentBounty : 2
+    GasBounty : 2
+    ExplorationBounty : 2
   income: 10000
+  level: 3
 
 - type: infrastructureLevel
   id: ILevelScience4
@@ -104,11 +132,18 @@
     - sciencemarket2
     - sciencemarket3
     - sciencemarket4
+    - explorermarket
+    - explorermarket2
+    - explorermarket3
+    - explorermarket4
   groups:
-    ScienceBounty : 9
-    StationBounty : 3
-    ServiceBounty : 3
+    ScienceBounty : 5
+    MaterialBounty : 3
+    ReagentBounty : 3
+    GasBounty : 3
+    ExplorationBounty : 3
   income: 30000
+  level: 4
 
 - type: infrastructureLevel
   id: ILevelHunter1
@@ -136,6 +171,7 @@
     ExplorationBounty : 2
     ScienceBounty : 1
   income: 0
+  level: 2
 
 - type: infrastructureLevel
   id: ILevelHunter3
@@ -151,6 +187,7 @@
     ExplorationBounty : 2
     ScienceBounty : 2
   income: 10000
+  level: 3
 
 - type: infrastructureLevel
   id: ILevelHunter4
@@ -167,6 +204,7 @@
     ExplorationBounty : 3
     ScienceBounty : 3
   income: 30000
+  level: 4
 
 - type: infrastructureLevel
   id: ILevelEngineer1
@@ -176,7 +214,6 @@
   markets:
     - engineermarket
   groups:
-    EngineeringBounty : 4
     ExplorationBounty : 1
     StationBounty : 1
   income: -5000
@@ -190,10 +227,10 @@
     - engineermarket
     - engineermarket2
   groups:
-    EngineeringBounty : 6
     ExplorationBounty : 1
     StationBounty : 2
   income: 0
+  level: 2
 
 - type: infrastructureLevel
   id: ILevelEngineer3
@@ -205,10 +242,10 @@
     - engineermarket2
     - engineermarket3
   groups:
-    EngineeringBounty : 8
     ExplorationBounty : 2
     StationBounty : 2
   income: 10000
+  level: 3
 
 - type: infrastructureLevel
   id: ILevelEngineer4
@@ -221,10 +258,10 @@
     - engineermarket3
     - engineermarket4
   groups:
-    EngineeringBounty : 9
     ExplorationBounty : 3
     StationBounty : 3
   income: 30000
+  level: 4
 
 - type: infrastructureLevel
   id: ILevelExploration1
@@ -252,6 +289,7 @@
     ScienceBounty : 1
     ServiceBounty : 2
   income: 0
+  level: 2
 
 - type: infrastructureLevel
   id: ILevelExploration3
@@ -267,6 +305,7 @@
     ScienceBounty : 2
     ServiceBounty : 2
   income: 10000
+  level: 3
 
 - type: infrastructureLevel
   id: ILevelExploration4
@@ -283,3 +322,4 @@
     ScienceBounty : 3
     ServiceBounty : 3
   income: 30000
+  level: 4

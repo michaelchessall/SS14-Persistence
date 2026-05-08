@@ -1,5 +1,6 @@
 using Content.Server.Administration.Logs;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Research.Components;
@@ -22,7 +23,7 @@ namespace Content.Server.Research.Systems
         [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
         [Dependency] private readonly SharedPopupSystem _popup = default!;
         [Dependency] private readonly RadioSystem _radio = default!;
-
+        [Dependency] private readonly StationSystem _station = default!;
         public override void Initialize()
         {
             base.Initialize();
@@ -85,7 +86,16 @@ namespace Content.Server.Research.Systems
 
             var set = new HashSet<Entity<ResearchServerComponent>>();
             _lookup.GetGridEntities(grid, set);
-            return set;
+            var final = new HashSet<Entity<ResearchServerComponent>>();
+            var clientStation = _station.GetOwningStation(client);
+            foreach (var thing in set)
+            {
+                if (_station.GetOwningStation(thing.Owner) == clientStation)
+                {
+                    final.Add(thing);
+                }
+            }
+            return final;
         }
 
         public override void Update(float frameTime)

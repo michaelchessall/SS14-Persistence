@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ClothingOuterArmorHoS, ClothingOuterWinterCoatToggleable, BaseSecurityCommandContraband]
+  id: ClothingOuterWinterHoSSOL
+  name: chief of police's armored winter coat
+  description: A sturdy, utilitarian winter coat designed to protect the chief of police from any brig-bound threats and hypothermic events.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/WinterCoats/coathosarmored.rsi
+  - type: ContainerContainer
+    containers:
+      toggleable-clothing: !type:ContainerSlot { }
+      storagebase: !type:Container
+        ents: [ ]

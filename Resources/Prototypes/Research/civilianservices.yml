@@ -97,6 +97,20 @@
   recipeUnlocks:
   - CrematoriumElectronics
 
+- type: technology
+  id: PaperProtection
+  name: research-technology-paper-protection
+  icon:
+    sprite: Objects/Misc/folders.rsi
+    state: folder-titanium
+  discipline: CivilianServices
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - BoxFolderTitaniumRed
+  - BoxFolderTitaniumGreen
+  - BoxFolderTitaniumBlue
+
 # Tier 2
 
 - type: technology
@@ -195,18 +209,6 @@
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
-
-- type: technology
-  id: BluespaceCargoTransport
-  name: research-technology-bluespace-cargo-transport
-  icon:
-    sprite: Structures/cargo_telepad.rsi
-    state: display
-  discipline: CivilianServices
-  tier: 2
-  cost: 15000
-  recipeUnlocks:
-  - CargoTelepadMachineCircuitboard
 
 - type: technology
   id: PushHorn

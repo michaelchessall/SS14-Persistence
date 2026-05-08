@@ -99,6 +99,9 @@
       tags:
         - Unstackable
         - Structure
+    - type: GuideHelp
+      guides:
+      - GasMining
 
     - type: SubFloorHide
       visibleLayers:
@@ -139,6 +142,10 @@
 
     - type: AtmosDevice
     - type: TrappedFluidExtractor
+      transferRate: 500
+      maxTransferRate: 500
+      maxPressure: 6500
+      powerUseActive: 900
 
     - type: AmbientSound
       enabled: true
@@ -152,7 +159,7 @@
     - type: PowerSwitch
     - type: PowerConsumer
       voltage: Medium
-      drawRate: 500
+      drawRate: 900
 
     - type: NodeContainer
       examinable: true

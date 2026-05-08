@@ -1,0 +1,25 @@
+- type: cargoBounty
+  id: BountyPrecursorSpaceDrugs
+  reward: 40
+  description: bounty-description-artifact
+  reagentId: SpaceDrugs
+  group: PrecursorBounty
+  bountyType: PayPerReagent
+  successXP: -200
+  idPrefix: PREC-
+  entries:
+  - name: bounty-item-liquid-space-mirage
+    amount: 250
+
+- type: cargoBounty
+  id: BountyPrecursorDesoxyephedrine
+  reward: 50
+  description: bounty-description-artifact
+  reagentId: Desoxyephedrine
+  group: PrecursorBounty
+  bountyType: PayPerReagent
+  successXP: -200
+  idPrefix: PREC-
+  entries:
+  - name: bounty-item-liquid-desoxyephedrine
+    amount: 200

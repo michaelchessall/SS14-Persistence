@@ -1,0 +1,12 @@
+- type: entity
+  parent: BoxStamps
+  id: BoxQMSOLStamps
+  name: solar legion quartermaster's stamp box
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: RubberStampQmSOL

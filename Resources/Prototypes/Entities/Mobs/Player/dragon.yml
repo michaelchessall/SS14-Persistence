@@ -181,9 +181,6 @@
   - type: ActionGun
     action: ActionDragonsBreath
     gunProto: DragonsBreathGun
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
 
 - type: entity
   categories: [ HideSpawnMenu ]

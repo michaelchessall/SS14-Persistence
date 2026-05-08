@@ -1,0 +1,82 @@
+# Cargo
+- type: entity
+  id: LockerQuarterMasterSOL
+  parent: LockerBaseSecure
+  name: solar legion quartermaster's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: qm-SOL
+    stateDoorOpen: qm-SOL_open
+    stateDoorClosed: qm-SOL_door
+  - type: AccessReader
+    access: [["Quartermaster"]]
+
+# Executive
+- type: entity
+  id: LockerExecutiveSOL
+  parent: LockerBaseSecure
+  name: solar legion executive's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: exec-SOL
+    stateDoorOpen: exec-SOL_open
+    stateDoorClosed: exec-SOL_door
+  - type: AccessReader
+    access: [["Captain"]]
+
+# CE
+- type: entity
+  id: LockerChiefEngineerSOL
+  parent: LockerBaseSecure
+  name: solar legion chief engineer's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: ce-SOL
+    stateDoorOpen: ce-SOL_open
+    stateDoorClosed: ce-SOL_door
+  - type: AccessReader
+    access: [ [ "ChiefEngineer" ] ]
+
+# CMO
+- type: entity
+  id: LockerChiefMedicalOfficerSOL
+  parent: LockerBaseSecure
+  name: solar legion medical director's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: cmo-SOL
+    stateDoorOpen: cmo-SOL_open
+    stateDoorClosed: cmo-SOL_door
+  - type: AccessReader
+    access: [ [ "ChiefMedicalOfficer" ] ]
+
+# HoS
+- type: entity
+  id: LockerHeadOfSecuritySOL
+  parent: LockerBaseSecure
+  name: solar legion chief of police's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: hos-SOL
+    stateDoorOpen: hos-SOL_open
+    stateDoorClosed: hos-SOL_door
+  - type: AccessReader
+    access: [["HeadOfSecurity"]]
+
+# RD
+- type: entity
+  id: LockerResearchDirectorSOL
+  parent: LockerBaseSecure
+  name: solar legion research director's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: rd-SOL
+    stateDoorOpen: rd-SOL_open
+    stateDoorClosed: rd-SOL_door
+  - type: AccessReader

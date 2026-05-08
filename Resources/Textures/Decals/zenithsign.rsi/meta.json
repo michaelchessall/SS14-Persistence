@@ -1,0 +1,50 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "original created by discord: brainfood#7460 / github: brainfood1183. | edit created by discord: JetBalrog",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "zenith1"
+    },
+    {
+      "name": "zenith2"
+    },
+    {
+      "name": "zenith3"
+    },
+    {
+      "name": "zenith4"
+    },
+    {
+      "name": "zenith5"
+    },
+    {
+      "name": "zenith6"
+    },
+    {
+      "name": "zenith7"
+    },
+    {
+      "name": "zenith8"
+    },
+    {
+      "name": "zenith9"
+    },
+    {
+      "name": "zenith10"
+    },
+    {
+      "name": "zenith11"
+    },
+    {
+      "name": "zenith12"
+    },
+    {
+      "name": "zenith13"
+    }
+  ]
+}

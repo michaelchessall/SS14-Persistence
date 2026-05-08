@@ -17,6 +17,7 @@
   </Box>
   <Box>
     <GuideEntityEmbed Entity="AppearanceVulpkanin" Caption="Canidae"/>
+    <GuideEntityEmbed Entity="AppearanceGoblin" Caption="Goblin"/>
   </Box>
 
 </Document>

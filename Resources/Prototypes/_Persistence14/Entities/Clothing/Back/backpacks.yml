@@ -1,0 +1,26 @@
+- type: entity
+  parent: [ClothingBackpack, BaseCommandContraband]
+  id: ClothingBackpackExec
+  name: executive's backpack
+  description: It's a special backpack made exclusively for Solar Legion Executives.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Back/Backpacks/exec.rsi
+
+- type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: ClothingBackpackDuffelExec
+  name: executive's duffel bag
+  description: A large duffel bag for holding any nuke disks that might be found.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Back/Duffels/exec.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelExec
+  name: executive's satchel
+  description: An exclusive satchel for Solar Legion Executives.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Back/Satchels/exec.rsi

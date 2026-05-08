@@ -1,0 +1,26 @@
+- type: entity
+  id: ClothingBeltChiefEngineerSOLFilled
+  parent: ClothingBeltChiefEngineerSOL
+  suffix: Filled
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: PowerDrill
+        - id: JawsOfLife
+        - id: WelderExperimental
+        - id: Multitool
+        - id: HolofanProjector
+        - id: GasAnalyzer
+        - id: trayScanner
+
+- type: entity
+  id: ClothingBeltSheathSpathaFilled
+  parent: ClothingBeltSheathSpatha
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - ExecutiveSpatha

@@ -2,12 +2,10 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.CrewRecords.Components;
 
-[RegisterComponent, NetworkedComponent]
-[AutoGenerateComponentState]
+[RegisterComponent]
 public sealed partial class CrewRecordsComponent : Component
 {
     [DataField]
-    [AutoNetworkedField]
     public Dictionary<string, CrewRecord> CrewRecords { get; set; } = new();
 
     public bool TryGetRecord(string name, out CrewRecord? record)

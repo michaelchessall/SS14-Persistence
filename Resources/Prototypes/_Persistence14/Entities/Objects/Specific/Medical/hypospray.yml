@@ -1,0 +1,33 @@
+- type: entity
+  parent: [BaseHypospray, BaseGrandTheftContraband]
+  id: HypospraySOL
+  name: solar legion hypospray
+  description: A sterile injector for rapid administration of drugs to patients. This one has added designs showing it as property of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Medical/hypospray.rsi
+    layers:
+    - state: hypo
+      map: ["enum.SolutionContainerLayers.Base"]
+    - state: hypo_fill1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Item
+    sprite: Objects/Specific/Medical/hypospray.rsi
+  - type: SolutionContainerManager
+    solutions:
+      hypospray:
+        maxVol: 30
+  - type: RefillableSolution
+    solution: hypospray
+  - type: UseDelay
+    delay: 0.5
+  - type: StaticPrice
+    price: 750
+  - type: Tag
+    tags:
+    - HighRiskItem
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    fillBaseName: hypo_fill
+    solutionName: hypospray

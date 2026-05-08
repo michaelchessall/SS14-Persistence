@@ -5,6 +5,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs.Systems;
+using Content.Shared.NameModifier.EntitySystems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
@@ -26,6 +27,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
     [Dependency] protected readonly ISharedAdminLogManager AdminLog = default!;
     [Dependency] protected readonly SharedMindSystem Mind = default!;
     [Dependency] private readonly MetaDataSystem _meta = default!;
+    [Dependency] protected readonly NameModifierSystem _nameModifier = default!;
 
     protected EntityUid? PausedMap { get; private set; }
 
@@ -39,6 +41,8 @@ public abstract class SharedCryostorageSystem : EntitySystem
         SubscribeLocalEvent<CryostorageComponent, ContainerIsInsertingAttemptEvent>(OnInsertAttempt);
         SubscribeLocalEvent<CryostorageComponent, ComponentShutdown>(OnShutdownContainer);
         SubscribeLocalEvent<CryostorageComponent, CanDropTargetEvent>(OnCanDropTarget);
+        SubscribeLocalEvent<CryostorageComponent, PersonalCryoEvent>(OnPersonalCryo);
+        SubscribeLocalEvent<CryostorageComponent, RefreshNameModifiersEvent>(OnRefreshName);
 
         SubscribeLocalEvent<CryostorageContainedComponent, EntGotRemovedFromContainerMessage>(OnRemovedContained);
         SubscribeLocalEvent<CryostorageContainedComponent, ComponentShutdown>(OnShutdownContained);
@@ -46,6 +50,22 @@ public abstract class SharedCryostorageSystem : EntitySystem
         SubscribeLocalEvent<RoundRestartCleanupEvent>(OnRoundRestart);
 
         Subs.CVar(_configuration, CCVars.GameCryoSleepRejoining, OnCvarChanged, true);
+    }
+
+    private void OnRefreshName(Entity<CryostorageComponent> ent, ref RefreshNameModifiersEvent args)
+    {
+        if(ent.Comp.PersonalMode && ent.Comp.PersonalName != null)
+        {
+            args.AddModifier($"Personal Cryopod ({ent.Comp.PersonalName})", 1);
+        }
+    }
+
+    private void OnPersonalCryo(Entity<CryostorageComponent> ent, ref PersonalCryoEvent args)
+    {
+        ent.Comp.PersonalOccupied = args.state;
+        _appearance.SetData(ent, CryostorageVisuals.Full, args.state);
+        _nameModifier.RefreshNameModifiers(ent.Owner);
+
     }
 
     private void OnCvarChanged(bool value)
@@ -76,14 +96,34 @@ public abstract class SharedCryostorageSystem : EntitySystem
         if (args.Container.ID != comp.ContainerId)
             return;
 
-        _appearance.SetData(ent, CryostorageVisuals.Full, args.Container.ContainedEntities.Count > 0);
+        if (ent.Comp.PersonalMode == true)
+        {
+            ent.Comp.PersonalName = null;
+
+        }
+        if(!ent.Comp.PersonalOccupied)
+            _appearance.SetData(ent, CryostorageVisuals.Full, args.Container.ContainedEntities.Count > 0);
     }
 
+    private void UpdatePersonalOccupied(Entity<CryostorageComponent> ent, bool occupied)
+    {
+        ent.Comp.PersonalOccupied = occupied;
+        _appearance.SetData(ent, CryostorageVisuals.Full, occupied);
+    }
     private void OnInsertAttempt(Entity<CryostorageComponent> ent, ref ContainerIsInsertingAttemptEvent args)
     {
         var (_, comp) = ent;
         if (args.Container.ID != comp.ContainerId)
             return;
+
+        if(ent.Comp.PersonalMode == true)
+        {
+            if(ent.Comp.PersonalName != null && ent.Comp.PersonalName != Name(args.EntityUid))
+            {
+                args.Cancel();
+                return;
+            }
+        }
 
         if (_mobState.IsIncapacitated(args.EntityUid))
         {
@@ -182,3 +222,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
         return comp.MapUid != null && comp.MapUid == PausedMap;
     }
 }
+
+[ByRefEvent]
+public record struct PersonalCryoEvent(bool state);
+

@@ -8,14 +8,16 @@
                       HorizontalExpand="True">
             <BoxContainer Orientation="Horizontal">
                 <BoxContainer Orientation="Vertical" HorizontalExpand="True">
-                    <RichTextLabel Name="RewardLabel"/>
-                    <RichTextLabel Name="ManifestLabel"/>
+                    <RichTextLabel Name="RewardLabel" Access="Public" />
+                    <RichTextLabel Name="ManifestLabel" Access="Public"/>
+                    <RichTextLabel Name="CriminalLabel" Access="Public" />
                 </BoxContainer>
                 <Control MinWidth="10"/>
                 <BoxContainer Orientation="Vertical" MinWidth="120">
                     <BoxContainer Orientation="Horizontal" MinWidth="120">
                         <Button Name="PrintButton"
                                 Text="{Loc 'bounty-console-label-button-text'}"
+                                Access="Public"
                                 HorizontalExpand="False"
                                 HorizontalAlignment="Right"/>
                     </BoxContainer>
@@ -40,6 +42,7 @@
                     </ProgressBar>
                 </BoxContainer>
             </BoxContainer>
+            
         </BoxContainer>
     </PanelContainer>
 </BoxContainer>

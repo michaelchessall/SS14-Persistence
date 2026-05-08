@@ -1,0 +1,139 @@
+- type: entity
+  name: quartermaster PDA
+  parent: BasePDA
+  id: QuartermasterPDASOL
+  description: PDA for the guy that orders the guns.
+  components:
+  - type: Pda
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-qm-SOL
+  - type: PdaBorderColor
+    borderColor: "#e39751"
+    accentVColor: "#a23e3e"
+  - type: Icon
+    state: pda-qm-SOL
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - AstroNavCartridge
+
+- type: entity
+  parent: BasePDA
+  id: ExecutivePDASOL
+  name: solar legion executive PDA
+  description: Surprisingly no different from your PDA.
+  components:
+  - type: Pda
+    penSlot:
+      startingItem: PenExec
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-exec-SOL
+  - type: PdaBorderColor
+    borderColor: "#7C5D00"
+  - type: Icon
+    state: pda-exec-SOL
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge
+    - MedTekCartridge
+    - AstroNavCartridge
+
+- type: entity
+  parent: BasePDA
+  id: CEPDASOL
+  name: solar legion chief engineer PDA
+  description: Looks like it's barely been used.
+  components:
+  - type: Pda
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-ce-SOL
+  - type: PdaBorderColor
+    borderColor: "#949137"
+    accentHColor: "#447987"
+  - type: Icon
+    state: pda-ce-SOL
+
+- type: entity
+  parent: BaseMedicalPDA
+  id: CMOPDASOL
+  name: solar legion medical director PDA
+  description: Extraordinarily shiny and sterile.
+  components:
+  - type: Pda
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-cmo-SOL
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
+    accentVColor: "#447987"
+  - type: Icon
+    state: pda-cmo-SOL
+
+- type: entity
+  parent: BasePDA
+  id: RnDPDASOL
+  name: solar legion research director PDA
+  description: It appears surprisingly ordinary.
+  components:
+  - type: Pda
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-rd-SOL
+  - type: PdaBorderColor
+    borderColor: "#d7d7d0"
+    accentHColor: "#447987"
+    accentVColor: "#8900c9"
+  - type: Icon
+    state: pda-rd-SOL
+
+- type: entity
+  parent: BaseSecurityPDA
+  id: HoSPDASOL
+  name: solar legion chief of police PDA
+  description: Whosoever bears this PDA is the law.
+  components:
+  - type: Pda
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-hos-SOL
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: Icon
+    state: pda-hos-SOL
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge
+    - WantedListCartridge
+    - LogProbeCartridge

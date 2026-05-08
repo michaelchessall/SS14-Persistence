@@ -53,27 +53,6 @@
   objectType: Structure
 
 - type: construction
-  id: ClosetPrisonerSecure
-  graph: ClosetPrisonerSecure
-  startNode: start
-  targetNode: closetprisonersecure
-  category: construction-category-storage
-  objectType: Structure
-
-- type: construction
-  id: ClosetWallPrisonerSecure
-  graph: ClosetWallPrisonerSecure
-  startNode: start
-  targetNode: closetwallprisonersecure
-  category: construction-category-storage
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canRotate: true
-  canBuildInImpassable: true
-  conditions:
-    - !type:WallmountCondition
-
-- type: construction
   id: ClosetWallSecure
   graph: ClosetWallSecure
   startNode: start

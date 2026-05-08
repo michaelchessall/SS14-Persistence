@@ -172,7 +172,7 @@ public sealed class RadioSystem : EntitySystem
             };
         }
         else
-            hasActiveServer = HasActiveServer(sourceMapId, channel.ID);
+            hasActiveServer = true;// HasActiveServer(sourceMapId, channel.ID);
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         var encryptionID = 0;

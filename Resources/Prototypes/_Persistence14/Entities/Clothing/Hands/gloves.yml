@@ -1,0 +1,15 @@
+- type: entity
+  parent: [ClothingHandsBase, BaseCommandContraband]
+  id: ClothingHandsGlovesExec
+  name: executive gloves
+  description: Regal red gloves with gold trims. A rare case of function and fashion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Hands/Gloves/exec.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Hands/Gloves/exec.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-regal-red
+  - type: FingerprintMask

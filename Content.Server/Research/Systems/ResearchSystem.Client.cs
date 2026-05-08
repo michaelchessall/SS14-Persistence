@@ -32,6 +32,13 @@ public sealed partial class ResearchSystem
         // Validate that we can access this server.
         if (!GetServers(uid).Contains((serveruid.Value, serverComponent)))
             return;
+        
+        if(!_accessReader.IsAllowed(args.Actor, serveruid.Value))
+        {
+            UpdateClientInterface(uid, component);
+            return;
+        }
+        
 
         UnregisterClient(uid, component);
         RegisterClient(uid, serveruid.Value, component, serverComponent);
@@ -63,8 +70,8 @@ public sealed partial class ResearchSystem
 
     private void OnClientMapInit(EntityUid uid, ResearchClientComponent component, MapInitEvent args)
     {
-        if (GetServers(uid).FirstOrNull() is { } server)
-            RegisterClient(uid, server, component, server);
+        //if (GetServers(uid).FirstOrNull() is { } server)
+        //    RegisterClient(uid, server, component, server);
     }
 
     private void OnClientCompInit(EntityUid uid, ResearchClientComponent component, ComponentInit args)

@@ -86,7 +86,7 @@
   parent: CratePlasma
   id: CrateMaterialPlasma
   name: solid plasma crate
-  description: 30 sheets of plasma.
+  description: 50 sheets of plasma.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -131,7 +131,7 @@
   parent: CrateGenericSteel
   id: CrateMaterialPaper
   name: paper crate
-  description: 90 sheets of paper.
+  description: 150 sheets of paper.
   components:
   - type: EntityTableContainerFill
     containers:
@@ -205,7 +205,7 @@
   parent: CrateGenericSteel
   id: CrateMaterialBasicResource
   name: basic sheet crate
-  description: 30 sheets of steel, glass, and plastic.
+  description: 50 sheets of steel, glass, and plastic.
   components:
   - type: EntityTableContainerFill
     containers:

@@ -12,6 +12,8 @@
 - type: entity
   id: BriefcaseSyndieSniperBundleFilled
   parent: BriefcaseBrown
+  name: Sniper Bundle
+  description: An inconspicuous briefcase that contains a Hristov, 10 spare bullets and a convenient disguise.
   suffix: Syndicate, Sniper Bundle
   components:
   - type: EntityTableContainerFill
