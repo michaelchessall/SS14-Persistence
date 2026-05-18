@@ -27,9 +27,10 @@ public sealed partial class BanListLine : BoxContainer, IBanListLine<SharedBan>
     {
         IdsClicked?.Invoke(this);
     }
-
+#pragma warning disable 0672
     protected override void Dispose(bool disposing)
     {
+#pragma warning disable 0618
         base.Dispose(disposing);
 
         IdsHidden.OnPressed -= IdsPressed;

@@ -36,6 +36,7 @@ public sealed partial class AdminMenuWindow : DefaultWindow
     protected override void Dispose(bool disposing)
     {
         OnDisposed?.Invoke();
+#pragma warning disable 0618
         base.Dispose(disposing);
         OnDisposed = null;
     }
