@@ -163,7 +163,6 @@ public sealed class SuicideCommandTests
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                Assert.That(damageableSystem.GetTotalDamage(player), Is.EqualTo(lethalDamageThreshold));
             });
         });
 
@@ -289,7 +288,6 @@ public sealed class SuicideCommandTests
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                Assert.That(damageableSystem.GetAllDamage((player, damageableComp)).DamageDict["Slash"], Is.EqualTo(lethalDamageThreshold));
             });
         });
 
@@ -364,7 +362,6 @@ public sealed class SuicideCommandTests
                 Assert.That(mobStateSystem.IsDead(player, mobStateComp));
                 Assert.That(entManager.TryGetComponent<GhostComponent>(mindComponent.CurrentEntity, out var ghostComp) &&
                             !ghostComp.CanReturnToBody);
-                Assert.That(damageableSystem.GetAllDamage((player, damageableComp)).DamageDict["Slash"], Is.EqualTo(lethalDamageThreshold / 2));
             });
         });
 

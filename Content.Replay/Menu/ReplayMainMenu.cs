@@ -24,6 +24,7 @@ namespace Content.Replay.Menu;
 /// </summary>
 public sealed partial class ReplayMainScreen : State
 {
+    private ISawmill _sawmill = default!;
     [Dependency] private IResourceManager _resMan = default!;
     [Dependency] private IComponentFactory _factory = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
@@ -263,7 +264,7 @@ public sealed partial class ReplayMainScreen : State
         }
         catch (Exception ex)
         {
-            Logger.Error($"Failed to load replay info. Exception: {ex}");
+            _sawmill.Error($"Failed to load replay info. Exception: {ex}");
             SelectReplay(null);
             return;
         }
