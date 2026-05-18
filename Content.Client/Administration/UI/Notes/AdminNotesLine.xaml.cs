@@ -14,6 +14,7 @@ namespace Content.Client.Administration.UI.Notes;
 [GenerateTypedNameReferences]
 public sealed partial class AdminNotesLine : BoxContainer
 {
+    private ISawmill _sawmill = default!;
     private readonly SpriteSystem _sprites;
 
     private const string AdminNotesTextureBase = "/Textures/Interface/AdminNotes/";
@@ -61,7 +62,7 @@ public sealed partial class AdminNotesLine : BoxContainer
         if (iconPath is null)
         {
             SeverityRect.Visible = false;
-            Logger.WarningS("admin.notes", $"Could not find an icon for note ID {Note.Id}");
+            _sawmill.Warning("admin.notes", $"Could not find an icon for note ID {Note.Id}");
         }
         else
         {

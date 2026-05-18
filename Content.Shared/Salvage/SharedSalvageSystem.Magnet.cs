@@ -38,7 +38,8 @@ public abstract partial class SharedSalvageSystem
 
     public ISalvageMagnetOffering GetSalvageOffering(int seed)
     {
-        var rand = new System.Random(seed);
+        var rand = new RobustRandom();
+        rand.SetSeed(seed);
 
         var id = rand.Pick(_debrisConfigs);
         return new DebrisOffering
