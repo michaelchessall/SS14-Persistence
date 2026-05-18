@@ -26,10 +26,7 @@ public sealed class AdminLogLabel : RichTextLabel
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing)
-        {
-            base.Orphan();
-        }
+        base.Dispose(disposing);
 
         OnVisibilityChanged -= VisibilityChanged;
     }

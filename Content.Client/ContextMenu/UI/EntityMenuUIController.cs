@@ -312,7 +312,7 @@ namespace Content.Client.ContextMenu.UI
 
             // remove the element
             var parent = element.ParentMenu?.ParentElement;
-            element.Orphan();
+            element.Dispose();
             Elements.Remove(entity);
 
             // update any parent elements

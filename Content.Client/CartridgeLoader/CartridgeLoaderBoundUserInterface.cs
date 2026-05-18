@@ -60,7 +60,7 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
         }
 
         _activeCartridgeUI = ui;
-        _activeUiFragment?.Orphan();
+        _activeUiFragment?.Dispose();
         _activeUiFragment = control;
     }
 
@@ -122,7 +122,7 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
         base.Dispose(disposing);
 
         if (disposing)
-            _activeUiFragment?.Orphan();
+            _activeUiFragment?.Dispose();
     }
 
     protected CartridgeComponent? RetrieveCartridgeComponent(EntityUid? cartridgeUid)

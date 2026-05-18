@@ -161,8 +161,8 @@ namespace Content.Client.Cargo.BUI
             if (!disposing)
                 return;
 
-            _menu?.Orphan();
-            _orderMenu?.Orphan();
+            _menu?.Dispose();
+            _orderMenu?.Dispose();
         }
 
         private bool AddOrder()

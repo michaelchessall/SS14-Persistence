@@ -75,6 +75,6 @@ public sealed class AirAlarmBoundUserInterface : BoundUserInterface
         base.Dispose(disposing);
 
         if (disposing)
-            _window?.Orphan();
+            _window?.Dispose();
     }
 }

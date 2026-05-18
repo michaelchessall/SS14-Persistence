@@ -30,10 +30,7 @@ public sealed partial class BanListLine : BoxContainer, IBanListLine<SharedBan>
 
     protected override void Dispose(bool disposing)
     {
-        if (disposing)
-        {
-            base.Orphan();
-        }
+        base.Dispose(disposing);
 
         IdsHidden.OnPressed -= IdsPressed;
         IdsClicked = null;

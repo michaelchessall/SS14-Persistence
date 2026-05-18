@@ -173,7 +173,7 @@ public sealed partial class AdminLogsEui : BaseEui
         });
 
         LogsControl.Orphan();
-        LogsWindow.Orphan();
+        LogsWindow.Dispose();
         LogsWindow = null;
 
         ClydeWindow.RequestClosed += OnRequestClosed;

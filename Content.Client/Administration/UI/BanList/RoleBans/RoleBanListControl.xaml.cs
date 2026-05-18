@@ -20,7 +20,7 @@ public sealed partial class RoleBanListControl : Control
     {
         for (var i = RoleBans.ChildCount - 1; i >= 1; i--)
         {
-            RoleBans.GetChild(i).Orphan();
+            RoleBans.GetChild(i).Dispose();
         }
 
         foreach (var ban in bans)

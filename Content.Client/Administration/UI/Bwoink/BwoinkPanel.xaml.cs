@@ -108,10 +108,7 @@ namespace Content.Client.Administration.UI.Bwoink
 
         protected override void Dispose(bool disposing)
         {
-            if (disposing)
-            {
-                base.Orphan();
-            }
+            base.Dispose(disposing);
 
             InputTextChanged = null;
         }
