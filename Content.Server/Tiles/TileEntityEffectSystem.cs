@@ -5,7 +5,7 @@ namespace Content.Server.Tiles;
 
 public sealed class TileEntityEffectSystem : EntitySystem
 {
-    [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
 
     public override void Initialize()
     {

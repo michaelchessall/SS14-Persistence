@@ -27,16 +27,16 @@ namespace Content.Server.Radio.EntitySystems;
 /// </summary>
 public sealed class RadioSystem : EntitySystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly IReplayRecordingManager _replay = default!;
-    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly HeadsetSystem _headset = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private IReplayRecordingManager _replay = default!;
+    [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private HeadsetSystem _headset = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
     // set used to prevent radio feedback loops.
     private readonly HashSet<string> _messages = new();
 

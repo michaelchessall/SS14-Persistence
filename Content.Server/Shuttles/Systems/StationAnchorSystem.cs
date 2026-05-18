@@ -9,8 +9,8 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed class StationAnchorSystem : EntitySystem
 {
-    [Dependency] private readonly ShuttleSystem _shuttleSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private ShuttleSystem _shuttleSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -87,7 +87,7 @@ public sealed class StationAnchorSystem : EntitySystem
         }
         else
         {
-            if(!TryComp<TradeStationComponent>(grid, out _))
+            if (!TryComp<TradeStationComponent>(grid, out _))
                 _shuttleSystem.Enable(grid.Value);
         }
 

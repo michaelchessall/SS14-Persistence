@@ -12,7 +12,7 @@ namespace Content.Client.SprayPainter;
 /// </summary>
 public sealed class PaintableItemAppearanceSystem : VisualizerSystem<ItemComponent>
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     protected override void OnAppearanceChange(EntityUid uid, ItemComponent component, ref AppearanceChangeEvent args)
     {

@@ -18,7 +18,7 @@ namespace Content.Client.Invoices.UI
     [GenerateTypedNameReferences]
     public sealed partial class InvoicePrinterConsoleWindow : DefaultWindow
     {
-        [Dependency] private readonly ILogManager _logManager = default!;
+        [Dependency] private ILogManager _logManager = default!;
         private readonly ISawmill _logMill = default!;
 
         private readonly InvoicePrinterConsoleBoundUserInterface _owner;

@@ -5,9 +5,9 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.StationRecords;
 
-public abstract class SharedStationRecordsSystem : EntitySystem
+public abstract partial class SharedStationRecordsSystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected IGameTiming Timing = default!;
 
     public StationRecordKey? Convert((NetEntity, uint)? input)
     {

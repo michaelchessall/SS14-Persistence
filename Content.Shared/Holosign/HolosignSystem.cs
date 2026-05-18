@@ -8,8 +8,8 @@ namespace Content.Shared.Holosign;
 
 public sealed class HolosignSystem : EntitySystem
 {
-    [Dependency] private readonly PowerCellSystem _powerCell = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {

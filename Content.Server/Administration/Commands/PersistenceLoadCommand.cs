@@ -8,7 +8,7 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Server)]
 public sealed class PersistenceLoadCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
 
     public override string Command => "persistenceload";
 

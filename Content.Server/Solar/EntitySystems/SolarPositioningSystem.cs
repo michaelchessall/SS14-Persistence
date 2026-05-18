@@ -10,8 +10,8 @@ namespace Content.Server.Solar.EntitySystems
     internal sealed class SolarPositioningSystem : EntitySystem
     {
 
-        [Dependency] private readonly IRobustRandom _robustRandom = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private IRobustRandom _robustRandom = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
 
         public override void Initialize()
         {

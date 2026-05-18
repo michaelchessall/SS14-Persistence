@@ -9,8 +9,8 @@ namespace Content.Client.SurveillanceCamera.UI;
 
 public sealed class SurveillanceCameraNavMapControl : NavMapControl
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IResourceCache _resourceCache = default!;
 
     private static readonly Color CameraActiveColor = Color.FromHex("#FF00FF");
     private static readonly Color CameraInactiveColor = Color.FromHex("#a09f9fff");

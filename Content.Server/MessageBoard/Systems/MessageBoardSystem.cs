@@ -11,11 +11,11 @@ namespace Content.Server.MessageBoard.Systems;
 
 public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly CrewMetaRecordsSystem _crewMetaRecordsSystem = default!;
-    [Dependency] private readonly IAdminManager _adminManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private CrewMetaRecordsSystem _crewMetaRecordsSystem = default!;
+    [Dependency] private IAdminManager _adminManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IChatManager _chatManager = default!;
 
     public override void Initialize()
     {

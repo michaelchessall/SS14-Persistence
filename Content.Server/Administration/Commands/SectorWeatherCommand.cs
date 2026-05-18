@@ -10,7 +10,7 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Admin)]
 public sealed class SectorWeatherCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly SectorWeatherSystem _sectorWeather = default!;
+    [Dependency] private SectorWeatherSystem _sectorWeather = default!;
 
     public override string Command => "sectorweather";
 

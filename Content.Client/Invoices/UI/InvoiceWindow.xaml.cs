@@ -19,7 +19,7 @@ namespace Content.Client.Invoices.UI
     [GenerateTypedNameReferences]
     public sealed partial class InvoiceWindow : DefaultWindow
     {
-        [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+        [Dependency] private IConfigurationManager _cfgManager = default!;
 
         private readonly InvoiceBoundUserInterface _owner;
 

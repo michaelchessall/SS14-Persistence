@@ -17,15 +17,15 @@ namespace Content.Server.Worldgen.Systems.Debris;
 /// </summary>
 public sealed class SimpleFloorPlanPopulatorSystem : BaseWorldSystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly BiomeSelectionSystem _biomeSelection = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly WorldControllerSystem _world = default!;
-    [Dependency] private readonly ChunkOwnedEntitySystem _ownedEntity = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private TurfSystem _turf = default!;
+    [Dependency] private BiomeSelectionSystem _biomeSelection = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private WorldControllerSystem _world = default!;
+    [Dependency] private ChunkOwnedEntitySystem _ownedEntity = default!;
 
     /// <inheritdoc />
     public override void Initialize()

@@ -17,9 +17,9 @@ using static Robust.Client.UserInterface.Controls.MenuBar;
 
 namespace Content.Client.Invoices.UI
 {
-    public sealed class InvoiceBoundUserInterface : BoundUserInterface
+    public sealed partial class InvoiceBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
 
         private InvoiceWindow? _window;
 

@@ -7,7 +7,7 @@ namespace Content.Server.GameTicking.Commands;
 [AdminCommand(AdminFlags.Round)]
 public sealed class StartRoundCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public override string Command => "startround";
 

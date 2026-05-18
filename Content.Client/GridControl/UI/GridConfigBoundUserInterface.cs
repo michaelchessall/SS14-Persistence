@@ -14,9 +14,9 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.GridControl.UI
 {
-    public sealed class GridConfigBoundUserInterface : BoundUserInterface
+    public sealed partial class GridConfigBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
         private readonly SharedGridConfigSystem _gridConfigSystem = default!;
 
         private GridConfigWindow? _window;

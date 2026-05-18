@@ -12,7 +12,7 @@ namespace Content.Server.Weapons.Ranged.Systems;
 /// </summary>
 public sealed class LightSmokableOnShootSystem : EntitySystem
 {
-    [Dependency] private readonly SmokingSystem _smoking = default!;
+    [Dependency] private SmokingSystem _smoking = default!;
 
     public override void Initialize()
     {

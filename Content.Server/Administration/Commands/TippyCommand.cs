@@ -10,9 +10,9 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Fun)]
 public sealed class TippyCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly SharedTipsSystem _tips = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private SharedTipsSystem _tips = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
+    [Dependency] private IPlayerManager _player = default!;
 
     public override string Command => "tippy";
 
@@ -91,7 +91,7 @@ public sealed class TippyCommand : LocalizedEntityCommands
 [AdminCommand(AdminFlags.Fun)]
 public sealed class TipCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly SharedTipsSystem _tips = default!;
+    [Dependency] private SharedTipsSystem _tips = default!;
 
     public override string Command => "tip";
 

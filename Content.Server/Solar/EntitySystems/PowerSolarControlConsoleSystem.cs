@@ -13,10 +13,10 @@ namespace Content.Server.Solar.EntitySystems
     [UsedImplicitly]
     internal sealed class PowerSolarControlConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly PowerSolarSystem _powerSolarSystem = default!;
-        [Dependency] private readonly PowerSolarTrackerSystem _powerSolarTracker = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private PowerSolarSystem _powerSolarSystem = default!;
+        [Dependency] private PowerSolarTrackerSystem _powerSolarTracker = default!;
+        [Dependency] private UserInterfaceSystem _uiSystem = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
 
         /// <summary>
         /// Timer used to avoid updating the UI state every frame (which would be overkill)

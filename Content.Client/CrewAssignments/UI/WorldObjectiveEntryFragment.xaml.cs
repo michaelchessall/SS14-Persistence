@@ -15,7 +15,7 @@ namespace Content.Client.CrewAssignments.UI;
 [GenerateTypedNameReferences]
 public sealed partial class WorldObjectiveEntryFragment : BoxContainer
 {
-    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+    [Dependency] private IConfigurationManager _cfgManager = default!;
 
 
     public WorldObjectiveEntryFragment(string title, string desc, string? reward = null, DateTime? completedTime = null, string? completedDesc = null)

@@ -27,16 +27,16 @@ namespace Content.Server.GridControl.Systems;
 
 public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PersistenceSystem _persistence = default!;
-    [Dependency] private readonly IResourceManager _resMan = default!;
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DockingSystem _dock = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PersistenceSystem _persistence = default!;
+    [Dependency] private IResourceManager _resMan = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private DockingSystem _dock = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     [GeneratedRegex("[^a-zA-Z0-9 -]")]
     private static partial Regex SafeGridNameRgx();

@@ -8,7 +8,7 @@ namespace Content.Shared.NameIdentifier;
 /// </summary>
 public abstract class SharedNameIdentifierSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     public override void Initialize()
     {

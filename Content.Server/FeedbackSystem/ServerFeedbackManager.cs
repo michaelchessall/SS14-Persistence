@@ -7,7 +7,7 @@ namespace Content.Server.FeedbackSystem;
 /// <inheritdoc />
 public sealed class ServerFeedbackManager : SharedFeedbackManager
 {
-    [Dependency] private readonly ISharedPlayerManager _player = null!;
+    [Dependency] private ISharedPlayerManager _player = null!;
 
     public override void Initialize()
     {

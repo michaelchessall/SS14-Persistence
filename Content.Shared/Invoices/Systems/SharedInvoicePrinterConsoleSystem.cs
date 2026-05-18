@@ -8,8 +8,8 @@ namespace Content.Shared.Invoices.Systems
     [UsedImplicitly]
     public abstract class SharedInvoicePrinterConsoleSystem : EntitySystem
     {
-        [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-        [Dependency] private readonly ILogManager _log = default!;
+        [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+        [Dependency] private ILogManager _log = default!;
 
         public const string Sawmill = "idconsole";
         protected ISawmill _sawmill = default!;

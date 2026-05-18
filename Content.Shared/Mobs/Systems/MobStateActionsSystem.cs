@@ -13,9 +13,9 @@ namespace Content.Shared.Mobs.Systems;
 /// </summary>
 public sealed class MobStateActionsSystem : EntitySystem
 {
-    [Dependency] private readonly SharedActionsSystem _actions = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedActionsSystem _actions = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
     /// <inheritdoc/>
     public override void Initialize()
     {

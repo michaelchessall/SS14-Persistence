@@ -19,8 +19,8 @@ namespace Content.Server.Singularity.EntitySystems;
 public sealed class SingularitySystem : SharedSingularitySystem
 {
     #region Dependencies
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly PvsOverrideSystem _pvs = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private PvsOverrideSystem _pvs = default!;
     #endregion Dependencies
 
     /// <summary>

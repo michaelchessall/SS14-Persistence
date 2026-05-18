@@ -14,11 +14,11 @@ namespace Content.Server.Persistence.Systems;
 
 public sealed class PersistenceSystem : EntitySystem
 {
-    [Dependency] private readonly MapLoaderSystem _mapLoaderSys = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly ActorSystem _actor = default!;
-    [Dependency] private readonly IChatManager _chat = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private MapLoaderSystem _mapLoaderSys = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private ActorSystem _actor = default!;
+    [Dependency] private IChatManager _chat = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public bool LoadGrid(
         ResPath path, MapId mapId, Vector2 offset, Angle rot,

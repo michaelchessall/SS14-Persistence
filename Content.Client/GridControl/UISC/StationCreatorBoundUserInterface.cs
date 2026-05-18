@@ -16,9 +16,9 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.GridControl.UISC
 {
-    public sealed class StationCreatorBoundUserInterface : BoundUserInterface
+    public sealed partial class StationCreatorBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
         private readonly SharedGridConfigSystem _gridConfigSystem = default!;
 
         private StationCreatorWindow? _window;

@@ -24,9 +24,9 @@ namespace Content.Client.Shuttles.UI;
 [GenerateTypedNameReferences]
 public sealed partial class ShuttleNavControl : BaseShuttleControl
 {
-    [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IMapManager _mapManager = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedSectorSystem _sectors;
     private readonly SharedTransformSystem _transform;
@@ -376,7 +376,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
             DrawSectorBoundaryRay(handle, worldToView, centerRadius, maxRadius, firstBoundary, weatherColor);
             DrawSectorBoundaryRay(handle, worldToView, centerRadius, maxRadius, secondBoundary, weatherColor);
-                DrawSectorArc(handle, worldToView, centerRadius, firstBoundary, secondBoundary, weatherColor);
+            DrawSectorArc(handle, worldToView, centerRadius, firstBoundary, secondBoundary, weatherColor);
         }
     }
 
@@ -439,31 +439,31 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         handle.DrawLine(startView, endpointView, color);
     }
 
-        private static void DrawSectorArc(
-            DrawingHandleScreen handle,
-            Matrix3x2 worldToView,
-            float centerRadius,
-            float startDegrees,
-            float endDegrees,
-            Color color)
-        {
-            const int segments = 12;
-            // Handle wrap-around (e.g. East sector: 337.5° → 22.5°)
-            var range = endDegrees > startDegrees
-                ? endDegrees - startDegrees
-                : endDegrees + 360f - startDegrees;
+    private static void DrawSectorArc(
+        DrawingHandleScreen handle,
+        Matrix3x2 worldToView,
+        float centerRadius,
+        float startDegrees,
+        float endDegrees,
+        Color color)
+    {
+        const int segments = 12;
+        // Handle wrap-around (e.g. East sector: 337.5° → 22.5°)
+        var range = endDegrees > startDegrees
+            ? endDegrees - startDegrees
+            : endDegrees + 360f - startDegrees;
 
-            Vector2? prev = null;
-            for (var i = 0; i <= segments; i++)
-            {
-                var t = i / (float) segments;
-                var dir = Angle.FromDegrees(startDegrees + range * t).ToVec();
-                var viewPos = Vector2.Transform(dir * centerRadius, worldToView);
-                if (prev.HasValue)
-                    handle.DrawLine(prev.Value, viewPos, color);
-                prev = viewPos;
-            }
+        Vector2? prev = null;
+        for (var i = 0; i <= segments; i++)
+        {
+            var t = i / (float)segments;
+            var dir = Angle.FromDegrees(startDegrees + range * t).ToVec();
+            var viewPos = Vector2.Transform(dir * centerRadius, worldToView);
+            if (prev.HasValue)
+                handle.DrawLine(prev.Value, viewPos, color);
+            prev = viewPos;
         }
+    }
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
     {

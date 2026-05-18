@@ -19,8 +19,8 @@ namespace Content.Client.Paper.UI
     public sealed partial class PaperWindow : BaseWindow
     {
         private string _currentRawText = string.Empty;
-        [Dependency] private readonly IInputManager _inputManager = default!;
-        [Dependency] private readonly IResourceCache _resCache = default!;
+        [Dependency] private IInputManager _inputManager = default!;
+        [Dependency] private IResourceCache _resCache = default!;
 
         private static readonly Color DefaultTextColor = new(25, 25, 25);
 

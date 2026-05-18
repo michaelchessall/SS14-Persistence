@@ -10,8 +10,8 @@ namespace Content.Server.MiningFluid;
 
 public sealed class TrappedFluidSystem : EntitySystem
 {
-    [Dependency] private readonly MapSystem _mapSys = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private MapSystem _mapSys = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     private EntityQuery<MapGridComponent> _gridQuery;
     private EntityQuery<BlobFloorPlanBuilderComponent> _floorPlanBuilderQuery;

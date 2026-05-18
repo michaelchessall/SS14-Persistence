@@ -28,9 +28,9 @@ namespace Content.Server.Power.Generation.GasGenerator;
 /// </remarks>
 public sealed class GasGeneratorSystem : EntitySystem
 {
-    [Dependency] private readonly AmbientSoundSystem _ambientSound = default!;
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private AmbientSoundSystem _ambientSound = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
 
     private EntityQuery<NodeContainerComponent> _nodeContainerQuery;
 

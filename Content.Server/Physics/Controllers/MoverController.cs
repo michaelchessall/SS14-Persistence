@@ -20,7 +20,7 @@ public sealed class MoverController : SharedMoverController
         "physics_active_mover_count",
         "Amount of ActiveInputMovers being processed by MoverController");
 
-    [Dependency] private readonly ThrusterSystem _thruster = default!;
+    [Dependency] private ThrusterSystem _thruster = default!;
 
     private Dictionary<EntityUid, (ShuttleComponent, List<(EntityUid, PilotComponent, InputMoverComponent, TransformComponent)>)> _shuttlePilots = new();
 

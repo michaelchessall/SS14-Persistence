@@ -8,8 +8,8 @@ namespace Content.Shared.Clothing.EntitySystems;
 
 public sealed class HideLayerClothingSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHideableHumanoidLayersSystem _hideableHumanoidLayers = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedHideableHumanoidLayersSystem _hideableHumanoidLayers = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

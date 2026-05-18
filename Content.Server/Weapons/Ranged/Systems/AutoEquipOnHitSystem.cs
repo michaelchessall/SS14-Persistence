@@ -10,7 +10,7 @@ namespace Content.Server.Weapons.Ranged.Systems;
 /// </summary>
 public sealed class AutoEquipOnHitSystem : EntitySystem
 {
-    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private InventorySystem _inventory = default!;
 
     public override void Initialize()
     {

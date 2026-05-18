@@ -15,9 +15,9 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.Invoices.UI
 {
-    public sealed class InvoicePrinterConsoleBoundUserInterface : BoundUserInterface
+    public sealed partial class InvoicePrinterConsoleBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
         private InvoicePrinterConsoleWindow? _window;
 
 

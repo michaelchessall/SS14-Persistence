@@ -19,7 +19,7 @@ namespace Content.Client.Access.UI
     [GenerateTypedNameReferences]
     public sealed partial class IdCardConsoleWindow : DefaultWindow
     {
-        [Dependency] private readonly IConfigurationManager _cfgManager = default!;
+        [Dependency] private IConfigurationManager _cfgManager = default!;
 
         private readonly IdCardConsoleBoundUserInterface _owner;
 

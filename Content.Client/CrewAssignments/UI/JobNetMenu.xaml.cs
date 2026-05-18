@@ -29,8 +29,8 @@ namespace Content.Client.CrewAssignments.UI;
 [GenerateTypedNameReferences]
 public sealed partial class JobNetMenu : DefaultWindow
 {
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
     public TimeSpan UntilNextPay = TimeSpan.Zero;
     public TimeSpan UntilNextPrec = TimeSpan.Zero;
     public TimeSpan UntilNextRogue = TimeSpan.Zero;
@@ -257,9 +257,9 @@ public sealed partial class JobNetMenu : DefaultWindow
             List<CargoProductPrototype> level2 = new();
             List<CargoProductPrototype> level3 = new();
             List<CargoProductPrototype> level4 = new();
-            if(_spriteSystem != null)
+            if (_spriteSystem != null)
             {
-                
+
                 foreach (var prod in _prototypeManager.EnumeratePrototypes<CargoProductPrototype>())
                 {
                     if (prod.Group == "syndicatemarket")
@@ -293,7 +293,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                         PointCost = { Text = $"P {prototype.Cost}" },
                         Icon = { Texture = _spriteSystem.Frame0(prototype.Icon) },
                     };
-                    if(itemLevel < 1)
+                    if (itemLevel < 1)
                     {
                         button.MainButton.Disabled = true;
                         button.MainButton.ToolTip = "Requires Rogue Level 2";
@@ -367,7 +367,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                     };
                     Rank5Content.AddChild(button);
                 }
-                if(state.KillTarget == null)
+                if (state.KillTarget == null)
                 {
                     HuntPanel.Visible = false;
                 }
@@ -377,7 +377,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                 }
 
             }
-            if(state.DealerObjective == null)
+            if (state.DealerObjective == null)
             {
                 DealerObjectives.RemoveAllChildren();
             }

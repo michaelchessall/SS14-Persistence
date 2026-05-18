@@ -4,7 +4,7 @@ namespace Content.Shared.Body;
 
 public sealed class HandOrganSystem : EntitySystem
 {
-    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private SharedHandsSystem _hands = default!;
 
     public override void Initialize()
     {

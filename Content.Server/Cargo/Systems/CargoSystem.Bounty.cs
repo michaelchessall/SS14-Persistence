@@ -33,11 +33,11 @@ namespace Content.Server.Cargo.Systems;
 
 public sealed partial class CargoSystem
 {
-    [Dependency] private readonly ContainerSystem _container = default!;
-    [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelistSys = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _sharedSolutionContainer = default!;
-    [Dependency] private readonly JobNetSystem _jobNet = default!;
+    [Dependency] private ContainerSystem _container = default!;
+    [Dependency] private NameIdentifierSystem _nameIdentifier = default!;
+    [Dependency] private EntityWhitelistSystem _whitelistSys = default!;
+    [Dependency] private SharedSolutionContainerSystem _sharedSolutionContainer = default!;
+    [Dependency] private JobNetSystem _jobNet = default!;
     private static readonly ProtoId<NameIdentifierGroupPrototype> BountyNameIdentifierGroup = "Bounty";
 
     private EntityQuery<StackComponent> _stackQuery;
@@ -283,7 +283,7 @@ public sealed partial class CargoSystem
         if (database.CheckedBounties.Contains(component.Id))
             return;
         CargoBountyData? bounty;
-        if(component.DealerName != null)
+        if (component.DealerName != null)
         {
             var jobNet = _jobNet.GetJobNetByName(component.DealerName);
             if (jobNet == null)
@@ -320,7 +320,7 @@ public sealed partial class CargoSystem
             int totalSold = 0;
             foreach (var ent in bountyEnts)
             {
-                if(TryComp<StackComponent>(ent, out var stack))
+                if (TryComp<StackComponent>(ent, out var stack))
                 {
                     totalSold += stack.Count;
                 }
@@ -410,7 +410,7 @@ public sealed partial class CargoSystem
                 continue;
 
             CargoBountyData? bounty;
-            if(component.AssociatedStationId is not { } station)
+            if (component.AssociatedStationId is not { } station)
             {
                 return;
             }
@@ -486,7 +486,7 @@ public sealed partial class CargoSystem
                 var toSell = Math.Min(max, finalAmount);
                 if (toSell >= max)
                 {
-                    CompleteBounty(station, bounty, args.Station, component.DealerName  );
+                    CompleteBounty(station, bounty, args.Station, component.DealerName);
                 }
                 else
                 {

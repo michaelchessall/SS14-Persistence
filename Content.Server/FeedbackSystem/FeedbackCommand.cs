@@ -14,7 +14,7 @@ namespace Content.Server.FeedbackSystem;
 [AdminCommand(AdminFlags.Debug)]
 public sealed class FeedbackCommand : ToolshedCommand
 {
-    [Dependency] private readonly ISharedFeedbackManager _feedback = null!;
+    [Dependency] private ISharedFeedbackManager _feedback = null!;
 
     [CommandImplementation("show")]
     public void ExecuteShow([CommandArgument] ICommonSession session)

@@ -12,9 +12,9 @@ namespace Content.Server.Worldgen.Systems;
 /// </summary>
 public sealed class NoiseIndexSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
 
     /// <summary>
     ///     Gets a particular noise channel from the index on the given entity.

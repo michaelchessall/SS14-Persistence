@@ -9,7 +9,7 @@ namespace Content.Server._NF.Bank;
 
 public sealed partial class BankSystem : SharedBankSystem
 {
-    [Dependency] private readonly SectorServiceSystem _sectorService = default!;
+    [Dependency] private SectorServiceSystem _sectorService = default!;
 
     // The interval between sector account increases, in seconds.
     private const float AccountIncreaseInterval = 10.0f;
@@ -69,7 +69,7 @@ public sealed partial class BankSystem : SharedBankSystem
     /// <param name="reason">The purpose of this withdrawal</param>
     /// <returns>true if the transaction was successful, false if it was not</returns>
     [PublicAPI]
-    public bool TrySectorDeposit(SectorBankAccount account, int amount, LedgerEntryType reason, SectorBankComponent? bank=null)
+    public bool TrySectorDeposit(SectorBankAccount account, int amount, LedgerEntryType reason, SectorBankComponent? bank = null)
     {
         if (amount <= 0)
         {

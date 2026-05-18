@@ -8,7 +8,7 @@ namespace Content.Client.Radio.EntitySystems;
 
 public sealed class RadioDeviceSystem : SharedRadioDeviceSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

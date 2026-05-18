@@ -8,8 +8,8 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Server)]
 public sealed class PersistenceSaveGridCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IEntityManager _ent = default!;
-    [Dependency] private readonly PersistenceSystem _persistence = default!;
+    [Dependency] private IEntityManager _ent = default!;
+    [Dependency] private PersistenceSystem _persistence = default!;
 
     public override string Command => "persistencesavegrid";
 

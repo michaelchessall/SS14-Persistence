@@ -15,11 +15,11 @@ namespace Content.Server.Humanoid.Systems;
 /// </summary>
 public sealed class RandomHumanoidSystem : EntitySystem
 {
-    [Dependency] private readonly HumanoidProfileSystem _humanoidProfile = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISerializationManager _serialization = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private HumanoidProfileSystem _humanoidProfile = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private SharedVisualBodySystem _visualBody = default!;
 
     /// <inheritdoc/>
     public override void Initialize()

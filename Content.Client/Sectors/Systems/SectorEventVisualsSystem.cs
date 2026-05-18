@@ -10,10 +10,10 @@ namespace Content.Client.Sectors.Systems;
 
 public sealed class SectorEventVisualsSystem : EntitySystem
 {
-    [Dependency] private readonly IOverlayManager _overlays = default!;
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly SharedSectorSystem _sectors = default!;
+    [Dependency] private IOverlayManager _overlays = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private SharedSectorSystem _sectors = default!;
 
     private readonly Dictionary<SpaceSector, string> _activeWeather = new();
     private SectorEventOverlay _overlay = default!;

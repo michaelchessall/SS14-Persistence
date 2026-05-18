@@ -13,9 +13,9 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.Access.UI
 {
-    public sealed class IdPrinterConsoleBoundUserInterface : BoundUserInterface
+    public sealed partial class IdPrinterConsoleBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
         private IdPrinterConsoleWindow? _window;
 
 

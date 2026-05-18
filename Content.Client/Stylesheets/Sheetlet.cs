@@ -5,7 +5,7 @@ namespace Content.Client.Stylesheets;
 
 public abstract class Sheetlet<T>
 {
-    [Dependency] protected readonly IResourceCache ResCache = default!;
+    [Dependency] protected IResourceCache ResCache = default!;
 
     protected Sheetlet()
     {

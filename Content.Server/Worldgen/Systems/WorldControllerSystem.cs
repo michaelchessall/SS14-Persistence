@@ -21,17 +21,17 @@ namespace Content.Server.Worldgen.Systems;
 /// </summary>
 public sealed class WorldControllerSystem : EntitySystem
 {
-    [Dependency] private readonly TransformSystem _xformSys = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private TransformSystem _xformSys = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
 
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly BiomeSelectionSystem _biomeSelection = default!;
-    [Dependency] private readonly EntityTableSystem _entityTable = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly ChunkOwnedEntitySystem _ownedEntity = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private BiomeSelectionSystem _biomeSelection = default!;
+    [Dependency] private EntityTableSystem _entityTable = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private ChunkOwnedEntitySystem _ownedEntity = default!;
 
 
     private const int PlayerLoadRadius = 2;

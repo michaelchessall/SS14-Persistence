@@ -10,9 +10,9 @@ namespace Content.Shared.GridControl.Systems;
 [UsedImplicitly]
 public abstract partial class SharedBluespaceParkingSystem : EntitySystem
 {
-    [Dependency] protected readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] protected readonly ILogManager _log = default!;
-    [Dependency] protected readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] protected ILogManager _log = default!;
+    [Dependency] protected SharedAppearanceSystem _appearance = default!;
 
     public const string Sawmill = "BluespaceParking";
     protected ISawmill _sawmill = default!;

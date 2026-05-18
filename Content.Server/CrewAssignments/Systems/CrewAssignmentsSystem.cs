@@ -25,12 +25,12 @@ namespace Content.Server.CrewAssignments.Systems;
 
 public sealed partial class CrewAssignmentSystem : SharedCrewAssignmentSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly StationSystem _station2 = default!;
-    [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private StationSystem _station2 = default!;
+    [Dependency] private CargoSystem _cargo = default!;
 
 
 

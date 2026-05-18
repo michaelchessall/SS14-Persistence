@@ -18,7 +18,7 @@ namespace Content.Server._NF.Bank.Commands;
 [AdminCommand(AdminFlags.Admin)]
 public sealed class CheckBankBalance : IConsoleCommand
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
     public string Command => "checkbalance";
     public string Description => "Check a characters's bank balance by character name.";
     public string Help => "checkbalance <charactername>";

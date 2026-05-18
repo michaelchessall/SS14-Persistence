@@ -12,8 +12,8 @@ namespace Content.Server.Maps;
 /// </summary>
 public sealed class TileGridSplitSystem : EntitySystem
 {
-    [Dependency] private readonly SharedMapSystem _maps = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private SharedMapSystem _maps = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

@@ -9,9 +9,9 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Server)]
 public sealed class PersistenceLoadCharCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private MapLoaderSystem _mapLoader = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override string Command => "persistenceloadchar";
 

@@ -5,7 +5,7 @@ namespace Content.Shared.DeviceLinking.Systems;
 
 public abstract class SharedRandomGateSystem : EntitySystem
 {
-    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private SharedUserInterfaceSystem _ui = default!;
 
     public override void Initialize()
     {

@@ -13,8 +13,8 @@ namespace Content.Shared.Temperature.Systems;
 /// </summary>
 public abstract class SharedTemperatureSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
 
     protected EntityQuery<TemperatureComponent> TemperatureQuery;
 

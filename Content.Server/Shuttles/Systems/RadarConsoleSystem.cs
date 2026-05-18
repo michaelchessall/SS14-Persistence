@@ -11,9 +11,9 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
 {
-    [Dependency] private readonly ShuttleConsoleSystem _console = default!;
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly SectorWeatherSystem _sectorWeather = default!;
+    [Dependency] private ShuttleConsoleSystem _console = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private SectorWeatherSystem _sectorWeather = default!;
 
     public override void Initialize()
     {
@@ -38,14 +38,14 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         UpdateState(uid, component);
     }
 
-        private void OnSectorWeatherChanged(SectorWeatherChangedEvent ev)
+    private void OnSectorWeatherChanged(SectorWeatherChangedEvent ev)
+    {
+        var query = EntityQueryEnumerator<RadarConsoleComponent>();
+        while (query.MoveNext(out var uid, out var comp))
         {
-            var query = EntityQueryEnumerator<RadarConsoleComponent>();
-            while (query.MoveNext(out var uid, out var comp))
-            {
-                UpdateState(uid, comp);
-            }
+            UpdateState(uid, comp);
         }
+    }
 
     protected override void UpdateState(EntityUid uid, RadarConsoleComponent component)
     {

@@ -20,10 +20,10 @@ using static Robust.Client.UserInterface.Controls.MenuBar;
 namespace Content.Client.MessageBoard.UI;
 
 [UsedImplicitly]
-public sealed class MessageBoardBoundUserInterface : BoundUserInterface
+public sealed partial class MessageBoardBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private readonly IClientAdminManager _admin = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IClientAdminManager _admin = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
     private MessageBoard? _menu;
     private CreateEntry? _createEntry;
     private EntryWindow? _entryWindow;
@@ -39,7 +39,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
         if (player == null) return;
         var playerName = Identity.Name(player.Value, EntMan);
         base.UpdateState(state);
-        if(_menu == null)
+        if (_menu == null)
         {
             return;
         }
@@ -60,7 +60,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
             };
             header.ViewButton.OnPressed += (args) =>
             {
-                if(_entryWindow != null)
+                if (_entryWindow != null)
                 {
                     _entryWindow.Dispose();
                 }
@@ -98,7 +98,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
 
     public void CreateEntryPublic(BaseButton.ButtonEventArgs args)
     {
-        if(_createEntry != null)
+        if (_createEntry != null)
         {
             _createEntry.Dispose();
         }
@@ -114,7 +114,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
             return;
         var title = _createEntry.MainTitleLabel.Text;
         var content = Rope.Collapse(_createEntry.DescriptionLabel.TextRope);
-        if(title == string.Empty || content == string.Empty)
+        if (title == string.Empty || content == string.Empty)
         {
             return;
         }

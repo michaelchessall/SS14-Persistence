@@ -8,7 +8,7 @@ namespace Content.Shared.Trigger;
 /// </summary>
 public abstract class TriggerOnXSystem : EntitySystem
 {
-    [Dependency] protected readonly TriggerSystem Trigger = default!;
+    [Dependency] protected TriggerSystem Trigger = default!;
 }
 
 /// <summary>

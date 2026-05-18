@@ -21,12 +21,12 @@ public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
      * USE THE PROTOTYPE.
      */
 
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly NavMapSystem _navMap = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly EntityTableSystem _table = default!;
-    [Dependency] private readonly VentHordeSystem _horde = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private NavMapSystem _navMap = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private EntityTableSystem _table = default!;
+    [Dependency] private VentHordeSystem _horde = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     protected override void Added(EntityUid uid, VentHordeRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {

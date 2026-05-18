@@ -6,13 +6,13 @@ namespace Content.Server.Speech.EntitySystems;
 
 public sealed class GoblinAccentSystem : EntitySystem
 {
-    [Dependency] private readonly ReplacementAccentSystem _replacement = default!;
+    [Dependency] private ReplacementAccentSystem _replacement = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<GoblinAccentComponent, AccentGetEvent>(OnAccent);;
+        SubscribeLocalEvent<GoblinAccentComponent, AccentGetEvent>(OnAccent); ;
     }
 
     // converts left word when typed into the right word. For example typing you becomes ye.

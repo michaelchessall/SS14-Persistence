@@ -18,16 +18,16 @@ namespace Content.Shared.Bed.Cryostorage;
 /// </summary>
 public abstract class SharedCryostorageSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly ISharedPlayerManager _player = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLog = default!;
-    [Dependency] protected readonly SharedMindSystem Mind = default!;
-    [Dependency] private readonly MetaDataSystem _meta = default!;
-    [Dependency] protected readonly NameModifierSystem _nameModifier = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLog = default!;
+    [Dependency] protected SharedMindSystem Mind = default!;
+    [Dependency] private MetaDataSystem _meta = default!;
+    [Dependency] protected NameModifierSystem _nameModifier = default!;
 
     protected EntityUid? PausedMap { get; private set; }
 
@@ -54,7 +54,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
 
     private void OnRefreshName(Entity<CryostorageComponent> ent, ref RefreshNameModifiersEvent args)
     {
-        if(ent.Comp.PersonalMode && ent.Comp.PersonalName != null)
+        if (ent.Comp.PersonalMode && ent.Comp.PersonalName != null)
         {
             args.AddModifier($"Personal Cryopod ({ent.Comp.PersonalName})", 1);
         }
@@ -101,7 +101,7 @@ public abstract class SharedCryostorageSystem : EntitySystem
             ent.Comp.PersonalName = null;
 
         }
-        if(!ent.Comp.PersonalOccupied)
+        if (!ent.Comp.PersonalOccupied)
             _appearance.SetData(ent, CryostorageVisuals.Full, args.Container.ContainedEntities.Count > 0);
     }
 
@@ -116,9 +116,9 @@ public abstract class SharedCryostorageSystem : EntitySystem
         if (args.Container.ID != comp.ContainerId)
             return;
 
-        if(ent.Comp.PersonalMode == true)
+        if (ent.Comp.PersonalMode == true)
         {
-            if(ent.Comp.PersonalName != null && ent.Comp.PersonalName != Name(args.EntityUid))
+            if (ent.Comp.PersonalName != null && ent.Comp.PersonalName != Name(args.EntityUid))
             {
                 args.Cancel();
                 return;

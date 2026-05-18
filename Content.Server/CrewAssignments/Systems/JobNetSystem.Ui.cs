@@ -23,11 +23,11 @@ namespace Content.Server.CrewAssignments.Systems;
 
 public sealed partial class JobNetSystem
 {
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly CrewMetaRecordsSystem _meta = default!;
+    [Dependency] private SharedMindSystem _mind = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private CrewMetaRecordsSystem _meta = default!;
 
     private void InitializeUi()
     {
@@ -194,9 +194,9 @@ public sealed partial class JobNetSystem
         var balance = 0;
         _bank.TryGetBalance(user.Value, out balance);
         string? stationName = null;
-        if(component.DealerBounty != null)
+        if (component.DealerBounty != null)
         {
-            if(component.DealerBounty.TradeStationUID != 0)
+            if (component.DealerBounty.TradeStationUID != 0)
             {
                 var ts = _cargo.GetTradeStationByID(component.DealerBounty.TradeStationUID);
                 if (ts != null)

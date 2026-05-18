@@ -17,9 +17,9 @@ namespace Content.Server.Sectors.Systems;
 /// </summary>
 public sealed class SectorWeatherSystem : EntitySystem
 {
-    [Dependency] private readonly IPlayerManager _players = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
-    [Dependency] private readonly IAdminLogManager _adminLog = default!;
+    [Dependency] private IPlayerManager _players = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
+    [Dependency] private IAdminLogManager _adminLog = default!;
 
     private readonly Dictionary<SpaceSector, string> _activeWeather = new();
 

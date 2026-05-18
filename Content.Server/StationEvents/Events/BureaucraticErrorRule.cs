@@ -11,7 +11,7 @@ namespace Content.Server.StationEvents.Events;
 [UsedImplicitly]
 public sealed class BureaucraticErrorRule : StationEventSystem<BureaucraticErrorRuleComponent>
 {
-    [Dependency] private readonly StationJobsSystem _stationJobs = default!;
+    [Dependency] private StationJobsSystem _stationJobs = default!;
 
     protected override void Started(EntityUid uid, BureaucraticErrorRuleComponent component, GameRuleComponent gameRule, GameRuleStartedEvent args)
     {

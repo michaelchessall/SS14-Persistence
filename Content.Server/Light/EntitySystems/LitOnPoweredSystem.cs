@@ -6,7 +6,7 @@ namespace Content.Server.Light.EntitySystems
 {
     public sealed class LitOnPoweredSystem : EntitySystem
     {
-        [Dependency] private readonly SharedPointLightSystem _lights = default!;
+        [Dependency] private SharedPointLightSystem _lights = default!;
 
         public override void Initialize()
         {

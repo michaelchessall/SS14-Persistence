@@ -24,13 +24,13 @@ namespace Content.Server.Atmos.Piping.Binary.EntitySystems
     [UsedImplicitly]
     public sealed class GasRecyclerSystem : EntitySystem
     {
-        [Dependency] private readonly AppearanceSystem _appearance = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-        [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+        [Dependency] private AppearanceSystem _appearance = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+        [Dependency] private NodeContainerSystem _nodeContainer = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
+        [Dependency] private ItemSlotsSystem _itemSlots = default!;
+        [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
         public override void Initialize()
         {

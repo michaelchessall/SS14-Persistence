@@ -13,7 +13,7 @@ namespace Content.Server.Stack
     [UsedImplicitly]
     public sealed class StackSystem : SharedStackSystem
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
 
         #region Spawning
 

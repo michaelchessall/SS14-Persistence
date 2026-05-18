@@ -16,9 +16,9 @@ namespace Content.Client.Administration.UI.Tabs.AdminTab;
 [GenerateTypedNameReferences]
 public sealed partial class AdminSectorWindow : DefaultWindow
 {
-    [Dependency] private readonly IConsoleHost _console = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
+    [Dependency] private IConsoleHost _console = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private IPrototypeManager _prototypes = default!;
 
     public AdminSectorWindow()
     {

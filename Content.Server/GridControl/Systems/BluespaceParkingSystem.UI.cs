@@ -15,13 +15,13 @@ namespace Content.Server.GridControl.Systems;
 
 public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
 
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
-    [Dependency] private readonly GridConfigSystem _gridConfigSystem = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
+    [Dependency] private MapSystem _mapSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private GridConfigSystem _gridConfigSystem = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
     private void InitializeUI()
     {
         Subs.BuiEvents<BSPAnchorKeyComponent>(BSPAnchorKeyUiKey.Key, subs =>

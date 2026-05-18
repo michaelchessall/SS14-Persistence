@@ -8,8 +8,8 @@ namespace Content.Server.MCTN.Systems;
 
 public sealed partial class MCTNSystem : EntitySystem
 {
-    [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private NodeGroupSystem _nodeGroup = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
     public Node? GetRemoteConnectionFor(EntityUid owner, MCTNComponent mctNode, Node thisNode)
     {

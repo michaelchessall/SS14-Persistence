@@ -13,8 +13,8 @@ namespace Content.Client.MCTN.UI;
 [GenerateTypedNameReferences]
 public sealed partial class MCTNPlugCard : PanelContainer
 {
-    [Dependency] private readonly ILocalizationManager _loc = default!;
-    [Dependency] private readonly IEntitySystemManager _entitySystem = default!;
+    [Dependency] private ILocalizationManager _loc = default!;
+    [Dependency] private IEntitySystemManager _entitySystem = default!;
     private readonly SpriteSystem _sprite;
 
     public MCTNPlugCard(MCTNBoundUserInterface bui, MCTNBasePlugState plug)

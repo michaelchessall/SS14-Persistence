@@ -22,10 +22,10 @@ namespace Content.Server.CrewManifest;
 public sealed class CrewManifestSystem : EntitySystem
 {
     private const string PassengerProtoID = "Passenger";
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly EuiManager _euiManager = default!;
-    [Dependency] private readonly IConfigurationManager _configManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private EuiManager _euiManager = default!;
+    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     /// <summary>
     ///     Cached crew manifest entries. The alternative is to outright
@@ -267,7 +267,7 @@ public sealed class CrewManifestSystem : EntitySystem
 [AdminCommand(AdminFlags.Admin)]
 public sealed class CrewManifestCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly CrewManifestSystem _manifestSystem = default!;
+    [Dependency] private CrewManifestSystem _manifestSystem = default!;
 
     public override string Command => "crewmanifest";
 

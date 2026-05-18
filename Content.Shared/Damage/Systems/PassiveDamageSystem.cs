@@ -6,8 +6,8 @@ namespace Content.Shared.Damage.Systems;
 
 public sealed class PassiveDamageSystem : EntitySystem
 {
-    [Dependency] private readonly DamageableSystem _damageable = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {

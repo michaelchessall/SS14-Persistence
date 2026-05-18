@@ -4,7 +4,7 @@ namespace Content.Shared.CrewRecords.Systems;
 
 public abstract partial class SharedCrewRecordSystem : EntitySystem
 {
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private SharedStationSystem _station = default!;
     public override void Initialize()
     {
         base.Initialize();

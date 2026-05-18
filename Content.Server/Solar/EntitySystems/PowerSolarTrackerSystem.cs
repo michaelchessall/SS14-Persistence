@@ -8,7 +8,7 @@ namespace Content.Server.Solar.EntitySystems
     [UsedImplicitly]
     public sealed class PowerSolarTrackerSystem : EntitySystem
     {
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
 
         public Dictionary<EntityUid, HashSet<EntityUid>> TrackersByGrid = new();
 

@@ -10,7 +10,7 @@ namespace Content.Server.Silicons.Bots;
 /// </summary>
 public sealed class HugBotSystem : SharedHugBotSystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
 
     public override void Initialize()
     {

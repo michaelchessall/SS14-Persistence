@@ -11,8 +11,8 @@ namespace Content.Client.GridControl.UIBSP;
 [GenerateTypedNameReferences]
 public sealed partial class BSPAnchorKeyWindow : DefaultWindow
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly IEntityManager _entMan = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private IEntityManager _entMan = default!;
     private readonly SharedTransformSystem _xform = default!;
 
 

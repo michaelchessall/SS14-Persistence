@@ -17,7 +17,7 @@ namespace Content.Server.Atmos.EntitySystems;
 /// </summary>
 public sealed class PipeNetGasSnapshotSystem : EntitySystem
 {
-    [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
+    [Dependency] private NodeContainerSystem _nodeContainer = default!;
 
     public override void Initialize()
     {

@@ -12,10 +12,10 @@ namespace Content.Server.CrewAssignments.AdminUI;
 
 public sealed class CodexEui : BaseEui
 {
-    [Dependency] private readonly EntityManager _entityManager = default!;
+    [Dependency] private EntityManager _entityManager = default!;
     private readonly CrewMetaRecordsSystem _crewMeta;
     private readonly ChatSystem _chat;
-    [Dependency] private readonly IChatManager _chatInterface = default!;
+    [Dependency] private IChatManager _chatInterface = default!;
     public CodexEui()
     {
         IoCManager.InjectDependencies(this);
@@ -58,7 +58,7 @@ public sealed class CodexEui : BaseEui
                 }
             case CodexEuiMsg.Save saveData:
                 {
-                    if(saveData.ID == -1)
+                    if (saveData.ID == -1)
                     {
                         _crewMeta.MetaRecords.SectorStatus = saveData.Description;
                         _chat.DispatchGlobalAnnouncement($"The Sector Status has changed!", "Sector Status");

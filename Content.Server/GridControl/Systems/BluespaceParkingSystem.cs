@@ -7,7 +7,7 @@ namespace Content.Server.GridControl.Systems;
 [UsedImplicitly]
 public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSystem
 {
-    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private TransformSystem _transform = default!;
 
 
     public override void Initialize()

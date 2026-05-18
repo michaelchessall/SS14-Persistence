@@ -6,7 +6,7 @@ namespace Content.Server.GameTicking.Commands;
 [AnyCommand]
 public sealed class ToggleReadyCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
 
     public override string Command => "toggleready";
 

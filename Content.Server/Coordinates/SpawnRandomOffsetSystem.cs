@@ -4,7 +4,7 @@ namespace Content.Server.Coordinates;
 
 public sealed class SpawnRandomOffsetSystem : EntitySystem
 {
-    [Dependency] private readonly RandomHelperSystem _randomHelper = default!;
+    [Dependency] private RandomHelperSystem _randomHelper = default!;
 
     public override void Initialize()
     {

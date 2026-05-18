@@ -13,7 +13,7 @@ namespace Content.Client.MessageBoard.UI;
 [GenerateTypedNameReferences]
 public sealed partial class EntryWindow : DefaultWindow
 {
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public MessageBoardEntry Entry;
     private bool _isAdmin;

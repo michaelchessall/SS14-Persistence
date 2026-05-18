@@ -8,8 +8,8 @@ namespace Content.Server.CrewRecords.Systems;
 
 public sealed partial class CrewMetaRecordsSystem : SharedCrewMetaRecordsSystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
 
     public bool CharacterNameExists(string name)
     {

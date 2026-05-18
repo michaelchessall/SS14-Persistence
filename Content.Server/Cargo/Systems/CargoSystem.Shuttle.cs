@@ -23,9 +23,9 @@ public sealed partial class CargoSystem
 * Handles cargo shuttle / trade mechanics.
 */
 
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
     private bool _lockboxCutEnabled;
 

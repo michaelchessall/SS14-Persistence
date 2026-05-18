@@ -10,9 +10,9 @@ namespace Content.Server.Doors.Electronics;
 
 public sealed class DoorElectronicsSystem : EntitySystem
 {
-    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private SharedStationSystem _station = default!;
     public override void Initialize()
     {
         base.Initialize();

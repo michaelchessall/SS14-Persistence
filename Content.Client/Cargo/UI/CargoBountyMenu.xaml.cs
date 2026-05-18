@@ -18,7 +18,7 @@ public sealed partial class CargoBountyMenu : FancyWindow
     public Action<string>? OnSkipButtonPressed;
     public TimeSpan UntilNextSkip = TimeSpan.Zero;
 
-    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private IPrototypeManager _protoManager = default!;
     public CargoBountyMenu()
     {
         RobustXamlLoader.Load(this);

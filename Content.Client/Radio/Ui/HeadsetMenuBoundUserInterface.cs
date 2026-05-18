@@ -10,7 +10,7 @@ namespace Content.Client.Radio.Ui
 {
     public sealed class HeadsetMenuBoundUserInterface : BoundUserInterface
     {
-        [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+        [Dependency] private IPrototypeManager _prototypeManager = default!;
 
         private HeadsetMenuWindow? _window;
 

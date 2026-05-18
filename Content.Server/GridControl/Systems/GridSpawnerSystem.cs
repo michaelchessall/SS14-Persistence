@@ -10,9 +10,9 @@ namespace Content.Server.GridControl.Systems;
 [UsedImplicitly]
 public sealed class GridSpawnerSystem : EntitySystem
 {
-    [Dependency] private readonly MapLoaderSystem _loader = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private MapLoaderSystem _loader = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private StationSystem _station = default!;
 
     public override void Initialize()
     {

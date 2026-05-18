@@ -7,10 +7,10 @@ namespace Content.Shared.Sectors;
 /// <summary>
 /// Shared API for resolving named sectors from world positions and entities.
 /// </summary>
-public sealed class SharedSectorSystem : EntitySystem
+public sealed partial class SharedSectorSystem : EntitySystem
 {
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _configuration = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     private float CenterRadius => _configuration.GetCVar(CCVars.SectorCenterRadius);
 

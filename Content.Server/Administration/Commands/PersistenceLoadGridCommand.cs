@@ -11,8 +11,8 @@ namespace Content.Server.Administration.Commands;
 [AdminCommand(AdminFlags.Server)]
 public sealed class PersistenceLoadGridCommand : LocalizedEntityCommands
 {
-    [Dependency] private readonly IEntitySystemManager _system = default!;
-    [Dependency] private readonly PersistenceSystem _persistence = default!;
+    [Dependency] private IEntitySystemManager _system = default!;
+    [Dependency] private PersistenceSystem _persistence = default!;
 
     public override string Command => "persistenceloadgrid";
 

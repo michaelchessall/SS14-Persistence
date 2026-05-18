@@ -24,10 +24,10 @@ namespace Content.Server.Cargo.Systems
 {
     public sealed partial class CargoSystem
     {
-        [Dependency] private readonly SharedTransformSystem _transformSystem = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly BankSystem _bank = default!;
+        [Dependency] private SharedTransformSystem _transformSystem = default!;
+        [Dependency] private EmagSystem _emag = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private BankSystem _bank = default!;
 
         private void InitializeConsole()
         {
@@ -475,8 +475,8 @@ namespace Content.Server.Cargo.Systems
                     PlayDenySound(uid, component);
                     return;
                 }
-                
-                
+
+
 
 
                 var amount = GetOutstandingOrderCount((station.Value, orderDatabase), order.Account);

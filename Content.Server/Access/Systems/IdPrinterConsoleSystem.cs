@@ -18,12 +18,12 @@ namespace Content.Server.Access.Systems;
 [UsedImplicitly]
 public sealed class IdPrinterConsoleSystem : SharedIdPrinterConsoleSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly IdCardSystem _idCard = default!;
-    [Dependency] private readonly CrewMetaRecordsSystem _crewMeta = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private IdCardSystem _idCard = default!;
+    [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private HandsSystem _hands = default!;
 
     public override void Initialize()
     {

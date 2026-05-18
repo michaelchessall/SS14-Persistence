@@ -16,13 +16,13 @@ namespace Content.Server.CharacterInfo;
 
 public sealed class CharacterInfoSystem : EntitySystem
 {
-    [Dependency] private readonly JobSystem _jobs = default!;
-    [Dependency] private readonly MindSystem _minds = default!;
-    [Dependency] private readonly RoleSystem _roles = default!;
-    [Dependency] private readonly SharedObjectivesSystem _objectives = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly JobNetSystem _jobNet = default!;
-    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private JobSystem _jobs = default!;
+    [Dependency] private MindSystem _minds = default!;
+    [Dependency] private RoleSystem _roles = default!;
+    [Dependency] private SharedObjectivesSystem _objectives = default!;
+    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private JobNetSystem _jobNet = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
 
     public override void Initialize()
     {

@@ -27,17 +27,17 @@ namespace Content.Server.Invoices.Systems;
 [UsedImplicitly]
 public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSystem
 {
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly SharedCargoSystem _cargo = default!;
-    [Dependency] private readonly PopupSystem _popup = default!;
-    [Dependency] private readonly BankSystem _bank = default!;
-    [Dependency] private readonly AppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly MetaDataSystem _metaSystem = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private SharedCargoSystem _cargo = default!;
+    [Dependency] private PopupSystem _popup = default!;
+    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private AppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private MetaDataSystem _metaSystem = default!;
     public override void Initialize()
     {
         base.Initialize();

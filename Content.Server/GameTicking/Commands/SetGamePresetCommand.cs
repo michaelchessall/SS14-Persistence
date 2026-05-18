@@ -8,7 +8,7 @@ namespace Content.Server.GameTicking.Commands
     [AdminCommand(AdminFlags.Round)]
     public sealed class SetGamePresetCommand : IConsoleCommand
     {
-        [Dependency] private readonly IEntityManager _entity = default!;
+        [Dependency] private IEntityManager _entity = default!;
 
         public string Command => "setgamepreset";
         public string Description => Loc.GetString("set-game-preset-command-description", ("command", Command));

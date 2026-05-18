@@ -9,8 +9,8 @@ namespace Content.Shared.GridControl.Systems;
 [UsedImplicitly]
 public abstract partial class SharedGridConfigSystem : EntitySystem
 {
-    [Dependency] private readonly ItemSlotsSystem _itemSlotsSystem = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
+    [Dependency] private ILogManager _log = default!;
 
     public const string Sawmill = "GridConfig";
     protected ISawmill _sawmill = default!;

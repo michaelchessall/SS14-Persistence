@@ -5,7 +5,7 @@ namespace Content.Shared.Trigger.Systems;
 
 public sealed class StaminaDamageOnTriggerSystem : XOnTriggerSystem<StaminaDamageOnTriggerComponent>
 {
-    [Dependency] private readonly SharedStaminaSystem _stamina = default!;
+    [Dependency] private SharedStaminaSystem _stamina = default!;
 
     protected override void OnTrigger(Entity<StaminaDamageOnTriggerComponent> ent, EntityUid target, ref TriggerEvent args)
     {
