@@ -24,7 +24,7 @@ namespace Content.Shared.Fluids.EntitySystems;
 /// <summary>
 /// Handles the draining of solutions from containers into drains.
 /// </summary>
-public sealed class DrainSystem : EntitySystem
+public sealed partial class DrainSystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IPrototypeManager _prototype = default!;

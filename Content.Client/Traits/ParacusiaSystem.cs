@@ -8,7 +8,7 @@ using System.Numerics;
 
 namespace Content.Client.Traits;
 
-public sealed class ParacusiaSystem : SharedParacusiaSystem
+public sealed partial class ParacusiaSystem : SharedParacusiaSystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPlayerManager _player = default!;

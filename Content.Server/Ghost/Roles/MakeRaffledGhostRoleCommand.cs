@@ -11,7 +11,7 @@ using System.Linq;
 namespace Content.Server.Ghost.Roles
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class MakeRaffledGhostRoleCommand : IConsoleCommand
+    public sealed partial class MakeRaffledGhostRoleCommand : IConsoleCommand
     {
         [Dependency] private IPrototypeManager _protoManager = default!;
         [Dependency] private IEntityManager _entManager = default!;

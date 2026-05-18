@@ -4,7 +4,7 @@ using Content.Shared.Damage.Events;
 
 namespace Content.Shared.Damage.Systems;
 
-public abstract class SharedDamageOtherOnHitSystem : EntitySystem
+public abstract partial class SharedDamageOtherOnHitSystem : EntitySystem
 {
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private DamageExamineSystem _damageExamine = default!;

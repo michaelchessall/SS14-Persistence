@@ -12,7 +12,7 @@ using System.Numerics;
 
 namespace Content.Server.Persistence.Systems;
 
-public sealed class PersistenceSystem : EntitySystem
+public sealed partial class PersistenceSystem : EntitySystem
 {
     [Dependency] private MapLoaderSystem _mapLoaderSys = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

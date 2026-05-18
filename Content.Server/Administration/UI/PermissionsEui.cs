@@ -13,7 +13,7 @@ using DbAdminRank = Content.Server.Database.AdminRank;
 
 namespace Content.Server.Administration.UI
 {
-    public sealed class PermissionsEui : BaseEui
+    public sealed partial class PermissionsEui : BaseEui
     {
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IServerDbManager _db = default!;

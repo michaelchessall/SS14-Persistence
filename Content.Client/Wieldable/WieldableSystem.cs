@@ -10,7 +10,7 @@ using System.Numerics;
 
 namespace Content.Client.Wieldable;
 
-public sealed class WieldableSystem : SharedWieldableSystem
+public sealed partial class WieldableSystem : SharedWieldableSystem
 {
     [Dependency] private EyeCursorOffsetSystem _eyeOffset = default!;
     [Dependency] private IClientGameTiming _gameTiming = default!;

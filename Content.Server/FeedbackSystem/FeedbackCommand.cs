@@ -12,7 +12,7 @@ namespace Content.Server.FeedbackSystem;
 /// </summary>
 [ToolshedCommand]
 [AdminCommand(AdminFlags.Debug)]
-public sealed class FeedbackCommand : ToolshedCommand
+public sealed partial class FeedbackCommand : ToolshedCommand
 {
     [Dependency] private ISharedFeedbackManager _feedback = null!;
 

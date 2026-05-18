@@ -10,7 +10,7 @@ namespace Content.Client.SprayPainter;
 /// <summary>
 /// Updates item sprites when they are repainted via the spray painter.
 /// </summary>
-public sealed class PaintableItemAppearanceSystem : VisualizerSystem<ItemComponent>
+public sealed partial class PaintableItemAppearanceSystem : VisualizerSystem<ItemComponent>
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 

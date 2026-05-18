@@ -13,7 +13,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Damage.Systems;
 
-public abstract class SharedGodmodeSystem : EntitySystem
+public abstract partial class SharedGodmodeSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _protoMan = default!;
 

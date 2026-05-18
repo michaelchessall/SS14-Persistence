@@ -9,7 +9,7 @@ namespace Content.Shared.EntityEffects.Effects.Solution;
 /// Sets the temperature of this solution to a fixed value.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class SetSolutionTemperatureEntityEffectSystem : EntityEffectSystem<SolutionComponent, SetSolutionTemperature>
+public sealed partial class SetSolutionTemperatureEntityEffectSystem : EntityEffectSystem<SolutionComponent, SetSolutionTemperature>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
@@ -39,7 +39,7 @@ public sealed partial class SetSolutionTemperature : EntityEffectBase<SetSolutio
 /// The temperature adjustment is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class AdjustSolutionTemperatureEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustSolutionTemperature>
+public sealed partial class AdjustSolutionTemperatureEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustSolutionTemperature>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
@@ -86,7 +86,7 @@ public sealed partial class AdjustSolutionTemperature : EntityEffectBase<AdjustS
 /// The energy adjustment is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class AdjustSolutionThermalEnergyEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustSolutionThermalEnergy>
+public sealed partial class AdjustSolutionThermalEnergyEntityEffectSystem : EntityEffectSystem<SolutionComponent, AdjustSolutionThermalEnergy>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 

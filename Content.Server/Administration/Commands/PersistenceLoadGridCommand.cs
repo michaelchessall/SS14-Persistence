@@ -9,7 +9,7 @@ using System.Numerics;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Server)]
-public sealed class PersistenceLoadGridCommand : LocalizedEntityCommands
+public sealed partial class PersistenceLoadGridCommand : LocalizedEntityCommands
 {
     [Dependency] private IEntitySystemManager _system = default!;
     [Dependency] private PersistenceSystem _persistence = default!;

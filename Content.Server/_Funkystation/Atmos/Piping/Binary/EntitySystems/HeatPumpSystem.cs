@@ -21,7 +21,7 @@ using Robust.Shared.Player;
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class HeatPumpSystem : EntitySystem
+    public sealed partial class HeatPumpSystem : EntitySystem
     {
         [Dependency] private IAdminLogManager _adminLogger = default!;
         [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;

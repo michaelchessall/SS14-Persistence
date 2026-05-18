@@ -13,7 +13,7 @@ using System.Numerics;
 
 namespace Content.Client.Weather;
 
-public sealed class WeatherSystem : SharedWeatherSystem
+public sealed partial class WeatherSystem : SharedWeatherSystem
 {
     [Dependency] private IPlayerManager _playerManager = default!;
     [Dependency] private AudioSystem _audio = default!;

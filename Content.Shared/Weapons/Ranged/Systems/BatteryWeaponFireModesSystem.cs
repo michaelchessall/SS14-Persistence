@@ -9,7 +9,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
-public sealed class BatteryWeaponFireModesSystem : EntitySystem
+public sealed partial class BatteryWeaponFireModesSystem : EntitySystem
 {
     [Dependency] private AccessReaderSystem _accessReaderSystem = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

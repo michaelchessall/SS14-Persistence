@@ -14,7 +14,7 @@ namespace Content.Server.Ninja.Systems;
 /// Handles power cell upgrading and actions.
 /// TODO: Move all of this to shared and predict it
 /// </summary>
-public sealed class NinjaSuitSystem : SharedNinjaSuitSystem
+public sealed partial class NinjaSuitSystem : SharedNinjaSuitSystem
 {
     [Dependency] private SharedEmpSystem _emp = default!;
     [Dependency] private SharedHandsSystem _hands = default!;

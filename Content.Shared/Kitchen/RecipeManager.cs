@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Content.Shared.Kitchen
 {
-    public sealed class RecipeManager
+    public sealed partial class RecipeManager
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
 

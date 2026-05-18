@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.GameTicking
 {
-    public abstract class SharedGameTicker : EntitySystem
+    public abstract partial class SharedGameTicker : EntitySystem
     {
         [Dependency] private IReplayRecordingManager _replay = default!;
         [Dependency] private IGameTiming _gameTiming = default!;

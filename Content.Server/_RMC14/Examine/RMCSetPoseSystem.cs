@@ -6,7 +6,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server._RMC14.Examine;
 
-public sealed class RMCSetPoseSystem : SharedRMCSetPoseSystem
+public sealed partial class RMCSetPoseSystem : SharedRMCSetPoseSystem
 {
     [Dependency] private QuickDialogSystem _quickDialog = default!;
 

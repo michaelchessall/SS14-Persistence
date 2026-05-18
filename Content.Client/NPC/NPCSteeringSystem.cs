@@ -8,7 +8,7 @@ using System.Numerics;
 
 namespace Content.Client.NPC;
 
-public sealed class NPCSteeringSystem : SharedNPCSteeringSystem
+public sealed partial class NPCSteeringSystem : SharedNPCSteeringSystem
 {
     [Dependency] private IOverlayManager _overlay = default!;
 

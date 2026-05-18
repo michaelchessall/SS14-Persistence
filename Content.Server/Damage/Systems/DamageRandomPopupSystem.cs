@@ -8,7 +8,7 @@ namespace Content.Server.Damage.Systems;
 /// <summary>
 /// Outputs a random pop-up from the strings list when an object receives damage
 /// </summary>
-public sealed class DamageRandomPopupSystem : EntitySystem
+public sealed partial class DamageRandomPopupSystem : EntitySystem
 {
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IRobustRandom _random = default!;

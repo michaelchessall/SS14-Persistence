@@ -12,7 +12,7 @@ namespace Content.Server.Weather.Commands;
 /// Removes all weather except the specified one. If the specified weather does not exist on the map, it adds it.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class WeatherSetCommand : LocalizedEntityCommands
+public sealed partial class WeatherSetCommand : LocalizedEntityCommands
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedMapSystem _map = default!;

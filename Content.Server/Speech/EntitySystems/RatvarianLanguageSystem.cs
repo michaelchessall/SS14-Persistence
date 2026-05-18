@@ -8,7 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class RatvarianLanguageSystem : SharedRatvarianLanguageSystem
+public sealed partial class RatvarianLanguageSystem : SharedRatvarianLanguageSystem
 {
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
 

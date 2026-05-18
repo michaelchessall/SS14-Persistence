@@ -20,7 +20,7 @@ using System.Threading;
 
 namespace Content.Server.Wires;
 
-public sealed class WiresSystem : SharedWiresSystem
+public sealed partial class WiresSystem : SharedWiresSystem
 {
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private SharedDoAfterSystem _doAfter = default!;

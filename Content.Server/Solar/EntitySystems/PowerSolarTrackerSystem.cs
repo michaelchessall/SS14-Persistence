@@ -6,7 +6,7 @@ namespace Content.Server.Solar.EntitySystems
 {
 
     [UsedImplicitly]
-    public sealed class PowerSolarTrackerSystem : EntitySystem
+    public sealed partial class PowerSolarTrackerSystem : EntitySystem
     {
         [Dependency] private SharedTransformSystem _transform = default!;
 

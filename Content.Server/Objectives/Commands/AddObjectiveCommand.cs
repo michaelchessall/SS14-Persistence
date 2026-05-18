@@ -11,7 +11,7 @@ using System.Linq;
 namespace Content.Server.Objectives.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class AddObjectiveCommand : LocalizedEntityCommands
+public sealed partial class AddObjectiveCommand : LocalizedEntityCommands
 {
     [Dependency] private IPlayerManager _players = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;

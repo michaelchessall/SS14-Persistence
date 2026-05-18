@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Content.Shared.Clock;
 
-public abstract class SharedClockSystem : EntitySystem
+public abstract partial class SharedClockSystem : EntitySystem
 {
     [Dependency] private SharedGameTicker _ticker = default!;
 

@@ -9,7 +9,7 @@ using System.Linq;
 namespace Content.Server.Examine
 {
     [UsedImplicitly]
-    public sealed class ExamineSystem : ExamineSystemShared
+    public sealed partial class ExamineSystem : ExamineSystemShared
     {
         [Dependency] private VerbSystem _verbSystem = default!;
 

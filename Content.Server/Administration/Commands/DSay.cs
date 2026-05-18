@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Moderator)]
-public sealed class DsayCommand : LocalizedEntityCommands
+public sealed partial class DsayCommand : LocalizedEntityCommands
 {
     [Dependency] private ChatSystem _chatSystem = default!;
 

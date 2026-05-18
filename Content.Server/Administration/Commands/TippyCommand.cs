@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class TippyCommand : LocalizedEntityCommands
+public sealed partial class TippyCommand : LocalizedEntityCommands
 {
     [Dependency] private SharedTipsSystem _tips = default!;
     [Dependency] private IPrototypeManager _prototype = default!;
@@ -89,7 +89,7 @@ public sealed class TippyCommand : LocalizedEntityCommands
 }
 
 [AdminCommand(AdminFlags.Fun)]
-public sealed class TipCommand : LocalizedEntityCommands
+public sealed partial class TipCommand : LocalizedEntityCommands
 {
     [Dependency] private SharedTipsSystem _tips = default!;
 

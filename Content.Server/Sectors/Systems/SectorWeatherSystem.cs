@@ -15,7 +15,7 @@ namespace Content.Server.Sectors.Systems;
 /// <summary>
 /// Tracks active sector weather events and broadcasts changes for UI systems.
 /// </summary>
-public sealed class SectorWeatherSystem : EntitySystem
+public sealed partial class SectorWeatherSystem : EntitySystem
 {
     [Dependency] private IPlayerManager _players = default!;
     [Dependency] private IPrototypeManager _prototypes = default!;

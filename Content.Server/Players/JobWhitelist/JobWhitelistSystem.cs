@@ -10,7 +10,7 @@ using System.Collections.Immutable;
 
 namespace Content.Server.Players.JobWhitelist;
 
-public sealed class JobWhitelistSystem : EntitySystem
+public sealed partial class JobWhitelistSystem : EntitySystem
 {
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private JobWhitelistManager _manager = default!;

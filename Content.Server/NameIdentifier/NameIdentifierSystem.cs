@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.NameIdentifier;
 
-public sealed class NameIdentifierSystem : SharedNameIdentifierSystem
+public sealed partial class NameIdentifierSystem : SharedNameIdentifierSystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;

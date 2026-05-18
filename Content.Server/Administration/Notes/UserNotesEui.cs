@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Content.Server.Administration.Notes;
 
-public sealed class UserNotesEui : BaseEui
+public sealed partial class UserNotesEui : BaseEui
 {
     [Dependency] private IAdminNotesManager _notesMan = default!;
     [Dependency] private IConfigurationManager _cfg = default!;

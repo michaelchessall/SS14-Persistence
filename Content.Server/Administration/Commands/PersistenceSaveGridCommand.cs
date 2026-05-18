@@ -6,7 +6,7 @@ using Robust.Shared.Utility;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Server)]
-public sealed class PersistenceSaveGridCommand : LocalizedEntityCommands
+public sealed partial class PersistenceSaveGridCommand : LocalizedEntityCommands
 {
     [Dependency] private IEntityManager _ent = default!;
     [Dependency] private PersistenceSystem _persistence = default!;

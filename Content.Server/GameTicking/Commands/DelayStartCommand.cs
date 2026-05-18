@@ -5,7 +5,7 @@ using Robust.Shared.Console;
 namespace Content.Server.GameTicking.Commands;
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class DelayStartCommand : LocalizedEntityCommands
+public sealed partial class DelayStartCommand : LocalizedEntityCommands
 {
     [Dependency] private GameTicker _gameTicker = default!;
 

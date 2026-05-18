@@ -3,7 +3,7 @@ using Content.Shared.Radio.EntitySystems;
 
 namespace Content.Server.Radio.EntitySystems;
 
-public sealed class JammerSystem : SharedJammerSystem
+public sealed partial class JammerSystem : SharedJammerSystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
 

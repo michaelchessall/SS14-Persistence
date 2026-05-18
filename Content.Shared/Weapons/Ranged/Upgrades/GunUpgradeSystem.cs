@@ -16,7 +16,7 @@ using System.Linq;
 
 namespace Content.Shared.Weapons.Ranged.Upgrades;
 
-public sealed class GunUpgradeSystem : EntitySystem
+public sealed partial class GunUpgradeSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLog = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

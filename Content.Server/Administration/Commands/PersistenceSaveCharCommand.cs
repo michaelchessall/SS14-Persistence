@@ -8,7 +8,7 @@ using Robust.Shared.Utility;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Server)]
-public sealed class PersistenceSaveCharCommand : LocalizedEntityCommands
+public sealed partial class PersistenceSaveCharCommand : LocalizedEntityCommands
 {
     [Dependency] private IConfigurationManager _config = default!;
     [Dependency] private MapLoaderSystem _mapLoader = default!;

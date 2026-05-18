@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Sectors.Systems;
 
-public sealed class SectorEventVisualsSystem : EntitySystem
+public sealed partial class SectorEventVisualsSystem : EntitySystem
 {
     [Dependency] private IOverlayManager _overlays = default!;
     [Dependency] private IPlayerManager _players = default!;

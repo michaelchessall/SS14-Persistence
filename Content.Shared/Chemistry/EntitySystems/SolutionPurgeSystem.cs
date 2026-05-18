@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
-public sealed class SolutionPurgeSystem : EntitySystem
+public sealed partial class SolutionPurgeSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private IGameTiming _timing = default!;

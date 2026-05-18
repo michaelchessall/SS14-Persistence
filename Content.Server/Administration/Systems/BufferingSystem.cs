@@ -7,7 +7,7 @@ using System.Numerics;
 
 namespace Content.Server.Administration.Systems;
 
-public sealed class BufferingSystem : SharedBufferingSystem
+public sealed partial class BufferingSystem : SharedBufferingSystem
 {
     [Dependency] private IRobustRandom _random = default!;
 

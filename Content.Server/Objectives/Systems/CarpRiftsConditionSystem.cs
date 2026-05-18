@@ -3,7 +3,7 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server.Objectives.Systems;
 
-public sealed class CarpRiftsConditionSystem : EntitySystem
+public sealed partial class CarpRiftsConditionSystem : EntitySystem
 {
     [Dependency] private NumberObjectiveSystem _number = default!;
 

@@ -18,7 +18,7 @@ using Robust.Server.GameObjects;
 namespace Content.Server.Atmos.Piping.Binary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasVolumePumpSystem : SharedGasVolumePumpSystem
+    public sealed partial class GasVolumePumpSystem : SharedGasVolumePumpSystem
     {
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;

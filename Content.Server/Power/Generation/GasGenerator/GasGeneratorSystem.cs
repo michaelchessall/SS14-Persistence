@@ -26,7 +26,7 @@ namespace Content.Server.Power.Generation.GasGenerator;
 /// and it will consume more or less fuel depending on current efficiency.
 /// </para>
 /// </remarks>
-public sealed class GasGeneratorSystem : EntitySystem
+public sealed partial class GasGeneratorSystem : EntitySystem
 {
     [Dependency] private AmbientSoundSystem _ambientSound = default!;
     [Dependency] private AtmosphereSystem _atmosphere = default!;

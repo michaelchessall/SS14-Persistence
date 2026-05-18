@@ -3,7 +3,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class SwapLocationOnTriggerSystem : EntitySystem
+public sealed partial class SwapLocationOnTriggerSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private INetManager _net = default!;

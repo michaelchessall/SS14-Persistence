@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.VentHorde.Systems;
 
-public sealed class VentHordeSystem : EntitySystem
+public sealed partial class VentHordeSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;

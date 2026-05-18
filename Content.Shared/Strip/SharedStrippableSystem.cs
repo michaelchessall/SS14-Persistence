@@ -20,7 +20,7 @@ using System.Linq;
 
 namespace Content.Shared.Strip;
 
-public abstract class SharedStrippableSystem : EntitySystem
+public abstract partial class SharedStrippableSystem : EntitySystem
 {
     [Dependency] private SharedInteractionSystem _interactionSystem = default!;
 

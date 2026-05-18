@@ -11,7 +11,7 @@ using JetBrains.Annotations;
 namespace Content.Server.Atmos.Piping.Trinary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class PressureControlledValveSystem : EntitySystem
+    public sealed partial class PressureControlledValveSystem : EntitySystem
     {
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;

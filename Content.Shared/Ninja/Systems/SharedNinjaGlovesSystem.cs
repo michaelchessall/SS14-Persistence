@@ -14,7 +14,7 @@ namespace Content.Shared.Ninja.Systems;
 /// <summary>
 /// Provides the toggle action and handles examining and unequipping.
 /// </summary>
-public abstract class SharedNinjaGlovesSystem : EntitySystem
+public abstract partial class SharedNinjaGlovesSystem : EntitySystem
 {
     [Dependency] private SharedCombatModeSystem _combatMode = default!;
     [Dependency] private SharedHandsSystem _hands = default!;

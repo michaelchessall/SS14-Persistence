@@ -12,7 +12,7 @@ using YamlDotNet.RepresentationModel;
 
 namespace Content.Server.Mapping;
 
-public sealed class MappingManager : IPostInjectInit
+public sealed partial class MappingManager : IPostInjectInit
 {
 #if !FULL_RELEASE
     [Dependency] private IAdminManager _admin = default!;

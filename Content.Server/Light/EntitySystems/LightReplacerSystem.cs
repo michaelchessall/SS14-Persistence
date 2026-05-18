@@ -12,7 +12,7 @@ using System.Linq;
 namespace Content.Server.Light.EntitySystems;
 
 [UsedImplicitly]
-public sealed class LightReplacerSystem : SharedLightReplacerSystem
+public sealed partial class LightReplacerSystem : SharedLightReplacerSystem
 {
     [Dependency] private PoweredLightSystem _poweredLight = default!;
     [Dependency] private SharedAudioSystem _audio = default!;

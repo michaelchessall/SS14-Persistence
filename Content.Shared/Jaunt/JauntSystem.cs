@@ -2,7 +2,7 @@ using Content.Shared.Actions;
 
 namespace Content.Shared.Jaunt;
 
-public sealed class JauntSystem : EntitySystem
+public sealed partial class JauntSystem : EntitySystem
 {
     [Dependency] private SharedActionsSystem _actions = default!;
 

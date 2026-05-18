@@ -19,7 +19,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Medical;
 
-public sealed class VomitSystem : EntitySystem
+public sealed partial class VomitSystem : EntitySystem
 {
     [Dependency] private INetManager _netManager = default!;
     [Dependency] private IPrototypeManager _proto = default!;

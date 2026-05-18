@@ -27,7 +27,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Forensics
 {
-    public sealed class ForensicsSystem : SharedForensicsSystem
+    public sealed partial class ForensicsSystem : SharedForensicsSystem
     {
         [Dependency] private IRobustRandom _random = default!;
         [Dependency] private InventorySystem _inventory = default!;

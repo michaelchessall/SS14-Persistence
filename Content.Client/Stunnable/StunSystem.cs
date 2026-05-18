@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Client.Stunnable;
 
-public sealed class StunSystem : SharedStunSystem
+public sealed partial class StunSystem : SharedStunSystem
 {
     [Dependency] private SharedCombatModeSystem _combat = default!;
     [Dependency] private IRobustRandom _random = default!;

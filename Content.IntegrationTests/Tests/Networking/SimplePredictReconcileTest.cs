@@ -389,7 +389,7 @@ namespace Content.IntegrationTests.Tests.Networking
             await pair.CleanReturnAsync();
         }
 
-        public sealed class PredictionTestEntitySystem : EntitySystem
+        public sealed partial class PredictionTestEntitySystem : EntitySystem
         {
             public bool Allow { get; set; } = true;
 

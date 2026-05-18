@@ -21,7 +21,7 @@ namespace Content.Shared.Medical;
 /// <summary>
 /// This handles interactions and logic relating to <see cref="DefibrillatorComponent"/>
 /// </summary>
-public abstract class SharedDefibrillatorSystem : EntitySystem
+public abstract partial class SharedDefibrillatorSystem : EntitySystem
 {
     [Dependency] private SharedChatSystem _chat = default!;
     [Dependency] private DamageableSystem _damageable = default!;

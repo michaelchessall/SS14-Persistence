@@ -7,7 +7,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Gibbing;
 
-public sealed class GibbingSystem : EntitySystem
+public sealed partial class GibbingSystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private IRobustRandom _random = default!;

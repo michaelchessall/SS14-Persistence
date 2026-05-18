@@ -9,7 +9,7 @@ using System.Linq;
 
 namespace Content.Shared.Anomaly.Effects;
 
-public abstract class SharedGravityAnomalySystem : EntitySystem
+public abstract partial class SharedGravityAnomalySystem : EntitySystem
 {
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private ThrowingSystem _throwing = default!;

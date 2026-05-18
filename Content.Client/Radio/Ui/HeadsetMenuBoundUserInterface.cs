@@ -8,7 +8,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Radio.Ui
 {
-    public sealed class HeadsetMenuBoundUserInterface : BoundUserInterface
+    public sealed partial class HeadsetMenuBoundUserInterface : BoundUserInterface
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
 

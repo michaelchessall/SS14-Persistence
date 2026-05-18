@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Content.Shared.Implants;
 
-public sealed class StorageImplantSystem : EntitySystem
+public sealed partial class StorageImplantSystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
     [Dependency] private SharedTransformSystem _transform = default!;

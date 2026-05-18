@@ -13,7 +13,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Shared.Kitchen.EntitySystems;
 
-internal sealed class HandheldGrinderSystem : EntitySystem
+internal sealed partial class HandheldGrinderSystem : EntitySystem
 {
     [Dependency] private SharedReagentGrinderSystem _reagentGrinder = default!;
     [Dependency] private SharedSolutionContainerSystem _solution = default!;

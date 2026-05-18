@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.FeedbackSystem;
 
 /// <inheritdoc />
-public sealed class ServerFeedbackManager : SharedFeedbackManager
+public sealed partial class ServerFeedbackManager : SharedFeedbackManager
 {
     [Dependency] private ISharedPlayerManager _player = null!;
 

@@ -10,7 +10,7 @@ using System.Net;
 
 namespace Content.Server.Info;
 
-public sealed class RulesManager
+public sealed partial class RulesManager
 {
     [Dependency] private IServerDbManager _dbManager = default!;
     [Dependency] private INetManager _netManager = default!;

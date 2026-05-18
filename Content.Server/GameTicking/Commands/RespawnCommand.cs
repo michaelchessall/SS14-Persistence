@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Content.Server.GameTicking.Commands
 {
-    sealed class RespawnCommand : LocalizedEntityCommands
+    sealed partial class RespawnCommand : LocalizedEntityCommands
     {
         [Dependency] private IPlayerManager _player = default!;
         [Dependency] private IPlayerLocator _locator = default!;

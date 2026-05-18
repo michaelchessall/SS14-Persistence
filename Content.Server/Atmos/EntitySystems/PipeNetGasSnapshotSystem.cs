@@ -15,7 +15,7 @@ namespace Content.Server.Atmos.EntitySystems;
 /// This intentionally allows for manual pipe deletions in the map editor to potentially wipe the contents of a pipenet
 ///  to reduce save speed and storage size.
 /// </summary>
-public sealed class PipeNetGasSnapshotSystem : EntitySystem
+public sealed partial class PipeNetGasSnapshotSystem : EntitySystem
 {
     [Dependency] private NodeContainerSystem _nodeContainer = default!;
 

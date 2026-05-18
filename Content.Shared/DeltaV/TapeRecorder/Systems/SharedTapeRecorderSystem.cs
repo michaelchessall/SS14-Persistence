@@ -21,7 +21,7 @@ using System.Text;
 
 namespace Content.Shared.DeltaV.TapeRecorder.Systems;
 
-public abstract class SharedTapeRecorderSystem : EntitySystem
+public abstract partial class SharedTapeRecorderSystem : EntitySystem
 {
     [Dependency] private EntityWhitelistSystem _whitelist = default!;
     [Dependency] protected IGameTiming Timing = default!;

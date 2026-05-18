@@ -10,7 +10,7 @@ namespace Content.Server.Weapons.Ranged.Systems;
 ///     System for lighting smokeable projectiles shot from weapons which light them
 ///     (Tactical cigarette dispensers)
 /// </summary>
-public sealed class LightSmokableOnShootSystem : EntitySystem
+public sealed partial class LightSmokableOnShootSystem : EntitySystem
 {
     [Dependency] private SmokingSystem _smoking = default!;
 

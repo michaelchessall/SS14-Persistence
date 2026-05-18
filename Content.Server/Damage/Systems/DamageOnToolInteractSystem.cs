@@ -8,7 +8,7 @@ using ItemToggleComponent = Content.Shared.Item.ItemToggle.Components.ItemToggle
 
 namespace Content.Server.Damage.Systems
 {
-    public sealed class DamageOnToolInteractSystem : EntitySystem
+    public sealed partial class DamageOnToolInteractSystem : EntitySystem
     {
         [Dependency] private Shared.Damage.Systems.DamageableSystem _damageableSystem = default!;
         [Dependency] private IAdminLogManager _adminLogger = default!;

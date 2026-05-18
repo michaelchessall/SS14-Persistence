@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Content.Server.MiningFluid;
 
-public sealed class TrappedFluidSystem : EntitySystem
+public sealed partial class TrappedFluidSystem : EntitySystem
 {
     [Dependency] private MapSystem _mapSys = default!;
     [Dependency] private IRobustRandom _random = default!;

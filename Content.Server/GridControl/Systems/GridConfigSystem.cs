@@ -30,7 +30,7 @@ using static Content.Shared.GridControl.Components.StationCreatorComponent;
 namespace Content.Server.GridControl.Systems;
 
 [UsedImplicitly]
-public sealed class GridConfigSystem : SharedGridConfigSystem
+public sealed partial class GridConfigSystem : SharedGridConfigSystem
 {
     [Dependency] private IEntityManager _entManager = default!;
     [Dependency] private UserInterfaceSystem _userInterface = default!;

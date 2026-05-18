@@ -20,7 +20,7 @@ namespace Content.Shared.IdentityManagement;
 /// <summary>
 /// Responsible for updating the identity of an entity on init or clothing equip/unequip.
 /// </summary>
-public sealed class IdentitySystem : EntitySystem
+public sealed partial class IdentitySystem : EntitySystem
 {
     [Dependency] private GrammarSystem _grammarSystem = default!;
     [Dependency] private IGameTiming _timing = default!;

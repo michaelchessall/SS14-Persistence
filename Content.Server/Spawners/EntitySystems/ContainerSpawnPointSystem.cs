@@ -9,7 +9,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
 
-public sealed class ContainerSpawnPointSystem : EntitySystem
+public sealed partial class ContainerSpawnPointSystem : EntitySystem
 {
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private GameTicker _gameTicker = default!;

@@ -5,7 +5,7 @@ using Robust.Shared.Console;
 namespace Content.Server.GameTicking.Commands;
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class EndRoundCommand : LocalizedEntityCommands
+public sealed partial class EndRoundCommand : LocalizedEntityCommands
 {
     [Dependency] private GameTicker _gameTicker = default!;
 

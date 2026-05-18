@@ -14,7 +14,7 @@ using System.Text;
 
 namespace Content.Client.NPC
 {
-    public sealed class PathfindingSystem : SharedPathfindingSystem
+    public sealed partial class PathfindingSystem : SharedPathfindingSystem
     {
         [Dependency] private IEyeManager _eyeManager = default!;
         [Dependency] private IGameTiming _timing = default!;

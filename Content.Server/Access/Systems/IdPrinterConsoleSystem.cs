@@ -16,7 +16,7 @@ using static Content.Shared.Access.Components.IdPrinterConsoleComponent;
 namespace Content.Server.Access.Systems;
 
 [UsedImplicitly]
-public sealed class IdPrinterConsoleSystem : SharedIdPrinterConsoleSystem
+public sealed partial class IdPrinterConsoleSystem : SharedIdPrinterConsoleSystem
 {
     [Dependency] private UserInterfaceSystem _userInterface = default!;
     [Dependency] private IdCardSystem _idCard = default!;

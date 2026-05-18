@@ -6,7 +6,7 @@ using Robust.Shared.Physics.Systems;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
-public abstract class SharedFlyBySoundSystem : EntitySystem
+public abstract partial class SharedFlyBySoundSystem : EntitySystem
 {
     [Dependency] private FixtureSystem _fixtures = default!;
 

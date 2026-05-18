@@ -3,7 +3,7 @@ using Robust.Client.UserInterface;
 
 namespace Content.Client.Stylesheets;
 
-public abstract class Sheetlet<T>
+public abstract partial class Sheetlet<T>
 {
     [Dependency] protected IResourceCache ResCache = default!;
 

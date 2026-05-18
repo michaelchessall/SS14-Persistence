@@ -11,7 +11,7 @@ namespace Content.Shared.EntityEffects.Effects.Solution;
 /// Quantity is modified by scale.
 /// </summary>
 /// <inheritdoc cref="EntityEffectSystem{T,TEffect}"/>
-public sealed class AddReagentToSolutionEntityEffectSystem : EntityEffectSystem<SolutionContainerManagerComponent, AddReagentToSolution>
+public sealed partial class AddReagentToSolutionEntityEffectSystem : EntityEffectSystem<SolutionContainerManagerComponent, AddReagentToSolution>
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 

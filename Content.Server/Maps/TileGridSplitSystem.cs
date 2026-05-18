@@ -10,7 +10,7 @@ namespace Content.Server.Maps;
 /// <summary>
 /// This system handles transferring <see cref="TileHistoryComponent"/> data when a grid is split.
 /// </summary>
-public sealed class TileGridSplitSystem : EntitySystem
+public sealed partial class TileGridSplitSystem : EntitySystem
 {
     [Dependency] private SharedMapSystem _maps = default!;
     [Dependency] private IGameTiming _timing = default!;

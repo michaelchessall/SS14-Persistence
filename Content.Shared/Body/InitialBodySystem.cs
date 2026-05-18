@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace Content.Shared.Body;
 
-public sealed class InitialBodySystem : EntitySystem
+public sealed partial class InitialBodySystem : EntitySystem
 {
     [Dependency] private SharedContainerSystem _container = default!;
 

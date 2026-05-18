@@ -8,7 +8,7 @@ using System.Linq;
 
 namespace Content.Server.Traitor.Systems;
 
-public sealed class TraitorCodePaperSystem : EntitySystem
+public sealed partial class TraitorCodePaperSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private PaperSystem _paper = default!;

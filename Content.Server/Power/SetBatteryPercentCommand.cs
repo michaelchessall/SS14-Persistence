@@ -7,7 +7,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Power
 {
     [AdminCommand(AdminFlags.Debug)]
-    public sealed class SetBatteryPercentCommand : LocalizedEntityCommands
+    public sealed partial class SetBatteryPercentCommand : LocalizedEntityCommands
     {
         [Dependency] private SharedBatterySystem _batterySystem = default!;
 

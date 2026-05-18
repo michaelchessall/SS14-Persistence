@@ -11,7 +11,7 @@ namespace Content.Server.Silicons.Laws;
 /// <summary>
 /// This handles generating random ion laws.
 /// </summary>
-public sealed class IonLawSystem : EntitySystem
+public sealed partial class IonLawSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;

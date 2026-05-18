@@ -3,7 +3,7 @@ using Content.Shared.Popups;
 
 namespace Content.Shared.Gravity;
 
-public abstract class SharedGravityGeneratorSystem : EntitySystem
+public abstract partial class SharedGravityGeneratorSystem : EntitySystem
 {
     [Dependency] private SharedPopupSystem _popupSystem = default!;
 

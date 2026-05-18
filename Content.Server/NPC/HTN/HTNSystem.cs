@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace Content.Server.NPC.HTN;
 
-public sealed class HTNSystem : EntitySystem
+public sealed partial class HTNSystem : EntitySystem
 {
     [Dependency] private IAdminManager _admin = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Invoices.Systems
 {
     [UsedImplicitly]
-    public abstract class SharedInvoicePrinterConsoleSystem : EntitySystem
+    public abstract partial class SharedInvoicePrinterConsoleSystem : EntitySystem
     {
         [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private ILogManager _log = default!;

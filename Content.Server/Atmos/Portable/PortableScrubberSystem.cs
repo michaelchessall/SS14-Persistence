@@ -17,7 +17,7 @@ using Robust.Server.GameObjects;
 
 namespace Content.Server.Atmos.Portable
 {
-    public sealed class PortableScrubberSystem : EntitySystem
+    public sealed partial class PortableScrubberSystem : EntitySystem
     {
         [Dependency] private GasVentScrubberSystem _scrubberSystem = default!;
         [Dependency] private GasCanisterSystem _canisterSystem = default!;

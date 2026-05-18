@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Speech
 {
-    public sealed class SpeechSoundSystem : EntitySystem
+    public sealed partial class SpeechSoundSystem : EntitySystem
     {
         [Dependency] private IGameTiming _gameTiming = default!;
         [Dependency] private IPrototypeManager _protoManager = default!;

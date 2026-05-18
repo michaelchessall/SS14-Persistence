@@ -30,7 +30,7 @@ namespace Content.Shared.Kitchen;
 /// <summary>
 /// Used to butcher some entities like monkeys.
 /// </summary>
-public sealed class SharedKitchenSpikeSystem : EntitySystem
+public sealed partial class SharedKitchenSpikeSystem : EntitySystem
 {
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private ISharedAdminLogManager _logger = default!;

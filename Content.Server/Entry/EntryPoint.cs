@@ -37,7 +37,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.Entry
 {
-    public sealed class EntryPoint : GameServer
+    public sealed partial class EntryPoint : GameServer
     {
         internal const string ConfigPresetsDir = "/ConfigPresets/";
         private const string ConfigPresetsDirBuild = $"{ConfigPresetsDir}Build/";

@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Content.Shared.BarSign;
 
-public sealed class BarSignSystem : EntitySystem
+public sealed partial class BarSignSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;

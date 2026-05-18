@@ -12,7 +12,7 @@ namespace Content.Server.Weather.Commands;
 /// Add specific weather to map.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class WeatherAddCommand : LocalizedEntityCommands
+public sealed partial class WeatherAddCommand : LocalizedEntityCommands
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedMapSystem _map = default!;

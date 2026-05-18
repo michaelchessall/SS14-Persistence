@@ -15,7 +15,7 @@ using System.Numerics;
 
 namespace Content.Server.GridPreloader;
 
-public sealed class GridPreloaderSystem : SharedGridPreloaderSystem
+public sealed partial class GridPreloaderSystem : SharedGridPreloaderSystem
 {
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private MapSystem _map = default!;

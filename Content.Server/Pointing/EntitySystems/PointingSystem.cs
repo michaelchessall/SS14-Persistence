@@ -29,7 +29,7 @@ using System.Linq;
 namespace Content.Server.Pointing.EntitySystems
 {
     [UsedImplicitly]
-    internal sealed class PointingSystem : SharedPointingSystem
+    internal sealed partial class PointingSystem : SharedPointingSystem
     {
         [Dependency] private IConfigurationManager _config = default!;
         [Dependency] private IReplayRecordingManager _replay = default!;

@@ -12,7 +12,7 @@ namespace Content.Server.Weather.Commands;
 /// Remove specific weather from map.
 /// </summary>
 [AdminCommand(AdminFlags.Fun)]
-public sealed class WeatherRemoveCommand : LocalizedEntityCommands
+public sealed partial class WeatherRemoveCommand : LocalizedEntityCommands
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private SharedMapSystem _map = default!;

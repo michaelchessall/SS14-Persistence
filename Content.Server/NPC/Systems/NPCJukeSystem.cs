@@ -10,7 +10,7 @@ using System.Numerics;
 
 namespace Content.Server.NPC.Systems;
 
-public sealed class NPCJukeSystem : EntitySystem
+public sealed partial class NPCJukeSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;

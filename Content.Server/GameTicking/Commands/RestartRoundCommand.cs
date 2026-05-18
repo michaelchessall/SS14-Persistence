@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server.GameTicking.Commands;
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class RestartRoundCommand : LocalizedEntityCommands
+public sealed partial class RestartRoundCommand : LocalizedEntityCommands
 {
     [Dependency] private GameTicker _gameTicker = default!;
     [Dependency] private RoundEndSystem _roundEndSystem = default!;
@@ -26,7 +26,7 @@ public sealed class RestartRoundCommand : LocalizedEntityCommands
 }
 
 [AdminCommand(AdminFlags.Round)]
-public sealed class RestartRoundNowCommand : LocalizedEntityCommands
+public sealed partial class RestartRoundNowCommand : LocalizedEntityCommands
 {
     [Dependency] private GameTicker _gameTicker = default!;
 

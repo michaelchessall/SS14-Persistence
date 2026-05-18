@@ -13,7 +13,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Damage.Systems;
 
-public sealed class DamageOnInteractSystem : EntitySystem
+public sealed partial class DamageOnInteractSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private DamageableSystem _damageableSystem = default!;

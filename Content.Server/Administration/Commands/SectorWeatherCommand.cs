@@ -8,7 +8,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Admin)]
-public sealed class SectorWeatherCommand : LocalizedEntityCommands
+public sealed partial class SectorWeatherCommand : LocalizedEntityCommands
 {
     [Dependency] private SectorWeatherSystem _sectorWeather = default!;
 

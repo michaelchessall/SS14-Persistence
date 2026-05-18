@@ -10,7 +10,7 @@ using Robust.Shared.Random;
 namespace Content.Server.Xenoarchaeology.Equipment.Systems;
 
 /// <inheritdoc/>
-public sealed class ArtifactCrusherSystem : SharedArtifactCrusherSystem
+public sealed partial class ArtifactCrusherSystem : SharedArtifactCrusherSystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private GibbingSystem _gibbing = default!;

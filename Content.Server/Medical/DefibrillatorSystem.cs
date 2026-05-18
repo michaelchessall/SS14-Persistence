@@ -6,7 +6,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Medical;
 
-public sealed class DefibrillatorSystem : SharedDefibrillatorSystem
+public sealed partial class DefibrillatorSystem : SharedDefibrillatorSystem
 {
     [Dependency] private EuiManager _eui = default!;
     [Dependency] private ISharedPlayerManager _player = default!;

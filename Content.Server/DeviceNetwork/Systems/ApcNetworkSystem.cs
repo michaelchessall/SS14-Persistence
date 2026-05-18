@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 namespace Content.Server.DeviceNetwork.Systems
 {
     [UsedImplicitly]
-    public sealed class ApcNetworkSystem : EntitySystem
+    public sealed partial class ApcNetworkSystem : EntitySystem
     {
         [Dependency] private NodeContainerSystem _nodeContainer = default!;
 

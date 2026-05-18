@@ -9,7 +9,7 @@ namespace Content.Server.FeedbackSystem;
 /// </summary>
 [AnyCommand]
 [ToolshedCommand]
-public sealed class OpenFeedbackPopupCommand : ToolshedCommand
+public sealed partial class OpenFeedbackPopupCommand : ToolshedCommand
 {
     [Dependency] private ISharedFeedbackManager _feedback = null!;
 

@@ -6,7 +6,7 @@ using Robust.Shared.Serialization;
 namespace Content.Shared.Access.Systems
 {
     [UsedImplicitly]
-    public abstract class SharedIdCardConsoleSystem : EntitySystem
+    public abstract partial class SharedIdCardConsoleSystem : EntitySystem
     {
         [Dependency] private ItemSlotsSystem _itemSlotsSystem = default!;
         [Dependency] private ILogManager _log = default!;

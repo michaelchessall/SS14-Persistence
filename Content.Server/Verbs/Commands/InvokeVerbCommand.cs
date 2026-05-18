@@ -7,7 +7,7 @@ using System.Linq;
 namespace Content.Server.Verbs.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class InvokeVerbCommand : IConsoleCommand
+    public sealed partial class InvokeVerbCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entManager = default!;
 

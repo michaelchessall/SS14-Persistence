@@ -6,7 +6,7 @@ using Content.Shared.StatusEffectNew;
 
 namespace Content.Shared.Traits.Assorted;
 
-public sealed class PainNumbnessSystem : EntitySystem
+public sealed partial class PainNumbnessSystem : EntitySystem
 {
     [Dependency] private MobThresholdSystem _mobThresholdSystem = default!;
 

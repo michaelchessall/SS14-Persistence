@@ -32,7 +32,7 @@ using System.Globalization;
 namespace Content.Server.Bed.Cryostorage;
 
 /// <inheritdoc/>
-public sealed class CryostorageSystem : SharedCryostorageSystem
+public sealed partial class CryostorageSystem : SharedCryostorageSystem
 {
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private IPlayerManager _playerManager = default!;

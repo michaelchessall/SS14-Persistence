@@ -9,7 +9,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Chemistry.EntitySystems;
 
-public sealed class RehydratableSystem : EntitySystem
+public sealed partial class RehydratableSystem : EntitySystem
 {
     [Dependency] private INetManager _net = default!;
     [Dependency] private IRobustRandom _random = default!;

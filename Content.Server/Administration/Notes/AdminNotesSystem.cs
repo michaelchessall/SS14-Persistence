@@ -12,7 +12,7 @@ using System.Linq;
 
 namespace Content.Server.Administration.Notes;
 
-public sealed class AdminNotesSystem : EntitySystem
+public sealed partial class AdminNotesSystem : EntitySystem
 {
     [Dependency] private IConsoleHost _console = default!;
     [Dependency] private IAdminNotesManager _notes = default!;

@@ -7,7 +7,7 @@ using Robust.Shared.Utility;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.Server)]
-public sealed class PersistenceLoadCharCommand : LocalizedEntityCommands
+public sealed partial class PersistenceLoadCharCommand : LocalizedEntityCommands
 {
     [Dependency] private MapLoaderSystem _mapLoader = default!;
     [Dependency] private IEntityManager _entManager = default!;

@@ -18,7 +18,7 @@ using System.Linq;
 
 namespace Content.Server.Salvage.JobBoard;
 
-public sealed class SalvageJobBoardSystem : EntitySystem
+public sealed partial class SalvageJobBoardSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IPrototypeManager _prototypeManager = default!;

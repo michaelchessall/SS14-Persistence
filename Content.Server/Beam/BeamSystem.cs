@@ -13,7 +13,7 @@ using System.Numerics;
 
 namespace Content.Server.Beam;
 
-public sealed class BeamSystem : SharedBeamSystem
+public sealed partial class BeamSystem : SharedBeamSystem
 {
     [Dependency] private FixtureSystem _fixture = default!;
     [Dependency] private TransformSystem _transform = default!;

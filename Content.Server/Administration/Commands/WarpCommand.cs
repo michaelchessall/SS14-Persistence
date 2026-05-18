@@ -13,7 +13,7 @@ using System.Numerics;
 namespace Content.Server.Administration.Commands
 {
     [AdminCommand(AdminFlags.Admin)]
-    public sealed class WarpCommand : IConsoleCommand
+    public sealed partial class WarpCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entManager = default!;
 

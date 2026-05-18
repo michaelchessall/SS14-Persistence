@@ -19,7 +19,7 @@ using System.Linq;
 
 namespace Content.Server.Sandbox
 {
-    public sealed class SandboxSystem : SharedSandboxSystem
+    public sealed partial class SandboxSystem : SharedSandboxSystem
     {
         [Dependency] private IPlayerManager _playerManager = default!;
         [Dependency] private IPlacementManager _placementManager = default!;

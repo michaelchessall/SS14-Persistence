@@ -7,7 +7,7 @@ using Content.Shared.Tools.Components;
 
 namespace Content.Shared.Eye.Blinding.Systems
 {
-    public sealed class EyeProtectionSystem : EntitySystem
+    public sealed partial class EyeProtectionSystem : EntitySystem
     {
         [Dependency] private StatusEffectsSystem _statusEffectsSystem = default!;
         [Dependency] private BlindableSystem _blindingSystem = default!;

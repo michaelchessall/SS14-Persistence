@@ -6,7 +6,7 @@ using Robust.Shared.Network;
 
 namespace Content.Shared.Holosign;
 
-public sealed class HolosignSystem : EntitySystem
+public sealed partial class HolosignSystem : EntitySystem
 {
     [Dependency] private PowerCellSystem _powerCell = default!;
     [Dependency] private INetManager _net = default!;

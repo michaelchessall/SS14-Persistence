@@ -5,7 +5,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Storage.Visualizers;
 
-public sealed class EntityStorageVisualizerSystem : VisualizerSystem<EntityStorageVisualsComponent>
+public sealed partial class EntityStorageVisualizerSystem : VisualizerSystem<EntityStorageVisualsComponent>
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IComponentFactory _componentFactory = default!;

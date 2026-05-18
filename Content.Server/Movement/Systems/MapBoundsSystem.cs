@@ -6,7 +6,7 @@ using System.Numerics;
 
 namespace Content.Server.Movement.Systems;
 
-public sealed class MapBoundsSystem : EntitySystem
+public sealed partial class MapBoundsSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _xform = default!;
     [Dependency] private SharedPhysicsSystem _physics = default!;

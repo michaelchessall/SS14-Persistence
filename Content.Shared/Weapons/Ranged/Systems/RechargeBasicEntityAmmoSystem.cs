@@ -6,7 +6,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.Weapons.Ranged.Systems;
 
-public sealed class RechargeBasicEntityAmmoSystem : EntitySystem
+public sealed partial class RechargeBasicEntityAmmoSystem : EntitySystem
 {
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private INetManager _netManager = default!;

@@ -8,7 +8,7 @@ using System.Linq;
 namespace Content.Server.GridControl.Systems;
 
 [UsedImplicitly]
-public sealed class GridSpawnerSystem : EntitySystem
+public sealed partial class GridSpawnerSystem : EntitySystem
 {
     [Dependency] private MapLoaderSystem _loader = default!;
     [Dependency] private TransformSystem _transform = default!;

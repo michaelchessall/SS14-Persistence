@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace Content.Client.Zombies;
 
-public sealed class ZombieSystem : SharedZombieSystem
+public sealed partial class ZombieSystem : SharedZombieSystem
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private SpriteSystem _sprite = default!;

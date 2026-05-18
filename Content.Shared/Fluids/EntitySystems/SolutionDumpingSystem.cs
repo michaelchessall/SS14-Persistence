@@ -19,7 +19,7 @@ namespace Content.Shared.Fluids.EntitySystems;
 /// </remarks>
 /// <seealso cref="DumpableSolutionComponent" />
 /// <seealso cref="DrainableSolutionComponent" />
-public sealed class SolutionDumpingSystem : EntitySystem
+public sealed partial class SolutionDumpingSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private ActionBlockerSystem _actionBlocker = default!;

@@ -22,7 +22,7 @@ using System.Numerics;
 
 namespace Content.Server.Fluids.EntitySystems;
 
-public sealed class SpraySystem : SharedSpraySystem
+public sealed partial class SpraySystem : SharedSpraySystem
 {
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private GravitySystem _gravity = default!;

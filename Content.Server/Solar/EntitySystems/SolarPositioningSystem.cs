@@ -7,7 +7,7 @@ namespace Content.Server.Solar.EntitySystems
 {
 
     [UsedImplicitly]
-    internal sealed class SolarPositioningSystem : EntitySystem
+    internal sealed partial class SolarPositioningSystem : EntitySystem
     {
 
         [Dependency] private IRobustRandom _robustRandom = default!;

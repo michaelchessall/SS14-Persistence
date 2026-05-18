@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Access.Systems
 {
-    public abstract class SharedAccessSystem : EntitySystem
+    public abstract partial class SharedAccessSystem : EntitySystem
     {
         [Dependency] private IPrototypeManager _prototypeManager = default!;
 

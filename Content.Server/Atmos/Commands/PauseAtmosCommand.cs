@@ -7,7 +7,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Atmos.Commands;
 
 [AdminCommand(AdminFlags.Debug)]
-public sealed class PauseAtmosCommand : LocalizedEntityCommands
+public sealed partial class PauseAtmosCommand : LocalizedEntityCommands
 {
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
 

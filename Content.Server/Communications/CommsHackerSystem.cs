@@ -11,7 +11,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Communications;
 
-public sealed class CommsHackerSystem : SharedCommsHackerSystem
+public sealed partial class CommsHackerSystem : SharedCommsHackerSystem
 {
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private GameTicker _gameTicker = default!;

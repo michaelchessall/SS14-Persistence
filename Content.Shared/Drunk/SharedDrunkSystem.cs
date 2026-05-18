@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Drunk;
 
-public abstract class SharedDrunkSystem : EntitySystem
+public abstract partial class SharedDrunkSystem : EntitySystem
 {
     public static EntProtoId Drunk = "StatusEffectDrunk";
 

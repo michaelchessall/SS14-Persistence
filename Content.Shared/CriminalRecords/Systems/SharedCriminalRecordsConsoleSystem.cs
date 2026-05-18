@@ -9,7 +9,7 @@ namespace Content.Shared.CriminalRecords.Systems;
 /// <summary>
 /// Station records aren't predicted, just exists for access.
 /// </summary>
-public abstract class SharedCriminalRecordsConsoleSystem : EntitySystem
+public abstract partial class SharedCriminalRecordsConsoleSystem : EntitySystem
 {
     [Dependency] private SharedCriminalRecordsSystem _criminalRecords = default!;
     [Dependency] private SharedStationRecordsSystem _records = default!;

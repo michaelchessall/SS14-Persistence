@@ -6,7 +6,7 @@ using Content.Shared.UserInterface;
 
 namespace Content.Client.Power;
 
-public sealed class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequiresPowerSystem
+public sealed partial class ActivatableUIRequiresPowerSystem : SharedActivatableUIRequiresPowerSystem
 {
     [Dependency] private SharedPopupSystem _popup = default!;
 

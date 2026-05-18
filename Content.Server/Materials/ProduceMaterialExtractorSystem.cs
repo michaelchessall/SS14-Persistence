@@ -10,7 +10,7 @@ using Content.Shared.Body;
 
 namespace Content.Server.Materials;
 
-public sealed class ProduceMaterialExtractorSystem : EntitySystem
+public sealed partial class ProduceMaterialExtractorSystem : EntitySystem
 {
     [Dependency] private AudioSystem _audio = default!;
     [Dependency] private MaterialStorageSystem _materialStorage = default!;

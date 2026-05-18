@@ -20,7 +20,7 @@ public sealed partial class NestedCondition : EntityConditionBase<NestedConditio
 /// <summary>
 /// Handles <see cref="NestedCondition"/>.
 /// </summary>
-public sealed class NestedConditionSystem : EntityConditionSystem<TransformComponent, NestedCondition>
+public sealed partial class NestedConditionSystem : EntityConditionSystem<TransformComponent, NestedCondition>
 {
     [Dependency] private SharedEntityConditionsSystem _conditions = default!;
 

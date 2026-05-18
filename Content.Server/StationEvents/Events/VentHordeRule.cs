@@ -14,7 +14,7 @@ namespace Content.Server.StationEvents.Events;
 /// <summary>
 /// Variant of <see cref="VentCrittersRule"/> that selects a single vent and spawns all entities there.
 /// </summary>
-public sealed class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
+public sealed partial class VentHordeRule : StationEventSystem<VentHordeRuleComponent>
 {
     /*
      * DO NOT COPY PASTE THIS TO MAKE YOUR MOB EVENT.

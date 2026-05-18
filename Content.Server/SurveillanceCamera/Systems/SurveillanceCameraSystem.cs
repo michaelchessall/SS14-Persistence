@@ -13,7 +13,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Server.SurveillanceCamera;
 
-public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
+public sealed partial class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private ViewSubscriberSystem _viewSubscriberSystem = default!;

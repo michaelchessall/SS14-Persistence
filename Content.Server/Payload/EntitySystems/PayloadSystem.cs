@@ -15,7 +15,7 @@ using System.Linq;
 
 namespace Content.Server.Payload.EntitySystems;
 
-public sealed class PayloadSystem : EntitySystem
+public sealed partial class PayloadSystem : EntitySystem
 {
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private ISerializationManager _serializationManager = default!;

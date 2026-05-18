@@ -6,7 +6,7 @@ using Robust.Shared.Console;
 namespace Content.Server.Verbs.Commands
 {
     [AdminCommand(AdminFlags.Moderator)]
-    public sealed class ListVerbsCommand : IConsoleCommand
+    public sealed partial class ListVerbsCommand : IConsoleCommand
     {
         [Dependency] private IEntityManager _entManager = default!;
 

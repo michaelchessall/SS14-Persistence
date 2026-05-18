@@ -6,7 +6,7 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Power.EntitySystems
 {
-    public sealed class ExtensionCableSystem : EntitySystem
+    public sealed partial class ExtensionCableSystem : EntitySystem
     {
         [Dependency] private SharedMapSystem _map = default!;
 

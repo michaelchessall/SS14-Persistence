@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Content.Server.Audio;
 
-public sealed class ContentAudioSystem : SharedContentAudioSystem
+public sealed partial class ContentAudioSystem : SharedContentAudioSystem
 {
     [Dependency] private AudioSystem _serverAudio = default!;
     [Dependency] private IRobustRandom _robustRandom = default!;

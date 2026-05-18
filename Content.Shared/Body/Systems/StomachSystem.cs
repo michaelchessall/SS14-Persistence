@@ -5,7 +5,7 @@ using Content.Shared.Chemistry.EntitySystems;
 
 namespace Content.Shared.Body.Systems;
 
-public sealed class StomachSystem : EntitySystem
+public sealed partial class StomachSystem : EntitySystem
 {
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
 

@@ -3,7 +3,7 @@ using Content.Shared.Trigger.Components.Effects;
 
 namespace Content.Shared.Trigger.Systems;
 
-public sealed class StunOnTriggerSystem : XOnTriggerSystem<StunOnTriggerComponent>
+public sealed partial class StunOnTriggerSystem : XOnTriggerSystem<StunOnTriggerComponent>
 {
     [Dependency] private SharedStunSystem _stun = default!;
 

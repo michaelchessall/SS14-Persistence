@@ -11,7 +11,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleComponent>
+public sealed partial class XenoborgsRuleSystem : GameRuleSystem<XenoborgsRuleComponent>
 {
     [Dependency] private AntagSelectionSystem _antag = default!;
     [Dependency] private ChatSystem _chatSystem = default!;

@@ -8,7 +8,7 @@ namespace Content.Client.Stack
 {
     /// <inheritdoc />
     [UsedImplicitly]
-    public sealed class StackSystem : SharedStackSystem
+    public sealed partial class StackSystem : SharedStackSystem
     {
         [Dependency] private AppearanceSystem _appearanceSystem = default!;
         [Dependency] private ItemCounterSystem _counterSystem = default!;

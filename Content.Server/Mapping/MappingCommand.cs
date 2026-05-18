@@ -13,7 +13,7 @@ using System.Linq;
 namespace Content.Server.Mapping
 {
     [AdminCommand(AdminFlags.Server | AdminFlags.Mapping)]
-    public sealed class MappingCommand : LocalizedEntityCommands
+    public sealed partial class MappingCommand : LocalizedEntityCommands
     {
         [Dependency] private IResourceManager _resourceMgr = default!;
         [Dependency] private SharedMapSystem _mapSystem = default!;

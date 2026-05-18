@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Content.Shared.Drugs;
 
-public abstract class SharedSpecificDrugSystem : EntitySystem
+public abstract partial class SharedSpecificDrugSystem : EntitySystem
 {
     public static EntProtoId Drunk = "StatusEffectDrunk";
 

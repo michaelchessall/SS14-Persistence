@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Anomaly;
 
 /// <summary> System for controlling anomaly scanner device. </summary>
-public abstract class SharedAnomalyScannerSystem : EntitySystem
+public abstract partial class SharedAnomalyScannerSystem : EntitySystem
 {
     [Dependency] protected SharedPopupSystem Popup = default!;
     [Dependency] protected SharedAudioSystem Audio = default!;

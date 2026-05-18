@@ -8,7 +8,7 @@ using System.Text;
 namespace Content.Server.Administration.Commands;
 
 [AdminCommand(AdminFlags.AdminWho)]
-public sealed class AdminWhoCommand : LocalizedCommands
+public sealed partial class AdminWhoCommand : LocalizedCommands
 {
     [Dependency] private IAfkManager _afkManager = default!;
     [Dependency] private IAdminManager _adminManager = default!;

@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace Content.Server.GameTicking.Rules;
 
-public sealed class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
+public sealed partial class SecretRuleSystem : GameRuleSystem<SecretRuleComponent>
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
     [Dependency] private IRobustRandom _random = default!;

@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Content.Server.SurveillanceCamera;
 
-public sealed class SurveillanceCameraMapSystem : EntitySystem
+public sealed partial class SurveillanceCameraMapSystem : EntitySystem
 {
     [Dependency] private SharedTransformSystem _transform = default!;
 

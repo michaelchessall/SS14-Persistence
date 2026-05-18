@@ -9,7 +9,7 @@ using InternalsComponent = Content.Shared.Body.Components.InternalsComponent;
 
 namespace Content.Shared.Body.Systems;
 
-public sealed class LungSystem : EntitySystem
+public sealed partial class LungSystem : EntitySystem
 {
     [Dependency] private SharedAtmosphereSystem _atmos = default!;
     [Dependency] private SharedInternalsSystem _internals = default!;

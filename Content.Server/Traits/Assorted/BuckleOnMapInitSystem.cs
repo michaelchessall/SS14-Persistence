@@ -2,7 +2,7 @@ using Content.Shared.Buckle;
 
 namespace Content.Server.Traits.Assorted;
 
-public sealed class BuckleOnMapInitSystem : EntitySystem
+public sealed partial class BuckleOnMapInitSystem : EntitySystem
 {
     [Dependency] private SharedBuckleSystem _buckleSystem = default!;
 

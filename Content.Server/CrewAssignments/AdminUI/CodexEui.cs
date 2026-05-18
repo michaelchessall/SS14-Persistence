@@ -10,7 +10,7 @@ using Robust.Shared.Utility;
 
 namespace Content.Server.CrewAssignments.AdminUI;
 
-public sealed class CodexEui : BaseEui
+public sealed partial class CodexEui : BaseEui
 {
     [Dependency] private EntityManager _entityManager = default!;
     private readonly CrewMetaRecordsSystem _crewMeta;

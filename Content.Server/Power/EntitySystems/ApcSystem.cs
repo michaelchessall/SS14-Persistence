@@ -17,7 +17,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Power.EntitySystems;
 
-public sealed class ApcSystem : EntitySystem
+public sealed partial class ApcSystem : EntitySystem
 {
     [Dependency] private AccessReaderSystem _accessReader = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;

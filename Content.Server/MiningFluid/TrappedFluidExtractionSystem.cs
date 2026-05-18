@@ -19,7 +19,7 @@ using Robust.Shared.Physics.Components;
 
 namespace Content.Server.MiningFluid;
 
-public sealed class TrappedFluidExtractionSystem : EntitySystem
+public sealed partial class TrappedFluidExtractionSystem : EntitySystem
 {
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private AtmosphereSystem _atmosphereSystem = default!;

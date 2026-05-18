@@ -19,7 +19,7 @@ using Robust.Shared.Random;
 
 namespace Content.Server.Cluwne;
 
-public sealed class CluwneSystem : EntitySystem
+public sealed partial class CluwneSystem : EntitySystem
 {
 
     [Dependency] private PopupSystem _popupSystem = default!;

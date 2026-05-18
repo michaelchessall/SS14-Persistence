@@ -2,7 +2,7 @@ using Robust.Shared.Random;
 
 namespace Content.Shared.Lightning;
 
-public abstract class SharedLightningSystem : EntitySystem
+public abstract partial class SharedLightningSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
 

@@ -10,7 +10,7 @@ using TimedDespawnComponent = Robust.Shared.Spawners.TimedDespawnComponent;
 
 namespace Content.Server.StationEvents.Events;
 
-public sealed class ImmovableRodRule : StationEventSystem<ImmovableRodRuleComponent>
+public sealed partial class ImmovableRodRule : StationEventSystem<ImmovableRodRuleComponent>
 {
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private GunSystem _gun = default!;

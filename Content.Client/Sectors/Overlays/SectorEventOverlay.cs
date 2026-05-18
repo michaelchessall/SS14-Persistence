@@ -6,7 +6,7 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client.Sectors.Overlays;
 
-public sealed class SectorEventOverlay : Overlay
+public sealed partial class SectorEventOverlay : Overlay
 {
     private static readonly ProtoId<ShaderPrototype> ShaderProto = "SectorEventTint";
 

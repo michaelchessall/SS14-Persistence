@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Content.Server.StationRecords.Systems;
 
-public sealed class GeneralStationRecordConsoleSystem : EntitySystem
+public sealed partial class GeneralStationRecordConsoleSystem : EntitySystem
 {
     [Dependency] private UserInterfaceSystem _ui = default!;
     [Dependency] private StationSystem _station = default!;

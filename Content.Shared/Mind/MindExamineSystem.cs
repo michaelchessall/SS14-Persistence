@@ -7,7 +7,7 @@ using Robust.Shared.Player;
 
 namespace Content.Shared.Mind;
 
-public sealed class MindExamineSystem : EntitySystem
+public sealed partial class MindExamineSystem : EntitySystem
 {
     [Dependency] private MobStateSystem _mobState = default!;
     [Dependency] private SharedMindSystem _mind = default!;

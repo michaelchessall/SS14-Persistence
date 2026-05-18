@@ -9,7 +9,7 @@ using System.Numerics;
 namespace Content.Server.Spawners.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class ConditionalSpawnerSystem : EntitySystem
+    public sealed partial class ConditionalSpawnerSystem : EntitySystem
     {
         [Dependency] private IRobustRandom _robustRandom = default!;
         [Dependency] private GameTicker _ticker = default!;

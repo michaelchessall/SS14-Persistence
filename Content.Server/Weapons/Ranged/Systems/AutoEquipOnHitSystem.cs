@@ -8,7 +8,7 @@ namespace Content.Server.Weapons.Ranged.Systems;
 ///     Auto-equip items that have AutoEquipOnHitComponent when they hit people.
 ///     Removes AutoEquipOnHitComponent when the item equips successfully or lands.
 /// </summary>
-public sealed class AutoEquipOnHitSystem : EntitySystem
+public sealed partial class AutoEquipOnHitSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventory = default!;
 

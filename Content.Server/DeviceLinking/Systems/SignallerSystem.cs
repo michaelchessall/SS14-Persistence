@@ -5,7 +5,7 @@ using Content.Shared.Interaction.Events;
 
 namespace Content.Server.DeviceLinking.Systems;
 
-public sealed class SignallerSystem : EntitySystem
+public sealed partial class SignallerSystem : EntitySystem
 {
     [Dependency] private DeviceLinkSystem _link = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;

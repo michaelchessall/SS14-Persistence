@@ -4,7 +4,7 @@ using System.Text.RegularExpressions;
 
 namespace Content.Server.Speech.EntitySystems;
 
-public sealed class GoblinAccentSystem : EntitySystem
+public sealed partial class GoblinAccentSystem : EntitySystem
 {
     [Dependency] private ReplacementAccentSystem _replacement = default!;
 

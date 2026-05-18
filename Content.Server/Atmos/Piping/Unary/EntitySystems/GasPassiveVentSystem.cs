@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasPassiveVentSystem : EntitySystem
+    public sealed partial class GasPassiveVentSystem : EntitySystem
     {
         [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
         [Dependency] private NodeContainerSystem _nodeContainer = default!;

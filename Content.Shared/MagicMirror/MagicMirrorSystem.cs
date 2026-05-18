@@ -14,7 +14,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.MagicMirror;
 
-public sealed class MagicMirrorSystem : EntitySystem
+public sealed partial class MagicMirrorSystem : EntitySystem
 {
     [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedUserInterfaceSystem _userInterface = default!;

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Content.Client.Storage.Systems;
 
-public sealed class ItemMapperSystem : SharedItemMapperSystem
+public sealed partial class ItemMapperSystem : SharedItemMapperSystem
 {
     [Dependency] private SharedAppearanceSystem _appearance = default!;
     [Dependency] private SpriteSystem _sprite = default!;

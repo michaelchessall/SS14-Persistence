@@ -6,7 +6,7 @@ using Robust.Shared.Animations;
 
 namespace Content.Client.Trigger.Systems;
 
-public sealed class ProximityTriggerAnimationSystem : EntitySystem
+public sealed partial class ProximityTriggerAnimationSystem : EntitySystem
 {
     [Dependency] private AnimationPlayerSystem _player = default!;
     [Dependency] private SharedAppearanceSystem _appearance = default!;

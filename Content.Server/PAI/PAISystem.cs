@@ -12,7 +12,7 @@ using System.Text;
 
 namespace Content.Server.PAI;
 
-public sealed class PAISystem : EntitySystem
+public sealed partial class PAISystem : EntitySystem
 {
     [Dependency] private InstrumentSystem _instrumentSystem = default!;
     [Dependency] private IRobustRandom _random = default!;

@@ -16,7 +16,7 @@ namespace Content.Server._NF.Bank.Commands;
 /// Ported from Monolith.
 /// </summary>
 [AdminCommand(AdminFlags.Admin)]
-public sealed class CheckBankBalance : IConsoleCommand
+public sealed partial class CheckBankBalance : IConsoleCommand
 {
     [Dependency] private EntityManager _entityManager = default!;
     public string Command => "checkbalance";

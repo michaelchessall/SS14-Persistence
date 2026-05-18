@@ -17,7 +17,7 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Changeling.Systems;
 
-public sealed class ChangelingClonerSystem : EntitySystem
+public sealed partial class ChangelingClonerSystem : EntitySystem
 {
     [Dependency] private SharedDoAfterSystem _doAfter = default!;
     [Dependency] private MetaDataSystem _metaData = default!;

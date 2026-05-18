@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 
 namespace Content.Server.Voting;
 
-public sealed class VotingSystem : EntitySystem
+public sealed partial class VotingSystem : EntitySystem
 {
 
     [Dependency] private IPlayerManager _playerManager = default!;

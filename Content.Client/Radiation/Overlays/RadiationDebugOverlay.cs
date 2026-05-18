@@ -8,7 +8,7 @@ using System.Numerics;
 
 namespace Content.Client.Radiation.Overlays;
 
-public sealed class RadiationDebugOverlay : Overlay
+public sealed partial class RadiationDebugOverlay : Overlay
 {
     [Dependency] private IEntityManager _entityManager = default!;
     [Dependency] private IResourceCache _cache = default!;

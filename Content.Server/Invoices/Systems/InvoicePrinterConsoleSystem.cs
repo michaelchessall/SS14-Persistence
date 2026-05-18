@@ -25,7 +25,7 @@ using static Content.Shared.Paper.PaperComponent;
 namespace Content.Server.Invoices.Systems;
 
 [UsedImplicitly]
-public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSystem
+public sealed partial class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSystem
 {
     [Dependency] private UserInterfaceSystem _userInterface = default!;
     [Dependency] private StationSystem _station = default!;

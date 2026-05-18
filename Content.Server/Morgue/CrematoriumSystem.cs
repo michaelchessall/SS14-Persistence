@@ -8,7 +8,7 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Morgue;
 
-public sealed class CrematoriumSystem : SharedCrematoriumSystem
+public sealed partial class CrematoriumSystem : SharedCrematoriumSystem
 {
     [Dependency] private GhostSystem _ghostSystem = default!;
 

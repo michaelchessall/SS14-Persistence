@@ -42,7 +42,7 @@ using System.Linq;
 
 namespace Content.Server.Kitchen.EntitySystems
 {
-    public sealed class MicrowaveSystem : EntitySystem
+    public sealed partial class MicrowaveSystem : EntitySystem
     {
         [Dependency] private DeviceLinkSystem _deviceLink = default!;
         [Dependency] private SharedPopupSystem _popupSystem = default!;
