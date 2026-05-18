@@ -97,7 +97,10 @@ public sealed partial class AdminNotesLinePopup : Popup
 
     protected override void Dispose(bool disposing)
     {
-        base.Dispose(disposing);
+        if (disposing)
+        {
+            Orphan();
+        }
 
         if (!disposing)
         {

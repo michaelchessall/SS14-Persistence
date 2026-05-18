@@ -34,7 +34,7 @@ namespace Content.Client.Atmos.UI
             base.Dispose(disposing);
 
             if (disposing)
-                _window?.Dispose();
+                _window?.Orphan();
         }
     }
 }

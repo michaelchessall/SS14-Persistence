@@ -68,7 +68,10 @@ namespace Content.Client.Administration.UI.Tabs.ObjectsTab
 
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
+            if (disposing)
+            {
+                Orphan();
+            }
 
             if (disposing)
             {

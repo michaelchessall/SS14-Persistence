@@ -57,8 +57,11 @@ namespace Content.Client.ContextMenu.UI
 
         protected override void Dispose(bool disposing)
         {
-            base.Dispose(disposing);
-            _subMenu?.Dispose();
+            if (disposing)
+            {
+                Orphan();
+            }
+            _subMenu?.Orphan();
             _subMenu = null;
             ParentMenu = null;
         }

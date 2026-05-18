@@ -47,7 +47,7 @@ namespace Content.Client.Administration.UI.ManageSolutions
         {
             base.Close();
             _addReagentWindow?.Close();
-            _addReagentWindow?.Dispose();
+            _addReagentWindow?.Orphan();
         }
 
         public void SetTargetEntity(NetEntity target)
