@@ -683,7 +683,6 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
         {
             List<CargoBountyPrototype> possible = new();
             var query = EntityQueryEnumerator<TradeStationComponent>();
-            int tradeStationUID = 0;
             List<TradeStationComponent> possibleTrade = new();
             while (query.MoveNext(out var uid, out var comp))
             {
