@@ -1,3 +1,4 @@
+using Content.Server.Cargo.Components;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Shuttles.Components;
@@ -86,7 +87,8 @@ public sealed class StationAnchorSystem : EntitySystem
         }
         else
         {
-            _shuttleSystem.Enable(grid.Value);
+            if(!TryComp<TradeStationComponent>(grid, out _))
+                _shuttleSystem.Enable(grid.Value);
         }
 
         shuttleComponent.Enabled = !enabled;

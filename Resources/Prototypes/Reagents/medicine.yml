@@ -853,10 +853,10 @@
       effects:
       - !type:EvenHealthChange
         damage:
-          Burn: -2
-          Toxin: -2
-          Airloss: -2
-          Brute: -2
+          Burn: -0.2
+          Toxin: -0.2
+          Airloss: -0.2
+          Brute: -0.2
 
 - type: reagent
   id: Ultravasculine

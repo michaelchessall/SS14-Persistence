@@ -225,8 +225,8 @@ public sealed class HungerSystem : EntitySystem
         {
             case HungerThreshold.Overfed:
             case HungerThreshold.Okay:
-                return true;
             case HungerThreshold.Peckish:
+                return true;
             case HungerThreshold.Starving:
             case HungerThreshold.Dead:
                 return false;

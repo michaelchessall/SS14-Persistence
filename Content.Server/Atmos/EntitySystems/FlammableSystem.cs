@@ -24,14 +24,14 @@ using Content.Shared.Throwing;
 using Content.Shared.Timing;
 using Content.Shared.Toggleable;
 using Content.Shared.Weapons.Melee.Events;
-using Content.Shared.FixedPoint;
-using Content.Shared.Temperature.Components;
 using Robust.Server.Audio;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Server.Containers;
+using Robust.Shared.Toolshed.Commands.Values;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -53,6 +53,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly AudioSystem _audio = default!;
         [Dependency] private readonly IRobustRandom _random = default!;
         [Dependency] private readonly IGameTiming _timing = default!;
+        [Dependency] private readonly ContainerSystem _container = default!;
 
         private EntityQuery<InventoryComponent> _inventoryQuery;
         private EntityQuery<PhysicsComponent> _physicsQuery;
@@ -246,6 +247,8 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnTileFire(Entity<FlammableComponent> ent, ref TileFireEvent args)
         {
+            if (IsFireproof(ent)) return;
+
             var tempDelta = args.Temperature - ent.Comp.MinIgnitionTemperature;
 
             _fireEvents.TryGetValue(ent, out var maxTemp);
@@ -263,7 +266,7 @@ namespace Content.Server.Atmos.EntitySystems
         {
             // Only oxidize materials that would realistically react — organic, flammable items.
             // Metal structures, glass, etc. are not AlwaysCombustible and are spared.
-            if (!ent.Comp.AlwaysCombustible)
+            if (!ent.Comp.AlwaysCombustible || IsFireproof(ent))
                 return;
 
             // Damage scales with ClF3 concentration: more moles = faster destruction.
@@ -471,9 +474,11 @@ namespace Content.Server.Atmos.EntitySystems
                     continue;
                 }
 
-                _alertsSystem.ShowAlert(uid, flammable.FireAlert);
+                bool fireproof = IsFireproof(uid, out var fireproofComponent);
 
-                if (flammable.FireStacks > 0)
+                if (!fireproof) _alertsSystem.ShowAlert(uid, flammable.FireAlert);
+
+                if (flammable.FireStacks > 0 && !fireproof)
                 {
                     var air = _atmosphereSystem.GetContainingMixture(uid);
 
@@ -503,9 +508,40 @@ namespace Content.Server.Atmos.EntitySystems
                 }
                 else
                 {
+                    if (fireproof && fireproofComponent != null && TryComp<TemperatureComponent>(uid, out var temp))
+                    {
+                        var safetemp = fireproofComponent.MaxTemperature;
+                        if (temp.CurrentTemperature > safetemp)
+                            _temperatureSystem.ForceChangeTemperature(uid, safetemp, temp);
+                    }
                     Extinguish(uid, flammable);
                 }
             }
         }
+
+        public bool IsFireproof(EntityUid uid, out FireproofComponent? comp)
+        {
+            var id = uid;
+            comp = null;
+            if (HasComp<FireproofComponent>(uid)) return true;
+
+            int iterationCount = 0;
+            while (iterationCount < 30) // Protects against turtles all the way down
+            {
+                iterationCount++;
+                if (!_container.TryGetContainingContainer(id, out var container))
+                    return false;
+
+                id = container.Owner;
+                if (TryComp<FireproofComponent>(id, out var fireproof) && fireproof.ProtectContents)
+                {
+                    comp = fireproof;
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        public bool IsFireproof(EntityUid uid) => IsFireproof(uid, out _);
     }
 }

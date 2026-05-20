@@ -16,7 +16,6 @@ using static Robust.Shared.Physics.DynamicTree;
 
 namespace Content.Shared.CrewAssignments.Systems;
 
-[Virtual]
 public abstract partial class SharedJobNetSystem : EntitySystem
 {
     [Dependency] private readonly IPrototypeManager _proto = default!;

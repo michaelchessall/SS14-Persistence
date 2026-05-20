@@ -108,7 +108,8 @@
   abstract: true
   parent: BaseHyposprayMode
   id: BaseInstantHyposprayMode
-  mobTime: 0
+  mobTime: 1
+  delayPerVolume: 0.05
 
 - type: injectorMode
   parent: [ BaseInstantHyposprayMode, BaseInjectMode ]

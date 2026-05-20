@@ -41,6 +41,7 @@
       - ToothSpaceCarp
   bountyType: PayPer
 
+- type: cargoBounty
   id: BountyTeethSharkminnow
   reward: 3000 # 3000*3=9000
   description: bounty-description-tooth-sharkminnow

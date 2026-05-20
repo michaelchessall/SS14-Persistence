@@ -56,7 +56,6 @@ public sealed class PettableFriendSystem : EntitySystem
         // can only pet before hydrating, after that the fish cannot be negotiated with
         if (!TryComp<FactionExceptionComponent>(ent, out var comp))
             return;
-
-        _factionException.IgnoreEntities(args.Target, comp.Ignored);
+    //    _factionException.IgnoreEntities(args.Target, comp.Ignored);
     }
 }

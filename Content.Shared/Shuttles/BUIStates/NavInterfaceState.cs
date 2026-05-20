@@ -1,3 +1,4 @@
+using Content.Shared.Sectors;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Serialization;
@@ -21,6 +22,8 @@ public sealed class NavInterfaceState
 
     public Dictionary<NetEntity, List<DockingPortState>> Docks;
 
+    public Dictionary<SpaceSector, string> SectorWeatherEvents;
+
     public bool RotateWithEntity = true;
 
     public readonly ShuttleDampingMode DampingMode;
@@ -29,13 +32,16 @@ public sealed class NavInterfaceState
         float maxRange,
         NetCoordinates? coordinates,
         Angle? angle,
-        Dictionary<NetEntity, List<DockingPortState>> docks, ShuttleDampingMode dampingMode)
+        Dictionary<NetEntity, List<DockingPortState>> docks,
+        ShuttleDampingMode dampingMode,
+        Dictionary<SpaceSector, string>? sectorWeatherEvents = null)
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
         Angle = angle;
         Docks = docks;
         DampingMode = dampingMode;
+        SectorWeatherEvents = sectorWeatherEvents ?? new Dictionary<SpaceSector, string>();
     }
 }
 

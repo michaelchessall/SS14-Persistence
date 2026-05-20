@@ -486,6 +486,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         rolls: !type:RangeNumberSelector
           range: 1, 4
@@ -515,6 +516,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: FoodBanana
@@ -542,6 +544,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: RandomFloraTree
@@ -641,6 +644,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: RandomInstruments
@@ -661,6 +665,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: MobMonkey
@@ -751,6 +756,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: SilverOre1
@@ -786,6 +792,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: SilverOre1
@@ -809,6 +816,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: PlasmaOre1
@@ -832,6 +840,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: GoldOre1
@@ -855,6 +864,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: UraniumOre1
@@ -878,6 +888,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: MobCarpMagic
@@ -901,6 +912,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: MobMouse
@@ -948,6 +960,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: MobAdultSlimesYellowAngry
@@ -975,17 +988,18 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         rolls: !type:RangeNumberSelector
           range: 2, 4
         children:
-        - id: SpaceCash10
+        - id: TreasureCoinIron
           weight: 0.75
-        - id: SpaceCash100
+        - id: TreasureCoinSilver
           weight: 0.5
-        - id: SpaceCash500
+        - id: TreasureCoinGold
           weight: 0.25
-        - id: SpaceCash1000
+        - id: TreasureCoinDiamond
           weight: 0.1
 
 - type: entity
@@ -1091,6 +1105,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: RandomAnomalySpawner
@@ -1172,6 +1187,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: SheetGlass
@@ -1187,6 +1203,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: SheetSteel
@@ -1202,6 +1219,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:GroupSelector
         children:
         - id: SheetPlastic
@@ -1229,6 +1247,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: RandomArtifactSpawner
@@ -1275,6 +1294,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: Singularity
@@ -1290,6 +1310,7 @@
     components:
     - type: EntityTableSpawner
       deleteSpawnerAfterSpawn: false
+      spawnDetached: true
       table: !type:AllSelector
         children:
         - id: TeslaEnergyBall

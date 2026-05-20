@@ -1,0 +1,26 @@
+uniform sampler2D SCREEN_TEXTURE;
+uniform highp vec4 tintColor;
+uniform highp float noiseStrength;
+
+void fragment() {
+    highp vec2 uv = FRAGCOORD.xy * SCREEN_PIXEL_SIZE.xy;
+    highp vec2 coord = FRAGCOORD.xy;
+    highp vec4 src = zTextureSpec(SCREEN_TEXTURE, uv);
+
+    // Blend the scene very gently toward the configured tint color.
+    highp float strength = clamp(tintColor.a, 0.0, 1.0);
+    highp float noise = (
+        sin(coord.x * 0.012 + TIME * 0.32) +
+        sin(coord.y * 0.010 - TIME * 0.27) +
+        sin((coord.x + coord.y) * 0.007 + TIME * 0.21)
+    ) / 3.0;
+    highp float noiseFactor = 1.0 + noise * clamp(noiseStrength, 0.0, 1.0);
+    noiseFactor = clamp(noiseFactor, 0.0, 2.0);
+    strength *= noiseFactor;
+    strength = clamp(strength, 0.0, 1.0);
+
+    highp vec3 tinted = mix(src.rgb, tintColor.rgb, 0.18);
+    src.rgb = mix(src.rgb, tinted, strength);
+
+    COLOR = src;
+}

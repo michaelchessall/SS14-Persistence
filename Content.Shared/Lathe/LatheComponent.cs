@@ -99,7 +99,7 @@ namespace Content.Shared.Lathe
             GetUnavailable = forced;
         }
     }
-
+    [DataDefinition]
     [Serializable]
     public sealed partial class LatheRecipeBatch
     {

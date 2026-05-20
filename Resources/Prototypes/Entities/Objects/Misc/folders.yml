@@ -486,7 +486,7 @@
   id: BoxFolderTitaniumBaseEmpty
   abstract: true
   name: reinforced folder
-  description: A folder created out of a solid sheet of titanium. Features a sealing mechanism which holds it's contents safely inside. Durable, robust, and explosion resistant. Not fireproof however.
+  description: A folder created out of a solid sheet of titanium. Features a sealing mechanism which holds it's contents safely inside. Durable, robust, and explosion resistant.
   components:
   - type: ItemMapper
     mapLayers:
@@ -501,6 +501,7 @@
     price: 50 
   - type: ExplosionResistance
     damageCoefficient: 0.0
+  - type: Fireproof
 
 - type: entity
   parent: BoxFolderTitaniumBaseEmpty

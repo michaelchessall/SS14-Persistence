@@ -20,12 +20,19 @@ public sealed partial class MessageBoardComponent : Component
 [Virtual]
 public partial class MessageBoardEntry
 {
+    [DataField]
     public int UID;
+    [DataField]
     public string Title;
+    [DataField]
     public string Author;
+    [DataField]
     public string Body;
+    [DataField]
     public DateTime CreationTime;
+    [DataField]
     public List<MessageBoardComment> Comments = new();
+    [DataField]
     public int NextCommentID = 0;
 
     public MessageBoardEntry(int uid, string title, string author, string body)
@@ -44,9 +51,13 @@ public partial class MessageBoardEntry
 [Virtual]
 public partial class MessageBoardComment
 {
+    [DataField]
     public int UID;
+    [DataField]
     public string Author;
+    [DataField]
     public string Body;
+    [DataField]
     public DateTime CreationTime;
 
     public MessageBoardComment(int uid, string author, string body)

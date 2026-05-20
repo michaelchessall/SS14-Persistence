@@ -1,0 +1,24 @@
+- type: reaction
+  id: phoron-decay
+  minTemp: 500
+  reactants:
+    Phoron:
+      amount: 1
+  products:
+    Plasma: 1
+
+- type: reaction
+  id: phoron-synthesis
+  minTemp: 420
+  conserveEnergy: false
+  requiredMixerCategories:
+  - Stir
+  reactants:
+    Plasma: 
+      amount: 2
+    Bananium: 
+      amount: 2
+    Titanium: 
+      amount: 1
+  products:
+    Phoron: .2

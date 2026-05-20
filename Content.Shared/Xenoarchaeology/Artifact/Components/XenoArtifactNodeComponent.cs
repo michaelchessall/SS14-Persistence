@@ -53,6 +53,12 @@ public sealed partial class XenoArtifactNodeComponent : Component
     public int MaxDurability = 5;
 
     /// <summary>
+    /// The maximum factor by which using the durability of an artifact will scale it's Research Value.
+    /// </summary>
+    [DataField]
+    public float DurabilityResearchMultiplier = 2f;
+
+    /// <summary>
     /// The variance from MaxDurability present when a node is created.
     /// </summary>
     [DataField]

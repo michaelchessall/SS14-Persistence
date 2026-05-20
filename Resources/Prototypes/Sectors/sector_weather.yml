@@ -1,0 +1,17 @@
+- type: sectorWeather
+  id: GravitationalStorm
+  name: sector-weather-gravitational-storm
+  borderColor: "#7B3FA0C0"
+  hazard: true
+  screenTintColor: "#C78AE6AA"
+  screenTintStrength: 0.12
+  screenTintNoiseStrength: 0.75
+
+- type: sectorWeather
+  id: ElectronSurge
+  name: sector-weather-electron-surge
+  borderColor: "#2B7DC890"
+  hazard: true
+  screenTintColor: "#4DC8FF80"
+  screenTintStrength: 0.08
+  screenTintNoiseStrength: 0.50

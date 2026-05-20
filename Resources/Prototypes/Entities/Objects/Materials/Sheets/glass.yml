@@ -402,11 +402,13 @@
         - ReagentId: Silicon
           Quantity: 10
         - ReagentId: Plasma
-          Quantity: 8
+          Quantity: 6
         - ReagentId: Bananium
-          Quantity: 8
+          Quantity: 6
         - ReagentId: Titanium
-          Quantity: 4
+          Quantity: 3
+        - ReagentId: Phoron
+          Quantity: .5 # 1 phoron glass to 1 Phoron reagent, max expected yield with chem recipes of 1.1u
         canReact: false
 
 - type: entity
@@ -481,15 +483,17 @@
         - ReagentId: Silicon
           Quantity: 10
         - ReagentId: Plasma
-          Quantity: 8
+          Quantity: 6
         - ReagentId: Bananium
-          Quantity: 8
+          Quantity: 6
         - ReagentId: Titanium
-          Quantity: 4
+          Quantity: 3
         - ReagentId: Iron
           Quantity: 4.5
         - ReagentId: Carbon
           Quantity: 0.5
+        - ReagentId: Phoron
+          Quantity: .5 # Max expected yield of 1.1
         canReact: false
 
 - type: entity

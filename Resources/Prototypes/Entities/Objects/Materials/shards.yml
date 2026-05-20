@@ -228,7 +228,7 @@
         - ReagentId: Silicon
           Quantity: 5
         - ReagentId: Phoron
-          Quantity: 5
+          Quantity: .25
   - type: Construction
     graph: PhoronShivConstruct
     node: start

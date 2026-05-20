@@ -16,12 +16,6 @@ namespace Content.Shared.Teleportation.Components;
 public sealed partial class SwapTeleporterComponent : Component
 {
     /// <summary>
-    /// The other SwapTeleporterComponent that this one is linked to
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public EntityUid? LinkedEnt;
-
-    /// <summary>
     /// the time at which <see cref="TeleportDelay"/> ends and the teleportation occurs
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
@@ -57,6 +51,10 @@ public sealed partial class SwapTeleporterComponent : Component
     /// </summary>
     [DataField]
     public EntityWhitelist TeleporterWhitelist = new();
+
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public string? Key = null;
+    public bool HasKey => Key != null;
 }
 
 [Serializable, NetSerializable]

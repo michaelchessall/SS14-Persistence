@@ -24,6 +24,7 @@ public sealed partial class MessageBoard : FancyWindow
         _spriteSystem = spriteSystem;
         _owner = owner;
         Title = entMan.GetComponent<MetaDataComponent>(owner).EntityName;
+        BoardTabContainer.SetTabTitle(0, "Public Board");
     }
 
 }

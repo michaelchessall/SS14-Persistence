@@ -9,9 +9,9 @@
         </BoxContainer>
         <customControls:HSeparator Margin="5 10 5 10"/>
         <PanelContainer StyleIdentifier="PaperEditBackground" MinHeight="300" HorizontalExpand="True">
-            <ScrollContainer HorizontalExpand="True" VerticalExpand="True">
+            <ScrollContainer HorizontalExpand="True" VerticalExpand="True" HScrollEnabled="False">
                 <BoxContainer HorizontalExpand="True" VerticalExpand="True" Orientation="Vertical" Margin="5 10 5 10">
-                    <RichTextLabel Name="MainContentLabel" Access="Public" HorizontalExpand="True" VerticalExpand="True"  VerticalAlignment="Top"/>
+                    <RichTextLabel Name="MainContentLabel" Access="Public" VerticalAlignment="Top"/>
                 </BoxContainer>
             </ScrollContainer>
         </PanelContainer>

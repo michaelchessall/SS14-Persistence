@@ -5,7 +5,7 @@
                            MinSize="600 690">
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True">
-            <TabContainer>
+            <TabContainer Name="BoardTabContainer">
                 <BoxContainer Orientation="Vertical" Name="PublicBoard">
                     <Button Text="Create A New Entry" Name="CreateEntryPublicButton" Access="Public" />
                     <PanelContainer VerticalExpand="True"
@@ -26,13 +26,13 @@
                         </ScrollContainer>
                     </PanelContainer>
                 </BoxContainer>
-                <BoxContainer Orientation="Vertical" Name="DirectMessages">
+                <!--<BoxContainer Orientation="Vertical" Name="DirectMessages">
                     <Label Text="Send Message: " StyleClasses="LabelKeyText"/>
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
                         <LineEdit Name="SendMessageLE" PlaceHolder="Recipient Name" HorizontalExpand="True"/>
                         <Button Text="Compose Message" Name="SendMessageButton" Access="Public" />
                     </BoxContainer>
-                </BoxContainer>
+                </BoxContainer>-->
             </TabContainer>
         </ScrollContainer> 
     </BoxContainer>

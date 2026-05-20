@@ -11,7 +11,7 @@
     ServiceBounty : 1
     GasBounty : 1
     ReagentBounty : 1
-  income: -5000
+  income: 0
 
 - type: infrastructureLevel
   id: ILevelGeneral2
@@ -75,7 +75,6 @@
   name: Simple Research Outpost (1)
   markets:
     - sciencemarket
-    - explorermarket
   groups:
     ScienceBounty : 2
     MaterialBounty : 2
@@ -90,8 +89,6 @@
   markets:
     - sciencemarket
     - sciencemarket2
-    - explorermarket
-    - explorermarket2
   groups:
     ScienceBounty : 3
     MaterialBounty : 2
@@ -110,9 +107,6 @@
     - sciencemarket
     - sciencemarket2
     - sciencemarket3
-    - explorermarket
-    - explorermarket2
-    - explorermarket3
   groups:
     ScienceBounty : 4
     MaterialBounty : 2
@@ -132,10 +126,6 @@
     - sciencemarket2
     - sciencemarket3
     - sciencemarket4
-    - explorermarket
-    - explorermarket2
-    - explorermarket3
-    - explorermarket4
   groups:
     ScienceBounty : 5
     MaterialBounty : 3
@@ -144,6 +134,85 @@
     ExplorationBounty : 3
   income: 30000
   level: 4
+
+- type: infrastructureLevel
+  id: ILevelExploration1
+  demotionXP: 0
+  requiredXP: 0
+  name: Simple Explorer's Post (1)
+  markets:
+    - explorermarket
+    - huntermarket
+  groups:
+    ExplorationBounty : 2
+    HunterBounty : 1
+    ServiceBounty : 1
+  income: 0
+
+- type: infrastructureLevel
+  id: ILevelExploration2
+  demotionXP: 150
+  requiredXP: 200
+  name: Decent Explorer's Outpost (2)
+  markets:
+    - explorermarket
+    - explorermarket2
+    - huntermarket
+    - huntermarket2
+  groups:
+    ExplorationBounty : 3
+    HunterBounty : 1
+    ServiceBounty : 1
+    MaterialBounty : 1
+    StationBounty : 1
+  income: 0
+  level: 2
+
+- type: infrastructureLevel
+  id: ILevelExploration3
+  demotionXP: 650
+  requiredXP: 700
+  name: Established Exploration Station (3)
+  markets:
+    - explorermarket
+    - explorermarket2
+    - explorermarket3
+    - huntermarket
+    - huntermarket2
+    - huntermarket3
+  groups:
+    ExplorationBounty : 4
+    HunterBounty : 2
+    ServiceBounty : 2
+    MaterialBounty : 2
+    StationBounty : 2
+  income: 10000
+  level: 3
+
+- type: infrastructureLevel
+  id: ILevelExploration4
+  demotionXP: 1400
+  requiredXP: 1500
+  name: Beacon of Exploration (4)
+  markets:
+    - explorermarket
+    - explorermarket2
+    - explorermarket3
+    - explorermarket4
+    - huntermarket
+    - huntermarket2
+    - huntermarket3
+    - huntermarket4
+  groups:
+    ExplorationBounty : 5
+    HunterBounty : 3
+    ServiceBounty : 3
+    MaterialBounty : 3
+    StationBounty : 3
+  income: 30000
+  level: 4
+
+
 
 - type: infrastructureLevel
   id: ILevelHunter1
@@ -172,6 +241,8 @@
     ScienceBounty : 1
   income: 0
   level: 2
+
+
 
 - type: infrastructureLevel
   id: ILevelHunter3
@@ -263,63 +334,3 @@
   income: 30000
   level: 4
 
-- type: infrastructureLevel
-  id: ILevelExploration1
-  demotionXP: 0
-  requiredXP: 0
-  name: Simple Explorer's Post (1)
-  markets:
-    - explorermarket
-  groups:
-    ExplorationBounty : 4
-    ScienceBounty : 1
-    ServiceBounty : 1
-  income: -5000
-
-- type: infrastructureLevel
-  id: ILevelExploration2
-  demotionXP: 150
-  requiredXP: 200
-  name: Decent Explorer's Outpost (2)
-  markets:
-    - explorermarket
-    - explorermarket2
-  groups:
-    ExplorationBounty : 6
-    ScienceBounty : 1
-    ServiceBounty : 2
-  income: 0
-  level: 2
-
-- type: infrastructureLevel
-  id: ILevelExploration3
-  demotionXP: 650
-  requiredXP: 700
-  name: Established Exploration Station (3)
-  markets:
-    - explorermarket
-    - explorermarket2
-    - explorermarket3
-  groups:
-    ExplorationBounty : 8
-    ScienceBounty : 2
-    ServiceBounty : 2
-  income: 10000
-  level: 3
-
-- type: infrastructureLevel
-  id: ILevelExploration4
-  demotionXP: 1400
-  requiredXP: 1500
-  name: Beacon of Exploration (4)
-  markets:
-    - explorermarket
-    - explorermarket2
-    - explorermarket3
-    - explorermarket4
-  groups:
-    ExplorationBounty : 9
-    ScienceBounty : 3
-    ServiceBounty : 3
-  income: 30000
-  level: 4

@@ -251,7 +251,7 @@
   product: BriefcaseSyndieSniperBundleFilled
   cost: 30000
   category: cargoproduct-category-name-syndicate
-  group: syndicatemarket5
+  group: syndicatemarket4
 
 - type: cargoProduct
   id: ChemicalSynthesisKit

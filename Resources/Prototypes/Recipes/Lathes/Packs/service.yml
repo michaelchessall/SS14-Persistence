@@ -46,6 +46,8 @@
   - SodaDispenserMachineCircuitboard
   - SmartFridgeCircuitboard
   - IdPrinterCircuitboard
+  - MessageBoardCircuitboard
+  - StationModComputerCircuitboard
   - BlockGameArcadeComputerCircuitboard
   - SpaceVillainArcadeComputerCircuitboard
   - InvoicePrinterCircuitboard

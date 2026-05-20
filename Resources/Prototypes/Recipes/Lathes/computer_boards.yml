@@ -195,6 +195,16 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
+  id: MessageBoardCircuitboard
+  result: MessageBoardCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
+  id: StationModComputerCircuitboard
+  result: StationModComputerCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralComputerRecipeCategory ]
   id: IDComputerCircuitboard
   result: IDComputerCircuitboard
 

@@ -3,11 +3,11 @@
 # Related docs https://docs.spacestation14.com/en/general-development/tips/config-file-reference.html
 
 [game]
-soft_max_players = 100
+soft_max_players = 150
 autosaveenabled = true
 autosaveinterval = 60
 panic_bunker.show_reason = true
-panic_bunker.custom_reason = "The server is shutting down soon and is no longer accepting new connections."
+panic_bunker.custom_reason = "The server is not accepting new connections at this time."
 
 [hub]
 tags = "lang:en,region:am_n_w,rp:high"
@@ -25,6 +25,12 @@ enabled_crit = true
 [ic]
 flavor_text = true
 punctuation = true
+
+[lore]
+year_offset = 200
+
+[tips]
+enabled = false
 
 [atmos]
 max_explosion_range = 4

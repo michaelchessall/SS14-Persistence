@@ -115,3 +115,8 @@
   id: Hologram
   kind: source
   path: "/Textures/Shaders/hologram.swsl"
+
+- type: shader
+  id: SectorEventTint
+  kind: source
+  path: "/Textures/Shaders/sector_event_tint.swsl"

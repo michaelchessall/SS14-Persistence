@@ -2,12 +2,15 @@ using Robust.Shared.GameStates;
 
 namespace Content.Shared.CrewAssignments.Components;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent]
+[AutoGenerateComponentState]
 public sealed partial class CrewAssignmentsComponent : Component
 {
     [DataField]
+    [AutoNetworkedField]
     public Dictionary<int, CrewAssignment> CrewAssignments { get; set; } = new();
     [DataField]
+    [AutoNetworkedField]
     public int NextID = 1;
     public bool TryGetAssignment(int id, out CrewAssignment? assignment)
     {

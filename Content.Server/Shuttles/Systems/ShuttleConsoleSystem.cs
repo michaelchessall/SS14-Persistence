@@ -1,4 +1,6 @@
 using Content.Server.Power.EntitySystems;
+using Content.Server.Sectors.Events;
+using Content.Server.Sectors.Systems;
 using Content.Server.Shuttles.Components;
 using Content.Server.Shuttles.Events;
 using Content.Server.Station.Systems;
@@ -37,6 +39,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     [Dependency] private readonly TagSystem _tags = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private readonly SectorWeatherSystem _sectorWeather = default!;
 
     private EntityQuery<MetaDataComponent> _metaQuery;
     private EntityQuery<TransformComponent> _xformQuery;
@@ -74,6 +77,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         SubscribeLocalEvent<DockEvent>(OnDock);
         SubscribeLocalEvent<UndockEvent>(OnUndock);
+        SubscribeLocalEvent<SectorWeatherChangedEvent>(OnSectorWeatherChanged);
 
         SubscribeLocalEvent<PilotComponent, ComponentGetState>(OnGetState);
         SubscribeLocalEvent<PilotComponent, StopPilotingAlertEvent>(OnStopPilotingAlert);
@@ -100,6 +104,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     }
 
     private void OnUndock(UndockEvent ev)
+    {
+        RefreshShuttleConsoles();
+    }
+
+    private void OnSectorWeatherChanged(SectorWeatherChangedEvent ev)
     {
         RefreshShuttleConsoles();
     }
@@ -277,7 +286,13 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
         else
         {
-            navState = new NavInterfaceState(0f, null, null, new Dictionary<NetEntity, List<DockingPortState>>(), ShuttleDampingMode.Normal);
+            navState = new NavInterfaceState(
+                0f,
+                null,
+                null,
+                new Dictionary<NetEntity, List<DockingPortState>>(),
+                ShuttleDampingMode.Normal,
+                _sectorWeather.GetHazardWeatherSnapshot());
             mapState = new ShuttleMapInterfaceState(
                 FTLState.Invalid,
                 default,
@@ -399,7 +414,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
 
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(entity.Comp1!.MaxRange, null, null, docks, damping);
+            return new NavInterfaceState(entity.Comp1!.MaxRange, null, null, docks, damping, _sectorWeather.GetHazardWeatherSnapshot());
 
         return GetNavState(
             entity,
@@ -422,14 +437,15 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
         }
 
         if (!Resolve(entity, ref entity.Comp1, ref entity.Comp2))
-            return new NavInterfaceState(entity.Comp1!.MaxRange, GetNetCoordinates(coordinates), angle, docks, damping);
+            return new NavInterfaceState(entity.Comp1!.MaxRange, GetNetCoordinates(coordinates), angle, docks, damping, _sectorWeather.GetHazardWeatherSnapshot());
 
         return new NavInterfaceState(
             entity.Comp1.MaxRange,
             GetNetCoordinates(coordinates),
             angle,
             docks,
-            damping);
+            damping,
+            _sectorWeather.GetHazardWeatherSnapshot());
     }
 
     /// <summary>

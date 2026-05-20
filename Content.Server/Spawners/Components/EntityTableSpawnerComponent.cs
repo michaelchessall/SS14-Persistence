@@ -20,6 +20,12 @@ public sealed partial class EntityTableSpawnerComponent : Component
     public float Offset = 0.2f;
 
     /// <summary>
+    /// If true, will spawn at the coordinates of the spawner, but detached from them.
+    /// </summary>
+    [DataField]
+    public bool SpawnDetached = false;
+
+    /// <summary>
     /// A variable meaning whether the spawn will
     /// be able to be used again or whether
     /// it will be destroyed after the first use

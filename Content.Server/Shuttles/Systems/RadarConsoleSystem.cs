@@ -4,6 +4,8 @@ using Content.Shared.Shuttles.Systems;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using System.Numerics;
+using Content.Server.Sectors.Events;
+using Content.Server.Sectors.Systems;
 
 namespace Content.Server.Shuttles.Systems;
 
@@ -11,6 +13,7 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
 {
     [Dependency] private readonly ShuttleConsoleSystem _console = default!;
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly SectorWeatherSystem _sectorWeather = default!;
 
     public override void Initialize()
     {
@@ -21,6 +24,8 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
         {
             subs.Event<BoundUIOpenedEvent>(UpdateUserInterface);
         });
+
+        SubscribeLocalEvent<SectorWeatherChangedEvent>(OnSectorWeatherChanged);
     }
 
     private void UpdateUserInterface(EntityUid uid, RadarConsoleComponent component, BoundUIOpenedEvent args)
@@ -32,6 +37,15 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     {
         UpdateState(uid, component);
     }
+
+        private void OnSectorWeatherChanged(SectorWeatherChangedEvent ev)
+        {
+            var query = EntityQueryEnumerator<RadarConsoleComponent>();
+            while (query.MoveNext(out var uid, out var comp))
+            {
+                UpdateState(uid, comp);
+            }
+        }
 
     protected override void UpdateState(EntityUid uid, RadarConsoleComponent component)
     {
