@@ -21,9 +21,9 @@
   - type: EyeCursorOffset
     maxOffset: 5
     pvsIncrease: 0.5
+  - type: StaticPrice
+    price: 100
   - type: PhysicalComposition
     materialComposition:
       Steel: 100
       Glass: 50
-  - type: StaticPrice
-    price: 100

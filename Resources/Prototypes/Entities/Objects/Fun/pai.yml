@@ -102,6 +102,11 @@
   - type: Tag
     tags:
     - SiliconEmotes
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
+    chemicalComposition:
+      Cognizine: 5
 
 - type: entity
   parent: [ PersonalAI, BaseSyndicateContraband]

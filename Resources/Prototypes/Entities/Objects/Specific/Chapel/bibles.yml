@@ -60,6 +60,9 @@
     - Book
   - type: StealTarget
     stealGroup: Bible
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 300
 
 - type: entity
   parent: [Bible, BaseSyndicateContraband]

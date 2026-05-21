@@ -14,6 +14,9 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: HeldSpeedModifier
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 300
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -254,6 +257,13 @@
   - type: ClothingSpeedModifier
     sprintModifier: 1 # makes its stats identical to other variants of bag of holding
   - type: HeldSpeedModifier
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 500
+      Silver: 200
+      Plasma: 200
+      Uranium: 100
 
 - type: entity
   parent: [ ClothingBackpackDuffel, BaseCentcommContraband ]

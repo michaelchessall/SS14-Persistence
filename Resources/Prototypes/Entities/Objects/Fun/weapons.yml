@@ -10,6 +10,9 @@
   - type: PacifismAllowedGun # They don't hurt!
   - type: Gun
     clumsyProof: true # Clown proficiency
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: [ BaseItem, BaseToyGun ]
@@ -101,6 +104,9 @@
       - CartridgeMagnum
       - SpeedLoaderMagnum
     proto: CartridgeMagnumAP
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100  # Only way to tell a real one from a fake one.
 
 - type: entity
   parent: [ BaseItem, BaseToyGun ]
@@ -126,6 +132,7 @@
   - type: UseDelay
     delay: 1.5
 
+
 ## Toy swords
 
 - type: entity
@@ -140,6 +147,10 @@
     damage:
       types:
         Blunt: 0.3 # Not even close to real damage, but creates the red flash to give the illusion of damage
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Wood: 25
 
 - type: entity
   parent: [ BaseItem, BaseToySword ]

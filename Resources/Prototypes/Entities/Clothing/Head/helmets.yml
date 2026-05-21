@@ -13,6 +13,9 @@
     layers:
       HeadTop : HEAD
       HeadSide : HEAD
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   parent: ClothingHeadHelmetBase
@@ -26,6 +29,9 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 #Basic Helmet (Security Helmet)
 - type: entity

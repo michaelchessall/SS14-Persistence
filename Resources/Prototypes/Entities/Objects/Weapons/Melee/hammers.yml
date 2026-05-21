@@ -23,6 +23,9 @@
         Structural: 10
   - type: Item
     size: Large
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 1500
 
 - type: entity
   id: Mjollnir
@@ -66,6 +69,9 @@
         Structural: 15
   - type: Item
     size: Ginormous
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 5000
 
 - type: entity
   id: SingularityHammer
@@ -107,3 +113,9 @@
         Structural: 15
   - type: Item
     size: Ginormous
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 5000
+      Plasma: 200
+      Uranium: 300
+      Phoron: 100

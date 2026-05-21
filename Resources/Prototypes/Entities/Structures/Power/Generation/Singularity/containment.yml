@@ -94,13 +94,26 @@
         - GlassLayer
   - type: Sprite
     sprite: Structures/Power/Generation/Singularity/containment_field.rsi
-    state: field
-    noRot: true
+    layers:
+    - map: [ "base" ]
+      state: field
+    - map: [ "resistanceOverlay" ]
+      state: field
+      shader: ContainmentFieldResistanceWave
+      visible: false
   - type: Icon
     sprite: Structures/Power/Generation/Singularity/containment_field.rsi
     state: field
   - type: ContainmentField
+    connectionTimeout: 5
     throwForce: 50
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ContainmentFieldVisuals.BreachResistant:
+        resistanceOverlay:
+          True: { visible: true }
+          False: { visible: false }
   - type: SyncSprite
   - type: GuideHelp
     guides:

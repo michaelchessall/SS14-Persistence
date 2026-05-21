@@ -73,4 +73,22 @@ public sealed partial class RandomWalkComponent : Component
     public TimeSpan NextStepTime { get; internal set; } = default!;
 
     #endregion Update Timing
+
+    #region Freeze State
+
+    /// <summary>
+    /// The duration for which the entity should remain frozen on initialization.
+    /// </summary>
+    [DataField("initialFreezeDuration")]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan InitialFreezeDuration = TimeSpan.FromSeconds(10.0);
+
+    /// <summary>
+    /// The time at which the entity will unfreeze. If this is in the past, the entity is not frozen.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    [Access(typeof(RandomWalkController))]
+    public TimeSpan FrozenUntil { get; internal set; } = default!;
+
+    #endregion Freeze State
 }

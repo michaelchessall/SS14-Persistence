@@ -61,6 +61,9 @@
                   max: 2
     - type: StaticPrice
       price: 50
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 100
 
 - type: entity
   name: base repairable shield
@@ -122,6 +125,10 @@
           Heat: 0.5
         flatReductions:
           Heat: 1
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 0
+        Glass: 100
 
 - type: entity
   name: ballistic shield
@@ -199,6 +206,10 @@
                   max: 5
     - type: StaticPrice
       price: 20
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 0
+        Wood: 100
 
 - type: entity
   name: cardboard shield
@@ -251,6 +262,10 @@
               max: 4
     - type: StaticPrice
       price: 20
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 0
+        Cardboard: 100
 
 - type: entity
   name: makeshift shield
@@ -358,6 +373,10 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: WoodDestroy
+    - type: PhysicalComposition
+      materialComposition:
+        WebSilk: 100
+        Steel: 0
 
 #Magic/Cult Shields (give these to wizard for now)
 
@@ -389,6 +408,10 @@
           Slash: 1
           Piercing: 1
       #Have it break into brass when clock cult is in
+    - type: PhysicalComposition
+      materialComposition:
+        Brass: 100
+        Steel: 0
 
 - type: entity
   name: mirror shield
@@ -437,6 +460,10 @@
                 SheetGlass:
                   min: 5
                   max: 5
+    - type: PhysicalComposition
+      materialComposition:
+        Glass: 100
+        Steel: 0
 
 - type: entity
   name: energy shield

@@ -19,8 +19,8 @@ public sealed partial class FultonComponent : Component
     /// <summary>
     /// Linked fulton beacon.
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), DataField("beacon"), AutoNetworkedField]
-    public EntityUid? Beacon;
+    [ViewVariables(VVAccess.ReadWrite), DataField("beaconKey"), AutoNetworkedField]
+    public string? BeaconKey = null;
 
     /// <summary>
     /// Applies Removeable to the <see cref="FultonedComponent"/>.

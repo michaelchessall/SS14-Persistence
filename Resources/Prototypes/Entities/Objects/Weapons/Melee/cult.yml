@@ -21,6 +21,9 @@
     slots:
     - back
   - type: DisarmMalus
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   name: eldritch blade
@@ -45,6 +48,9 @@
     slots:
     - back
   - type: DisarmMalus
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   name: unholy halberd
@@ -85,3 +91,6 @@
     - back
   - type: UseDelay
     delay: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100

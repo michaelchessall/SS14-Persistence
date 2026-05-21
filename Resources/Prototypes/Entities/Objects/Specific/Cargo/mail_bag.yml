@@ -33,3 +33,6 @@
     tags:
     - ScurretWearable
     - CorgiWearable
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 200

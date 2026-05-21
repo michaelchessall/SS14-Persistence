@@ -26,4 +26,56 @@ public sealed partial class SectorWeatherPrototype : IPrototype
 
     [DataField]
     public float ScreenTintNoiseStrength { get; private set; } = 0f;
+
+    [DataField]
+    public string? Parallax;
+
+    [DataField]
+    public List<SectorWeatherSpawnEntry> Spawns { get; private set; } = new();
+}
+
+[DataDefinition]
+public sealed partial class SectorWeatherSpawnEntry
+{
+    [DataField(required: true)]
+    public EntProtoId Prototype = string.Empty;
+
+    [DataField]
+    public float SpawnInterval = 30f;
+
+    [DataField]
+    public int SpawnAttempts = 8;
+
+    [DataField]
+    public int MaxActive = 0;
+
+    [DataField]
+    public int SectorMinCount = 0;
+
+    [DataField]
+    public int SectorMaxCount = 0;
+
+    [DataField]
+    public float SpawnChanceAboveSectorMin = 1f;
+
+    [DataField]
+    public float MinSpawnRange = 64f;
+
+    [DataField]
+    public float MaxSpawnRange = 256f;
+
+    [DataField]
+    public float MinDistanceFromPoweredEntity = 0f;
+
+    [DataField]
+    public float MinDistanceFromSamePrototype = 0f;
+
+    [DataField]
+    public byte? MinSpawnLevel;
+
+    [DataField]
+    public byte? MaxSpawnLevel;
+
+    [DataField]
+    public float? DespawnDistanceFromSpawn;
 }

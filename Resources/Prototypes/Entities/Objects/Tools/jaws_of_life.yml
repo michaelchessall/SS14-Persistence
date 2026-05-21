@@ -49,6 +49,11 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 500
+      Glass: 100
+      Plasma: 100
 
 - type: entity
   name: syndicate jaws of death

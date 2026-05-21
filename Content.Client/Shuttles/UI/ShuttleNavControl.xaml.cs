@@ -45,6 +45,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
     private Dictionary<SpaceSector, string> _sectorWeatherEvents = new();
+    private List<NavTrackedEntityState> _trackedEntities = new();
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
@@ -136,6 +137,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         _docks = state.Docks;
         _sectorWeatherEvents = state.SectorWeatherEvents;
+        _trackedEntities = state.TrackedEntities;
     }
 
     protected override void Draw(DrawingHandleScreen handle)
@@ -331,6 +333,101 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             }
         }
 
+        DrawTrackedEntities(handle, worldToView, xform.MapID);
+
+    }
+
+    private void DrawTrackedEntities(DrawingHandleScreen handle, Matrix3x2 worldToView, MapId mapId)
+    {
+        if (_trackedEntities.Count == 0)
+            return;
+
+        foreach (var tracked in _trackedEntities)
+        {
+            var coords = EntManager.GetCoordinates(tracked.Coordinates);
+            if (coords.EntityId == EntityUid.Invalid)
+                continue;
+
+            var mapCoords = _transform.ToMapCoordinates(coords);
+            if (mapCoords.MapId != mapId)
+                continue;
+
+            var point = Vector2.Transform(mapCoords.Position, worldToView);
+            var markerColor = Color.ToSrgb(tracked.Color);
+            var markerRadius = MathF.Max(2f, tracked.MarkerSize);
+
+            if (tracked.TrackerType == NavScreenTrackerType.SpawnTracked && tracked.SpawnCoordinates != null)
+            {
+                var spawnCoordinates = EntManager.GetCoordinates(tracked.SpawnCoordinates.Value);
+                if (spawnCoordinates.EntityId != EntityUid.Invalid)
+                {
+                    var spawnMapCoordinates = _transform.ToMapCoordinates(spawnCoordinates);
+                    if (spawnMapCoordinates.MapId == mapId)
+                    {
+                        var spawnPoint = Vector2.Transform(spawnMapCoordinates.Position, worldToView);
+                        DrawDottedLine(handle, spawnPoint, point, markerColor.WithAlpha(0.75f));
+                        DrawDottedCircle(handle, spawnPoint, MathF.Max(2.5f, markerRadius * 0.6f), markerColor.WithAlpha(0.85f));
+                    }
+                }
+            }
+
+            var verts = new[]
+            {
+                point + new Vector2(0f, -markerRadius),
+                point + new Vector2(markerRadius, 0f),
+                point + new Vector2(0f, markerRadius),
+                point + new Vector2(-markerRadius, 0f),
+            };
+
+            handle.DrawPrimitives(DrawPrimitiveTopology.TriangleFan, verts, markerColor);
+            handle.DrawCircle(point, markerRadius + 1f, markerColor.WithAlpha(0.6f), false);
+
+            if (!tracked.ShowLabel || string.IsNullOrWhiteSpace(tracked.Label))
+                continue;
+
+            handle.DrawString(Font, point + new Vector2(6f, -12f), tracked.Label, color: markerColor);
+        }
+    }
+
+    private static void DrawDottedLine(DrawingHandleScreen handle, Vector2 from, Vector2 to, Color color)
+    {
+        const float dashLength = 4f;
+        const float gapLength = 3f;
+
+        var delta = to - from;
+        var totalLength = delta.Length();
+        if (totalLength <= float.Epsilon)
+            return;
+
+        var direction = delta / totalLength;
+        var progress = 0f;
+
+        while (progress < totalLength)
+        {
+            var dashStart = from + direction * progress;
+            var dashEndDistance = MathF.Min(progress + dashLength, totalLength);
+            var dashEnd = from + direction * dashEndDistance;
+            handle.DrawLine(dashStart, dashEnd, color);
+            progress += dashLength + gapLength;
+        }
+    }
+
+    private static void DrawDottedCircle(DrawingHandleScreen handle, Vector2 center, float radius, Color color)
+    {
+        const int segments = 32;
+
+        for (var i = 0; i < segments; i++)
+        {
+            if ((i & 1) == 1)
+                continue;
+
+            var start = MathF.Tau * i / segments;
+            var end = MathF.Tau * (i + 1) / segments;
+
+            var p1 = center + new Vector2(MathF.Cos(start), MathF.Sin(start)) * radius;
+            var p2 = center + new Vector2(MathF.Cos(end), MathF.Sin(end)) * radius;
+            handle.DrawLine(p1, p2, color);
+        }
     }
 
     private bool ShouldFade(IFFComponent? iff)

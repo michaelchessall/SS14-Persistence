@@ -27,6 +27,9 @@
       - Slicing
     useSound:
       path: /Audio/Items/Culinary/chop.ogg
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   parent: BaseKnife

@@ -68,3 +68,6 @@
   - type: Construction
     graph: makeshiftstunprod
     node: msstunprod
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200

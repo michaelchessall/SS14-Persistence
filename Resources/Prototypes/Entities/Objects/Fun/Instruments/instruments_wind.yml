@@ -31,6 +31,9 @@
         reagents:
           - ReagentId: Saxoite
             Quantity: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Brass: 200
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -49,7 +52,10 @@
     slots:
     - neck
   - type: ActivatableUI
-    inHandsOnly: false  
+    inHandsOnly: false 
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -61,6 +67,9 @@
     program: 71
   - type: Sprite
     sprite: Objects/Fun/Instruments/clarinet.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -72,6 +81,10 @@
     program: 73
   - type: Sprite
     sprite: Objects/Fun/Instruments/flute.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Silver: 5 # A really bad source of steel but still
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -83,6 +96,9 @@
     program: 74
   - type: Sprite
     sprite: Objects/Fun/Instruments/recorder.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -94,6 +110,9 @@
     program: 75
   - type: Sprite
     sprite: Objects/Fun/Instruments/panflute.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
 
 #if you change this to some cringe-ass zelda reference so help me god i will shoot you dead.
 - type: entity
@@ -108,6 +127,9 @@
     sprite: Objects/Fun/Instruments/ocarina.rsi
   - type: Item
     size: Small
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BaseWoodwindInstrument
@@ -121,3 +143,7 @@
     sprite: Objects/Fun/Instruments/bagpipes.rsi
   - type: Item
     size: Large
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
+      Steel: 25

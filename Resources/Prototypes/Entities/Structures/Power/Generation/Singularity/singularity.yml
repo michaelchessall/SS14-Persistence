@@ -46,7 +46,7 @@
   - type: Singularity
     energy: 180
     level: 1
-    radsPerLevel: 2
+    radsPerLevel: 4
     energyLoss: 1
   - type: RandomWalk # To make the singularity move around.
     maxSpeed: 2.5
@@ -56,7 +56,15 @@
     intensity: 3645
   - type: RadiationSource
     slope: 0.2 # its emit really far away
-    intensity: 2
+    intensity: 6
+    updateInterval: 1.0
+    staggerUpdates: true
+  - type: NavScreenTrackable
+    trackerType: SpawnTracked
+    color: "#FF4A4A"
+    markerSize: 4
+    singularityLevelSizeGrowth: 3.0
+    showLabel: true
   - type: PointLight
     enabled: true
     radius: 10

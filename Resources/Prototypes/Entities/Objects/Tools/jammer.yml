@@ -34,6 +34,9 @@
   - type: BatteryVisuals
   - type: StaticPrice
     price: 1500
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   name: radio jammer

@@ -48,6 +48,9 @@
     qualities:
     - Honking
     useSound: *SoundBikeHorn
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BaseItem
@@ -89,6 +92,9 @@
     damage:
       types:
         Blunt: 5
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: BikeHorn
@@ -114,6 +120,10 @@
     energy: 2.2
     castShadows: false
     color: "#ffca1b"
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Gold: 25
 
 - type: entity
   parent: BikeHorn
@@ -158,6 +168,10 @@
     node: bananiumHorn
   - type: Tool
     useSound: *SoundBananiumHorn
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Bananium: 25
 
 - type: entity
   parent: BaseItem
@@ -218,6 +232,9 @@
       collection: BaseWhistle
   - type: Whistle
     distance: 3
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
 
 - type: entity
   parent: BaseWhistle
@@ -457,6 +474,10 @@
         density: 30
         mask:
         - ItemMask
+  - type: PhysicalComposition
+    chemicalComposition:
+      Laughter: 5
+      Happiness: 5
 
 - type: entity
   parent: BaseItem

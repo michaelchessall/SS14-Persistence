@@ -1,0 +1,82 @@
+- type: entity
+  id: WhiteHole
+  name: white hole
+  description: A mysterious vortex of creation that ejects matter in defiance of gravity.
+  components:
+  - type: Clickable
+  - type: Transform
+    anchored: true
+  - type: Physics
+    bodyType: Static
+    bodyStatus: InAir
+  - type: Fixtures
+    fixtures:
+      WhiteHoleCollider:
+        shape:
+          !type:PhysShapeCircle
+            radius: 0.35
+        hard: false
+        mask:
+        - SingularityLayer
+        layer:
+        - SingularityLayer
+  - type: WhiteHole
+    ejectSpeed: 10
+    followSingularity: true
+  - type: GravityWell
+    baseRadialAcceleration: -10
+    maxRange: 4
+  - type: RadiationSource
+    slope: 0.85
+    intensity: 1
+    updateInterval: 1.0
+    staggerUpdates: true
+  - type: SingularityDistortion
+    invertDistortion: true
+    falloffPower: 2.529822
+    intensity: 1800
+  - type: NavScreenTrackable
+    trackerType: SpawnTracked
+    color: "#00B5B5"
+    markerSize: 4
+    singularityLevelSizeGrowth: 3.0
+    showLabel: true
+  - type: Appearance
+  - type: Sprite
+    sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+    layers:
+    - map: [ "VisualLevel" ]
+      state: singularity_1
+      shader: WhiteHoleNegative
+  - type: GenericVisualizer
+    visuals:
+      enum.SingularityAppearanceKeys.Singularity:
+        VisualLevel:
+          1:
+            sprite: Structures/Power/Generation/Singularity/singularity_1.rsi
+            state: singularity_1
+            scale: 1.0,1.0
+          2:
+            sprite: Structures/Power/Generation/Singularity/singularity_2.rsi
+            state: singularity_2
+            scale: 1.0,1.0
+          3:
+            sprite: Structures/Power/Generation/Singularity/singularity_3.rsi
+            state: singularity_3
+            scale: 1.0,1.0
+          4:
+            sprite: Structures/Power/Generation/Singularity/singularity_4.rsi
+            state: singularity_4
+            scale: 1.0,1.0
+          5:
+            sprite: Structures/Power/Generation/Singularity/singularity_5.rsi
+            state: singularity_5
+            scale: 1.5,1.5
+          6:
+            sprite: Structures/Power/Generation/Singularity/singularity_6.rsi
+            state: singularity_6
+            scale: .9,.9
+  - type: PointLight
+    enabled: true
+    radius: 10
+    color: "#00B5B5"

@@ -37,3 +37,9 @@
         whitelist:
           components:
           - BatteryAmmoProvider
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 800
+      Plastic: 400
+      Uranium: 200
+      Plasma: 200

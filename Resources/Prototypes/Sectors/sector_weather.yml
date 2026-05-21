@@ -3,9 +3,21 @@
   name: sector-weather-gravitational-storm
   borderColor: "#7B3FA0C0"
   hazard: true
-  screenTintColor: "#C78AE6AA"
-  screenTintStrength: 0.12
-  screenTintNoiseStrength: 0.75
+  parallax: KettleStation
+  screenTintColor: "#C78AE688"
+  screenTintStrength: 0.09
+  screenTintNoiseStrength: 0.60
+  spawns:
+  - prototype: Singularity
+    spawnInterval: 300
+    spawnAttempts: 12
+    maxActive: 1
+    minSpawnLevel: 1
+    maxSpawnLevel: 3
+    minSpawnRange: 150
+    maxSpawnRange: 1000
+    minDistanceFromPoweredEntity: 500
+    despawnDistanceFromSpawn: 250
 
 - type: sectorWeather
   id: ElectronSurge
@@ -15,3 +27,27 @@
   screenTintColor: "#4DC8FF80"
   screenTintStrength: 0.08
   screenTintNoiseStrength: 0.50
+
+- type: sectorWeather
+  id: BadGravitationalStorm
+  name: sector-weather-bad-gravitational-storm
+  borderColor: "#A02B2BC0"
+  hazard: true
+  parallax: Wizard
+  screenTintColor: "#E67A7ACC"
+  screenTintStrength: 0.18
+  screenTintNoiseStrength: 0.95
+  spawns:
+  - prototype: Singularity
+    spawnInterval: 600
+    spawnAttempts: 16
+    minSpawnLevel: 1
+    maxSpawnLevel: 3
+    minSpawnRange: 100
+    maxSpawnRange: 750
+    minDistanceFromPoweredEntity: 500
+    minDistanceFromSamePrototype: 10
+    sectorMinCount: 2
+    sectorMaxCount: 3
+    spawnChanceAboveSectorMin: 0.20
+    despawnDistanceFromSpawn: 300

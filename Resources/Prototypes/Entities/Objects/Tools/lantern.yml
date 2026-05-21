@@ -68,6 +68,10 @@
     - type: Tag
       tags:
       - Flashlight
+    - type: PhysicalComposition
+      materialComposition:
+        Stees: 100
+        Glass: 50
 
 - type: entity
   parent: Lantern

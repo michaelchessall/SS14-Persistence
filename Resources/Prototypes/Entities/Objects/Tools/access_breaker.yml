@@ -13,6 +13,9 @@
     state: icon
   - type: Item
     sprite: Objects/Tools/access_breaker.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 100
 
 - type: entity
   parent: AccessBreakerUnlimited

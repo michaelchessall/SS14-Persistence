@@ -13,9 +13,12 @@ public sealed partial class EmitterComponent : Component
     public CancellationTokenSource? TimerCancel;
 
     // whether the power switch is in "on"
-    [ViewVariables] public bool IsOn;
+    [DataField, AutoNetworkedField]
+    public bool IsOn;
+
     // Whether the power switch is on AND the machine has enough power (so is actively firing)
-    [ViewVariables] public bool IsPowered;
+    [AutoNetworkedField]
+    public bool IsPowered;
 
     /// <summary>
     /// counts the number of consecutive shots fired.

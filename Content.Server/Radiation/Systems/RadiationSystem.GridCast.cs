@@ -45,6 +45,9 @@ public partial class RadiationSystem
             if (!source.Enabled)
                 continue;
 
+            if (!ShouldProcessSourceThisTick(uid, source))
+                continue;
+
             var worldPos = _transform.GetWorldPosition(xform);
 
             // Intensity is scaled by stack size.
@@ -121,6 +124,37 @@ public partial class RadiationSystem
 
         // raise broadcast event that radiation system has updated
         RaiseLocalEvent(new RadiationSystemUpdatedEvent());
+    }
+
+    private bool ShouldProcessSourceThisTick(EntityUid uid, RadiationSourceComponent source)
+    {
+        var interval = source.UpdateInterval;
+        if (interval <= 0f || interval <= GridcastUpdateRate)
+            return true;
+
+        var now = (float) _timing.CurTime.TotalSeconds;
+
+        if (!source.UpdateScheduleInitialized)
+        {
+            source.UpdateScheduleInitialized = true;
+
+            if (source.StaggerUpdates)
+            {
+                var phase = (uint) uid.Id % 1024u;
+                var offset = interval * (phase / 1024f);
+                source.NextUpdateTime = now + offset;
+            }
+            else
+            {
+                source.NextUpdateTime = now;
+            }
+        }
+
+        if (now < source.NextUpdateTime)
+            return false;
+
+        source.NextUpdateTime = now + interval;
+        return true;
     }
 
     private RadiationRay? Irradiate(SourceData source,

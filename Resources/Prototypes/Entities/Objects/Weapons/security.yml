@@ -126,6 +126,9 @@
   - type: GuideHelp
     guides:
     - Security
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 - type: entity
   name: flash
@@ -172,6 +175,10 @@
     - type: GuideHelp
       guides:
       - Security
+    - type: PhysicalComposition
+      materialComposition:
+        Steel: 50
+        Glass: 25
 
 - type: entity
   name: flash

@@ -82,6 +82,19 @@ public sealed partial class SectorWeatherSystem : EntitySystem
         return true;
     }
 
+    public bool BypassCooldown(SpaceSector sector)
+    {
+        if (!_activeWeather.ContainsKey(sector))
+        {
+            Logger.WarningS("sector-weather", $"Attempted to bypass cooldown for sector {sector}, but no active weather found.");
+            return false;
+        }
+
+        // Logic to bypass cooldowns (e.g., resetting timers or flags)
+        Logger.InfoS("sector-weather", $"Cooldown bypassed for sector {sector}.");
+        return true;
+    }
+
     private void OnPlayerStatusChanged(object? sender, SessionStatusEventArgs args)
     {
         if (args.NewStatus != SessionStatus.Connected)

@@ -10,3 +10,6 @@
     drawRate: 0
     useCharge: 20
   - type: ToggleCellDraw
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50 # Just as a baseline for other items

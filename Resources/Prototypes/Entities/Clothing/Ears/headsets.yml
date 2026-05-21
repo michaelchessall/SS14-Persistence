@@ -31,6 +31,10 @@
     requireActiveHand: false
     singleUser: true
     inHandsOnly: false
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 100
 
 - type: entity
   parent: ClothingHeadset

@@ -79,6 +79,9 @@
   components:
   - type: StaticPrice
     price: 300
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 100
 
 - type: entity
   abstract: true
@@ -88,3 +91,6 @@
   components:
   - type: StaticPrice
     price: 275
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 100

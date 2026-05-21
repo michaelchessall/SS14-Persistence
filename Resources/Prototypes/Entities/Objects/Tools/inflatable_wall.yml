@@ -20,10 +20,12 @@
     doAfter: 1
     removeOnInteract: true
   - type: Clickable
-  - type: PhysicalComposition
   - type: Tag
     tags:
     - Inflatable
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 # TODO: Add stack sprites + visuals.
 
 - type: entity
@@ -48,10 +50,12 @@
     doAfter: 1
     removeOnInteract: true
   - type: Clickable
-  - type: PhysicalComposition
   - type: Tag
     tags:
     - Inflatable
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 # TODO: Add stack sprites + visuals.
 
 - type: entity

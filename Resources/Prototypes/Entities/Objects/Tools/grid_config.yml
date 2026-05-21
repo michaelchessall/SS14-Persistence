@@ -42,6 +42,10 @@
     - type: ContainerContainer
       containers:
         GridConfig-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100
 
 - type: entity
   parent: BaseItem
@@ -63,6 +67,10 @@
       slots:
         - Belt
     - type: PrecursorExtractor
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100
 
 
 - type: entity
@@ -111,6 +119,10 @@
     - type: ContainerContainer
       containers:
         StationTagger-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100
 
 
 - type: entity
@@ -159,6 +171,10 @@
     - type: ContainerContainer
       containers:
         StationCreator-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100
 
 
 - type: entity
@@ -187,6 +203,9 @@
     - type: Tag
       tags:
       - Document
+    - type: PhysicalComposition
+      materialComposition:
+        Paper: 100
 
 - type: entity
   parent: BaseItem
@@ -246,3 +265,7 @@
     - type: ContainerContainer
       containers:
         BSPAnchorKey-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100

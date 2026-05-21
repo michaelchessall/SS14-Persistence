@@ -17,6 +17,7 @@ public sealed partial class ParticleAcceleratorControlBoxComponent : Component
     /// Whether the PA is currently set to fire at the console.
     /// Requires <see cref="Assembled"/> to be true.
     /// </summary>
+    [DataField]
     [ViewVariables]
     public bool Enabled = false;
 
@@ -39,6 +40,7 @@ public sealed partial class ParticleAcceleratorControlBoxComponent : Component
     /// Bounded by <see cref="ParticleAcceleratorPowerState.Standby"/> and <see cref="MaxStrength"/>.
     /// Modified by <see cref="ParticleAcceleratorStrengthWireAction"/>.
     /// </summary>
+    [DataField]
     [ViewVariables(VVAccess.ReadWrite)]
     public ParticleAcceleratorPowerState SelectedStrength = ParticleAcceleratorPowerState.Standby;
 

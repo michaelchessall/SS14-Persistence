@@ -38,6 +38,9 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 - type: entity
   parent: [ClothingShoesBootsMagBase]
@@ -60,7 +63,6 @@
   - type: Tag
     tags:
     - WhitelistChameleon
-    - HighRiskItem
   - type: StaticPrice
     price: 750
   - type: StealTarget

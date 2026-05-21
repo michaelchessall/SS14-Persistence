@@ -16,8 +16,8 @@ public sealed partial class FultonedComponent : Component
     [ViewVariables, DataField("effect"), AutoNetworkedField]
     public EntityUid Effect { get; set; }
 
-    [ViewVariables(VVAccess.ReadWrite), DataField("beacon")]
-    public EntityUid? Beacon;
+    [ViewVariables(VVAccess.ReadWrite), DataField("beaconKey"), AutoNetworkedField]
+    public string? BeaconKey = null;
 
     [ViewVariables(VVAccess.ReadWrite), DataField("fultonDuration"), AutoNetworkedField]
     public TimeSpan FultonDuration = TimeSpan.FromSeconds(45);

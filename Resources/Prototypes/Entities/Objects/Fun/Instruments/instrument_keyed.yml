@@ -6,6 +6,9 @@
   - type: Tag
     tags:
     - KeyedInstrument
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 - type: entity
   parent: BaseKeyedInstrument
