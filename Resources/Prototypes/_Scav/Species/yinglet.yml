@@ -1,0 +1,19 @@
+- type: species
+  id: Yinglet
+  name: species-name-yinglet
+  roundStart: true
+  prototype: MobYinglet
+  defaultSkinTone: "#ffda93"
+  dollPrototype: AppearanceYinglet
+  skinColoration: Hues
+  maleFirstNames: NamesYingletMale
+  femaleFirstNames: NamesYingletFemale
+  naming: First
+  minAge: 2
+  youngAge: 6
+  oldAge: 12
+  maxAge: 30
+
+
+  markingLimits: MobYingletMarkingLimits
+  sprites: MobYingletSprites

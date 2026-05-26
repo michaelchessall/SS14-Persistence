@@ -1,0 +1,368 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: Yinglet
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ YingletTailTailpoof ] #YingletTailHairless
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: true
+      default: [ YingletShelltoothLong ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 1
+      required: true
+      default: [ YingletEarsLong ]
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 2
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: false
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceYinglet
+  name: yinglet appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganYingletTorso
+      Head: OrganYingletHead
+      ArmLeft: OrganYingletArmLeft
+      ArmRight: OrganYingletArmRight
+      HandRight: OrganYingletHandRight
+      HandLeft: OrganYingletHandLeft
+      LegLeft: OrganYingletLegLeft
+      LegRight: OrganYingletLegRight
+      FootLeft: OrganYingletFootLeft
+      FootRight: OrganYingletFootRight
+      Brain: OrganYingletBrain
+      Eyes: OrganYingletEyes
+      Tongue: OrganYingletTongue
+      Ears: OrganYingletEars
+      Lungs: OrganYingletLungs
+      Heart: OrganYingletHeart
+      Stomach: OrganYingletStomach
+      Liver: OrganYingletLiver
+      Kidneys: OrganYingletKidneys
+  - type: Inventory
+    speciesId: yinglet
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: hand
+      back:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: shoes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: head
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: belt
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: hand_l
+    rightHandDisplacement:
+      sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: hand_r
+  #need to add body parts
+  - type: HumanoidProfile
+    species: Yinglet
+
+- type: entity
+  parent:
+  - AppearanceYinglet
+  - BaseSpeciesMobOrganic
+  id: MobYinglet
+  name: Urist McFeethands
+  components:
+  - type: Damageable
+    damageModifierSet: Yinglet
+  - type: Speech
+    speechSounds: Alto
+    allowedEmotes: ['Weh', 'Squeak']
+  - type: Vocal
+    sounds:
+      Male: UnisexYinglet
+      Female: UnisexYinglet
+      Unsexed: UnisexYinglet
+  - type: TypingIndicator
+    proto: default
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeat
+      amount: 2
+  - type: Fixtures
+    fixtures: # TODO: This needs a second fixture just for mob collisions.
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        # about the same density as a fox
+        density: 50
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds #Yinglets have a little over half the normal hp (originally was exactly half, but this was too severe in testing)
+    thresholds:
+      0: Alive
+      75: Critical
+      125: Dead
+  - type: Destructible #they also gib faster
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 300
+      behaviors:
+      - !type:GibBehavior { }  
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
+  - type: MeleeWeapon
+    soundHit:
+      collection: BarestepWood
+    angle: 30
+    animation: WeaponArcFist
+    attackRate: 1
+    damage:
+      types:
+        Blunt: 2
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 6
+  - type: ThermalRegulator #Yinglets have about 1/7 the mass of humans, these need to be changed otherwise they cant use cryotubes
+    metabolismHeat: 400
+    radiatedHeat: 50
+    implicitHeatRegulation: 150
+    sweatHeatRegulation: 250
+    shiveringHeatRegulation: 250
+    normalBodyTemperature: 310.15
+    thermalRegulationTemperatureThreshold: 2
+#DamageVisuals
+
+- type: entity
+  parent: OrganBase
+  id: OrganYinglet
+  abstract: true
+  suffix: yinglet
+
+- type: entity
+  id: OrganYingletMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ Yinglet ]
+
+- type: entity
+  parent: OrganYinglet
+  id: OrganYingletInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  id: OrganYingletVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: Yinglet
+
+- type: entity
+  parent: [ OrganYinglet, OrganYingletVisual ]
+  id: OrganYingletExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/Yinglet/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganYingletExternal ]
+  id: OrganYingletTorso
+
+- type: entity
+  parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganYingletExternal ]
+  id: OrganYingletHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.HeadTop
+    - enum.HumanoidVisualLayers.HeadSide
+    - enum.HumanoidVisualLayers.Hair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganYingletExternal ]
+  id: OrganYingletArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganYingletExternal ]
+  id: OrganYingletArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganYingletExternal ]
+  id: OrganYingletHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganYingletExternal ]
+  id: OrganYingletHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganYingletExternal ]
+  id: OrganYingletLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganYingletExternal ]
+  id: OrganYingletLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganYingletExternal ]
+  id: OrganYingletFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganYingletExternal ]
+  id: OrganYingletFootRight
+
+- type: entity
+  parent: [ OrganBaseBrain, OrganSpriteHumanInternal, OrganYingletInternal ]
+  id: OrganYingletBrain
+
+- type: entity
+  parent: [ OrganYingletVisual, OrganBaseEyes, OrganYingletInternal ]
+  id: OrganYingletEyes
+
+- type: entity
+  parent: [ OrganBaseTongue, OrganYingletInternal ]
+  id: OrganYingletTongue
+
+- type: entity
+  parent: [ OrganBaseAppendix, OrganYingletInternal ]
+  id: OrganYingletAppendix
+
+- type: entity
+  parent: [ OrganBaseEars, OrganYingletInternal ]
+  id: OrganYingletEars
+
+- type: entity
+  parent: [ OrganBaseLungs, OrganYingletInternal, OrganYingletMetabolizer ]
+  id: OrganYingletLungs
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganYingletInternal, OrganYingletMetabolizer ]
+  id: OrganYingletHeart
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganYingletInternal, OrganYingletMetabolizer ]
+  id: OrganYingletStomach
+
+- type: entity
+  parent: [ OrganBaseLiver, OrganYingletInternal, OrganYingletMetabolizer ]
+  id: OrganYingletLiver
+
+- type: entity
+  parent: [ OrganBaseKidneys, OrganYingletInternal, OrganYingletMetabolizer ]
+  id: OrganYingletKidneys

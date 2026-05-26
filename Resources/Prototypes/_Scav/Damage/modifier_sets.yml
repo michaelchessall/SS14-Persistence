@@ -1,0 +1,7 @@
+# Bones snap easily, but very resistant to poison and their cells can take a lot of mangling
+- type: damageModifierSet
+  id: Yinglet
+  coefficients:
+    Blunt: 1.5
+    Poison: 0.6
+    Cellular: 0.8

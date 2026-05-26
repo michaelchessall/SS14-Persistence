@@ -553,7 +553,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Goblin ]
+          type: [ Animal, Vox, Goblin, Yinglet ]
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -563,12 +563,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Goblin ]
+          type: [ Animal, Vox, Plant, Goblin, Yinglet ]
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Goblin ]
+          type: [ Animal, Vox, Plant, Goblin, Yinglet ]
           inverted: true
         damage:
           types:
@@ -590,6 +590,12 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Goblin ]
+        reagent: Protein
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
