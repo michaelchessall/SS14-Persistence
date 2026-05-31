@@ -406,7 +406,7 @@ public sealed class MarkingsViewModel
             _marking.EnsureValidColors(actualMarkings);
             _marking.EnsureValidGroupAndSex(actualMarkings, organData.Group, organProfileData.Sex);
             _marking.EnsureValidLayers(actualMarkings, organData.Layers);
-            _marking.EnsureValidLimits(actualMarkings, organData.Group, organData.Layers, organProfileData.SkinColor, organProfileData.EyeColor);
+            _marking.EnsureValidLimits(actualMarkings, organData.Group, organData.Layers, organProfileData.SkinColor, organProfileData.EyeColor, organProfileData.Sex, true);
 
             _markings[organ] = actualMarkings;
         }

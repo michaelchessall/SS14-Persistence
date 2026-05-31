@@ -8,23 +8,19 @@
   },
   "states": [
     {
-      "name": "hairless",
+      "name": "tail",
       "directions": 4
     },
     {
-      "name": "tailpoof_primary",
-      "directions": 4
-    },
-    {
-      "name": "tailpoof_secondary",
+      "name": "tailpoof",
       "directions": 4
     },
 	{
-      "name": "preener_secondary",
+      "name": "preener",
       "directions": 4
     },
     {
-      "name": "northern_secondary",
+      "name": "northern",
       "directions": 4
     }
   ]

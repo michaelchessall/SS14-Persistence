@@ -14,9 +14,6 @@ marking-YingletShelltoothLong = Shelltooth (Long)
 marking-YingletShelltoothShort-short = Shelltooth
 marking-YingletShelltoothShort = Shelltooth (Short)
 
-marking-YingletShelltoothNone-none = No shelltooth
-marking-YingletShelltoothNone = No Shelltooth
-
 marking-YingletEyeR-eye_R = Eye background
 marking-YingletEyeR = Eye Right
 marking-YingletEyeR-eye_R_Iris = Eye
@@ -25,20 +22,20 @@ marking-YingletEyeL-eye_L = Eye background
 marking-YingletEyeL = Eye Left
 marking-YingletEyeL-eye_L_Iris = Eye
 
-marking-YingletTailHairless-hairless = Tail
-marking-YingletTailHairless = Tail (Plain)
+marking-YingletTail-tail = Tail
+marking-YingletTail = Tail
 
-marking-YingletTailTailpoof-tailpoof_primary = Tail
-marking-YingletTailTailpoof-tailpoof_secondary = Tailpoof
-marking-YingletTailTailpoof = Tail (Tailpoof)
+marking-YingletTailTailpoof-tailpoof = Tailpoof
+marking-YingletTailTailpoof = Tailpoof
 
-marking-YingletTailPreener-hairless = Tail
-marking-YingletTailPreener-preener_secondary = Hair
-marking-YingletTailPreener = Tail (Small Tailpoof)
+marking-YingletTailTailpoofMale-tailpoof = Tailpoof
+marking-YingletTailTailpoofMale = Tailpoof
 
-marking-YingletTailBackHair-hairless = Tail
-marking-YingletTailBackHair-northern_secondary = Hair
-marking-YingletTailBackHair = Tail (Back Hair)
+marking-YingletTailPreener-preener = Tailpoof
+marking-YingletTailPreener = Small Tailpoof
+
+marking-YingletTailBackHair-northern = Hair
+marking-YingletTailBackHair = Back Hair
 
 marking-YingletRFoot-r_foot = Foot
 marking-YingletRFoot = Right Foot

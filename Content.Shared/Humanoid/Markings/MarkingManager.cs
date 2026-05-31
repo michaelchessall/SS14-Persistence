@@ -4,6 +4,7 @@ using Robust.Shared.Prototypes;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Content.Shared.Humanoid.Markings;
 
@@ -191,7 +192,7 @@ public sealed class MarkingManager
     /// <summary>
     /// Ensures the list of <see cref="markingSets"/> is valid per the limits of the <see cref="group"/>
     /// </summary>
-    public void EnsureValidLimits(Dictionary<HumanoidVisualLayers, List<Marking>> markingSets, ProtoId<MarkingsGroupPrototype> group, HashSet<HumanoidVisualLayers> layers, Color? skinColor, Color? eyeColor)
+    public void EnsureValidLimits(Dictionary<HumanoidVisualLayers, List<Marking>> markingSets, ProtoId<MarkingsGroupPrototype> group, HashSet<HumanoidVisualLayers> layers, Color? skinColor, Color? eyeColor, Sex? sex, bool useOptionalDefaults = false)
     {
         var groupProto = _prototype.Index(group);
         var counts = new Dictionary<HumanoidVisualLayers, int>();
@@ -226,18 +227,39 @@ public sealed class MarkingManager
                 continue;
 
             var layerCounts = counts.GetValueOrDefault(layer);
-            if (layerCounts > 0 || !layerLimit.Required)
-                continue;
 
-            foreach (var marking in layerLimit.Default)
+            if (layerLimit.Required)
             {
-                if (!_markings.TryGetValue(marking, out var markingProto))
+                if (layerCounts > 0)
                     continue;
 
-                markingSets[layer] = markingSets.GetValueOrDefault(layer) ?? [];
-                var colors = MarkingColoring.GetMarkingLayerColors(markingProto, skinColor, eyeColor, markingSets[layer]);
-                markingSets[layer].Add(new(marking, colors));
+                foreach (var marking in layerLimit.Default)
+                {
+                    if (!_markings.TryGetValue(marking, out var markingProto))
+                        continue;
+
+                    markingSets[layer] = markingSets.GetValueOrDefault(layer) ?? [];
+                    var colors = MarkingColoring.GetMarkingLayerColors(markingProto, skinColor, eyeColor, markingSets[layer]);
+                    markingSets[layer].Add(new(marking, colors));
+                }
             }
+            else if (useOptionalDefaults)
+            {
+                if (layerCounts >= layerLimit.Limit)
+                    continue;
+
+                foreach (var marking in layerLimit.Default)
+                {
+                    if (!_markings.TryGetValue(marking, out var markingProto) || (sex != null && !CanBeApplied(group, sex.Value, markingProto)))
+                        continue;
+
+                    markingSets[layer] = markingSets.GetValueOrDefault(layer) ?? [];
+                    var colors = MarkingColoring.GetMarkingLayerColors(markingProto, skinColor, eyeColor, markingSets[layer]);
+                    markingSets[layer].Add(new(marking, colors));
+                }
+            }
+
+
         }
     }
 
