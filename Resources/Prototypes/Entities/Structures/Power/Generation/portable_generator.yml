@@ -161,7 +161,7 @@
       targetPower: 30000
       optimalPower: 30000
       #Buffed for Persistence, one sheet every minute at optimal power up to 2 minutes if running at 5 kW.
-      optimalBurnRate: 0.016665 #0.0333333 before
+      optimalBurnRate: 0.0165 #0.0333333 before
     - type: SolidFuelGeneratorAdapter
       fuelEfficiencyConstant: 0.75
       fuelMaterial: Plasma
@@ -221,7 +221,7 @@
       targetPower: 50000
       optimalPower: 50000
       # now 1 sheet every 3~ minutes at optimal power
-      optimalBurnRate: 0.008333333 #0.01666666 before
+      optimalBurnRate: 0.0083 #0.01666666 before
       # Saves a lil fuel from reducing power output
       fuelEfficiencyConstant: 0.25 # 0.1 before
     - type: SolidFuelGeneratorAdapter
@@ -294,7 +294,7 @@
       optimalPower: 8000
       maxTargetPower: 10000
       # 30~ minutes at full tank.
-      optimalBurnRate: 0.055 #0.11111111 before
+      optimalBurnRate: 0.0555 #0.11111111 before
       # Shallow curve that allows you to just barely eek out 24 minutes at lowest.
       fuelEfficiencyConstant: 0.3
     - type: ChemicalFuelGeneratorAdapter
