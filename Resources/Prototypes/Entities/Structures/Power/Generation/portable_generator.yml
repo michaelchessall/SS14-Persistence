@@ -161,8 +161,9 @@
       targetPower: 30000
       optimalPower: 30000
       #Buffed for Persistence, one sheet every minute at optimal power up to 2 minutes if running at 5 kW.
-      optimalBurnRate: 0.016665
+      optimalBurnRate: 0.016665 #0.0333333 before
     - type: SolidFuelGeneratorAdapter
+      fuelEfficiencyConstant: 0.75
       fuelMaterial: Plasma
       multiplier: 0.01
     - type: MaterialStorage
@@ -219,10 +220,10 @@
       maxTargetPower: 50000
       targetPower: 50000
       optimalPower: 50000
-      # now 1 sheet every 2 minutes at optimal power
-      optimalBurnRate: 0.008333333
+      # now 1 sheet every 3~ minutes at optimal power
+      optimalBurnRate: 0.008333333 #0.01666666 before
       # Saves a lil fuel from reducing power output
-      fuelEfficiencyConstant: 0.35
+      fuelEfficiencyConstant: 0.25 # 0.1 before
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Uranium
       multiplier: 0.01
@@ -293,7 +294,7 @@
       optimalPower: 8000
       maxTargetPower: 10000
       # 30~ minutes at full tank.
-      optimalBurnRate: 0.055 #0.11111111
+      optimalBurnRate: 0.055 #0.11111111 before
       # Shallow curve that allows you to just barely eek out 24 minutes at lowest.
       fuelEfficiencyConstant: 0.3
     - type: ChemicalFuelGeneratorAdapter
@@ -458,22 +459,21 @@
     - type: Machine
       board: PortableGeneratorMegamanMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 25000
+      minTargetPower: 25000 # 20000 before
       maxTargetPower: 75000
-      targetPower: 55000
-      optimalPower: 40000
+      targetPower: 55000 #75000 before
+      optimalPower: 40000 #75000 before
       # 1 phoron sheet every 3 minutes optimal output (This is still insanely expensive btw) 
-      optimalBurnRate: 0.008
-      # 
+      optimalBurnRate: 0.010 #0.025 before
       fuelEfficiencyConstant: 0.5
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Phoron
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 2500 # More expensive fuel means less storage, to keep it from being too overpowered.
+      storageLimit: 2500 
       materialWhiteList: [Phoron]
     - type: PortableGenerator
-      startChance: 0.15 # Rn it's used for emergency station power sooo I think it should be more dificult to start for the dramatic factor
+      startChance: 0.65 # Rn it's used for emergency station power sooo I think it should be more dificult to start for the dramatic factor
     - type: PowerMonitoringDevice
       group: Generator
       loadNode: output
