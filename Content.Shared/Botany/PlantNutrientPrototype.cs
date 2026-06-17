@@ -1,11 +1,12 @@
 using Robust.Shared.Prototypes;
 
-namespace Content.Server.Botany;
+namespace Content.Shared.Botany;
 
 /// <summary>
 /// This is a prototype for...
 /// </summary>
-[Prototype()]
+[Prototype]
+[DataDefinition]
 public sealed partial class PlantNutrientPrototype : IPrototype
 {
     /// <inheritdoc/>
