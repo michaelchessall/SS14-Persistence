@@ -227,10 +227,25 @@ public abstract class SharedEventHorizonSystem : EntitySystem
         if (HasComp<ContainmentFieldComponent>(otherUid) ||
             HasComp<ContainmentFieldGeneratorComponent>(otherUid))
         {
-            if (comp.CanBreachContainment)
+            if (comp.CanBreachContainment && !CanResistContainmentBreach(otherUid))
                 args.Cancelled = true;
 
             return true;
+        }
+
+        return false;
+    }
+
+    private bool CanResistContainmentBreach(EntityUid containmentUid)
+    {
+        if (TryComp<ContainmentFieldGeneratorComponent>(containmentUid, out var generator))
+            return generator.IsConnected && generator.PowerBuffer * 2 >= ContainmentFieldGeneratorComponent.MaxPowerBuffer;
+
+        if (TryComp<ContainmentFieldComponent>(containmentUid, out var field)
+            && field.GeneratorUid is { Valid: true } generatorUid
+            && TryComp<ContainmentFieldGeneratorComponent>(generatorUid, out generator))
+        {
+            return generator.IsConnected && generator.PowerBuffer * 2 >= ContainmentFieldGeneratorComponent.MaxPowerBuffer;
         }
 
         return false;

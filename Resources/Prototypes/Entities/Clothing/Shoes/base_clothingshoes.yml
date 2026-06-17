@@ -25,6 +25,9 @@
     - Recyclable
     - WhitelistChameleon
   - type: ProtectedFromStepTriggers
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 50
 
 - type: entity
   abstract: true

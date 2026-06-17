@@ -18,6 +18,9 @@
     - WhitelistChameleon
     - ClothMade
     - Recyclable
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -33,6 +36,9 @@
     storedSprite:
       state: storage
       sprite: Clothing/Neck/Ties/dettie.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -54,3 +60,6 @@
     - Recyclable
     - HamsterWearable
     - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 25

@@ -84,6 +84,7 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - ButcheringMachineCircuitboard
 
 - type: technology
   id: Crematorium
@@ -262,7 +263,7 @@
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
-  
+
 - type: technology
   id: AdvancedTelecomms
   name: research-technology-advanced-telecommunications

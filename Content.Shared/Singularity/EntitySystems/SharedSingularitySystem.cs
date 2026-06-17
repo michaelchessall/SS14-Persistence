@@ -39,6 +39,11 @@ public abstract class SharedSingularitySystem : EntitySystem
     /// </summary>
     public const float DistortionContainerScaling = 4f;
 
+    /// <summary>
+    /// Global scalar applied to singularity radiation output.
+    /// </summary>
+    public const float SingularityRadiationScale = 1f / 3f;
+
 
     public override void Initialize()
     {
@@ -170,7 +175,7 @@ public abstract class SharedSingularitySystem : EntitySystem
     {
         if (!Resolve(uid, ref singularity, ref rads, logMissing: false))
             return;
-        rads.Intensity = singularity.Level * singularity.RadsPerLevel;
+        rads.Intensity = singularity.Level * singularity.RadsPerLevel * SingularityRadiationScale;
     }
 
     #endregion Getters/Setters
@@ -316,7 +321,7 @@ public abstract class SharedSingularitySystem : EntitySystem
         }
 
         comp.FalloffPower = newFalloffPower;
-        comp.Intensity = newIntensity;
+        comp.Intensity = comp.InvertDistortion ? -newIntensity : newIntensity;
         Dirty(uid, comp);
     }
 

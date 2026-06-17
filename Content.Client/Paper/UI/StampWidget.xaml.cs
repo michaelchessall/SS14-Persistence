@@ -27,9 +27,10 @@ public sealed partial class StampWidget : PanelContainer
     {
         set
         {
-            StampedByLabel.Text = Loc.GetString(value.StampedName);
+            StampedByLabel.Text = value.UseNameAsLoc ? Loc.GetString(value.StampedName) : value.StampedName;
             StampedByLabel.FontColorOverride = value.StampedColor;
             ModulateSelfOverride = value.StampedColor;
+            PanelOverride = value.UseBox ? _borderTexture : null;
         }
     }
 

@@ -234,6 +234,9 @@
     - type: GuideHelp
       guides:
       - Networking
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
 
 #Power tools
 #Later on these should switch probably switch damage when changing the tool behavior.
@@ -393,6 +396,9 @@
       Plastic: 100
   - type: StaticPrice
     price: 60
+  - type: Tag
+    tags:
+    - HighRiskItem
 
 - type: entity
   name: omnitool
@@ -458,6 +464,10 @@
           state: omnitool-pulsing
         changeSound:
           path: /Audio/Items/change_drill.ogg
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Steel: 50
 
 #Other
 - type: entity

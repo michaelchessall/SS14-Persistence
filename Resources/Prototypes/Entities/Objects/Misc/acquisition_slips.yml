@@ -15,6 +15,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: Tag
     tags:
     - Trash
@@ -42,6 +45,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/medical.svg.192dpi.png"
 
@@ -60,6 +66,9 @@
       color: "#cd7ccd"
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
       visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/science.svg.192dpi.png"
@@ -80,6 +89,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/security.svg.192dpi.png"
 
@@ -98,6 +110,9 @@
       color: "#539c00"
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
       visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/service.svg.192dpi.png"
@@ -118,6 +133,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/cargo.svg.192dpi.png"
 
@@ -136,6 +154,9 @@
       color: "#ff733c"
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
       visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/AcquisitionSlips/engineering.svg.192dpi.png"

@@ -40,6 +40,7 @@ namespace Content.Client.Singularity
         private readonly Vector2[] _positions = new Vector2[MaxCount];
         private readonly float[] _intensities = new float[MaxCount];
         private readonly float[] _falloffPowers = new float[MaxCount];
+        private readonly float[] _distortionDirections = new float[MaxCount];
         private int _count = 0;
 
         protected override bool BeforeDraw(in OverlayDrawArgs args)
@@ -70,6 +71,7 @@ namespace Content.Client.Singularity
                 _positions[_count] = tempCoords;
                 _intensities[_count] = distortion.Intensity;
                 _falloffPowers[_count] = distortion.FalloffPower;
+                _distortionDirections[_count] = distortion.InvertDistortion ? -1f : 1f;
                 _count++;
 
                 if (_count == MaxCount)
@@ -89,6 +91,7 @@ namespace Content.Client.Singularity
             _shader?.SetParameter("position", _positions);
             _shader?.SetParameter("intensity", _intensities);
             _shader?.SetParameter("falloffPower", _falloffPowers);
+            _shader?.SetParameter("distortionDirection", _distortionDirections);
             _shader?.SetParameter("SCREEN_TEXTURE", ScreenTexture);
 
             var worldHandle = args.WorldHandle;
@@ -135,7 +138,7 @@ namespace Content.Client.Singularity
                 if (deformation > 0.8)
                     deformation = MathF.Pow(deformation, 0.3f);
 
-                finalCoords -= delta * deformation;
+                finalCoords -= delta * deformation * _distortionDirections[i];
             }
 
             finalCoords.X -= MathF.Floor(finalCoords.X / (args.Viewport.Size.X * 2)) * args.Viewport.Size.X * 2; // Manually handle the wrapping reflection behaviour used by the viewport texture.

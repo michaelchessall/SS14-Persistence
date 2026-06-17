@@ -31,3 +31,6 @@
         - Syringe
         - Dropper
   - type: Dumpable
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 200

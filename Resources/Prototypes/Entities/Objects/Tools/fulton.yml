@@ -94,6 +94,9 @@
   components:
   - type: Stack
     count: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 100
 
 - type: entity
   id: FultonEffect

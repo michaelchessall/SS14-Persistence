@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Grid
-  engineVersion: 268.0.0
-  forkId: pss14
-  forkVersion: b788360f67dd0852241b407cf4ed0c2f8d5be04f
-  time: 12/21/2025 04:58:21
-  entityCount: 1342
-maps:
-- 33
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   0: Space
   31: FloorDark
@@ -45,7 +34,7 @@ entities:
       name: Hunter Trade Station
     - type: Transform
       pos: -2.9375,-1.625
-      parent: 33
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -386,19 +375,6 @@ entities:
     - type: GasTileOverlay
     - type: RadiationGridResistance
     - type: ImplicitRoof
-  - uid: 33
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: SolarLocation
-      sunAngularVelocity: 0.001765702559050777 rad
-      towardsSun: 0.47842178568226373 rad
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirAlarm
   entities:
   - uid: 424

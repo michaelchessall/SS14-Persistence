@@ -39,9 +39,6 @@
     currentValue: 20
   - type: Sprite
     state: d20_20
-  - type: Tag
-    tags:
-    - DiceD20
 
 - type: entity
   parent: BaseDice

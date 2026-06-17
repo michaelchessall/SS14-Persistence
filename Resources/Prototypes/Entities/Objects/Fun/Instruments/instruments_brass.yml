@@ -6,6 +6,9 @@
   - type: Tag
     tags:
     - BrassInstrument
+  - type: PhysicalComposition
+    materialComposition:
+      Brass: 200
 
 - type: entity
   parent: BaseBrassInstrument

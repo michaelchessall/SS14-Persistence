@@ -362,6 +362,16 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: MixingMachineCircuitboard
+  result: MixingMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: ButcheringMachineCircuitboard
+  result: ButcheringMachineCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
   id: FatExtractorMachineCircuitboard
   result: FatExtractorMachineCircuitboard
   unlockUses: 4

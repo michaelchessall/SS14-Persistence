@@ -19,6 +19,10 @@
     layers:
       Snout: Mask
     hideOnToggle: true
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: [ClothingMaskGas, BaseSecurityContraband]
@@ -39,6 +43,11 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 15
+      Plastic: 25
 
 - type: entity
   parent: [ClothingMaskGas, BaseSyndicateContraband]
@@ -59,6 +68,11 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 15
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskGas
@@ -74,6 +88,10 @@
     modifiers:
       coefficients:
         Heat: 0.80
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: [ClothingMaskGasAtmos, BaseCommandContraband]
@@ -87,6 +105,11 @@
     sprite: Clothing/Mask/gascaptain.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 15
+      Plastic: 25
 
 - type: entity
   parent: [ ClothingMaskGasAtmos, BaseCentcommContraband ]
@@ -100,6 +123,11 @@
     sprite: Clothing/Mask/gascentcom.rsi
   - type: BreathMask
   - type: IngestionBlocker
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 15
+      Plastic: 25
 
 - type: entity
   parent: [ClothingMaskGas, BaseCargoContraband]
@@ -118,6 +146,10 @@
         Slash: 0.90
         Piercing: 0.95
         Heat: 0.95
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -161,6 +193,11 @@
         Slash: 0.95
         Piercing: 0.95
         Heat: 0.95
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Steel: 15
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -182,8 +219,9 @@
     - WhitelistChameleon
   - type: PhysicalComposition
     materialComposition:
-      Steel: 50
-      Plastic: 100
+      Cloth: 0
+      Steel: 15
+      Plastic: 25
   - type: StaticPrice
     price: 30 # increases in price after decomposed into raw materials
 
@@ -207,6 +245,11 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
+      Bananium: 10 # A very bad source of bananium
 
 - type: entity
   parent: [ClothingMaskClownBase, BaseFoldable]
@@ -298,6 +341,10 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskBase
@@ -318,6 +365,10 @@
   - type: HideLayerClothing
     slots:
     - Snout
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -363,6 +414,10 @@
   - type: Construction
     graph: Muzzle
     node: muzzle
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskPullableBase
@@ -381,6 +436,10 @@
     slots:
     - Snout
     hideOnToggle: true
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 0
+      Plastic: 25
 
 - type: entity
   parent: ClothingMaskClownBase

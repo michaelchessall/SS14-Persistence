@@ -11,6 +11,9 @@
     sprite: Clothing/Neck/Misc/pins.rsi
   - type: Clothing
     sprite: Clothing/Neck/Misc/pins.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 25
 
 - type: entity
   parent: ClothingNeckPinBase

@@ -455994,7 +455994,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (bicaridine 10u)
+      name: pill (bicaridine_10u)
     - type: Transform
       parent: 5459
     - type: Damageable
@@ -456029,7 +456029,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (bicaridine 10u)
+      name: pill (bicaridine_10u)
     - type: Transform
       parent: 5459
     - type: Damageable
@@ -456064,7 +456064,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (bicaridine 10u)
+      name: pill (bicaridine_10u)
     - type: Transform
       parent: 5459
     - type: Damageable
@@ -456099,7 +456099,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (bicaridine 10u)
+      name: pill (bicaridine_10u)
     - type: Transform
       parent: 5459
     - type: Damageable
@@ -456134,7 +456134,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (bicaridine 10u)
+      name: pill (bicaridine_10u)
     - type: Transform
       parent: 5459
     - type: Damageable
@@ -456169,7 +456169,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (bicaridine 10u)
+      name: pill (bicaridine_10u)
     - type: Transform
       parent: 5459
     - type: Damageable
@@ -456411,7 +456411,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (bicaridine 10u)
+      name: pill canister (bicaridine_10u)
     - type: Transform
       pos: -36.489616,6.381668
       parent: 2
@@ -456477,7 +456477,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 2831
     - type: Storage
@@ -456539,7 +456539,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 4269
     - type: Storage
@@ -456601,7 +456601,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 4337
     - type: Storage
@@ -456663,7 +456663,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 4575
     - type: Storage
@@ -456725,7 +456725,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 4719
     - type: Storage
@@ -456787,7 +456787,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5141
     - type: Storage
@@ -456849,7 +456849,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5172
     - type: Storage
@@ -456911,7 +456911,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5703
     - type: Storage
@@ -456973,7 +456973,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5748
     - type: Storage
@@ -457035,7 +457035,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5793
     - type: Storage
@@ -457097,7 +457097,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5838
     - type: Storage
@@ -457159,7 +457159,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (dexalin 10u)
+      name: pill canister (dexalin_10u)
     - type: Transform
       parent: 5883
     - type: Storage
@@ -457223,7 +457223,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (tricordrazine 10u)
+      name: pill canister (tricordrazine_10u)
     - type: Transform
       parent: 4
     - type: Storage
@@ -457277,7 +457277,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (tricordrazine 10u)
+      name: pill canister (tricordrazine_10u)
     - type: Transform
       parent: 71
     - type: Storage
@@ -457331,7 +457331,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (tricordrazine 10u)
+      name: pill canister (tricordrazine_10u)
     - type: Transform
       parent: 107
     - type: Storage
@@ -457385,7 +457385,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (tricordrazine 10u)
+      name: pill canister (tricordrazine_10u)
     - type: Transform
       parent: 3247
     - type: Storage
@@ -457439,7 +457439,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (tricordrazine 10u)
+      name: pill canister (tricordrazine_10u)
     - type: Transform
       parent: 3281
     - type: Storage
@@ -457493,7 +457493,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill canister (tricordrazine 10u)
+      name: pill canister (tricordrazine_10u)
     - type: Transform
       parent: 3861
     - type: Storage
@@ -457549,7 +457549,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457584,7 +457584,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457619,7 +457619,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457654,7 +457654,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457689,7 +457689,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457724,7 +457724,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457759,7 +457759,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 2836
     - type: Damageable
@@ -457794,7 +457794,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -457829,7 +457829,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -457864,7 +457864,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -457899,7 +457899,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -457934,7 +457934,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -457969,7 +457969,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -458004,7 +458004,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4274
     - type: Damageable
@@ -458039,7 +458039,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458074,7 +458074,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458109,7 +458109,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458144,7 +458144,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458179,7 +458179,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458214,7 +458214,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458249,7 +458249,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4342
     - type: Damageable
@@ -458284,7 +458284,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458319,7 +458319,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458354,7 +458354,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458389,7 +458389,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458424,7 +458424,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458459,7 +458459,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458494,7 +458494,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4580
     - type: Damageable
@@ -458529,7 +458529,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458564,7 +458564,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458599,7 +458599,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458634,7 +458634,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458669,7 +458669,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458704,7 +458704,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458739,7 +458739,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 4724
     - type: Damageable
@@ -458774,7 +458774,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -458809,7 +458809,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -458844,7 +458844,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -458879,7 +458879,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -458914,7 +458914,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -458949,7 +458949,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -458984,7 +458984,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5146
     - type: Damageable
@@ -459019,7 +459019,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459054,7 +459054,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459089,7 +459089,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459124,7 +459124,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459159,7 +459159,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459194,7 +459194,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459229,7 +459229,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5177
     - type: Damageable
@@ -459264,7 +459264,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459299,7 +459299,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459334,7 +459334,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459369,7 +459369,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459404,7 +459404,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459439,7 +459439,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459474,7 +459474,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5708
     - type: Damageable
@@ -459509,7 +459509,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459544,7 +459544,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459579,7 +459579,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459614,7 +459614,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459649,7 +459649,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459684,7 +459684,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459719,7 +459719,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5753
     - type: Damageable
@@ -459754,7 +459754,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459789,7 +459789,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459824,7 +459824,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459859,7 +459859,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459894,7 +459894,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459929,7 +459929,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459964,7 +459964,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5798
     - type: Damageable
@@ -459999,7 +459999,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460034,7 +460034,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460069,7 +460069,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460104,7 +460104,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460139,7 +460139,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460174,7 +460174,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460209,7 +460209,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5843
     - type: Damageable
@@ -460244,7 +460244,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460279,7 +460279,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460314,7 +460314,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460349,7 +460349,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460384,7 +460384,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460419,7 +460419,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460454,7 +460454,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (dexalin 10u)
+      name: pill (dexalin_10u)
     - type: Transform
       parent: 5888
     - type: Damageable
@@ -460491,7 +460491,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 19
     - type: Damageable
@@ -460526,7 +460526,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 19
     - type: Damageable
@@ -460561,7 +460561,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 19
     - type: Damageable
@@ -460596,7 +460596,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 19
     - type: Damageable
@@ -460631,7 +460631,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 19
     - type: Damageable
@@ -460666,7 +460666,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 86
     - type: Damageable
@@ -460701,7 +460701,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 86
     - type: Damageable
@@ -460736,7 +460736,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 86
     - type: Damageable
@@ -460771,7 +460771,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 86
     - type: Damageable
@@ -460806,7 +460806,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 86
     - type: Damageable
@@ -460841,7 +460841,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 122
     - type: Damageable
@@ -460876,7 +460876,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 122
     - type: Damageable
@@ -460911,7 +460911,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 122
     - type: Damageable
@@ -460946,7 +460946,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 122
     - type: Damageable
@@ -460981,7 +460981,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 122
     - type: Damageable
@@ -461016,7 +461016,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3248
     - type: Damageable
@@ -461051,7 +461051,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3248
     - type: Damageable
@@ -461086,7 +461086,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3248
     - type: Damageable
@@ -461121,7 +461121,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3248
     - type: Damageable
@@ -461156,7 +461156,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3248
     - type: Damageable
@@ -461191,7 +461191,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3282
     - type: Damageable
@@ -461226,7 +461226,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3282
     - type: Damageable
@@ -461261,7 +461261,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3282
     - type: Damageable
@@ -461296,7 +461296,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3282
     - type: Damageable
@@ -461331,7 +461331,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3282
     - type: Damageable
@@ -461366,7 +461366,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3876
     - type: Damageable
@@ -461401,7 +461401,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3876
     - type: Damageable
@@ -461436,7 +461436,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3876
     - type: Damageable
@@ -461471,7 +461471,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3876
     - type: Damageable
@@ -461506,7 +461506,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: pill (tricordrazine 10u)
+      name: pill (tricordrazine_10u)
     - type: Transform
       parent: 3876
     - type: Damageable
@@ -515090,7 +515090,7 @@ entities:
     mapInit: true
     components:
     - type: MetaData
-      name: spray bottle (space cleaner)
+      name: spray bottle (space_cleaner)
     - type: Transform
       parent: 1053
     - type: Damageable

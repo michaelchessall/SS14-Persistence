@@ -39,6 +39,8 @@ namespace Content.Server.Singularity.EntitySystems
         [Dependency] private readonly RadioSystem _radio = default!;
         [Dependency] private readonly NavMapSystem _navMap = default!;
 
+        private readonly HashSet<EntityUid> _pendingEmitterReinitialization = new();
+
         public override void Initialize()
         {
             base.Initialize();
@@ -51,6 +53,68 @@ namespace Content.Server.Singularity.EntitySystems
             SubscribeLocalEvent<EmitterComponent, DestructionAttemptEvent>(OnDestructionAttempted);
             SubscribeLocalEvent<EmitterComponent, MachineDeconstructedEvent>(OnDeconstructed); // you shouldn't be able to deconstruct locked emitters but out of scope to fix
             SubscribeLocalEvent<EmitterComponent, LockToggledEvent>(OnLockToggled);
+            SubscribeLocalEvent<EmitterComponent, MapInitEvent>(OnMapInit);
+        }
+
+        public override void Update(float frameTime)
+        {
+            base.Update(frameTime);
+
+            if (_pendingEmitterReinitialization.Count == 0)
+                return;
+
+            var pending = new List<EntityUid>(_pendingEmitterReinitialization);
+            _pendingEmitterReinitialization.Clear();
+
+            foreach (var uid in pending)
+            {
+                if (!TryComp(uid, out EmitterComponent? component))
+                    continue;
+
+                ReinitializeEmitterState(uid, component);
+            }
+        }
+
+        private void OnMapInit(EntityUid uid, EmitterComponent component, ref MapInitEvent args)
+        {
+            _pendingEmitterReinitialization.Add(uid);
+        }
+
+        public void QueueEmitterReinitialization(EntityUid uid)
+        {
+            _pendingEmitterReinitialization.Add(uid);
+        }
+
+        public void QueueAllEmittersForReinitialization()
+        {
+            var query = EntityQueryEnumerator<EmitterComponent>();
+            while (query.MoveNext(out var uid, out _))
+            {
+                _pendingEmitterReinitialization.Add(uid);
+            }
+        }
+
+        private void ReinitializeEmitterState(EntityUid uid, EmitterComponent component)
+        {
+            if (TryComp<PowerConsumerComponent>(uid, out var powerConsumer))
+                powerConsumer.DrawRate = component.IsOn ? component.PowerUseActive : 1;
+
+            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcReceiver))
+                apcReceiver.Load = component.IsOn ? component.PowerUseActive : 1;
+
+            if (!component.IsOn)
+            {
+                PowerOff(uid, component);
+                UpdateAppearance(uid, component);
+                return;
+            }
+
+            if (TryComp<ApcPowerReceiverComponent>(uid, out apcReceiver) && apcReceiver.Powered)
+                PowerOn(uid, component);
+            else
+                PowerOff(uid, component);
+
+            UpdateAppearance(uid, component);
         }
 
         private void OnAnchorStateChanged(EntityUid uid, EmitterComponent component, ref AnchorStateChangedEvent args)

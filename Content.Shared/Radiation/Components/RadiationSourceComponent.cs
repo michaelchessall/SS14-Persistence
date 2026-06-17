@@ -26,4 +26,24 @@ public sealed partial class RadiationSourceComponent : Component
 
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public bool Enabled = true;
+
+    /// <summary>
+    ///     Optional minimum time (seconds) between this source participating in gridcast updates.
+    ///     Set to 0 to process every radiation update tick.
+    /// </summary>
+    [DataField("updateInterval"), ViewVariables(VVAccess.ReadWrite)]
+    public float UpdateInterval = 0f;
+
+    /// <summary>
+    ///     If true, apply a deterministic per-entity phase offset to update scheduling.
+    ///     This helps spread expensive source calculations across different ticks.
+    /// </summary>
+    [DataField("staggerUpdates"), ViewVariables(VVAccess.ReadWrite)]
+    public bool StaggerUpdates = false;
+
+    [ViewVariables]
+    public float NextUpdateTime;
+
+    [ViewVariables]
+    public bool UpdateScheduleInitialized;
 }

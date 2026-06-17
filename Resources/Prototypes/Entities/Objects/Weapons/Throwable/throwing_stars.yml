@@ -41,6 +41,9 @@
     damage: 45
   - type: StaminaDamageOnEmbed
     damage: 10
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   parent: ThrowingStar

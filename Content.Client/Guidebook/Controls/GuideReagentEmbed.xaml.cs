@@ -269,7 +269,6 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         ReagentName.SetMarkup(Loc.GetString("guidebook-reagent-name",
             ("color", Color.White), ("name", _prototype.Index<EntityPrototype>(spawnId).Name)));
 
-        _sawmill.Info($"{reagent.ID}");
         #region Recipe
         var reactions = _prototype.EnumeratePrototypes<ReactionPrototype>()
                 .Where(p => !p.Source && p.Effects.Length >= 1)

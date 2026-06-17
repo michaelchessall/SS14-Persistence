@@ -6,6 +6,7 @@ using Content.Shared.Singularity.Components;
 using Content.Shared.Throwing;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Physics.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Singularity.EntitySystems;
 
@@ -19,8 +20,45 @@ public sealed class ContainmentFieldSystem : EntitySystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<ContainmentFieldComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<ContainmentFieldComponent, StartCollideEvent>(HandleFieldCollide);
         SubscribeLocalEvent<ContainmentFieldComponent, EventHorizonAttemptConsumeEntityEvent>(HandleEventHorizon);
+    }
+
+    private void OnStartup(EntityUid uid, ContainmentFieldComponent component, ComponentStartup args)
+    {
+        if (HasActiveConnection(uid, component))
+            return;
+
+        Timer.Spawn(component.ConnectionTimeout, () => RemoveIfStillDisconnected(uid));
+    }
+
+    private void RemoveIfStillDisconnected(EntityUid uid)
+    {
+        if (TerminatingOrDeleted(uid) || !TryComp<ContainmentFieldComponent>(uid, out var component))
+            return;
+
+        if (HasActiveConnection(uid, component))
+            return;
+
+        QueueDel(uid);
+    }
+
+    private bool HasActiveConnection(EntityUid uid, ContainmentFieldComponent component)
+    {
+        if (component.GeneratorUid is not { Valid: true } generatorUid)
+            return false;
+
+        if (!TryComp<ContainmentFieldGeneratorComponent>(generatorUid, out var generator))
+            return false;
+
+        foreach (var (_, (_, fields)) in generator.Connections)
+        {
+            if (fields.Contains(uid))
+                return true;
+        }
+
+        return false;
     }
 
     private void HandleFieldCollide(EntityUid uid, ContainmentFieldComponent component, ref StartCollideEvent args)
@@ -44,7 +82,22 @@ public sealed class ContainmentFieldSystem : EntitySystem
 
     private void HandleEventHorizon(EntityUid uid, ContainmentFieldComponent component, ref EventHorizonAttemptConsumeEntityEvent args)
     {
-        if (!args.Cancelled && !args.EventHorizon.CanBreachContainment)
+        if (args.Cancelled)
+            return;
+
+        if (!args.EventHorizon.CanBreachContainment)
+        {
+            args.Cancelled = true;
+            return;
+        }
+
+        if (component.GeneratorUid is not { Valid: true } generatorUid)
+            return;
+
+        if (!TryComp<ContainmentFieldGeneratorComponent>(generatorUid, out var generator))
+            return;
+
+        if (generator.IsConnected && generator.PowerBuffer * 2 >= ContainmentFieldGeneratorComponent.MaxPowerBuffer)
             args.Cancelled = true;
     }
 }

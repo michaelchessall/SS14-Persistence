@@ -6,6 +6,9 @@
   - type: Tag
     tags:
     - StringInstrument
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 200
 
 - type: entity
   parent: BaseStringInstrument
@@ -33,6 +36,9 @@
       "Muted": {28: 0}
   - type: Sprite
     sprite: Objects/Fun/Instruments/eguitar.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 200
 
 - type: entity
   parent: BaseStringInstrumentClothing
@@ -78,6 +84,9 @@
       types:
         Blunt: 4
         Slash: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 - type: entity
   parent: BaseStringInstrumentClothing

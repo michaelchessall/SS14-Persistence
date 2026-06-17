@@ -13,6 +13,10 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Bronze: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -30,6 +34,10 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Gold: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -45,6 +53,10 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Gold: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -60,6 +72,10 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Plasteel: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -75,6 +91,10 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Silver: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -90,6 +110,10 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Plasma: 25
 
 - type: entity
   parent: ClothingNeckBase
@@ -105,6 +129,11 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Plastic: 25
+      Gold: 1
 
 - type: entity
   parent: ClothingNeckBase
@@ -122,3 +151,7 @@
     tags:
       - Medal
       - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 15
+      Bananium: 25

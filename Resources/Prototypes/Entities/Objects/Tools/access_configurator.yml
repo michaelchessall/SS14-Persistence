@@ -76,6 +76,9 @@
     - type: ContainerContainer
       containers:
         AccessOverrider-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 100
 
 - type: entity
   parent: AccessConfigurator

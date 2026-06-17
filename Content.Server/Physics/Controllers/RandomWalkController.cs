@@ -32,6 +32,7 @@ internal sealed class RandomWalkController : VirtualController
     /// <summary>
     /// Updates the cooldowns of all random walkers.
     /// If each of them is off cooldown it updates their velocity and resets its cooldown.
+    /// Skips entities that are currently frozen.
     /// </summary>
     /// <param name="prediction">??? Not documented anywhere I can see ???</param> // TODO: Document this.
     /// <param name="frameTime">The amount of time that has elapsed since the last time random walk cooldowns were updated.</param>
@@ -39,6 +40,7 @@ internal sealed class RandomWalkController : VirtualController
     {
         base.UpdateBeforeSolve(prediction, frameTime);
 
+        var curTime = _timing.CurTime;
         var query = EntityQueryEnumerator<RandomWalkComponent, PhysicsComponent>();
         while (query.MoveNext(out var uid, out var randomWalk, out var physics))
         {
@@ -47,7 +49,10 @@ internal sealed class RandomWalkController : VirtualController
             || HasComp<FollowerComponent>(uid))
                 continue;
 
-            var curTime = _timing.CurTime;
+            // Skip if currently frozen
+            if (randomWalk.FrozenUntil > curTime)
+                continue;
+
             if (randomWalk.NextStepTime <= curTime)
                 Update(uid, randomWalk, physics);
         }
@@ -81,15 +86,22 @@ internal sealed class RandomWalkController : VirtualController
 
     /// <summary>
     /// Syncs up a random walker step timing when the component starts up.
+    /// Also sets the initial freeze duration.
     /// </summary>
     /// <param name="uid">The uid of the random walker to start up.</param>
     /// <param name="comp">The state of the random walker to start up.</param>
     /// <param name="args">The startup prompt arguments.</param>
     private void OnRandomWalkStartup(EntityUid uid, RandomWalkComponent comp, ComponentStartup args)
     {
+        var curTime = _timing.CurTime;
+        
+        // Set initial freeze
+        comp.FrozenUntil = curTime + comp.InitialFreezeDuration;
+        
+        // Initialize step timing to account for freeze
+        comp.NextStepTime = curTime + comp.InitialFreezeDuration + TimeSpan.FromSeconds(_random.NextDouble(comp.MinStepCooldown.TotalSeconds, comp.MaxStepCooldown.TotalSeconds));
+        
         if (comp.StepOnStartup)
             Update(uid, comp);
-        else
-            comp.NextStepTime = _timing.CurTime + TimeSpan.FromSeconds(_random.NextDouble(comp.MinStepCooldown.TotalSeconds, comp.MaxStepCooldown.TotalSeconds));
     }
 }

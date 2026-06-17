@@ -10,6 +10,8 @@ namespace Content.Shared.Singularity.Components;
 [RegisterComponent, NetworkedComponent]
 public sealed partial class ContainmentFieldGeneratorComponent : Component
 {
+    public const int MaxPowerBuffer = 25;
+
     private int _powerBuffer;
 
     /// <summary>
@@ -19,7 +21,7 @@ public sealed partial class ContainmentFieldGeneratorComponent : Component
     public int PowerBuffer
     {
         get => _powerBuffer;
-        set => _powerBuffer = Math.Clamp(value, 0, 25); //have this decrease over time if not hit by a bolt
+        set => _powerBuffer = Math.Clamp(value, 0, MaxPowerBuffer); //have this decrease over time if not hit by a bolt
     }
 
     /// <summary>

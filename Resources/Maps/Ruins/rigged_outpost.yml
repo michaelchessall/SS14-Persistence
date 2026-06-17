@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Grid
-  engineVersion: 268.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 12/26/2025 05:18:50
-  entityCount: 382
-maps:
-- 374
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   0: Space
   18: FloorBlueCircuit
@@ -36,7 +25,7 @@ entities:
       name: grid
     - type: Transform
       pos: 6.7773275,4.1394477
-      parent: 374
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -636,19 +625,6 @@ entities:
     - type: RadiationGridResistance
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
-  - uid: 374
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: SolarLocation
-      sunAngularVelocity: 0.0013506018881502325 rad
-      towardsSun: 2.107508378859541 rad
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirlockAssemblyCargo
   entities:
   - uid: 331

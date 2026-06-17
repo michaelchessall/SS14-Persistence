@@ -447,7 +447,7 @@
       map: [ "enum.MiningScannerVisualLayers.Overlay" ]
 
 - type: entity
-  id: AsteroidRockTinOre
+  id: AsteroidRockTin
   parent: AsteroidRock
   description: An ore vein rich with tin.
   suffix: Tin
@@ -1486,7 +1486,7 @@
   components:
   - type: EntityRemap
     mask:
-      AsteroidRock: AsteroidRockTinOre
+      AsteroidRock: AsteroidRockTin
       WallRockBasalt: WallRockBasaltTin
       WallRockChromite: WallRockChromiteTin
       WallRockSand: WallRockSandTin

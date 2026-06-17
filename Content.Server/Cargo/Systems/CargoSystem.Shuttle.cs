@@ -149,6 +149,7 @@ public sealed partial class CargoSystem
 
     private void OnTradeSplit(EntityUid uid, TradeStationComponent component, ref GridSplitEvent args)
     {
+        return;
         // If the trade station gets bombed it's still a trade station.
         foreach (var gridUid in args.NewGrids)
         {

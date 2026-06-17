@@ -27,3 +27,6 @@
         tags:
           - Structure
     - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100

@@ -14,11 +14,11 @@
   requiredMixerCategories:
   - Stir
   reactants:
-    Plasma: 
+    Plasma:
       amount: 2
-    Bananium: 
+    Bananium:
       amount: 2
-    Titanium: 
+    Titanium:
       amount: 1
   products:
     Phoron: .2

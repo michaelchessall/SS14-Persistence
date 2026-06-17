@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Grid
-  engineVersion: 270.0.0
-  forkId: pss14
-  forkVersion: a42b6c65cecbf5d6276e9bd7fb3019060a22f20b
-  time: 12/30/2025 03:46:33
-  entityCount: 1341
-maps:
-- 33
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   0: Space
   31: FloorDark
@@ -43,7 +32,7 @@ entities:
       name: Engineering Trade Station
     - type: Transform
       pos: -2.9375,-1.625
-      parent: 33
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:
@@ -559,19 +548,6 @@ entities:
     - type: RadiationGridResistance
     - type: ImplicitRoof
     - type: ExplosionAirtightGrid
-  - uid: 33
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: SolarLocation
-      sunAngularVelocity: 0.0013282153080185492 rad
-      towardsSun: 4.182544209635864 rad
-    - type: Broadphase
-    - type: OccluderTree
 - proto: AirAlarm
   entities:
   - uid: 424
@@ -7734,16 +7710,6 @@ entities:
       parent: 2
 - proto: ClothingBeltUtilityEngineering
   entities:
-  - uid: 434
-    components:
-    - type: Transform
-      pos: 6.2896113,-14.183771
-      parent: 2
-    - type: UserInterface
-      actors:
-        enum.StorageUiKey.Key:
-        - invalid
-    - type: ActiveUserInterface
   - uid: 435
     components:
     - type: Transform

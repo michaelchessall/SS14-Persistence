@@ -32,6 +32,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - HighRiskItem
     - WhitelistChameleon
 
 #SOL Chief Engineer's Hardsuit
@@ -70,6 +71,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - HighRiskItem
     - WhitelistChameleon
 
 #SOL Chief Medical Officer's Hardsuit
@@ -101,6 +103,7 @@
   - type: Tag
     tags:
     - Hardsuit
+    - HighRiskItem
     - WhitelistChameleon
 
 #SOL Research Director's Hardsuit
@@ -177,3 +180,8 @@
   - type: HeldSpeedModifier
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetHardsuitSecurityRedSOL
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - Hardsuit

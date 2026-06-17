@@ -15,6 +15,7 @@ public sealed class ParallaxSystem : SharedParallaxSystem
     [Dependency] private readonly SharedMapSystem _map = default!;
 
     private static readonly ProtoId<ParallaxPrototype> Fallback = "Default";
+    private string? _localWeatherParallaxOverride;
 
     public const int ParallaxZIndex = 0;
 
@@ -65,9 +66,32 @@ public sealed class ParallaxSystem : SharedParallaxSystem
         return GetParallax(_map.GetMapOrInvalid(mapId));
     }
 
+    public ParallaxLayerPrepared[] GetParallaxLayersByName(string name)
+    {
+        return _parallax.GetParallaxLayers(name);
+    }
+
     public string GetParallax(EntityUid mapUid)
     {
+        if (!string.IsNullOrWhiteSpace(_localWeatherParallaxOverride))
+            return _localWeatherParallaxOverride;
+
         return TryComp<ParallaxComponent>(mapUid, out var parallax) ? parallax.Parallax : Fallback;
+    }
+
+    public void SetLocalParallaxOverride(string? parallax)
+    {
+        var normalized = string.IsNullOrWhiteSpace(parallax) ? null : parallax;
+        if (_localWeatherParallaxOverride == normalized)
+            return;
+
+        _localWeatherParallaxOverride = normalized;
+
+        if (_localWeatherParallaxOverride == null)
+            return;
+
+        if (!_parallax.IsLoaded(_localWeatherParallaxOverride))
+            _parallax.LoadParallaxByName(_localWeatherParallaxOverride);
     }
 
     /// <summary>

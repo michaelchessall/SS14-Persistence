@@ -36,6 +36,9 @@
           True: { state: icon-open }
           False: { state: icon }
   - type: Appearance
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
 
 - type: entity
   name: emergency toolbox

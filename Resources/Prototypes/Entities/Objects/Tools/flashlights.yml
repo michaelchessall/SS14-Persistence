@@ -74,6 +74,10 @@
     quickEquip: false
     slots:
       - Belt
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
+      Steel: 100
 
 - type: entity
   name: seclite

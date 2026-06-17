@@ -11,4 +11,7 @@ public sealed partial class FultonBeaconComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite), DataField("soundLink"), AutoNetworkedField]
     public SoundSpecifier? LinkSound = new SoundPathSpecifier("/Audio/Items/beep.ogg");
+
+    [DataField("key"), ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
+    public string? Key = null;
 }

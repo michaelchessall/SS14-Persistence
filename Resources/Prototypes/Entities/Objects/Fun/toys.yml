@@ -39,6 +39,11 @@
   - type: Construction
     graph: SnapPopExplosiveGraph
     node: snapPop
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 10
+    chemicalComposition:
+      Sulfur: 1
 
 - type: entity
   parent: BaseStorageItem
@@ -62,6 +67,9 @@
         id: SnapPop
         amount: 5
   - type: Dumpable
+  - type: PhysicalComposition
+    materialComposition:
+      Cardboard: 50
 
 - type: entity
   parent: FoodProduceBase
@@ -85,6 +93,9 @@
   - type: Tag
     tags:
     - Banana
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: DrinkBase
@@ -121,6 +132,9 @@
       collection: packetOpenSounds
   - type: TrashOnSolutionEmpty
     solution: drink
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: DrinkBase
@@ -153,6 +167,9 @@
   - type: Lube
   - type: TrashOnSolutionEmpty
     solution: drink
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: [ BaseItem, MobCombat ]
@@ -276,6 +293,9 @@
       params:
         maxDistance: 1
         volume: -8
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 50
 
 - type: entity
   parent: [ SpectralLocatorUnpowered, PowerCellSlotSmallItem ]

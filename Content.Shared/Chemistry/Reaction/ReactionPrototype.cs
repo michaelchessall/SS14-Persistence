@@ -77,6 +77,8 @@ namespace Content.Shared.Chemistry.Reaction
         /// </summary>
         [DataField("quantized")] public bool Quantized = false;
 
+        [DataField("group")] public string Group = "none";
+
         /// <summary>
         /// Determines the order in which reactions occur. This should used to ensure that (in general) descriptive /
         /// pop-up generating and explosive reactions occur before things like foam/area effects.

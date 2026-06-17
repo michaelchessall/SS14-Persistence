@@ -96,3 +96,6 @@
           Quantity: 2
         - ReagentId: Sulfur
           Quantity: 2
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 25

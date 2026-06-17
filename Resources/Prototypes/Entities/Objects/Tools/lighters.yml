@@ -89,6 +89,8 @@
     color: orange
   - type: ItemTogglePointLight
   - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
 
 - type: entity
   name: cheap lighter

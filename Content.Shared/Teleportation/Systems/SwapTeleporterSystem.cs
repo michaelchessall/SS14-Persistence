@@ -100,9 +100,7 @@ public sealed class SwapTeleporterSystem : EntitySystem
         var (uid, comp) = ent;
         if (!args.CanAccess || !args.CanInteract || args.Hands == null || comp.TeleportTime != null)
             return;
-        if (!TryGetPaired(ent, comp.Key, out var linkedEnt))
-            return;
-        if (!TryComp<SwapTeleporterComponent>(linkedEnt, out var otherComp) || otherComp.TeleportTime != null)
+        if (!comp.HasKey)
             return;
 
         var user = args.User;
@@ -127,7 +125,7 @@ public sealed class SwapTeleporterSystem : EntitySystem
         if (comp.TeleportTime != null)
             return;
 
-        if (!TryGetPaired(ent, comp.Key, out var linkedEnt))
+        if (!TryGetPaired(ent, comp, out var linkedEnt))
         {
             _popup.PopupClient(Loc.GetString("swap-teleporter-popup-teleport-cancel-link"), ent, user);
             return;
@@ -162,7 +160,7 @@ public sealed class SwapTeleporterSystem : EntitySystem
 
         Dirty(uid, comp);
         // We can't run the teleport logic on the client due to PVS range issues.
-        if (_net.IsClient || !TryGetPaired(ent, comp.Key, out var linkedEnt))
+        if (_net.IsClient || !TryGetPaired(ent, comp, out var linkedEnt))
             return;
 
         var teleEnt = GetTeleportingEntity((uid, xform));
@@ -218,7 +216,7 @@ public sealed class SwapTeleporterSystem : EntitySystem
         if (!ent.Comp.HasKey)
             return;
 
-        string? oldKey = ent.Comp.Key;
+        var hasPaired = TryGetPaired(ent, ent.Comp, out var paired);
         ent.Comp.Key = null;
         ent.Comp.TeleportTime = null;
         _appearance.SetData(ent, SwapTeleporterVisuals.Linked, false);
@@ -228,8 +226,9 @@ public sealed class SwapTeleporterSystem : EntitySystem
             _popup.PopupClient(Loc.GetString("swap-teleporter-popup-link-destroyed"), ent, user.Value);
         else
             _popup.PopupEntity(Loc.GetString("swap-teleporter-popup-link-destroyed"), ent);
-        if (TryGetPaired(ent, oldKey, out var linkedNullable))
-            DestroyLink(linkedNullable, user); // the linked one is shown globally
+
+        if (hasPaired)
+            DestroyLink(paired, null); // the linked one is shown globally
     }
 
     private EntityUid GetTeleportingEntity(Entity<TransformComponent> ent)
@@ -253,7 +252,7 @@ public sealed class SwapTeleporterSystem : EntitySystem
         var (_, comp) = ent;
         using (args.PushGroup(nameof(SwapTeleporterComponent)))
         {
-            var locale = !TryGetPaired(ent, comp.Key, out _)
+            var locale = !TryGetPaired(ent, comp, out _)
                 ? "swap-teleporter-examine-link-absent"
                 : "swap-teleporter-examine-link-present";
             args.PushMarkup(Loc.GetString(locale));
@@ -268,7 +267,7 @@ public sealed class SwapTeleporterSystem : EntitySystem
 
     private void OnShutdown(Entity<SwapTeleporterComponent> ent, ref ComponentShutdown args)
     {
-        DestroyLink((ent, ent), null);
+        //DestroyLink((ent, ent), null); // Not a thing we want in persistence I don't think...
     }
 
     public override void Update(float frameTime)
@@ -290,23 +289,28 @@ public sealed class SwapTeleporterSystem : EntitySystem
 
     private string GetUniqueBeaconKey() => Guid.NewGuid().ToString("N");
 
-    private bool TryGetPaired(EntityUid self, string? key, out EntityUid uid)
+    private bool TryGetPaired(EntityUid self, SwapTeleporterComponent component, out EntityUid paired, bool nullifyUnpaired = false)
     {
-        uid = default!;
+        paired = default!;
 
-        if (key == null) return false;
+        if (component.Key == null) return false;
 
         var query = EntityQueryEnumerator<SwapTeleporterComponent>();
 
         while (query.MoveNext(out var id, out var comp))
         {
             if (id == self) continue;
-            if (comp.Key != key) continue;
+            if (comp.Key != component.Key) continue;
 
-            uid = id;
+            paired = id;
             return true;
         }
 
+        if (nullifyUnpaired)
+        {
+            component.Key = null; // Removes the key if a pair isn't found
+            Dirty(self, component);
+        }
         return false;
     }
 }

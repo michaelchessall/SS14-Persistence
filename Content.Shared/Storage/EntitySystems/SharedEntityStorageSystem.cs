@@ -91,10 +91,6 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         // Cannot (un)lock open lockers.
         if (target.Open)
             args.Cancelled = true;
-
-        // Cannot (un)lock from the inside. Maybe a bad idea? Security jocks could trap nerds in lockers?
-        if (target.Contents.Contains(args.User))
-            args.Cancelled = true;
     }
 
     private void OnDestruction(EntityUid uid, EntityStorageComponent component, DestructionEventArgs args)

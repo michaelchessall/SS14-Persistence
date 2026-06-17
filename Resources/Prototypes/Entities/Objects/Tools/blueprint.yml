@@ -21,6 +21,9 @@
   - type: Tag
     tags:
     - BlueprintAutolathe
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 100
 
 - type: entity
   parent: BaseBlueprint

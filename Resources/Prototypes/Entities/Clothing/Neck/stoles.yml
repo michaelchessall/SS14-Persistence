@@ -10,3 +10,6 @@
     sprite: Clothing/Neck/Stoles/chaplain.rsi
   - type: Item
     storedRotation: 90
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 25

@@ -80,6 +80,10 @@
   - type: Tag
     tags:
       - PowerCellSmall
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+
 
 - type: entity
   id: PowerCellSmallPrinted
@@ -125,6 +129,10 @@
   - type: Battery
     maxCharge: 720
     startingCharge: 720
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
 
 - type: entity
   id: PowerCellMediumPrinted
@@ -160,6 +168,11 @@
   - type: Battery
     maxCharge: 1080
     startingCharge: 1080
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 100
+      Gold: 25
 
 - type: entity
   id: PowerCellHighPrinted
@@ -195,6 +208,13 @@
   - type: Battery
     maxCharge: 1800
     startingCharge: 1800
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 300
+      Plastic: 100
+      Gold: 100
+      Silver: 100
+
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -232,6 +252,11 @@
     startingCharge: 720
   - type: BatterySelfRecharger
     autoRechargeRate: 12 # takes 1 minute to charge itself back to full
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      Gold: 50
+      Uranium: 100
 
 - type: entity
   parent: PowerCellMicroreactor
@@ -267,6 +292,11 @@
       startingCharge: 1200
     - type: BatterySelfRecharger
       autoRechargeRate: 40
+    - type: PhysicalComposition
+      materialComposition: # Its basically a microreactor, so same composition.
+        Steel: 200
+        Gold: 50
+        Uranium: 100
 
 # Power cage (big heavy power cell for big devices)
 
@@ -312,6 +342,10 @@
   - type: Battery
     maxCharge: 1400
     startingCharge: 1400
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Plastic: 50
 
 - type: entity
   id: PowerCageMedium
@@ -330,6 +364,12 @@
   - type: Battery
     maxCharge: 2700
     startingCharge: 2700
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      Glass: 100
+      Plastic: 100
+      Gold: 25
 
 - type: entity
   id: PowerCageHigh
@@ -348,6 +388,12 @@
   - type: Battery
     maxCharge: 6200
     startingCharge: 6200
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
+      Glass: 200
+      Plastic: 200
+      Gold: 50
 
 - type: entity
   id: PowerCageSmallEmpty

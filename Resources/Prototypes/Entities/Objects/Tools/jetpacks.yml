@@ -62,6 +62,9 @@
           False: {state: icon}
   - type: StaticPrice
     price: 100
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 - type: entity
   parent: BaseAction

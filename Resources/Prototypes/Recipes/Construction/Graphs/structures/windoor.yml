@@ -62,6 +62,15 @@
       - material: UraniumGlass
         amount: 5
         doAfter: 1
+    
+    #to phoron
+    - to: phglass
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - material: PhoronGlass
+        amount: 5
+        doAfter: 1
 
     #back to start
     - to: start
@@ -298,6 +307,80 @@
       steps:
       - tool: Anchoring
         doAfter: 1
+  
+  #phoron windoor nodes
+  - node: phglass
+    entity: WindoorAssemblyPhoron
+    edges:
+    - to: phwired
+      conditions:
+      - !type:EntityAnchored { }
+      steps:
+      - material: Cable
+        amount: 5
+        doAfter: 1
+    - to: assembly
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPhoronGlass1
+        amount: 5
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: phwired
+    entity: WindoorAssemblyPhoron
+    edges:
+    - to: phelectronics
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - tag: DoorElectronics
+        store: board
+        name: construction-graph-tag-door-electronics-circuit-board
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "door_electronics"
+        doAfter: 1
+    - to: phglass
+      completed:
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 5
+      steps:
+      - tool: Cutting
+        doAfter: 1
+
+  - node: phelectronics
+    entity: WindoorAssemblyPhoron
+    edges:
+    - to: phwindoor
+      conditions:
+      - !type:EntityAnchored {}
+      steps:
+      - tool: Screwing
+        doAfter: 2
+
+  - node: phwindoor
+    entity: WindoorPhoron
+    edges:
+    - to: phwired
+      conditions:
+      - !type:EntityAnchored {}
+      - !type:DoorBolted
+        value: false
+      - !type:WirePanel {}
+      - !type:AllWiresCut
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Anchoring
+        doAfter: 1
 
   #secure windoor nodes
   - node: assemblySecure
@@ -330,6 +413,15 @@
       - !type:EntityAnchored { }
       steps:
       - material: ReinforcedUraniumGlass
+        amount: 5
+        doAfter: 1
+
+    #to secure phoron
+    - to: phglassSecure
+      conditions:
+      - !type:EntityAnchored { }
+      steps:
+      - material: ReinforcedPhoronGlass
         amount: 5
         doAfter: 1
 
@@ -676,6 +768,85 @@
       wiresAccessible: true
     edges:
     - to: uwiredSecure
+      conditions:
+      - !type:EntityAnchored {}
+      - !type:DoorBolted
+        value: false
+      - !type:WirePanel {}
+      - !type:AllWiresCut
+      completed:
+      - !type:EmptyAllContainers
+        pickup: true
+        emptyAtUser: true
+      steps:
+      - tool: Anchoring
+        doAfter: 4
+
+#secure phoron node
+  - node: phglassSecure
+    entity: WindoorAssemblySecurePhoron
+    edges:
+    - to: phwiredSecure
+      conditions:
+      - !type:EntityAnchored { }
+      steps:
+      - material: Cable
+        amount: 5
+        doAfter: 1
+
+    - to: assemblySecure
+      conditions:
+      - !type:EntityAnchored
+        anchored: false
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetRPhoronGlass1
+        amount: 5
+      steps:
+      - tool: Screwing
+        doAfter: 4
+
+  - node: phwiredSecure
+    entity: WindoorAssemblySecurePhoron
+    edges:
+    - to: phelectronicsSecure
+      conditions:
+      - !type:EntityAnchored { }
+      steps:
+      - tag: DoorElectronics
+        store: board
+        name: construction-graph-tag-door-electronics-circuit-board
+        icon:
+          sprite: "Objects/Misc/module.rsi"
+          state: "door_electronics"
+        doAfter: 1
+    - to: phglassSecure
+      completed:
+      - !type:SpawnPrototype
+        prototype: CableApcStack1
+        amount: 5
+      steps:
+      - tool: Cutting
+        doAfter: 3
+
+  - node: phelectronicsSecure
+    entity: WindoorAssemblySecurePhoron
+    edges:
+    - to: phwindoorSecure
+      conditions:
+      - !type:EntityAnchored { }
+      steps:
+      - tool: Screwing
+        doAfter: 4
+
+  - node: phwindoorSecure
+    entity: WindoorPhoronSecure
+    doNotReplaceInheritingEntities: true
+    actions:
+    - !type:SetWiresPanelSecurity
+      wiresAccessible: true
+    edges:
+    - to: phwiredSecure
       conditions:
       - !type:EntityAnchored {}
       - !type:DoorBolted

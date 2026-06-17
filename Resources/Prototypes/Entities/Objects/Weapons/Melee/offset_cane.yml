@@ -36,6 +36,9 @@
         Blunt: 3
   - type: UseDelay
     delay: 1
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 300
 
 - type: entity
   parent: OffsetCane

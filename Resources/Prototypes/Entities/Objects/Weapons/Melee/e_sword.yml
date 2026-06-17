@@ -72,6 +72,9 @@
   - type: Reflect
   - type: IgnitionSource
     temperature: 700
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   name: energy sword

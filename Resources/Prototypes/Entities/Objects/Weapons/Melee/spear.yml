@@ -117,7 +117,10 @@
     inHandsMaxFillLevels: 1
     equippedFillBaseName: -fill-
     equippedMaxFillLevels: 1
-
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
+      Glass: 100
 
 - type: entity
   name: reinforced spear
@@ -138,6 +141,10 @@
         Piercing: 18
   - type: Construction
     graph: SpearReinforced
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
+      Glass: 100
 
 - type: entity
   name: plasma spear
@@ -158,6 +165,11 @@
         Piercing: 21
   - type: Construction
     graph: SpearPlasma
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
+      Glass: 100
+      Plasma: 25
 
 - type: entity
   name: uranium spear
@@ -180,6 +192,11 @@
         Radiation: 9
   - type: Construction
     graph: SpearUranium
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
+      Glass: 100
+      Uranium: 25
 
 - type: entity
   name: bone spear

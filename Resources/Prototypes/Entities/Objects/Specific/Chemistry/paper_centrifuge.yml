@@ -28,6 +28,9 @@
   - type: Appearance
   - type: DnaSubstanceTrace
   - type: ReactionMixer
+  - type: PhysicalComposition
+    materialComposition:
+      Paper: 200
 
 - type: entity
   parent: BaseHandheldMixer

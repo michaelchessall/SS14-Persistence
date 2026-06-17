@@ -15,6 +15,9 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
     [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
     [Dependency] private readonly SectorWeatherSystem _sectorWeather = default!;
 
+    private float _refreshTimer;
+    private const float RefreshInterval = 1f;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -77,6 +80,26 @@ public sealed class RadarConsoleSystem : SharedRadarConsoleSystem
             state.RotateWithEntity = !component.FollowEntity;
 
             _uiSystem.SetUiState(uid, RadarConsoleUiKey.Key, new NavBoundUserInterfaceState(state));
+        }
+    }
+
+    public override void Update(float frameTime)
+    {
+        base.Update(frameTime);
+
+        _refreshTimer += frameTime;
+        if (_refreshTimer < RefreshInterval)
+            return;
+
+        _refreshTimer -= RefreshInterval;
+
+        var query = EntityQueryEnumerator<RadarConsoleComponent>();
+        while (query.MoveNext(out var uid, out var component))
+        {
+            if (!_uiSystem.IsUiOpen(uid, RadarConsoleUiKey.Key))
+                continue;
+
+            UpdateState(uid, component);
         }
     }
 }

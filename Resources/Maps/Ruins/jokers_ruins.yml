@@ -1,17 +1,6 @@
 meta:
-  format: 7
-  category: Grid
-  engineVersion: 270.0.0
-  forkId: ""
-  forkVersion: ""
-  time: 12/29/2025 20:38:43
-  entityCount: 451
-maps:
-- 1
-grids:
-- 2
-orphans: []
-nullspace: []
+  format: 6
+  postmapinit: false
 tilemap:
   2: Space
   6: FloorAstroGrass
@@ -25,26 +14,13 @@ tilemap:
 entities:
 - proto: ""
   entities:
-  - uid: 1
-    components:
-    - type: MetaData
-      name: Map Entity
-    - type: Transform
-    - type: Map
-      mapPaused: True
-    - type: GridTree
-    - type: SolarLocation
-      sunAngularVelocity: 0.0018475114686694076 rad
-      towardsSun: 0.14296611731940287 rad
-    - type: Broadphase
-    - type: OccluderTree
   - uid: 2
     components:
     - type: MetaData
       name: grid
     - type: Transform
       pos: -5.2112017,-0.008535743
-      parent: 1
+      parent: invalid
     - type: MapGrid
       chunks:
         0,0:

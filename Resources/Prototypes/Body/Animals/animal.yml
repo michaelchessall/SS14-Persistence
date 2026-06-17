@@ -15,6 +15,7 @@
   parent: OrganAnimal
   id: OrganAnimalInternal
   abstract: true
+  # this allows the organs to be turned into biomass in the biogenerator
   components:
   - type: SolutionContainerManager
     solutions:
@@ -29,6 +30,15 @@
 - type: entity
   parent: [ OrganBaseLungs, OrganAnimalInternal, OrganAnimalMetabolizer ]
   id: OrganAnimalLungs
+  # this allows the organs to be turned into biomass in the biogenerator
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
 
 - type: entity
   parent: [ OrganBaseHeart, OrganAnimalInternal, OrganAnimalMetabolizer ]
@@ -37,6 +47,15 @@
 - type: entity
   parent: [ OrganBaseStomach, OrganAnimalInternal, OrganAnimalMetabolizer ]
   id: OrganAnimalStomach
+  # this allows the organs to be turned into biomass in the biogenerator
+  components:
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 2
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
 
 - type: entity
   parent: [ OrganBaseLiver, OrganAnimalInternal, OrganAnimalMetabolizer ]

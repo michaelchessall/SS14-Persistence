@@ -25,27 +25,46 @@ public sealed class SignatureTagHandler : IMarkupTagHandler
 
     public bool TryCreateControl(MarkupNode node, [NotNullWhen(true)] out Control? control)
     {
+        var hasField = TryGetSignatureField(node, out var field);
+
         var btn = new Button
         {
-            Text = Loc.GetString("paper-signature-sign-button"),
+            Text = hasField ? field : Loc.GetString("paper-signature-sign-button"),
             MinSize = new Vector2(48, PaperTagHelper.FontLineHeight + 4),
-            MaxSize = new Vector2(48, PaperTagHelper.FontLineHeight + 4),
+            MaxSize = new Vector2(100, PaperTagHelper.FontLineHeight + 4),
             Margin = new Thickness(1, 2, 1, 2),
             StyleClasses = { "ButtonSquare" },
             TextAlign = Label.AlignMode.Center,
-            Name = $"signature_{_signatureCounter++}"
+            Name = $"signature_{(hasField ? field : _signatureCounter++)}"
         };
 
         btn.OnPressed += _ =>
         {
             if (PaperTagHelper.FindPaperWindow(btn) is { } paperWindow)
             {
-                var buttonIndex = PaperTagHelper.CountButtonsBefore(btn, b => b.Text == Loc.GetString("paper-signature-sign-button"));
-                paperWindow.SendSignatureRequest(buttonIndex);
+                if (hasField)
+                {
+                    paperWindow.SendFieldSignatureRequest(field ?? ""); // It won't be null here... but appeasing the editor.
+                }
+                else
+                {
+                    var buttonIndex = PaperTagHelper.CountButtonsBefore(btn, b => b.Text == Loc.GetString("paper-signature-sign-button"));
+                    paperWindow.SendSignatureRequest(buttonIndex);
+                }
             }
         };
 
         control = btn;
         return true;
+    }
+
+    private bool TryGetSignatureField(MarkupNode node, [NotNullWhen(true)] out string? field)
+    {
+        field = null;
+        if (node.Value.TryGetString(out field))
+        {
+            return !string.IsNullOrWhiteSpace(field);
+        }
+        return false;
     }
 }

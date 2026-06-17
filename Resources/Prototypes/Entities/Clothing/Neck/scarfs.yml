@@ -8,6 +8,9 @@
     sprite: Clothing/Neck/Scarfs/red.rsi
   - type: Clothing
     sprite: Clothing/Neck/Scarfs/red.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Cloth: 25
 
 - type: entity
   parent: ClothingScarfBase

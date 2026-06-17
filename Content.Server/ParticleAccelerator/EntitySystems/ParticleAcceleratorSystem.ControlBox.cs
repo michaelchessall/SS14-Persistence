@@ -23,11 +23,40 @@ public sealed partial class ParticleAcceleratorSystem
 
     private void InitializeControlBoxSystem()
     {
+        SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, ComponentStartup>(OnControlBoxStartup);
         SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, PowerChangedEvent>(OnControlBoxPowerChange);
         SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, ParticleAcceleratorSetEnableMessage>(OnUISetEnableMessage);
         SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, ParticleAcceleratorSetPowerStateMessage>(OnUISetPowerMessage);
         SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, ParticleAcceleratorRescanPartsMessage>(OnUIRescanMessage);
         SubscribeLocalEvent<ParticleAcceleratorControlBoxComponent, MultipartMachineAssemblyStateChanged>(OnMachineAssembledChanged);
+    }
+
+    private void OnControlBoxStartup(Entity<ParticleAcceleratorControlBoxComponent> ent, ref ComponentStartup args)
+    {
+        var uid = ent.Owner;
+
+        if (!TryComp<MultipartMachineComponent>(uid, out var machineComp) || !machineComp.IsAssembled)
+        {
+            UpdateAppearance(uid, ent.Comp);
+            UpdateUI(uid, ent.Comp);
+            return;
+        }
+
+        UpdatePowerDraw(uid, ent.Comp);
+
+        if (_multipartMachine.GetPartEntity(uid, AcceleratorParts.PowerBox) is { } powerBox
+            && TryComp<PowerConsumerComponent>(powerBox, out var powerConsumer)
+            && ent.Comp.Enabled
+            && powerConsumer.ReceivedPower >= powerConsumer.DrawRate * ParticleAcceleratorControlBoxComponent.RequiredPowerRatio)
+        {
+            PowerOn(uid, ent.Comp);
+        }
+        else
+        {
+            PowerOff(uid, ent.Comp);
+            UpdatePartVisualStates(uid, ent.Comp);
+            UpdateUI(uid, ent.Comp);
+        }
     }
 
     public override void Update(float frameTime)

@@ -1,4 +1,5 @@
 using Content.Server.Administration.Logs;
+using Content.Server.Singularity.Components;
 using Content.Server.Singularity.Events;
 using Content.Shared.Database;
 using Content.Shared.Mind.Components;
@@ -34,6 +35,7 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
     [Dependency] private readonly SharedTransformSystem _xformSystem = default!;
     [Dependency] private readonly SharedMapSystem _mapSystem = default!;
     [Dependency] private readonly TagSystem _tagSystem = default!;
+    [Dependency] private readonly WhiteHoleSystem _whiteHole = default!;
     #endregion Dependencies
 
     private static readonly ProtoId<TagPrototype> HighRiskItemTag = "HighRiskItem";
@@ -128,9 +130,29 @@ public sealed class EventHorizonSystem : SharedEventHorizonSystem
         if (EntityManager.IsQueuedForDeletion(morsel)) // already handled, and we're substepping
             return;
 
+        // If this is a mind entity, redirect to white hole as before
         if (HasComp<MindContainerComponent>(morsel)
-            || _tagSystem.HasTag(morsel, HighRiskItemTag)
-            || HasComp<ContainmentFieldGeneratorComponent>(morsel))
+            && _whiteHole.TrySendMindEntityToLinkedWhiteHole(hungry, morsel))
+        {
+            _adminLogger.Add(LogType.EntityDelete, LogImpact.High,
+                $"{ToPrettyString(morsel):player} entered the event horizon of {ToPrettyString(hungry)} and was redirected through the linked white hole");
+
+            // Only notify the singularity side so energy/effects still update.
+            // Do not raise consumed events on the redirected entity, as that path can consume body containers (organs).
+            var teleported = new EntityConsumedByEventHorizonEvent(morsel, hungry, eventHorizon, outerContainer);
+            RaiseLocalEvent(hungry, ref teleported);
+            return;
+        }
+
+        // Only delete entities with the Structure tag, or entities with SinguloFoodComponent (regardless of tag)
+        var isSinguloFood = HasComp<SinguloFoodComponent>(morsel);
+        var isStructure = _tagSystem.HasTag(morsel, "Structure");
+
+        if (!isSinguloFood && !isStructure)
+            return;
+
+        // For logging, keep HighRiskItem and ContainmentFieldGeneratorComponent as high impact
+        if (_tagSystem.HasTag(morsel, HighRiskItemTag) || HasComp<ContainmentFieldGeneratorComponent>(morsel))
         {
             _adminLogger.Add(LogType.EntityDelete, LogImpact.High, $"{ToPrettyString(morsel):player} entered the event horizon of {ToPrettyString(hungry)} and was deleted");
         }

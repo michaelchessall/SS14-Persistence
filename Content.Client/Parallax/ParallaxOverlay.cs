@@ -14,6 +14,11 @@ namespace Content.Client.Parallax;
 
 public sealed class ParallaxOverlay : Overlay
 {
+    private const float FadeDuration = 5.0f; // seconds
+    private string? _lastParallax;
+    private float _fadeTimer = 0f;
+    private bool _fading = false;
+    private float _lastFadeStartTime = 0f;
     [Dependency] private readonly IEntityManager _entManager = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
@@ -50,14 +55,53 @@ public sealed class ParallaxOverlay : Overlay
 
         var position = args.Viewport.Eye?.Position.Position ?? Vector2.Zero;
         var worldHandle = args.WorldHandle;
-
-        var layers = _parallax.GetParallaxLayers(args.MapId);
         var realTime = (float)_timing.RealTime.TotalSeconds;
 
+        // Get current parallax name
+        var currentParallax = _parallax.GetParallax(args.MapId);
+        var layers = _parallax.GetParallaxLayers(args.MapId);
+
+        // Detect parallax change and start fade
+        if (_lastParallax != null && _lastParallax != currentParallax && !_fading)
+        {
+            _fading = true;
+            _fadeTimer = 0f;
+            _lastFadeStartTime = realTime;
+        }
+
+        // If fading, draw both old and new
+        if (_fading && _lastParallax != null && _lastParallax != currentParallax)
+        {
+            var oldLayers = _parallax.GetParallaxLayersByName(_lastParallax);
+            _fadeTimer = realTime - _lastFadeStartTime;
+            float t = MathF.Min(_fadeTimer / FadeDuration, 1f);
+
+            // Draw old parallax (fade out)
+            DrawParallaxLayers(args, oldLayers, position, worldHandle, realTime, 1f - t);
+            // Draw new parallax (fade in)
+            DrawParallaxLayers(args, layers, position, worldHandle, realTime, t);
+
+            if (t >= 1f)
+            {
+                _fading = false;
+                _lastParallax = currentParallax;
+            }
+        }
+        else
+        {
+            // Not fading, just draw normally
+            DrawParallaxLayers(args, layers, position, worldHandle, realTime, 1f);
+            _lastParallax = currentParallax;
+        }
+
+        worldHandle.UseShader(null);
+    }
+
+    private void DrawParallaxLayers(in OverlayDrawArgs args, ParallaxLayerPrepared[] layers, Vector2 position, DrawingHandleWorld worldHandle, float realTime, float alpha)
+    {
         foreach (var layer in layers)
         {
             ShaderInstance? shader;
-
             if (!string.IsNullOrEmpty(layer.Config.Shader))
                 shader = _prototypeManager.Index<ShaderPrototype>(layer.Config.Shader).Instance();
             else
@@ -65,56 +109,34 @@ public sealed class ParallaxOverlay : Overlay
 
             worldHandle.UseShader(shader);
             var tex = layer.Texture;
-
-            // Size of the texture in world units.
             var size = (tex.Size / (float)EyeManager.PixelsPerMeter) * layer.Config.Scale;
-
-            // The "home" position is the effective origin of this layer.
-            // Parallax shifting is relative to the home, and shifts away from the home and towards the Eye centre.
-            // The effects of this are such that a slowness of 1 anchors the layer to the centre of the screen, while a slowness of 0 anchors the layer to the world.
-            // (For values 0.0 to 1.0 this is in effect a lerp, but it's deliberately unclamped.)
-            // The ParallaxAnchor adapts the parallax for station positioning and possibly map-specific tweaks.
             var home = layer.Config.WorldHomePosition + _manager.ParallaxAnchor;
             var scrolled = layer.Config.Scrolling * realTime;
-
-            // Origin - start with the parallax shift itself.
             var originBL = (position - home) * layer.Config.Slowness + scrolled;
-
-            // Place at the home.
             originBL += home;
-
-            // Adjust.
             originBL += layer.Config.WorldAdjustPosition;
-
-            // Centre the image.
             originBL -= size / 2;
+
+            Color? modulate = alpha < 1f ? new Color(1f, 1f, 1f, alpha) : (Color?)null;
 
             if (layer.Config.Tiled)
             {
-                // Remove offset so we can floor.
                 var flooredBL = args.WorldAABB.BottomLeft - originBL;
-
-                // Floor to background size.
                 flooredBL = (flooredBL / size).Floored() * size;
-
-                // Re-offset.
                 flooredBL += originBL;
-
                 for (var x = flooredBL.X; x < args.WorldAABB.Right; x += size.X)
                 {
                     for (var y = flooredBL.Y; y < args.WorldAABB.Top; y += size.Y)
                     {
-                        worldHandle.DrawTextureRect(tex, Box2.FromDimensions(new Vector2(x, y), size));
+                        worldHandle.DrawTextureRect(tex, Box2.FromDimensions(new Vector2(x, y), size), modulate);
                     }
                 }
             }
             else
             {
-                worldHandle.DrawTextureRect(tex, Box2.FromDimensions(originBL, size));
+                worldHandle.DrawTextureRect(tex, Box2.FromDimensions(originBL, size), modulate);
             }
         }
-
-        worldHandle.UseShader(null);
     }
 }
 

@@ -6,6 +6,9 @@
   - type: Tag
     tags:
     - PercussionInstrument
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 200
 
 - type: entity
   parent: BasePercussionInstrument
@@ -29,6 +32,9 @@
     sprite: Objects/Fun/Instruments/musicbox.rsi
   - type: Item
     size: Small
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 - type: entity
   parent: BasePercussionInstrument
@@ -64,6 +70,9 @@
     storedSprite:
       state: storage
       sprite: Objects/Fun/Instruments/microphone.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
 
 
 - type: entity
@@ -76,6 +85,9 @@
     program: 115
   - type: Sprite
     sprite: Objects/Fun/Instruments/woodblock.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Wood: 100
 
 - type: entity
   parent: BasePercussionInstrument

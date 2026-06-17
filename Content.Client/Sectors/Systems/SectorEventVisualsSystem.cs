@@ -1,4 +1,5 @@
 using Content.Client.Sectors.Overlays;
+using Content.Client.Parallax;
 using Content.Shared.Sectors;
 using Content.Shared.Sectors.Events;
 using Content.Shared.Sectors.Prototypes;
@@ -11,6 +12,7 @@ namespace Content.Client.Sectors.Systems;
 public sealed class SectorEventVisualsSystem : EntitySystem
 {
     [Dependency] private readonly IOverlayManager _overlays = default!;
+    [Dependency] private readonly ParallaxSystem _parallaxSystem = default!;
     [Dependency] private readonly IPlayerManager _players = default!;
     [Dependency] private readonly IPrototypeManager _prototypes = default!;
     [Dependency] private readonly SharedSectorSystem _sectors = default!;
@@ -23,6 +25,9 @@ public sealed class SectorEventVisualsSystem : EntitySystem
     private float _currentAlpha;
     private float _targetNoiseStrength;
     private float _currentNoiseStrength;
+    private SpaceSector? _lastSector;
+    private string? _lastWeatherId;
+    private string? _activeParallaxOverride;
 
     private const float FadeSpeed = 0.1f;
 
@@ -39,6 +44,7 @@ public sealed class SectorEventVisualsSystem : EntitySystem
     public override void Shutdown()
     {
         base.Shutdown();
+        _parallaxSystem.SetLocalParallaxOverride(null);
         _overlays.RemoveOverlay(_overlay);
     }
 
@@ -50,6 +56,7 @@ public sealed class SectorEventVisualsSystem : EntitySystem
         {
             _targetAlpha = 0f;
             _targetNoiseStrength = 0f;
+            ApplyParallaxOverrideIfChanged(null, null);
         }
         else
         {
@@ -59,6 +66,7 @@ public sealed class SectorEventVisualsSystem : EntitySystem
             {
                 _targetAlpha = 0f;
                 _targetNoiseStrength = 0f;
+                ApplyParallaxOverrideIfChanged(sector, null);
             }
             else
             {
@@ -67,6 +75,7 @@ public sealed class SectorEventVisualsSystem : EntitySystem
                 _targetTintColor = color;
                 _targetAlpha = color.A * strength;
                 _targetNoiseStrength = weather.ScreenTintNoiseStrength;
+                ApplyParallaxOverrideIfChanged(sector, weatherId, weather.Parallax);
             }
         }
 
@@ -85,5 +94,21 @@ public sealed class SectorEventVisualsSystem : EntitySystem
         {
             _activeWeather[sector] = weatherId;
         }
+    }
+
+    private void ApplyParallaxOverrideIfChanged(SpaceSector? sector, string? weatherId, string? weatherParallax = null)
+    {
+        if (_lastSector == sector && _lastWeatherId == weatherId)
+            return;
+
+        _lastSector = sector;
+        _lastWeatherId = weatherId;
+
+        var nextParallaxOverride = string.IsNullOrWhiteSpace(weatherParallax) ? null : weatherParallax;
+        if (_activeParallaxOverride == nextParallaxOverride)
+            return;
+
+        _activeParallaxOverride = nextParallaxOverride;
+        _parallaxSystem.SetLocalParallaxOverride(_activeParallaxOverride);
     }
 }

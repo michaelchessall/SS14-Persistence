@@ -44,7 +44,7 @@
         - ApeCircuitboard
   group: ScienceBounty
 
-- type: cargoBounty ##Commented out because non functional currently, needs troubleshooting with tags
+- type: cargoBounty 
   id: BountyRipley
   reward: 12500
   description: bounty-description-ripley

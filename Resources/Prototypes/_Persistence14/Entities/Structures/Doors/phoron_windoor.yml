@@ -1,0 +1,161 @@
+
+
+- type: entity
+  id: WindoorPhoron
+  parent: [BaseDeltaPressurePhoronGlassQuarter, BaseWindoor]
+  name: phoron windoor
+  description: It's a very expensive window and sliding door. Congratulations!
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Windoors/phoron.rsi
+    layers:
+    - state: closed
+      map: [ "enum.DoorVisualLayers.Base" ]
+    - state: closed_unlit
+      shader: unshaded
+      map: [ "enum.DoorVisualLayers.BaseUnlit" ]
+      visible: false
+    - state: welded
+      map: [ "enum.WeldableLayers.BaseWelded" ]
+    - state: bolted_unlit
+      shader: unshaded
+      map: [ "enum.DoorVisualLayers.BaseBolted" ]
+    - state: emergency_unlit
+      shader: unshaded
+      map: [ "enum.DoorVisualLayers.BaseEmergencyAccess" ]
+    - state: panel_open
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: [ "enum.ElectrifiedLayers.HUD" ]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: [ "enum.ElectrifiedLayers.Sparks" ]
+    - state: sparks
+      map: ["enum.DoorVisualLayers.BaseEmagging"]
+      shader: unshaded
+      visible: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 800
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 530
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPhoron:
+            min: 1
+            max: 2
+          SheetSteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Windoor
+    node: phwindoor
+  - type: StaticPrice
+    price: 1200
+  - type: RadiationBlocker
+    resistance: 1
+  - type: Tag
+    tags:
+      - PhoronWindoor
+      # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
+
+
+- type: entity
+  id: WindoorPhoronSecure
+  parent: [BaseDeltaPressureReinforcedPhoronGlassQuarter, BaseSecureWindoor]
+  name: secure phoron windoor
+  description: An extra sturdy window that's also a door. How curious!
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Windoors/phoron.rsi
+    layers:
+    - state: secure_underlay
+    - state: closed
+      map: [ "enum.DoorVisualLayers.Base" ]
+    - state: closed_unlit
+      shader: unshaded
+      map: [ "enum.DoorVisualLayers.BaseUnlit" ]
+      visible: false
+    - state: welded
+      map: [ "enum.WeldableLayers.BaseWelded" ]
+    - state: bolted_unlit
+      shader: unshaded
+      map: [ "enum.DoorVisualLayers.BaseBolted" ]
+    - state: emergency_unlit
+      shader: unshaded
+      map: [ "enum.DoorVisualLayers.BaseEmergencyAccess" ]
+    - state: panel_open
+      map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      visible: false
+    - state: electrified_ai
+      sprite: Interface/Misc/ai_hud.rsi
+      shader: unshaded
+      visible: false
+      map: [ "enum.ElectrifiedLayers.HUD" ]
+    - state: electrified
+      sprite: Effects/electricity.rsi
+      shader: unshaded
+      visible: false
+      map: [ "enum.ElectrifiedLayers.Sparks" ]
+    - state: sparks
+      map: ["enum.DoorVisualLayers.BaseEmagging"]
+      shader: unshaded
+      visible: false
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 1200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 860
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          ShardGlassPhoron:
+            min: 1
+            max: 2
+          SheetPlasteel1:
+            min: 1
+            max: 2
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Construction
+    graph: Windoor
+    node: phwindoorSecure
+  - type: StaticPrice
+    price: 1500
+  - type: RadiationBlocker
+    resistance: 2
+  - type: Tag
+    tags:
+      - SecurePhoronWindoor
+      # This tag is used to nagivate the Airlock construction graph. It's needed because the construction graph is shared between Airlock, AirlockGlass, and HighSecDoor
+      - DoorRemoteWhitelist
+      # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
+
+- type: Tag
+  id: PhoronWindoor
+
+- type: Tag
+  id: SecurePhoronWindoor

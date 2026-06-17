@@ -1,0 +1,9 @@
+light_mode unshaded;
+
+void fragment()
+{
+    highp vec4 base = texture2D(TEXTURE, UV);
+    COLOR = vec4(vec3(1.0) - base.rgb, base.a);
+}
+
+

@@ -37,4 +37,26 @@ public sealed partial class CCVars
         CVarDef.Create("sector.name.west", string.Empty, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
     public static readonly CVarDef<string> SectorNameNorthWest =
         CVarDef.Create("sector.name.northwest", string.Empty, CVar.ARCHIVE | CVar.REPLICATED | CVar.SERVER);
+
+    /// <summary>
+    /// Persisted active weather prototype IDs for each sector. Empty string means no active weather.
+    /// </summary>
+    public static readonly CVarDef<string> SectorWeatherCenter =
+        CVarDef.Create("sector.weather.center", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherNorth =
+        CVarDef.Create("sector.weather.north", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherNorthEast =
+        CVarDef.Create("sector.weather.northeast", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherEast =
+        CVarDef.Create("sector.weather.east", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherSouthEast =
+        CVarDef.Create("sector.weather.southeast", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherSouth =
+        CVarDef.Create("sector.weather.south", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherSouthWest =
+        CVarDef.Create("sector.weather.southwest", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherWest =
+        CVarDef.Create("sector.weather.west", string.Empty, CVar.ARCHIVE | CVar.SERVER);
+    public static readonly CVarDef<string> SectorWeatherNorthWest =
+        CVarDef.Create("sector.weather.northwest", string.Empty, CVar.ARCHIVE | CVar.SERVER);
 }

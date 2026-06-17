@@ -30,6 +30,7 @@ public sealed class RadiationCollectorSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+        SubscribeLocalEvent<RadiationCollectorComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<RadiationCollectorComponent, ActivateInWorldEvent>(OnActivate);
         SubscribeLocalEvent<RadiationCollectorComponent, OnIrradiatedEvent>(OnRadiation);
         SubscribeLocalEvent<RadiationCollectorComponent, ExaminedEvent>(OnExamined);
@@ -53,10 +54,18 @@ public sealed class RadiationCollectorSystem : EntitySystem
         return true;
     }
 
+    private void OnComponentInit(EntityUid uid, RadiationCollectorComponent component, ComponentInit args)
+    {
+        TryGetLoadedGasTank(uid, out var gasTank);
+        UpdateTankAppearance(uid, component, gasTank);
+        UpdateMachineAppearance(uid, component);
+    }
+
     private void OnMapInit(EntityUid uid, RadiationCollectorComponent component, MapInitEvent args)
     {
         TryGetLoadedGasTank(uid, out var gasTank);
         UpdateTankAppearance(uid, component, gasTank);
+        UpdateMachineAppearance(uid, component);
     }
 
     private void OnTankChanged(EntityUid uid, RadiationCollectorComponent component, ContainerModifiedMessage args)

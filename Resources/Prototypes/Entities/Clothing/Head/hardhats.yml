@@ -66,6 +66,10 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 50
+      Plastic: 50
 
 - type: entity
   parent: ClothingHeadHatHardhatBase

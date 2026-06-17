@@ -1,6 +1,7 @@
 ﻿name: Test Packaging
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master, staging, stable ]
     paths:

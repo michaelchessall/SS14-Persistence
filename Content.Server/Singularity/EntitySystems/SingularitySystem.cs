@@ -21,6 +21,7 @@ public sealed class SingularitySystem : SharedSingularitySystem
     #region Dependencies
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly PvsOverrideSystem _pvs = default!;
+    [Dependency] private readonly WhiteHoleSystem _whiteHole = default!;
     #endregion Dependencies
 
     /// <summary>
@@ -69,6 +70,7 @@ public sealed class SingularitySystem : SharedSingularitySystem
         var query = EntityQueryEnumerator<SingularityComponent>();
         while (query.MoveNext(out var uid, out var singularity))
         {
+            UpdateEnergyDrain(uid, singularity);
             AdjustEnergy(uid, -singularity.EnergyDrain * frameTime, singularity: singularity);
         }
     }
@@ -149,6 +151,7 @@ public sealed class SingularitySystem : SharedSingularitySystem
 
         comp.AmbientSoundStream = _audio.PlayPvs(comp.AmbientSound, uid)?.Entity;
         UpdateSingularityLevel(uid, comp);
+        _whiteHole.EnsureWhiteHoleForSingularity(uid);
     }
 
     /// <summary>
@@ -206,6 +209,8 @@ public sealed class SingularitySystem : SharedSingularitySystem
     /// <param name="args">The event arguments.</param>
     public void OnConsumedEntity(EntityUid uid, SingularityComponent comp, ref EntityConsumedByEventHorizonEvent args)
     {
+        _whiteHole.EjectConsumedEntity(uid, args.Entity);
+
         // Don't double count singulo food
         if (HasComp<SinguloFoodComponent>(args.Entity))
             return;
@@ -265,14 +270,22 @@ public sealed class SingularitySystem : SharedSingularitySystem
     /// <param name="args">The event arguments.</param>
     public void UpdateEnergyDrain(EntityUid uid, SingularityComponent comp, SingularityLevelChangedEvent args)
     {
-        comp.EnergyDrain = args.NewValue switch
+        UpdateEnergyDrain(uid, comp);
+    }
+
+    /// <summary>
+    /// Updates the singularity's drain to match its current level and sector weather.
+    /// </summary>
+    private void UpdateEnergyDrain(EntityUid uid, SingularityComponent comp)
+    {
+        comp.EnergyDrain = comp.Level switch
         {
-            6 => 0,
-            5 => 0,
+            6 => 40,
+            5 => 30,
             4 => 20,
             3 => 10,
             2 => 5,
-            1 => 1,
+            1 => 1f,
             _ => 0
         };
     }

@@ -16,7 +16,6 @@
   - RecyclerMachineCircuitboard
   - CargoBountyComputerCircuitboard
   - SalvageJobBoardComputerCircuitboard
-  - RadarConsoleCircuitboard
 ## Dynamic
 
 - type: latheRecipePack
@@ -34,3 +33,4 @@
   recipes:
   - OreProcessorIndustrialMachineCircuitboard
   - ShuttleGunKineticCircuitboard
+  - RadarConsoleCircuitboard

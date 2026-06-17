@@ -50,6 +50,9 @@
     solution: tank
   - type: StaticPrice
     price: 500
+  - type: Tag
+    tags:
+    - Recyclable
 
 - type: entity
   parent: BaseBarrelChem

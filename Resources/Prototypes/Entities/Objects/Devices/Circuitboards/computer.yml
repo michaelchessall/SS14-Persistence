@@ -407,9 +407,6 @@
       prototype: ComputerId
     - type: StaticPrice
       price: 90
-    - type: Tag
-      tags:
-      - HighRiskItem
 
 - type: entity
   parent: BaseComputerCircuitboard

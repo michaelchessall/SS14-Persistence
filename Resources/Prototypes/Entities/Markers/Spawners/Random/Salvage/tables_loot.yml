@@ -126,7 +126,6 @@
       tableId: TreasureCoinPile
       rolls: !type:RangeNumberSelector
         range: 4, 7
-    - id: SpaceCash1000
     - id: WristwatchGold
     - !type:NestedSelector
       tableId: RingTableCommon
@@ -146,21 +145,6 @@
       tableId: TreasureCoinPileRare
       rolls: !type:RangeNumberSelector
         range: 2, 5
-    - !type:AllSelector
-      children:
-      - id: BriefcaseBrown
-      - !type:GroupSelector
-        rolls: !type:RangeNumberSelector
-          range: 3, 5
-        children:
-        - id: SpaceCash1000
-          weight: 60
-        - id: SpaceCash2500
-          weight: 25
-        - id: SpaceCash5000
-          weight: 14
-        - id: SpaceCash10000
-          weight: 1
     - !type:NestedSelector
       tableId: RingTableRare
 

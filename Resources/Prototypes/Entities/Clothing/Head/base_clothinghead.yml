@@ -142,6 +142,10 @@
     - HeadTop
     - HeadSide
     - FacialHair
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 100
+      Glass: 100
 
 - type: entity
   abstract: true

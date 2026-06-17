@@ -82,3 +82,6 @@
         - MachineMask
         layer:
         - MachineLayer
+  - type: Construction
+    graph: OreBoxGraph
+    node: ore_box

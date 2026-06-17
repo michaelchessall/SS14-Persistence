@@ -17,7 +17,7 @@ public sealed partial class DoAfterComponent : Component
     /// <summary>
     /// collection of id + doafter
     /// </summary>
-    [DataField]
+    [DataField(readOnly:true)]
     public Dictionary<ushort, DoAfter> DoAfters = new();
 
     // Used by obsolete async do afters
