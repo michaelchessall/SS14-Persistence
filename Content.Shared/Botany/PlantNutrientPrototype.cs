@@ -18,4 +18,13 @@ public sealed partial class PlantNutrientPrototype : IPrototype
 
     [ViewVariables(VVAccess.ReadOnly)]
     public string LocalizedName => Loc.GetString(Name);
+
+    [DataField("desc", required: true)]
+    private LocId Description { get; set; }
+
+    [ViewVariables(VVAccess.ReadOnly)]
+    public string LocalizedDescription => Loc.GetString(Description);
+
+    [DataField("color")]
+    public Color SubstanceColor { get; private set; } = Color.White;
 }

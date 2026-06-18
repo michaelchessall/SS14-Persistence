@@ -1,3 +1,10 @@
 - type: plantNutrient
   id: test
   name: nutrient-name-test
+  desc: nutrient-desc-test
+
+- type: plantNutrient
+  id: goog
+  name: nutrient-name-goog
+  desc: nutrient-desc-goog
+  color: "#8487ff"
