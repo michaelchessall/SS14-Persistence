@@ -1,12 +1,16 @@
 - type: entity
   id: BaseStorageCounter
-  abstract: true
-  parent: BaseStructure 
+  parent: BaseStructureDynamic
   description: A counter with storage capacity
   components:
   - type: Sprite
     drawDepth: TableLayer
     sprite: Structures/Furniture/storage-counter.rsi
+    noRot: true
+    layers:
+    - state: full
+  - type: Icon
+    state: full
   - type: Appearance
   - type: InteractionOutline
   - type: Climbable
@@ -36,149 +40,6 @@
     containers:
       storagebase: !type:Container
         ents: []
-
-- type: entity
-  name: frame
-  id: StorageCounterFrame
-  parent: BaseStructure
-  components:
-  - type: Sprite
-    sprite: Structures/Furniture/storage-counter.rsi
-    layers:
-    - state: frame-step0
-      map: ["enum.ConstructionVisuals.Layer"]
-  - type: Appearance
-  - type: InteractionOutline
-  - type: GenericVisualizer
-    visuals:
-      enum.ConstructionVisuals.Key:
-        enum.ConstructionVisuals.Layer:
-          frame-step0: { state: frame-step0 }
-          frame-step1: { state: frame-step1 }
-          frame-step2: { state: frame-step2 }
-          frame-step3: { state: frame-step3 }
-  - type: Construction
-    graph: StorageCounter
-    node: frame-step0
-
-- type: entity
-  name: storage counter
-  id: StorageCounter
-  parent: BaseStorageCounter
-  components:
-  - type: Sprite
-    state: frame-step3
-    layers:
-    - state: frame-step3
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: closed-white
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: counter
-  - type: EntityStorageVisuals
-    stateDoorOpen: open-white
-    stateDoorClosed: closed-white
-  - type: Construction
-    graph: StorageCounter
-    node: storagecounter
-
-- type: entity
-  name: cargo storage counter
-  id: StorageCounterCargo
-  parent: BaseStorageCounter
-  components:
-  - type: Sprite
-    state: frame-step3
-    layers:
-    - state: frame-step3
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: closed-cargo
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: counter-grey
-  - type: EntityStorageVisuals
-    stateDoorOpen: open-cargo
-    stateDoorClosed: closed-cargo
-  - type: Construction
-    graph: StorageCounter
-    node: storagecountercargo
-
-- type: entity
-  name: engineering storage counter
-  id: StorageCounterEngineering
-  parent: BaseStorageCounter
-  components:
-  - type: Sprite
-    state: frame-step3
-    layers:
-    - state: frame-step3
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: closed-engineering
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: counter-grey
-  - type: EntityStorageVisuals
-    stateDoorOpen: open-engineering
-    stateDoorClosed: closed-engineering
-  - type: Construction
-    graph: StorageCounter
-    node: storagecounterengi
-
-- type: entity
-  name: science storage counter
-  id: StorageCounterScience
-  parent: BaseStorageCounter
-  components:
-  - type: Sprite
-    state: frame-step3
-    layers:
-    - state: frame-step3
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: closed-science
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: counter
-  - type: EntityStorageVisuals
-    stateDoorOpen: open-science
-    stateDoorClosed: closed-science
-  - type: Construction
-    graph: StorageCounter
-    node: storagecounterscience
-
-- type: entity
-  name: botany storage counter
-  id: StorageCounterBotany
-  parent: BaseStorageCounter
-  components:
-  - type: Sprite
-    state: frame-step3
-    layers:
-    - state: frame-step3
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: closed-botany
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: counter
-      map: ["enum.ConstructionVisuals.Layer"]
-  - type: EntityStorageVisuals
-    stateDoorOpen: open-botany
-    stateDoorClosed: closed-botany
-  - type: Construction
-    graph: StorageCounter
-    node: storagecounterbotany
-
-- type: entity
-  name: medical storage counter
-  id: StorageCounterMedical
-  parent: BaseStorageCounter
-  components:
-  - type: Sprite
-    state: frame-step3
-    layers:
-    - state: frame-step3
-      map: ["enum.StorageVisualLayers.Base"]
-    - state: closed-medical
-      map: ["enum.StorageVisualLayers.Door"]
-    - state: counter
-  - type: EntityStorageVisuals
-    stateDoorOpen: open-medical
-    stateDoorClosed: closed-medical
-  - type: Construction
-    graph: StorageCounter
-    node: storagecountermedical
-
+  - type: IconSmooth
+    key: state
+    base: state_

@@ -20,52 +20,39 @@
       "name": "frame-step3","directions": 4
     },
     {
-      "name": "closed-cargo", "directions": 4
+      "name": "full"
     },
     {
-      "name": "open-cargo", "directions":4
+      "name": "state_0",
+      "directions": 4
     },
     {
-      "name": "closed-science", "directions": 4
+      "name": "state_1",
+      "directions": 4
     },
     {
-      "name": "open-science", "directions":4
+      "name": "state_2",
+      "directions": 4
     },
     {
-      "name": "closed-black", "directions": 4
+      "name": "state_3",
+      "directions": 4
     },
     {
-      "name": "open-black", "directions": 4
+      "name": "state_4",
+      "directions": 4
     },
     {
-      "name": "closed-botany", "directions": 4
+      "name": "state_5",
+      "directions": 4
     },
     {
-      "name": "open-botany", "directions": 4
+      "name": "state_6",
+      "directions": 4
     },
     {
-      "name": "closed-engineering", "directions": 4
-    },
-    {
-      "name": "open-engineering", "directions": 4
-    },
-        {
-      "name": "closed-medical", "directions": 4
-    },
-    {
-      "name": "open-medical", "directions": 4
-    },
-    {
-      "name": "closed-white", "directions": 4
-    },
-    {
-      "name": "open-white", "directions": 4
-    },
-    {
-      "name": "counter-grey", "directions": 4
-    },
-    {
-      "name": "counter", "directions": 4
+      "name": "state_7",
+      "directions": 4
     }
   ]
 }
