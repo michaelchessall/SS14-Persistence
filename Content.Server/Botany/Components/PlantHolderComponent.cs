@@ -1,5 +1,8 @@
+using Content.Shared.Botany;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Botany.Components;
@@ -58,6 +61,9 @@ public sealed partial class PlantHolderComponent : Component
 
     [DataField]
     public float NutritionLevel = 100f;
+
+    [DataField]
+    public Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> Nutrients = new();
 
     [DataField]
     public float PestLevel;
