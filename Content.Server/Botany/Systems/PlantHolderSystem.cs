@@ -148,8 +148,15 @@ public sealed class PlantHolderSystem : EntitySystem
 
             args.PushMarkup(Loc.GetString($"plant-holder-component-water-level-message",
                 ("waterLevel", (int)component.WaterLevel)));
-            args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
-                ("nutritionLevel", (int)component.NutritionLevel)));
+
+            foreach (var nutrientID in component.Nutrients.Keys)
+            {
+                var nutrient = _prototype.Index(nutrientID);
+                args.PushMarkup(Loc.GetString(nutrient.LocalizedName) +
+                                Loc.GetString($"plant-holder-component-nutrient-level-message",
+                                    ("color", nutrient.SubstanceColor),
+                                    ("nutritionLevel", component.Nutrients[nutrientID])));
+            }
 
             if (component.DrawWarnings)
             {

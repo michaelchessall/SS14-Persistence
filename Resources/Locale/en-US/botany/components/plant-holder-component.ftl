@@ -24,7 +24,7 @@ plant-holder-component-dead-plant-matter-message = It's full of [color=red]dead 
 plant-holder-component-weed-high-level-message = It's filled with [color=green]weeds[/color]!
 plant-holder-component-pest-high-level-message = It's filled with [color=gray]tiny worms[/color]!
 plant-holder-component-water-level-message = Water:     [color=cyan]{$waterLevel}[/color].
-plant-holder-component-nutrient-level-message = Nutrient: [color=orange]{$nutritionLevel}[/color].
+plant-holder-component-nutrient-level-message = : [color={$color}]{$nutritionLevel}[/color].
 plant-holder-component-toxins-high-warning = The [color=red]toxicity level alert[/color] is flashing red.
 plant-holder-component-light-improper-warning = The [color=yellow]improper light level alert[/color] is blinking.
 plant-holder-component-heat-improper-warning = The [color=orange]improper temperature level alert[/color] is blinking.
