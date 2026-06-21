@@ -1,10 +1,23 @@
 - type: plantNutrient
-  id: test
-  name: nutrient-name-test
-  desc: nutrient-desc-test
+  id: nutrient
+  name: nutrient-name-nutrient
+  desc: nutrient-desc-nutrient
+  color: "orange"
 
 - type: plantNutrient
-  id: goog
-  name: nutrient-name-goog
-  desc: nutrient-desc-goog
-  color: "#8487ff"
+  id: water
+  name: nutrient-name-water
+  desc: nutrient-desc-water
+  color: "cyan"
+
+- type: plantNutrient
+  id: toxin
+  name: nutrient-name-toxin
+  desc: nutrient-desc-toxin
+  color: "red"
+
+- type: plantNutrient
+  id: clown
+  name: nutrient-name-clown
+  desc: nutrient-desc-clown
+  color: "#FF4DD2"

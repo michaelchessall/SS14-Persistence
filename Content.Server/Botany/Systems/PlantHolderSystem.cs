@@ -146,16 +146,13 @@ public sealed class PlantHolderSystem : EntitySystem
             if (component.PestLevel >= 5)
                 args.PushMarkup(Loc.GetString("plant-holder-component-pest-high-level-message"));
 
-            args.PushMarkup(Loc.GetString($"plant-holder-component-water-level-message",
-                ("waterLevel", (int)component.WaterLevel)));
-
-            foreach (var nutrientID in component.Nutrients.Keys)
+            foreach (var nutrientId in component.Nutrients.Keys)
             {
-                var nutrient = _prototype.Index(nutrientID);
+                var nutrient = _prototype.Index(nutrientId);
                 args.PushMarkup(Loc.GetString(nutrient.LocalizedName) +
                                 Loc.GetString($"plant-holder-component-nutrient-level-message",
                                     ("color", nutrient.SubstanceColor),
-                                    ("nutritionLevel", component.Nutrients[nutrientID])));
+                                    ("nutritionLevel", component.Nutrients[nutrientId])));
             }
 
             if (component.DrawWarnings)
@@ -363,7 +360,7 @@ public sealed class PlantHolderSystem : EntitySystem
             if (seed != null)
             {
                 var nutrientBonus = seed.Potency / 2.5f;
-                AdjustNutrient(uid, nutrientBonus, component);
+                AdjustNutrient(uid, nutrientBonus, "nutrient", component);
             }
             QueueDel(args.Used);
         }
@@ -473,23 +470,6 @@ public sealed class PlantHolderSystem : EntitySystem
                 component.Age += (int)(1 * HydroponicsSpeedMultiplier);
 
             component.UpdateSpriteAfterUpdate = true;
-        }
-
-        // Nutrient consumption.
-        if (component.Seed.NutrientConsumption > 0 && component.NutritionLevel > 0 && _random.Prob(0.75f))
-        {
-            component.NutritionLevel -= MathF.Max(0f, component.Seed.NutrientConsumption * HydroponicsSpeedMultiplier);
-            if (component.DrawWarnings)
-                component.UpdateSpriteAfterUpdate = true;
-        }
-
-        // Water consumption.
-        if (component.Seed.WaterConsumption > 0 && component.WaterLevel > 0 && _random.Prob(0.75f))
-        {
-            component.WaterLevel -= MathF.Max(0f,
-                component.Seed.WaterConsumption * HydroponicsConsumptionMultiplier * HydroponicsSpeedMultiplier);
-            if (component.DrawWarnings)
-                component.UpdateSpriteAfterUpdate = true;
         }
 
         var healthMod = _random.Next(1, 3) * HydroponicsSpeedMultiplier;
@@ -860,25 +840,19 @@ public sealed class PlantHolderSystem : EntitySystem
         }
     }
 
-    public void AdjustNutrient(EntityUid uid, float amount, PlantHolderComponent? component = null)
+    public void AdjustNutrient(EntityUid uid, FixedPoint2 amount, ProtoId<PlantNutrientPrototype> nutrient, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        component.NutritionLevel += amount;
-    }
-
-    public void AdjustWater(EntityUid uid, float amount, PlantHolderComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-
-        component.WaterLevel += amount;
-
-        // Water dilutes toxins.
-        if (amount > 0)
+        if (!component.Nutrients.TryAdd(nutrient, amount))
         {
-            component.Toxins -= amount * 4f;
+            component.Nutrients[nutrient] += amount;
+        }
+
+        if (component.Nutrients[nutrient] <= 0)
+        {
+            component.Nutrients.Remove(nutrient);
         }
     }
 
