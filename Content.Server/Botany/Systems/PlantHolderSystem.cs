@@ -149,8 +149,8 @@ public sealed class PlantHolderSystem : EntitySystem
             foreach (var nutrientId in component.Nutrients.Keys)
             {
                 var nutrient = _prototype.Index(nutrientId);
-                args.PushMarkup(Loc.GetString(nutrient.LocalizedName) +
-                                Loc.GetString($"plant-holder-component-nutrient-level-message",
+                args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
+                                    ("name", nutrient.LocalizedName),
                                     ("color", nutrient.SubstanceColor),
                                     ("nutritionLevel", component.Nutrients[nutrientId])));
             }
