@@ -648,6 +648,10 @@
   physicalDesc: reagent-physical-desc-pungent
   flavor: bitter
   color: "#F2E9D2"
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: clown
   metabolisms:
     Bloodstream:
       metabolismRate: 0.05

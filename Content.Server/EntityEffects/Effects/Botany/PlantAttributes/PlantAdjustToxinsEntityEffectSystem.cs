@@ -1,16 +1,15 @@
 using Content.Server.Botany.Components;
+using Content.Server.Botany.Systems;
 using Content.Shared.EntityEffects;
 using Content.Shared.EntityEffects.Effects.Botany.PlantAttributes;
 
 namespace Content.Server.EntityEffects.Effects.Botany.PlantAttributes;
-
+// TODO: Delete this entity effect after all usages have been replaced with PlantAdjustNutrient
 public sealed partial class PlantAdjustToxinsEntityEffectSystem : EntityEffectSystem<PlantHolderComponent, PlantAdjustToxins>
 {
+    [Dependency] private readonly PlantHolderSystem _plantHolder = default!;
     protected override void Effect(Entity<PlantHolderComponent> entity, ref EntityEffectEvent<PlantAdjustToxins> args)
     {
-        if (entity.Comp.Seed == null || entity.Comp.Dead)
-            return;
-
-        entity.Comp.Toxins += args.Effect.Amount;
+        _plantHolder.AdjustNutrient(entity, args.Effect.Amount, "toxin", entity);
     }
 }
