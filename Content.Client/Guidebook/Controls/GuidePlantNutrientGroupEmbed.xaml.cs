@@ -13,7 +13,7 @@ using System.Linq;
 namespace Content.Client.Guidebook.Controls;
 
 /// <summary>
-///     Control for embedding a reagent into a guidebook.
+///     Control for embedding a plant nutrient into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuidePlantNutrientGroupEmbed : BoxContainer, IDocumentTag

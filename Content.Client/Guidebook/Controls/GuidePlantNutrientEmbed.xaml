@@ -8,21 +8,21 @@
         </PanelContainer.PanelOverride>
         <BoxContainer Orientation="Vertical">
             <PanelContainer Name="NameBackground" HorizontalExpand="True" VerticalExpand="False">
-                <RichTextLabel Name="ReagentName" HorizontalAlignment="Center"/>
+                <RichTextLabel Name="NutrientName" HorizontalAlignment="Center"/>
             </PanelContainer>
-            <!--<BoxContainer Name="SourcesContainer" HorizontalExpand="True">
+            <BoxContainer Name="SourcesContainer" HorizontalExpand="True">
                 <Collapsible HorizontalExpand="True">
                     <CollapsibleHeading Title="{Loc 'guidebook-reagent-sources-header'}"/>
                     <CollapsibleBody>
                         <GridContainer Name="SourcesDescriptionContainer"
                                        Margin="10 0 10 0"
                                        Columns="1"
-                                       HSeparationOverride="5"
+                                       HSeparationOverride="0"
                                        HorizontalAlignment="Stretch"
                                        HorizontalExpand="True"/>
                     </CollapsibleBody>
                 </Collapsible>
-            </BoxContainer>
+            </BoxContainer><!--
             <BoxContainer Name="EffectsContainer" HorizontalExpand="True">
                 <Collapsible>
                     <CollapsibleHeading Title="{Loc 'guidebook-reagent-effects-header'}"/>
@@ -36,7 +36,7 @@
             </BoxContainer> !-->
             <BoxContainer Margin="10 5 10 10" HorizontalExpand="True">
                 <!-- The troublemaker !-->
-                <RichTextLabel Name="ReagentDescription" HorizontalAlignment="Left"/>
+                <RichTextLabel Name="NutrientDescription" HorizontalAlignment="Left"/>
             </BoxContainer>
         </BoxContainer>
     </PanelContainer>

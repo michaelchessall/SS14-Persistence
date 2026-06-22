@@ -21,7 +21,7 @@ using System.Linq;
 namespace Content.Client.Guidebook.Controls;
 
 /// <summary>
-///     Control for embedding a reagent into a guidebook.
+///     Control for embedding a plant nutrient into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag, ISearchableControl, IPrototypeRepresentationControl
@@ -40,7 +40,7 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _sawmill = _logManager.GetSawmill("guidebook.reagent");
+        _sawmill = _logManager.GetSawmill("guidebook.plantNutrient");
         //_chemistryGuideData = _systemManager.GetEntitySystem<ChemistryGuideDataSystem>();
         MouseFilter = MouseFilterMode.Stop;
     }
@@ -68,15 +68,15 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
     public bool TryParseTag(Dictionary<string, string> args, [NotNullWhen(true)] out Control? control)
     {
         control = null;
-        if (!args.TryGetValue("Reagent", out var id))
+        if (!args.TryGetValue("Nutrient", out var id))
         {
-            _sawmill.Error("Reagent embed tag is missing reagent prototype argument");
+            _sawmill.Error("Plant nutrient embed tag is missing nutrient prototype argument");
             return false;
         }
 
         if (!_prototype.TryIndex<PlantNutrientPrototype>(id, out var nutrient))
         {
-            _sawmill.Error($"Specified reagent prototype \"{id}\" is not a valid reagent prototype");
+            _sawmill.Error($"Specified plant nutrient prototype \"{id}\" is not a valid plant nutrient prototype");
             return false;
         }
 
@@ -103,7 +103,7 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
             ? Color.Black
             : Color.White;
 
-        ReagentName.SetMarkup(Loc.GetString("guidebook-reagent-name",
+        NutrientName.SetMarkup(Loc.GetString("guidebook-reagent-name",
             ("color", textColor), ("name", nutrient.LocalizedName)));
 
         #region Effects
@@ -164,10 +164,8 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
         FormattedMessage description = new();
         description.AddText(nutrient.LocalizedDescription);
         description.PushNewline();
-        /*description.AddMarkupOrThrow(Loc.GetString("guidebook-reagent-physical-description",
-            ("description", nutrient.LocalizedPhysicalDescription)));*/
 
-        ReagentDescription.SetMessage(description);
+        NutrientDescription.SetMessage(description);
     }
 
     /*private void GenerateSources(ReagentPrototype reagent)
