@@ -1,4 +1,5 @@
 using Content.Shared.Atmos;
+using Content.Shared.Botany;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random;
@@ -58,23 +59,47 @@ public partial struct SeedChemQuantity
     /// <summary>
     /// Minimum amount of chemical that is added to produce, regardless of the potency
     /// </summary>
-    [DataField("Min")] public FixedPoint2 Min = FixedPoint2.Epsilon;
+    [DataField("Min")] public FixedPoint2 Min = FixedPoint2.Epsilon; // To be removed
 
     /// <summary>
     /// Maximum amount of chemical that can be produced after taking plant potency into account.
     /// </summary>
-    [DataField("Max")] public FixedPoint2 Max;
+    [DataField("Max")] public FixedPoint2 Max; // To be removed
 
     /// <summary>
     /// When chemicals are added to produce, the potency of the seed is divided with this value. Final chemical amount is the result plus the `Min` value.
     /// Example: PotencyDivisor of 20 with seed potency of 55 results in 2.75, 55/20 = 2.75. If minimum is 1 then final result will be 3.75 of that chemical, 55/20+1 = 3.75.
     /// </summary>
-    [DataField("PotencyDivisor")] public float PotencyDivisor;
+    [DataField("PotencyDivisor")] public float PotencyDivisor; // To be removed
+
+    /// <summary>
+    /// Nutrient requirements needed for the plant's produce to contain this reagent
+    /// </summary>
+    [DataField("Requirements")] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> Requirements = new();
 
     /// <summary>
     /// Inherent chemical is one that is NOT result of mutation or crossbreeding. These chemicals are removed if species mutation is executed.
     /// </summary>
     [DataField("Inherent")] public bool Inherent = true;
+}
+
+[DataDefinition]
+public partial struct NutrientRequirement
+{
+    /// <summary>
+    /// Minimum amount of nutrients required to meet the requirement.
+    /// </summary>
+    [DataField("Min")] public FixedPoint2 Min = FixedPoint2.Zero;
+
+    /// <summary>
+    /// Amount of nutrients required to get the full reagent bonus.
+    /// </summary>
+    [DataField("Max")] public FixedPoint2 Max;
+
+    /// <summary>
+    /// Amount of extra reagent added to the produce when the maximum requirement is reached, does nothing if the requirement is not used by a reagent.
+    /// </summary>
+    [DataField("Bonus")] public FixedPoint2 Bonus = FixedPoint2.Zero;
 }
 
 // TODO Make Botany ECS and give it a proper API. I removed the limited access of this class because it's egregious how many systems needed access to it due to a lack of an actual API.
@@ -148,6 +173,9 @@ public partial class SeedData
     [DataField] public float NutrientConsumption = 0.75f;
 
     [DataField] public float WaterConsumption = 0.5f;
+
+    [DataField] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> Requirements = new();
+
     [DataField] public float IdealHeat = 293f;
     [DataField] public float HeatTolerance = 10f;
     [DataField] public float IdealLight = 7f;
