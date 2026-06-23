@@ -302,6 +302,7 @@ public partial class SeedData
             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
             ConsumeGasses = new Dictionary<Gas, float>(ConsumeGasses),
             ExudeGasses = new Dictionary<Gas, float>(ExudeGasses),
+            Requirements = new Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement>(Requirements),
 
             NutrientConsumption = NutrientConsumption,
             WaterConsumption = WaterConsumption,
@@ -359,6 +360,7 @@ public partial class SeedData
             PacketPrototype = other.PacketPrototype,
             ProductPrototypes = new List<EntProtoId>(other.ProductPrototypes),
             MutationPrototypes = new List<ProtoId<SeedPrototype>>(other.MutationPrototypes),
+            Requirements = new Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement>(other.Requirements),
 
             Chemicals = new Dictionary<string, SeedChemQuantity>(Chemicals),
             ConsumeGasses = new Dictionary<Gas, float>(ConsumeGasses),
