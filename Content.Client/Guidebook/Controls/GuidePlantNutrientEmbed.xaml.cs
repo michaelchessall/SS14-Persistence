@@ -3,6 +3,7 @@ using Content.Client.Guidebook.Richtext;
 using Content.Client.Message;
 using Content.Client.UserInterface.ControlExtensions;
 using Content.Shared.CCVar;
+using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Botany;
 using Content.Shared.Localizations;
 using Content.Shared.Metabolism;
@@ -17,6 +18,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.EntityEffects;
+using Content.Shared.EntityEffects.Effects.Botany;
 
 namespace Content.Client.Guidebook.Controls;
 
@@ -159,7 +162,25 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
         }*/
         #endregion
 
-        //GenerateSources(reagent);
+        #region Recipe
+        var reagents = _prototype.EnumeratePrototypes<ReagentPrototype>()
+            .Where(p => CheckReagentPlantMetabolisms(p.PlantMetabolisms, nutrient.ID))
+            //.OrderBy(p => p.Priority)
+            //.ThenBy(p => p.Products.Count)
+            .ToList();
+
+        if (reagents.Any())
+        {
+            foreach (var reagentPrototype in reagents)
+            {
+                SourcesDescriptionContainer.AddChild(new GuidePlantNutrientSource(reagentPrototype, _prototype, _systemManager));
+            }
+        }
+        else
+        {
+            SourcesContainer.Visible = false;
+        }
+        #endregion
 
         FormattedMessage description = new();
         description.AddText(nutrient.LocalizedDescription);
@@ -168,45 +189,14 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
         NutrientDescription.SetMessage(description);
     }
 
-    /*private void GenerateSources(ReagentPrototype reagent)
+    private bool CheckReagentPlantMetabolisms(List<EntityEffect> effects, string nutrientId)
     {
-        var sources = _chemistryGuideData.GetReagentSources(reagent.ID);
-        if (sources.Count == 0)
+        foreach (var effect in effects)
         {
-            SourcesContainer.Visible = false;
-            return;
+            if (effect is PlantAdjustNutrient adjustNutrient && adjustNutrient.Nutrient == nutrientId)
+                return true;
         }
-        SourcesContainer.Visible = true;
+        return false;
+    }
 
-        var orderedSources = sources
-            .OrderBy(o => o.OutputCount)
-            .ThenBy(o => o.IdentifierString);
-        foreach (var source in orderedSources)
-        {
-            if (source is ReagentEntitySourceData entitySourceData)
-            {
-                SourcesDescriptionContainer.AddChild(new GuideReagentReaction(
-                    entitySourceData.SourceEntProto,
-                    entitySourceData.Solution,
-                    entitySourceData.MixingType,
-                    _prototype,
-                    _systemManager));
-            }
-            else if (source is ReagentReactionSourceData reactionSourceData)
-            {
-                SourcesDescriptionContainer.AddChild(new GuideReagentReaction(
-                    reactionSourceData.ReactionPrototype,
-                    _prototype,
-                    _systemManager));
-            }
-            else if (source is ReagentGasSourceData gasSourceData)
-            {
-                SourcesDescriptionContainer.AddChild(new GuideReagentReaction(
-                    gasSourceData.GasPrototype,
-                    gasSourceData.MixingType,
-                    _prototype,
-                    _systemManager));
-            }
-        }
-    }*/
 }
