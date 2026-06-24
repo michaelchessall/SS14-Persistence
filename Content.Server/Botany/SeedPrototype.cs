@@ -87,19 +87,19 @@ public partial struct SeedChemQuantity
 public partial struct NutrientRequirement
 {
     /// <summary>
-    /// Minimum amount of nutrients required to meet the requirement.
+    /// Amount of nutrients required to meet the requirement.
     /// </summary>
-    [DataField("Min")] public FixedPoint2 Min = FixedPoint2.Zero;
+    [DataField("Requirement")] public FixedPoint2 Requirement = FixedPoint2.Zero;
 
     /// <summary>
-    /// Amount of nutrients required to get the full reagent bonus.
+    /// Amount of extra nutrients required to get the full reagent bonus. If this is zero, the reagent bonus is always added.
     /// </summary>
-    [DataField("Max")] public FixedPoint2 Max;
+    [DataField("BonusRequirement")] public FixedPoint2 BonusRequirement = FixedPoint2.Zero;
 
     /// <summary>
-    /// Amount of extra reagent added to the produce when the maximum requirement is reached, does nothing if the requirement is not used by a reagent.
+    /// Amount of extra reagent added to the produce when the bonus requirement is fulfilled, does nothing if the requirement is not used by a reagent.
     /// </summary>
-    [DataField("Bonus")] public FixedPoint2 Bonus = FixedPoint2.Zero;
+    [DataField("BonusAmount")] public FixedPoint2 BonusAmount = FixedPoint2.Zero;
 }
 
 // TODO Make Botany ECS and give it a proper API. I removed the limited access of this class because it's egregious how many systems needed access to it due to a lack of an actual API.

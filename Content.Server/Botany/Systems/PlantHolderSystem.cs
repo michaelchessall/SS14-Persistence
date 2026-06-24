@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Atmos.EntitySystems;
 using Content.Server.Botany.Components;
 using Content.Server.Hands.Systems;
@@ -27,6 +28,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Botany.Systems;
 
@@ -149,10 +151,19 @@ public sealed class PlantHolderSystem : EntitySystem
             foreach (var nutrientId in component.Nutrients.Keys)
             {
                 var nutrient = _prototype.Index(nutrientId);
+                var nutrientInfo = component.Nutrients[nutrientId];
+                var bonusMessage = "";
+                if (nutrientInfo.Bonus > 0)
+                    bonusMessage = Loc.GetString($"plant-holder-component-nutrient-bonus-message",
+                        ("bonusNutrients", nutrientInfo.Bonus + nutrientInfo.Required),
+                        ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Bonus + nutrientInfo.Required));
                 args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
-                                    ("name", nutrient.LocalizedName),
-                                    ("color", nutrient.SubstanceColor),
-                                    ("nutritionLevel", component.Nutrients[nutrientId])));
+                    ("name", nutrient.LocalizedName),
+                    ("color", nutrient.SubstanceColor),
+                    ("nutrientLevel", nutrientInfo.Amount),
+                    ("requiredNutrients", nutrientInfo.Required),
+                    ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Required),
+                    ("bonusMessage", bonusMessage)));
             }
 
             if (component.DrawWarnings)
@@ -214,6 +225,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
                 CheckLevelSanity(uid, component);
                 UpdateSprite(uid, component);
+                UpdateNutrientRequirements(uid, component);
 
                 if (seed.PlantLogImpact != null)
                     _adminLogger.Add(LogType.Botany, seed.PlantLogImpact.Value, $"{ToPrettyString(args.User):player} planted  {Loc.GetString(seed.Name):seed} at Pos:{Transform(uid).Coordinates}.");
@@ -814,6 +826,7 @@ public sealed class PlantHolderSystem : EntitySystem
         component.ImproperHeat = false;
 
         UpdateSprite(uid, component);
+        UpdateNutrientRequirements(uid, component);
     }
 
     public void AffectGrowth(EntityUid uid, int amount, PlantHolderComponent? component = null)
@@ -840,19 +853,64 @@ public sealed class PlantHolderSystem : EntitySystem
         }
     }
 
-    public void AdjustNutrient(EntityUid uid, FixedPoint2 amount, ProtoId<PlantNutrientPrototype> nutrient, PlantHolderComponent? component = null)
+    public void AdjustNutrient(EntityUid uid, FixedPoint2 amount, ProtoId<PlantNutrientPrototype> nutrientId, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
 
-        if (!component.Nutrients.TryAdd(nutrient, amount))
+        var nutrient = component.Nutrients.GetOrNew(nutrientId);
+
+        nutrient.Amount += amount;
+
+        if (nutrient.Amount > 0)
+            return;
+
+        nutrient.Amount = 0;
+        RemoveEmptyNutrient(uid, nutrientId, component);
+    }
+
+    private void RemoveEmptyNutrient(EntityUid uid, ProtoId<PlantNutrientPrototype> nutrient, PlantHolderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        var nutrientInfo = component.Nutrients[nutrient];
+        if (nutrientInfo.Amount == 0 && nutrientInfo.Required == 0 && nutrientInfo.Bonus == 0)
+            component.Nutrients.Remove(nutrient);
+    }
+
+    public void UpdateNutrientRequirements(EntityUid uid, PlantHolderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        foreach (var nutrientInfo in component.Nutrients.Values)
         {
-            component.Nutrients[nutrient] += amount;
+            nutrientInfo.Required = 0;
+            nutrientInfo.Bonus = 0;
         }
 
-        if (component.Nutrients[nutrient] <= 0)
+        if (component.Seed != null && !component.Dead)
         {
-            component.Nutrients.Remove(nutrient);
+            var yield = component.Seed.Yield;
+            foreach (var requirement in component.Seed.Requirements)
+            {
+                var nutrient = component.Nutrients.GetOrNew(requirement.Key);
+
+                nutrient.Required += requirement.Value.Requirement * yield;
+                nutrient.Bonus += requirement.Value.BonusRequirement * yield;
+            }
+
+            foreach (var requirement in component.Seed.Chemicals.Values.SelectMany(quantity => quantity.Requirements))
+            {
+                var nutrient = component.Nutrients.GetOrNew(requirement.Key);
+
+                nutrient.Required += requirement.Value.Requirement * yield;
+                nutrient.Bonus += requirement.Value.BonusRequirement * yield;
+            }
+        }
+
+        foreach (var nutrientId in component.Nutrients.Keys)
+        {
+            RemoveEmptyNutrient(uid, nutrientId, component);
         }
     }
 
@@ -892,6 +950,7 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             EnsureUniqueSeed(uid, component);
             _mutation.MutateSeed(uid, ref component.Seed, severity);
+            UpdateNutrientRequirements(uid, component);
         }
     }
 

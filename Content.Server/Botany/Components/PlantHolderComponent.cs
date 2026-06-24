@@ -63,7 +63,7 @@ public sealed partial class PlantHolderComponent : Component
     public float NutritionLevel = 100f;
 
     [DataField]
-    public Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> Nutrients = new();
+    public Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> Nutrients = new();
 
     [DataField]
     public float PestLevel;
