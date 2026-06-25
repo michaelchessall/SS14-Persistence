@@ -24,6 +24,18 @@
   - WallLocker
   - WallCloset
 
+- type: paintableGroupCategory
+  id: Posters
+  groups:
+  - Posters
+
+- type: paintableGroupCategory
+  id: Signs
+  groups:
+  - SignStandard
+  - SignWarningMedium
+  - SignDirectional
+
 - type: paintableGroupCategory # Persistence
   id: Items
   groups:
