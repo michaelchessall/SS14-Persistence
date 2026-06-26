@@ -2,6 +2,8 @@ using Content.Server.Botany.Components;
 using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
+using Content.Shared.Botany;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Botany.Systems;
 
@@ -9,7 +11,7 @@ public sealed partial class BotanySystem
 {
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
-    public void ProduceGrown(EntityUid uid, ProduceComponent produce)
+    public void ProduceGrown(EntityUid uid, ProduceComponent produce, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients)
     {
         if (!TryGetSeed(produce, out var seed))
             return;
@@ -27,12 +29,26 @@ public sealed partial class BotanySystem
             return;
 
         solutionContainer.RemoveAllSolution();
+
+        Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> bonusRatio = new();
+
+        foreach (var nutrient in nutrients)
+        {
+            var info = nutrient.Value;
+            if (info.Bonus > 0)
+                bonusRatio.Add(nutrient.Key, FixedPoint2.Clamp((info.Amount - info.Required) / info.Bonus, 0, 1));
+        }
+
         foreach (var (chem, quantity) in seed.Chemicals)
         {
-            var amount = quantity.Min;
-            if (quantity.PotencyDivisor > 0 && seed.Potency > 0)
-                amount += seed.Potency / quantity.PotencyDivisor;
-            amount = FixedPoint2.Clamp(amount, quantity.Min, quantity.Max);
+            var amount = quantity.BaseAmount;
+            foreach (var requirement in quantity.Requirements)
+            {
+                if (requirement.Value.BonusAmount > 0 && bonusRatio.TryGetValue(requirement.Key, out var ratio))
+                {
+                    amount += requirement.Value.BonusAmount * ratio;
+                }
+            }
             solutionContainer.MaxVolume += amount;
             solutionContainer.AddReagent(chem, amount);
         }

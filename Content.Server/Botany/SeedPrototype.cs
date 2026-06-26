@@ -73,6 +73,11 @@ public partial struct SeedChemQuantity
     [DataField("PotencyDivisor")] public float PotencyDivisor; // To be removed
 
     /// <summary>
+    /// Minimum amount of chemical that is added to produce, regardless of nutrient requirement bonuses
+    /// </summary>
+    [DataField("BaseAmount")] public FixedPoint2 BaseAmount = FixedPoint2.Epsilon;
+
+    /// <summary>
     /// Nutrient requirements needed for the plant's produce to contain this reagent
     /// </summary>
     [DataField("Requirements")] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> Requirements = new();

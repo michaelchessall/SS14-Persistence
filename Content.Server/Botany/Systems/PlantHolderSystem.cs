@@ -52,7 +52,7 @@ public sealed class PlantHolderSystem : EntitySystem
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
     public const float HydroponicsSpeedMultiplier = 1f;
-    public const float HydroponicsConsumptionMultiplier = 2f;
+    public const float HydroponicsConsumptionMultiplier = 1f;
     public readonly FixedPoint2 PlantMetabolismRate = FixedPoint2.New(1);
 
     private static readonly ProtoId<TagPrototype> HoeTag = "Hoe";
@@ -148,21 +148,37 @@ public sealed class PlantHolderSystem : EntitySystem
             if (component.PestLevel >= 5)
                 args.PushMarkup(Loc.GetString("plant-holder-component-pest-high-level-message"));
 
-            foreach (var nutrientId in component.Nutrients.Keys)
+            foreach (var nutrientId in component.Nutrients.Keys
+                         .OrderByDescending(p => component.Nutrients[p].Required)
+                         .ThenByDescending(p => component.Nutrients[p].Bonus)
+                         .ThenByDescending(p => component.Nutrients[p].Amount))
             {
                 var nutrient = _prototype.Index(nutrientId);
                 var nutrientInfo = component.Nutrients[nutrientId];
+                var requirementMessage = "";
                 var bonusMessage = "";
+
+                if (nutrientInfo.Required > 0 || nutrientInfo.Bonus > 0)
+                {
+                    requirementMessage = Loc.GetString($"plant-holder-component-nutrient-requirement-message",
+                        ("requiredNutrients", nutrientInfo.Required),
+                        ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Required));
+                }
+
                 if (nutrientInfo.Bonus > 0)
+                {
                     bonusMessage = Loc.GetString($"plant-holder-component-nutrient-bonus-message",
                         ("bonusNutrients", nutrientInfo.Bonus + nutrientInfo.Required),
                         ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Bonus + nutrientInfo.Required));
+                }
+
                 args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
                     ("name", nutrient.LocalizedName),
                     ("color", nutrient.SubstanceColor),
                     ("nutrientLevel", nutrientInfo.Amount),
                     ("requiredNutrients", nutrientInfo.Required),
                     ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Required),
+                    ("requirementMessage", requirementMessage),
                     ("bonusMessage", bonusMessage)));
             }
 
@@ -651,7 +667,7 @@ public sealed class PlantHolderSystem : EntitySystem
         // If enough time has passed since the plant was harvested, we're ready to harvest again!
         if (!component.Dead && component.Seed.ProductPrototypes.Count > 0)
         {
-            if (component.Age > component.Seed.Production)
+            if (component.Age > component.Seed.Production && CheckRequiredNutrients(uid, component))
             {
                 if (component.Age - component.LastProduce > component.Seed.Production && !component.Harvest)
                 {
@@ -723,7 +739,15 @@ public sealed class PlantHolderSystem : EntitySystem
                 return false;
             }
 
-            _botany.Harvest(component.Seed, user, component.YieldMod);
+            if (!CheckRequiredNutrients(plantholder, component)) // This should only happen if a reagent that removes nutrients is added to the plant.
+            {
+                _popup.PopupCursor(Loc.GetString("plant-holder-component-low-nutrient-cant-harvest-message"), user);
+                component.Harvest = false;
+                UpdateSprite(plantholder, component);
+                return false;
+            }
+
+            _botany.Harvest(component.Seed, user, component.Nutrients, component.YieldMod);
             AfterHarvest(plantholder, component);
             return true;
         }
@@ -757,7 +781,12 @@ public sealed class PlantHolderSystem : EntitySystem
         if (component.Seed == null || !component.Harvest)
             return;
 
-        _botany.AutoHarvest(component.Seed, Transform(uid).Coordinates);
+        if (!CheckRequiredNutrients(uid, component)) // This should only happen if a reagent that removes nutrients is added to the plant.
+        {
+            return;
+        }
+
+        _botany.AutoHarvest(component.Seed, Transform(uid).Coordinates, component.Nutrients, component.YieldMod);
         AfterHarvest(uid, component);
     }
 
@@ -770,6 +799,14 @@ public sealed class PlantHolderSystem : EntitySystem
         component.LastProduce = component.Age;
 
         DoScream(uid, component.Seed);
+
+        if (!component.Dead)
+        {
+            foreach (var nutrient in component.Nutrients)
+            {
+                AdjustNutrient(uid, (nutrient.Value.Required + nutrient.Value.Bonus) * -1, nutrient.Key, component);
+            }
+        }
 
         if (component.Seed?.HarvestRepeat == HarvestType.NoRepeat)
             RemovePlant(uid, component);
@@ -912,6 +949,23 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             RemoveEmptyNutrient(uid, nutrientId, component);
         }
+    }
+
+    public bool CheckRequiredNutrients(EntityUid uid, PlantHolderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return false;
+        if (component.Dead)
+            return false;
+
+
+        foreach (var nutrientInfo in component.Nutrients.Values)
+        {
+            if (nutrientInfo.Amount < nutrientInfo.Required)
+                return false;
+        }
+
+        return true;
     }
 
     public void UpdateReagents(EntityUid uid, PlantHolderComponent? component = null)
