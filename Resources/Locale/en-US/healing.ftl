@@ -1,0 +1,11 @@
+charcoal_10u = charcoal 10u
+tricordrazine_10u = tricordrazine 10u
+iron_10u = iron 10u
+copper_10u = copper 10u
+potassium_iodide_10u = potassium iodide 10u
+hyronalin_10u = hyronalin 10u
+kelotane_10u = kelotane 10u
+dermaline_10u = dermaline 10u
+dylovene_10u = dylovene 10u
+bicaridine_10u = bicaridine 10u
+dexalin_10u = dexalin 10u

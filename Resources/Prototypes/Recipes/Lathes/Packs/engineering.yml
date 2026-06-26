@@ -112,5 +112,6 @@
   - TelecomServerCircuitboard
   - SMESAdvancedMachineCircuitboard
   - HolopadMachineCircuitboard
+  - HolopadLongRangeMachineCircuitboard
   - StationAnchorCircuitboard
   - TelecomServer1kCircuitboard

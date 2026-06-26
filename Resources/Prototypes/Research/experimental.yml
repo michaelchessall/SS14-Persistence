@@ -92,7 +92,7 @@
     state: icon
   discipline: Experimental
   tier: 2
-  cost: 5000
+  cost: 25000
   recipeUnlocks:
   - ArtifactCrusherMachineCircuitboard
 
@@ -104,7 +104,7 @@
     state: base
   discipline: Experimental
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - WeaponPistolCHIMP
   - AnomalySynchronizerCircuitboard
@@ -120,7 +120,7 @@
     state: base
   discipline: Experimental
   tier: 2
-  cost: 7500
+  cost: 32500
   recipeUnlocks:
   - WeaponParticleDecelerator
   - HoloprojectorField
@@ -133,7 +133,7 @@
     state: base
   discipline: Experimental
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
     - WeaponForceGun
     - WeaponTetherGun
@@ -148,7 +148,7 @@
     state: icon
   discipline: Experimental
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - DeviceQuantumSpinInverter
 
@@ -160,6 +160,6 @@
     state: icon
   discipline: Experimental
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - DeviceDesynchronizer

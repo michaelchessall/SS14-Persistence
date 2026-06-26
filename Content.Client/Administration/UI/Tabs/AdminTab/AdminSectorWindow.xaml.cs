@@ -79,12 +79,12 @@ public sealed partial class AdminSectorWindow : DefaultWindow
         if (string.IsNullOrWhiteSpace(weatherId))
             return;
 
-        _console.ExecuteCommand($"sudo sectorweather {SelectedSector} {weatherId}");
+        _console.ExecuteCommand($"sectorweather {SelectedSector} {weatherId}");
     }
 
     private void ClearWeather()
     {
-        _console.ExecuteCommand($"sudo sectorweather {SelectedSector} clear");
+        _console.ExecuteCommand($"sectorweather {SelectedSector} clear");
     }
 
     private void SetSectorName()

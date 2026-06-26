@@ -1,0 +1,223 @@
+- type: entity
+  id: BaseCoin
+  parent: BaseItem
+  abstract: true
+  name: coin
+  description: A flat bit of metal. If it was still in circulation, inflation would've made it worthless. Since it isn't, it's worth enough to keep in a book.
+  components:
+  - type: Appearance
+  - type: Sprite
+    state: coin_1
+    layers:
+    - state: coin_1
+      map: ["base"]
+  - type: Item
+    size: Tiny
+  - type: StackPrice
+    price: 0
+  - type: Stack
+    count: 1
+    baseLayer: base
+    layerStates:
+    - coin_1
+    - coin_2
+    - coin_3
+    - coin_4
+  - type: NFCoin # So it can go in wallets
+
+- type: entity
+  id: CoinIron
+  parent: BaseCoin
+  name: iron coin
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/Coins/coin_iron.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 10
+  - type: Stack
+    stackType: StackCoinIron
+  - type: StackPrice
+    price: 50
+
+- type: entity
+  id: CoinIron10
+  parent: CoinIron
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  id: CoinIron25
+  parent: CoinIron
+  suffix: 25
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  id: CoinIron50
+  parent: CoinIron
+  suffix: Full
+  components:
+  - type: Stack
+    count: 50
+
+- type: entity
+  id: CoinSilver
+  parent: BaseCoin
+  name: silver coin
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/Coins/coin_silver.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Silver: 10
+  - type: Stack
+    stackType: StackCoinSilver
+  - type: StackPrice
+    price: 100
+
+- type: entity
+  id: CoinSilver10
+  parent: CoinSilver
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  id: CoinSilver25
+  parent: CoinSilver
+  suffix: 25
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  id: CoinSilver50
+  parent: CoinSilver
+  suffix: Full
+  components:
+  - type: Stack
+    count: 50
+
+- type: entity
+  id: CoinGold
+  parent: BaseCoin
+  name: gold coin
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/Coins/coin_gold.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Gold: 10
+  - type: Stack
+    stackType: StackCoinGold
+  - type: StackPrice
+    price: 150
+
+- type: entity
+  id: CoinGold10
+  parent: CoinGold
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  id: CoinGold25
+  parent: CoinGold
+  suffix: 25
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  id: CoinGold50
+  parent: CoinGold
+  suffix: Full
+  components:
+  - type: Stack
+    count: 50
+
+- type: entity
+  id: CoinDiamond
+  parent: BaseCoin
+  name: diamond coin
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/Coins/coin_diamond.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Diamond: 10
+  - type: Stack
+    stackType: StackCoinDiamond
+  - type: StackPrice
+    price: 300
+
+- type: entity
+  id: CoinDiamond10
+  parent: CoinDiamond
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  id: CoinDiamond25
+  parent: CoinDiamond
+  suffix: 25
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  id: CoinDiamond50
+  parent: CoinDiamond
+  suffix: Full
+  components:
+  - type: Stack
+    count: 50
+
+- type: entity
+  id: CoinAdamantine
+  parent: BaseCoin
+  name: adamantine coin
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/Coins/coin_adamantine.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Bananium: 5
+      Silver: 5
+      Gold: 5
+  - type: Stack
+    stackType: StackCoinAdamantine
+  - type: StackPrice
+    price: 200
+
+- type: entity
+  id: CoinAdamantine10
+  parent: CoinAdamantine
+  suffix: 10
+  components:
+  - type: Stack
+    count: 10
+
+- type: entity
+  id: CoinAdamantine25
+  parent: CoinAdamantine
+  suffix: 25
+  components:
+  - type: Stack
+    count: 25
+
+- type: entity
+  id: CoinAdamantine50
+  parent: CoinAdamantine
+  suffix: Full
+  components:
+  - type: Stack
+    count: 50

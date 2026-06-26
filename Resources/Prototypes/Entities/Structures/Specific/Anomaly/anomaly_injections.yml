@@ -370,7 +370,6 @@
       - PresentRandomUnsafe
       - PresentRandom
       - PresentRandomCoal
-      - PresentRandomCash
       - ClothingHeadHatSantahat
       - FoodCakeChristmasSlice
     - settings:

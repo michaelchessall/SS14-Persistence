@@ -144,7 +144,7 @@
     state: icon
   discipline: Arsenal
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - WeaponLaserCannon
 
@@ -156,7 +156,7 @@
     state: icon
   discipline: Arsenal
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - WeaponXrayCannon
 
@@ -168,7 +168,7 @@
     state: display
   discipline: Arsenal
   tier: 2
-  cost: 7500
+  cost: 37500
   recipeUnlocks:
   - PKAUpgradeDamage
   - PKAUpgradeRange
@@ -182,7 +182,7 @@
     state: full
   discipline: Arsenal
   tier: 2
-  cost: 10500
+  cost: 52500
   recipeUnlocks:
   - PowerCageRechargerCircuitboard
   - PowerCageSmall
@@ -204,7 +204,7 @@
     state: icon
   discipline: Arsenal
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - ClothingBackpackHarmpack
 
@@ -216,7 +216,7 @@
     state: icon
   discipline: Arsenal
   tier: 2
-  cost: 15000
+  cost: 75000
   recipeUnlocks:
   - Securityhardsuit
   - Brigmedichardsuit
@@ -236,7 +236,7 @@
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 15000
+  cost: 150000
   recipeUnlocks:
   - WeaponAdvancedLaser
   - PortableRecharger
@@ -249,7 +249,7 @@
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 15000
+  cost: 150000
   recipeUnlocks:
   - WeaponTemperatureGun
 
@@ -261,7 +261,7 @@
     state: icon
   discipline: Arsenal
   tier: 3
-  cost: 15000
+  cost: 150000
   recipeUnlocks:
   - GrenadeEMP
   - PowerCageHigh

@@ -9,6 +9,7 @@ using JetBrains.Annotations;
 using Robust.Shared.GameStates;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization;
 using System.Numerics;
 
 namespace Content.Shared.Stacks;
@@ -45,10 +46,11 @@ public abstract partial class SharedStackSystem : EntitySystem
 
         SubscribeLocalEvent<StackComponent, BeforeIngestedEvent>(OnBeforeEaten);
         SubscribeLocalEvent<StackComponent, IngestedEvent>(OnEaten);
-        SubscribeLocalEvent<StackComponent, GetVerbsEvent<AlternativeVerb>>(OnStackAlternativeInteract);
 
         _vvm.GetTypeHandler<StackComponent>()
             .AddPath(nameof(StackComponent.Count), (_, comp) => comp.Count, SetCount);
+
+        SubscribeNetworkEvent<StackSplitRequestEvent>(OnCustomSplitRequest);
     }
 
     public override void Shutdown()
@@ -182,42 +184,30 @@ public abstract partial class SharedStackSystem : EntitySystem
         ReduceCount(eaten.AsNullable(), 1);
     }
 
-    private void OnStackAlternativeInteract(Entity<StackComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    protected void OnCustomSplitRequest(StackSplitRequestEvent ev, EntitySessionEventArgs args)
     {
-        if (!args.CanAccess || !args.CanInteract || args.Hands == null || ent.Comp.Count == 1)
-            return;
+        if (!TryGetEntity(ev.Stack, out var stackUid))
+            return; // Unable to find stack entity
 
-        var user = args.User; // Can't pass ref events into verbs
+        if (!TryComp<StackComponent>(stackUid, out var stack))
+            return; // Unable to find stack component
 
-        AlternativeVerb halve = new()
-        {
-            Text = Loc.GetString("comp-stack-split-halve"),
-            Category = VerbCategory.Split,
-            Act = () => UserSplit(ent, user, ent.Comp.Count / 2),
-            Priority = 1
-        };
-        args.Verbs.Add(halve);
+        var user = args.SenderSession.AttachedEntity;
+        if (user is not { } userUid)
+            return; // Unable to find user
 
-        var priority = 0;
-        foreach (var amount in DefaultSplitAmounts)
-        {
-            if (amount >= ent.Comp.Count)
-                continue;
+        var xform = Transform(userUid);
+        if (xform is null)
+            return; // Unable to find user location
 
-            AlternativeVerb verb = new()
-            {
-                Text = amount.ToString(),
-                Category = VerbCategory.Split,
-                Act = () => UserSplit(ent, user, amount),
-                // we want to sort by size, not alphabetically by the verb text.
-                Priority = priority
-            };
+        var amount = Math.Clamp(ev.Amount, 1, stack.Count - 1);
+        if (amount <= 0)
+            return; // Invalid amount
 
-            priority--;
-
-            args.Verbs.Add(verb);
-        }
+        UserSplit((stackUid.Value, stack), (userUid, xform), amount);
     }
+
+    protected virtual void OpenCustomSplitUi(Entity<StackComponent> stack, EntityUid user) { }
 
     /// <remarks>
     ///     OnStackAlternativeInteract() was moved to shared in order to faciliate prediction of stack splitting verbs.
@@ -251,5 +241,18 @@ public sealed class StackCountChangedEvent : EntityEventArgs
     {
         OldCount = oldCount;
         NewCount = newCount;
+    }
+}
+
+[NetSerializable, Serializable]
+public sealed class StackSplitRequestEvent : EntityEventArgs
+{
+    public NetEntity Stack;
+    public int Amount;
+
+    public StackSplitRequestEvent(NetEntity netEnt, int amount)
+    {
+        Stack = netEnt;
+        Amount = amount;
     }
 }

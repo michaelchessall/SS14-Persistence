@@ -576,6 +576,25 @@
         amount: 2
         defaultPrototype: KitchenKnife
         examineName: construction-insert-info-examine-name-knife
+- type: entity
+  id: ButcheringMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: industrial butchering machine board
+  description: A machine printed circuit board for an industrial butcherer.
+  components:
+  - type: Sprite
+    state: service
+  - type: MachineBoard
+    prototype: ButcheringMachine
+    stackRequirements:
+      Manipulator: 3
+      Steel: 5
+    tagRequirements:
+      Knife:
+        amount: 2
+        defaultPrototype: KitchenKnife
+        examineName: construction-insert-info-examine-name-knife
+
 
 - type: entity
   id: HydroponicsTrayMachineCircuitboard
@@ -1349,6 +1368,23 @@
       Steel: 5
 
 - type: entity
+  id: MixingMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: mixing machine board
+  description: A machine printed circuit board for a mixing machine.
+  components:
+    - type: Sprite
+      state: service
+    - type: MachineBoard
+      prototype: MixingMachineEmpty
+      stackRequirements:
+        Steel: 5
+      tagRequirements:
+          GlassBeaker:
+            amount: 1
+            defaultPrototype: Beaker
+- type: entity
+
   id: SodaDispenserMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: soda dispenser machine board

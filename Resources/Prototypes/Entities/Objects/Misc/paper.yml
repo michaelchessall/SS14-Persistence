@@ -75,6 +75,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: Paper
   - type: PaperLabelType
   - type: ActivatableUI
@@ -131,6 +134,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperVisuals
     headerImagePath: "/Textures/Interface/Paper/paper_heading_artifact_analyzer.svg.96dpi.png"
     headerMargin: 0.0, 0.0, 0.0, 16.0
@@ -160,6 +166,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperLabelType
     paperType: CaptainsPaper
   - type: PaperVisuals
@@ -185,6 +194,9 @@
       visible: false
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
       visible: false
   - type: PaperLabelType
     paperType: Invoice
@@ -227,6 +239,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperVisuals
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_perforated.svg.96dpi.png"
     headerImagePath: "/Textures/Interface/Paper/paper_heading_nanotask.svg.96dpi.png"
@@ -253,6 +268,9 @@
       visible: false
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
       visible: false
   - type: PaperLabelType
     paperType: Bounty
@@ -295,6 +313,9 @@
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
       visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
+      visible: false
   - type: PaperLabelType
     paperType: Bounty
   - type: Tag
@@ -332,6 +353,9 @@
         visible: false
       - state: paper_stamp-generic
         map: ["enum.PaperVisualLayers.Stamp"]
+        visible: false
+      - state: signature
+        map: ["enum.PaperVisualLayers.Signature"]
         visible: false
   - type: PaperVisuals
     backgroundImagePath: "/Textures/Interface/Paper/paper_background_default.svg.96dpi.png"
@@ -406,6 +430,9 @@
       visible: false
     - state: paper_stamp-generic
       map: ["enum.PaperVisualLayers.Stamp"]
+      visible: false
+    - state: signature
+      map: ["enum.PaperVisualLayers.Signature"]
       visible: false
   - type: Paper
     content: envelope-default-message

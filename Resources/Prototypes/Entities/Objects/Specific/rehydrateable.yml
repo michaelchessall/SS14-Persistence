@@ -147,6 +147,53 @@
 
 - type: entity
   parent: RehydratableAnimalCube
+  id: ChickenCube
+  name: chicken cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobChicken
+    - MobChicken1
+    - MobChicken2
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: PigCube
+  name: pig cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobPig
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: CrabCube
+  name: crab cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobCrab
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SnailCube
+  name: snail cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobSnail
+
+- type: entity
+  parent: RehydratableAnimalCube
+  id: SnothCube
+  name: Snoth cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobSnailMoth
+
+- type: entity
+  parent: RehydratableAnimalCube
   id: SpaceCarpCube
   name: carp cube
   description: Just add water! At your own risk.

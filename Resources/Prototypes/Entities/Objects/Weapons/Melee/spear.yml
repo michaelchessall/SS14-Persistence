@@ -145,7 +145,6 @@
     materialComposition:
       Wood: 100
       Glass: 100
-      Rod: 50
 
 - type: entity
   name: plasma spear

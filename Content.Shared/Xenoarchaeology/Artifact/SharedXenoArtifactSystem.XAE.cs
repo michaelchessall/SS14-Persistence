@@ -6,6 +6,7 @@ using Content.Shared.Timing;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
+using Robust.Shared.Random;
 
 namespace Content.Shared.Xenoarchaeology.Artifact;
 
@@ -121,7 +122,7 @@ public abstract partial class SharedXenoArtifactSystem
         bool consumeDurability = true
     )
     {
-        if (node.Comp.Degraded)
+        if (node.Comp.Degraded || node.Comp.Shattered)
             return false;
 
         _adminLogger.Add(
@@ -129,13 +130,22 @@ public abstract partial class SharedXenoArtifactSystem
             LogImpact.Low,
             $"{ToPrettyString(artifact.Owner)} node {ToPrettyString(node)} got activated at {coordinates}"
         );
+
+        var shouldShatter = false;
         if (consumeDurability)
         {
-            AdjustNodeDurability((node, node.Comp), -1);
+            AdjustNodeDurability(node.AsNullable(), -1);
+            node.Comp.TotalConsumedDurability += 1;
+            shouldShatter = ProcessShatterChance(node);
         }
 
+        if (shouldShatter)
+        {
+            Shatter(node.AsNullable());
+        }
         var ev = new XenoArtifactNodeActivatedEvent(artifact, node, user, target, coordinates);
         RaiseLocalEvent(node, ref ev);
+        node.Comp.ActivatedOnce = true;
         return true;
     }
 
@@ -157,6 +167,25 @@ public abstract partial class SharedXenoArtifactSystem
         var mapUid = _map.GetMap(mapCoords.MapId);
         return new EntityCoordinates(mapUid, mapCoords.Position);
     }
+
+    private bool ProcessShatterChance(Entity<XenoArtifactNodeComponent> node)
+    {
+        var activationDelta = node.Comp.TotalConsumedDurability - node.Comp.MaxDurability;
+        var extraActivations = activationDelta < 0 ? 0 : activationDelta;
+
+        // When extraActivations is at 0, probability is 0%.
+        // When extraActivations = a, probability is 50%
+        // When extraActivations = m, probability is 100%
+        // Everything between is a consistent curve.
+        var a = (float)node.Comp.ControlPointShatterDurabilityThreshold;
+        var m = (float)node.Comp.MaxShatterDurabilityThreshold;
+        var n = MathF.Log(node.Comp.ControlPointShatterProbability) / MathF.Log(a / m);
+        var shatterChance = MathF.Pow(extraActivations / m, n);
+
+        return RobustRandom.Prob(shatterChance);
+    }
+
+
 }
 
 /// <summary>

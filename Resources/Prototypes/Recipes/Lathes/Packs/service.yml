@@ -52,6 +52,7 @@
   - SpaceVillainArcadeComputerCircuitboard
   - InvoicePrinterCircuitboard
   - IDComputerCircuitboard
+  - MixingMachineCircuitboard
 
 - type: latheRecipePack
   id: ReligionStatic
@@ -93,3 +94,4 @@
   - JukeboxCircuitBoard
   - DawInstrumentMachineCircuitboard
   - ComputerTelevisionCircuitboard
+  - ButcheringMachineCircuitboard

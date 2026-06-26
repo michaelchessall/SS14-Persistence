@@ -10,12 +10,13 @@
 - type: reaction
   id: phoron-synthesis
   minTemp: 420
+  conserveEnergy: false
   requiredMixerCategories:
   - Stir
   reactants:
-    Plasma: 
+    Plasma:
       amount: 2
-    Bananium: 
+    Bananium:
       amount: 2
     Titanium:
       amount: 1

@@ -40,6 +40,7 @@
         - ItemMask
         restitution: 0.3
         friction: 0.2
+  - type: SignatureWriter
 
 - type: entity
   parent: Pen

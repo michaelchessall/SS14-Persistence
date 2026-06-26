@@ -1,4 +1,5 @@
 using Content.Shared.Paper;
+using Content.Shared.Persistence.Paper;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controls;
@@ -24,6 +25,7 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
         _window = this.CreateWindow<PaperWindow>();
         _window.OnSaved += InputOnTextEntered;
         _window.OnSignatureRequested += OnSignatureRequested;
+        _window.OnSignatureFieldRequested += OnSignatureFieldRequested;
 
         if (EntMan.TryGetComponent<PaperComponent>(Owner, out var paper))
         {
@@ -53,4 +55,6 @@ public sealed class PaperBoundUserInterface : BoundUserInterface
     }
 
     private void OnSignatureRequested(int signatureIndex) => SendMessage(new PaperSignatureRequestMessage(signatureIndex));
+    private void OnSignatureFieldRequested(string field) => SendMessage(new PaperSignatureFieldRequestMessage(field));
+
 }

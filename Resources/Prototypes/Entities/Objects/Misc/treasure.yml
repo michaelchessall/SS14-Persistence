@@ -152,68 +152,28 @@
       weight: 5
 
 - type: entity
-  parent: BaseItem
+  parent: CoinIron
   id: TreasureCoinIron
-  name: coin
-  description: A flat bit of metal. If it was still in circulation, inflation would've made it worthless. Since it isn't, it's worth enough to keep in a book.
-  components:
-  - type: Sprite
-    sprite: Objects/Misc/coins.rsi
-    state: coin_iron
-  - type: Item
-    size: Tiny
-  - type: StackPrice # Persistence: Static < Stack
-    price: 50
-  - type: Stack # Persistence: Stackable coins
-    stackType: TreasureCoinIron
-    count: 1
-  - type: NFCoin # Persistence: add frontier coin component so wallets can contain coins
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: TreasureCoinIron
+  parent: CoinSilver
   id: TreasureCoinSilver
-  components:
-  - type: Sprite
-    state: coin_silver
-  - type: StackPrice # Persistence: Static < Stack
-    price: 100
-  - type: Stack # Persistence: Stackable coins
-    stackType: TreasureCoinSilver
-    count: 1
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: TreasureCoinIron
+  parent: CoinGold
   id: TreasureCoinGold
-  components:
-  - type: Sprite
-    state: coin_gold
-  - type: StackPrice # Persistence: Static < Stackv
-    price: 150
-  - type: Stack # Persistence: Stackable coins
-    stackType: TreasureCoinGold
-    count: 1
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: TreasureCoinIron
+  parent: CoinAdamantine
   id: TreasureCoinAdamantine
-  components:
-  - type: Sprite
-    state: coin_adamantine
-  - type: StackPrice # Persistence: Static < Stack
-    price: 200
-  - type: Stack # Persistence: Stackable coins
-    stackType: TreasureCoinAdamantine
-    count: 1
+  categories: [ HideSpawnMenu ]
 
 - type: entity
-  parent: TreasureCoinIron
+  parent: CoinDiamond
   id: TreasureCoinDiamond
-  components:
-  - type: Sprite
-    state: coin_diamond
-  - type: StackPrice # Persistence: Static < Stack
-    price: 300
-  - type: Stack # Persistence: Stackable coins
-    stackType: TreasureCoinDiamond
-    count: 1
+  categories: [ HideSpawnMenu ]
+  
 

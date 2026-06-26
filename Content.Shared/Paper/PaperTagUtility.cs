@@ -30,6 +30,14 @@ public static class PaperTagUtility
     }
 
     /// <summary>
+    /// Replaces all instances of a tag in the text with a given string.
+    /// </summary>
+    public static string ReplaceAllTag(string text, string tag, string replacement)
+    {
+        return text.Replace(tag, replacement); // This proved far simpler than I thought it would be...
+    }
+
+    /// <summary>
     /// Removes any unfilled [form] and [signature] tags, and converts [check] tags to ☐.
     /// Called when the paper is stamped to finalize the document.
     /// </summary>

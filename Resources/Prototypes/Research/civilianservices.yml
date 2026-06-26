@@ -84,6 +84,7 @@
   - FatExtractorMachineCircuitboard
   - BiofabricatorMachineCircuitboard
   - BiomassReclaimerMachineCircuitboard
+  - ButcheringMachineCircuitboard
 
 - type: technology
   id: Crematorium
@@ -121,7 +122,7 @@
     state: astroice
   discipline: CivilianServices
   tier: 2
-  cost: 5000
+  cost: 25000
   recipeUnlocks:
   - FauxTileAstroGrass
   - FauxTileMowedAstroGrass
@@ -143,7 +144,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 7500
+  cost: 37500
   recipeUnlocks:
   - StasisBedMachineCircuitboard
   - CryoPodMachineCircuitboard
@@ -158,7 +159,7 @@
     state: medical
   discipline: CivilianServices
   tier: 2
-  cost: 5000
+  cost: 25000
   recipeUnlocks:
   - BorgModuleAdvancedTopical
   - AdvancedJetInjector
@@ -171,7 +172,7 @@
     state: advmop
   discipline: CivilianServices
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - AdvMopItem
   - MegaSprayBottle
@@ -185,7 +186,7 @@
     state: honker
   discipline: CivilianServices
   tier: 2
-  cost: 7500
+  cost: 32500
   recipeUnlocks:
   - HonkerHarness
   - HonkerLArm
@@ -205,7 +206,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
@@ -218,7 +219,7 @@
     state: icon
   discipline: CivilianServices
   tier: 2
-  cost: 4000
+  cost: 20000
   recipeUnlocks:
   - PushHorn
   - BorgModuleAdvancedClowning
@@ -233,7 +234,7 @@
     state: icon
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - ClothingShoesBootsSpeed
 
@@ -245,7 +246,7 @@
     state: beakerbluespace
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - BluespaceBeaker
   - SyringeBluespace
@@ -258,11 +259,11 @@
     state: syringe_gun
   discipline: CivilianServices
   tier: 3
-  cost: 15000
+  cost: 150000
   recipeUnlocks:
   - LauncherSyringe
   - MiniSyringe
-  
+
 - type: technology
   id: AdvancedTelecomms
   name: research-technology-advanced-telecommunications
@@ -271,6 +272,7 @@
     state: telecom-nopower
   discipline: CivilianServices
   tier: 3
-  cost: 10000
+  cost: 100000
   recipeUnlocks:
   - TelecomServer1kCircuitboard
+  - HolopadLongRangeMachineCircuitboard

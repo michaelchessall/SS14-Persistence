@@ -1549,7 +1549,7 @@ entities:
   - uid: 270
     components:
     - type: MetaData
-      name: pill canister (hyronalin 10u)
+      name: pill canister (hyronalin_10u)
     - type: Transform
       rot: -1.5707963267948966 rad
       pos: -3.1553092,0.5242045
@@ -1571,7 +1571,7 @@ entities:
           - 271
           - 272
     - type: Label
-      currentLabel: hyronalin 10u
+      currentLabel: hyronalin_10u
 - proto: PillHyronalin
   entities:
   - uid: 249

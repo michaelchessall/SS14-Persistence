@@ -1,0 +1,11 @@
+- type: construction
+  id: OreBox
+  graph: OreBoxGraph
+  startNode: start
+  targetNode: ore_box
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked

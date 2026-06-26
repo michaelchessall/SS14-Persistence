@@ -1,0 +1,17 @@
+- type: constructionGraph
+  id: OreBoxGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+    - to: ore_box
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 1
+      - material: WoodPlank
+        amount: 5
+        doAfter: 1
+
+  - node: ore_box
+    entity: OreBox

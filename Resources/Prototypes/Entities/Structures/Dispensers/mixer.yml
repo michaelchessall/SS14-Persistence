@@ -1,0 +1,22 @@
+
+- type: entity
+  parent: ReagentDispenserBase
+  id: MixingMachineEmpty
+  name: mixing machine
+  description: A mixer with attached storage for mixing common foods. Has a single fill slot for containers.
+  suffix: Empty
+  components:
+  - type: Rotatable
+  - type: Sprite
+    sprite: Structures/smalldispensers.rsi
+    drawdepth: SmallObjects
+    state: mixer
+  - type: Storage
+    openOnActivate: false
+    whitelist:
+      tags:
+      - DrinkBottle
+  - type: Transform
+    noRot: false
+  - type: Machine
+    board: MixingMachineCircuitboard

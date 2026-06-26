@@ -57,6 +57,7 @@ namespace Content.Client.Paper.UI
 
         public event Action<string>? OnSaved;
         public event Action<int>? OnSignatureRequested;
+        public event Action<string>? OnSignatureFieldRequested;
 
         private int _maxInputLength = -1;
         public int MaxInputLength
@@ -414,6 +415,7 @@ namespace Content.Client.Paper.UI
         }
 
         public void SendSignatureRequest(int signatureIndex) => OnSignatureRequested?.Invoke(signatureIndex);
+        public void SendFieldSignatureRequest(string field) => OnSignatureFieldRequested?.Invoke(field);
         private Button? FindFormButton(int index) => FindNthButton(WrittenTextLabel, index, Loc.GetString("paper-form-fill-button"));
         private Button? FindCheckButton(int index) => FindNthButton(WrittenTextLabel, index, PaperTagHelper.CheckSymbols);
 

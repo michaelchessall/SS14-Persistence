@@ -1,0 +1,174 @@
+﻿- type: constructionGraph
+  id: WarningSign
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: o2
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: air
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: n2o
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: n2
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: co2
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: plasma
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: tritium
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+        - to: waste
+          completed:
+            - !type:SnapToGrid
+              southRotation: true
+          steps:
+            - material: Steel
+              amount: 2
+              doAfter: 2
+
+    - node: o2
+      entity: WarningO2
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: air
+      entity: WarningAir
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: n2o
+      entity: WarningN2O
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: n2
+      entity: WarningN2
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: co2
+      entity: WarningCO2
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: plasma
+      entity: WarningPlasma
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: tritium
+      entity: WarningTritium
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}
+
+    - node: waste
+      entity: WarningWaste
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 2.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 2
+            - !type:DeleteEntity {}

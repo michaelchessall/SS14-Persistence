@@ -18,7 +18,7 @@ public abstract partial class SharedFirestarterSystem : EntitySystem
     /// </summary>
     private void OnComponentInit(EntityUid uid, FirestarterComponent component, ComponentInit args)
     {
-        _actionsSystem.AddAction(uid, ref component.FireStarterActionEntity, component.FireStarterAction, uid);
+        // _actionsSystem.AddAction(uid, ref component.FireStarterActionEntity, component.FireStarterAction, uid);
         Dirty(uid, component);
     }
 }

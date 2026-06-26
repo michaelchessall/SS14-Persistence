@@ -390,3 +390,33 @@
   cost: 750
   category: cargoproduct-category-name-fun
   group: market
+
+- type: cargoProduct
+  id: BlackPlayingCards
+  icon:
+    sprite: _Moffstation/Objects/Misc/Cards/card_black.rsi
+    state: box
+  product: PlayingCardDeckBoxBlack
+  cost: 250
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: NunoPlayingCards
+  icon:
+    sprite: _Moffstation/Objects/Misc/Cards/card_nuno.rsi
+    state: box
+  product: NunoCardDeckBox
+  cost: 250
+  category: cargoproduct-category-name-fun
+  group: market
+
+- type: cargoProduct
+  id: NanotrasenPlayingCards
+  icon:
+    sprite: _Moffstation/Objects/Misc/Cards/card_nanotrasen.rsi
+    state: box
+  product: PlayingCardDeckBoxNanotrasen
+  cost: 2500
+  category: cargoproduct-category-name-fun
+  group: market

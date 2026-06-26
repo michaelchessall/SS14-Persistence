@@ -1,0 +1,623 @@
+- type: entityTable
+  id: XenoArtifactDefaultEffectsRoot
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsRoot
+      weight: 397.0 # Total weights of the table so distribution remains even
+    # Eventually full size only artifact effects will go here
+
+- type: entityTable
+  id: XenoArtifactDefaultEffectsMain
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsMain
+      weight: 425.0 # Total weights of the table so distribution remains even
+    # Eventually full size only artifact effects will go here
+
+- type: entityTable
+  id: XenoArtifactDefaultEffectsDeep
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsDeep
+      weight: 337.0 # Total weights of the table so distribution remains even
+    # Eventually full size only artifact effects will go here
+
+- type: entityTable
+  id: XenoArtifactDefaultEffectsRootHandheld
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsRoot
+      weight: 397.0 # Total weights of the table so distribution remains even
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsRootHandheldOnly
+      weight: 54.0 # Total weights of the table so distribution remains even
+
+- type: entityTable
+  id: XenoArtifactDefaultEffectsMainHandheld
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsMain
+      weight: 425.0 # Total weights of the table so distribution remains even
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsMainHandheldOnly
+      weight: 37.0 # Total weights of the table so distribution remains even
+
+- type: entityTable
+  id: XenoArtifactDefaultEffectsDeepHandheld
+  table: !type:GroupSelector
+    children:
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsDeep
+      weight: 337.0 # Total weights of the table so distribution remains even
+    - !type:NestedSelector
+      tableId: XenoArtifactEffectsDeepHandheldOnly
+      weight: 30.0 # Total weights of the table so distribution remains even
+
+- type: entityTable # Root Nodes (Depth 0)
+  id: XenoArtifactEffectsRoot
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactAnomalySpawn
+      weight: 1.0
+    - id: XenoArtifactArtifactSpawn
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactEffectBadFeeling
+      weight: 10.0
+    - id: XenoArtifactBoom
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactCashSpawn
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactOldCashSpawn
+      weight: 8.0
+    - id: XenoArtifactChargeBatteryLow
+      weight: 3.0
+    - id: XenoArtifactChargeBattery
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactChemicalPuddle
+      weight: 10.0
+    - id: XenoArtifactColdWave
+      weight: 10.0
+    - id: XenoArtifactEffectCreationGasAmmonia
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasCarbonDioxide
+      weight: 10.0
+    - id: XenoArtifactEffectCreationGasFrezon
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasNitrousOxide
+      weight: 10.0
+    - id: XenoArtifactEffectCreationGasPlasma
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasTritium
+      weight: 3.0
+    - id: XenoArtifactEmp
+      weight: 1.0
+    - id: XenoArtifactExplosionScary
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactFaunaSpawn
+      weight: 10.0
+    - id: XenoArtifactFloraSpawn
+      weight: 10.0
+    - id: XenoArtifactFoamDangerous
+      weight: 8.0
+    - id: XenoArtifactFoamGood
+      weight: 8.0
+    - id: XenoArtifactFoamMild
+      weight: 10.0
+    - id: XenoArtifactEffectGoodFeeling
+      weight: 10.0
+    - id: XenoArtifactHealBrute
+      weight: 3.0
+    - id: XenoArtifactHealBurn
+      weight: 3.0
+    - id: XenoArtifactHealRare
+      weight: 1.0
+    - id: XenoArtifactHealAll
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactHeatWave
+      weight: 8.0
+    - id: XenoArtifactHostileFaunaSpawn
+      weight: 3.0
+    - id: XenoArtifactIgnite
+      weight: 3.0
+    - id: XenoArtifactEffectJunkSpawn
+      weight: 10.0
+    - id: XenoArtifactKnock
+      weight: 3.0
+    - id: XenoArtifactEffectLightFlicker
+      weight: 10.0
+    - id: XenoArtifactMagnet
+      weight: 3.0
+    - id: XenoArtifactMagnetNegative
+      weight: 3.0
+    - id: XenoArtifactMonkeySpawn
+      weight: 8.0
+    - id: XenoArtifactPhasing
+      weight: 8.0
+    - id: XenoArtifactPolyLuminous
+      weight: 8.0
+    - id: XenoArtifactPolyLizard
+      weight: 8.0
+    - id: XenoArtifactPolyMonkey
+      weight: 8.0
+    - id: XenoArtifactPortal
+      weight: 1.0
+    - id: XenoArtifactPotassiumWave
+      weight: 8.0
+    - id: XenoArtifactPuddleRare
+      weight: 1.0
+    - id: XenoArtifactRadioactive
+      weight: 10.0
+    - id: XenoArtifactRadioactiveStrong
+      weight: 3.0
+    - id: XenoArtifactRandomInstrumentSpawn
+      weight: 10.0
+    - id: XenoArtifactShatterWindows
+      weight: 8.0
+    - id: XenoArtifactShuffle
+      weight: 3.0
+    - id: XenoArtifactSolutionStorage
+      weight: 10.0
+    - id: XenoArtifactAngryCarpSpawn
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnGlassFew
+      weight: 10.0
+    - id: XenoArtifactMaterialSpawnGlassMany
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnGlassStack
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactMaterialSpawnSteelFew
+      weight: 10.0
+    - id: XenoArtifactMaterialSpawnSteelMany
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnSteelStack
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactMaterialSpawnPlasticFew
+      weight: 10.0
+    - id: XenoArtifactMaterialSpawnPlasticMany
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnPlasticStack
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactRawMaterialSpawnBananiumFew
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnBananiumMore
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnBananiumMany
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactRawMaterialSpawnGoldFew
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnGoldMore
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnGoldMany
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactRawMaterialSpawnPlasmaFew
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaMore
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaMany
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactRawMaterialSpawnSilverFew
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnSilverMore
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnSilverMany
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactRawMaterialSpawnUraniumFew
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnUraniumMore
+      weight: 1.0 
+    - id: XenoArtifactRawMaterialSpawnUraniumMany
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactStealth
+      weight: 3.0
+    - id: XenoArtifactTeleport
+      weight: 3.0
+    - id: XenoArtifactThrowThingsAround
+      weight: 8.0
+    - id: XenoArtifactWandering
+      weight: 8.0
+
+- type: entityTable # Main Nodes (Depth 1-2)
+  id: XenoArtifactEffectsMain
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactAnomalySpawn
+      weight: 1.0
+    - id: XenoArtifactArtifactSpawn
+      weight: 1.0
+    - id: XenoArtifactEffectBadFeeling
+      weight: 8.0
+    - id: XenoArtifactBoom
+      weight: 1.0
+    - id: XenoArtifactCashSpawn
+      weight: 1.0
+    - id: XenoArtifactOldCashSpawn
+      weight: 3.0
+    - id: XenoArtifactChargeBatteryLow
+      weight: 8.0
+    - id: XenoArtifactChargeBattery
+      weight: 3.0
+    - id: XenoArtifactChemicalPuddle
+      weight: 10.0
+    - id: XenoArtifactColdWave
+      weight: 10.0
+    - id: XenoArtifactEffectCreationGasAmmonia
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasCarbonDioxide
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasFrezon
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasNitrousOxide
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasPlasma
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasTritium
+      weight: 8.0
+    - id: XenoArtifactEmp
+      weight: 3.0
+    - id: XenoArtifactExplosionScary
+      weight: 1.0
+    - id: XenoArtifactFaunaSpawn
+      weight: 8.0
+    - id: XenoArtifactFloraSpawn
+      weight: 8.0
+    - id: XenoArtifactFoamDangerous
+      weight: 8.0
+    - id: XenoArtifactFoamGood
+      weight: 8.0
+    - id: XenoArtifactFoamMild
+      weight: 10.0
+    - id: XenoArtifactEffectGoodFeeling
+      weight: 8.0
+    - id: XenoArtifactHealBrute
+      weight: 3.0
+    - id: XenoArtifactHealBurn
+      weight: 3.0
+    - id: XenoArtifactHealRare
+      weight: 3.0
+    - id: XenoArtifactHealAll
+      weight: 1.0
+    - id: XenoArtifactHeatWave
+      weight: 8.0
+    - id: XenoArtifactHostileFaunaSpawn
+      weight: 8.0
+    - id: XenoArtifactIgnite
+      weight: 8.0
+    - id: XenoArtifactEffectJunkSpawn
+      weight: 3.0
+    - id: XenoArtifactKnock
+      weight: 3.0
+    - id: XenoArtifactEffectLightFlicker
+      weight: 8.0
+    - id: XenoArtifactMagnet
+      weight: 8.0
+    - id: XenoArtifactMagnetNegative
+      weight: 8.0
+    - id: XenoArtifactMonkeySpawn
+      weight: 8.0
+    - id: XenoArtifactPhasing
+      weight: 3.0
+    - id: XenoArtifactPolyLuminous
+      weight: 8.0
+    - id: XenoArtifactPolyLizard
+      weight: 8.0
+    - id: XenoArtifactPolyMonkey
+      weight: 8.0
+    - id: XenoArtifactPortal
+      weight: 1.0
+    - id: XenoArtifactPotassiumWave
+      weight: 8.0
+    - id: XenoArtifactPuddleRare
+      weight: 2.0
+    - id: XenoArtifactRadioactive
+      weight: 10.0
+    - id: XenoArtifactRadioactiveStrong
+      weight: 8.0
+    - id: XenoArtifactRandomInstrumentSpawn
+      weight: 8.0
+    - id: XenoArtifactShatterWindows
+      weight: 3.0
+    - id: XenoArtifactShuffle
+      weight: 3.0
+    - id: XenoArtifactSolutionStorage
+      weight: 10.0
+    - id: XenoArtifactAngryCarpSpawn
+      weight: 8.0
+    - id: XenoArtifactMaterialSpawnGlassFew
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnGlassMany
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnGlassStack
+      weight: 1.0
+    - id: XenoArtifactMaterialSpawnSteelFew
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnSteelMany
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnSteelStack
+      weight: 1.0
+    - id: XenoArtifactMaterialSpawnPlasticFew
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnPlasticMany
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnPlasticStack
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnBananiumFew
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnBananiumMore
+      weight: 2.0
+    - id: XenoArtifactRawMaterialSpawnBananiumMany
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnGoldFew
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnGoldMore
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnGoldMany
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaFew
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaMore
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaMany
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnSilverFew
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnSilverMore
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnSilverMany
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnUraniumFew
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnUraniumMore
+      weight: 10.0
+    - id: XenoArtifactRawMaterialSpawnUraniumMany
+      weight: 1.0
+    - id: XenoArtifactStealth
+      weight: 3.0
+    - id: XenoArtifactTeleport
+      weight: 3.0
+    - id: XenoArtifactThrowThingsAround
+      weight: 3.0
+    - id: XenoArtifactWandering
+      weight: 8.0
+
+- type: entityTable # Deep Nodes (Depth 3+)
+  id: XenoArtifactEffectsDeep
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactAnomalySpawn
+      weight: 3.0
+    - id: XenoArtifactArtifactSpawn
+      weight: 3.0
+    - id: XenoArtifactEffectBadFeeling
+      weight: 1.0
+    - id: XenoArtifactBoom
+      weight: 3.0
+    - id: XenoArtifactCashSpawn
+      weight: 3.0
+    - id: XenoArtifactOldCashSpawn
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactChargeBatteryLow
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactChargeBattery # Full Charge
+      weight: 10.0
+    - id: XenoArtifactChemicalPuddle
+      weight: 10.0
+    - id: XenoArtifactColdWave
+      weight: 8.0
+    - id: XenoArtifactEffectCreationGasAmmonia
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasCarbonDioxide
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasFrezon
+      weight: 10.0
+    - id: XenoArtifactEffectCreationGasNitrousOxide
+      weight: 3.0
+    - id: XenoArtifactEffectCreationGasPlasma
+      weight: 10.0
+    - id: XenoArtifactEffectCreationGasTritium
+      weight: 10.0
+    - id: XenoArtifactEmp
+      weight: 8.0
+    - id: XenoArtifactExplosionScary
+      weight: 1.0
+    - id: XenoArtifactFaunaSpawn
+      weight: 1.0
+    - id: XenoArtifactFloraSpawn
+      weight: 1.0
+    - id: XenoArtifactFoamDangerous
+      weight: 8.0
+    - id: XenoArtifactFoamGood
+      weight: 8.0
+    - id: XenoArtifactFoamMild
+      weight: 3.0
+    - id: XenoArtifactEffectGoodFeeling
+      weight: 1.0
+    - id: XenoArtifactHealBrute
+      weight: 1.0
+    - id: XenoArtifactHealBurn
+      weight: 1.0
+    - id: XenoArtifactHealRare
+      weight: 2.0
+    - id: XenoArtifactHealAll
+      weight: 2.0
+    - id: XenoArtifactHeatWave
+      weight: 8.0
+    - id: XenoArtifactHostileFaunaSpawn
+      weight: 10.0
+    - id: XenoArtifactIgnite
+      weight: 10.0
+    - id: XenoArtifactEffectJunkSpawn
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactKnock
+      weight: 8.0
+    - id: XenoArtifactEffectLightFlicker
+      weight: 3.0
+    - id: XenoArtifactMagnet
+      weight: 10.0
+    - id: XenoArtifactMagnetNegative
+      weight: 10.0
+    - id: XenoArtifactMonkeySpawn
+      weight: 3.0
+    - id: XenoArtifactPhasing
+      weight: 1.0
+    - id: XenoArtifactPolyLuminous
+      weight: 3.0
+    - id: XenoArtifactPolyLizard
+      weight: 3.0
+    - id: XenoArtifactPolyMonkey
+      weight: 3.0
+    - id: XenoArtifactPortal
+      weight: 3.0
+    - id: XenoArtifactPotassiumWave
+      weight: 8.0
+    - id: XenoArtifactPuddleRare
+      weight: 3.0
+    - id: XenoArtifactRadioactive
+      weight: 3.0
+    - id: XenoArtifactRadioactiveStrong
+      weight: 10.0
+    - id: XenoArtifactRandomInstrumentSpawn
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactShatterWindows
+      weight: 3.0
+    - id: XenoArtifactShuffle
+      weight: 8.0
+    - id: XenoArtifactSolutionStorage
+      weight: 10.0
+    - id: XenoArtifactAngryCarpSpawn
+      weight: 8.0
+    - id: XenoArtifactMaterialSpawnGlassFew
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactMaterialSpawnGlassMany
+      weight: 2.0
+    - id: XenoArtifactMaterialSpawnGlassStack
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnSteelFew
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactMaterialSpawnSteelMany
+      weight: 2.0
+    - id: XenoArtifactMaterialSpawnSteelStack
+      weight: 3.0
+    - id: XenoArtifactMaterialSpawnPlasticFew
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactMaterialSpawnPlasticMany
+      weight: 2.0
+    - id: XenoArtifactMaterialSpawnPlasticStack
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnBananiumFew
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnBananiumMore
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnBananiumMany
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnGoldFew
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnGoldMore
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnGoldMany
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaFew
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaMore
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnPlasmaMany
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnSilverFew
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnSilverMore
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnSilverMany
+      weight: 8.0
+    - id: XenoArtifactRawMaterialSpawnUraniumFew
+      weight: 1.0
+    - id: XenoArtifactRawMaterialSpawnUraniumMore
+      weight: 3.0
+    - id: XenoArtifactRawMaterialSpawnUraniumMany
+      weight: 8.0
+    - id: XenoArtifactStealth
+      weight: 8.0
+    - id: XenoArtifactTeleport
+      weight: 3.0
+    - id: XenoArtifactThrowThingsAround
+      weight: 3.0
+    - id: XenoArtifactWandering
+      weight: 8.0
+
+- type: entityTable # Root Handheld (Depth 0)
+  id: XenoArtifactEffectsRootHandheldOnly
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactSpeedUp
+      weight: 3.0
+    - id: XenoArtifactToolCrowbar
+      weight: 10.0
+    - id: XenoArtifactToolScrewdriver
+      weight: 10.0
+    - id: XenoArtifactToolWrench
+      weight: 10.0
+    - id: XenoArtifactToolWirecutter
+      weight: 10.0
+    - id: XenoArtifactToolJaws
+      weight: 2.0
+    - id: XenoArtifactToolPowerDrill
+      weight: 2.0
+    - id: XenoArtifactToolKnife
+      weight: 3.0
+    - id: XenoArtifactOmnitool
+      weight: 1.0
+    - id: XenoArtifactToolDrill
+      weight: 3.0
+
+- type: entityTable # Main Handheld (Depth 1-2)
+  id: XenoArtifactEffectsMainHandheldOnly
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactSpeedUp
+      weight: 10.0
+    - id: XenoArtifactToolCrowbar
+      weight: 3.0
+    - id: XenoArtifactToolScrewdriver
+      weight: 3.0
+    - id: XenoArtifactToolWrench
+      weight: 3.0
+    - id: XenoArtifactToolWirecutter
+      weight: 3.0
+    - id: XenoArtifactToolJaws
+      weight: 3.0
+    - id: XenoArtifactToolPowerDrill
+      weight: 3.0
+    - id: XenoArtifactToolKnife
+      weight: 2.0
+    - id: XenoArtifactOmnitool
+      weight: 2.0
+    - id: XenoArtifactToolDrill
+      weight: 5.0
+
+- type: entityTable # Deep Handheld (Depth 3+)
+  id: XenoArtifactEffectsDeepHandheldOnly
+  table: !type:GroupSelector
+    children:
+    - id: XenoArtifactSpeedUp
+      weight: 10.0
+    - id: XenoArtifactToolCrowbar
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactToolScrewdriver
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactToolWrench
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactToolWirecutter
+      weight: 0.0 # Here for parity
+    - id: XenoArtifactToolJaws
+      weight: 3.0
+    - id: XenoArtifactToolPowerDrill
+      weight: 3.0
+    - id: XenoArtifactToolKnife
+      weight: 3.0
+    - id: XenoArtifactOmnitool
+      weight: 8.0
+    - id: XenoArtifactToolDrill
+      weight: 3.0

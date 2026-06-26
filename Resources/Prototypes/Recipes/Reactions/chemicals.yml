@@ -531,9 +531,9 @@
       amount: 1
     Phoron:
       amount: 1
+      catalyst: true
   products:
     ArtifactGlue: 2
-    Phoron: 1
 
 
 - type: reaction

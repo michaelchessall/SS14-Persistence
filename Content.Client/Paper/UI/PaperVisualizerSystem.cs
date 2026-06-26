@@ -38,11 +38,23 @@ public sealed class PaperVisualizerSystem : VisualizerSystem<PaperVisualsCompone
             }
 
         }
+
+        if (AppearanceSystem.TryGetData<string>(uid, PaperVisuals.Signed, out var signedState, args.Component))
+        {
+            if (signedState != string.Empty)
+            {
+                SpriteSystem.LayerSetRsiState((uid, args.Sprite), PaperVisualLayers.Signature, signedState);
+                SpriteSystem.LayerSetVisible((uid, args.Sprite), PaperVisualLayers.Signature, true);
+            }
+            else
+                SpriteSystem.LayerSetVisible((uid, args.Sprite), PaperVisualLayers.Signature, true);
+        }
     }
 }
 
 public enum PaperVisualLayers
 {
     Stamp,
-    Writing
+    Writing,
+    Signature,
 }

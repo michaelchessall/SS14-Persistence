@@ -170,6 +170,7 @@
   parent: [ BaseCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]
   id: RadarConsoleCircuitboard
   result: RadarConsoleCircuitboard
+  unlockUses: 4
 
 - type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseSupplyComputerRecipeCategory ]

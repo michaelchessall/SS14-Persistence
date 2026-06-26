@@ -11,6 +11,9 @@ public sealed class RandomArtifactSpriteSystem : VisualizerSystem<RandomArtifact
             return;
 
         if (!AppearanceSystem.TryGetData<int>(uid, SharedArtifactsVisuals.SpriteIndex, out var spriteIndex, args.Component))
+            spriteIndex = component.SelectedSprite;
+
+        if (spriteIndex < 0)
             return;
 
         if (!AppearanceSystem.TryGetData<bool>(uid, SharedArtifactsVisuals.IsUnlocking, out var isUnlocking, args.Component))

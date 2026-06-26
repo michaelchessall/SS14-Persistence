@@ -1162,6 +1162,9 @@
   components:
   - type: Sprite
     state: atmos_air
+  - type: Construction
+    graph: WarningSign
+    node: air
 
 - type: entity
   parent: BaseSign
@@ -1171,6 +1174,9 @@
   components:
   - type: Sprite
     state: atmos_co2
+  - type: Construction
+    graph: WarningSign
+    node: co2
 
 - type: entity
   parent: BaseSign
@@ -1180,6 +1186,9 @@
   components:
   - type: Sprite
     state: atmos_n2
+  - type: Construction
+    graph: WarningSign
+    node: n2
 
 - type: entity
   parent: BaseSign
@@ -1189,6 +1198,9 @@
   components:
   - type: Sprite
     state: atmos_n2o
+  - type: Construction
+    graph: WarningSign
+    node: n2o
 
 - type: entity
   parent: BaseSign
@@ -1198,6 +1210,9 @@
   components:
   - type: Sprite
     state: atmos_o2
+  - type: Construction
+    graph: WarningSign
+    node: o2
 
 - type: entity
   parent: BaseSign
@@ -1207,6 +1222,9 @@
   components:
   - type: Sprite
     state: atmos_plasma
+  - type: Construction
+    graph: WarningSign
+    node: plasma
 
 - type: entity
   parent: BaseSign
@@ -1216,6 +1234,9 @@
   components:
   - type: Sprite
     state: atmos_tritium
+  - type: Construction
+    graph: WarningSign
+    node: tritium
 
 - type: entity
   parent: BaseSign
@@ -1225,6 +1246,9 @@
   components:
   - type: Sprite
     state: atmos_waste
+  - type: Construction
+    graph: WarningSign
+    node: waste
 
 - type: entity
   parent: BaseSign
