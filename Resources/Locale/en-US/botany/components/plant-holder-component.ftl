@@ -30,7 +30,7 @@ plant-holder-component-nutrient-level-message = {CAPITALIZE($name)}: [color={$co
 
 plant-holder-component-nutrient-bonus-message = -{ $fulfilled ->
         [true] [color=green]{$bonusNutrients}[/color]
-       *[false] [color=red]{$bonusNutrients}[/color]
+       *[false] {$bonusNutrients}
     }
 plant-holder-component-toxins-high-warning = The [color=red]toxicity level alert[/color] is flashing red.
 plant-holder-component-light-improper-warning = The [color=yellow]improper light level alert[/color] is blinking.
