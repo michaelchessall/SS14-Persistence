@@ -23,10 +23,12 @@ plant-holder-component-plant-unhealthy-adjective = unhealthy
 plant-holder-component-dead-plant-matter-message = It's full of [color=red]dead plant matter[/color].
 plant-holder-component-weed-high-level-message = It's filled with [color=green]weeds[/color]!
 plant-holder-component-pest-high-level-message = It's filled with [color=gray]tiny worms[/color]!
-plant-holder-component-nutrient-level-message = {CAPITALIZE($name)}: [color={$color}]{$nutrientLevel}[/color]/{ $fulfilled ->
+plant-holder-component-nutrient-level-message = {CAPITALIZE($name)}: [color={$color}]{$nutrientLevel}[/color]{$requirementMessage}{$bonusMessage}.
+
+plant-holder-component-nutrient-requirement-message = /{ $fulfilled ->
         [true] [color=green]{$requiredNutrients}[/color]
        *[false] [color=red]{$requiredNutrients}[/color]
-    }{$bonusMessage}.
+    }
 
 plant-holder-component-nutrient-bonus-message = -{ $fulfilled ->
         [true] [color=green]{$bonusNutrients}[/color]
@@ -39,3 +41,4 @@ plant-holder-component-pressure-improper-warning = The [color=lightblue]improper
 plant-holder-component-gas-missing-warning = The [color=cyan]improper gas environment alert[/color] is blinking.
 plant-holder-component-early-sample-message = The plant hasn't grown enough to take a sample yet.
 plant-holder-component-ligneous-cant-harvest-message = The plant is too tough to harvest with your bare hands.
+"plant-holder-component-low-nutrient-cant-harvest-message = This plant is missing nutrients required to grow it's produce.

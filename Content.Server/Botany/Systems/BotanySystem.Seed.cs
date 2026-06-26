@@ -116,7 +116,7 @@ public sealed partial class BotanySystem : EntitySystem
         return seed;
     }
 
-    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, int yieldMod = 1)
+    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients, int yieldMod = 1)
     {
         if (position.IsValid(EntityManager) &&
             proto.ProductPrototypes.Count > 0)
@@ -124,13 +124,13 @@ public sealed partial class BotanySystem : EntitySystem
             if (proto.HarvestLogImpact != null)
                 _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(proto.Name):seed} at Pos:{position}.");
 
-            return GenerateProduct(proto, position, yieldMod);
+            return GenerateProduct(proto, position, nutrients, yieldMod);
         }
 
         return Enumerable.Empty<EntityUid>();
     }
 
-    public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, int yieldMod = 1)
+    public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients, int yieldMod = 1)
     {
         if (proto.ProductPrototypes.Count == 0 || proto.Yield <= 0)
         {
@@ -144,10 +144,10 @@ public sealed partial class BotanySystem : EntitySystem
         if (proto.HarvestLogImpact != null)
             _adminLogger.Add(LogType.Botany, proto.HarvestLogImpact.Value, $"{ToPrettyString(user):player} harvested {Loc.GetString(proto.Name):seed} at Pos:{Transform(user).Coordinates}.");
 
-        return GenerateProduct(proto, Transform(user).Coordinates, yieldMod);
+        return GenerateProduct(proto, Transform(user).Coordinates, nutrients, yieldMod);
     }
 
-    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, int yieldMod = 1)
+    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients, int yieldMod = 1)
     {
         var totalYield = 0;
         if (proto.Yield > -1)
@@ -176,7 +176,7 @@ public sealed partial class BotanySystem : EntitySystem
             var produce = EnsureComp<ProduceComponent>(entity);
 
             produce.Seed = proto;
-            ProduceGrown(entity, produce);
+            ProduceGrown(entity, produce, nutrients);
 
             _appearance.SetData(entity, ProduceVisuals.Potency, proto.Potency);
 

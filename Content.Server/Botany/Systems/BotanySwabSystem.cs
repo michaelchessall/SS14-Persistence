@@ -12,6 +12,7 @@ public sealed class BotanySwabSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MutationSystem _mutationSystem = default!;
+    [Dependency] private readonly PlantHolderSystem _plantHolderSystem = default!;
 
     public override void Initialize()
     {
@@ -73,6 +74,7 @@ public sealed class BotanySwabSystem : EntitySystem
                 return;
             plant.Seed = _mutationSystem.Cross(swab.SeedData, old); // Cross-pollenate
             swab.SeedData = old; // Transfer old plant pollen to swab
+            _plantHolderSystem.UpdateNutrientRequirements(args.Args.Target.Value, plant);
             _popupSystem.PopupEntity(Loc.GetString("botany-swab-to"), args.Args.Target.Value, args.Args.User);
         }
 
