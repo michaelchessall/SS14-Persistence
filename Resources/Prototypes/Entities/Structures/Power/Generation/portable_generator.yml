@@ -470,10 +470,10 @@
       fuelMaterial: Phoron
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 2500 
+      storageLimit: 2500 #5000 before
       materialWhiteList: [Phoron]
     - type: PortableGenerator
-      startChance: 0.65 # Rn it's used for emergency station power sooo I think it should be more dificult to start for the dramatic factor
+      startChance: 0.95
     - type: PowerMonitoringDevice
       group: Generator
       loadNode: output
