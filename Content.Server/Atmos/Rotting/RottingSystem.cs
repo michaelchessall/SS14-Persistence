@@ -107,6 +107,8 @@ public sealed class RottingSystem : SharedRottingSystem
             if (!IsRotProgressing(uid, perishable))
                 continue;
             rotting.TotalRotTime += rotting.RotUpdateRate * GetRotRate(uid);
+            if (rotting.TotalRotTime >= rotting.MaximumTotalRotTime)
+                rotting.TotalRotTime = rotting.MaximumTotalRotTime;
 
             if (rotting.DealDamage)
             {

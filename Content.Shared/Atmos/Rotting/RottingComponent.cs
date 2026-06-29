@@ -38,6 +38,12 @@ public sealed partial class RottingComponent : Component
     public TimeSpan TotalRotTime = TimeSpan.Zero;
 
     /// <summary>
+    /// The absolute maximum amount of time an object can acculate rot for.
+    /// </summary>
+    [DataField]
+    public TimeSpan MaximumTotalRotTime = TimeSpan.FromSeconds(7200);
+
+    /// <summary>
     /// The damage dealt by rotting.
     /// </summary>
     [DataField]
