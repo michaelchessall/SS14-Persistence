@@ -142,6 +142,10 @@
   color: "#b05b3c"
   boilingPoint: 78.2
   meltingPoint: -114.1
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: alcohol
   metabolisms:
     Metabolites:
       metabolismRate: 0.05
@@ -2463,6 +2467,13 @@
   metamorphicMaxFillLevels: 2
   metamorphicFillBaseName: fill-
   metamorphicChangeColor: false
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 2
+      nutrient: alcohol
+    - !type:PlantAdjustNutrient
+      amount: 0.25
+      nutrient: toxin
   metabolisms:
     Digestion:
       metabolites:

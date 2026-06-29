@@ -34,6 +34,13 @@
   color: "#22282b"
   boilingPoint: 4200.0
   meltingPoint: 3550.0
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: -0.5
+    nutrient: toxin
+  - !type:PlantAdjustNutrient
+    amount: 0.5
+    nutrient: carbon
   metabolisms:
     Bloodstream:
       effects:

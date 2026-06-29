@@ -39,8 +39,12 @@
           types:
             Poison: 0.2
   plantMetabolism:
-    - !type:PlantAdjustWater
-      amount: 0.5
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: water
+    - !type:PlantAdjustNutrient
+      amount: 0.2
+      nutrient: protein
   footstepSound:
     collection: FootstepBlood
     params:
@@ -110,6 +114,13 @@
         factor: 1
       - !type:SatiateThirst
         factor: 1
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 0.9
+    nutrient: water
+  - !type:PlantAdjustNutrient
+    amount: 0.1
+    nutrient: sugar
   footstepSound:
     collection: FootstepSlime
     params:
@@ -201,8 +212,9 @@
         amount: -1.5
   # Just in case you REALLY want to water your plants
   plantMetabolism:
-  - !type:PlantAdjustWater
+  - !type:PlantAdjustNutrient
     amount: 0.5
+    nutrient: water
   footstepSound:
     collection: FootstepBlood
     params:

@@ -11,13 +11,103 @@
   color: "cyan"
 
 - type: plantNutrient
+  id: fertilizer
+  name: nutrient-name-fertilizer
+  desc: nutrient-desc-fertilizer
+  color: "#3e901c"
+
+- type: plantNutrient
+  id: sugar
+  name: nutrient-name-sugar
+  desc: nutrient-desc-sugar
+  color: "white"
+
+- type: plantNutrient
+  id: protein
+  name: nutrient-name-protein
+  desc: nutrient-desc-protein
+  color: "#FFFFE5"
+
+- type: plantNutrient
+  id: alcohol
+  name: nutrient-name-alcohol
+  desc: nutrient-desc-alcohol
+  color: "#b05b3c"
+
+- type: plantNutrient
   id: toxin
   name: nutrient-name-toxin
   desc: nutrient-desc-toxin
-  color: "red"
+  color: "#cf3600"
+
+- type: plantNutrient
+  id: pest
+  name: nutrient-name-pest
+  desc: nutrient-desc-pest
+  color: "black"
+
+- type: plantNutrient
+  id: radiation
+  name: nutrient-name-radiation
+  desc: nutrient-desc-radiation
+  color: "#00ff04"
+
+- type: plantNutrient
+  id: acid
+  name: nutrient-name-acid
+  desc: nutrient-desc-acid
+  color: "#BF8C00"
+
+- type: plantNutrient
+  id: carbon
+  name: nutrient-name-carbon
+  desc: nutrient-desc-carbon
+  color: "#22282b"
+
+- type: plantNutrient
+  id: iron
+  name: nutrient-name-iron
+  desc: nutrient-desc-iron
+  color: "#434b4d"
+
+- type: plantNutrient
+  id: gold
+  name: nutrient-name-gold
+  desc: nutrient-desc-gold
+  color: "#F7C430"
+
+- type: plantNutrient
+  id: silver
+  name: nutrient-name-silver
+  desc: nutrient-desc-silver
+  color: "#d0d0d0"
+
+- type: plantNutrient
+  id: titanium
+  name: nutrient-name-titanium
+  desc: nutrient-desc-titanium
+  color: "#d0d0d0"
 
 - type: plantNutrient
   id: clown
   name: nutrient-name-clown
   desc: nutrient-desc-clown
   color: "#FF4DD2"
+
+- type: plantNutrient
+  id: plasma
+  name: nutrient-name-plasma
+  desc: nutrient-desc-plasma
+  color: "#7e009e"
+
+- type: plantNutrient
+  id: carbonDioxide
+  name: nutrient-name-carbonDioxide
+  desc: nutrient-desc-carbonDioxide
+  color: "#66ff33"
+
+- type: plantNutrient
+  id: frezon
+  name: nutrient-name-frezon
+  desc: nutrient-desc-frezon
+  color: "#3a758c"
