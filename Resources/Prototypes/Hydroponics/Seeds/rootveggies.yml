@@ -1,0 +1,186 @@
+- type: seed
+  id: carrots
+  name: seeds-carrots-name
+  noun: seeds-noun-seeds
+  displayName: seeds-carrots-display-name
+  plantRsi: Objects/Specific/Hydroponics/carrot.rsi
+  packetPrototype: CarrotSeeds
+  productPrototypes:
+  - FoodCarrot
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    JuiceCarrot:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Oculine:
+      Min: 2
+      Max: 6
+      PotencyDivisor: 20
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: potato
+  name: seeds-potato-name
+  noun: seeds-noun-seeds
+  displayName: seeds-potato-display-name
+  plantRsi: Objects/Specific/Hydroponics/potato.rsi
+  packetPrototype: PotatoSeeds
+  productPrototypes:
+  - FoodPotato
+  lifespan: 30
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 4
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: garlic
+  name: seeds-garlic-name
+  noun: seeds-noun-seeds
+  displayName: seeds-garlic-display-name
+  plantRsi: Objects/Specific/Hydroponics/garlic.rsi
+  packetPrototype: GarlicSeeds
+  productPrototypes:
+  - FoodGarlic
+  lifespan: 25
+  maturation: 8
+  production: 5
+  yield: 3
+  potency: 25
+  growthStages: 3
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Allicin:
+      Min: 1
+      Max: 8
+      PotencyDivisor: 25
+
+- type: seed
+  id: onion
+  name: seeds-onion-name
+  noun: seeds-noun-seeds
+  displayName: seeds-onion-display-name
+  plantRsi: Objects/Specific/Hydroponics/onion.rsi
+  packetPrototype: OnionSeeds
+  productPrototypes:
+  - FoodOnion
+  mutationPrototypes:
+  - onionred
+  - bloonion
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 2
+  potency: 20
+  growthStages: 3
+  idealLight: 8
+  waterConsumption: 0.60
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Allicin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: onionred
+  name: seeds-onionred-name
+  noun: seeds-noun-seeds
+  displayName: seeds-onionred-display-name
+  plantRsi: Objects/Specific/Hydroponics/onion_red.rsi
+  packetPrototype: OnionRedSeeds
+  productPrototypes:
+  - FoodOnionRed
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 2
+  potency: 20
+  growthStages: 3
+  idealLight: 8
+  waterConsumption: 0.60
+  idealHeat: 298
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Allicin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: bloonion
+  name: seeds-bloonion-name
+  noun: seeds-noun-seeds
+  displayName: seeds-bloonion-display-name
+  plantRsi: Objects/Specific/Hydroponics/bloonion.rsi
+  packetPrototype: BloonionSeeds
+  productPrototypes:
+  - FoodBloonion
+  lifespan: 25
+  maturation: 15
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 4
+  waterConsumption: 0.60
+  nutrientConsumption: 0.50
+  chemicals:
+    Potassium:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Phosphorus:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Sugar:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Allicin:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10

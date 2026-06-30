@@ -1,0 +1,293 @@
+- type: seed
+  id: teaPlant
+  name: seeds-teaplant-name
+  noun: seeds-noun-seeds
+  displayName: seeds-teaplant-display-name
+  plantRsi: Objects/Specific/Hydroponics/tea_plant.rsi
+  packetPrototype: TeaPlantSeeds
+  productPrototypes:
+  - LeavesTea
+  harvestRepeat: Repeat
+  lifespan: 75
+  maturation: 5
+  production: 3
+  yield: 2
+  potency: 20
+  growthStages: 5
+  waterConsumption: 0.6
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    Vitamin:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+
+- type: seed
+  id: cabbage
+  name: seeds-cabbage-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cabbage-display-name
+  plantRsi: Objects/Specific/Hydroponics/cabbage.rsi
+  packetPrototype: CabbageSeeds
+  productPrototypes:
+  - FoodCabbage
+  lifespan: 50
+  maturation: 7
+  production: 5
+  yield: 3
+  potency: 10
+  growthStages: 1
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+
+- type: seed
+  id: cannabis
+  name: seeds-cannabis-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cannabis-display-name
+  plantRsi: Objects/Specific/Hydroponics/cannabis.rsi
+  packetPrototype: CannabisSeeds
+  productPrototypes:
+  - LeavesCannabis
+  mutationPrototypes:
+  - rainbowCannabis
+  harvestRepeat: Repeat
+  lifespan: 75
+  maturation: 8
+  production: 12
+  yield: 2
+  potency: 20
+  growthStages: 3
+  waterConsumption: 0.40
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    THC:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: seed
+  id: rainbowCannabis
+  name: seeds-rainbow-cannabis-name
+  noun: seeds-noun-seeds
+  displayName: seeds-rainbow-cannabis-display-name
+  plantRsi: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+  packetPrototype: RainbowCannabisSeeds
+  productPrototypes:
+  - LeavesCannabisRainbow
+  harvestRepeat: Repeat
+  lifespan: 75
+  maturation: 8
+  production: 12
+  yield: 2
+  potency: 20
+  growthStages: 3
+  waterConsumption: 0.40
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    SpaceDrugs:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 10
+    Lipolicide:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 10
+    MindbreakerToxin:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Happiness:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    #   ColorfulReagent:
+    #     Min: 0
+    #     Max: 5
+    #     PotencyDivisor: 20
+    Psicodine:
+      Min: 0
+      Max: 5
+      PotencyDivisor: 33
+
+- type: seed
+  id: tobacco
+  name: seeds-tobacco-name
+  noun: seeds-noun-seeds
+  displayName: seeds-tobacco-display-name
+  plantRsi: Objects/Specific/Hydroponics/tobacco.rsi
+  packetPrototype: TobaccoSeeds
+  productPrototypes:
+  - LeavesTobacco
+  harvestRepeat: Repeat
+  lifespan: 75
+  maturation: 5
+  production: 5
+  yield: 2
+  potency: 20
+  growthStages: 3
+  waterConsumption: 0.40
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    Nicotine:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: seed
+  id: nettle
+  name: seeds-nettle-name
+  noun: seeds-noun-seeds
+  displayName: seeds-nettle-display-name
+  plantRsi: Objects/Specific/Hydroponics/nettle.rsi
+  packetPrototype: NettleSeeds
+  productPrototypes:
+  - Nettle
+  mutationPrototypes:
+  - deathNettle
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 2
+  potency: 20
+  growthStages: 5
+  idealLight: 8
+  waterConsumption: 0.60
+  idealHeat: 298
+  chemicals:
+    Histamine:
+      Min: 1
+      Max: 25
+      PotencyDivisor: 4
+
+- type: seed
+  id: deathNettle
+  name: seeds-deathnettle-name
+  noun: seeds-noun-seeds
+  displayName: seeds-deathnettle-display-name
+  plantRsi: Objects/Specific/Hydroponics/death_nettle.rsi
+  packetPrototype: DeathNettleSeeds
+  plantLogImpact: High
+  harvestLogImpact: High
+  productPrototypes:
+  - DeathNettle
+  lifespan: 25
+  maturation: 8
+  production: 6
+  yield: 2
+  potency: 20
+  growthStages: 5
+  idealLight: 8
+  waterConsumption: 0.70
+  nutrientConsumption: 0.80
+  idealHeat: 298
+  chemicals:
+    SulfuricAcid:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 6
+    FluorosulfuricAcid:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 6
+
+- type: seed
+  id: aloe
+  name: seeds-aloe-name
+  noun: seeds-noun-seeds
+  displayName: seeds-aloe-display-name
+  plantRsi: Objects/Specific/Hydroponics/aloe.rsi
+  packetPrototype: AloeSeeds
+  productPrototypes:
+  - FoodAloe
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 5
+  waterConsumption: 0.60
+  chemicals:
+    Aloe:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+    Dermaline:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
+
+- type: seed
+  id: ambrosiaVulgaris
+  name: seeds-ambrosiavulgaris-name
+  noun: seeds-noun-seeds
+  displayName: seeds-ambrosiavulgaris-display-name
+  plantRsi: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
+  packetPrototype: AmbrosiaVulgarisSeeds
+  productPrototypes:
+  - FoodAmbrosiaVulgaris
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 6
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Bicaridine:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Kelotane:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    Vitamin:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+
+- type: seed
+  id: ambrosiaDeus
+  name: seeds-ambrosiadeus-name
+  noun: seeds-noun-seeds
+  displayName: seeds-ambrosiadeus-display-name
+  plantRsi: Objects/Specific/Hydroponics/ambrosia_deus.rsi
+  packetPrototype: AmbrosiaDeusSeeds
+  productPrototypes:
+  - FoodAmbrosiaVulgaris
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 6
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 10
+    Omnizine: # Don't kill me
+      Min: 1
+      Max: 3
+      PotencyDivisor: 35
+    SpaceDrugs:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20

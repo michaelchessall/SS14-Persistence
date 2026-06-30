@@ -1,0 +1,129 @@
+- type: seed
+  id: poppy
+  name: seeds-poppy-name
+  noun: seeds-noun-seeds
+  displayName: seeds-poppy-display-name
+  plantRsi: Objects/Specific/Hydroponics/poppy.rsi
+  packetPrototype: PoppySeeds
+  productPrototypes:
+  - FoodPoppy
+  mutationPrototypes:
+  - lily
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+    Bicaridine:
+      Min: 1
+      Max: 20
+      PotencyDivisor: 5
+
+- type: seed
+  id: lily
+  name: seeds-lily-name
+  noun: seeds-noun-seeds
+  displayName: seeds-lily-display-name
+  plantRsi: Objects/Specific/Hydroponics/lily.rsi
+  packetPrototype: LilySeeds
+  productPrototypes:
+  - FoodLily
+  mutationPrototypes:
+  - spacemansTrumpet
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+    Bicaridine:
+      Min: 1
+      Max: 20
+      PotencyDivisor: 5
+
+- type: seed
+  id: spacemansTrumpet
+  name: seeds-spacemans-trumpet-name
+  noun: seeds-noun-seeds
+  displayName: seeds-spacemans-trumpet-display-name
+  plantRsi: Objects/Specific/Hydroponics/spacemans_trumpet.rsi
+  packetPrototype: SpacemansTrumpetSeeds
+  productPrototypes:
+  - FoodSpacemansTrumpet
+  growthStages: 4
+  lifespan: 20
+  maturation: 14
+  production: 3
+  yield: 2
+  potency: 10
+  waterConsumption: 0.60
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 50
+    PolypyryliumOligomers:
+      Min: 1
+      Max: 15
+      PotencyDivisor: 5
+
+- type: seed
+  id: galaxythistle
+  name: seeds-galaxythistle-name
+  noun: seeds-noun-seeds
+  displayName: seeds-galaxythistle-display-name
+  plantRsi: Objects/Specific/Hydroponics/galaxythistle.rsi
+  packetPrototype: GalaxythistleSeeds
+  productPrototypes:
+  - FoodGalaxythistle
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 3
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Stellibinin:
+      Min: 1
+      Max: 25
+      PotencyDivisor: 4
+
+- type: seed
+  id: glasstle
+  name: seeds-glasstle-name
+  noun: seeds-noun-seeds
+  displayName: seeds-glasstle-display-name
+  plantRsi: Objects/Specific/Hydroponics/glasstle.rsi
+  packetPrototype: GlasstleSeeds
+  productPrototypes:
+  - FoodGlasstle
+  lifespan: 25
+  maturation: 10
+  production: 3
+  yield: 1
+  potency: 10
+  growthStages: 3
+  waterConsumption: 0.5
+  chemicals:
+    Razorium:
+      Min: 1
+      Max: 25
+      PotencyDivisor: 4
+    Desoxyephedrine: # meff!!
+      Min: 1
+      Max: 10
+      PotencyDivisor: 10
