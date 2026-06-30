@@ -561,7 +561,7 @@ public sealed class PlantHolderSystem : EntitySystem
         // SeedPrototype pressure resistance.
         var pressure = environment.Pressure;
 
-        var lowPressure = pressure < component.MaximumPressure;
+        var lowPressure = pressure < component.MinimumPressure;
         var highPressure = pressure > component.MaximumPressure;
 
         if (component.LowPressure || component.HighPressure)
