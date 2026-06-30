@@ -36,8 +36,10 @@ plant-holder-component-nutrient-bonus-message = -{ $fulfilled ->
     }
 plant-holder-component-toxins-high-warning = The [color=red]toxicity level alert[/color] is flashing red.
 plant-holder-component-light-improper-warning = The [color=yellow]improper light level alert[/color] is blinking.
-plant-holder-component-heat-improper-warning = The [color=orange]improper temperature level alert[/color] is blinking.
-plant-holder-component-pressure-improper-warning = The [color=lightblue]improper environment pressure alert[/color] is blinking.
+plant-holder-component-heat-high-warning = The [color=orange]high temperature level alert[/color] is blinking.
+plant-holder-component-heat-low-warning = The [color=orange]low level alert[/color] is blinking.
+plant-holder-component-pressure-high-warning = The [color=lightblue]high environment pressure alert[/color] is blinking.
+plant-holder-component-pressure-low-warning = The [color=lightblue]low environment pressure alert[/color] is blinking.
 plant-holder-component-gas-missing-warning = The [color=cyan]improper gas environment alert[/color] is blinking.
 plant-holder-component-early-sample-message = The plant hasn't grown enough to take a sample yet.
 plant-holder-component-ligneous-cant-harvest-message = The plant is too tough to harvest with your bare hands.
