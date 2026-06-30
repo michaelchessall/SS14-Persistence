@@ -41,4 +41,4 @@ plant-holder-component-pressure-improper-warning = The [color=lightblue]improper
 plant-holder-component-gas-missing-warning = The [color=cyan]improper gas environment alert[/color] is blinking.
 plant-holder-component-early-sample-message = The plant hasn't grown enough to take a sample yet.
 plant-holder-component-ligneous-cant-harvest-message = The plant is too tough to harvest with your bare hands.
-"plant-holder-component-low-nutrient-cant-harvest-message = This plant is missing nutrients required to grow it's produce.
+"plant-holder-component-low-nutrient-cant-harvest-message = This plant is missing nutrients required to grow its produce.
