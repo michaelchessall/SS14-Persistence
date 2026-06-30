@@ -86,6 +86,9 @@ public sealed partial class PlantHolderComponent : Component
     [DataField]
     public bool Harvest;
 
+    [DataField]
+    public bool HarvestAge;
+
     /// <summary>
     /// Set to true if this plant has been clipped by seed clippers. Used to prevent a single plant
     /// from repeatedly being clipped.
@@ -114,17 +117,41 @@ public sealed partial class PlantHolderComponent : Component
     [DataField]
     public SeedData? Seed;
 
-    /// <summary>
-    /// True if the plant is losing health due to too high/low temperature.
-    /// </summary>
     [DataField]
-    public bool ImproperHeat;
+    public float MinimumTemperature = float.NegativeInfinity;
+
+    [DataField]
+    public float MaximumTemperature = float.PositiveInfinity;
+
+    [DataField]
+    public float MinimumPressure = float.NegativeInfinity;
+
+    [DataField]
+    public float MaximumPressure = float.PositiveInfinity;
 
     /// <summary>
-    /// True if the plant is losing health due to too high/low pressure.
+    /// True if the plant is losing health due to too low temperature.
     /// </summary>
     [DataField]
-    public bool ImproperPressure;
+    public bool LowHeat;
+
+    /// <summary>
+    /// True if the plant is losing health due to too high temperature.
+    /// </summary>
+    [DataField]
+    public bool HighHeat;
+
+    /// <summary>
+    /// True if the plant is losing health due to too low pressure.
+    /// </summary>
+    [DataField]
+    public bool LowPressure;
+
+    /// <summary>
+    /// True if the plant is losing health due to too high pressure.
+    /// </summary>
+    [DataField]
+    public bool HighPressure;
 
     /// <summary>
     /// Not currently used.

@@ -86,6 +86,14 @@ public partial struct SeedChemQuantity
     /// Inherent chemical is one that is NOT result of mutation or crossbreeding. These chemicals are removed if species mutation is executed.
     /// </summary>
     [DataField("Inherent")] public bool Inherent = true;
+
+    [DataField("ModifyIdealHeat")] public float ModifyIdealHeat = 0;
+
+    [DataField("ModifyHeatTolerance")] public float ModifyHeatTolerance = 0;
+
+    [DataField("ModifyIdealPressure")] public float ModifyIdealPressure = 0;
+
+    [DataField("ModifyPressureTolerance")] public float ModifyPressureTolerance = 0;
 }
 
 [DataDefinition]
@@ -181,17 +189,14 @@ public partial class SeedData
 
     [DataField] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> Requirements = new();
 
-    [DataField] public float IdealHeat = 293f;
-    [DataField] public float HeatTolerance = 10f;
+    [DataField] public float BaseIdealHeat = 293f;
+    [DataField] public float BaseHeatTolerance = 10f;
+    [DataField] public float IdealHeat = 293f; // TODO: remove this
+    [DataField] public float HeatTolerance = 10f; // TODO: remove this
     [DataField] public float IdealLight = 7f;
     [DataField] public float LightTolerance = 3f;
-    [DataField] public float ToxinsTolerance = 4f;
-
-    [DataField] public float LowPressureTolerance = 81f;
-
-    [DataField] public float HighPressureTolerance = 121f;
-
-    [DataField] public float PestTolerance = 5f;
+    [DataField] public float BaseIdealPressure = 101f;
+    [DataField] public float BasePressureTolerance = 20f;
 
     [DataField] public float WeedTolerance = 5f;
 
@@ -309,16 +314,17 @@ public partial class SeedData
             ExudeGasses = new Dictionary<Gas, float>(ExudeGasses),
             Requirements = new Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement>(Requirements),
 
+            BaseHeatTolerance = BaseHeatTolerance,
+            BaseIdealHeat = BaseIdealHeat,
+            BaseIdealPressure = BaseIdealPressure,
+            BasePressureTolerance = BasePressureTolerance,
+
             NutrientConsumption = NutrientConsumption,
             WaterConsumption = WaterConsumption,
             IdealHeat = IdealHeat,
             HeatTolerance = HeatTolerance,
             IdealLight = IdealLight,
             LightTolerance = LightTolerance,
-            ToxinsTolerance = ToxinsTolerance,
-            LowPressureTolerance = LowPressureTolerance,
-            HighPressureTolerance = HighPressureTolerance,
-            PestTolerance = PestTolerance,
             WeedTolerance = WeedTolerance,
 
             Endurance = Endurance,
@@ -377,11 +383,12 @@ public partial class SeedData
             HeatTolerance = HeatTolerance,
             IdealLight = IdealLight,
             LightTolerance = LightTolerance,
-            ToxinsTolerance = ToxinsTolerance,
-            LowPressureTolerance = LowPressureTolerance,
-            HighPressureTolerance = HighPressureTolerance,
-            PestTolerance = PestTolerance,
             WeedTolerance = WeedTolerance,
+
+            BaseHeatTolerance = other.BaseHeatTolerance,
+            BaseIdealHeat = other.BaseIdealHeat,
+            BaseIdealPressure = other.BaseIdealPressure,
+            BasePressureTolerance = other.BasePressureTolerance,
 
             Endurance = Endurance,
             Yield = Yield,
@@ -422,6 +429,7 @@ public partial class SeedData
                 newSeed.Chemicals.Remove(originalChem.Key);
             }
         }
+
 
         return newSeed;
     }

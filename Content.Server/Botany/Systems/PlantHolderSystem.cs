@@ -190,11 +190,17 @@ public sealed class PlantHolderSystem : EntitySystem
                 if (component.ImproperLight)
                     args.PushMarkup(Loc.GetString("plant-holder-component-light-improper-warning"));
 
-                if (component.ImproperHeat)
-                    args.PushMarkup(Loc.GetString("plant-holder-component-heat-improper-warning"));
+                if (component.LowHeat)
+                    args.PushMarkup(Loc.GetString("plant-holder-component-heat-low-warning"));
 
-                if (component.ImproperPressure)
-                    args.PushMarkup(Loc.GetString("plant-holder-component-pressure-improper-warning"));
+                if (component.HighHeat)
+                    args.PushMarkup(Loc.GetString("plant-holder-component-heat-high-warning"));
+
+                if (component.LowPressure)
+                    args.PushMarkup(Loc.GetString("plant-holder-component-pressure-low-warning"));
+
+                if (component.HighPressure)
+                    args.PushMarkup(Loc.GetString("plant-holder-component-pressure-high-warning"));
 
                 if (component.MissingGas > 0)
                     args.PushMarkup(Loc.GetString("plant-holder-component-gas-missing-warning"));
@@ -241,7 +247,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
                 CheckLevelSanity(uid, component);
                 UpdateSprite(uid, component);
-                UpdateNutrientRequirements(uid, component);
+                SeedUpdated(uid, component);
 
                 if (seed.PlantLogImpact != null)
                     _adminLogger.Add(LogType.Botany, seed.PlantLogImpact.Value, $"{ToPrettyString(args.User):player} planted  {Loc.GetString(seed.Name):seed} at Pos:{Transform(uid).Coordinates}.");
@@ -437,8 +443,8 @@ public sealed class PlantHolderSystem : EntitySystem
             component.MutationLevel = 0;
         }
 
-        // Weeds like water and nutrients! They may appear even if there's not a seed planted.
-        if (component.WaterLevel > 10 && component.NutritionLevel > 5)
+        // Weeds might need to be changed due to the plant nutrient rework
+        if (CheckRequiredNutrients(uid, component))
         {
             var chance = 0f;
             if (component.Seed == null)
@@ -514,22 +520,11 @@ public sealed class PlantHolderSystem : EntitySystem
         if (component.SkipAging < 10)
         {
             // Make sure the plant is not starving.
-            if (component.NutritionLevel > 5)
+            if (CheckRequiredNutrients(uid, component))
             {
-                component.Health += Convert.ToInt32(_random.Prob(0.35f)) * healthMod;
+                component.Health += Convert.ToInt32(_random.Prob(0.7f)) * healthMod;
             }
-            else
-            {
-                AffectGrowth(uid, -1, component);
-                component.Health -= healthMod;
-            }
-
-            // Make sure the plant is not thirsty.
-            if (component.WaterLevel > 10)
-            {
-                component.Health += Convert.ToInt32(_random.Prob(0.35f)) * healthMod;
-            }
-            else
+            else if (component.HarvestAge)
             {
                 AffectGrowth(uid, -1, component);
                 component.Health -= healthMod;
@@ -565,30 +560,34 @@ public sealed class PlantHolderSystem : EntitySystem
 
         // SeedPrototype pressure resistance.
         var pressure = environment.Pressure;
-        if (pressure < component.Seed.LowPressureTolerance || pressure > component.Seed.HighPressureTolerance)
+
+        var lowPressure = pressure < component.MaximumPressure;
+        var highPressure = pressure > component.MaximumPressure;
+
+        if (component.LowPressure || component.HighPressure)
         {
             component.Health -= healthMod;
-            component.ImproperPressure = true;
-            if (component.DrawWarnings)
-                component.UpdateSpriteAfterUpdate = true;
-        }
-        else
-        {
-            component.ImproperPressure = false;
         }
 
         // SeedPrototype ideal temperature.
-        if (MathF.Abs(environment.Temperature - component.Seed.IdealHeat) > component.Seed.HeatTolerance)
+
+        var lowHeat = environment.Temperature < component.MinimumTemperature;
+        var highHeat = environment.Temperature > component.MaximumTemperature;
+
+        if (component.LowHeat || component.HighHeat)
         {
             component.Health -= healthMod;
-            component.ImproperHeat = true;
-            if (component.DrawWarnings)
-                component.UpdateSpriteAfterUpdate = true;
         }
-        else
+
+        if (component.DrawWarnings &&
+            (component.LowHeat != lowHeat || component.HighHeat != highHeat || component.LowPressure != lowPressure || component.HighPressure != highPressure))
         {
-            component.ImproperHeat = false;
+            component.UpdateSpriteAfterUpdate = true;
         }
+        component.LowHeat = lowHeat;
+        component.HighHeat = highHeat;
+        component.LowPressure = lowPressure;
+        component.HighPressure = highPressure;
 
         // Gas production.
         var exudeCount = component.Seed.ExudeGasses.Count;
@@ -603,7 +602,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
         // Toxin levels beyond the plant's tolerance cause damage.
         // They are, however, slowly reduced over time.
-        if (component.Toxins > 0)
+        /*if (component.Toxins > 0)
         {
             var toxinUptake = MathF.Max(1, MathF.Round(component.Toxins / 10f));
             if (component.Toxins > component.Seed.ToxinsTolerance)
@@ -627,7 +626,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
             if (component.DrawWarnings)
                 component.UpdateSpriteAfterUpdate = true;
-        }
+        }*/
 
         // Weed levels.
         if (component.WeedLevel > 0)
@@ -664,12 +663,14 @@ public sealed class PlantHolderSystem : EntitySystem
         //if (component.Harvest && component.Seed.HarvestRepeat == HarvestType.SelfHarvest)
         //    AutoHarvest(uid, component);
 
+        component.HarvestAge = component.Age - component.LastProduce > component.Seed.Production;
+
         // If enough time has passed since the plant was harvested, we're ready to harvest again!
         if (!component.Dead && component.Seed.ProductPrototypes.Count > 0)
         {
             if (component.Age > component.Seed.Production && CheckRequiredNutrients(uid, component))
             {
-                if (component.Age - component.LastProduce > component.Seed.Production && !component.Harvest)
+                if (component.HarvestAge && !component.Harvest)
                 {
                     component.Harvest = true;
                     component.LastProduce = component.Age;
@@ -837,8 +838,10 @@ public sealed class PlantHolderSystem : EntitySystem
         component.YieldMod = 1;
         component.MutationMod = 1;
         component.ImproperLight = false;
-        component.ImproperHeat = false;
-        component.ImproperPressure = false;
+        component.LowHeat = false;
+        component.HighHeat = false;
+        component.LowPressure = false;
+        component.HighPressure = false;
         component.WeedLevel += 1 * HydroponicsSpeedMultiplier;
         component.PestLevel = 0;
         UpdateSprite(uid, component);
@@ -859,11 +862,13 @@ public sealed class PlantHolderSystem : EntitySystem
         component.Sampled = false;
         component.Harvest = false;
         component.ImproperLight = false;
-        component.ImproperPressure = false;
-        component.ImproperHeat = false;
+        component.LowHeat = false;
+        component.HighHeat = false;
+        component.LowPressure = false;
+        component.HighPressure = false;
 
         UpdateSprite(uid, component);
-        UpdateNutrientRequirements(uid, component);
+        SeedUpdated(uid, component);
     }
 
     public void AffectGrowth(EntityUid uid, int amount, PlantHolderComponent? component = null)
@@ -968,6 +973,47 @@ public sealed class PlantHolderSystem : EntitySystem
         return true;
     }
 
+    public void UpdateTolerances(EntityUid uid, PlantHolderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        if (component.Seed == null)
+        {
+            component.MinimumTemperature = float.NegativeInfinity;
+            component.MaximumTemperature = float.PositiveInfinity;
+            component.MinimumPressure = float.NegativeInfinity;
+            component.MaximumPressure = float.PositiveInfinity;
+            return;
+        }
+
+        var idealHeat = component.Seed.BaseIdealHeat;
+        var heatTolerance = component.Seed.BaseHeatTolerance;
+        var idealPressure =  component.Seed.BaseIdealPressure;
+        var pressureTolerance = component.Seed.BasePressureTolerance;
+
+        foreach (var quantity in component.Seed.Chemicals.Values)
+        {
+            idealHeat += quantity.ModifyIdealHeat;
+            heatTolerance += quantity.ModifyHeatTolerance;
+            idealPressure += quantity.ModifyIdealPressure;
+            pressureTolerance += quantity.ModifyPressureTolerance;
+        }
+
+        component.MinimumTemperature = idealHeat - heatTolerance;
+        component.MaximumTemperature = idealHeat + heatTolerance;
+        component.MinimumPressure = idealPressure - pressureTolerance;
+        component.MaximumPressure = idealPressure + pressureTolerance;
+
+    }
+
+    public void SeedUpdated(EntityUid uid, PlantHolderComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        UpdateNutrientRequirements(uid, component);
+        UpdateTolerances(uid, component);
+    }
+
     public void UpdateReagents(EntityUid uid, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
@@ -988,7 +1034,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 var reagentProto = _prototype.Index<ReagentPrototype>(entry.Reagent.Prototype);
                 _entityEffects.ApplyEffects(uid, reagentProto.PlantMetabolisms.ToArray(), entry.Quantity);
             }
-
+            SeedUpdated(uid, component);
             _solutionContainerSystem.RemoveEachReagent(component.SoilSolution.Value, PlantMetabolismRate);
         }
 
@@ -1004,7 +1050,7 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             EnsureUniqueSeed(uid, component);
             _mutation.MutateSeed(uid, ref component.Seed, severity);
-            UpdateNutrientRequirements(uid, component);
+            SeedUpdated(uid, component);
         }
     }
 
@@ -1059,10 +1105,10 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
 
         _appearance.SetData(uid, PlantHolderVisuals.WaterLight, component.WaterLevel <= 15, app);
-        _appearance.SetData(uid, PlantHolderVisuals.NutritionLight, component.NutritionLevel <= 8, app);
+        _appearance.SetData(uid, PlantHolderVisuals.NutritionLight, !CheckRequiredNutrients(uid, component) && component.HarvestAge, app);
         _appearance.SetData(uid, PlantHolderVisuals.AlertLight,
-            component.WeedLevel >= 5 || component.PestLevel >= 5 || component.Toxins >= 40 || component.ImproperHeat ||
-            component.ImproperLight || component.ImproperPressure || component.MissingGas > 0, app);
+            component.WeedLevel >= 5 || component.PestLevel >= 5 || component.Toxins >= 40 || component.LowHeat || component.HighHeat ||
+            component.ImproperLight || component.LowPressure || component.HighPressure || component.MissingGas > 0, app);
         _appearance.SetData(uid, PlantHolderVisuals.HarvestLight, component.Harvest, app);
     }
 
