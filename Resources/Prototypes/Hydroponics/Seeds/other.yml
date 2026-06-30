@@ -1,0 +1,272 @@
+- type: seed
+  id: laughinPea
+  name: seeds-laughin-pea-name
+  noun: seeds-noun-seeds
+  displayName: seeds-laughin-pea-display-name
+  plantRsi: Objects/Specific/Hydroponics/laughin_pea.rsi
+  packetPrototype: LaughinPeaSeeds
+  productPrototypes:
+  - FoodLaughinPeaPod
+  mutationPrototypes:
+  - worldPea
+  lifespan: 25
+  growthStages: 3
+  maturation: 7
+  production: 5
+  yield: 3
+  potency: 20
+  idealLight: 8
+  harvestRepeat: Repeat
+  nutrientConsumption: 0.6
+  waterConsumption: 0.6
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 3
+      PotencyDivisor: 7
+    Sugar:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 5
+    Laughter:
+      Min: 1
+      Max: 10
+      PotencyDivisor: 5
+
+- type: seed
+  id: sugarcane
+  name: seeds-sugarcane-name
+  noun: seeds-noun-seeds
+  displayName: seeds-sugarcane-display-name
+  plantRsi: Objects/Specific/Hydroponics/sugarcane.rsi
+  packetPrototype: SugarcaneSeeds
+  productPrototypes:
+    - Sugarcane
+  mutationPrototypes:
+    - papercane
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  growthStages: 3
+  idealHeat: 298
+  chemicals:
+    Sugar:
+      Min: 4
+      Max: 5
+      PotencyDivisor: 5
+
+- type: seed
+  id: papercane
+  name: seeds-papercane-name
+  noun: seeds-noun-seeds
+  displayName: seeds-papercane-display-name
+  plantRsi: Objects/Specific/Hydroponics/papercane.rsi
+  packetPrototype: PapercaneSeeds
+  productPrototypes:
+    - Papercane
+  harvestRepeat: Repeat
+  lifespan: 60
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 10
+  growthStages: 3
+  idealHeat: 298
+
+- type: seed
+  id: eggy
+  name: seeds-eggy-name
+  noun: seeds-noun-seeds
+  displayName: seeds-eggy-display-name
+  plantRsi: Objects/Specific/Hydroponics/eggy.rsi
+  packetPrototype: EggySeeds
+  productPrototypes:
+    - FoodEgg
+  harvestRepeat: Repeat
+  lifespan: 75
+  maturation: 6
+  production: 12
+  yield: 2
+  potency: 20
+  nutrientConsumption: 0.50
+  idealLight: 9
+  idealHeat: 298
+  chemicals:
+    Egg:
+      Min: 4
+      Max: 12
+      PotencyDivisor: 10
+
+- type: seed
+  id: koibean
+  name: seeds-koibean-name
+  noun: seeds-noun-seeds
+  displayName: seeds-koibean-display-name
+  plantRsi: Objects/Specific/Hydroponics/koibean.rsi
+  packetPrototype: KoibeanSeeds
+  productPrototypes:
+    - FoodKoibean
+  growthStages: 4
+  lifespan: 25
+  maturation: 6
+  production: 6
+  yield: 3
+  potency: 5
+  idealLight: 7
+  nutrientConsumption: 0.40
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 5
+      PotencyDivisor: 20
+    CarpoToxin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 30
+
+- type: seed
+  id: cocoa
+  name: seeds-cocoa-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cocoa-display-name
+  plantRsi: Objects/Specific/Hydroponics/cocoa.rsi
+  packetPrototype: CocoaSeeds
+  productPrototypes:
+    - FoodCocoaPod
+  harvestRepeat: Repeat
+  lifespan: 50
+  maturation: 6
+  production: 6
+  yield: 6
+  idealLight: 7
+  waterConsumption: 1
+  nutrientConsumption: 0.8
+  idealHeat: 298
+  chemicals:
+    Vitamin:
+      Min: 1
+      Max: 4
+      PotencyDivisor: 25
+    Nutriment:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+
+- type: seed
+  id: pea
+  name: seeds-pea-name
+  noun: seeds-noun-seeds
+  displayName: seeds-pea-display-name
+  plantRsi: Objects/Specific/Hydroponics/pea.rsi
+  packetPrototype: PeaSeeds
+  productPrototypes:
+  - FoodPeaPod
+  mutationPrototypes:
+  - laughinPea
+  lifespan: 25
+  growthStages: 3
+  maturation: 8
+  production: 6
+  yield: 3
+  potency: 25
+  idealLight: 8
+  harvestRepeat: Repeat
+  nutrientConsumption: 0.5
+  waterConsumption: 0.5
+  chemicals:
+    Nutriment:
+      Min: 1
+      Max: 3
+      PotencyDivisor: 33
+    Vitamin:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+
+- type: seed
+  id: worldPea
+  name: seeds-worldpea-name
+  noun: seeds-noun-seeds
+  displayName: seeds-worldpea-display-name
+  plantRsi: Objects/Specific/Hydroponics/world_pea.rsi
+  packetPrototype: PeaSeeds
+  productPrototypes:
+  - FoodWorldPeas
+  lifespan: 25
+  growthStages: 3
+  maturation: 20
+  production: 6
+  yield: 3
+  potency: 25
+  idealLight: 8
+  harvestRepeat: Repeat
+  nutrientConsumption: 0.5
+  waterConsumption: 0.5
+  chemicals:
+    Happiness:
+      Min: 1
+      Max: 3
+      PotencyDivisor: 25
+    Nutriment:
+      Min: 1
+      Max: 3
+      PotencyDivisor: 20
+    Pax:
+      Min: 1
+      Max: 2
+      PotencyDivisor: 50
+
+- type: seed
+  id: cotton
+  name: seeds-cotton-name
+  noun: seeds-noun-seeds
+  displayName: seeds-cotton-display-name
+  plantRsi: Objects/Specific/Hydroponics/cotton.rsi
+  packetPrototype: CottonSeeds
+  productPrototypes:
+    - CottonBol
+  mutationPrototypes:
+    - pyrotton
+  lifespan: 25
+  maturation: 8
+  production: 3
+  yield: 3
+  potency: 5
+  idealLight: 8
+  growthStages: 3
+  waterConsumption: 0.60
+  chemicals:
+    Fiber:
+      Min: 5
+      Max: 10
+      PotencyDivisor: 20
+
+- type: seed
+  id: pyrotton
+  name: seeds-pyrotton-name
+  noun: seeds-noun-seeds
+  displayName: seeds-pyrotton-display-name
+  plantRsi: Objects/Specific/Hydroponics/pyrotton.rsi
+  packetPrototype: PyrottonSeeds
+  productPrototypes:
+    - PyrottonBol
+  lifespan: 25
+  maturation: 8
+  production: 3
+  yield: 2
+  potency: 5
+  idealLight: 8
+  growthStages: 3
+  waterConsumption: 0.80
+  chemicals:
+    Fiber:
+      Min: 5
+      Max: 10
+      PotencyDivisor: 20
+    Phlogiston:
+      Min: 4
+      Max: 8
+      PotencyDivisor: 30
