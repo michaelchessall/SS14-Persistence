@@ -1,0 +1,39 @@
+- type: stack
+  id: BaseCoinStack
+  abstract: true
+  maxCount: 50
+  
+- type: stack
+  id: StackCoinIron
+  parent: BaseCoinStack
+  name: stack-coin-iron
+  icon: { sprite: /Textures/Objects/Misc/Coins/coin_iron.rsi, state: coin_1 }
+  spawn: CoinIron
+
+- type: stack
+  id: StackCoinSilver
+  parent: BaseCoinStack
+  name: stack-coin-silver
+  icon: { sprite: /Textures/Objects/Misc/Coins/coin_silver.rsi, state: coin_1 }
+  spawn: CoinSilver
+
+- type: stack
+  id: StackCoinGold
+  parent: BaseCoinStack
+  name: stack-coin-gold
+  icon: { sprite: /Textures/Objects/Misc/Coins/coin_gold.rsi, state: coin_1 }
+  spawn: CoinGold
+
+- type: stack
+  id: StackCoinDiamond
+  parent: BaseCoinStack
+  name: stack-coin-diamond
+  icon: { sprite: /Textures/Objects/Misc/Coins/coin_diamond.rsi, state: coin_1 }
+  spawn: CoinDiamond
+
+- type: stack
+  id: StackCoinAdamantine
+  parent: BaseCoinStack
+  name: stack-coin-adamantine
+  icon: { sprite: /Textures/Objects/Misc/Coins/coin_adamantine.rsi, state: coin_1 }
+  spawn: CoinAdamantine

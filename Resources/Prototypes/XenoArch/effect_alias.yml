@@ -1,0 +1,33 @@
+# -- ALIASES -- This is just appeasing the save gods. Should be deleted next iteration.
+
+- type: entity
+  id: XenoArtifactDrill
+  parent: XenoArtifactToolDrill
+
+- type: entity
+  id: XenoArtifactMaterialSpawnGlass
+  parent: XenoArtifactMaterialSpawnGlassFew
+
+- type: entity
+  id: XenoArtifactMaterialSpawnPlastic
+  parent: XenoArtifactMaterialSpawnPlasticFew
+
+- type: entity
+  id: XenoArtifactMaterialSpawnSteel
+  parent: XenoArtifactMaterialSpawnSteelFew
+
+- type: entity
+  id: XenoArtifactRareMaterialSpawnGold
+  parent: XenoArtifactRawMaterialSpawnGoldFew
+
+- type: entity
+  id: XenoArtifactRareMaterialSpawnPlasma
+  parent: XenoArtifactRawMaterialSpawnPlasmaFew
+
+- type: entity
+  id: XenoArtifactRareMaterialSpawnSilver
+  parent: XenoArtifactRawMaterialSpawnSilverFew
+
+- type: entity
+  id: XenoArtifactRareMaterialSpawnUranium
+  parent: XenoArtifactRawMaterialSpawnUraniumFew

@@ -199,6 +199,13 @@
   description: barsign-prototype-description-whiskeyechoes
 
 - type: barSign
+  id: TheInventory
+  name: barsign-prototype-name-inventory
+  icon:
+    sprite: Structures/Wallmounts/barsign.rsi
+    state: inventory
+  description: barsign-prototype-description-inventory
+- type: barSign
   id: EmpBarSign
   name: barsign-prototype-name-empbarsign
   hidden: true

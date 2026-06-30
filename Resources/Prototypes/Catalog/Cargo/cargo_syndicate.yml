@@ -9,6 +9,14 @@
   group: syndicatemarket
 
 - type: cargoProduct
+  id: SyndicatePlayingCards
+  icon: { sprite: _Moffstation/Objects/Misc/Cards/card_syndicate.rsi, state: box }
+  product: PlayingCardDeckBoxSyndicate
+  cost: 250
+  category: cargoproduct-category-name-syndicate
+  group: syndicatemarket
+
+- type: cargoProduct
   id: CrateSyndicateSecure
   icon:
     sprite: Structures/Storage/Crates/syndicate_secure.rsi

@@ -316,6 +316,15 @@
 
 - type: entity
   parent: BaseBarSign
+  id: BarSignTheInventory
+  name: The Inventory 
+  description: Known for its high-stakes poker games.
+  components:
+  - type: BarSign
+    current: TheInventory
+    
+- type: entity
+  parent: BaseBarSign
   id: BarSignEmped
   name: glitchy bar sign 
   description: You imagine a good smack might fix it.

@@ -6,6 +6,12 @@
       weight: 2
     - id: ComplexXenoArtifactItem
 
+- type: entityTable
+  id: RandomArtifactTableLarge
+  table: !type:GroupSelector
+    children:
+    - id: ComplexXenoArtifact
+
 - type: entity
   parent: MarkerBase
   id: RandomArtifactSpawner
@@ -18,7 +24,7 @@
       state: ano01
   - type: EntityTableSpawner
     table: !type:NestedSelector
-      tableId: RandomArtifactTable
+      tableId: RandomArtifactTableLarge
 
 - type: entity
   id: RandomArtifactSpawner20

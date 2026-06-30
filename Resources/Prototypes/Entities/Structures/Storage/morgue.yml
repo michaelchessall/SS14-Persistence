@@ -75,6 +75,7 @@
   - type: Construction
     graph: MorgueGraph
     node: morgue
+  - type: Label
 
 - type: entity
   id: MorgueAssembly

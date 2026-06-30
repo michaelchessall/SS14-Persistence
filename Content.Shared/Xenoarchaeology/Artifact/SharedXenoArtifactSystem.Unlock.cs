@@ -10,8 +10,6 @@ namespace Content.Shared.Xenoarchaeology.Artifact;
 
 public abstract partial class SharedXenoArtifactSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-
     private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery;
 
     private void InitializeUnlock()
@@ -77,10 +75,8 @@ public abstract partial class SharedXenoArtifactSystem
             SetNodeUnlocked((ent, artifactComponent), node.Value);
             ActivateNode((ent, ent), (node.Value, node.Value), null, null, Transform(ent).Coordinates, false);
             unlockAttemptResultMsg = "artifact-unlock-state-end-success";
+            UpdateNodeResearchValue(node.Value);
 
-            // as an experiment - unlocking node doesn't activate it, activation is left for player to decide.
-            // var activated = ActivateNode((ent, artifactComponent), node.Value, null, null, Transform(ent).Coordinates, false);
-            // if (activated)
             soundEffect = unlockingComponent.UnlockActivationSuccessfulSound;
         }
         else

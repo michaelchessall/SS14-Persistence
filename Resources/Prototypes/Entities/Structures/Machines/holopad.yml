@@ -114,6 +114,8 @@
   parent: Holopad
   id: HolopadLongRange
   components:
+  - type: Machine
+    board: HolopadLongRangeMachineCircuitboard
   - type: Telephone
     transmissionRange: Map
     compatibleRanges:

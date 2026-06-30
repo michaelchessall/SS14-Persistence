@@ -468,6 +468,18 @@
   conditions:
     - !type:TileNotBlocked
 
+- type: construction
+  id: StorageCounterConstruction
+  graph: StorageCounterGraph
+  startNode: start
+  targetNode: storagecounter
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+    
 #bathroom
 - type: construction
   id: ToiletEmpty

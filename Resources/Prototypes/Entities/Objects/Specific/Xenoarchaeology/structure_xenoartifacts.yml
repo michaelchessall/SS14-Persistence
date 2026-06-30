@@ -47,6 +47,15 @@
   components:
   - type: XenoArtifact
     nodeCount:
-      min: 9
+      min: 13
+      max: 26
+    segmentSize:
+      min: 8
       max: 13
+    nodesPerSegmentLayer:
+      min: 1
+      max: 4
+    scatterPerLayer:
+      min: 0
+      max: 4
 

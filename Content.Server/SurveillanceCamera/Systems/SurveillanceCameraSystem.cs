@@ -56,11 +56,17 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
     {
         base.Initialize();
 
+        SubscribeLocalEvent<SurveillanceCameraComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<SurveillanceCameraComponent, ComponentShutdown>(OnShutdown);
         SubscribeLocalEvent<SurveillanceCameraComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<SurveillanceCameraComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
         SubscribeLocalEvent<SurveillanceCameraComponent, SurveillanceCameraSetupSetName>(OnSetName);
         SubscribeLocalEvent<SurveillanceCameraComponent, SurveillanceCameraSetupSetNetwork>(OnSetNetwork);
+    }
+
+    private void OnStartup(EntityUid uid, SurveillanceCameraComponent component, ref ComponentStartup args)
+    {
+        UpdateMap(uid, component);
     }
 
     private void OnPacketReceived(EntityUid uid, SurveillanceCameraComponent component, DeviceNetworkPacketEvent args)
@@ -245,7 +251,7 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
 
         // Send a local event that's broadcasted everywhere afterwards.
         RaiseLocalEvent(ev);
-
+        UpdateMap(camera, component);
         UpdateVisuals(camera, component);
     }
 
@@ -270,7 +276,7 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
         }
 
         UpdateVisuals(camera, component);
-
+        UpdateMap(camera, component);
         _cameraMapSystem.UpdateCameraMarker((camera, component));
     }
 
@@ -397,6 +403,11 @@ public sealed class SurveillanceCameraSystem : SharedSurveillanceCameraSystem
         }
 
         _appearance.SetData(uid, SurveillanceCameraVisualsKey.Key, key, appearance);
+    }
+
+    private void UpdateMap(EntityUid uid, SurveillanceCameraComponent component)
+    {
+        RaiseNetworkEvent(new RequestCameraMarkerUpdateMessage(GetNetEntity(uid)));
     }
 }
 

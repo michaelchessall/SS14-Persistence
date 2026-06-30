@@ -1,8 +1,13 @@
+using Robust.Shared.GameStates;
+
 namespace Content.Shared.Xenoarchaeology.XenoArtifacts;
 
-[RegisterComponent]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class RandomArtifactSpriteComponent : Component
 {
+    [DataField, AutoNetworkedField]
+    public int SelectedSprite = -1;
+
     [DataField("minSprite")]
     public int MinSprite = 1;
 

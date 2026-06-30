@@ -1,0 +1,238 @@
+- type: latheRecipe
+  abstract: true
+  id: BasePlushieRecipe
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+
+- type: latheRecipe
+  abstract: true
+  id: BaseSpecifiedPlushieRecipe
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Plasma: 100
+
+- type: latheRecipe
+  abstract: true
+  id: BaseWehPlushieRecipe
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieBee
+  result: PlushieBee
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieHampter
+  result: PlushieHampter
+
+- type: latheRecipe
+  parent: BaseSpecifiedPlushieRecipe
+  id: PlushieRGBee
+  result: PlushieRGBee
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieNuke
+  result: PlushieNuke
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieRouny
+  result: PlushieRouny
+
+- type: latheRecipe
+  id: PlushieLamp
+  result: PlushieLamp
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Glass: 50
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieArachind
+  result: PlushieArachind
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: PlushieLizard
+  result: PlushieLizard
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: PlushieExperiment
+  result: PlushieExperiment
+
+- type: latheRecipe
+  id: PlushieRainbowLizard
+  result: PlushieRainbowLizard
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Plasma: 500
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: PlushieLizardMirrored
+  result: PlushieLizardMirrored
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: PlushieSpaceLizard
+  result: PlushieSpaceLizard
+
+- type: latheRecipe
+  id: PlushieLizardInversed
+  result: PlushieLizardInversed
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Plasma: 500
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieDiona
+  result: PlushieDiona
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieSharkBlue
+  result: PlushieSharkBlue
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieSharkPink
+  result: PlushieSharkPink
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieSharkGrey
+  result: PlushieSharkGrey
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieRatvar
+  result: PlushieRatvar
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieNar
+  result: PlushieNar
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: PlushieCarp
+  result: PlushieCarp
+
+- type: latheRecipe
+  id: PlushieMagicarp
+  result: PlushieMagicarp
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Plasma: 500
+
+- type: latheRecipe
+  id: PlushieRainbowCarp
+  result: PlushieRainbowCarp
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Plasma: 1000
+
+- type: latheRecipe
+  id: PlushieHolocarp
+  result: PlushieHolocarp
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Plasma: 1000
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieSlime
+  result: PlushieSlime
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieSnake
+  result: PlushieSnake
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: ToyMouse
+  result: ToyMouse
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieVox
+  result: PlushieVox
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieAtmosian
+  result: PlushieAtmosian
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieXeno
+  result: PlushieXeno
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushiePenguin
+  result: PlushiePenguin
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: PlushieHuman
+  result: PlushieHuman
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieMoth
+  result: PlushieMoth
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieVulp
+  result: PlushieVulp
+
+- type: latheRecipe
+  id: PlushieMeera
+  result: PlushieMeera
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Pyrotton: 500
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: ToyIan
+  result: ToyIan
+
+- type: latheRecipe
+  parent: BasePlushieRecipe
+  id: ToyAmongPequeno
+  result: ToyAmongPequeno

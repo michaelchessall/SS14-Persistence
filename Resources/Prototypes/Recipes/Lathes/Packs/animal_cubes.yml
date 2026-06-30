@@ -6,9 +6,14 @@
   - MonkeyCube
   - KoboldCube
   - CowCube
+  - ChickenCube
+  - CrabCube
   - GoatCube
   - MothroachCube
   - MouseCube
+  - PigCube
+  - SnailCube
+  - SnothCube
   - CockroachCube
 
 - type: latheRecipePack

@@ -1,0 +1,37 @@
+<DefaultWindow xmlns="https://spacestation14.io"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+               x:Class="Content.Client.Stack.UI.StackSplitWindow"
+               Title="{Loc 'stack-split-window-title'}"
+               MinSize="600 120">
+        <BoxContainer Orientation="Vertical"
+                      Margin="8">
+                <BoxContainer Orientation="Horizontal"
+                              SeparationOverride="4">
+                        <Label Name="AmountPrefix"
+                               Text="{Loc 'stack-split-window-amount-prefix'}"/>
+                        <LineEdit Name="AmountField"
+                                  HorizontalExpand="True"/>
+                        <Label Name="AmountSuffix"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal"
+                              SeparationOverride="2">
+                        <Button Name="Minus100" Text="-100"/>
+                        <Button Name="Minus10" Text="-10"/>
+                        <Button Name="Minus1" Text="-"/>
+                        <Slider Name="AmountSlider"
+                                HorizontalExpand="True"/>
+                        <Button Name="Plus1" Text="+"/>
+                        <Button Name="Plus10" Text="+10"/>
+                        <Button Name="Plus100" Text="+100"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal"
+                              HorizontalAlignment="Right"
+                              SeparationOverride="8">
+                        <Button Name="CancelButton"
+                                Text="{Loc 'stack-split-window-cancel'}"/>
+
+                        <Button Name="SplitButton"
+                                Text="{Loc 'stack-split-window-confirm'}"/>
+                </BoxContainer>
+        </BoxContainer>
+</DefaultWindow>

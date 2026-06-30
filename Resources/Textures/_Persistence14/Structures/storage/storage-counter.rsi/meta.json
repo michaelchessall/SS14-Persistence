@@ -1,0 +1,58 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by JoulesMango for PS14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "frame-step0"
+    },
+    {
+      "name": "frame-step1"
+    },
+    {
+      "name": "frame-step2"
+    },
+    {
+      "name": "frame-step3"
+    },
+    {
+      "name": "white"
+    },
+    {
+      "name": "white0",
+      "directions": 4
+    },
+    {
+      "name": "white1",
+      "directions": 4
+    },
+    {
+      "name": "white2",
+      "directions": 4
+    },
+    {
+      "name": "white3",
+      "directions": 4
+    },
+    {
+      "name": "white4",
+      "directions": 4
+    },
+    {
+      "name": "white5",
+      "directions": 4
+    },
+    {
+      "name": "white6",
+      "directions": 4
+    },
+    {
+      "name": "white7",
+      "directions": 4
+    }
+  ]
+}

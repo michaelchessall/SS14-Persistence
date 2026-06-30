@@ -1,4 +1,8 @@
+using System.Linq;
+using Content.Shared.Access.Systems;
 using Content.Shared.Examine;
+using Content.Shared.Labels.Components;
+using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Morgue.Components;
 using Content.Shared.Storage.Components;
@@ -9,6 +13,8 @@ namespace Content.Shared.Morgue;
 public abstract class SharedMorgueSystem : EntitySystem
 {
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedIdCardSystem _id = default!;
+    [Dependency] private LabelSystem _label = default!;
 
     public override void Initialize()
     {
@@ -65,6 +71,9 @@ public abstract class SharedMorgueSystem : EntitySystem
         }
 
         var hasMob = false;
+        bool hasSoul = false;
+
+        List<string> uniqueNames = new();
 
         foreach (var ent in storage.Contents.ContainedEntities)
         {
@@ -72,12 +81,42 @@ public abstract class SharedMorgueSystem : EntitySystem
                 hasMob = true;
 
             if (HasComp<ActorComponent>(ent))
+                hasSoul = true;
+
+            if (_id.TryGetIdCard(ent, out var idCard)) // If it has an ID Card, use that.
+                uniqueNames.Add(idCard.Comp.NameLocId);
+            else // If it doesn't have an ID Card, get the entities name
             {
-                _appearance.SetData(uid, MorgueVisuals.Contents, MorgueContents.HasSoul, app);
-                return;
+                try
+                {
+                    var name = Name(ent);
+                    uniqueNames.Add(name);
+                }
+                catch (KeyNotFoundException) { } // If the entity doesn't have a name, don't do anything.
             }
         }
 
-        _appearance.SetData(uid, MorgueVisuals.Contents, hasMob ? MorgueContents.HasMob : MorgueContents.HasContents, app);
+        if (TryComp<LabelComponent>(uid, out var labelComp)) // Update the label to match the name of the stored entities.
+            if (uniqueNames.Count > 0)
+                _label.Label(uid, ConstructNameLabel(uniqueNames), label: labelComp);
+            else _label.Label(uid, null, label: labelComp);
+
+        var appearanceState = hasSoul ? MorgueContents.HasSoul : hasMob ? MorgueContents.HasMob : MorgueContents.HasContents;
+        _appearance.SetData(uid, MorgueVisuals.Contents, appearanceState, app);
+    }
+
+    private string ConstructNameLabel(List<string> names)
+    {
+        List<string> converted = new();
+
+        foreach (var name in names)
+        {
+            if (Loc.TryGetString(name, out var loc))
+                converted.Add(loc);
+            else
+                converted.Add(name);
+        }
+
+        return string.Join(", ", converted);
     }
 }

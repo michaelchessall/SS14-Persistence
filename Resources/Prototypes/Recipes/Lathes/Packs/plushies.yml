@@ -1,0 +1,41 @@
+
+- type: latheRecipePack
+  id: Plushies
+  recipes:
+  - PlushieBee
+  - PlushieHampter
+  - PlushieRGBee
+  - PlushieNuke
+  - PlushieRouny
+  - PlushieLamp
+  - PlushieArachind
+  - PlushieLizard
+  - PlushieExperiment
+  - PlushieRainbowLizard
+  - PlushieLizardMirrored
+  - PlushieSpaceLizard
+  - PlushieLizardInversed
+  - PlushieDiona
+  - PlushieSharkBlue
+  - PlushieSharkPink
+  - PlushieSharkGrey
+  - PlushieRatvar
+  - PlushieNar
+  - PlushieCarp
+  - PlushieMagicarp
+  - PlushieRainbowCarp
+  - PlushieSlime
+  - PlushieSnake
+  - ToyMouse
+  - PlushieVox
+  - PlushieAtmosian
+  - PlushieXeno
+  - PlushiePenguin
+  - PlushieHuman
+  - PlushieMoth
+  - PlushieVulp
+  - PlushieMeera
+  - ToyIan
+  - ToyAmongPequeno
+
+

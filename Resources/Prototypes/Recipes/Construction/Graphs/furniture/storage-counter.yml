@@ -1,0 +1,128 @@
+- type: constructionGraph
+  id: StorageCounterGraph
+  start: start
+  graph:
+  - node: start
+    edges:
+
+    - to: frame-step0
+      completed:
+      - !type:SnapToGrid
+        southRotation: true
+      steps: 
+      - material: WoodPlank
+        amount: 2
+        doAfter: 3
+
+  - node: frame-step0
+    entity: StorageCounterFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: start
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      - !type:DeleteEntity
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+    - to: frame-step1
+      steps:
+      - tool: Sawing
+        doAfter: 1
+
+
+  - node: frame-step1
+    entity: StorageCounterFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+
+    - to: frame-step0
+      steps:
+      - tool: Prying
+        doAfter: 1
+
+    - to: frame-step2
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 1
+      - tool: Sawing
+        doAfter: 3
+
+
+  - node: frame-step2
+    entity: StorageCounterFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+
+    - to: frame-step1
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      steps:
+      - tool: Prying
+        doAfter: 2
+
+    - to: frame-step3
+      steps:
+      - material: WoodPlank
+        amount: 2
+        doAfter: 3
+      - tool: Sawing
+        doAfter: 2
+
+
+  - node: frame-step3
+    entity: StorageCounterFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+
+    - to: frame-step2
+      completed:
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 2
+      steps:
+      - tool: Prying
+        doAfter: 3
+
+    - to: storagecounter
+      steps:
+      - tool: Anchoring
+        doAfter: 1
+      - material: WoodPlank
+        amount: 1
+        doAfter: 3
+      - tool: Sawing
+        doAfter: 1
+      - material: Plastic
+        amount: 2
+        doAfter: 3
+      - tool: Screwing
+        doAfter: 2
+
+
+  - node: storagecounter
+    entity: BaseStorageCounter
+    edges:
+    - to: frame-step3
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetPlastic1
+        amount: 1
+      - !type:SpawnPrototype
+        prototype: MaterialWoodPlank1
+        amount: 1
+      steps:
+      - tool: Sawing
+        doAfter: 3
+      - tool: Prying
+        doAfter: 2

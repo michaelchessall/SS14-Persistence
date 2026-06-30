@@ -107,6 +107,14 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: cotton }
   color: "#cccccc"
   price: 0.02 #Who knew cotton was infinitely more valuable than silk
+  
+- type: material
+  id: Pyrotton
+  name: materials-pyrotton
+  unit: materials-unit-boll
+  icon: { sprite: Objects/Materials/materials.rsi, state: cotton }
+  color: "#cccccc"
+  price: 0.04 #Who knew cotton was infinitely more valuable than silk
 
 - type: material
   id: Bones

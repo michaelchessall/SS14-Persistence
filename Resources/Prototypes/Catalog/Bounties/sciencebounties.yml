@@ -1,21 +1,21 @@
 - type: cargoBounty
   id: BountyArtifactGlue
-  reward: 10
+  reward: 25
   description: bounty-description-artifact
   reagentId: ArtifactGlue
   group: ScienceBounty
   bountyType: PayPerReagent
   entries:
   - name: bounty-item-artifactglue
-    amount: 1000
+    amount: 400
 
 - type: cargoBounty
   id: BountyArtifactMany
-  reward: 500
+  reward: 2000
   description: bounty-description-artifact
   entries:
   - name: bounty-item-artifact
-    amount: 20
+    amount: 5
     whitelist:
       components:
       - XenoArtifact
@@ -116,11 +116,11 @@
 
 - type: cargoBounty
   id: BountyBorgModule
-  reward: 2000
+  reward: 500
   description: bounty-description-borg-module
   entries:
   - name: bounty-item-borg-module
-    amount: 2
+    amount: 8
     whitelist:
       components:
       - BorgModule

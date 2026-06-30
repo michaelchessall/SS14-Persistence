@@ -323,9 +323,6 @@
     spawnEntries:
       - id: PresentRandom
         orGroup: present
-      - id: PresentRandomCash # buy your own.
-        prob: 0.1
-        orGroup: present
       - id: PresentRandomCoal # naughty
         prob: 0.05
         orGroup: present

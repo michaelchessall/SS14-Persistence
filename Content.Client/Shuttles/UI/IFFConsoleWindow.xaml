@@ -26,6 +26,24 @@
                 <LineEdit Name="SignatureColorLineEdit" HorizontalExpand="True" MinWidth="110" PlaceHolder="{Loc 'iff-console-signature-color-placeholder'}" />
                 <Button Name="ApplyColorButton" Text="{Loc 'iff-console-signature-color-apply'}" />
             </BoxContainer>
+
+            <Label Text="Hue" HorizontalExpand="True" StyleClasses="highlight"/>
+            <BoxContainer Orientation="Horizontal" MinWidth="185">
+                <Slider Name="HueSlider" MinWidth="165" MinValue="0" MaxValue="255"/>
+                <LineEdit Name="HueField" HorizontalExpand="True"/>
+            </BoxContainer>
+
+            <Label Text="Saturation" HorizontalExpand="True" StyleClasses="highlight"/>
+            <BoxContainer Orientation="Horizontal" MinWidth="185">
+                <Slider Name="SaturationSlider" MinWidth="165" MinValue="0" MaxValue="255"/>
+                <LineEdit Name="SaturationField" HorizontalExpand="True"/>
+            </BoxContainer>
+
+            <Label Text="Value" HorizontalExpand="True" StyleClasses="highlight"/>
+            <BoxContainer Orientation="Horizontal" MinWidth="185">
+                <Slider Name="ValueSlider" MinWidth="165" MinValue="0" MaxValue="255"/>
+                <LineEdit Name="ValueField" HorizontalExpand="True"/>
+            </BoxContainer>
         </GridContainer>
     </BoxContainer>
 </controls:FancyWindow>

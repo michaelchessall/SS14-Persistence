@@ -546,6 +546,32 @@
   - type: OreSiloClient
 
 - type: entity
+  parent: BaseLathe
+  id: PlushieLathe
+  name: plushie lathe
+  description: weh
+  components:
+  - type: Transform
+    noRot: false
+  - type: Sprite
+    sprite: Structures/Machines/uniform_printer.rsi
+    snapCardinals: false
+    layers:
+    - state: icon
+      map: ["enum.LatheVisualLayers.IsRunning"]
+  - type: Machine
+    board: PlushieLatheCircuitboard
+  - type: Lathe
+    producingSound: /Audio/Machines/uniformprinter.ogg
+    idleState: icon
+    runningState: building
+    staticPacks:
+    - Plushies
+  - type: MaterialStorage
+    whitelist: *StandardMaterialWhitelist
+  - type: OreSiloClient
+
+- type: entity
   id: Biogenerator
   parent: BaseLathe
   name: biogenerator

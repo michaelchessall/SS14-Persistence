@@ -1,0 +1,29 @@
+- type: entity
+  id: DebugStick
+  parent: BaseItem
+  name: debug stick
+  description: How the hell did you get this?
+  components:
+  - type: Sprite
+    sprite: Objects/Tools/crowbar.rsi
+    state: icon
+  - type: Item
+    size: Small
+  - type: Clickable
+  - type: InteractionOutline
+  - type: DebugStick
+    table: !type:RandomTableGroupSelector
+      children:
+      - !type:ReagentQuantityValueDefinition
+        value:
+          ReagentId: Fluorine
+          Quantity: 10
+      - !type:ReagentQuantityValueDefinition
+        value:
+          ReagentId: Water
+          Quantity: 10
+      - !type:ReagentQuantityValueDefinition
+        value:
+          ReagentId: Oxygen
+          Quantity: 10
+

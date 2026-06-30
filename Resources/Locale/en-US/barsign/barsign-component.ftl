@@ -4,6 +4,10 @@ barsign-ui-set-label = Set Sign:
 
 # Bar signs prototypes
 
+## The Inventory
+barsign-prototype-name-inventory = The Inventory
+barsign-prototype-description-inventory = Known for its high-stakes poker games.
+
 ## The Harmbaton
 barsign-prototype-name-harmbaton = The Harmbaton
 barsign-prototype-description-harmbaton = A great dining experience for both security members and passengers.

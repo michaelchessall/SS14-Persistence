@@ -10,13 +10,15 @@
   - type: Sprite
     sprite: Structures/smalldispensers.rsi
     drawdepth: SmallObjects
-    state: mixer
+    state: mixer_beaker
   - type: Storage
     openOnActivate: false
     whitelist:
       tags:
       - DrinkBottle
+      - ChemDispensable
   - type: Transform
     noRot: false
   - type: Machine
     board: MixingMachineCircuitboard
+
