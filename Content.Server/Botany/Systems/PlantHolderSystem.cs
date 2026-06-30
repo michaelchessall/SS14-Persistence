@@ -576,7 +576,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
         if (component.LowHeat)
         {
-            component.Health -= Math.Abs(environment.Temperature - component.Seed.IdealHeat) / component.HeatTolerance * healthMod;
+            component.Health -= Math.Abs(environment.Temperature - component.IdealHeat) / component.HeatTolerance * healthMod;
         }
 
         if (component.DrawWarnings &&
