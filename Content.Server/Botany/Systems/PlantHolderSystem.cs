@@ -561,22 +561,22 @@ public sealed class PlantHolderSystem : EntitySystem
         // SeedPrototype pressure resistance.
         var pressure = environment.Pressure;
 
-        var lowPressure = pressure < component.MinimumPressure;
-        var highPressure = pressure > component.MaximumPressure;
+        var lowPressure = pressure < component.IdealPressure - component.PressureTolerance;
+        var highPressure = pressure > component.IdealPressure + component.PressureTolerance;
 
         if (component.LowPressure || component.HighPressure)
         {
-            component.Health -= healthMod;
+            component.Health -= Math.Abs(pressure - component.IdealPressure) / component.PressureTolerance * healthMod;
         }
 
         // SeedPrototype ideal temperature.
 
-        var lowHeat = environment.Temperature < component.MinimumTemperature;
-        var highHeat = environment.Temperature > component.MaximumTemperature;
+        var lowHeat = environment.Temperature < component.IdealHeat - component.HeatTolerance;
+        var highHeat = environment.Temperature > component.IdealHeat + component.HeatTolerance;
 
-        if (component.LowHeat || component.HighHeat)
+        if (component.LowHeat)
         {
-            component.Health -= healthMod;
+            component.Health -= Math.Abs(environment.Temperature - component.Seed.IdealHeat) / component.HeatTolerance * healthMod;
         }
 
         if (component.DrawWarnings &&
@@ -979,10 +979,10 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
         if (component.Seed == null)
         {
-            component.MinimumTemperature = float.NegativeInfinity;
-            component.MaximumTemperature = float.PositiveInfinity;
-            component.MinimumPressure = float.NegativeInfinity;
-            component.MaximumPressure = float.PositiveInfinity;
+            component.IdealHeat = 0;
+            component.HeatTolerance = float.PositiveInfinity;
+            component.IdealPressure = 0;
+            component.PressureTolerance = float.PositiveInfinity;
             return;
         }
 
@@ -999,11 +999,10 @@ public sealed class PlantHolderSystem : EntitySystem
             pressureTolerance += quantity.ModifyPressureTolerance;
         }
 
-        component.MinimumTemperature = idealHeat - heatTolerance;
-        component.MaximumTemperature = idealHeat + heatTolerance;
-        component.MinimumPressure = idealPressure - pressureTolerance;
-        component.MaximumPressure = idealPressure + pressureTolerance;
-
+        component.IdealHeat = idealHeat;
+        component.HeatTolerance = heatTolerance;
+        component.IdealPressure = idealPressure;
+        component.PressureTolerance = pressureTolerance;
     }
 
     public void SeedUpdated(EntityUid uid, PlantHolderComponent? component = null)

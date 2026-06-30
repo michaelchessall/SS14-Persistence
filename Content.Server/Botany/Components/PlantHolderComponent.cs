@@ -118,16 +118,16 @@ public sealed partial class PlantHolderComponent : Component
     public SeedData? Seed;
 
     [DataField]
-    public float MinimumTemperature = float.NegativeInfinity;
+    public float IdealHeat = 0;
 
     [DataField]
-    public float MaximumTemperature = float.PositiveInfinity;
+    public float HeatTolerance = float.PositiveInfinity;
 
     [DataField]
-    public float MinimumPressure = float.NegativeInfinity;
+    public float IdealPressure = 0;
 
     [DataField]
-    public float MaximumPressure = float.PositiveInfinity;
+    public float PressureTolerance = float.PositiveInfinity;
 
     /// <summary>
     /// True if the plant is losing health due to too low temperature.
