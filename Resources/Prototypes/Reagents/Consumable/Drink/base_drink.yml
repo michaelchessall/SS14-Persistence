@@ -17,7 +17,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: water
+    nutrient: Water
   tileReactions:
   - !type:ExtinguishTileReaction { }
   - !type:SpillIfPuddlePresentTileReaction { }
@@ -34,10 +34,10 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.1
-    nutrient: sugar
+    nutrient: Sugar
   - !type:PlantAdjustNutrient
     amount: 0.1
-    nutrient: water
+    nutrient: Water
   - !type:PlantAdjustHealth
     amount: -0.1
   footstepSound:
@@ -69,10 +69,10 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.25
-    nutrient: alcohol
+    nutrient: Alcohol
   - !type:PlantAdjustNutrient
     amount: 0.7
-    nutrient: water
+    nutrient: Water
 
 - type: reagent
   id: BaseJuice

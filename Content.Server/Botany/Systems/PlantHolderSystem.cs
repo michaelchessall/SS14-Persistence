@@ -394,7 +394,7 @@ public sealed class PlantHolderSystem : EntitySystem
             if (seed != null)
             {
                 var nutrientBonus = seed.Potency / 2.5f;
-                AdjustNutrient(uid, nutrientBonus, "nutrient", component);
+                AdjustNutrient(uid, nutrientBonus, "Nutrient", component);
             }
             QueueDel(args.Used);
         }

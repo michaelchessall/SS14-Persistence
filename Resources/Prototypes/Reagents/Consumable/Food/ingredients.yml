@@ -67,7 +67,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: protein
+    nutrient: Protein
   metabolisms:
     Digestion:
       metabolites:
@@ -85,7 +85,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 2
-    nutrient: protein
+    nutrient: Protein
   metabolisms:
     Digestion:
       metabolites:
@@ -240,10 +240,10 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.1
-    nutrient: nutrient
+    nutrient: Nutrient
   - !type:PlantAdjustNutrient
     amount: 2
-    nutrient: pest
+    nutrient: Pest
   - !type:PlantAdjustWeeds
     amount: 2
 

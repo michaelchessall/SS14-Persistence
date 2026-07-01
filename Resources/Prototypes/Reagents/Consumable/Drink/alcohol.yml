@@ -145,7 +145,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: alcohol
+    nutrient: Alcohol
   metabolisms:
     Metabolites:
       metabolismRate: 0.05
@@ -2470,10 +2470,10 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 2
-      nutrient: alcohol
+      nutrient: Alcohol
     - !type:PlantAdjustNutrient
       amount: 0.25
-      nutrient: toxin
+      nutrient: Toxin
   metabolisms:
     Digestion:
       metabolites:

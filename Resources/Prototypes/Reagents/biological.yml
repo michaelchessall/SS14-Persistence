@@ -41,10 +41,10 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 1
-      nutrient: water
+      nutrient: Water
     - !type:PlantAdjustNutrient
       amount: 0.2
-      nutrient: protein
+      nutrient: Protein
   footstepSound:
     collection: FootstepBlood
     params:
@@ -117,10 +117,10 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.9
-    nutrient: water
+    nutrient: Water
   - !type:PlantAdjustNutrient
     amount: 0.1
-    nutrient: sugar
+    nutrient: Sugar
   footstepSound:
     collection: FootstepSlime
     params:
@@ -214,7 +214,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.5
-    nutrient: water
+    nutrient: Water
   footstepSound:
     collection: FootstepBlood
     params:

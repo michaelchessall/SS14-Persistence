@@ -69,7 +69,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: -1
-    nutrient: toxin
+    nutrient: Toxin
   - !type:PlantAdjustHealth
     amount: 1
 
@@ -183,7 +183,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: -0.5
-    nutrient: toxin
+    nutrient: Toxin
   - !type:PlantAdjustHealth
     amount: 5
   - !type:PlantCryoxadone {}
@@ -594,7 +594,7 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 0.6
-      nutrient: toxin
+      nutrient: Toxin
     - !type:PlantPhalanximine
       minScale: 4
   metabolisms:
@@ -742,7 +742,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: -0.5
-    nutrient: toxin
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -1184,7 +1184,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: water
+    nutrient: Water
   tileReactions:
   - !type:ExtinguishTileReaction { }
 
