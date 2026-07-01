@@ -9,7 +9,7 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 2
-      nutrient: nutrient
+      nutrient: Nutrient
   metabolisms:
     Digestion:
       effects:
@@ -29,7 +29,7 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 1
-      nutrient: nutrient
+      nutrient: Nutrient
     - !type:PlantAdjustHealth
       amount: -0.5
     - !type:PlantAdjustMutationMod
@@ -61,10 +61,10 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 0.4
-      nutrient: toxin
+      nutrient: Toxin
     - !type:PlantAdjustNutrient
       amount: -6
-      nutrient: pest
+      nutrient: Pest
   metabolisms:
     Bloodstream:
       effects:
@@ -87,7 +87,7 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 0.6
-      nutrient: toxin
+      nutrient: Toxin
     - !type:PlantAdjustWeeds
       amount: -8
     - !type:PlantAdjustHealth
@@ -119,14 +119,14 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 1
-      nutrient: fertilizer
+      nutrient: Fertilizer
     - !type:PlantAdjustWeeds
       probability: 0.025
       amount: 1
     - !type:PlantAdjustNutrient
       probability: 0.025
       amount: 1
-      nutrient: pest
+      nutrient: Pest
   metabolisms:
     Bloodstream:
       effects:
@@ -188,7 +188,7 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 0.4
-      nutrient: toxin
+      nutrient: Toxin
     - !type:PlantAdjustWeeds
       amount: -6
   metabolisms:
@@ -215,7 +215,7 @@
   plantMetabolism:
     - !type:PlantAdjustNutrient
       amount: 0.1
-      nutrient: nutrient
+      nutrient: Nutrient
     - !type:PlantAdjustHealth
       amount: 0.5
   metabolisms:
@@ -298,11 +298,11 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.1
-    nutrient: nutrient
+    nutrient: Nutrient
   - !type:PlantAdjustNutrient
     probability: 0.1
     amount: -1
-    nutrient: pest
+    nutrient: Pest
   - !type:PlantAdjustHealth
     amount: 0.1
   - !type:PlantAffectGrowth

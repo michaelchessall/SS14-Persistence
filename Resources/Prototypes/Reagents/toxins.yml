@@ -10,7 +10,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: toxin
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -34,13 +34,13 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: titanium
+    nutrient: Titanium
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: clown
+    nutrient: Clown
   - !type:PlantAdjustNutrient
     amount: 2
-    nutrient: plasma
+    nutrient: Plasma
   metabolisms:
     Bloodstream:
       effects:
@@ -78,7 +78,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: toxin
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -178,7 +178,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 2
-    nutrient: acid
+    nutrient: Acid
   - !type:PlantAdjustWeeds
     amount: -4
   - !type:PlantAdjustHealth
@@ -288,7 +288,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: acid
+    nutrient: Acid
   - !type:PlantAdjustWeeds
     amount: -2
   reactiveEffects:
@@ -362,7 +362,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: toxin
+    nutrient: Toxin
 
 - type: reagent
   id: Lexorin
@@ -392,7 +392,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: toxin
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -557,7 +557,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: protein
+    nutrient: Protein
   metabolisms:
     Bloodstream:
       effects:
@@ -662,7 +662,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: clown
+    nutrient: Clown
   metabolisms:
     Bloodstream:
       metabolismRate: 0.05
@@ -733,7 +733,7 @@
     randomPickBotanyReagent: EvilRandomFillSolution
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: toxin
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:

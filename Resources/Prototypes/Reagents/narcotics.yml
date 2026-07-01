@@ -221,7 +221,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: -5
-    nutrient: nutrient
+    nutrient: Nutrient
   - !type:PlantAdjustHealth
     amount: -1
   metabolisms:

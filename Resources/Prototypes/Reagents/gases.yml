@@ -90,11 +90,11 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: plasma
+    nutrient: Plasma
 #  plantRespiration:
 #  - !type:PlantAdjustNutrient
 #    amount: 1
-#    nutrient: plasma
+#    nutrient: Plasma
   metabolisms:
     Bloodstream:
       effects:
@@ -146,7 +146,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1.5
-    nutrient: radiation
+    nutrient: Radiation
   - !type:PlantAdjustMutationLevel
     amount: 1
 #  plantRespiration:
@@ -187,11 +187,11 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient # TODO: Remove this when plant respiration is implemented
     amount: 0.05
-    nutrient: carbonDioxide
+    nutrient: CarbonDioxide
   #  plantRespiration:
   #  - !type:PlantAdjustNutrient
   #    amount: 1
-  #    nutrient: carbonDioxide
+  #    nutrient: CarbonDioxide
   metabolisms:
     Bloodstream:
       effects:
@@ -373,11 +373,11 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: frezon
+    nutrient: Frezon
   #  plantRespiration:
   #  - !type:PlantAdjustNutrient
   #    amount: 1
-  #    nutrient: frezon
+  #    nutrient: Frezon
   metabolisms:
     Bloodstream:
       effects:

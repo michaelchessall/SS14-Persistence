@@ -37,10 +37,10 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: -0.5
-    nutrient: toxin
+    nutrient: Toxin
   - !type:PlantAdjustNutrient
     amount: 0.5
-    nutrient: carbon
+    nutrient: Carbon
   metabolisms:
     Bloodstream:
       effects:
