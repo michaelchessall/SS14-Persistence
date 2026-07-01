@@ -13,18 +13,30 @@
   maturation: 6
   production: 3
   yield: 3
-  potency: 5
   idealLight: 8
-  nutrientConsumption: 0.40
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 20
-    Flour:
-      Min: 5
-      Max: 20
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
+    Flour: #Should be better than using a bio-generator to make flour.
+      BaseAmount: 5
+      Requirements:
+        Nutrient:
+          Requirement: 2.5
+        Fertilizer:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
+        CarbonDioxide:
+          BonusRequirement: 0.25
+          BonusAmount: 2.5
 
 - type: seed
   id: meatwheat
@@ -39,18 +51,32 @@
   maturation: 6
   production: 3
   yield: 3
-  potency: 5
   idealLight: 8
-  nutrientConsumption: 0.40
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 20
-    UncookedAnimalProteins:
-      Min: 5
-      Max: 20
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
+    UncookedAnimalProteins: #Should be cheap to compete with bio-generated monkey cubes.
+      BaseAmount: 5
+      Requirements:
+        Water: # Meat is wetter than flour
+          Requirement: 2
+        Nutrient:
+          Requirement: 2.5
+        Fertilizer:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
+        CarbonDioxide:
+          BonusRequirement: 0.25
+          BonusAmount: 2.5
 
 - type: seed
   id: oat
@@ -65,18 +91,30 @@
   maturation: 6
   production: 3
   yield: 3
-  potency: 5
   idealLight: 8
-  nutrientConsumption: 0.40
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
     Oats:
-      Min: 5
-      Max: 20
-      PotencyDivisor: 20
+      BaseAmount: 5
+      Requirements:
+        Nutrient:
+          Requirement: 2.5
+        Fertilizer:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
+        CarbonDioxide:
+          BonusRequirement: 0.25
+          BonusAmount: 2.5
 
 - type: seed
   id: corn
@@ -91,20 +129,32 @@
   maturation: 8
   production: 6
   yield: 2
-  potency: 20
   growthStages: 3
   idealLight: 8
-  waterConsumption: 0.60
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 20
-    Cornmeal:
-      Min: 5
-      Max: 15
-      PotencyDivisor: 10
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
+    CornMeal:
+      BaseAmount: 5
+      Requirements:
+        Nutrient:
+          Requirement: 2.5
+        Fertilizer:
+          BonusRequirement: 1
+          BonusAmount: 5
+        CarbonDioxide:
+          BonusRequirement: 0.5
+          BonusAmount: 5
 
 - type: seed
   id: rice
@@ -119,42 +169,31 @@
   maturation: 6
   production: 3
   yield: 3
-  potency: 5
   growthStages: 4
   idealLight: 5
-  nutrientConsumption: 0.40
-  waterConsumption: 0.60
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
     Rice:
-      Min: 5
-      Max: 20
-      PotencyDivisor: 20
-
-- type: seed
-  id: soybeans
-  name: seeds-soybeans-name
-  noun: seeds-noun-seeds
-  displayName: seeds-soybeans-display-name
-  plantRsi: Objects/Specific/Hydroponics/soybeans.rsi
-  packetPrototype: SoybeanSeeds
-  productPrototypes:
-  - FoodSoybeans
-  mutationPrototypes:
-  - koibean
-  growthStages: 4
-  lifespan: 25
-  maturation: 6
-  production: 6
-  yield: 3
-  potency: 5
-  idealLight: 7
-  nutrientConsumption: 0.40
-  chemicals:
-    Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 5
+      Requirements:
+        Water:
+          Requirement: 5 # Rice need a lot of water
+        Nutrient:
+          BonusRequirement: 0.5
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
