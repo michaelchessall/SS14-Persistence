@@ -145,6 +145,7 @@ public abstract partial class SharedXenoArtifactSystem
         }
         var ev = new XenoArtifactNodeActivatedEvent(artifact, node, user, target, coordinates);
         RaiseLocalEvent(node, ref ev);
+        node.Comp.ActivatedOnce = true;
         return true;
     }
 

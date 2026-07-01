@@ -15,7 +15,7 @@ RELEASE_DIR = "release"
 # CONFIGURATION PARAMETERS
 # Forks should change these to publish to their own infrastructure.
 #
-ROBUST_CDN_URL = "http://194.156.90.191:4000/"
+ROBUST_CDN_URL = "http://148.113.213.150:4000/"
 FORK_ID = "pss14"
 
 def main():

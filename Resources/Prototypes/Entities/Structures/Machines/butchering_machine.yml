@@ -8,7 +8,7 @@
   components:
   - type: Sprite
     sprite: Structures/Machines/Medical/biomass_reclaimer.rsi
-    state: icon
+    state: butchering_machine
     snapCardinals: true
   - type: ButcheringMachine
   - type: Climbable

@@ -275,3 +275,4 @@
   cost: 100000
   recipeUnlocks:
   - TelecomServer1kCircuitboard
+  - HolopadLongRangeMachineCircuitboard

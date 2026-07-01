@@ -1417,6 +1417,8 @@
   id: Steak # CargoBounty: BountySteak
 
 - type: Tag
+  id: StorageCounter # Targeting whitelist: HandLabeler ...
+- type: Tag
   id: StringInstrument # MachineBoard construction: DawInstrumentMachineCircuitboard
 
 - type: Tag

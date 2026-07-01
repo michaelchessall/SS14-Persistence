@@ -25,8 +25,8 @@
     graph: Girder
     node: girder
   - type: Sprite
-    sprite: Structures/Walls/solid.rsi
-    state: wall_girder
+    sprite: _Persistence14/Structures/walls/girders.rsi
+    state: girder
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallic
@@ -54,6 +54,9 @@
           collection: MetalBreak
   - type: StaticPrice
     price: 28
+  - type: IconSmooth
+    key: walls
+    base: girder
 
 - type: entity
   id: GirderDiagonal
@@ -84,6 +87,10 @@
   - type: Construction
     graph: GirderDiagonal
     node: girder
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
 
 - type: entity
   id: ReinforcedGirder
@@ -92,8 +99,8 @@
   description: A large structural assembly made out of metal and plasteel; It requires a layer of plasteel before it can be considered a reinforced wall.
   components:
     - type: Sprite
-      sprite: Structures/Walls/solid.rsi
-      state: reinforced_wall_girder
+      sprite: _Persistence14/Structures/walls/girders.rsi
+      state: reinforcedgirder
     - type: Construction
       graph: Girder
       node: reinforcedGirder
@@ -127,6 +134,9 @@
                 collection: MetalBreak
     - type: StaticPrice
       price: 80
+    - type: IconSmooth
+      key: walls
+      base: reinforcedgirder
 
 - type: entity
   id: ReinforcedGirderDiagonal
@@ -157,6 +167,10 @@
   - type: Construction
     graph: GirderDiagonal
     node: reinforcedGirder
+  - type: IconSmooth
+    mode: Diagonal
+    key: walls
+    base: state
 
 - type: entity
   id: ClockworkGirder
@@ -165,8 +179,8 @@
   description: A large gear with mounting brackets for additional plating; This could be made into a wall with more brass plating.
   components:
     - type: Sprite
-      sprite: Structures/Walls/clock.rsi
-      state: wall_gear
+      sprite: _Persistence14/Structures/walls/girders.rsi
+      state: bronzegirder
     - type: Construction
       graph: ClockworkGirder
       node: clockGirder
@@ -200,6 +214,10 @@
             - !type:PlaySoundBehavior
               sound:
                 collection: MetalBreak
+    - type: IconSmooth
+      key: walls
+      base: bronzegirder
+
 - type: entity
   id: BronzeGirder
   parent: Girder
@@ -207,8 +225,8 @@
   description: A structural girder made from bronze; It requires bronze plating before it can be considered a wall.
   components:
     - type: Sprite
-      sprite: Structures/Walls/solid.rsi
-      state: wall_girder_bronze
+      sprite: _Persistence14/Structures/walls/girders.rsi
+      state: bronzegirder
     - type: Construction
       graph: Girder
       node: bronzeGirder
@@ -239,3 +257,6 @@
                 collection: MetalBreak
     - type: StaticPrice
       price: 40
+    - type: IconSmooth
+      key: walls
+      base: bronzegirder

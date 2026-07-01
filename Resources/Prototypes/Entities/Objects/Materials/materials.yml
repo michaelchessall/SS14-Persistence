@@ -576,6 +576,11 @@
     tags:
       - ClothMade
       - RawMaterial
+      - Boll
+  - type: Material
+  - type: PhysicalComposition
+    materialComposition:
+      Pyrotton: 100
   - type: Item
     heldPrefix: pyrotton
 

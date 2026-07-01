@@ -10,3 +10,16 @@
         Manipulator: 4
         Cable: 4
         Glass: 2
+
+- type: entity
+  id: HolopadLongRangeMachineCircuitboard
+  parent: BaseMachineCircuitboard
+  name: long-range holopad machine board
+  description: A machine printed circuit board for a long-range holopad.
+  components:
+    - type: MachineBoard
+      prototype: HolopadLongRange
+      stackRequirements:
+        Manipulator: 4
+        Cable: 4
+        Glass: 2

@@ -39,7 +39,7 @@ public sealed partial class XenoArtifactNodeComponent : Component
     /// <summary>
     /// Marker, is durability of node degraded or not.
     /// </summary>
-    public bool Degraded => Durability <= 0;
+    public bool Degraded => Durability <= 0 && ActivatedOnce;
 
     /// <summary>
     /// The amount of generic activations a node has left before becoming fully degraded and useless.
@@ -47,6 +47,12 @@ public sealed partial class XenoArtifactNodeComponent : Component
     [DataField, AutoNetworkedField]
     public int Durability;
 
+    /// <summary>
+    /// Marks whether the artifact has ever been activated. Used for the initial activation of 0 durability nodes.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool ActivatedOnce = false;
+    
     /// <summary>
     /// The maximum amount of times a node can be generically activated before becoming useless
     /// </summary>

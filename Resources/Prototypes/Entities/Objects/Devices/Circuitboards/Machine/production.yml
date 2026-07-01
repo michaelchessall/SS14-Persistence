@@ -220,6 +220,16 @@
       Manipulator: 3
 
 - type: entity
+  id: PlushieLatheCircuitboard
+  parent: BaseMachineCircuitboard
+  name: plushie lathe machine board
+  components:
+  - type: MachineBoard
+    prototype: PlushieLathe
+    stackRequirements:
+      Manipulator: 3
+
+- type: entity
   id: VaccinatorMachineCircuitboard
   parent: BaseMachineCircuitboard
   name: vaccinator machine board

@@ -518,6 +518,11 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: PlushieLatheCircuitboard
+  result: PlushieLatheCircuitboard
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: SheetifierMachineCircuitboard
   result: SheetifierMachineCircuitboard
 
@@ -579,4 +584,10 @@
   parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
   id: HolopadMachineCircuitboard
   result: HolopadMachineCircuitboard
+  unlockUses: 4
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseGeneralMachineRecipeCategory ]
+  id: HolopadLongRangeMachineCircuitboard
+  result: HolopadLongRangeMachineCircuitboard
   unlockUses: 4

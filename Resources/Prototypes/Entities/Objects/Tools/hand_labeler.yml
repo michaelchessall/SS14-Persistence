@@ -25,6 +25,7 @@
           - Item
           - Door
         tags:
+          - StorageCounter
           - Structure
     - type: PhysicalComposition
       materialComposition:

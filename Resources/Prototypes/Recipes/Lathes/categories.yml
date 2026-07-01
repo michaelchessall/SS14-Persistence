@@ -153,6 +153,10 @@
   name: lathe-category-bedsheets
 
 - type: latheCategory
+  id: Plushies
+  name: lathe-category-plushies
+
+- type: latheCategory
   id: Carpets
   name: lathe-category-carpets
 

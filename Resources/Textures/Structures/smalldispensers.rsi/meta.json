@@ -16,7 +16,11 @@
       "directions": 4
     },
     {
-      "name": "mixer",
+      "name": "mixer_beaker",
+      "directions": 4
+    },
+    {
+      "name": "mixer_empty",
       "directions": 4
     }
   ]

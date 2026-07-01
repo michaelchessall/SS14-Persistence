@@ -53,6 +53,7 @@
   - InvoicePrinterCircuitboard
   - IDComputerCircuitboard
   - MixingMachineCircuitboard
+  - PlushieLatheCircuitboard
 
 - type: latheRecipePack
   id: ReligionStatic
