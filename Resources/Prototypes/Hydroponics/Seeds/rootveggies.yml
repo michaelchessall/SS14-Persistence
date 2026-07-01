@@ -11,22 +11,43 @@
   maturation: 10
   production: 3
   yield: 3
-  potency: 10
   growthStages: 3
-  waterConsumption: 0.60
   chemicals:
     JuiceCarrot:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Nutrient:
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
     Oculine:
-      Min: 2
-      Max: 6
-      PotencyDivisor: 20
+      BaseAmount: 2
+      Nutrient:
+        Requirement: 0.5
+        BonusRequirement: 0.5
+        BonusAmount: 1
+      Fertilizer:
+        BonusRequirement: 0.6
+        BonusAmount: 3
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed
   id: potato
@@ -41,18 +62,32 @@
   maturation: 10
   production: 3
   yield: 3
-  potency: 10
   growthStages: 4
-  waterConsumption: 0.60
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed
   id: garlic
@@ -67,21 +102,37 @@
   maturation: 8
   production: 5
   yield: 3
-  potency: 25
   growthStages: 3
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 1.5
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Allicin:
-      Min: 1
-      Max: 8
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 0.5
 
 - type: seed
   id: onion
@@ -99,24 +150,39 @@
   maturation: 8
   production: 6
   yield: 2
-  potency: 20
   growthStages: 3
   idealLight: 8
-  waterConsumption: 0.60
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 1.5
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Allicin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 0.5
 
 - type: seed
   id: onionred
@@ -131,24 +197,39 @@
   maturation: 8
   production: 6
   yield: 2
-  potency: 20
   growthStages: 3
   idealLight: 8
-  waterConsumption: 0.60
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 1.5
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Allicin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 0.5
 
 - type: seed
   id: bloonion
@@ -163,24 +244,53 @@
   maturation: 15
   production: 3
   yield: 3
-  potency: 10
   growthStages: 4
-  waterConsumption: 0.60
-  nutrientConsumption: 0.50
   chemicals:
-    Potassium:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+    Potassium: # Same requirements for all 3, to ensure all of the reagents are used in the smoke reaction.
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 1.5
+          BonusAmount: 2
+        Sugar:
+          BonusRequirement: 1
+          BonusAmount: 1
     Phosphorus:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 1.5
+          BonusAmount: 2
+        Sugar:
+          BonusRequirement: 1
+          BonusAmount: 1
     Sugar:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 1.5
+          BonusAmount: 2
+        Sugar:
+          BonusRequirement: 1
+          BonusAmount: 1
     Allicin:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 0.5
+        Nutrient:
+          BonusRequirement: 1
+          BonusAmount: 4
+        Fertilizer:
+          BonusRequirement: 0.5
+          BonusAmount: 5
