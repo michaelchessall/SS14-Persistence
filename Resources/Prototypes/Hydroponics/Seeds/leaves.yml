@@ -1,4 +1,4 @@
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: teaPlant
   name: seeds-teaplant-name
   noun: seeds-noun-seeds
@@ -23,7 +23,7 @@
       Max: 5
       PotencyDivisor: 20
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: cabbage
   name: seeds-cabbage-name
   noun: seeds-noun-seeds
@@ -48,7 +48,7 @@
       Max: 4
       PotencyDivisor: 25
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: cannabis
   name: seeds-cannabis-name
   noun: seeds-noun-seeds
@@ -75,7 +75,7 @@
       Max: 10
       PotencyDivisor: 10
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: rainbowCannabis
   name: seeds-rainbow-cannabis-name
   noun: seeds-noun-seeds
@@ -120,7 +120,7 @@
       Max: 5
       PotencyDivisor: 33
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: tobacco
   name: seeds-tobacco-name
   noun: seeds-noun-seeds
@@ -145,7 +145,7 @@
       Max: 10
       PotencyDivisor: 10
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: nettle
   name: seeds-nettle-name
   noun: seeds-noun-seeds
@@ -171,7 +171,7 @@
       Max: 25
       PotencyDivisor: 4
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: deathNettle
   name: seeds-deathnettle-name
   noun: seeds-noun-seeds
@@ -202,7 +202,7 @@
       Max: 15
       PotencyDivisor: 6
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: aloe
   name: seeds-aloe-name
   noun: seeds-noun-seeds
@@ -228,7 +228,7 @@
       Max: 10
       PotencyDivisor: 10
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: ambrosiaVulgaris
   name: seeds-ambrosiavulgaris-name
   noun: seeds-noun-seeds
@@ -262,7 +262,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed
+- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: ambrosiaDeus
   name: seeds-ambrosiadeus-name
   noun: seeds-noun-seeds
