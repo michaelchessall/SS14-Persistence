@@ -11,7 +11,7 @@
             </BoxContainer>
         </BoxContainer>
         <BoxContainer Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <TextureRect TexturePath="/Textures/Objects/Tools/bucket.rsi/icon.png"
+            <TextureRect TexturePath="/Textures/Structures/Hydroponics/containers.rsi/hydrotray3.png"
                          HorizontalAlignment="Center"
                          Name="MixTexture"
                          Access="Public" />
