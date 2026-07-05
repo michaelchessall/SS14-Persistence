@@ -1,6 +1,7 @@
 using Content.Server.Destructible;
 using Content.Server.Polymorph.Components;
 using Content.Server.Popups;
+using Content.Shared._Persistence14.PersistentIdentifier;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Body;
 using Content.Shared.Damage.Systems;
@@ -31,6 +32,7 @@ public sealed class ImmovableRodSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedMapSystem _map = default!;
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private PersistentIdentifierSystem _pid = default!;
 
     public override void Update(float frameTime)
     {
@@ -111,8 +113,7 @@ public sealed class ImmovableRodSystem : EntitySystem
         // dont delete/hurt self if polymoprhed into a rod
         if (TryComp<PolymorphedEntityComponent>(uid, out var polymorphed))
         {
-            if (polymorphed.Parent == ent)
-                return;
+            return;
         }
 
         // gib or damage em

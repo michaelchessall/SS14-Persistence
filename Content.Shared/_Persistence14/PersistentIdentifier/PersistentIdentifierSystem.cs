@@ -1,3 +1,5 @@
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
+
 namespace Content.Shared._Persistence14.PersistentIdentifier;
 
 public sealed partial class PersistentIdentifierSystem : EntitySystem
@@ -8,7 +10,9 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     /// <summary>
     /// The Sawmill key for all ID related log messages.
     /// </summary>
-    public const string Sawmill = "Persistent ID";
+    public const string Sawmill = "persistent-id";
+
+    public static string EmptyId = Guid.Empty.ToString();
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -27,9 +31,11 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         return id;
     }
 
-    public string EnsureId(EntityUid uid)
+    public string EnsureId(EntityUid uid) => EnsureId(uid, out _);
+    public string EnsureId(EntityUid uid, out Entity<PersistentIdentifierComponent> ent)
     {
         EnsureComp<PersistentIdentifierComponent>(uid, out var idComp);
+        ent = (uid, idComp);
         return EnsureId((uid, idComp));
     }
 
@@ -45,7 +51,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
             return true;
         }
 
-        id = Guid.Empty.ToString();
+        id = EmptyId;
         return false;
     }
 
@@ -74,7 +80,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         if (!ent.Comp.IdInit) return;
 
         var oldId = ent.Comp.Id;
-        ent.Comp.Id = Guid.Empty.ToString();
+        ent.Comp.Id = EmptyId;
         Dirty(ent);
 
         var ev = new PersistentIdChangedEvent(ent, oldId, ent.Comp.Id, behaviour);
@@ -85,7 +91,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     {
         if (id == ent.Comp.Id) return false;
 
-        if (id == Guid.Empty.ToString())
+        if (IsEmptyId(id))
         {
             _log.GetSawmill(Sawmill).Warning("Unable to override ID to empty. Use ClearId instead.");
             return false;
@@ -141,6 +147,13 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     }
 
     /// <summary>
+    /// Attempts to resolve a provided <see cref="PersistentEntityReference"/> into an entity.
+    /// </summary>
+    /// <returns>True if the reference sucessfully resolved into an entity, otherwise false.</returns>
+    public bool TryResolveId(PersistentEntityReference reference, out Entity<PersistentIdentifierComponent> ent)
+        => reference.TryResolve(this, out ent, _log.GetSawmill(Sawmill));
+
+    /// <summary>
     /// Fetches an id from all existing <see cref="PersistentIdentifierComponent"/>. Attempts to add valid ids to an existing <see cref="PersistentIdRegisterComponent"/> 
     /// </summary>
     /// <param name="id">The desired id.</param>
@@ -152,12 +165,13 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         string id,
         out Entity<PersistentIdentifierComponent> ent,
         Func<Entity<PersistentIdentifierComponent>, bool>? conditional = null,
-        PersistentIdRegisterComponent? registry = null)
+        PersistentIdRegisterComponent? registry = null,
+        bool sendLogs = true)
     {
         ent = default!;
         conditional ??= _ => true;
 
-        _log.GetSawmill(Sawmill).Info($"Attempting to fetch persistent id: {id}");
+        if (sendLogs) _log.GetSawmill(Sawmill).Info($"Attempting to fetch persistent id: {id}");
 
         var lookup = EntityQueryEnumerator<PersistentIdentifierComponent>();
 
@@ -167,12 +181,12 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
             {
                 ent = (uid, idComp);
                 if (registry is not null) registry.TryRegister(ent, _entMan);
-                _log.GetSawmill(Sawmill).Info($"Entity found: {uid}");
+                if (sendLogs) _log.GetSawmill(Sawmill).Info($"Entity found: {uid}");
                 return true;
             }
         }
 
-        _log.GetSawmill(Sawmill).Warning($"Unable to find entity with matching pid.");
+        if (sendLogs) _log.GetSawmill(Sawmill).Warning($"Unable to find entity with matching pid.");
         return false;
     }
 
@@ -181,12 +195,39 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         // Culling will remove the existing reference as the new ID will not match that stored in the key.
         register.CullStaleEntities(_entMan);
 
-        if (args.NewId == Guid.Empty.ToString() || args.NewId == args.OldId || args.Behaviour == PersistentIdChangeBehaviour.Sever)
+        if (IsEmptyId(args.NewId) || args.NewId == args.OldId || args.Behaviour == PersistentIdChangeBehaviour.Sever)
             return; // Nothing more to do.
 
         if (!TryComp<PersistentIdentifierComponent>(args.Uid, out var idComp))
             return; // What would this even mean...?
 
         register.TryRegister((args.Uid, idComp), _entMan);
+    }
+
+    private bool IsEmptyId(string id) => id == EmptyId;
+
+    public bool CompareId(PersistentEntityReference reference, string id)
+        => !IsEmptyId(id) && reference.TargetId == id;
+    public bool CompareId(PersistentEntityReference reference, Entity<PersistentIdentifierComponent> ent)
+        => ent.Comp.IdInit && reference.TargetId == ent.Comp.Id;
+    public bool CompareId(PersistentEntityReference reference, EntityUid uid)
+    {
+        var id = EnsureId(uid);
+        return CompareId(reference, id);
+    }
+
+    public void AssignIdReference(ref PersistentEntityReference reference, string id)
+    {
+        _log.GetSawmill(Sawmill).Info($"Assigning id ({id}) to entity reference.");
+        reference.TargetId = id;
+    }
+    public void AssignIdReference(ref PersistentEntityReference reference, Entity<PersistentIdentifierComponent> ent) {
+        _log.GetSawmill(Sawmill).Info($"Assigning id from {ToPrettyString(ent)}");
+        AssignIdReference(ref reference, ent.Comp.Id);
+    }
+    public void AssignIdReference(ref PersistentEntityReference reference, EntityUid uid)
+    {
+        var id = EnsureId(uid);
+        AssignIdReference(ref reference, id);
     }
 }

@@ -1,6 +1,12 @@
 using Content.Server.Actions;
+using Content.Server.Administration.Managers;
+using Content.Server.Administration.Systems;
+using Content.Server.Database;
 using Content.Server.Inventory;
 using Content.Server.Polymorph.Components;
+using Content.Server._Persistence14.EntityVoid;
+using Content.Shared._Persistence14.PersistentIdentifier;
+using Content.Shared.Administration;
 using Content.Shared.Body;
 using Content.Shared.Buckle;
 using Content.Shared.Coordinates;
@@ -15,12 +21,17 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Nutrition;
 using Content.Shared.Polymorph;
 using Content.Shared.Popups;
+using Content.Shared.Verbs;
 using Robust.Server.Audio;
 using Robust.Server.Containers;
 using Robust.Server.GameObjects;
+using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
+using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared._Persistence14.EntityVoid;
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -43,6 +54,11 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
     [Dependency] private readonly SharedMindSystem _mindSystem = default!;
     [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private PersistentIdentifierSystem _pid = default!;
+    [Dependency] private AdminVerbSystem _adminVerb = default!;
+    [Dependency] private readonly IAdminManager _adminManager = default!;
+    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private EntityVoidSystem _void = default!;
 
     private const string RevertPolymorphId = "ActionRevertPolymorph";
 
@@ -57,6 +73,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         SubscribeLocalEvent<PolymorphedEntityComponent, BeforeFullySlicedEvent>(OnBeforeFullySliced);
         SubscribeLocalEvent<PolymorphedEntityComponent, DestructionEventArgs>(OnDestruction);
         SubscribeLocalEvent<PolymorphedEntityComponent, EntityTerminatingEvent>(OnPolymorphedTerminating);
+
+        SubscribeLocalEvent<PolymorphedEntityComponent, GetVerbsEvent<Verb>>(AddPolymorphVerbs);
 
         InitializeMap();
     }
@@ -104,11 +122,13 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (component.Configuration.Forced)
             return;
 
-        if (_actions.AddAction(uid, ref component.Action, out var action, RevertPolymorphId))
+        /*
+        if (_actions.AddAction(uid, ref component.Action, out var action, RevertPolymorphId) &&
+            _pid.TryResolveId(component.Parent, out var parentEnt))
         {
-            _actions.SetEntityIcon((component.Action.Value, action), component.Parent);
+            _actions.SetEntityIcon((component.Action.Value, action), parentEnt);
             _actions.SetUseDelay(component.Action.Value, TimeSpan.FromSeconds(component.Configuration.Delay));
-        }
+        }*/
     }
 
     private void OnPolymorphActionEvent(Entity<PolymorphableComponent> ent, ref PolymorphActionEvent args)
@@ -155,10 +175,6 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (ent.Comp.Configuration.RevertOnDelete)
             Revert(ent.AsNullable());
-
-        // Remove our original entity too
-        // Note that Revert will set Parent to null, so reverted entities will not be deleted
-        QueueDel(ent.Comp.Parent);
     }
 
     /// <summary>
@@ -180,6 +196,9 @@ public sealed partial class PolymorphSystem : EntitySystem
     /// <returns>The new entity, or null if the polymorph failed.</returns>
     public EntityUid? PolymorphEntity(EntityUid uid, PolymorphConfiguration configuration)
     {
+        if (HasComp<VoidedComponent>(uid))
+            return null;
+
         // If they're morphed, check their current config to see if they can be
         // morphed again
         if (!configuration.IgnoreAllowRepeatedMorphs
@@ -193,6 +212,8 @@ public sealed partial class PolymorphSystem : EntitySystem
             polymorphableComponent.LastPolymorphEnd != null &&
             _gameTiming.CurTime < polymorphableComponent.LastPolymorphEnd + configuration.Cooldown)
             return null;
+
+        var pid = _pid.EnsureId(uid, out var pidEntity);
 
         // mostly just for vehicles
         _buckle.TryUnbuckle(uid, uid, true);
@@ -213,8 +234,8 @@ public sealed partial class PolymorphSystem : EntitySystem
         _mindSystem.MakeSentient(child);
 
         var polymorphedComp = Factory.GetComponent<PolymorphedEntityComponent>();
-        polymorphedComp.Parent = uid;
         polymorphedComp.Configuration = configuration;
+        polymorphedComp.ParentPersistentId = pid;
         AddComp(child, polymorphedComp);
 
         var childXform = Transform(child);
@@ -268,10 +289,13 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
             _mindSystem.TransferTo(mindId, child, mind: mind);
 
-        //Ensures a map to banish the entity to
-        EnsurePausedMap();
-        if (PausedMap != null)
-            _transform.SetParent(uid, targetTransformComp, PausedMap.Value);
+        if (!_void.TryVoidEntity(uid))
+        {
+            if (_mindSystem.TryGetMind(child, out var childMindId, out var childMind))
+                _mindSystem.TransferTo(child, childMindId, mind: childMind);
+            QueueDel(child);
+            return null;
+        }
 
         // Raise an event to inform anything that wants to know about the entity swap
         var ev = new PolymorphedEvent(uid, child, false);
@@ -298,42 +322,40 @@ public sealed partial class PolymorphSystem : EntitySystem
         if (Deleted(uid))
             return null;
 
-        if (component.Parent is not { } parent)
-            return null;
-
-        if (Deleted(parent))
+        if (ent.Comp?.ParentPersistentId is not { } pid)
             return null;
 
         var uidXform = Transform(uid);
-        var parentXform = Transform(parent);
 
         // Don't swap back onto a terminating grid
         if (TerminatingOrDeleted(uidXform.ParentUid))
             return null;
 
+        var coords = _transform.ToMapCoordinates(uidXform.Coordinates);
+
+        if (!_void.TryReconstructEntity(pid, coords, out var parentEnt))
+            return null;
+
         if (component.Configuration.ExitPolymorphSound != null)
             _audio.PlayPvs(component.Configuration.ExitPolymorphSound, uidXform.Coordinates);
-
-        _transform.SetParent(parent, parentXform, uidXform.ParentUid);
-        _transform.SetCoordinates(parent, parentXform, uidXform.Coordinates, uidXform.LocalRotation);
 
         component.Reverted = true;
 
         if (component.Configuration.TransferDamage &&
-            TryComp<DamageableComponent>(parent, out var damageParent) &&
-            _mobThreshold.GetScaledDamage(uid, parent, out var damage) &&
+            TryComp<DamageableComponent>(parentEnt, out var damageParent) &&
+            _mobThreshold.GetScaledDamage(uid, parentEnt, out var damage) &&
             damage != null)
         {
-            _damageable.SetDamage((parent, damageParent), damage);
+            _damageable.SetDamage((parentEnt, damageParent), damage);
         }
 
         if (component.Configuration.Inventory == PolymorphInventoryChange.Transfer)
         {
-            _inventory.TransferEntityInventories(uid, parent);
+            _inventory.TransferEntityInventories(uid, parentEnt);
             foreach (var held in _hands.EnumerateHeld(uid))
             {
                 _hands.TryDrop(uid, held);
-                _hands.TryPickupAnyHand(parent, held, checkActionBlocker: false);
+                _hands.TryPickupAnyHand(parentEnt, held, checkActionBlocker: false);
             }
         }
         else if (component.Configuration.Inventory == PolymorphInventoryChange.Drop)
@@ -353,30 +375,32 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
 
         if (_mindSystem.TryGetMind(uid, out var mindId, out var mind))
-            _mindSystem.TransferTo(mindId, parent, mind: mind);
+            _mindSystem.TransferTo(mindId, parentEnt, mind: mind);
 
-        if (TryComp<PolymorphableComponent>(parent, out var polymorphableComponent))
+        if (TryComp<PolymorphableComponent>(parentEnt, out var polymorphableComponent))
             polymorphableComponent.LastPolymorphEnd = _gameTiming.CurTime;
 
+        var parentXform = Transform(parentEnt);
+
         // if an item polymorph was picked up, put it back down after reverting
-        _transform.AttachToGridOrMap(parent, parentXform);
+        _transform.AttachToGridOrMap(parentEnt, parentXform);
 
         // Raise an event to inform anything that wants to know about the entity swap
-        var ev = new PolymorphedEvent(uid, parent, true);
+        var ev = new PolymorphedEvent(uid, parentEnt, true);
         RaiseLocalEvent(uid, ref ev);
 
         // visual effect spawn
         if (component.Configuration.EffectProto != null)
-            SpawnAttachedTo(component.Configuration.EffectProto, parent.ToCoordinates());
+            SpawnAttachedTo(component.Configuration.EffectProto, parentEnt.ToCoordinates());
 
         if (component.Configuration.ExitPolymorphPopup != null)
             _popup.PopupEntity(Loc.GetString(component.Configuration.ExitPolymorphPopup,
                 ("parent", Identity.Entity(uid, EntityManager)),
-                ("child", Identity.Entity(parent, EntityManager))),
-                parent);
+                ("child", Identity.Entity(parentEnt, EntityManager))),
+                parentEnt);
         QueueDel(uid);
 
-        return parent;
+        return parentEnt;
     }
 
     /// <summary>
@@ -419,5 +443,26 @@ public sealed partial class PolymorphSystem : EntitySystem
 
         if (actions.TryGetValue(id, out var action))
             _actions.RemoveAction(target.Owner, action);
+    }
+
+    public void AddPolymorphVerbs(EntityUid uid, PolymorphedEntityComponent component, ref GetVerbsEvent<Verb> args)
+    {
+        if (!TryComp(args.User, out ActorComponent? actor))
+            return;
+
+        var player = actor.PlayerSession;
+
+        if (!_adminManager.HasAdminFlag(player, AdminFlags.Admin))
+            return;
+
+        if (HasComp<MapComponent>(args.Target) || HasComp<MapGridComponent>(args.Target))
+            return;
+
+        args.Verbs.Add(new Verb
+        {
+            Text = "revert-polymorph-verb",
+            Category = VerbCategory.Admin,
+            Act = () => Revert((uid, component)),
+        });
     }
 }
