@@ -63,7 +63,7 @@ public sealed partial class PlantHolderComponent : Component
     public float NutritionLevel = 100f;
 
     [DataField]
-    public Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> Nutrients = new();
+    public Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> Nutrients = new();
 
     [DataField]
     public float PestLevel;
@@ -116,18 +116,6 @@ public sealed partial class PlantHolderComponent : Component
 
     [DataField]
     public SeedData? Seed;
-
-    [DataField]
-    public float IdealHeat = 0;
-
-    [DataField]
-    public float HeatTolerance = float.PositiveInfinity;
-
-    [DataField]
-    public float IdealPressure = 0;
-
-    [DataField]
-    public float PressureTolerance = float.PositiveInfinity;
 
     /// <summary>
     /// True if the plant is losing health due to too low temperature.

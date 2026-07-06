@@ -11,7 +11,7 @@ public sealed partial class BotanySystem
 {
     [Dependency] private readonly SharedEntityEffectsSystem _entityEffects = default!;
 
-    public void ProduceGrown(EntityUid uid, ProduceComponent produce, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients)
+    public void ProduceGrown(EntityUid uid, ProduceComponent produce, Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> nutrients)
     {
         if (!TryGetSeed(produce, out var seed))
             return;
@@ -32,11 +32,12 @@ public sealed partial class BotanySystem
 
         Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> bonusRatio = new();
 
-        foreach (var nutrient in nutrients)
+        foreach (var nutrient in seed.TotalRequirements)
         {
-            var info = nutrient.Value;
-            if (info.Bonus > 0)
-                bonusRatio.Add(nutrient.Key, FixedPoint2.Clamp((info.Amount - info.Required) / info.Bonus, 0, 1));
+            var required = nutrient.Value.Requirement;
+            var bonus = nutrient.Value.BonusRequirement;
+            if (bonus > 0)
+                bonusRatio.Add(nutrient.Key, FixedPoint2.Clamp((nutrients[nutrient.Key] - required) / bonus, 0, 1));
         }
 
         foreach (var (chem, quantity) in seed.Chemicals)

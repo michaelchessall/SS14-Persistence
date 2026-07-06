@@ -148,36 +148,41 @@ public sealed class PlantHolderSystem : EntitySystem
             if (component.PestLevel >= 5)
                 args.PushMarkup(Loc.GetString("plant-holder-component-pest-high-level-message"));
 
-            foreach (var nutrientId in component.Nutrients.Keys
-                         .OrderByDescending(p => component.Nutrients[p].Required)
-                         .ThenByDescending(p => component.Nutrients[p].Bonus)
-                         .ThenByDescending(p => component.Nutrients[p].Amount))
+            foreach (var nutrientId in GetSortedNutrientIds(entity, component))
             {
                 var nutrient = _prototype.Index(nutrientId);
-                var nutrientInfo = component.Nutrients[nutrientId];
+                var requirement = FixedPoint2.Zero;
+                var bonusRequirement = FixedPoint2.Zero;
+                if (component.Seed != null)
+                {
+                    requirement = component.Seed.TotalRequirements[nutrientId].Requirement;
+                    bonusRequirement = component.Seed.TotalRequirements[nutrientId].BonusRequirement;
+                }
+
+                var nutrientAmount = component.Nutrients.GetOrNew(nutrientId);
                 var requirementMessage = "";
                 var bonusMessage = "";
 
-                if (nutrientInfo.Required > 0 || nutrientInfo.Bonus > 0)
+                if (requirement > 0 || bonusRequirement > 0)
                 {
                     requirementMessage = Loc.GetString($"plant-holder-component-nutrient-requirement-message",
-                        ("requiredNutrients", nutrientInfo.Required),
-                        ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Required));
+                        ("requiredNutrients", requirement),
+                        ("fulfilled", nutrientAmount >= requirement));
                 }
 
-                if (nutrientInfo.Bonus > 0)
+                if (bonusRequirement > 0)
                 {
                     bonusMessage = Loc.GetString($"plant-holder-component-nutrient-bonus-message",
-                        ("bonusNutrients", nutrientInfo.Bonus + nutrientInfo.Required),
-                        ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Bonus + nutrientInfo.Required));
+                        ("bonusNutrients", bonusRequirement + requirement),
+                        ("fulfilled", nutrientAmount >= bonusRequirement + requirement));
                 }
 
                 args.PushMarkup(Loc.GetString($"plant-holder-component-nutrient-level-message",
                     ("name", nutrient.LocalizedName),
                     ("color", nutrient.SubstanceColor),
-                    ("nutrientLevel", nutrientInfo.Amount),
-                    ("requiredNutrients", nutrientInfo.Required),
-                    ("fulfilled", nutrientInfo.Amount >= nutrientInfo.Required),
+                    ("nutrientLevel", nutrientAmount),
+                    ("requiredNutrients", requirement),
+                    ("fulfilled", nutrientAmount >= requirement),
                     ("requirementMessage", requirementMessage),
                     ("bonusMessage", bonusMessage)));
             }
@@ -208,6 +213,35 @@ public sealed class PlantHolderSystem : EntitySystem
         }
     }
 
+    private IOrderedEnumerable<ProtoId<PlantNutrientPrototype>> GetSortedNutrientIds(EntityUid uid, PlantHolderComponent component)
+    {
+        var nutrients = new List<ProtoId<PlantNutrientPrototype>>();
+
+        foreach (var nutrientId in component.Nutrients.Keys)
+        {
+            nutrients.Add(_prototype.Index(nutrientId));
+        }
+
+        IOrderedEnumerable<ProtoId<PlantNutrientPrototype>> sortednutrients;
+
+        if (component.Seed != null)
+        {
+            foreach (var nutrientId in component.Seed.TotalRequirements.Keys)
+            {
+                if (!nutrients.Contains(nutrientId))
+                    nutrients.Add(_prototype.Index(nutrientId));
+            }
+            sortednutrients = nutrients.OrderByDescending(p => component.Seed.TotalRequirements[p].Requirement)
+                .ThenByDescending(p => component.Seed.TotalRequirements[p].BonusRequirement)
+                .ThenByDescending(p => component.Nutrients.GetOrNew(p));
+        }
+        else
+        {
+            sortednutrients = nutrients.OrderByDescending(p => component.Nutrients[p]);
+        }
+        return sortednutrients;
+    }
+
     private void OnInteractUsing(Entity<PlantHolderComponent> entity, ref InteractUsingEvent args)
     {
         var (uid, component) = entity;
@@ -226,6 +260,7 @@ public sealed class PlantHolderSystem : EntitySystem
                     ("seedName", name),
                     ("seedNoun", noun)), args.User, PopupType.Medium);
 
+                seed.ApplyModifiers(); // This should probably be run after prototypes are loaded, instead of when the seed is planted.
                 component.Seed = seed;
                 component.Dead = false;
                 component.Age = 1;
@@ -247,7 +282,6 @@ public sealed class PlantHolderSystem : EntitySystem
 
                 CheckLevelSanity(uid, component);
                 UpdateSprite(uid, component);
-                SeedUpdated(uid, component);
 
                 if (seed.PlantLogImpact != null)
                     _adminLogger.Add(LogType.Botany, seed.PlantLogImpact.Value, $"{ToPrettyString(args.User):player} planted  {Loc.GetString(seed.Name):seed} at Pos:{Transform(uid).Coordinates}.");
@@ -561,22 +595,22 @@ public sealed class PlantHolderSystem : EntitySystem
         // SeedPrototype pressure resistance.
         var pressure = environment.Pressure;
 
-        var lowPressure = pressure < component.IdealPressure - component.PressureTolerance;
-        var highPressure = pressure > component.IdealPressure + component.PressureTolerance;
+        var lowPressure = pressure < component.Seed.IdealPressure - component.Seed.PressureTolerance;
+        var highPressure = pressure > component.Seed.IdealPressure + component.Seed.PressureTolerance;
 
         if (component.LowPressure || component.HighPressure)
         {
-            component.Health -= Math.Abs(pressure - component.IdealPressure) / component.PressureTolerance * healthMod;
+            component.Health -= Math.Abs(pressure - component.Seed.IdealPressure) / component.Seed.PressureTolerance * healthMod;
         }
 
         // SeedPrototype ideal temperature.
 
-        var lowHeat = environment.Temperature < component.IdealHeat - component.HeatTolerance;
-        var highHeat = environment.Temperature > component.IdealHeat + component.HeatTolerance;
+        var lowHeat = environment.Temperature < component.Seed.IdealHeat - component.Seed.HeatTolerance;
+        var highHeat = environment.Temperature > component.Seed.IdealHeat + component.Seed.HeatTolerance;
 
         if (component.LowHeat)
         {
-            component.Health -= Math.Abs(environment.Temperature - component.IdealHeat) / component.HeatTolerance * healthMod;
+            component.Health -= Math.Abs(environment.Temperature - component.Seed.IdealHeat) / component.Seed.HeatTolerance * healthMod;
         }
 
         if (component.DrawWarnings &&
@@ -801,11 +835,11 @@ public sealed class PlantHolderSystem : EntitySystem
 
         DoScream(uid, component.Seed);
 
-        if (!component.Dead)
+        if (!component.Dead && component.Seed != null)
         {
-            foreach (var nutrient in component.Nutrients)
+            foreach (var nutrient in component.Seed.TotalRequirements)
             {
-                AdjustNutrient(uid, (nutrient.Value.Required + nutrient.Value.Bonus) * -1, nutrient.Key, component);
+                AdjustNutrient(uid, (nutrient.Value.Requirement + nutrient.Value.BonusRequirement) * -1, nutrient.Key, component);
             }
         }
 
@@ -868,7 +902,7 @@ public sealed class PlantHolderSystem : EntitySystem
         component.HighPressure = false;
 
         UpdateSprite(uid, component);
-        SeedUpdated(uid, component);
+
     }
 
     public void AffectGrowth(EntityUid uid, int amount, PlantHolderComponent? component = null)
@@ -900,117 +934,43 @@ public sealed class PlantHolderSystem : EntitySystem
         if (!Resolve(uid, ref component))
             return;
 
-        var nutrient = component.Nutrients.GetOrNew(nutrientId);
-
-        nutrient.Amount += amount;
-
-        if (nutrient.Amount > 0)
-            return;
-
-        nutrient.Amount = 0;
-        RemoveEmptyNutrient(uid, nutrientId, component);
+        if (component.Nutrients.ContainsKey(nutrientId))
+        {
+            component.Nutrients[nutrientId] += amount;
+            RemoveEmptyNutrient(uid, nutrientId, component);
+        }
+        else if (amount > 0)
+        {
+            component.Nutrients.Add(nutrientId, amount);
+        }
     }
 
     private void RemoveEmptyNutrient(EntityUid uid, ProtoId<PlantNutrientPrototype> nutrient, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return;
-        var nutrientInfo = component.Nutrients[nutrient];
-        if (nutrientInfo.Amount == 0 && nutrientInfo.Required == 0 && nutrientInfo.Bonus == 0)
+        var nutrientAmount = component.Nutrients[nutrient];
+        if (nutrientAmount <= FixedPoint2.Zero)
             component.Nutrients.Remove(nutrient);
     }
 
-    public void UpdateNutrientRequirements(EntityUid uid, PlantHolderComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-        foreach (var nutrientInfo in component.Nutrients.Values)
-        {
-            nutrientInfo.Required = 0;
-            nutrientInfo.Bonus = 0;
-        }
-
-        if (component.Seed != null && !component.Dead)
-        {
-            var yield = component.Seed.Yield;
-            foreach (var requirement in component.Seed.Requirements)
-            {
-                var nutrient = component.Nutrients.GetOrNew(requirement.Key);
-
-                nutrient.Required += requirement.Value.Requirement * yield;
-                nutrient.Bonus += requirement.Value.BonusRequirement * yield;
-            }
-
-            foreach (var requirement in component.Seed.Chemicals.Values.SelectMany(quantity => quantity.Requirements))
-            {
-                var nutrient = component.Nutrients.GetOrNew(requirement.Key);
-
-                nutrient.Required += requirement.Value.Requirement * yield;
-                nutrient.Bonus += requirement.Value.BonusRequirement * yield;
-            }
-        }
-
-        foreach (var nutrientId in component.Nutrients.Keys)
-        {
-            RemoveEmptyNutrient(uid, nutrientId, component);
-        }
-    }
 
     public bool CheckRequiredNutrients(EntityUid uid, PlantHolderComponent? component = null)
     {
         if (!Resolve(uid, ref component))
             return false;
-        if (component.Dead)
+        if (component.Dead || component.Seed == null)
             return false;
 
 
-        foreach (var nutrientInfo in component.Nutrients.Values)
+        foreach (var nutrient in component.Seed.TotalRequirements)
         {
-            if (nutrientInfo.Amount < nutrientInfo.Required)
+            var amount = component.Nutrients.GetValueOrDefault(nutrient.Key);
+            if (amount < nutrient.Value.Requirement)
                 return false;
         }
 
         return true;
-    }
-
-    public void UpdateTolerances(EntityUid uid, PlantHolderComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-        if (component.Seed == null)
-        {
-            component.IdealHeat = 0;
-            component.HeatTolerance = float.PositiveInfinity;
-            component.IdealPressure = 0;
-            component.PressureTolerance = float.PositiveInfinity;
-            return;
-        }
-
-        var idealHeat = component.Seed.BaseIdealHeat;
-        var heatTolerance = component.Seed.BaseHeatTolerance;
-        var idealPressure =  component.Seed.BaseIdealPressure;
-        var pressureTolerance = component.Seed.BasePressureTolerance;
-
-        foreach (var quantity in component.Seed.Chemicals.Values)
-        {
-            idealHeat += quantity.ModifyIdealHeat;
-            heatTolerance += quantity.ModifyHeatTolerance;
-            idealPressure += quantity.ModifyIdealPressure;
-            pressureTolerance += quantity.ModifyPressureTolerance;
-        }
-
-        component.IdealHeat = idealHeat;
-        component.HeatTolerance = heatTolerance;
-        component.IdealPressure = idealPressure;
-        component.PressureTolerance = pressureTolerance;
-    }
-
-    public void SeedUpdated(EntityUid uid, PlantHolderComponent? component = null)
-    {
-        if (!Resolve(uid, ref component))
-            return;
-        UpdateNutrientRequirements(uid, component);
-        UpdateTolerances(uid, component);
     }
 
     public void UpdateReagents(EntityUid uid, PlantHolderComponent? component = null)
@@ -1033,7 +993,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 var reagentProto = _prototype.Index<ReagentPrototype>(entry.Reagent.Prototype);
                 _entityEffects.ApplyEffects(uid, reagentProto.PlantMetabolisms.ToArray(), entry.Quantity);
             }
-            SeedUpdated(uid, component);
+
             _solutionContainerSystem.RemoveEachReagent(component.SoilSolution.Value, PlantMetabolismRate);
         }
 
@@ -1049,7 +1009,7 @@ public sealed class PlantHolderSystem : EntitySystem
         {
             EnsureUniqueSeed(uid, component);
             _mutation.MutateSeed(uid, ref component.Seed, severity);
-            SeedUpdated(uid, component);
+
         }
     }
 

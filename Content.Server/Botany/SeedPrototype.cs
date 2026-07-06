@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
 using Content.Shared.Database;
@@ -115,6 +116,13 @@ public partial struct NutrientRequirement
     [DataField("BonusAmount")] public FixedPoint2 BonusAmount = FixedPoint2.Zero;
 }
 
+[DataDefinition]
+public partial struct NutrientInfo
+{
+    [DataField("Requirement")] public FixedPoint2 Requirement = FixedPoint2.Zero;
+    [DataField("BonusRequirement")] public FixedPoint2 BonusRequirement = FixedPoint2.Zero;
+}
+
 // TODO Make Botany ECS and give it a proper API. I removed the limited access of this class because it's egregious how many systems needed access to it due to a lack of an actual API.
 /// <remarks>
 /// SeedData is no longer restricted because the number of friends is absolutely unreasonable.
@@ -124,6 +132,7 @@ public partial struct NutrientRequirement
 [Virtual, DataDefinition]
 public partial class SeedData
 {
+
     #region Tracking
 
     /// <summary>
@@ -189,14 +198,18 @@ public partial class SeedData
 
     [DataField] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> Requirements = new();
 
+    [DataField] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> TotalRequirements { get; private set; } = new();
+
     [DataField] public float BaseIdealHeat = 293f;
     [DataField] public float BaseHeatTolerance = 10f;
-    [DataField] public float IdealHeat = 293f; // TODO: remove this
-    [DataField] public float HeatTolerance = 10f; // TODO: remove this
+    [DataField] public float IdealHeat { get; private set; }
+    [DataField] public float HeatTolerance { get; private set; }
     [DataField] public float IdealLight = 7f;
     [DataField] public float LightTolerance = 3f;
     [DataField] public float BaseIdealPressure = 101f;
     [DataField] public float BasePressureTolerance = 20f;
+    [DataField] public float IdealPressure { get; private set; }
+    [DataField] public float PressureTolerance { get; private set; }
 
     [DataField] public float WeedTolerance = 5f;
 
@@ -295,6 +308,44 @@ public partial class SeedData
     [DataField]
     public LogImpact? HarvestLogImpact = null;
 
+    public void ApplyModifiers()
+    {
+        IdealHeat = BaseIdealHeat;
+        HeatTolerance = BaseHeatTolerance;
+        IdealPressure = BaseIdealPressure;
+        PressureTolerance = BasePressureTolerance;
+
+        foreach (var chemical in Chemicals.Values)
+        {
+            IdealHeat += chemical.ModifyIdealHeat;
+            HeatTolerance += chemical.ModifyHeatTolerance;
+            IdealPressure += chemical.ModifyIdealPressure;
+            PressureTolerance += chemical.ModifyPressureTolerance;
+        }
+
+        TotalRequirements.Clear();
+
+        foreach (var requirement in Requirements)
+        {
+            TotalRequirements.Add(requirement.Key, requirement.Value);
+        }
+
+        foreach (var requirement in Chemicals.SelectMany(t => t.Value.Requirements))
+        {
+            if (TotalRequirements.TryGetValue(requirement.Key, out var currentRequirement))
+            {
+                currentRequirement.Requirement += requirement.Value.Requirement;
+                currentRequirement.BonusRequirement += requirement.Value.BonusRequirement;
+                TotalRequirements[requirement.Key] = currentRequirement;
+            }
+            else
+            {
+                TotalRequirements.Add(requirement.Key, requirement.Value);
+            }
+        }
+
+    }
+
     public SeedData Clone()
     {
         DebugTools.Assert(!Immutable, "There should be no need to clone an immutable seed.");
@@ -352,6 +403,7 @@ public partial class SeedData
         };
 
         newSeed.Mutations.AddRange(Mutations);
+        //newSeed.ApplyModifiers();
         return newSeed;
     }
 

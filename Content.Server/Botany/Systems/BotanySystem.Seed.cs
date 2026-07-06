@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.FixedPoint;
 
 namespace Content.Server.Botany.Systems;
 
@@ -116,7 +117,7 @@ public sealed partial class BotanySystem : EntitySystem
         return seed;
     }
 
-    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients, int yieldMod = 1)
+    public IEnumerable<EntityUid> AutoHarvest(SeedData proto, EntityCoordinates position, Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> nutrients, int yieldMod = 1)
     {
         if (position.IsValid(EntityManager) &&
             proto.ProductPrototypes.Count > 0)
@@ -130,7 +131,7 @@ public sealed partial class BotanySystem : EntitySystem
         return Enumerable.Empty<EntityUid>();
     }
 
-    public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients, int yieldMod = 1)
+    public IEnumerable<EntityUid> Harvest(SeedData proto, EntityUid user, Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> nutrients, int yieldMod = 1)
     {
         if (proto.ProductPrototypes.Count == 0 || proto.Yield <= 0)
         {
@@ -147,7 +148,7 @@ public sealed partial class BotanySystem : EntitySystem
         return GenerateProduct(proto, Transform(user).Coordinates, nutrients, yieldMod);
     }
 
-    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, Dictionary<ProtoId<PlantNutrientPrototype>, PlantNutrientInfo> nutrients, int yieldMod = 1)
+    public IEnumerable<EntityUid> GenerateProduct(SeedData proto, EntityCoordinates position, Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> nutrients, int yieldMod = 1)
     {
         var totalYield = 0;
         if (proto.Yield > -1)
