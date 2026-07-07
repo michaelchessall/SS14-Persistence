@@ -153,7 +153,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 var nutrient = _prototype.Index(nutrientId);
                 var requirement = FixedPoint2.Zero;
                 var bonusRequirement = FixedPoint2.Zero;
-                if (component.Seed != null)
+                if (component.Seed != null && component.Seed.TotalRequirements.ContainsKey(nutrientId))
                 {
                     requirement = component.Seed.TotalRequirements[nutrientId].Requirement;
                     bonusRequirement = component.Seed.TotalRequirements[nutrientId].BonusRequirement;
@@ -231,9 +231,9 @@ public sealed class PlantHolderSystem : EntitySystem
                 if (!nutrients.Contains(nutrientId))
                     nutrients.Add(_prototype.Index(nutrientId));
             }
-            sortednutrients = nutrients.OrderByDescending(p => component.Seed.TotalRequirements[p].Requirement)
-                .ThenByDescending(p => component.Seed.TotalRequirements[p].BonusRequirement)
-                .ThenByDescending(p => component.Nutrients.GetOrNew(p));
+            sortednutrients = nutrients.OrderByDescending(p => component.Seed.TotalRequirements.GetValueOrDefault(p).Requirement)
+                .ThenByDescending(p => component.Seed.TotalRequirements.GetValueOrDefault(p).BonusRequirement)
+                .ThenByDescending(p => component.Nutrients.GetValueOrDefault(p));
         }
         else
         {

@@ -34,6 +34,9 @@ nutrient-desc-carbon = Fundamental building block of life or something. these de
 nutrient-name-iron = iron
 nutrient-desc-iron = It's iron.
 
+nutrient-name-aluminum = aluminum
+nutrient-desc-aluminum = Light metal dust.
+
 nutrient-name-gold = gold
 nutrient-desc-gold = Expensive.
 

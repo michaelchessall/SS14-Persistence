@@ -1,6 +1,8 @@
 using System.Linq;
+using System.Runtime.CompilerServices;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
+using Content.Shared.Climbing.Events;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random;
@@ -403,7 +405,7 @@ public partial class SeedData
         };
 
         newSeed.Mutations.AddRange(Mutations);
-        //newSeed.ApplyModifiers();
+        newSeed.ApplyModifiers();
         return newSeed;
     }
 
@@ -482,6 +484,7 @@ public partial class SeedData
             }
         }
 
+        newSeed.ApplyModifiers();
 
         return newSeed;
     }
