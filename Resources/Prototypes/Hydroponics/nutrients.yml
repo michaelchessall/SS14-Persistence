@@ -71,6 +71,12 @@
   color: "#434b4d"
 
 - type: plantNutrient
+  id: Aluminum
+  name: nutrient-name-aluminum
+  desc: nutrient-desc-aluminum
+  color: "#848789"
+
+- type: plantNutrient
   id: Gold
   name: nutrient-name-gold
   desc: nutrient-desc-gold

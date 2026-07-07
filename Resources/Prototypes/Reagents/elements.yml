@@ -8,6 +8,10 @@
   color: "#848789"
   boilingPoint: 2327.0
   meltingPoint: 660.0
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Aluminum
 
 - type: reagent
   id: Carbon
