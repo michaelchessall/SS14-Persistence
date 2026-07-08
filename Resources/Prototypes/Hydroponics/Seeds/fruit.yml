@@ -54,7 +54,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: lemon
   name: seeds-lemon-name
   noun: seeds-noun-seeds
@@ -72,19 +72,34 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 8
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: lemoon
   name: seeds-lemoon-name
   noun: seeds-noun-seeds
@@ -98,7 +113,6 @@
   maturation: 8
   production: 6
   yield: 4
-  potency: 1
   idealLight: 8
   chemicals:
     Vitamin:
@@ -110,7 +124,7 @@
       Max: 20
       PotencyDivisor: 5
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: lime
   name: seeds-lime-name
   noun: seeds-noun-seeds
@@ -127,19 +141,34 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 8
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: orange
   name: seeds-orange-name
   noun: seeds-noun-seeds
@@ -157,17 +186,32 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 8
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: extradimensionalOrange
@@ -194,12 +238,19 @@
       Min: 1
       Max: 5
       PotencyDivisor: 20
-    Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+    Requirements:
+      Nutrient:
+        Requirement: 1
+        BonusRequirement: 1
+        BonusAmount: 1
+      Fertilizer:
+        BonusRequirement: 0.2
+        BonusAmount: 1
+      CarbonDioxide:
+        BonusRequirement: 0.1
+        BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: pineapple
   name: seeds-pineapple-name
   noun: seeds-noun-seeds
@@ -213,24 +264,35 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 8
   growthStages: 3
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 20
-    Water:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Requirements:
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+    Water:
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 3
+          BonusAmount: 3
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: tomato
   name: seeds-tomato-name
   noun: seeds-noun-seeds
@@ -248,24 +310,39 @@
   production: 6
   yield: 2
   potency: 10
-  waterConsumption: 0.60
-  nutrientConsumption: 0.40
-  idealLight: 8
+  baseIdealLight: 8
   idealHeat: 298
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 7
-      PotencyDivisor: 14
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.6
+          BonusAmount: 3
+        CarbonDioxide:
+          BonusRequirement: 0.3
+          BonusAmount: 3
     Vitamin:
-      Min: 1
-      Max: 3
-      PotencyDivisor: 33
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Water:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 3
+          BonusAmount: 3
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: blueTomato
@@ -297,9 +374,18 @@
       Max: 15
       PotencyDivisor: 10
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: bloodTomato
@@ -329,9 +415,18 @@
       Max: 10
       PotencyDivisor: 10
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: killerTomato
@@ -366,7 +461,7 @@
       Max: 4
       PotencyDivisor: 25
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: eggplant
   name: seeds-eggplant-name
   noun: seeds-noun-seeds
@@ -382,21 +477,36 @@
   maturation: 6
   production: 6
   yield: 2
-  potency: 20
   growthStages: 3
   idealLight: 9
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: apple
   name: seeds-apple-name
   noun: seeds-noun-seeds
@@ -412,19 +522,34 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 6
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert Doctor's Delight to the new system.
   id: goldenApple
   name: seeds-goldenapple-name
   noun: seeds-noun-seeds
@@ -438,19 +563,32 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 6
-  waterConsumption: 0.75
-  nutrientConsumption: 0.75
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     DoctorsDelight:
       Min: 3
       Max: 13
@@ -601,7 +739,7 @@
       Max: 5
       PotencyDivisor: 20
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: grape
   name: seeds-grape-name
   noun: seeds-noun-seeds
@@ -614,19 +752,34 @@
   maturation: 6
   production: 5
   yield: 3
-  potency: 10
   growthStages: 2
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: watermelon
   name: seeds-watermelon-name
   noun: seeds-noun-seeds
@@ -641,23 +794,41 @@
   maturation: 12
   production: 3
   yield: 1
-  potency: 1
   idealLight: 8
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Water:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 9
+          BonusAmount: 9
     Vitamin:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 0.5
+          BonusRequirement: 1.5
+          BonusAmount: 2
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: holymelon
   name: seeds-holymelon-name
   noun: seeds-noun-seeds
@@ -670,23 +841,41 @@
   maturation: 12
   production: 3
   yield: 1
-  potency: 1
   idealLight: 8
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
-    Holywater:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
+    HolyWater:
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 3
+          BonusAmount: 3
     Vitamin:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 0.5
+          BonusRequirement: 1.5
+          BonusAmount: 2
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: berries
   name: seeds-berries-name
   noun: seeds-noun-seeds
@@ -701,18 +890,33 @@
   production: 6
   yield: 4
   idealLight: 7
-  nutrientConsumption: 0.6
   chemicals:
     Nutriment:
-      Min: 2
-      Max: 5
-      PotencyDivisor: 30
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.3
+          BonusAmount: 1.5
+        CarbonDioxide:
+          BonusRequirement: 0.15
+          BonusAmount: 1.5
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 40
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system
   id: bungo
   name: seeds-bungo-name
   noun: seeds-noun-seeds
@@ -725,12 +929,10 @@
   lifespan: 50
   maturation: 8
   production: 6
-  potency: 10
   yield: 3
   idealLight: 8
-  idealHeat: 298
+  baseIdealHeat: 298
   growthStages: 4
-  waterConsumption: 0.6
   chemicals:
     Nutriment:
       Min: 5
@@ -741,7 +943,7 @@
       Max: 10
       PotencyDivisor: 20
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: pumpkin
   name: seeds-pumpkin-name
   noun: seeds-noun-seeds
@@ -756,18 +958,33 @@
   maturation: 10
   production: 4
   yield: 2
-  potency: 10
-  idealHeat: 288
+  baseIdealHeat: 288
   growthStages: 3
   chemicals:
     PumpkinFlesh:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 5
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 1.6
+          BonusAmount: 8
+        CarbonDioxide:
+          BonusRequirement: 0.8
+          BonusAmount: 8
     Vitamin:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 2
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
   id: bluePumpkin
@@ -799,7 +1016,7 @@
       Max: 10
       PotencyDivisor: 3
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: cherry
   name: seeds-cherry-name
   noun: seeds-noun-seeds
@@ -813,19 +1030,32 @@
   maturation: 6
   production: 6
   yield: 5
-  potency: 10
   idealLight: 6
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 3
-      PotencyDivisor: 30
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Vitamin:
-      Min: 1
-      Max: 3
-      PotencyDivisor: 40
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert Artifexium to the new system
   id: anomalyBerry
   name: seeds-anomaly-berry-name
   noun: seeds-noun-seeds
@@ -838,20 +1068,25 @@
   maturation: 12
   production: 3
   yield: 3
-  potency: 10
   growthStages: 2
-  waterConsumption: 0.60
-  nutrientConsumption: 0.50
   chemicals:
     Artifexium:
       Min: 1
       Max: 1
       PotencyDivisor: 4
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 30
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
     Vitamin:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 40
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
