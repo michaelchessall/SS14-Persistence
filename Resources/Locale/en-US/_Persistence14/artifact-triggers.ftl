@@ -1,4 +1,4 @@
-xenoarch-trigger-tip-brute-damage = Concussive Maintenance
+xenoarch-trigger-tip-blunt-damage = Concussive Maintenance
 xenoarch-trigger-tip-pierce-damage = Stabbing
 
 xenoarch-trigger-tip-chem-brute = Injury Medication

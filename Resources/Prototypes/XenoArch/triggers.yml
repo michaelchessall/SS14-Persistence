@@ -189,7 +189,7 @@
   tip: xenoarch-trigger-tip-brute-damage
   components:
   - type: XATDamageThresholdReached
-    typesNeeded:
+    groupsNeeded:
       Brute: 20
 
 - type: xenoArchTrigger
