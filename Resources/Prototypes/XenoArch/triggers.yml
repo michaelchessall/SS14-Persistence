@@ -27,7 +27,7 @@
     TriggerRolling: 0.5
     TriggerBrushing: 0.5
     TriggerTimer: 0.01
-    TriggerBlood: 1
+    TriggerBlood: 9999
     TriggerThrow: 1
     TriggerDeath: 1
     TriggerMagnet: 1
@@ -316,6 +316,12 @@
     - ZombieBlood
     - Sap
     - SulfurBlood
+    - Saline
+  - type: XATItemInteract
+    whitelist:
+     tags:
+     - Bloodpack
+     ReduceStackBy: 1
 
 - type: xenoArchTrigger
   id: TriggerThrow
@@ -351,6 +357,11 @@
     - PolypyryliumOligomers
     - Omnizine
     - Tricordrazine
+  - type: XATItemInteract
+    whitelist:
+      tags:
+      - Brutepack
+    ReduceStackBy: 1
 
 - type: xenoArchTrigger
   id: TriggerChemBurn
@@ -368,6 +379,11 @@
     - Siderlac
     - Omnizine
     - Tricordrazine
+  - type: XATItemInteract
+    whitelist:
+      tags:
+      - Ointment
+    ReduceStackBy: 1
 
 
 - type: xenoArchTrigger
@@ -447,6 +463,10 @@
     - SpaceCleaner
     - Bleach
     - SoapReagent
+  - type: XATItemInteract
+    whitelist:
+      tags:
+      - Soap
 
 - type: xenoArchTrigger
   id: TriggerChemSticky
