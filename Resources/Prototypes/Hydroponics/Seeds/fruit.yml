@@ -1,4 +1,4 @@
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: banana
   name: seeds-banana-name
   noun: seeds-noun-seeds
@@ -16,7 +16,7 @@
   yield: 2
   idealLight: 9
   waterConsumption: 0.60
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Vitamin:
       Min: 1
@@ -27,7 +27,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: mimana
   name: seeds-mimana-name
   noun: seeds-noun-seeds
@@ -43,7 +43,7 @@
   yield: 2
   idealLight: 9
   waterConsumption: 0.60
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     MuteToxin:
       Min: 1
@@ -213,7 +213,7 @@
           BonusRequirement: 0.1
           BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: extradimensionalOrange
   name: seeds-extradimensionalorange-name
   noun: seeds-noun-seeds
@@ -310,8 +310,8 @@
   production: 6
   yield: 2
   potency: 10
-  baseIdealLight: 8
-  idealHeat: 298
+  idealLight: 8
+  baseIdealHeat: 298
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:
@@ -344,7 +344,7 @@
           BonusRequirement: 3
           BonusAmount: 3
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: blueTomato
   name: seeds-bluetomato-name
   noun: seeds-noun-seeds
@@ -362,7 +362,7 @@
   waterConsumption: 0.60
   nutrientConsumption: 0.70
   idealLight: 8
-  idealHeat: 298
+  baseIdealHeat: 298
   splatPrototype: PuddleSplatter
   chemicals:
     Nutriment:
@@ -387,7 +387,7 @@
           BonusRequirement: 0.1
           BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: bloodTomato
   name: seeds-bloodtomato-name
   noun: seeds-noun-seeds
@@ -404,16 +404,24 @@
   production: 6
   yield: 2
   potency: 10
-  waterConsumption: 0.60
-  nutrientConsumption: 0.70
   idealLight: 8
-  idealHeat: 298
+  baseIdealHeat: 298
   splatPrototype: PuddleSplatter
   chemicals:
     Blood:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 2
+          BonusAmount: 2
+        Protein:
+          Requirement: 0.25
+          BonusRequirement: 0.5
+          BonusAmount: 2
+        Iron:
+          BonusRequirement: 0.2
+          BonusAmount: 5
     Vitamin:
       BaseAmount: 1
       Requirements:
@@ -428,7 +436,7 @@
           BonusRequirement: 0.1
           BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: killerTomato
   name: seeds-killertomato-name
   noun: seeds-noun-seeds
@@ -444,22 +452,44 @@
   maturation: 15
   production: 6
   yield: 2
-  potency: 10
-  waterConsumption: 0.60
-  nutrientConsumption: 0.70
   idealLight: 8
-  idealHeat: 298
+  baseIdealHeat: 298
   growthStages: 2
   splatPrototype: PuddleSplatter
+  requirements:
+    Protein:
+      Requirement: 5
+    Nutrient:
+      Requirement: 3
   chemicals:
     Blood:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+          BonusRequirement: 2
+          BonusAmount: 2
+        Protein:
+          Requirement: 0.25
+          BonusRequirement: 0.5
+          BonusAmount: 2
+        Iron:
+          BonusRequirement: 0.2
+          BonusAmount: 5
     JuiceTomato:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Nutrient:
+          BonusRequirement: 0.5
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed
   id: eggplant
@@ -594,7 +624,7 @@
       Max: 13
       PotencyDivisor: 10
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: chili
   name: seeds-chili-name
   noun: seeds-noun-seeds
@@ -612,7 +642,7 @@
   yield: 2
   potency: 20
   idealLight: 9
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     CapsaicinOil:
       Min: 1
@@ -627,7 +657,7 @@
       Max: 4
       PotencyDivisor: 25
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: chilly
   name: seeds-chilly-name
   noun: seeds-noun-seeds
@@ -643,7 +673,7 @@
   yield: 2
   potency: 20
   idealLight: 9
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     FrostOil:
       Min: 1
@@ -658,7 +688,7 @@
       Max: 4
       PotencyDivisor: 25
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: gatfruit
   name: seeds-gatfruit-name
   noun: seeds-noun-seeds
@@ -687,7 +717,7 @@
       Max: 5
       PotencyDivisor: 20
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: fakeCapfruit
   name: seeds-capfruit-name
   noun: seeds-noun-seeds
@@ -713,7 +743,7 @@
       Max: 5
       PotencyDivisor: 20
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: realCapfruit
   name: seeds-capfruit-name
   noun: seeds-noun-seeds
@@ -986,7 +1016,7 @@
           BonusRequirement: 0.1
           BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: bluePumpkin
   name: seeds-blue-pumpkin-name
   noun: seeds-noun-seeds
@@ -1000,7 +1030,7 @@
   production: 4
   yield: 2
   potency: 10
-  idealHeat: 288
+  baseIdealHeat: 288
   growthStages: 3
   chemicals:
     Ammonia:
