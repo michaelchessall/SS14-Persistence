@@ -2191,7 +2191,7 @@ entities:
     - type: Transform
       pos: 56.5,28.499
       parent: 1
-- proto: APCBasic
+- proto: APCSuperCapacity
   entities:
   - uid: 3132
     components:
