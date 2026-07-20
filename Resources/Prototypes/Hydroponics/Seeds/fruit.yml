@@ -213,7 +213,7 @@
           BonusRequirement: 0.1
           BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: extradimensionalOrange
   name: seeds-extradimensionalorange-name
   noun: seeds-noun-seeds
@@ -227,28 +227,43 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   idealLight: 8
   chemicals:
     Haloperidol:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Aluminum:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 2
+          BonusAmount: 2
+        Nutrient:
+          BonusRequirement: 2
+          BonusAmount: 2
     Nutriment:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
-    Requirements:
-      Nutrient:
-        Requirement: 1
-        BonusRequirement: 1
-        BonusAmount: 1
-      Fertilizer:
-        BonusRequirement: 0.2
-        BonusAmount: 1
-      CarbonDioxide:
-        BonusRequirement: 0.1
-        BonusAmount: 1
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.4
+          BonusAmount: 2
+        CarbonDioxide:
+          BonusRequirement: 0.2
+          BonusAmount: 2
+    Vitamin:
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
 - type: seed
   id: pineapple
