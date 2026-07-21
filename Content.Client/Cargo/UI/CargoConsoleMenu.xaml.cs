@@ -279,20 +279,18 @@ namespace Content.Client.Cargo.UI
 
                     Description =
                     {
-                        Text = Loc.GetString("cargo-console-menu-order-reason-description",
-                                                        ("reason", order.Reason))
+                         Text = !string.IsNullOrEmpty(order.Reason)
+                             ? Loc.GetString(
+                                 "cargo-console-menu-order-row-product-description",
+                                 ("orderReason", order.Reason))
+                         : Loc.GetString(
+                                 "cargo-console-menu-order-row-product-description",
+                                 ("orderReason", Loc.GetString("cargo-console-menu-order-row-alerts-reason-absent")))
+
                     },
                     Cost =
                     {
                         Text = $"${cost}"
-//                         Text = !string.IsNullOrEmpty(order.Reason) ?
-//                             Loc.GetString(
-//                                 "cargo-console-menu-order-row-product-description",
-//                                 ("orderReason", order.Reason))
-//                         :
-//                             Loc.GetString(
-//                                 "cargo-console-menu-order-row-product-description",
-//                                 ("orderReason", Loc.GetString("cargo-console-menu-order-row-alerts-reason-absent")))
                     }
                 };
 
