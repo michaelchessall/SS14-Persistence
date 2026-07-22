@@ -14,7 +14,7 @@
   outputGas: Oxygen
   conversionRatio: 1.0
   minTemp: 673.15  # 400°C (CO2 decomposition)
-  minPressure: 2000  # 20 atmospheres
+  minPressure: 200  # 2 atmospheres
   scrubbedReagents:
     Carbon: 0.01  # 0.01 moles of Carbon per mole of CO2 when container is present
 
@@ -24,7 +24,7 @@
   outputGas: Nitrogen
   conversionRatio: 1.0
   minTemp: 523.15  # 250°C (N2O catalytic decomposition)
-  minPressure: 1500  # 15 atmospheres
+  minPressure: 150  # 1.5 atmospheres
   scrubbedReagents:
     Oxygen: 0.01  # 0.01 moles of Oxygen per mole of N2O when container is present
 
@@ -34,7 +34,7 @@
   outputGas: Hydrogen
   conversionRatio: 1.0  # H2O -> H2 (1:1 molar conversion)
   minTemp: 1000  # 727°C (water electrolysis)
-  minPressure: 2000  # 20 atmospheres
+  minPressure: 200  # 2 atmospheres
   scrubbedReagents:
     Water: 0.05  # 0.05 moles of water per mole of vapor scrubbed into container
 
@@ -44,7 +44,7 @@
   outputGas: Hydrogen
   conversionRatio: 2.0  # CH4 -> 2 H2 (steam cracking simplification)
   minTemp: 900  # 627°C (methane cracking)
-  minPressure: 1500  # 15 atmospheres
+  minPressure: 150  # 1.5 atmospheres
 
 - type: gasRecyclingRecipe
   id: RecycleAmmonia
@@ -52,7 +52,7 @@
   outputGas: Nitrogen
   conversionRatio: 0.5  # 2 NH3 -> N2 (decomposition)
   minTemp: 800  # 527°C (ammonia decomposition)
-  minPressure: 1500  # 15 atmospheres
+  minPressure: 150  # 1.5 atmospheres
   scrubbedReagents:
     Hydrogen: 0.03  # Hydrogen byproduct captured into container
 
@@ -62,6 +62,6 @@
   outputGas: Chlorine
   conversionRatio: 0.5  # 2 ClF3 -> Cl2 (decomposition)
   minTemp: 700  # 427°C (ClF3 decomposition)
-  minPressure: 1000  # 10 atmospheres
+  minPressure: 100  # 10 atmospheres
   scrubbedReagents:
     Fluorine: 0.02  # Fluorine byproduct captured into container
