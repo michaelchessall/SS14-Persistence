@@ -1,4 +1,4 @@
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: banana
   name: seeds-banana-name
   noun: seeds-noun-seeds
@@ -15,19 +15,31 @@
   production: 6
   yield: 2
   idealLight: 9
-  waterConsumption: 0.60
   baseIdealHeat: 298
   chemicals:
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed # TODO: Convert mute toxin to the new system
   id: mimana
   name: seeds-mimana-name
   noun: seeds-noun-seeds
@@ -42,7 +54,6 @@
   production: 6
   yield: 2
   idealLight: 9
-  waterConsumption: 0.60
   baseIdealHeat: 298
   chemicals:
     MuteToxin:
@@ -50,9 +61,13 @@
       Max: 5
       PotencyDivisor: 20
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
 
 - type: seed
   id: lemon
@@ -116,13 +131,27 @@
   idealLight: 8
   chemicals:
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Milk:
-      Min: 8
-      Max: 20
-      PotencyDivisor: 5
+      BaseAmount: 10
+      Requirements:
+        Water:
+          Requirement: 10
+        Protein:
+          Requirement: 1
+          BonusRequirement: 2
+          BonusAmount: 10
 
 - type: seed
   id: lime
