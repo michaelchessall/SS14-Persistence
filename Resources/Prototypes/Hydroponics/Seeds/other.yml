@@ -1,4 +1,4 @@
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: sugarcane
   name: seeds-sugarcane-name
   noun: seeds-noun-seeds
@@ -14,16 +14,18 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   growthStages: 3
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Sugar:
-      Min: 4
-      Max: 5
-      PotencyDivisor: 5
+      BaseAmount: 5
+      Requirements:
+        Water:
+          Requirement: 2
+        Nutrient:
+          Requirement: 3
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed
   id: papercane
   name: seeds-papercane-name
   noun: seeds-noun-seeds
@@ -37,11 +39,15 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 10
   growthStages: 3
-  idealHeat: 298
+  baseIdealHeat: 298
+  Requirements:
+    Water:
+      Requirement: 2
+    Nutrient:
+      Requirement: 3
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: eggy
   name: seeds-eggy-name
   noun: seeds-noun-seeds
@@ -58,14 +64,14 @@
   potency: 20
   nutrientConsumption: 0.50
   idealLight: 9
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Egg:
       Min: 4
       Max: 12
       PotencyDivisor: 10
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: soybeans
   name: seeds-soybeans-name
   noun: seeds-noun-seeds
@@ -90,7 +96,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: koibean
   name: seeds-koibean-name
   noun: seeds-noun-seeds
@@ -117,7 +123,7 @@
       Max: 4
       PotencyDivisor: 30
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: cocoa
   name: seeds-cocoa-name
   noun: seeds-noun-seeds
@@ -134,7 +140,7 @@
   idealLight: 7
   waterConsumption: 1
   nutrientConsumption: 0.8
-  idealHeat: 298
+  baseIdealHeat: 298
   chemicals:
     Vitamin:
       Min: 1
@@ -145,7 +151,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: pea
   name: seeds-pea-name
   noun: seeds-noun-seeds
@@ -176,7 +182,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: laughinPea
   name: seeds-laughin-pea-name
   noun: seeds-noun-seeds
@@ -211,7 +217,7 @@
       Max: 10
       PotencyDivisor: 5
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: worldPea
   name: seeds-worldpea-name
   noun: seeds-noun-seeds
@@ -244,7 +250,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: cotton
   name: seeds-cotton-name
   noun: seeds-noun-seeds
@@ -269,7 +275,7 @@
       Max: 10
       PotencyDivisor: 20
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: pyrotton
   name: seeds-pyrotton-name
   noun: seeds-noun-seeds
