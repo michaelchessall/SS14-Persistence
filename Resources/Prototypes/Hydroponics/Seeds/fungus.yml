@@ -45,7 +45,7 @@
   baseIdealHeat: 425
   baseHeatTolerance: 425 # Incredibly high heat tolerance, but using it comes with extra nutrient requirements.
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: chanterelle
   name: seeds-chanterelle-name
   noun: seeds-noun-spores
@@ -63,14 +63,14 @@
   lightTolerance: 6
   waterConsumption: 0.60
   nutrientConsumption: 0.50
-  idealHeat: 288
+  baseIdealHeat: 288
   chemicals:
     Nutriment:
       Min: 1
       Max: 25
       PotencyDivisor: 25
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: lingzhi
   name: seeds-lingzhi-name
   noun: seeds-noun-spores
@@ -96,7 +96,7 @@
       Max: 20
       PotencyDivisor: 5
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, replace idealHeat with baseIdealHeat, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: flyAmanita
   name: seeds-flyamanita-name
   noun: seeds-noun-spores
