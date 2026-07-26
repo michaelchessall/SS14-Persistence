@@ -277,6 +277,12 @@
 
 - type: latheRecipe
   parent: [ BaseGoldCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
+  id: ArtifactAnalyzerAdvancedMachineCircuitboard
+  result: ArtifactAnalyzerAdvancedMachineCircuitboard
+  unlockUses: 2
+
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseResearchMachineRecipeCategory ]
   id: ArtifactCrusherMachineCircuitboard
   result: ArtifactCrusherMachineCircuitboard
   unlockUses: 2
@@ -399,6 +405,12 @@
   parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
   id: GyroscopeMachineCircuitboard
   result: GyroscopeMachineCircuitboard
+  unlockUses: 2
+
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseSupplyMachineRecipeCategory ]
+  id: GyroscopeFloorMachineCircuitboard
+  result: GyroscopeFloorMachineCircuitboard
   unlockUses: 2
 
 - type: latheRecipe

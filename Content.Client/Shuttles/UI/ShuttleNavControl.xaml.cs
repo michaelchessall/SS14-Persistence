@@ -25,8 +25,6 @@ namespace Content.Client.Shuttles.UI;
 public sealed partial class ShuttleNavControl : BaseShuttleControl
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
-    [Dependency] private readonly IConfigurationManager _configuration = default!;
-    [Dependency] private readonly IPrototypeManager _prototypes = default!;
     private readonly SharedShuttleSystem _shuttles;
     private readonly SharedSectorSystem _sectors;
     private readonly SharedTransformSystem _transform;
@@ -44,13 +42,13 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
     private Angle? _rotation;
 
     private Dictionary<NetEntity, List<DockingPortState>> _docks = new();
-    private Dictionary<SpaceSector, string> _sectorWeatherEvents = new();
     private List<NavTrackedEntityState> _trackedEntities = new();
 
     public bool ShowIFF { get; set; } = true;
     public bool ShowDocks { get; set; } = true;
     public bool RotateWithEntity { get; set; } = true;
-    public IFFSortMode SortMode { get; set; } = IFFSortMode.None;
+    public IFFSortMode SortMode { get; set; } = IFFSortMode.Station | IFFSortMode.Ship | IFFSortMode.Other;
+    public Vector2? WaypointCoords = null;
 
     private const float SortFadeMultiplier = 0.1f;
 
@@ -135,8 +133,10 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         RotateWithEntity = state.RotateWithEntity;
 
+        WaypointCoords = state.Waypoint;
+
         _docks = state.Docks;
-        _sectorWeatherEvents = state.SectorWeatherEvents;
+        SectorWeatherEvents = state.SectorWeatherEvents;
         _trackedEntities = state.TrackedEntities;
     }
 
@@ -156,7 +156,6 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var xformQuery = EntManager.GetEntityQuery<TransformComponent>();
         var fixturesQuery = EntManager.GetEntityQuery<FixturesComponent>();
         var bodyQuery = EntManager.GetEntityQuery<PhysicsComponent>();
-        var mapBoundsQuery = EntManager.GetEntityQuery<MapBoundsComponent>();
 
         if (!xformQuery.TryGetComponent(_coordinates.Value.EntityId, out var xform)
             || xform.MapID == MapId.Nullspace)
@@ -179,16 +178,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
         var shuttleToView = Matrix3x2.CreateScale(new Vector2(MinimapScale, -MinimapScale)) * Matrix3x2.CreateTranslation(MidPointVector);
         var worldToView = worldToShuttle * shuttleToView;
 
-        DrawSectorBoundaries(handle, worldToView);
-
         var map = _transform.GetMap(xform.Coordinates);
-        if (map != null && mapBoundsQuery.TryGetComponent(map, out var mapBounds) && mapBounds != null)
-        {
-            var mapBoundsToWorld = Matrix3Helpers.CreateTransform(Vector2.Zero, Angle.Zero);
-            var mapBoundsToView = mapBoundsToWorld * worldToShuttle * shuttleToView;
-            var gridCentre = Vector2.Transform(Vector2.Zero, mapBoundsToView);
-            handle.DrawCircle(gridCentre, MinimapScale * mapBounds.Radius, Color.Red, false);
-        }
+        DrawMapDetails(handle, worldToView, map);
 
         // Draw our grid in detail
         var ourGridId = xform.GridUid;
@@ -254,7 +245,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
             // Color.FromHex("#FFC000FF")
             // Hostile default: Color.Firebrick
             var labelName = _shuttles.GetIFFLabel(grid, self: false, iff);
-            var designation = iff?.Designation ?? IFFDesignation.Ship;
+            var designation = iff?.Designation ?? IFFDesignation.Other;
             var labelScale = designation == IFFDesignation.Station ? 1.3f : 1f;
 
             if (ShowIFF &&
@@ -335,6 +326,7 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
         DrawTrackedEntities(handle, worldToView, xform.MapID);
 
+        DrawWaypoint(handle, worldToView, WaypointCoords, ourGridId);
     }
 
     private void DrawTrackedEntities(DrawingHandleScreen handle, Matrix3x2 worldToView, MapId mapId)
@@ -432,135 +424,8 @@ public sealed partial class ShuttleNavControl : BaseShuttleControl
 
     private bool ShouldFade(IFFComponent? iff)
     {
-        return !_shuttles.MatchesSortTag(iff, SortMode);
+        return !_shuttles.MatchesSortTags(iff, SortMode);
     }
-
-    private void DrawSectorBoundaries(DrawingHandleScreen handle, Matrix3x2 worldToView)
-    {
-        var centerRadius = _configuration.GetCVar(CCVars.SectorCenterRadius);
-        var maxRadius = _configuration.GetCVar(CCVars.SectorMaxRadius);
-
-        var origin = Vector2.Transform(Vector2.Zero, worldToView);
-        var centerEdge = Vector2.Transform(new Vector2(centerRadius, 0f), worldToView);
-        var scaledCenterRadius = (centerEdge - origin).Length();
-
-        var ringColor = new Color(0.43f, 0.66f, 0.87f, 0.34f);
-        var borderColor = new Color(0.34f, 0.56f, 0.77f, 0.24f);
-
-        handle.DrawCircle(origin, scaledCenterRadius, ringColor, false);
-
-        // Octant boundaries: 22.5 + n * 45 keeps sector centers on cardinals and diagonals.
-        for (var i = 0; i < 8; i++)
-        {
-            DrawSectorBoundaryRay(handle, worldToView, centerRadius, maxRadius, SectorHelpers.EastLowerBoundary + (45f * i), borderColor);
-        }
-
-        foreach (var (sector, weatherId) in _sectorWeatherEvents)
-        {
-            if (!_prototypes.TryIndex<SectorWeatherPrototype>(weatherId, out var weather))
-                continue;
-
-            var weatherColor = Color.ToSrgb(weather.BorderColor);
-
-            if (sector == SpaceSector.Center)
-            {
-                handle.DrawCircle(origin, scaledCenterRadius, weatherColor, false);
-                continue;
-            }
-
-            if (!TryGetSectorBoundaryAngles(sector, out var firstBoundary, out var secondBoundary))
-                continue;
-
-            DrawSectorBoundaryRay(handle, worldToView, centerRadius, maxRadius, firstBoundary, weatherColor);
-            DrawSectorBoundaryRay(handle, worldToView, centerRadius, maxRadius, secondBoundary, weatherColor);
-                DrawSectorArc(handle, worldToView, centerRadius, firstBoundary, secondBoundary, weatherColor);
-        }
-    }
-
-    private static bool TryGetSectorBoundaryAngles(SpaceSector sector, out float firstBoundary, out float secondBoundary)
-    {
-        switch (sector)
-        {
-            case SpaceSector.NorthEast:
-                firstBoundary = SectorHelpers.EastLowerBoundary;
-                secondBoundary = SectorHelpers.NorthEastUpperBoundary;
-                return true;
-            case SpaceSector.North:
-                firstBoundary = SectorHelpers.NorthEastUpperBoundary;
-                secondBoundary = SectorHelpers.NorthUpperBoundary;
-                return true;
-            case SpaceSector.NorthWest:
-                firstBoundary = SectorHelpers.NorthUpperBoundary;
-                secondBoundary = SectorHelpers.NorthWestUpperBoundary;
-                return true;
-            case SpaceSector.West:
-                firstBoundary = SectorHelpers.NorthWestUpperBoundary;
-                secondBoundary = SectorHelpers.WestUpperBoundary;
-                return true;
-            case SpaceSector.SouthWest:
-                firstBoundary = SectorHelpers.WestUpperBoundary;
-                secondBoundary = SectorHelpers.SouthWestUpperBoundary;
-                return true;
-            case SpaceSector.South:
-                firstBoundary = SectorHelpers.SouthWestUpperBoundary;
-                secondBoundary = SectorHelpers.SouthUpperBoundary;
-                return true;
-            case SpaceSector.SouthEast:
-                firstBoundary = SectorHelpers.SouthUpperBoundary;
-                secondBoundary = SectorHelpers.SouthEastUpperBoundary;
-                return true;
-            case SpaceSector.East:
-                firstBoundary = SectorHelpers.SouthEastUpperBoundary;
-                secondBoundary = SectorHelpers.EastLowerBoundary;
-                return true;
-            default:
-                firstBoundary = 0f;
-                secondBoundary = 0f;
-                return false;
-        }
-    }
-
-    private static void DrawSectorBoundaryRay(
-        DrawingHandleScreen handle,
-        Matrix3x2 worldToView,
-        float centerRadius,
-        float maxRadius,
-        float boundaryDegrees,
-        Color color)
-    {
-        var boundaryDirection = Angle.FromDegrees(boundaryDegrees).ToVec();
-        var startWorld = boundaryDirection * centerRadius;
-        var endpointWorld = boundaryDirection * maxRadius;
-        var startView = Vector2.Transform(startWorld, worldToView);
-        var endpointView = Vector2.Transform(endpointWorld, worldToView);
-        handle.DrawLine(startView, endpointView, color);
-    }
-
-        private static void DrawSectorArc(
-            DrawingHandleScreen handle,
-            Matrix3x2 worldToView,
-            float centerRadius,
-            float startDegrees,
-            float endDegrees,
-            Color color)
-        {
-            const int segments = 12;
-            // Handle wrap-around (e.g. East sector: 337.5° → 22.5°)
-            var range = endDegrees > startDegrees
-                ? endDegrees - startDegrees
-                : endDegrees + 360f - startDegrees;
-
-            Vector2? prev = null;
-            for (var i = 0; i <= segments; i++)
-            {
-                var t = i / (float) segments;
-                var dir = Angle.FromDegrees(startDegrees + range * t).ToVec();
-                var viewPos = Vector2.Transform(dir * centerRadius, worldToView);
-                if (prev.HasValue)
-                    handle.DrawLine(prev.Value, viewPos, color);
-                prev = viewPos;
-            }
-        }
 
     private void DrawDocks(DrawingHandleScreen handle, EntityUid uid, Matrix3x2 gridToView)
     {

@@ -27,11 +27,18 @@ public sealed partial class JukeboxMenu : FancyWindow
     public event Action<bool>? OnPlayPressed;
     public event Action? OnStopPressed;
     public event Action<ProtoId<JukeboxPrototype>>? OnSongSelected;
+    public event Action<ProtoId<JukeboxPrototype>>? OnQueueSong;
+    public event Action? OnClearQueue;
+    public event Action<bool>? OnShuffleToggled;
+    public event Action<bool>? OnRepeatSongToggled;
+    public event Action<int>? OnVolumeChanged;
     public event Action<float>? SetTime;
 
     private EntityUid? _audio;
 
     private float _lockTimer;
+    private ProtoId<JukeboxPrototype>? _selectedSongId;
+    private bool _suppressUiEvents;
 
     public JukeboxMenu()
     {
@@ -46,6 +53,7 @@ public sealed partial class JukeboxMenu : FancyWindow
             if (entry.Metadata is not string juke)
                 return;
 
+            _selectedSongId = juke;
             OnSongSelected?.Invoke(juke);
         };
 
@@ -58,9 +66,51 @@ public sealed partial class JukeboxMenu : FancyWindow
         {
             OnStopPressed?.Invoke();
         };
+
+        QueueButton.OnPressed += _ =>
+        {
+            if (_selectedSongId is { } selected)
+            {
+                OnQueueSong?.Invoke(selected);
+            }
+        };
+
+        ClearQueueButton.OnPressed += _ =>
+        {
+            OnClearQueue?.Invoke();
+        };
+
+        ShuffleToggle.OnToggled += args =>
+        {
+            if (_suppressUiEvents)
+                return;
+
+            OnShuffleToggled?.Invoke(args.Pressed);
+        };
+
+        RepeatSongToggle.OnToggled += args =>
+        {
+            if (_suppressUiEvents)
+                return;
+
+            OnRepeatSongToggled?.Invoke(args.Pressed);
+        };
+
+        VolumeSlider.OnValueChanged += args =>
+        {
+            var level = (int) MathF.Round(args.Value);
+            UpdateVolumeLabel(level);
+
+            if (_suppressUiEvents)
+                return;
+
+            OnVolumeChanged?.Invoke(level);
+        };
+
         PlaybackSlider.OnReleased += PlaybackSliderKeyUp;
 
         SetPlayPauseButton(_audioSystem.IsPlaying(_audio), force: true);
+        SetVolumeLevel(JukeboxComponent.DefaultVolumeLevel);
     }
 
     public JukeboxMenu(AudioSystem audioSystem)
@@ -106,6 +156,46 @@ public sealed partial class JukeboxMenu : FancyWindow
         }
 
         PlayButton.Text = Loc.GetString("jukebox-menu-buttonplay");
+    }
+
+    public void SetQueue(IEnumerable<ProtoId<JukeboxPrototype>> queue, IPrototypeManager prototypeManager)
+    {
+        QueueList.Clear();
+
+        foreach (var queuedSong in queue)
+        {
+            if (prototypeManager.Resolve(queuedSong, out var song))
+            {
+                QueueList.AddItem(song.Name, metadata: queuedSong);
+            }
+            else
+            {
+                QueueList.AddItem(queuedSong, metadata: queuedSong);
+            }
+        }
+    }
+
+    public void SetShuffleState(bool enabled)
+    {
+        _suppressUiEvents = true;
+        ShuffleToggle.Pressed = enabled;
+        _suppressUiEvents = false;
+    }
+
+    public void SetRepeatSongState(bool enabled)
+    {
+        _suppressUiEvents = true;
+        RepeatSongToggle.Pressed = enabled;
+        _suppressUiEvents = false;
+    }
+
+    public void SetVolumeLevel(int level)
+    {
+        var clamped = Math.Clamp(level, JukeboxComponent.MinVolumeLevel, JukeboxComponent.MaxVolumeLevel);
+        _suppressUiEvents = true;
+        VolumeSlider.SetValueWithoutEvent(clamped);
+        _suppressUiEvents = false;
+        UpdateVolumeLabel(clamped);
     }
 
     public void SetSelectedSong(string name, float length)
@@ -160,5 +250,10 @@ public sealed partial class JukeboxMenu : FancyWindow
         {
             SongName.Text = "---";
         }
+    }
+
+    private void UpdateVolumeLabel(int level)
+    {
+        VolumeValue.Text = Loc.GetString("jukebox-menu-volume-value", ("level", level));
     }
 }

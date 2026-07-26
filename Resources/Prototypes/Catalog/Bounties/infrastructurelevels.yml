@@ -281,11 +281,13 @@
   id: ILevelEngineer1
   demotionXP: 0
   requiredXP: 0
-  name: Simple Engineering Detachment (1)
+  name: Simple Industrial Detachment (1)
   markets:
     - engineermarket
   groups:
-    ExplorationBounty : 1
+    GasBounty : 2
+    MaterialBounty : 1
+    ReagentBounty : 1
     StationBounty : 1
   income: -5000
 
@@ -298,8 +300,11 @@
     - engineermarket
     - engineermarket2
   groups:
+    GasBounty : 4
+    MaterialBounty : 2
+    ReagentBounty : 2
+    StationBounty : 1
     ExplorationBounty : 1
-    StationBounty : 2
   income: 0
   level: 2
 
@@ -307,14 +312,17 @@
   id: ILevelEngineer3
   demotionXP: 650
   requiredXP: 700
-  name: Robust Engineering Station (3)
+  name: Robust Industrial Station (3)
   markets:
     - engineermarket
     - engineermarket2
     - engineermarket3
   groups:
-    ExplorationBounty : 2
+    GasBounty : 6
+    MaterialBounty : 3
+    ReagentBounty : 2
     StationBounty : 2
+    ExplorationBounty : 3
   income: 10000
   level: 3
 
@@ -322,15 +330,18 @@
   id: ILevelEngineer4
   demotionXP: 1400
   requiredXP: 1500
-  name: Exemplary Engineering Fortress (4)
+  name: Exemplary Industrial Fortress (4)
   markets:
     - engineermarket
     - engineermarket2
     - engineermarket3
     - engineermarket4
   groups:
-    ExplorationBounty : 3
+    GasBounty : 7
+    MaterialBounty : 4
+    ReagentBounty : 3
     StationBounty : 3
+    ExplorationBounty : 3
   income: 30000
   level: 4
 

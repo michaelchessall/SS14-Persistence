@@ -1,14 +1,22 @@
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
+using Robust.Shared.Map;
+
 namespace Content.Shared._Persistence14.PersistentIdentifier;
 
 public sealed partial class PersistentIdentifierSystem : EntitySystem
 {
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private ILogManager _log = default!;
+    [Dependency] private IComponentFactory _factory = default!;
+
+    private Entity<PersistentIdRegisterComponent>? _globalRegister;
 
     /// <summary>
     /// The Sawmill key for all ID related log messages.
     /// </summary>
-    public const string Sawmill = "Persistent ID";
+    public const string Sawmill = "persistent-id";
+
+    public static string EmptyId = Guid.Empty.ToString();
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -27,9 +35,11 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         return id;
     }
 
-    public string EnsureId(EntityUid uid)
+    public string EnsureId(EntityUid uid) => EnsureId(uid, out _);
+    public string EnsureId(EntityUid uid, out Entity<PersistentIdentifierComponent> ent)
     {
         EnsureComp<PersistentIdentifierComponent>(uid, out var idComp);
+        ent = (uid, idComp);
         return EnsureId((uid, idComp));
     }
 
@@ -45,7 +55,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
             return true;
         }
 
-        id = Guid.Empty.ToString();
+        id = EmptyId;
         return false;
     }
 
@@ -74,7 +84,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         if (!ent.Comp.IdInit) return;
 
         var oldId = ent.Comp.Id;
-        ent.Comp.Id = Guid.Empty.ToString();
+        ent.Comp.Id = EmptyId;
         Dirty(ent);
 
         var ev = new PersistentIdChangedEvent(ent, oldId, ent.Comp.Id, behaviour);
@@ -85,7 +95,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     {
         if (id == ent.Comp.Id) return false;
 
-        if (id == Guid.Empty.ToString())
+        if (IsEmptyId(id))
         {
             _log.GetSawmill(Sawmill).Warning("Unable to override ID to empty. Use ClearId instead.");
             return false;
@@ -115,28 +125,41 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         string id,
         out Entity<PersistentIdentifierComponent> ent,
         Func<Entity<PersistentIdentifierComponent>, bool>? conditional = null,
-        bool useFetchIfFalse = true, bool ensureRegistry = true)
+        bool useFetchIfFalse = true)
     {
         ent = default!;
         conditional ??= _ => true;
 
-        PersistentIdRegisterComponent? registry;
-        if (ensureRegistry)
-        {
-            EnsureComp<PersistentIdRegisterComponent>(sourceUid, out registry);
-            if (registry.TryGet(id, out ent, _entMan) && conditional(ent))
-                return true;
-        }
-        else if (
-            TryComp<PersistentIdRegisterComponent>(sourceUid, out registry) &&
-            registry.TryGet(id, out ent, _entMan) &&
-            conditional(ent))
-        {
+
+        if (TryComp<PersistentIdRegisterComponent>(sourceUid, out var registry) && registry.TryGet(id, out ent, _entMan) && conditional(ent))
             return true;
-        }
+
+        else if (EnsureGlobalRegister().Comp.TryGet(id, out ent, _entMan) && conditional(ent))
+            return true;
 
         if (useFetchIfFalse)
             return TryFetchId(id, out ent, conditional, registry);
+        return false;
+    }
+
+    /// <summary>
+    /// Attempts to resolve a provided <see cref="PersistentEntityReference"/> into an entity.
+    /// </summary>
+    /// <returns>True if the reference sucessfully resolved into an entity, otherwise false.</returns>
+    public bool TryResolveId(
+        PersistentEntityReference reference,
+        out Entity<PersistentIdentifierComponent> ent,
+        Func<Entity<PersistentIdentifierComponent>, bool>? conditional = null,
+        bool useFetchIfFalse = true)
+    {
+        ent = default!;
+        conditional ??= _ => true;
+        var register = EnsureGlobalRegister();
+        if (register.Comp.TryGet(reference.TargetId, out ent, _entMan) && conditional(ent))
+            return true;
+
+        if (useFetchIfFalse)
+            return TryFetchId(reference.TargetId, out ent, conditional, register);
         return false;
     }
 
@@ -148,16 +171,17 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     /// <param name="conditional">A conditional function applied to the search.</param>
     /// <param name="registry">An optional registry to register valid ids to when found. Improves speed of future searches.</param>
     /// <returns></returns>
-    public bool TryFetchId(
+    private bool TryFetchId(
         string id,
         out Entity<PersistentIdentifierComponent> ent,
         Func<Entity<PersistentIdentifierComponent>, bool>? conditional = null,
-        PersistentIdRegisterComponent? registry = null)
+        PersistentIdRegisterComponent? registry = null,
+        bool sendLogs = true)
     {
         ent = default!;
         conditional ??= _ => true;
 
-        _log.GetSawmill(Sawmill).Info($"Attempting to fetch persistent id: {id}");
+        if (sendLogs) _log.GetSawmill(Sawmill).Info($"Attempting to fetch persistent id: {id}");
 
         var lookup = EntityQueryEnumerator<PersistentIdentifierComponent>();
 
@@ -167,12 +191,12 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
             {
                 ent = (uid, idComp);
                 if (registry is not null) registry.TryRegister(ent, _entMan);
-                _log.GetSawmill(Sawmill).Info($"Entity found: {uid}");
+                if (sendLogs) _log.GetSawmill(Sawmill).Info($"Entity found: {uid}");
                 return true;
             }
         }
 
-        _log.GetSawmill(Sawmill).Warning($"Unable to find entity with matching pid.");
+        if (sendLogs) _log.GetSawmill(Sawmill).Warning($"Unable to find entity with matching pid.");
         return false;
     }
 
@@ -181,12 +205,64 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         // Culling will remove the existing reference as the new ID will not match that stored in the key.
         register.CullStaleEntities(_entMan);
 
-        if (args.NewId == Guid.Empty.ToString() || args.NewId == args.OldId || args.Behaviour == PersistentIdChangeBehaviour.Sever)
+        if (IsEmptyId(args.NewId) || args.NewId == args.OldId || args.Behaviour == PersistentIdChangeBehaviour.Sever)
             return; // Nothing more to do.
 
         if (!TryComp<PersistentIdentifierComponent>(args.Uid, out var idComp))
             return; // What would this even mean...?
 
         register.TryRegister((args.Uid, idComp), _entMan);
+    }
+
+    private bool IsEmptyId(string id) => id == EmptyId;
+
+    public bool CompareId(PersistentEntityReference reference, string id)
+        => !IsEmptyId(id) && reference.TargetId == id;
+    public bool CompareId(PersistentEntityReference reference, Entity<PersistentIdentifierComponent> ent)
+        => ent.Comp.IdInit && reference.TargetId == ent.Comp.Id;
+    public bool CompareId(PersistentEntityReference reference, EntityUid uid)
+    {
+        var id = EnsureId(uid);
+        return CompareId(reference, id);
+    }
+
+    public void AssignIdReference(ref PersistentEntityReference reference, string id)
+    {
+        reference = id;
+    }
+    public void AssignIdReference(ref PersistentEntityReference reference, Entity<PersistentIdentifierComponent> ent)
+    {
+        AssignIdReference(ref reference, ent.Comp.Id);
+    }
+    public void AssignIdReference(ref PersistentEntityReference reference, EntityUid uid)
+    {
+        var id = EnsureId(uid);
+        AssignIdReference(ref reference, id);
+    }
+
+    private Entity<PersistentIdRegisterComponent> EnsureGlobalRegister()
+    {
+        if (_globalRegister is { } register)
+        {
+            register.Comp.Global = true;
+            return register;
+        }
+
+        var registerQuery = EntityQueryEnumerator<PersistentIdRegisterComponent>();
+
+        while (registerQuery.MoveNext(out var uid, out var registerComp))
+        {
+            if (!registerComp.Global) continue;
+
+            _globalRegister = (uid, registerComp);
+            return _globalRegister.Value;
+        }
+
+        _log.GetSawmill(Sawmill).Info($"Constructing new Global Register");
+        var newUid = Spawn(null, MapCoordinates.Nullspace);
+        EnsureComp<PersistentIdRegisterComponent>(newUid, out var newComp);
+        newComp.Global = true;
+        _globalRegister = (newUid, newComp);
+        return _globalRegister.Value;
     }
 }

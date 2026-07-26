@@ -51,6 +51,15 @@
     - id: JetpackExecSOLFilled
     - id: OxygenTankFilled
 
+# Laser table
+- type: entityTable
+  id: LockerFillExecutiveLaser
+  table: !type:AllSelector
+    children:
+    - !type:NestedSelector
+      tableId: LockerFillExecutiveSOLNoLaser
+    - id: WeaponExecLaser
+
 # No Laser + Hardsuit locker
 - type: entity
   id: LockerCaptainFilledHardsuitSOL
@@ -63,6 +72,20 @@
         children:
         - !type:NestedSelector
           tableId: LockerFillExecutiveSOLNoLaser
+        - !type:NestedSelector
+          tableId: FillExecutiveHardsuitSOL
+
+- type: entity
+  id: LockerCaptainFilledHardsuitLaserSOL
+  suffix: Filled, Hardsuit, AntiqueLaser
+  parent: LockerExecutiveSOL
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - !type:NestedSelector
+          tableId: LockerFillExecutiveLaser
         - !type:NestedSelector
           tableId: FillExecutiveHardsuitSOL
 
@@ -240,3 +263,30 @@
           tableId: LockerFillHeadOfSecurityNoHardsuitSOL
         - !type:NestedSelector
           tableId: FillHeadOfSecurityHardsuitSOL
+
+# Solar Legion Chief of Staff
+- type: entityTable
+  id: LockerFillChiefOfStaff
+  table: !type:AllSelector
+    children:
+    - id: AccessConfigurator
+    - id: BoxHeadset
+    - id: BoxHoPCircuitboards
+    - id: BoxCoSSOLStamps
+    - id: BoxPDA
+    - id: CigarGoldCase
+    - id: ClothingHeadsetCommand
+    - id: ClothingNeckGoldmedal
+    - id: DoorRemoteService
+    - id: WeaponDisabler
+    - id: ClothingEyesHudCommand
+
+- type: entity
+  id: LockerChiefOfStaffFilled
+  suffix: Filled
+  parent: LockerChiefOfStaffSOL
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:NestedSelector
+        tableId: LockerFillChiefOfStaff

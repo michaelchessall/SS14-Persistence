@@ -1,6 +1,7 @@
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using System.Collections.Generic;
 
 namespace Content.Shared.Audio.Jukebox;
 
@@ -8,8 +9,24 @@ namespace Content.Shared.Audio.Jukebox;
 [Access(typeof(SharedJukeboxSystem))]
 public sealed partial class JukeboxComponent : Component
 {
+    public const int MinVolumeLevel = 1;
+    public const int MaxVolumeLevel = 10;
+    public const int DefaultVolumeLevel = 7;
+
     [DataField, AutoNetworkedField]
     public ProtoId<JukeboxPrototype>? SelectedSongId;
+
+    [DataField, AutoNetworkedField]
+    public List<ProtoId<JukeboxPrototype>> Queue = new();
+
+    [DataField, AutoNetworkedField]
+    public bool ShuffleEnabled;
+
+    [DataField, AutoNetworkedField]
+    public bool RepeatSongEnabled;
+
+    [DataField, AutoNetworkedField]
+    public int VolumeLevel = DefaultVolumeLevel;
 
     [DataField, AutoNetworkedField]
     public EntityUid? AudioStream;
@@ -58,6 +75,33 @@ public sealed class JukeboxSelectedMessage(ProtoId<JukeboxPrototype> songId) : B
 public sealed class JukeboxSetTimeMessage(float songTime) : BoundUserInterfaceMessage
 {
     public float SongTime { get; } = songTime;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxSetVolumeMessage(int volumeLevel) : BoundUserInterfaceMessage
+{
+    public int VolumeLevel { get; } = volumeLevel;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxQueueSongMessage(ProtoId<JukeboxPrototype> songId) : BoundUserInterfaceMessage
+{
+    public ProtoId<JukeboxPrototype> SongId { get; } = songId;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxClearQueueMessage : BoundUserInterfaceMessage;
+
+[Serializable, NetSerializable]
+public sealed class JukeboxSetShuffleMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public bool Enabled { get; } = enabled;
+}
+
+[Serializable, NetSerializable]
+public sealed class JukeboxSetRepeatSongMessage(bool enabled) : BoundUserInterfaceMessage
+{
+    public bool Enabled { get; } = enabled;
 }
 
 [Serializable, NetSerializable]

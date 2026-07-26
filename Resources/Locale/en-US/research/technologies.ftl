@@ -55,6 +55,7 @@ research-technology-advanced-parts = Advanced Parts
 research-technology-anomaly-harnessing = Anomaly Core Harnessing
 research-technology-abnormal-artifact-manipulation = Artifact Recycling
 research-technology-gravity-manipulation = Gravity Manipulation
+research-technology-advanced-artifact-scanner = Advanced Artifact Scanner
 research-technology-quantum-leaping = Quantum Leaping
 research-technology-bluespace-time-manipulation = Bluespace Time Manipulation
 research-technology-advanced-anomaly-research = Advanced Anomaly Research

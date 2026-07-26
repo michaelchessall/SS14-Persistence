@@ -6,6 +6,8 @@ analysis-console-info-no-scanner = No analyzer connected! Please connect one usi
 analysis-console-info-no-artifact = No artifact present! Place one on the pad to view node information.
 analysis-console-info-ready = Systems operational. Ready to scan.
 
+analysis-console-artifact-cycle = {$current}/{$total}
+
 analysis-console-no-node = Select node to view
 analysis-console-info-id = [font="Monospace" size=11]ID:[/font]
 analysis-console-info-id-value = [font="Monospace" size=11][color=yellow]{$id}[/color][/font]

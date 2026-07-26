@@ -27,6 +27,7 @@ public sealed partial class CrewRecordsComponent : Component
     {
         if (CrewRecords.TryGetValue(recordname, out record)) return false;
         record = new CrewRecord(recordname);
+        record.LastPaid = DateTime.Now;
         CrewRecords.Add(recordname, record);
         return true;
     }
@@ -59,6 +60,8 @@ public partial class CrewRecord
     public string CriminalRecord = "";
     [DataField("_medicalRecord")]
     public string MedicalRecord = "";
+    [DataField]
+    public DateTime LastPaid = DateTime.MinValue;
     public CrewRecord(string name)
     {
         Name = name;

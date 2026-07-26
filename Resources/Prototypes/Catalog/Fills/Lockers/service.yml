@@ -157,6 +157,7 @@
       prob: 0.02
     - id: PlushieLizardJobServiceworker
       prob: 0.02
+    - id: PlantAnalyzer
 
 - type: entity
   id: LockerBotanistLoot

@@ -60,3 +60,12 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Neck/Cloaks/execcloakformal.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakCosSOL
+  name: solar legion chief of staff's cloak
+  description: A blue cloak with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/cos.rsi

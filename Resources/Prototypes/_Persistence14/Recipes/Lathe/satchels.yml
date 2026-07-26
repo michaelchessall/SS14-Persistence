@@ -1,0 +1,99 @@
+# Civilian Satchels
+- type: latheRecipe
+  id: Satchel
+  parent: BaseSatchel
+  result: ClothingBackpackSatchel
+
+- type: latheRecipe
+  id: SatchelLeather
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelLeather
+
+- type: latheRecipe
+  id: SatchelEngineering
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelEngineering
+
+- type: latheRecipe
+  id: SatchelAtmospherics
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelAtmospherics
+
+- type: latheRecipe
+  id: SatchelClown
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelClown
+
+- type: latheRecipe
+  id: SatchelMime
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelMime
+
+- type: latheRecipe
+  id: SatchelMedical
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelMedical
+
+- type: latheRecipe
+  id: SatchelChemistry
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelChemistry
+
+- type: latheRecipe
+  id: SatchelVirology
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelVirology
+
+- type: latheRecipe
+  id: SatchelGenetics
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelGenetics
+
+- type: latheRecipe
+  id: SatchelScience
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelScience
+
+- type: latheRecipe
+  id: SatchelHydroponics
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelHydroponics
+
+- type: latheRecipe
+  id: SatchelCargo
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelCargo
+
+- type: latheRecipe
+  id: SatchelSalvage
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelSalvage
+
+
+# Command Satchels
+- type: latheRecipe
+  id: SatchelSecurity
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelSecurity
+
+- type: latheRecipe
+  id: SatchelBrigmedic
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelBrigmedic
+
+- type: latheRecipe
+  id: SatchelCaptain
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelCaptain
+
+# Contraband Satchels
+- type: latheRecipe
+  id: SatchelNinja
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelNinja
+
+# Debug Satchels
+- type: latheRecipe
+  id: SatchelAdmin
+  parent: BaseSatchel
+  result: ClothingBackpackSatchelAdmin

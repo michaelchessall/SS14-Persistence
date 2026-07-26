@@ -1166,3 +1166,32 @@
     projectilePrototype: DrinkLemonLimeCranberryCan
     minProjectiles: 1
     maxProjectiles: 3
+
+- type: entity
+  id: AnomalyPolymorph
+  parent: BaseAnomaly
+  suffix: Polymorph
+  components:
+  - type: Anomaly
+    corePrototype: AnomalyCorePolymorph
+    coreInertPrototype: AnomalyCorePolymorphInert
+    supercriticalSoundAtAnimationStart:
+      collection: RadiationPulse
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/polymorph_anom.rsi
+    layers:
+    - state: anom
+      map: ["enum.AnomalyVisualLayers.Base"]
+    - state: anom-pulse
+      map: ["enum.AnomalyVisualLayers.Animated"]
+      visible: false
+  - type: PointLight
+    radius: 2.0
+    energy: 5.0
+    color: "#c060ff"
+    castShadows: false
+  - type: PolymorphAnomaly
+    polymorphTable: DefaultPolymorphAnomalyTable
+    range: 5
+    supercriticalRange: 7
+    supercriticalPermanentChance: 0.2

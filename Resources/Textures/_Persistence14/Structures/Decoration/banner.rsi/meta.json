@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "banner_sl sprited and banner_wd edited by JetBalrog (Discord) | banner_foe edited Holy Luna Lux | banner_preg edited by TylerBack (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "banner_sl"
+    },
+    {
+      "name": "banner_wd"
+    },
+	{
+	  "name": "banner_foe"
+	},
+    {
+      "name": "banner_preg"
+    }
+  ]
+}

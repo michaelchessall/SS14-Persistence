@@ -62,6 +62,17 @@
             "name": "burger-big-inhand-right",
             "directions": 4
         },
+                {
+            "name": "bloodredburger"
+        },
+        {
+            "name": "bloodred-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "bloodred-inhand-right",
+            "directions": 4
+        },
         {
             "name": "brain"
         },

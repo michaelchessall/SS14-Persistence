@@ -69,6 +69,7 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
+      Glass: 50
       Plastic: 50
 
 - type: entity
@@ -154,3 +155,54 @@
         Slash: 0.8
         Piercing: 0.9
         Heat: 0.8
+
+# Persi14
+- type: entity
+  parent: ClothingHeadHatHardhatBlue
+  id: ClothingHeadHatHardhatBlueEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: ClothingHeadHatHardhatOrange
+  id: ClothingHeadHatHardhatOrangeEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: ClothingHeadHatHardhatRed
+  id: ClothingHeadHatHardhatRedEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: ClothingHeadHatHardhatWhite
+  id: ClothingHeadHatHardhatWhiteEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+
+- type: entity
+  parent: ClothingHeadHatHardhatYellow
+  id: ClothingHeadHatHardhatYellowEmpty
+  suffix: Empty
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default

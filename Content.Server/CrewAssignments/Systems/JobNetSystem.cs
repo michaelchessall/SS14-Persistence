@@ -782,6 +782,7 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
                             {
                                 if (TryComp<ActorComponent>(player, out var actor) && actor != null && actor.PlayerSession != null)
                                 {
+                                    record.LastPaid = DateTime.Now;
                                     var bank = _bank.GetMoneyAccountsComponent();
                                     if (bank == null) return;
                                     if (_cargo.TryGetAccount(station.Value, "Cargo", out var money))

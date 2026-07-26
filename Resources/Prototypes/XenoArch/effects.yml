@@ -681,7 +681,7 @@
   description: Partially charges nearby batteries
   components:
   - type: XAEChargeBattery
-    chargePercent: 20.0
+    chargePercent: 30.0
   - type: XAETelepathic
     messages:
     - charge-artifact-popup

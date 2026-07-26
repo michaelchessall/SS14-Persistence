@@ -6,3 +6,12 @@
   components:
   - type: Sprite
     state: pen_exec
+
+- type: entity
+  name: solar legion chief of staff's fountain pen
+  parent: PenEmbeddable
+  id: PenCos
+  description: A luxurious fountain pen with a comfortable orange grip. Meant for a Solar Legion Chief of Staff. This is the pen they refer to by "The pen is mightier than the sword."
+  components:
+  - type: Sprite
+    state: pen_cos_SOL

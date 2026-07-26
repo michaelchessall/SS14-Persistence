@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Shared.Sectors;
 using Content.Shared.Shuttles.Components;
 using Robust.Shared.Map;
@@ -30,6 +31,8 @@ public sealed class NavInterfaceState
 
     public readonly ShuttleDampingMode DampingMode;
 
+    public Vector2? Waypoint;
+
     public NavInterfaceState(
         float maxRange,
         NetCoordinates? coordinates,
@@ -37,7 +40,8 @@ public sealed class NavInterfaceState
         Dictionary<NetEntity, List<DockingPortState>> docks,
         ShuttleDampingMode dampingMode,
         Dictionary<SpaceSector, string>? sectorWeatherEvents = null,
-        List<NavTrackedEntityState>? trackedEntities = null)
+        List<NavTrackedEntityState>? trackedEntities = null,
+        Vector2? waypoint = null)
     {
         MaxRange = maxRange;
         Coordinates = coordinates;
@@ -46,6 +50,7 @@ public sealed class NavInterfaceState
         DampingMode = dampingMode;
         SectorWeatherEvents = sectorWeatherEvents ?? new Dictionary<SpaceSector, string>();
         TrackedEntities = trackedEntities ?? new List<NavTrackedEntityState>();
+        Waypoint = waypoint;
     }
 }
 

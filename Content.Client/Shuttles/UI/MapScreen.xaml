@@ -1,6 +1,7 @@
 <controls:BoxContainer Visible="False"
        HorizontalExpand="True"
        xmlns:controls="https://spacestation14.io"
+       xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
        xmlns:controls1="clr-namespace:Content.Client.UserInterface.Controls"
        xmlns:ui="clr-namespace:Content.Client.Shuttles.UI">
             <ui:ShuttleMapControl Name="MapRadar"
@@ -20,32 +21,47 @@
                 <controls:BoxContainer Orientation="Vertical">
                 <!-- Normal buttons -->
                 <controls1:StripeBack MinSize="48 48">
-                    <controls:Label Name="SettingsLabel" Text="{controls:Loc 'shuttle-console-map-settings'}"
+                    <controls:Label Name="DisplayLabel" Text="{controls:Loc 'shuttle-console-display-label'}"
                            HorizontalAlignment="Center"/>
                 </controls1:StripeBack>
-                <controls:Button Name="MapBeaconsButton"
-                                 Text="{controls:Loc 'shuttle-console-map-beacons'}"
-                                 TextAlign="Center"
-                                 ToggleMode="True"
-                                 Pressed="True"/>
-                <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                    <controls:Label Text="{controls:Loc 'shuttle-console-sort-label'}" HorizontalExpand="True"/>
-                    <controls:OptionButton HorizontalAlignment="Right" Name="SortModeButton" MinWidth="120"/>
-                </controls:BoxContainer>
                 <controls:Button Name="MapRebuildButton"
                         Text="{controls:Loc 'shuttle-console-map-rebuild'}"
                         TextAlign="Center"/>
+                <controls:BoxContainer Name="DisplayOptionsSelectorContainer"/>
+
+                <controls:Label Text="{controls:Loc 'shuttle-console-sort-label'}" HorizontalExpand="True"/>
+                <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="true" SeparationOverride="10">
+                    <controls:CheckBox Name="FilterStation" Text="{controls:Loc 'shuttle-console-sort-station'}" />
+                    <controls:CheckBox Name="FilterShip" Text="{controls:Loc 'shuttle-console-sort-ship'}" />
+                    <controls:CheckBox Name="FilterOther" Text="{controls:Loc 'shuttle-console-sort-other'}" />
+                </controls:BoxContainer>
+
+                <controls:Label Text="{controls:Loc 'shuttle-console-waypoint'}" HorizontalExpand="True"/>
+                <controls:BoxContainer Orientation="Horizontal">
+                    <controls:LineEdit Name="WaypointCoordsX" HorizontalExpand="True"/>
+                    <controls:Label Text=", "/>
+                    <controls:LineEdit Name="WaypointCoordsY" HorizontalExpand="True"/>
+                    <controls:Button Name="WaypointButton" Margin="10 0 0 0" Text="{controls:Loc 'shuttle-console-waypoint-clear'}"/>
+                </controls:BoxContainer>
+
                 <!-- Map objects -->
                 <controls1:StripeBack MinSize="48 48">
                     <controls:Label Name="HyperspaceLabel" Text="{controls:Loc 'shuttle-console-map-objects'}"
                            HorizontalAlignment="Center"/>
                 </controls1:StripeBack>
-                <controls:ScrollContainer VerticalExpand="True" HScrollEnabled="False"
-                                 ReturnMeasure="True">
-                    <controls:BoxContainer Name="HyperspaceDestinations"
-                                  Orientation="Vertical"
-                                  VerticalExpand="True"/>
-                </controls:ScrollContainer>
+                <controls:LineEdit
+                    Name="SearchBar"
+                    PlaceHolder="{controls:Loc 'shuttle-console-map-objects-search'}"
+                    HorizontalExpand="True">
+                </controls:LineEdit>
+                <controls:PanelContainer VerticalExpand="True">
+                    <controls:PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </controls:PanelContainer.PanelOverride>
+                    <controls:ScrollContainer VerticalExpand="True" HScrollEnabled="False" ReturnMeasure="True">
+                        <controls:BoxContainer Name="HyperspaceDestinations" Orientation="Vertical" VerticalExpand="True" Margin="4"/>
+                    </controls:ScrollContainer>
+                </controls:PanelContainer>
             </controls:BoxContainer>
         </controls:BoxContainer>
 </controls:BoxContainer>

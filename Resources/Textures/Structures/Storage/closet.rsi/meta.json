@@ -657,6 +657,15 @@
         },
         {
             "name": "rd-SOL_open"
+        },
+        {
+            "name": "cos-SOL"
+        },
+        {
+            "name": "cos-SOL_door"
+        },
+        {
+            "name": "cos-SOL_open"
         }
     ]
 }

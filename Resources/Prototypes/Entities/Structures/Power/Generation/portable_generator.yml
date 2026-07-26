@@ -160,9 +160,8 @@
       maxTargetPower: 30000
       targetPower: 30000
       optimalPower: 30000
-      # 15 minutes at max output
-      optimalBurnRate: 0.0333333
-      # a decent curve that goes up to about an hour at 5 kW.
+      #Buffed for Persistence, one sheet every minute at optimal power up to 2 minutes if running at 5 kW.
+      optimalBurnRate: 0.0165 #0.0333333 before
       fuelEfficiencyConstant: 0.75
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Plasma
@@ -221,10 +220,10 @@
       maxTargetPower: 50000
       targetPower: 50000
       optimalPower: 50000
-      # 30 minutes at full power
-      optimalBurnRate: 0.016666666
-      # Barely save any fuel from reducing power output
-      fuelEfficiencyConstant: 0.1
+      # now 1 sheet every 3~ minutes at optimal power
+      optimalBurnRate: 0.0083 #0.01666666 before
+      # Saves a lil fuel from reducing power output
+      fuelEfficiencyConstant: 0.25 # 0.1 before
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Uranium
       multiplier: 0.01
@@ -294,8 +293,8 @@
       minTargetPower: 4000
       optimalPower: 8000
       maxTargetPower: 10000
-      # 15~ minutes at full tank.
-      optimalBurnRate: 0.11111111
+      # 30~ minutes at full tank.
+      optimalBurnRate: 0.0555 #0.11111111 before
       # Shallow curve that allows you to just barely eek out 24 minutes at lowest.
       fuelEfficiencyConstant: 0.3
     - type: ChemicalFuelGeneratorAdapter
@@ -428,7 +427,7 @@
   description: |-
     A top-of-the-line generator for extreme power demands.
     Runs off exotic Phoron sheets and is rated for up to 75 kW.
-    WARNING: Significantly higher fuel consumption. Use only when necessary.
+    WARNING: The fuel used for this machine is expensive. Use only for emergencies.
   parent: PortableGeneratorBase
   id: PortableGeneratorMegaman
   suffix: Phoron, 75 kW
@@ -460,19 +459,18 @@
     - type: Machine
       board: PortableGeneratorMegamanMachineCircuitboard
     - type: FuelGenerator
-      minTargetPower: 20000
+      minTargetPower: 25000 # 20000 before
       maxTargetPower: 75000
-      targetPower: 75000
-      optimalPower: 75000
-      # 20 minutes at max output (1.5x S.U.P.E.R.P.A.C.M.A.N. depletion rate)
-      optimalBurnRate: 0.025
-      # Reasonable efficiency curve
+      targetPower: 55000 #75000 before
+      optimalPower: 40000 #75000 before
+      # 1 phoron sheet every 3 minutes optimal output (This is still insanely expensive btw) 
+      optimalBurnRate: 0.010 #0.025 before
       fuelEfficiencyConstant: 0.5
     - type: SolidFuelGeneratorAdapter
       fuelMaterial: Phoron
       multiplier: 0.01
     - type: MaterialStorage
-      storageLimit: 5000
+      storageLimit: 2500 #5000 before
       materialWhiteList: [Phoron]
     - type: PortableGenerator
       startChance: 0.95

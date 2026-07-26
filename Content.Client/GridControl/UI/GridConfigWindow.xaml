@@ -7,6 +7,7 @@
             <Control HorizontalExpand="True"/>
             <Label Text="Change Owner Mode:" />
             <Button Name="ChangeModeBtn" Text="Station" Access="Public" />
+            <Button Name="ChangeModeBtnPersonal" Text="Personal" Access="Public" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal">
             <Label Name="TargetNameLabel" Text="Target Station:" />

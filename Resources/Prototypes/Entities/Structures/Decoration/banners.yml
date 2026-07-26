@@ -46,6 +46,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner
+  - type: Construction
+    graph: BannerGraph
+    node: bannerNT
 
 - type: entity
   id: BannerCargo
@@ -56,6 +59,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_cargo
+  - type: Construction
+    graph: BannerGraph
+    node: bannerCargo
 
 - type: entity
   id: BannerEngineering
@@ -66,6 +72,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_engineering
+  - type: Construction
+    graph: BannerGraph
+    node: bannerEngineering
 
 - type: entity
   id: BannerMedical
@@ -76,6 +85,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_medical
+  - type: Construction
+    graph: BannerGraph
+    node: bannerMedical
 
 - type: entity
   id: BannerRevolution
@@ -86,6 +98,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_revolution
+  - type: Construction
+    graph: BannerGraph
+    node: bannerRevolution
 
 - type: entity
   id: BannerSyndicate
@@ -96,6 +111,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_syndicate
+  - type: Construction
+    graph: BannerGraph
+    node: bannerSyndicate
 
 - type: entity
   id: BannerScience
@@ -106,6 +124,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_science
+  - type: Construction
+    graph: BannerGraph
+    node: bannerScience
 
 - type: entity
   id: BannerSecurity
@@ -116,6 +137,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner_security
+  - type: Construction
+    graph: BannerGraph
+    node: bannerSecurity
 
 - type: entity
   id: BannerBlue
@@ -126,6 +150,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-blue
+  - type: Construction
+    graph: BannerGraph
+    node: bannerBlue
 
 - type: entity
   id: BannerRed
@@ -136,6 +163,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-red
+  - type: Construction
+    graph: BannerGraph
+    node: bannerRed
 
 - type: entity
   id: BannerYellow
@@ -146,6 +176,9 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-yellow
+  - type: Construction
+    graph: BannerGraph
+    node: bannerYellow
 
 - type: entity
   id: BannerGreen
@@ -156,23 +189,6 @@
   - type: Sprite
     sprite: Structures/Decoration/banner.rsi
     state: banner-green
-
-- type: entity
-  id: BannerSolarLegion
-  parent: BannerBase
-  name: solar legion banner
-  description: A banner displaying the Solar Legion logo. Spear tip blunted for safety.
-  components:
-  - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_sl
-
-- type: entity
-  id: BannerWayfarerDynamics
-  parent: BannerBase
-  name: wayfarer dynamics banner
-  description: A banner displaying the Wayfarer Dynamics logo. Honors the great solar panel bridges of Exodus Station.
-  components:
-  - type: Sprite
-    sprite: Structures/Decoration/banner.rsi
-    state: banner_wd
+  - type: Construction
+    graph: BannerGraph
+    node: bannerGreen

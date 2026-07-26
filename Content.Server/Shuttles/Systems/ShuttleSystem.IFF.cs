@@ -116,7 +116,7 @@ public sealed partial class ShuttleSystem
                 Flags = IFFFlags.None,
                 SignatureColor = IFFComponent.IFFColor,
                 ColorEditable = component.AllowColorChange,
-                Designation = IFFDesignation.Ship,
+                Designation = IFFDesignation.Other,
                 DesignationEditable = component.AllowDesignationChange,
             });
         }

@@ -1,4 +1,4 @@
-﻿<BoxContainer xmlns="https://spacestation14.io"
+<BoxContainer xmlns="https://spacestation14.io"
               xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
               Margin="4"
               Orientation="Vertical">
@@ -9,7 +9,7 @@
                ClipText="True"/>
         <Label Name="TimeLabel"
                Align="Center"
-               SetWidth="100"
+               SetWidth="200"
                ClipText="True"/>
         <Label Name="AccessorLabel"
                Align="Left"

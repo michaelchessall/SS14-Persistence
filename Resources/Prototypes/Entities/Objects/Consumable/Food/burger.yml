@@ -337,6 +337,46 @@
 
 - type: entity
   parent: FoodBurgerBase
+  id: FoodBurgerBloodred
+  name: bloodred burger
+  description: the burger for carnivores, REAL meat eaters. it even comes with toothpicks.
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,1,1
+    storedOffset: 0,3
+    inhandVisuals:
+      left:
+      - state: bloodred-inhand-left
+      right:
+      - state: bloodred-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - oily
+
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 55
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+        - ReagentId: Protein
+          Quantity: 18
+        - ReagentId: Vitamin
+          Quantity: 6
+        - ReagentId: Ketchup
+          Quantity: 6
+  - type: Sprite
+    state: bloodredburger
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodBurgerBase
   id: FoodBurgerBrain
   name: brain burger
   description: A strange looking burger. It looks almost sentient.

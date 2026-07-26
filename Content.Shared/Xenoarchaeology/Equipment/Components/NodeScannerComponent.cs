@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -35,7 +36,7 @@ public sealed partial class NodeScannerConnectedComponent : Component
     /// Upon detaching this component should be removed.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid AttachedTo;
+    public PersistentEntityReference AttachedTo;
 
     /// <summary>
     /// Next update tick gametime.

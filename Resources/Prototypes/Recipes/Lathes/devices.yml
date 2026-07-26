@@ -10,7 +10,7 @@
   result: SignalTrigger
   unlockUses: 4
 
-- type: latheRecipe
+- type: latheRecipe 
   parent: BasePartRecipe
   id: VoiceTrigger
   result: VoiceTrigger
@@ -197,6 +197,7 @@
     Steel: 700
     Glass: 100
     Uranium: 100
+  unlockUses: 2 # These are a pair so uh, two.
 
 - type: latheRecipe
   id: DeviceDesynchronizer
@@ -280,3 +281,55 @@
     Copper: 300
     Plastic: 100
     Glass: 100
+
+# Persi14 PDAs
+
+- type: latheRecipe
+  abstract: true
+  id: BasePDARecipe
+  completetime: 4
+  materials:
+    Plastic: 300
+
+- type: latheRecipe
+  abstract: true
+  id: BaseSOLPDARecipe
+  completetime: 4
+  materials:
+    Plastic: 300
+    Silver: 100
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: QuartermasterPDASOL
+  result: QuartermasterPDASOL
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: ExecutivePDASOL
+  result: ExecutivePDASOL
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: CEPDASOL
+  result: CEPDASOL
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: CMOPDASOL
+  result: CMOPDASOL
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: RnDPDASOL
+  result: RnDPDASOL
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: HoSPDASOL
+  result: HoSPDASOL
+
+- type: latheRecipe
+  parent: BaseSOLPDARecipe
+  id: CoSPDASOL
+  result: CoSPDASOL 

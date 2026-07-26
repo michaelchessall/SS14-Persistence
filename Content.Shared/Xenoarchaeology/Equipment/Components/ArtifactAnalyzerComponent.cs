@@ -18,11 +18,29 @@ public sealed partial class ArtifactAnalyzerComponent : Component
     public TimeSpan AnalysisDuration = TimeSpan.FromSeconds(30);
 
     /// <summary>
-    /// The current artifact placed on this analyzer.
+    /// The currently selected artifact placed on this analyzer.
+    /// For a regular analyzer this is simply the single placed artifact.
+    /// For an <see cref="Advanced"/> analyzer this is the one currently displayed on the console
+    /// (see <see cref="Artifacts"/> for the full set and cycling behaviour).
     /// Can be null if none are present.
     /// </summary>
     [DataField, AutoNetworkedField]
     public EntityUid? CurrentArtifact;
+
+    /// <summary>
+    /// Whether this analyzer can scan multiple artifacts at once.
+    /// When true the linked console shows cycling controls and extraction affects every
+    /// artifact in <see cref="Artifacts"/> instead of just <see cref="CurrentArtifact"/>.
+    /// </summary>
+    [DataField]
+    public bool Advanced;
+
+    /// <summary>
+    /// All artifacts currently placed on this analyzer, in placement order.
+    /// A regular analyzer holds at most one; an <see cref="Advanced"/> one can hold many.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public List<EntityUid> Artifacts = new();
 
     /// <summary>
     /// The corresponding console entity.

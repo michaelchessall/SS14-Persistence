@@ -157,6 +157,57 @@
 
 - type: entity
   parent: FoodMealBase
+  id: FoodPaste
+  name: food paste
+  description: food paste in a gray cup. mmmm chewy.
+  components:
+  - type: Item
+    storedOffset: 0,-2
+  - type: Edible
+    trash:
+    - DrinkGlass
+  - type: FlavorProfile
+    flavors:
+      - food
+  - type: Sprite
+    state: foodpaste
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 25
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 20
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodWeedChicken
+  name: baked chicken
+  description: chicken I put half an oz of weed into.
+  components:
+  - type: Item
+    storedOffset: 0,-2
+  - type: FlavorProfile
+    flavors:
+      - chicken
+      - magical
+  - type: Sprite
+    state: weedchicken
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: THC
+          Quantity: 6
+
+
+- type: entity
+  parent: FoodMealBase
   id: FoodMealNachosCuban
   name: Cuban nachos
   description: That's some dangerously spicy nachos.

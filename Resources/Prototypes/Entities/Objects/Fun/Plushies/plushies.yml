@@ -1236,10 +1236,10 @@
   parent: BasePlushie
   id: PlushieMeera
   name: Meera plushie
-  description: Meera is always happy to help whether thats killing monkeys fixing the TEG or murder shes willing to put in the hours
+  description: Meera is always happy to help whether thats killing monkeys fixing the TEG or murder shes willing to put in the hours.
   components:
   - type: Sprite
-    sprite: Objects/Fun/Plushies/meera.rsi
+    sprite: _Persistence14/Objects/Fun/Plushies/Meera.rsi
     state: icon
   - type: EmitSoundOnUse
     sound: &PlushieMeeraSound
@@ -1255,14 +1255,17 @@
   - type: Edible
     requiresSpecialDigestion: true
     useSound:
-      path: /Audio/Voice/Vulpkanin/vulp_scream4.ogg
+      path: /Audio/Animals/fox11.ogg
       params:
         volume: -5
   - type: MeleeWeapon
-    soundHit: *PlushieMeeraSound
+    soundHit:
+      path: /Audio/Animals/fox11.ogg
+      params:
+         volume: -5
   - type: Clothing
     quickEquip: false
-    sprite: Objects/Fun/Plushies/meera.rsi
+    sprite: _Persistence14/Objects/Fun/Plushies/Meera.rsi
     slots:
     - HEAD
     clothingVisuals:
@@ -1273,6 +1276,357 @@
     entries:
       CottonBurger: PlushieMeera
 
+- type: entity
+  parent: BasePlushie
+  id: PlushieLlewellyn
+  name: Llewellyn plushie
+  description: A strapping young canidae in Solar Legion Executive attire, inspiring any others who dream of rising through the ranks and earning an executive spatha. But not this one. This one is plastic.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Llewellyn.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieLlewellynSound
+      path: /Audio/Voice/Vulpkanin/dog_bark2.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieLlewellynSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieLlewellynSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieLlewellynSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Vulpkanin/vulp_scream4.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit: *PlushieLlewellynSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Llewellyn.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.16"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieLlewellyn
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieCade
+  name: Cade plushie
+  description: The all new Cade Blabar Plush(tm) now with real nutrient paste included.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Cade.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieCadeSound
+      path: /Audio/Voice/Slime/slime_squish.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieCadeSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieCadeSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieCadeSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Human/wilhelm_scream.ogg
+      params:
+        volume: -10
+    transferAmount: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Vitamin
+        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: Vitamin
+          Quantity: 10
+
+  - type: MeleeWeapon
+    soundHit: *PlushieCadeSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Cade.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.064"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieCade
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDawn
+  name: Dawn plushie
+  description: Everyone's favroite QM on Zenith, Dawn Mori, now with real fake chemical analysis glasses. Theres a tag on the back that says NOT SUITABLE FOR CONSUMPTION.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Dawn.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieDawnSound
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+
+  - type: EmitSoundOnLand
+    sound: *PlushieDawnSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieDawnSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieDawnSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+      params:
+        volume: -5
+    transferAmount: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Phlogiston
+        Quantity: 10
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: Phlogiston
+          Quantity: 10
+
+  - type: MeleeWeapon
+    soundHit: *PlushieDawnSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Dawn.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieDawn
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieAna
+  name: Ana plushie
+  description: Fear no longer the unknown with your very own Ana plushie the anomaly normalizer! Now partially flame resistant!
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Ana.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieAnaSound
+      path: /Audio/Effects/radpulse5.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieAnaSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieAnaSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieAnaSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Animals/fox11.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit: *PlushieAnaSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Ana.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.09"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAna
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieKamryn
+  name: Kamryn plushie
+  description: Though the staff of engineering may change there will always be one constant, Kamryn Kiefer will always need more steel!
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Kamryn.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieKamSound
+      path: /Audio/Voice/Human/womanlaugh.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieKamSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieKamSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieKamSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Human/femalescream_3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit: *PlushieKamSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Kamryn.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.09"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieKamryn
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieIsolde
+  name: Isolde plushie
+  description: You no longer have to be a kidnapping cultist to have your very own Commander Isolde. The boogyman under your bed will fear this limited edition action plushie!
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Isolde.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieIsoldeSound
+      path: /Audio/Voice/Human/womanlaugh.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieIsoldeSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieIsoldeSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieIsoldeSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Human/femalescream_3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/egloves.ogg
+      params:
+         volume: -5
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Isolde.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.09"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieIsolde
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieDies
+  name: Dies plushie
+  description: Just like the real life Medical Director, this Dies-In-Space also lacks a medical license. Advanced brute medication included!
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Dies.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieDiesSound
+      path: /Audio/Items/Toys/weh.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieDiesSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieDiesSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieDiesSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Reptilian/reptilian_scream.ogg
+      params:
+        volume: -5
+        pitch: 1.5
+    transferAmount: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+        - ReagentId: Lacerinol
+          Quantity: 5
+        - ReagentId: Puncturase
+          Quantity: 5
+        - ReagentId: Bruizine
+          Quantity: 5
+        - ReagentId: Bicaridine
+          Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+        - ReagentId: Lacerinol
+          Quantity: 5
+        - ReagentId: Puncturase
+          Quantity: 5
+        - ReagentId: Bruizine
+          Quantity: 5
+        - ReagentId: Bicaridine
+          Quantity: 5
+
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Animals/fox11.ogg
+      params:
+         volume: -5
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Dies.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.06"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieDies
 - type: entity
   parent: BasePlushie
   id: ToyIan

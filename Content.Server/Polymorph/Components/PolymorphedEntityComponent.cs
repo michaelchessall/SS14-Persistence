@@ -1,10 +1,12 @@
 using Content.Server.Polymorph.Systems;
+using Content.Shared._Persistence14.PersistentIdentifier;
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
 using Content.Shared.Polymorph;
 
 namespace Content.Server.Polymorph.Components;
 
 [RegisterComponent]
-[Access(typeof(PolymorphSystem))]
+[Access(typeof(PolymorphSystem), typeof(PersistentIdentifierSystem))]
 public sealed partial class PolymorphedEntityComponent : Component
 {
     /// <summary>
@@ -17,8 +19,8 @@ public sealed partial class PolymorphedEntityComponent : Component
     /// <summary>
     /// The original entity that the player will revert back into
     /// </summary>
-    [DataField(required: true)]
-    public EntityUid? Parent;
+    [DataField]
+    public string ParentPersistentId;
 
     /// <summary>
     /// Whether this polymorph has been reverted.

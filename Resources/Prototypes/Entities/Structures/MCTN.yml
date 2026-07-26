@@ -54,10 +54,14 @@
   - type: Machine
     board: MCTNMachineCircuitboard
   - type: CollideOnAnchor
-  - type: ApcPowerReceiver
-    powerLoad: 0
-    needsPower: false
   - type: Sprite
     sprite: Structures/Piping/Atmospherics/miners.rsi
     state: miner
     drawdepth: FloorObjects
+  - type: PowerMonitoringDevice
+    group: SMES
+    sourceNode: input
+    loadNode: output
+    collectionName: mctn
+    sprite: Structures/Piping/Atmospherics/miners.rsi
+    state: miner

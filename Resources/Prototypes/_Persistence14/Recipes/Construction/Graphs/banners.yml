@@ -1,0 +1,462 @@
+- type: constructionGraph
+  id: BannerGraph
+  start: start
+  graph:
+
+    - node: start
+      actions:
+        - !type:DestroyEntity {}
+      edges:
+      - to: bannerNT
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlue
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+      - to: bannerCargo
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetOrange
+          amount: 3
+          doAfter: 1
+      - to: bannerEngineering
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetOrange
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetPurple
+          amount: 1
+          doAfter: 1
+      - to: bannerMedical
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetSkyBlue
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+          amount: 1
+          doAfter: 1
+      - to: bannerRevolution
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 1
+          doAfter: 1
+      - to: bannerSyndicate
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlack
+          amount: 1
+          doAfter: 1
+      - to: bannerScience
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetPurple
+          amount: 1
+          doAfter: 1
+      - to: bannerSecurity
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlue
+          amount: 1
+          doAfter: 1
+      - to: bannerBlue
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlue
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+          amount: 1
+          doAfter: 1
+      - to: bannerRed
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetOrange
+          amount: 1
+          doAfter: 1
+      - to: bannerYellow
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetOrange
+          amount: 1
+          doAfter: 1
+      - to: bannerGreen
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetGreen
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetWhite
+          amount: 1
+          doAfter: 1
+      - to: bannerSL
+        steps:
+        - material: WoodPlank
+          amount: 2
+          doAfter: 1
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetOrange
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 1
+          doAfter: 1
+      - to: bannerWD
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlack
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetOrange
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetSkyBlue
+          amount: 1
+          doAfter: 1
+      - to: bannerFoe
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlack
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetPurple
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 1
+          doAfter: 1
+      - to: bannerPREG
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlue
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetSkyBlue
+          amount: 2
+          doAfter: 1
+
+    - node: bannerNT
+      entity: BannerNanotrasen
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlue
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerCargo
+      entity: BannerCargo
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemOrange
+              amount: 3
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerEngineering
+      entity: BannerEngineering
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemOrange
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemPurple
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerMedical
+      entity: BannerMedical
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemSkyBlue
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerRevolution
+      entity: BannerRevolution
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemRed
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerSyndicate
+      entity: BannerSyndicate
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemRed
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlack
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerScience
+      entity: BannerScience
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemPurple
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerSecurity
+      entity: BannerSecurity
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemRed
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlue
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerBlue
+      entity: BannerBlue
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlue
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerRed
+      entity: BannerRed
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemRed
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemOrange
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerYellow
+      entity: BannerYellow
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemOrange
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerGreen
+      entity: BannerGreen
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemGreen
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemWhite
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerSL
+      entity: BannerSolarLegion
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemOrange
+              amount: 2
+            - !type:GivePrototype
+              prototype: FloorCarpetItemRed
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerWD
+      entity: BannerWayfarerDynamics
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlack
+              amount: 1
+            - !type:GivePrototype
+              prototype: FloorCarpetItemOrange
+              amount: 1
+            - !type:GivePrototype
+              prototype: FloorCarpetItemSkyBlue
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerFoe
+      entity: BannerFlowerOfEvil
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlack
+              amount: 1
+            - !type:GivePrototype
+              prototype: FloorCarpetItemPurple
+              amount: 1
+            - !type:GivePrototype
+              prototype: FloorCarpetItemRed
+              amount: 1
+          steps:
+            - tool: Cutting
+              doAfter: 1
+    - node: bannerPREG
+      entity: BannerPREG
+      edges:
+        - to: start
+          completed:
+            - !type:GivePrototype
+              prototype: FloorCarpetItemBlue
+              amount: 1
+            - !type:GivePrototype
+              prototype: FloorCarpetItemSkyBlue
+              amount: 2
+          steps:
+            - tool: Cutting
+              doAfter: 1

@@ -1,0 +1,26 @@
+- type: latheRecipe
+  id: BaseBackpack
+  abstract: true
+  completetime: 3
+  categories:
+  - Bags
+  materials:
+   Steel: 50
+   Cloth: 500
+  
+- type: latheRecipe
+  id: BaseSatchel
+  parent: BaseBackpack
+  abstract: true
+  completetime: 3
+  materials:
+    Cloth: 500
+
+- type: latheRecipe
+  id: BaseDuffelBag
+  parent: BaseBackpack
+  abstract: true
+  completetime: 3
+  materials:
+    Steel: 50
+    Cloth: 500

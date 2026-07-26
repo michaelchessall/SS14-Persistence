@@ -1,14 +1,47 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and heavily modified by EmoGarbage404 (github)",
+  "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/9c7d509354ee030300f63c701da63c17928c3b3b and heavily modified by EmoGarbage404 (github), modified by JoulesMango(github) for PERSISTENCE 14",
   "size": {
     "x": 32,
     "y": 32
   },
   "states": [
     {
+      "name": "apc-powercell",
+      "directions": 4
+    },
+    {
+      "name": "apc-midpowercell",
+      "directions": 4
+    },
+    {
+      "name": "apc-highpowercell",
+      "directions": 4
+    },
+    {
+      "name": "apc-hyperpowercell",
+      "directions": 4
+    },
+    {
+      "name": "apc-closed",
+      "directions": 4
+    },
+    
+    {
       "name": "base",
+      "directions": 4
+    },
+    {
+      "name": "basev2",
+      "directions": 4
+    },
+    {
+      "name": "basev3",
+      "directions": 4
+    },
+    {
+      "name": "basev4",
       "directions": 4
     },
 	{
@@ -20,6 +53,26 @@
     },
     {
       "name": "frame",
+      "directions": 4
+    },
+    {
+      "name": "frame-board",
+      "directions": 4
+    },
+    {
+      "name": "frame-cable",
+      "directions": 4
+    },
+    {
+      "name": "frame-mvcable",
+      "directions": 4
+    },
+    {
+      "name": "frame-hvcable",
+      "directions": 4
+    },
+    {
+      "name": "frame-finished",
       "directions": 4
     },
     {

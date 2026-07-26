@@ -106,9 +106,9 @@
 
 - type: entity
   parent: MarkerBase
-  id: TradeStationEngineeringSpawnerMarker
+  id: TradeStationIndustrialSpawnerMarker
   name: Grid Spawner
-  suffix: Engineering Trade Station
+  suffix: Industrial Trade Station
   components:
   - type: Sprite
     layers:
@@ -116,7 +116,7 @@
     - sprite: Objects/Materials/Scrap/generic.rsi
       state: metal-1
   - type: GridSpawner
-    gridPath: /Maps/Shuttles/trading_outpost_engineering.yml
+    gridPath: /Maps/Shuttles/trading_outpost_industrial.yml
     stationGrid: True
     addComponents:
       - type: TradeStation

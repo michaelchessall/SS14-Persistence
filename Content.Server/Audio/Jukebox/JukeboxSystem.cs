@@ -4,9 +4,11 @@ using Content.Shared.Audio.Jukebox;
 using Content.Shared.Power;
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 
 namespace Content.Server.Audio.Jukebox;
 
@@ -14,6 +16,7 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
 {
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -23,6 +26,11 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         SubscribeLocalEvent<JukeboxComponent, JukeboxPauseMessage>(OnJukeboxPause);
         SubscribeLocalEvent<JukeboxComponent, JukeboxStopMessage>(OnJukeboxStop);
         SubscribeLocalEvent<JukeboxComponent, JukeboxSetTimeMessage>(OnJukeboxSetTime);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxSetVolumeMessage>(OnJukeboxSetVolume);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxQueueSongMessage>(OnJukeboxQueueSong);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxClearQueueMessage>(OnJukeboxClearQueue);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxSetShuffleMessage>(OnJukeboxSetShuffle);
+        SubscribeLocalEvent<JukeboxComponent, JukeboxSetRepeatSongMessage>(OnJukeboxSetRepeatSong);
         SubscribeLocalEvent<JukeboxComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<JukeboxComponent, ComponentShutdown>(OnComponentShutdown);
 
@@ -56,6 +64,31 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         }
     }
 
+    private void OnJukeboxSetVolume(Entity<JukeboxComponent> ent, ref JukeboxSetVolumeMessage args)
+    {
+        SetVolumeLevel(ent.AsNullable(), args.VolumeLevel);
+    }
+
+    private void OnJukeboxQueueSong(Entity<JukeboxComponent> ent, ref JukeboxQueueSongMessage args)
+    {
+        QueueSong(ent.AsNullable(), args.SongId);
+    }
+
+    private void OnJukeboxClearQueue(Entity<JukeboxComponent> ent, ref JukeboxClearQueueMessage args)
+    {
+        ClearQueue(ent.AsNullable());
+    }
+
+    private void OnJukeboxSetShuffle(Entity<JukeboxComponent> ent, ref JukeboxSetShuffleMessage args)
+    {
+        SetShuffle(ent.AsNullable(), args.Enabled);
+    }
+
+    private void OnJukeboxSetRepeatSong(Entity<JukeboxComponent> ent, ref JukeboxSetRepeatSongMessage args)
+    {
+        SetRepeatSong(ent.AsNullable(), args.Enabled);
+    }
+
     private void OnPowerChanged(Entity<JukeboxComponent> entity, ref PowerChangedEvent args)
     {
         TryUpdateVisualState(entity.AsNullable());
@@ -83,6 +116,23 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         var query = EntityQueryEnumerator<JukeboxComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
+            if (comp.AudioStream is { } stream && !Exists(stream))
+            {
+                comp.AudioStream = null;
+
+                if (comp.RepeatSongEnabled)
+                {
+                    TryPlay((uid, comp));
+                }
+                else if (TryPopNextTrack((uid, comp), out var nextSong))
+                {
+                    comp.SelectedSongId = nextSong;
+                    TryPlay((uid, comp));
+                }
+
+                Dirty(uid, comp);
+            }
+
             if (comp.Selecting)
             {
                 comp.SelectAccumulator += frameTime;
@@ -152,18 +202,29 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
         if (Exists(ent.Comp.AudioStream))
         {
             Audio.SetState(ent.Comp.AudioStream, AudioState.Playing);
+            UpdateVolume(ent);
         }
         else
         {
-            if (string.IsNullOrEmpty(ent.Comp.SelectedSongId) ||
-                !_protoManager.Resolve(ent.Comp.SelectedSongId, out var jukeboxProto))
+            if (string.IsNullOrEmpty(ent.Comp.SelectedSongId) &&
+                !TryPopNextTrack(ent, out _))
             {
                 return false;
             }
 
-            ent.Comp.AudioStream = Audio.PlayPvs(jukeboxProto.Path, ent, AudioParams.Default.WithMaxDistance(10f))?.Entity;
+            var selectedSong = ent.Comp.SelectedSongId;
+            if (string.IsNullOrEmpty(selectedSong) ||
+                !_protoManager.Resolve(selectedSong, out var jukeboxProto))
+            {
+                return false;
+            }
+
+            ent.Comp.AudioStream = Audio.PlayPvs(jukeboxProto.Path, ent, AudioParams.Default
+                .WithMaxDistance(10f)
+                .WithVolume(VolumeLevelToDecibels(ent.Comp.VolumeLevel)))?.Entity;
             Dirty(ent);
         }
+
         return true;
     }
 
@@ -201,5 +262,92 @@ public sealed class JukeboxSystem : SharedJukeboxSystem
             return;
 
         Audio.SetPlaybackPosition(entity.Comp.AudioStream, songTime);
+    }
+
+    public void SetVolumeLevel(Entity<JukeboxComponent?> ent, int volumeLevel)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        var clamped = Math.Clamp(volumeLevel, JukeboxComponent.MinVolumeLevel, JukeboxComponent.MaxVolumeLevel);
+
+        if (ent.Comp.VolumeLevel == clamped)
+            return;
+
+        ent.Comp.VolumeLevel = clamped;
+        UpdateVolume(ent);
+        Dirty(ent);
+    }
+
+    public void QueueSong(Entity<JukeboxComponent?> ent, ProtoId<JukeboxPrototype> song)
+    {
+        if (!Resolve(ent, ref ent.Comp) || !_protoManager.HasIndex(song))
+            return;
+
+        ent.Comp.Queue.Add(song);
+        Dirty(ent);
+    }
+
+    public void ClearQueue(Entity<JukeboxComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        if (ent.Comp.Queue.Count == 0)
+            return;
+
+        ent.Comp.Queue.Clear();
+        Dirty(ent);
+    }
+
+    public void SetShuffle(Entity<JukeboxComponent?> ent, bool enabled)
+    {
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.ShuffleEnabled == enabled)
+            return;
+
+        ent.Comp.ShuffleEnabled = enabled;
+        Dirty(ent);
+    }
+
+    public void SetRepeatSong(Entity<JukeboxComponent?> ent, bool enabled)
+    {
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.RepeatSongEnabled == enabled)
+            return;
+
+        ent.Comp.RepeatSongEnabled = enabled;
+        Dirty(ent);
+    }
+
+    private bool TryPopNextTrack(Entity<JukeboxComponent?> ent, out ProtoId<JukeboxPrototype> song)
+    {
+        song = default;
+
+        if (!Resolve(ent, ref ent.Comp) || ent.Comp.Queue.Count == 0)
+            return false;
+
+        var index = ent.Comp.ShuffleEnabled
+            ? _random.Next(ent.Comp.Queue.Count)
+            : 0;
+
+        song = ent.Comp.Queue[index];
+        ent.Comp.Queue.RemoveAt(index);
+        ent.Comp.SelectedSongId = song;
+        Dirty(ent);
+        return true;
+    }
+
+    private void UpdateVolume(Entity<JukeboxComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp))
+            return;
+
+        Audio.SetVolume(ent.Comp.AudioStream, VolumeLevelToDecibels(ent.Comp.VolumeLevel));
+    }
+
+    private static float VolumeLevelToDecibels(int volumeLevel)
+    {
+        var clamped = Math.Clamp(volumeLevel, JukeboxComponent.MinVolumeLevel, JukeboxComponent.MaxVolumeLevel);
+        var gain = 1f + 0.15f * (clamped - JukeboxComponent.DefaultVolumeLevel);
+        return SharedAudioSystem.GainToVolume(gain);
     }
 }

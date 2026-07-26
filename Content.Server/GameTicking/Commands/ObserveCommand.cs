@@ -22,6 +22,7 @@ namespace Content.Server.GameTicking.Commands
                 shell.WriteError(Loc.GetString("shell-cannot-run-command-from-server"));
                 return;
             }
+            if (!_adminManager.IsAdmin(player)) return;
 
             var ticker = _e.System<GameTicker>();
 

@@ -1,0 +1,544 @@
+- type: entity
+  id: GeyserBase
+  abstract: true
+  name: geyser
+  placement:
+    mode: SnapgridCenter
+  description: A whole in the ground that goes way too deep. Don't stand too close!
+  components:
+  - type: Transform
+    anchored: true
+  - type: Sprite
+    sprite: _Persistence14/Structures/Specific/gas_geyser.rsi
+    offset: 0, 0.5
+    layers:
+    - state: hole
+      map: ["enum.GasGeyserVisualizationLayer.Hole"]
+    - state: geyser_animated
+      map: ["enum.GasGeyserVisualizationLayer.Gas"]
+      loop: false
+      autoAnimated: false
+  - type: InteractionOutline
+  - type: Clickable
+  - type: GasGeyser
+    eruptionDelay: 5m
+    eruptionRangeDeltaPositive: 2m
+    eruptionRangeDeltaNegative: 2m
+    spawnTemperature: 80
+
+
+- type: entity
+  id: GeyserPlasma
+  parent: GeyserBase
+  suffix: basalt, ironrock
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 650
+    moles:
+      Plasma: 600
+
+
+- type: entity
+  id: GeyserChlorine
+  parent: GeyserBase
+  suffix: chromite, conglomerate
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 260
+    moles:
+      Chlorine: 600
+
+
+- type: entity
+  id: GeyserFluorine
+  parent: GeyserBase
+  suffix: chromite, conglomerate
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 250
+    moles:
+      Fluorine: 600
+
+
+- type: entity
+  id: GeyserMethane
+  parent: GeyserBase
+  suffix: ironrock, andesite
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 340
+    moles:
+      Methane: 600
+
+
+- type: entity
+  id: GeyserOxygen
+  parent: GeyserBase
+  suffix: conglomerate, ice
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 255
+    moles:
+      Oxygen: 600
+
+
+- type: entity
+  id: GeyserHydrogen
+  parent: GeyserBase
+  suffix: ice, ironrock
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 80
+    moles:
+      Hydrogen: 600
+
+
+- type: entity
+  id: GeyserWaterVapor
+  parent: GeyserBase
+  suffix: andesite, ice
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 275
+    moles:
+      WaterVapor: 600
+
+
+- type: entity
+  id: GeyserNitrogen
+  parent: GeyserBase
+  suffix: conglomerate, ice
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 210
+    moles:
+      Nitrogen: 600
+
+
+- type: entity
+  id: GeyserAmmonia
+  parent: GeyserBase
+  suffix: chromite, andesite
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 285
+    moles:
+      Ammonia: 600
+
+
+- type: entity
+  id: GeyserCarbonDioxide
+  parent: GeyserBase
+  suffix: conglomerate, basalt
+  components:
+  - type: GasGeyser
+    eruptionDelay: 2m
+    eruptionRangeDeltaPositive: 30s
+    eruptionRangeDeltaNegative: 30s
+    spawnTemperature: 300
+    moles:
+      CarbonDioxide: 600
+
+
+- type: entity
+  id: GeyserPlasmaUnstable
+  parent: GeyserPlasma
+  suffix: ironrock, basalt, unstable
+  components:
+  - type: GasGeyser
+    spawnTemperature: 700
+    variableMoles:
+      Tritium:
+        moles: 200
+        prob: 0.35
+      Hydrogen:
+        moles: 150
+        prob: 0.35
+      Oxygen:
+        moles: 80
+        prob: 0.15
+
+
+- type: entity
+  id: GeyserPlasmaVolcanic
+  parent: GeyserPlasma
+  suffix: basalt, andesite, volcanic
+  components:
+  - type: GasGeyser
+    spawnTemperature: 850
+    variableMoles:
+      CarbonDioxide:
+        moles: 160
+        prob: 0.4
+      Ammonia:
+        moles: 110
+        prob: 0.25
+      Methane:
+        moles: 60
+        prob: 0.1
+
+
+- type: entity
+  id: GeyserChlorineCorrosive
+  parent: GeyserChlorine
+  suffix: chromite, conglomerate, corrosive
+  components:
+  - type: GasGeyser
+    spawnTemperature: 305
+    variableMoles:
+      Fluorine:
+        moles: 150
+        prob: 0.35
+      Oxygen:
+        moles: 100
+        prob: 0.25
+
+
+- type: entity
+  id: GeyserChlorineToxic
+  parent: GeyserChlorine
+  suffix: chromite, conglomerate, toxic
+  components:
+  - type: GasGeyser
+    spawnTemperature: 295
+    variableMoles:
+      Hydrogen:
+        moles: 120
+        prob: 0.35
+      Ammonia:
+        moles: 90
+        prob: 0.2
+      ChlorineTrifluoride:
+        moles: 40
+        prob: 0.05
+
+
+- type: entity
+  id: GeyserFluorineReactive
+  parent: GeyserFluorine
+  suffix: chromite, conglomerate, reactive
+  components:
+  - type: GasGeyser
+    spawnTemperature: 315
+    variableMoles:
+      Chlorine:
+        moles: 140
+        prob: 0.35
+      Hydrogen:
+        moles: 110
+        prob: 0.2
+      Oxygen:
+        moles: 70
+        prob: 0.15
+
+
+- type: entity
+  id: GeyserPlasmaCatalytic
+  parent: GeyserPlasma
+  suffix: chromite, basalt, catalytic
+  components:
+  - type: GasGeyser
+    spawnTemperature: 520
+    variableMoles:
+      Fluorine:
+        moles: 110
+        prob: 0.25
+      Chlorine:
+        moles: 70
+        prob: 0.2
+      ChlorineTrifluoride:
+        moles: 20
+        prob: 0.03
+
+
+- type: entity
+  id: GeyserMethaneVolatile
+  parent: GeyserMethane
+  suffix: ironrock, basalt, volatile
+  components:
+  - type: GasGeyser
+    spawnTemperature: 420
+    variableMoles:
+      Hydrogen:
+        moles: 130
+        prob: 0.4
+      CarbonDioxide:
+        moles: 100
+        prob: 0.25
+      Oxygen:
+        moles: 60
+        prob: 0.15
+
+
+- type: entity
+  id: GeyserMethaneSeep
+  parent: GeyserMethane
+  suffix: ice, andesite, seep
+  components:
+  - type: GasGeyser
+    spawnTemperature: 285
+    variableMoles:
+      WaterVapor:
+        moles: 80
+        prob: 0.2
+      Hydrogen:
+        moles: 90
+        prob: 0.2
+      Frezon:
+        moles: 30
+        prob: 0.08
+
+
+- type: entity
+  id: GeyserOxygenOxidizer
+  parent: GeyserOxygen
+  suffix: conglomerate, andesite, oxidizer
+  components:
+  - type: GasGeyser
+    spawnTemperature: 290
+    variableMoles:
+      Nitrogen:
+        moles: 120
+        prob: 0.4
+      WaterVapor:
+        moles: 110
+        prob: 0.25
+      CarbonDioxide:
+        moles: 60
+        prob: 0.1
+
+
+- type: entity
+  id: GeyserOxygenBreathable
+  parent: GeyserOxygen
+  suffix: conglomerate, ice, breathable
+  components:
+  - type: GasGeyser
+    spawnTemperature: 245
+    variableMoles:
+      Nitrogen:
+        moles: 140
+        prob: 0.45
+      CarbonDioxide:
+        moles: 60
+        prob: 0.15
+      WaterVapor:
+        moles: 40
+        prob: 0.1
+
+
+- type: entity
+  id: GeyserHydrogenVolatile
+  parent: GeyserHydrogen
+  suffix: ironrock, ice, volatile
+  components:
+  - type: GasGeyser
+    spawnTemperature: 95
+    variableMoles:
+      Oxygen:
+        moles: 110
+        prob: 0.4
+      Plasma:
+        moles: 70
+        prob: 0.25
+      CarbonDioxide:
+        moles: 40
+        prob: 0.15
+
+
+- type: entity
+  id: GeyserHydrogenCryo
+  parent: GeyserHydrogen
+  suffix: ice, conglomerate, cryo
+  components:
+  - type: GasGeyser
+    spawnTemperature: 80
+    variableMoles:
+      Frezon:
+        moles: 40
+        prob: 0.08
+      Nitrogen:
+        moles: 110
+        prob: 0.35
+      Oxygen:
+        moles: 70
+        prob: 0.2
+
+
+- type: entity
+  id: GeyserWaterVaporSuperheated
+  parent: GeyserWaterVapor
+  suffix: andesite, basalt, superheated
+  components:
+  - type: GasGeyser
+    spawnTemperature: 485
+    variableMoles:
+      Oxygen:
+        moles: 110
+        prob: 0.35
+      Plasma:
+        moles: 110
+        prob: 0.35
+      Ammonia:
+        moles: 60
+        prob: 0.15
+
+
+- type: entity
+  id: GeyserWaterVaporFrozen
+  parent: GeyserWaterVapor
+  suffix: ice, andesite, frozen
+  components:
+  - type: GasGeyser
+    spawnTemperature: 80
+    variableMoles:
+      Frezon:
+        moles: 30
+        prob: 0.06
+      Nitrogen:
+        moles: 90
+        prob: 0.25
+      Oxygen:
+        moles: 70
+        prob: 0.2
+
+
+- type: entity
+  id: GeyserNitrogenCryogenic
+  parent: GeyserNitrogen
+  suffix: ice, conglomerate, cryogenic
+  components:
+  - type: GasGeyser
+    spawnTemperature: 80
+    variableMoles:
+      Frezon:
+        moles: 60
+        prob: 0.12
+      WaterVapor:
+        moles: 110
+        prob: 0.25
+      Oxygen:
+        moles: 90
+        prob: 0.25
+
+
+- type: entity
+  id: GeyserNitrogenInert
+  parent: GeyserNitrogen
+  suffix: conglomerate, andesite, inert
+  components:
+  - type: GasGeyser
+    spawnTemperature: 200
+    variableMoles:
+      Oxygen:
+        moles: 90
+        prob: 0.2
+      CarbonDioxide:
+        moles: 60
+        prob: 0.15
+      WaterVapor:
+        moles: 50
+        prob: 0.1
+
+
+- type: entity
+  id: GeyserAmmoniaCaustic
+  parent: GeyserAmmonia
+  suffix: chromite, conglomerate, caustic
+  components:
+  - type: GasGeyser
+    spawnTemperature: 295
+    variableMoles:
+      Nitrogen:
+        moles: 140
+        prob: 0.4
+      Chlorine:
+        moles: 60
+        prob: 0.1
+      ChlorineTrifluoride:
+        moles: 30
+        prob: 0.05
+
+
+- type: entity
+  id: GeyserAmmoniaFertile
+  parent: GeyserAmmonia
+  suffix: conglomerate, andesite, fertile
+  components:
+  - type: GasGeyser
+    spawnTemperature: 270
+    variableMoles:
+      Nitrogen:
+        moles: 120
+        prob: 0.35
+      CarbonDioxide:
+        moles: 80
+        prob: 0.25
+      WaterVapor:
+        moles: 70
+        prob: 0.2
+
+
+- type: entity
+  id: GeyserCarbonDioxideVolcanic
+  parent: GeyserCarbonDioxide
+  suffix: basalt, ironrock, volcanic
+  components:
+  - type: GasGeyser
+    spawnTemperature: 410
+    variableMoles:
+      Methane:
+        moles: 130
+        prob: 0.25
+      Plasma:
+        moles: 80
+        prob: 0.15
+      Ammonia:
+        moles: 100
+        prob: 0.2
+
+
+- type: entity
+  id: GeyserWaterVaporMisty
+  parent: GeyserWaterVapor
+  suffix: andesite, conglomerate, misty
+  components:
+  - type: GasGeyser
+    spawnTemperature: 285
+    variableMoles:
+      Ammonia:
+        moles: 110
+        prob: 0.35
+      Methane:
+        moles: 80
+        prob: 0.2
+      Oxygen:
+        moles: 60
+        prob: 0.15

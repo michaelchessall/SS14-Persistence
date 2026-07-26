@@ -2,6 +2,7 @@ iff-console-window-title = IFF console
 iff-console-show-iff-label = Show IFF
 iff-console-show-vessel-label = Show vessel
 iff-console-designation-label = Designation
+iff-console-designation-other = None
 iff-console-designation-ship = Ship
 iff-console-designation-station = Station
 iff-console-signature-color-label = IFF color

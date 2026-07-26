@@ -1564,8 +1564,74 @@
   scale: 0.8, 0.8
   name: food-sequence-cotton-burger-content-plushie-meera
   sprites:
-  - sprite: Objects/Fun/Plushies/meera.rsi
+  - sprite: _Persistence14/Objects/Fun/Plushies/Meera.rsi
     state: icon
+
+#Llewellyn Plushie
+- type: foodSequenceElement
+  id: PlushieLlewellyn
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-llewellyn
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Llewellyn.rsi
+    state: icon
+
+#Cade Plushie
+- type: foodSequenceElement
+  id: PlushieCade
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-cade
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Cade.rsi
+    state: icon
+
+#Dawn Plushie
+- type: foodSequenceElement
+  id: PlushieDawn
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-dawn
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Dawn.rsi
+    state: icon
+
+#Ana Plushie
+- type: foodSequenceElement
+  id: PlushieAna
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-ana
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Ana.rsi
+    state: icon
+
+#Kamryn Plushie
+- type: foodSequenceElement
+  id: PlushieKamryn
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-kamryn
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Kamryn.rsi
+    state: icon
+
+#DiesPlushie
+
+- type: foodSequenceElement
+  id: PlushieDies
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-dies
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Dies.rsi
+    state: icon
+
+#IsoldePlushie
+
+- type: foodSequenceElement
+  id: PlushieIsolde
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-isolde
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Isolde.rsi
+    state: icon
+
 
 #Ian Toy
 

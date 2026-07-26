@@ -2,12 +2,14 @@ using Content.Shared.Access.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.CartridgeLoader;
 using Content.Shared.CartridgeLoader.Cartridges;
+using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.Paper;
 using Content.Shared.Popups;
 using Robust.Shared.Audio.Systems;
+using Robust.Shared.Configuration;
 using Robust.Shared.Timing;
 using System.Text;
 
@@ -24,6 +26,7 @@ public sealed class LogProbeCartridgeSystem : EntitySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly PaperSystem _paper = default!;
+    [Dependency] private readonly IConfigurationManager _cfgManager = default!;
 
     public override void Initialize()
     {
@@ -108,7 +111,9 @@ public sealed class LogProbeCartridgeSystem : EntitySystem
         var number = 1;
         foreach (var log in ent.Comp.PulledAccessLogs)
         {
-            var time = TimeSpan.FromSeconds(Math.Truncate(log.Time.TotalSeconds)).ToString();
+            var yearOffset = _cfgManager.GetCVar(CCVars.YearOffset);
+            var finalTime = log.Time.AddYears(yearOffset);
+            var time = finalTime.ToString();
             builder.AppendLine(Loc.GetString("log-probe-printout-entry", ("number", number), ("time", time), ("accessor", log.Accessor)));
             number++;
         }

@@ -1,0 +1,19 @@
+- type: reaction
+  id: Omnizine
+  minTemp: 480
+  reactants:
+    Arcryox:
+      amount: 1
+    Arithrazine:
+      amount: 1
+    Happiness:
+      amount: 1
+    Nectar:
+      amount: 1
+    Phoron:
+      amount: 1
+      catalyst: true
+  products:
+    Omnizine: 1
+    Acetone: 1
+    Radium: 2

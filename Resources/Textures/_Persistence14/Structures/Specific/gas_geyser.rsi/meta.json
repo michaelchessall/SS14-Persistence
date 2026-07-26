@@ -1,0 +1,41 @@
+{
+  "version": 1,
+  "size": {
+    "x": 32,
+    "y": 64
+  },
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Created by JetBalrog (Discord) for Persistence14",
+  "states": [
+    {
+      "name": "hole"
+    },
+    {
+      "name": "geyser_animated",
+      "delays": [
+        [
+          0.1,
+          0.2,
+          0.2,
+          0.1,
+          0.1,
+          0.15,
+          0.1,
+          0.15,
+          0.1,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          0.05,
+          1
+        ]
+      ]
+    }
+  ]
+}

@@ -4,7 +4,7 @@
     sprite: Objects/Materials/Sheets/glass.rsi
     state: glass_3
   product: CrateMaterialGlass
-  cost: 1250
+  cost: 1500
   category: cargoproduct-category-name-materials
   group: engineermarket
 
@@ -14,7 +14,7 @@
     sprite: Objects/Materials/Sheets/metal.rsi
     state: steel_3
   product: CrateMaterialSteel
-  cost: 1250
+  cost: 1500
   category: cargoproduct-category-name-materials
   group: engineermarket
 
@@ -24,7 +24,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: plastic_3
   product: CrateMaterialPlastic
-  cost: 1500
+  cost: 2000
   category: cargoproduct-category-name-materials
   group: engineermarket2
 
@@ -34,7 +34,27 @@
     sprite: Objects/Materials/Sheets/metal.rsi
     state: brass_3
   product: CrateMaterialBrass
-  cost: 2000
+  cost: 3000
+  category: cargoproduct-category-name-materials
+  group: engineermarket2
+
+- type: cargoProduct
+  id: MaterialCopperETS
+  icon:
+    sprite: Objects/Materials/ingots.rsi
+    state: copper_3
+  product: CrateMaterialCopper
+  cost: 1000
+  category: cargoproduct-category-name-materials
+  group: engineermarket2
+
+- type: cargoProduct
+  id: MaterialAluminiumETS
+  icon:
+    sprite: Objects/Materials/Sheets/metal.rsi
+    state: titanium_3
+  product: CrateMaterialAluminium
+  cost: 1250
   category: cargoproduct-category-name-materials
   group: engineermarket2
 
@@ -74,9 +94,29 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: plasma_3
   product: CrateMaterialPlasma
-  cost: 4000
+  cost: 5000
   category: cargoproduct-category-name-materials
   group: engineermarket2
+
+- type: cargoProduct
+  id: MaterialTitaniumETS
+  icon:
+    sprite: Objects/Materials/Sheets/metal.rsi
+    state: plastitanium_3
+  product: CrateMaterialTitanium
+  cost: 3500
+  category: cargoproduct-category-name-materials
+  group: engineermarket3
+
+- type: cargoProduct
+  id: MaterialTinETS
+  icon:
+    sprite: Objects/Materials/ingots.rsi
+    state: alpha_3
+  product: CrateMaterialTin
+  cost: 2000
+  category: cargoproduct-category-name-materials
+  group: engineermarket3
 
 - type: cargoProduct
   id: CardboardMaterialETS
@@ -104,7 +144,7 @@
     sprite: Objects/Materials/Sheets/other.rsi
     state: generic_materials
   product: CrateMaterialBasicResource
-  cost: 1500
+  cost: 1660
   category: cargoproduct-category-name-materials
   group: engineermarket
 
@@ -117,6 +157,16 @@
   cost: 7500
   category: cargoproduct-category-name-materials
   group: engineermarket
+
+- type: cargoProduct
+  id: MaterialPhoronETS
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: phoron_3
+  product: CrateMaterialPhoron
+  cost: 18000
+  category: cargoproduct-category-name-materials
+  group: engineermarket4
 
 - type: cargoProduct
   id: MaterialWaterTankETS
@@ -134,7 +184,7 @@
     sprite: Objects/Weapons/Grenades/airboom.rsi
     state: icon
   product: CrateAirGrenade
-  cost: 2000
+  cost: 2500
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -144,7 +194,7 @@
     sprite: Objects/Power/AME/ame_jar.rsi
     state: jar
   product: CrateEngineeringAMEJar
-  cost: 1500
+  cost: 2000
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -164,7 +214,7 @@
     sprite: Structures/Power/Generation/Singularity/containment.rsi
     state: icon
   product: CrateEngineeringSingularityContainment
-  cost: 1000
+  cost: 1500
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -184,7 +234,7 @@
     sprite: Structures/Power/Generation/Singularity/collector.rsi
     state: ca_on
   product: CrateEngineeringSingularityCollector
-  cost: 1000
+  cost: 1500
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -194,7 +244,7 @@
     sprite: Structures/Power/Generation/PA/control_box.rsi
     state: completed
   product: CrateEngineeringParticleAccelerator
-  cost: 2000
+  cost: 2500
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -204,7 +254,7 @@
     sprite: Objects/Devices/flatpack.rsi
     state: solar-assembly-part
   product: CrateEngineeringSolar
-  cost: 1000
+  cost: 2000
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -224,7 +274,7 @@
     sprite: Structures/Power/Generation/Tesla/coil.rsi
     state: coil
   product: CrateEngineeringTeslaCoil
-  cost: 2000
+  cost: 3000
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -234,7 +284,7 @@
     sprite: Structures/Power/Generation/Tesla/coil.rsi
     state: grounding_rod
   product: CrateEngineeringTeslaGroundingRod
-  cost: 2250
+  cost: 3500
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -244,7 +294,7 @@
     sprite: Structures/Power/Generation/teg.rsi
     state: teg
   product: EngineTegFlatPacks
-  cost: 7500
+  cost: 10000
   category: cargoproduct-category-name-engineering
   group: engineermarket2
 
@@ -254,7 +304,7 @@
     sprite: Structures/Storage/canister.rsi
     state: grey
   product: AirCanister
-  cost: 1250
+  cost: 2500
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -264,7 +314,7 @@
     sprite: Structures/Storage/canister.rsi
     state: blue
   product: OxygenCanister
-  cost: 1000
+  cost: 2200
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -274,7 +324,7 @@
     sprite: Structures/Storage/canister.rsi
     state: blue
   product: LiquidOxygenCanister
-  cost: 1500
+  cost: 12500
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -284,7 +334,7 @@
     sprite: Structures/Storage/canister.rsi
     state: red
   product: NitrogenCanister
-  cost: 750
+  cost: 1800
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -294,7 +344,7 @@
     sprite: Structures/Storage/canister.rsi
     state: red
   product: LiquidNitrogenCanister
-  cost: 1250
+  cost: 12500
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -324,7 +374,7 @@
     sprite: Structures/Storage/canister.rsi
     state: yellow
   product: StorageCanister
-  cost: 350 # No gases in it so it's cheaper
+  cost: 500 # No gases in it so it's cheaper
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -344,7 +394,7 @@
     sprite: Structures/Storage/canister.rsi
     state: orange
   product: PlasmaCanister
-  cost: 5000 # for reference, bagel's 3x1 roundstart plasma chamber contains ~16kmol for free, this is $4.2k for 2769 mol
+  cost: 7500 # for reference, bagel's 3x1 roundstart plasma chamber contains ~16kmol for free, this is $4.2k for 2769 mol
   category: cargoproduct-category-name-atmospherics
   group: engineermarket2
 
@@ -364,7 +414,7 @@
     sprite: Clothing/Head/Hardsuits/atmospherics.rsi
     state: icon
   product: LockerAtmosphericsFilledHardsuit
-  cost: 3000
+  cost: 4000
   category: cargoproduct-category-name-engineering
   group: engineermarket
 
@@ -374,7 +424,7 @@
     sprite: Objects/Power/light_bulb.rsi
     state: normal
   product: CrateServiceReplacementLights
-  cost: 500
+  cost: 600
   category: cargoproduct-category-name-service
   group: engineermarket
 
@@ -384,7 +434,7 @@
     sprite: Objects/Power/light_bulb.rsi
     state: normal
   product: CrateServiceColorfulLights
-  cost: 700
+  cost: 800
   category: cargoproduct-category-name-service
   group: engineermarket
 
@@ -424,7 +474,7 @@
     sprite: Objects/Weapons/Melee/fireaxe.rsi
     state: icon
   product: FireAxe
-  cost: 2500
+  cost: 5000
   category: cargoproduct-category-name-atmospherics
   group: engineermarket
 
@@ -434,7 +484,7 @@
     sprite: Structures/Storage/canister.rsi
     state: hydrogen
   product: HydrogenCanister
-  cost: 1000
+  cost: 5000
   category: cargoproduct-category-name-atmospherics
   group: engineermarket2
 
@@ -444,7 +494,7 @@
     sprite: Structures/Storage/canister.rsi
     state: chlorine
   product: ChlorineCanister
-  cost: 3000
+  cost: 9000
   category: cargoproduct-category-name-atmospherics
   group: engineermarket3
 
@@ -454,7 +504,7 @@
     sprite: Structures/Storage/canister.rsi
     state: fluorine
   product: FluorineCanister
-  cost: 2250
+  cost: 9500
   category: cargoproduct-category-name-atmospherics
   group: engineermarket3
 
@@ -464,7 +514,7 @@
     sprite: Structures/Storage/canister.rsi
     state: methane
   product: MethaneCanister
-  cost: 7000
+  cost: 10000
   category: cargoproduct-category-name-atmospherics
   group: engineermarket3
 
@@ -474,6 +524,6 @@
     sprite: Structures/Storage/canister.rsi
     state: clf3
   product: ChlorineTrifluorideCanister
-  cost: 15000
+  cost: 36000
   category: cargoproduct-category-name-atmospherics
   group: engineermarket4

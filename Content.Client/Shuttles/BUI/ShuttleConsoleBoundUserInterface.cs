@@ -1,3 +1,4 @@
+using System.Numerics;
 using Content.Client.Shuttles.UI;
 using Content.Shared.Shuttles.BUIStates;
 using Content.Shared.Shuttles.Components;
@@ -29,6 +30,7 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
         _window.UndockRequest += OnUndockRequest;
         _window.UndockAllRequest += OnUndockAllRequest;
         _window.OnDampingModeChanged += OnDampingModeChanged;
+        _window.OnWaypointChanged += OnWaypointChanged;
     }
 
     private void OnDampingModeChanged(ShuttleDampingMode mode)
@@ -36,6 +38,14 @@ public sealed class ShuttleConsoleBoundUserInterface : BoundUserInterface
         SendMessage(new ShuttleConsoleDampingMessage()
         {
             DampingMode = mode,
+        });
+    }
+
+    private void OnWaypointChanged(Vector2? coords)
+    {
+        SendMessage(new ShuttleConsoleWaypointMessage()
+        {
+            Coords = coords,
         });
     }
 

@@ -256,7 +256,7 @@ public sealed class CrewManifestSystem : EntitySystem
             if (cmp != 0)
                 return cmp;
 
-            return string.Compare(a.entry.Name, b.entry.Name, StringComparison.CurrentCultureIgnoreCase);
+            return string.Compare(a.entry.JobTitle, b.entry.JobTitle, StringComparison.CurrentCultureIgnoreCase);
         });
 
         entries.Entries = entriesSort.Select(x => x.entry).ToArray();

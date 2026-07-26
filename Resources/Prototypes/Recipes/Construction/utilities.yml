@@ -33,14 +33,52 @@
 
 # POWER
 - type: construction
-  id: APC
+  id: APCStandard
   graph: APC
   startNode: start
-  targetNode: apc
+  targetNode: apc-standard
   category: construction-category-utilities
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: APCMedium
+  graph: APC
+  startNode: start
+  targetNode: apc-medium
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: APCHigh
+  graph: APC
+  startNode: start
+  targetNode: apc-high
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
+
+- type: construction
+  id: APCHyper
+  graph: APC
+  startNode: start
+  targetNode: apc-hyper
+  category: construction-category-utilities
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: true
+  conditions:
+  - !type:WallmountCondition {}
 
 - type: construction
   id: CableTerminal
@@ -1083,3 +1121,17 @@
   canBuildInImpassable: true
   conditions:
   - !type:WallmountCondition
+
+  # SHUTTLECRAFT
+- type: construction
+  id: WallmountThrusterRecipe
+  graph: WallmountThrusterGraph
+  startNode: start
+  targetNode: WallmountThrusterNode
+  category: construction-category-machines
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: true
+  canBuildInImpassable: true
+  conditions:
+  - !type:ReverseWallmountCondition

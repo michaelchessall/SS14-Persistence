@@ -1,4 +1,5 @@
 using Content.Client.UserInterface.Controls;
+using Content.Shared._Persistence14.PersistentIdentifier;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Xenoarchaeology.Artifact;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
@@ -21,6 +22,7 @@ public sealed partial class NodeScannerDisplay : FancyWindow
     private EntityUid _owner;
     private TimeSpan _updateFromAttachedFrequency;
     private readonly HashSet<string> _triggeredNodeNames = new();
+    private PersistentIdentifierSystem _pid;
 
     public NodeScannerDisplay()
     {
@@ -29,6 +31,7 @@ public sealed partial class NodeScannerDisplay : FancyWindow
         IoCManager.InjectDependencies(this);
 
         _artifact = _ent.System<SharedXenoArtifactSystem>();
+        _pid = _ent.System<PersistentIdentifierSystem>();
     }
 
     /// <summary>
@@ -63,7 +66,8 @@ public sealed partial class NodeScannerDisplay : FancyWindow
             return;
         }
 
-        var attachedArtifactEnt = connectedScanner.AttachedTo;
+        if (!_pid.TryResolveId(connectedScanner.AttachedTo, out var attachedArtifactEnt))
+            return;
         if (!_ent.TryGetComponent(attachedArtifactEnt, out XenoArtifactComponent? artifactComponent))
             return;
 

@@ -133,7 +133,10 @@
     materialComposition:
       Steel: 100
       Plastic: 100
-
+  - type: Tag
+    tags:
+      - PowerCellMedium
+      
 - type: entity
   id: PowerCellMediumPrinted
   suffix: Empty
@@ -173,7 +176,10 @@
       Steel: 100
       Plastic: 100
       Gold: 25
-
+  - type: Tag
+    tags:
+      - PowerCellHigh
+      
 - type: entity
   id: PowerCellHighPrinted
   suffix: Empty
@@ -214,7 +220,10 @@
       Plastic: 100
       Gold: 100
       Silver: 100
-
+  - type: Tag
+    tags:
+      - PowerCellHyper
+      
 
 - type: entity
   id: PowerCellHyperPrinted

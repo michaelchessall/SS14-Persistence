@@ -862,7 +862,7 @@
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
-  canBuildInImpassable: true  
+  canBuildInImpassable: true
 
 - type: construction
   id: Shutters
@@ -2224,6 +2224,171 @@
   graph: WarningSign
   startNode: start
   targetNode: tritium
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerNanotrasen
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerNT
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerCargo
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerCargo
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerEngineering
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerEngineering
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerMedical
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerMedical
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerRevolution
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerRevolution
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerSyndicate
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerSyndicate
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerScience
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerScience
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerBlue
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerBlue
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerRed
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerRed
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerYellow
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerYellow
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerGreen
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerGreen
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerSolarLegion
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerSL
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerWayfarerDynamics
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerWD
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerFlowerOfEvil
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerFoe
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
+
+- type: construction
+  id: BannerPREG
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerPREG
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter

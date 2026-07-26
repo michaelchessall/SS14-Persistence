@@ -176,7 +176,7 @@ public abstract partial class SharedBorgSystem
         for (var i = 0; i < module.Comp.Hands.Count; i++)
         {
             var hand = module.Comp.Hands[i];
-            var handId = $"{GetNetEntity(module.Owner)}-hand-{i}";
+            var handId = GetHandId(module, i);
 
             _hands.AddHand((chassis.Owner, hands), handId, hand.Hand);
             EntityUid? item = null;
@@ -224,7 +224,7 @@ public abstract partial class SharedBorgSystem
 
         for (var i = 0; i < module.Comp.Hands.Count; i++)
         {
-            var handId = $"{GetNetEntity(module.Owner)}-hand-{i}";
+            var handId = GetHandId(module.Owner, i);
 
             if (_hands.TryGetHeldItem((chassis.Owner, hands), handId, out var held))
             {
@@ -242,6 +242,8 @@ public abstract partial class SharedBorgSystem
 
         Dirty(module);
     }
+
+    private string GetHandId(EntityUid uid, int handIndex) => $"{_pid.EnsureId(uid)}-hand-{handIndex}";
     #endregion
 
     #region ComponentBorgModule

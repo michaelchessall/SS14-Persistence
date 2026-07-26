@@ -1,0 +1,788 @@
+# Polymorph outcomes used by the Polymorph anomaly (see Resources/Prototypes/Anomaly/polymorph_anomaly_tables.yml).
+#
+# Duration is deliberately left unset here - PolymorphAnomalySystem always overrides Duration,
+# Forced, Inventory, RevertOnCrit, and RevertOnDeath per-victim at runtime, so whatever is set
+# (or not set) for those fields below has no effect when used through the anomaly. They're set
+# here anyway so each polymorph still behaves sensibly if ever triggered some other way (e.g. by
+# an admin smite, a future artifact node, etc).
+#
+# NOTE: some existing polymorph prototypes are reused directly by the anomaly table instead of
+# being redefined here - see Mouse, Chicken, Monkey, ArtifactLizard, ArtifactLuminous, and
+# ArtifactCluwne in polymorph.yml.
+
+# --- Common critters ---
+
+- type: polymorph
+  id: ArtifactAnomalyCow
+  configuration:
+    entity: MobCow
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyGoat
+  configuration:
+    entity: MobGoat
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyDuck
+  configuration:
+    entity: MobDuckMallard
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyPig
+  configuration:
+    entity: MobPig
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyGoose
+  configuration:
+    entity: MobGoose
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyFrog
+  configuration:
+    entity: MobFrog
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySnake
+  configuration:
+    entity: MobSnake
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCrab
+  configuration:
+    entity: MobCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyPossum
+  configuration:
+    entity: MobPossum
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyRaccoon
+  configuration:
+    entity: MobRaccoon
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyFox
+  configuration:
+    entity: MobFox
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCat
+  configuration:
+    entity: MobCat
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCorgi
+  configuration:
+    entity: MobCorgi
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyHamster
+  configuration:
+    entity: MobHamster
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyParrot
+  configuration:
+    entity: MobParrot
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyPenguin
+  configuration:
+    entity: MobPenguin
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyKangaroo
+  configuration:
+    entity: MobKangaroo
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBat
+  configuration:
+    entity: MobBat
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBee
+  configuration:
+    entity: MobBee
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySlug
+  configuration:
+    entity: MobSlug
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+# --- Medium threats ---
+
+- type: polymorph
+  id: ArtifactAnomalyGiantSpider
+  configuration:
+    entity: MobGiantSpider
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCarp
+  configuration:
+    entity: MobCarp
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyShark
+  configuration:
+    entity: MobShark
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySlimeBlue
+  configuration:
+    entity: MobAdultSlimesBlue
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySlimeGreen
+  configuration:
+    entity: MobAdultSlimesGreen
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySlimeYellow
+  configuration:
+    entity: MobAdultSlimesYellow
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyWatcher
+  configuration:
+    entity: MobWatcherLavaland
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyFleshGolem
+  configuration:
+    entity: MobFleshGolem
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyTick
+  configuration:
+    entity: MobTick
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySnail
+  configuration:
+    entity: MobSnail
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCobra
+  configuration:
+    entity: MobCobraSpace
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBear
+  configuration:
+    entity: MobBearSpace
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyGoliath
+  configuration:
+    entity: MobGoliath
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBasilisk
+  configuration:
+    entity: MobBasilisk
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+# --- Apex / rare ---
+
+- type: polymorph
+  id: ArtifactAnomalyRavager
+  configuration:
+    entity: MobXenoRavager
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyXenoDrone
+  configuration:
+    entity: MobXenoDrone
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyXenoRunner
+  configuration:
+    entity: MobXenoRunner
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyXenoSpitter
+  configuration:
+    entity: MobXenoSpitter
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyAbomination
+  configuration:
+    entity: MobAbomination
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyHivelord
+  configuration:
+    entity: MobHivelord
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyRatKing
+  configuration:
+    entity: MobRatKing
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyXenoQueen
+  configuration:
+    entity: MobXenoQueen
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+# NOTE: MobHellspawn is a ghost-role solo antagonist prototype. This is fine while the victim's
+# mind occupies it (PolymorphEntity transfers their mind in immediately), but if they later ghost
+# out of it, the underlying GhostRole/GhostTakeoverAvailable components mean the abandoned body
+# could be picked up by another ghost. Treated here as an intentional, extremely rare jackpot.
+- type: polymorph
+  id: ArtifactAnomalyHellspawn
+  configuration:
+    entity: MobHellspawn
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+# --- Second wave: mining elementals, oddities, argocytes, behonkers, plant anomaly spawns ---
+
+- type: polymorph
+  id: ArtifactAnomalyQuartzCrab
+  configuration:
+    entity: MobQuartzCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyIronCrab
+  configuration:
+    entity: MobIronCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCoalCrab
+  configuration:
+    entity: MobCoalCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyUraniumCrab
+  configuration:
+    entity: MobUraniumCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBananiumCrab
+  configuration:
+    entity: MobBananiumCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalySilverCrab
+  configuration:
+    entity: MobSilverCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyGoldCrab
+  configuration:
+    entity: MobGoldCrab
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyKobold
+  configuration:
+    entity: MobKobold
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyGorilla
+  configuration:
+    entity: MobGorilla
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCockroach
+  configuration:
+    entity: MobCockroach
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyGlockroach
+  configuration:
+    entity: MobGlockroach
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyMothroach
+  configuration:
+    entity: MobMothroach
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyReindeer
+  configuration:
+    entity: MobReindeerBuck
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBoxingKangaroo
+  configuration:
+    entity: MobBoxingKangaroo
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyClownSpider
+  configuration:
+    entity: MobClownSpider
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCarpHolo
+  configuration:
+    entity: MobCarpHolo
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyCarpRainbow
+  configuration:
+    entity: MobCarpRainbow
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyMimic
+  configuration:
+    entity: MobMimic
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyLaserRaptor
+  configuration:
+    entity: MobLaserRaptor
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyTomatoKiller
+  configuration:
+    entity: MobTomatoKiller
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyMoproach
+  configuration:
+    entity: MobMoproach
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyScurret
+  configuration:
+    entity: MobScurret
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyEmotionalSupportScurret
+  configuration:
+    entity: MobEmotionalSupportScurret
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyHivelordBrood
+  configuration:
+    entity: MobHivelordBrood
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyLuminousObject
+  configuration:
+    entity: MobLuminousObject
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyLuminousEntity
+  configuration:
+    entity: MobLuminousEntity
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBehonkerElectrical
+  configuration:
+    entity: MobBehonkerElectrical
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBehonkerPyro
+  configuration:
+    entity: MobBehonkerPyro
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBehonkerGrav
+  configuration:
+    entity: MobBehonkerGrav
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyBehonkerIce
+  configuration:
+    entity: MobBehonkerIce
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteSlurva
+  configuration:
+    entity: MobArgocyteSlurva
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteBarrier
+  configuration:
+    entity: MobArgocyteBarrier
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteSkitter
+  configuration:
+    entity: MobArgocyteSkitter
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteSwiper
+  configuration:
+    entity: MobArgocyteSwiper
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteMolder
+  configuration:
+    entity: MobArgocyteMolder
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocytePouncer
+  configuration:
+    entity: MobArgocytePouncer
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteGlider
+  configuration:
+    entity: MobArgocyteGlider
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteHarvester
+  configuration:
+    entity: MobArgocyteHarvester
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteCrawler
+  configuration:
+    entity: MobArgocyteCrawler
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteEnforcer
+  configuration:
+    entity: MobArgocyteEnforcer
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteFounder
+  configuration:
+    entity: MobArgocyteFounder
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true
+
+- type: polymorph
+  id: ArtifactAnomalyArgocyteLeviathing
+  configuration:
+    entity: MobArgocyteLeviathing
+    forced: true
+    inventory: Transfer
+    revertOnCrit: true
+    revertOnDeath: true

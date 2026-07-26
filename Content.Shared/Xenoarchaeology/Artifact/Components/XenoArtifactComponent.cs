@@ -7,6 +7,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Utility;
 
 namespace Content.Shared.Xenoarchaeology.Artifact.Components;
@@ -81,7 +82,7 @@ public sealed partial class XenoArtifactComponent : Component
     /// <summary>
     /// When next unlock session can be triggered.
     /// </summary>
-    [DataField, AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextUnlockTime;
     #endregion
 

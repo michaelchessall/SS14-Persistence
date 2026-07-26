@@ -137,3 +137,34 @@
     - NewsReaderCartridge
     - WantedListCartridge
     - LogProbeCartridge
+
+- type: entity
+  parent: BasePDA
+  id: CoSPDASOL
+  name: solar legion chief of staff PDA
+  description: Whosoever bears this PDA is the law.
+  components:
+  - type: Pda
+    penSlot:
+      startingItem: PenCos
+      priority: -1
+      whitelist:
+        tags:
+        - Write
+
+  - type: Appearance
+    appearanceDataInit:
+     enum.PdaVisuals.PdaType:
+       !type:String
+       pda-cos-SOL
+  - type: PdaBorderColor
+    borderColor: "#A32D26"
+    accentHColor: "#447987"
+  - type: Icon
+    state: pda-hos-SOL
+  - type: CartridgeLoader
+    preinstalled:
+    - CrewManifestCartridge
+    - NotekeeperCartridge
+    - NanoTaskCartridge
+    - NewsReaderCartridge

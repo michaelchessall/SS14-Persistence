@@ -266,6 +266,7 @@ public sealed class AccessReaderSystem : EntitySystem
 
         if (!reader.Enabled)
             return true;
+        var originalReader = reader;
         GetMainAccessReader(target, out var readerTrue);
         if (readerTrue != null)
         {
@@ -276,7 +277,12 @@ public sealed class AccessReaderSystem : EntitySystem
             return true;
         if (reader.PersonalAccessMode)
         {
-            if (reader.PersonalAccessNames.Count < 1) return true;
+            if (reader.PersonalAccessNames.Count < 1)
+            {
+                LogAccess((originalReader.Owner, originalReader), user);
+                return true;
+
+            }
             string? actorName = null;
             var accessSources = FindPotentialAccessItems(user);
             foreach (var source in accessSources)
@@ -304,16 +310,30 @@ public sealed class AccessReaderSystem : EntitySystem
                 {
                     return false;
                 }
+                LogAccess((originalReader.Owner, originalReader), user);
                 return true;
             }
         }
         else
         {
             var station = _station.GetOwningStation(target);
-            if (station == null) return true;
-            if (reader.AccessNames.Count < 1) return true;
+            if (station == null)
+            {
+                LogAccess((originalReader.Owner, originalReader), user);
+                return true;
+            }
+            if (reader.AccessNames.Count < 1)
+            {
+                LogAccess((originalReader.Owner, originalReader), user);
+                return true;
+            }
+
             var accesses = _station.GetValidAccesses(reader.AccessNames, station.Value);
-            if (accesses.Count < 1) return true;
+            if (accesses.Count < 1)
+            {
+                LogAccess((originalReader.Owner, originalReader), user);
+                return true;
+            }
             string? actorName = null;
             var accessSources = FindPotentialAccessItems(user);
             foreach (var source in accessSources)
@@ -340,7 +360,11 @@ public sealed class AccessReaderSystem : EntitySystem
 
                 if (TryComp(station, out StationDataComponent? sD))
                 {
-                    if (sD.Owners.Contains(actorName)) return true;
+                    if (sD.Owners.Contains(actorName))
+                    {
+                        LogAccess((originalReader.Owner, originalReader), user);
+                        return true;
+                    }
                 }
 
                 if (!TryComp(station, out CrewRecordsComponent? crewRecords))
@@ -353,10 +377,12 @@ public sealed class AccessReaderSystem : EntitySystem
 
                 if (!TryComp(station, out CrewAssignmentsComponent? stationData))
                 {
+                    LogAccess((originalReader.Owner, originalReader), user);
                     return true;
                 }
                 if (!TryComp(station, out CrewAccessesComponent? crewAccesses))
                 {
+                    LogAccess((originalReader.Owner, originalReader), user);
                     return true;
                 }
                 if (record == null)
@@ -372,6 +398,7 @@ public sealed class AccessReaderSystem : EntitySystem
                         {
                             if (assignment.AccessIDs.Contains(access1))
                             {
+                                LogAccess((originalReader.Owner, originalReader), user);
                                 return true;
                             }
                         }
@@ -1181,7 +1208,7 @@ public sealed class AccessReaderSystem : EntitySystem
                 ent.Comp.AccessLog.Dequeue();
         }
 
-        var stationTime = accessTime ?? _gameTiming.CurTime.Subtract(_gameTicker.RoundStartTimeSpan);
+        var stationTime = DateTime.Now;
         ent.Comp.AccessLog.Enqueue(new AccessRecord(stationTime, name));
 
         Dirty(ent);

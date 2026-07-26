@@ -36,16 +36,47 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
 
     private void OnItemPlaced(Entity<ArtifactAnalyzerComponent> ent, ref ItemPlacedEvent args)
     {
+        if (!HasComp<XenoArtifactComponent>(args.OtherEntity))
+            return;
+
+        if (!ent.Comp.Artifacts.Contains(args.OtherEntity))
+            ent.Comp.Artifacts.Add(args.OtherEntity);
+
+        // Newly placed artifact becomes the selected/displayed one.
         ent.Comp.CurrentArtifact = args.OtherEntity;
         Dirty(ent);
     }
 
     private void OnItemRemoved(Entity<ArtifactAnalyzerComponent> ent, ref ItemRemovedEvent args)
     {
-        if (args.OtherEntity != ent.Comp.CurrentArtifact)
+        if (!ent.Comp.Artifacts.Remove(args.OtherEntity) && args.OtherEntity != ent.Comp.CurrentArtifact)
             return;
 
-        ent.Comp.CurrentArtifact = null;
+        // If the displayed artifact was the one removed, fall back to another placed artifact (if any).
+        if (args.OtherEntity == ent.Comp.CurrentArtifact)
+            ent.Comp.CurrentArtifact = ent.Comp.Artifacts.Count > 0 ? ent.Comp.Artifacts[0] : null;
+
+        Dirty(ent);
+    }
+
+    /// <summary>
+    /// Cycles the currently displayed artifact on an advanced analyzer to the next/previous
+    /// placed artifact, wrapping around at the ends.
+    /// </summary>
+    public void CycleArtifact(Entity<ArtifactAnalyzerComponent> ent, bool forward)
+    {
+        var count = ent.Comp.Artifacts.Count;
+        if (count <= 1)
+            return;
+
+        var index = ent.Comp.CurrentArtifact is { } current
+            ? ent.Comp.Artifacts.IndexOf(current)
+            : 0;
+        if (index < 0)
+            index = 0;
+
+        index = (index + (forward ? 1 : -1) + count) % count;
+        ent.Comp.CurrentArtifact = ent.Comp.Artifacts[index];
         Dirty(ent);
     }
 
@@ -146,6 +177,58 @@ public abstract class SharedArtifactAnalyzerSystem : EntitySystem
             return false;
 
         artifact = (analyzer.Value.Comp.CurrentArtifact.Value, comp);
+        return true;
+    }
+
+    /// <summary>
+    /// Gets every artifact currently placed on the analyzer linked to this console.
+    /// For a regular analyzer this is the single placed artifact; for an advanced one it is all of them.
+    /// </summary>
+    public bool TryGetArtifactsFromConsole(Entity<AnalysisConsoleComponent> ent, out List<Entity<XenoArtifactComponent>> artifacts)
+    {
+        artifacts = new List<Entity<XenoArtifactComponent>>();
+
+        if (!TryGetAnalyzer(ent, out var analyzer))
+            return false;
+
+        // Advanced analyzers extract from all placed artifacts; regular ones only the selected one.
+        if (analyzer.Value.Comp.Advanced)
+        {
+            foreach (var uid in analyzer.Value.Comp.Artifacts)
+            {
+                if (TryComp<XenoArtifactComponent>(uid, out var comp))
+                    artifacts.Add((uid, comp));
+            }
+        }
+        else if (TryComp<XenoArtifactComponent>(analyzer.Value.Comp.CurrentArtifact, out var comp))
+        {
+            artifacts.Add((analyzer.Value.Comp.CurrentArtifact.Value, comp));
+        }
+
+        return artifacts.Count > 0;
+    }
+
+    /// <summary>
+    /// Gets the 1-based index of the currently displayed artifact and the total artifact count,
+    /// for the console's cycling UI. Returns false if there is no analyzer or no artifacts.
+    /// </summary>
+    public bool TryGetArtifactSelection(Entity<AnalysisConsoleComponent> ent, out int index, out int count, out bool advanced)
+    {
+        index = 0;
+        count = 0;
+        advanced = false;
+
+        if (!TryGetAnalyzer(ent, out var analyzer))
+            return false;
+
+        advanced = analyzer.Value.Comp.Advanced;
+        count = analyzer.Value.Comp.Artifacts.Count;
+        if (count == 0)
+            return false;
+
+        var current = analyzer.Value.Comp.CurrentArtifact;
+        var zeroBased = current is { } c ? analyzer.Value.Comp.Artifacts.IndexOf(c) : 0;
+        index = (zeroBased < 0 ? 0 : zeroBased) + 1;
         return true;
     }
 

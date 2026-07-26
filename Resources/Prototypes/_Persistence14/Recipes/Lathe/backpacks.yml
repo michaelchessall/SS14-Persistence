@@ -1,0 +1,168 @@
+# Civilian Backpacks
+- type: latheRecipe
+  id: Backpack
+  parent: BaseBackpack
+  result: ClothingBackpack
+
+- type: latheRecipe
+  id: BackpackClown
+  parent: BaseBackpack
+  result: ClothingBackpackClown
+
+- type: latheRecipe
+  id: BackpackMime
+  parent: BaseBackpack
+  result: ClothingBackpackMime
+
+- type: latheRecipe
+  id: BackpackEngineering
+  parent: BaseBackpack
+  result: ClothingBackpackEngineering
+
+- type: latheRecipe
+  id: BackpackAtmospherics
+  parent: BaseBackpack
+  result: ClothingBackpackAtmospherics
+
+- type: latheRecipe
+  id: BackpackMedical
+  parent: BaseBackpack
+  result: ClothingBackpackMedical
+
+- type: latheRecipe
+  id: BackpackChemistry
+  parent: BaseBackpack
+  result: ClothingBackpackChemistry
+
+- type: latheRecipe
+  id: BackpackHydroponics
+  parent: BaseBackpack
+  result: ClothingBackpackHydroponics
+
+- type: latheRecipe
+  id: BackpackScience
+  parent: BaseBackpack
+  result: ClothingBackpackScience
+
+- type: latheRecipe
+  id: BackpackVirology
+  parent: BaseBackpack
+  result: ClothingBackpackVirology
+
+- type: latheRecipe
+  id: BackpackGenetics
+  parent: BaseBackpack
+  result: ClothingBackpackGenetics
+
+- type: latheRecipe
+  id: BackpackCargo
+  parent: BaseBackpack
+  result: ClothingBackpackCargo
+
+- type: latheRecipe
+  id: BackpackSalvage
+  parent: BaseBackpack
+  result: ClothingBackpackSalvage
+
+
+# Command Backpacks
+- type: latheRecipe
+  id: BackpackCaptain
+  parent: BaseBackpack
+  result: ClothingBackpackCaptain
+
+- type: latheRecipe
+  id: BackpackIan
+  parent: BaseBackpack
+  result: ClothingBackpackIan
+
+- type: latheRecipe
+  id: BackpackSecurity
+  parent: BaseBackpack
+  result: ClothingBackpackSecurity
+
+- type: latheRecipe
+  id: BackpackBrigmedic
+  parent: BaseBackpack
+  result: ClothingBackpackBrigmedic
+
+
+# ERT Bags
+- type: latheRecipe
+  id: BackpackERTLeader
+  parent: BaseBackpack
+  result: ClothingBackpackERTLeader
+
+- type: latheRecipe
+  id: BackpackERTSecurity
+  parent: BaseBackpack
+  result: ClothingBackpackERTSecurity
+
+- type: latheRecipe
+  id: BackpackERTMedical
+  parent: BaseBackpack
+  result: ClothingBackpackERTMedical
+
+- type: latheRecipe
+  id: BackpackERTEngineer
+  parent: BaseBackpack
+  result: ClothingBackpackERTEngineer
+
+- type: latheRecipe
+  id: BackpackERTJanitor
+  parent: BaseBackpack
+  result: ClothingBackpackERTJanitor
+
+- type: latheRecipe
+  id: BackpackERTClown
+  parent: BaseBackpack
+  result: ClothingBackpackERTClown
+
+- type: latheRecipe
+  id: BackpackERTChaplain
+  parent: BaseBackpack
+  result: ClothingBackpackERTChaplain
+
+
+# Contraband Backpacks
+- type: latheRecipe
+  id: BackpackMerc
+  parent: BaseBackpack
+  result: ClothingBackpackMerc
+
+- type: latheRecipe
+  id: BackpackDeathSquad
+  parent: BaseBackpack
+  result: ClothingBackpackDeathSquad
+
+- type: latheRecipe
+  id: BackpackSyndicate
+  parent: BaseBackpack
+  result: ClothingBackpackSyndicate
+
+- type: latheRecipe
+  id: BackpackCluwne
+  parent: BaseBackpack
+  result: ClothingBackpackCluwne
+
+
+# Debug Backpacks
+- type: latheRecipe
+  id: BackpackDebug
+  parent: BaseBackpack
+  result: ClothingBackpackDebug
+
+- type: latheRecipe
+  id: BackpackDebug2
+  parent: BaseBackpack
+  result: ClothingBackpackDebug2
+
+- type: latheRecipe
+  id: BackpackDebug3
+  parent: BaseBackpack
+  result: ClothingBackpackDebug3
+
+- type: latheRecipe
+  id: BackpackDebug4
+  parent: BaseBackpack
+  result: ClothingBackpackDebug4

@@ -95,13 +95,15 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
             privilegedName = printingData.StationName;
             targetStation = printingData.UID;
             var taxingStation = _station.GetOwningStation(uid, null, true);
-            if (taxingStation == null) return;
-            if (TryComp<StationDataComponent>(taxingStation, out var sD) && sD != null)
+            if (taxingStation != null)
             {
-                taxRate = sD.SalesTax;
-                if (component.StationMode)
+                if (TryComp<StationDataComponent>(taxingStation, out var sD) && sD != null)
                 {
-                    owningStation = sD.UID;
+                    taxRate = sD.SalesTax;
+                    if (component.StationMode)
+                    {
+                        owningStation = sD.UID;
+                    }
                 }
             }
         }

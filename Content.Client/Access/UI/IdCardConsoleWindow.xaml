@@ -20,133 +20,151 @@
 
             </GridContainer>
             <Control MinSize="0 8" />
-            <!-- Full name and job title editing. -->
-            <GridContainer Columns="3" HSeparationOverride="4">
-                <Label Name="FullNameLabel" Text="{Loc 'id-card-console-window-full-name-label'}" />
-                <LineEdit Name="FullNameLineEdit" HorizontalExpand="True" />
-                <Button Name="FullNameSaveButton" Text="Search" Disabled="True" />
-            </GridContainer>
-            <BoxContainer Orientation="Horizontal">
-                <Label Text="Selected Account:"
-                 StyleClasses="LabelKeyText"/>
-                <Control MinSize="8 0" />
-                <Label Name="SelectedAccountLabel" />
-            </BoxContainer>
-            <TabContainer VerticalExpand="True" Name="MainTabs">
-                <BoxContainer Orientation="Vertical" Name="AccountDetails" VerticalExpand="True">
+            <TabContainer VerticalExpand="True" Name="ModeTabs">
+                <BoxContainer Orientation="Vertical" Name="RecordView" VerticalExpand="True">
+                    <!-- Full name and job title editing. -->
+                    <GridContainer Columns="3" HSeparationOverride="4">
+                        <Label Name="FullNameLabel" Text="{Loc 'id-card-console-window-full-name-label'}" />
+                        <LineEdit Name="FullNameLineEdit" HorizontalExpand="True" />
+                        <Button Name="FullNameSaveButton" Text="Search" Disabled="True" />
+                    </GridContainer>
                     <BoxContainer Orientation="Horizontal">
-                        <Label Text="Spending:"
+                        <Label Text="Selected Account:"
                          StyleClasses="LabelKeyText"/>
                         <Control MinSize="8 0" />
-                        <Label Name="SpendingLabel" />
-                        <Control HorizontalExpand="True" />
-                        <Button Name="SpendingReset" Text="Refresh Spending" />
+                        <Label Name="SelectedAccountLabel" />
                     </BoxContainer>
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="Assignment:"
-                         StyleClasses="LabelKeyText"/>
-                        <Control MinSize="8 0" />
-                        <Label Name="AssignmentLabel"/>
+                    <TabContainer VerticalExpand="True" Name="MainTabs">
+                        <BoxContainer Orientation="Vertical" Name="AccountDetails" VerticalExpand="True">
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="Spending:"
+                                 StyleClasses="LabelKeyText"/>
+                                <Control MinSize="8 0" />
+                                <Label Name="SpendingLabel" />
+                                <Control HorizontalExpand="True" />
+                                <Button Name="SpendingReset" Text="Refresh Spending" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="Assignment:"
+                                 StyleClasses="LabelKeyText"/>
+                                <Control MinSize="8 0" />
+                                <Label Name="AssignmentLabel"/>
+                            </BoxContainer>
+                            <Control MinSize="0 8" />
+                            <!-- Job preset selection, grant/revoke all access buttons. -->
+                            <!-- Individual assignment buttons -->
+                            <PanelContainer VerticalExpand="True"
+                                                                HorizontalExpand="True"
+                                                           SizeFlagsStretchRatio="1"
+                                                           Name="AssignmentAccessesPC">
+                                <PanelContainer.PanelOverride>
+                                    <gfx:StyleBoxFlat BackgroundColor="#000000" />
+                                </PanelContainer.PanelOverride>
+                                <WrapContainer Name="AccessLevelControlContainer" />
+                            </PanelContainer>
+                        </BoxContainer>
+
+                        <BoxContainer Orientation="Vertical" Name="GeneralRecord" VerticalExpand="True">
+                            <TabContainer VerticalExpand="True" Name="GeneralTabs">
+
+                                <BoxContainer Orientation="Vertical" Name="ViewGeneralRecord" VerticalExpand="True">
+                                    <Button Name="PrintGeneralRecordBtn" Access="Public" Text="Print Record"/>
+                                    <Control MinSize="0 8" />
+                                    <PanelContainer VerticalExpand="True"  HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                                        <ScrollContainer>
+                                            <Control MinSize="0 8" />
+                                            <RichTextLabel Name="GeneralRecordLabel" VerticalAlignment="Top"></RichTextLabel>
+                                        </ScrollContainer>
+                                        <PanelContainer.PanelOverride>
+                                            <gfx:StyleBoxFlat BackgroundColor="#000000" />
+                                        </PanelContainer.PanelOverride>
+
+                                    </PanelContainer>
+                                </BoxContainer>
+
+                                <BoxContainer Orientation="Vertical" Name="EditGeneralRecord" VerticalExpand="True">
+                                    <Button Name="SaveGeneralRecordBtn" Access="Public" Text="Save Record"/>
+                                    <Control MinSize="0 8" />
+                                    <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
+                                        <TextEdit Name="GeneralRecordTE"  Access="Public" HorizontalExpand="True" VerticalExpand="True"/>
+                                    </PanelContainer>
+                                </BoxContainer>
+                            </TabContainer>
+                        </BoxContainer>
+
+                        <BoxContainer Orientation="Vertical" Name="CriminalRecord" VerticalExpand="True">
+                            <TabContainer VerticalExpand="True" Name="CriminalTabs">
+
+                                <BoxContainer Orientation="Vertical" Name="ViewCriminalRecord" VerticalExpand="True">
+                                    <Button Name="PrintCriminalRecordBtn" Access="Public" Text="Print Record"/>
+                                    <Control MinSize="0 8" />
+                                    <PanelContainer VerticalExpand="True"  HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                                        <ScrollContainer>
+                                            <Control MinSize="0 8" />
+                                            <RichTextLabel Name="CriminalRecordLabel" VerticalAlignment="Top"></RichTextLabel>
+                                        </ScrollContainer>
+                                        <PanelContainer.PanelOverride>
+                                            <gfx:StyleBoxFlat BackgroundColor="#000000" />
+                                        </PanelContainer.PanelOverride>
+
+                                    </PanelContainer>
+                                </BoxContainer>
+
+                                <BoxContainer Orientation="Vertical" Name="EditCriminalRecord" VerticalExpand="True">
+                                    <Button Name="SaveCriminalRecordBtn" Access="Public" Text="Save Record"/>
+                                    <Control MinSize="0 8" />
+                                    <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
+                                        <TextEdit Name="CriminalRecordTE"  Access="Public" HorizontalExpand="True" VerticalExpand="True"/>
+                                    </PanelContainer>
+                                </BoxContainer>
+                            </TabContainer>
+                        </BoxContainer>
+
+                        <BoxContainer Orientation="Vertical" Name="MedicalRecord" VerticalExpand="True">
+                            <TabContainer VerticalExpand="True" Name="MedicalTabs">
+
+                                <BoxContainer Orientation="Vertical" Name="ViewMedicalRecord" VerticalExpand="True">
+                                    <Button Name="PrintMedicalRecordBtn" Access="Public" Text="Print Record"/>
+                                    <Control MinSize="0 8" />
+                                    <PanelContainer VerticalExpand="True"  HorizontalExpand="True" SizeFlagsStretchRatio="1">
+                                        <ScrollContainer>
+                                            <Control MinSize="0 8" />
+                                            <RichTextLabel Name="MedicalRecordLabel" VerticalAlignment="Top"></RichTextLabel>
+                                        </ScrollContainer>
+                                        <PanelContainer.PanelOverride>
+                                            <gfx:StyleBoxFlat BackgroundColor="#000000" />
+                                        </PanelContainer.PanelOverride>
+
+                                    </PanelContainer>
+                                </BoxContainer>
+
+                                <BoxContainer Orientation="Vertical" Name="EditMedicalRecord" VerticalExpand="True">
+                                    <Button Name="SaveMedicalRecordBtn" Access="Public" Text="Save Record"/>
+                                    <Control MinSize="0 8" />
+                                    <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
+                                        <TextEdit Name="MedicalRecordTE"  Access="Public" HorizontalExpand="True" VerticalExpand="True"/>
+                                    </PanelContainer>
+                                </BoxContainer>
+                            </TabContainer>
+                        </BoxContainer>
+
+                    </TabContainer>
+                </BoxContainer>
+                <ScrollContainer VerticalExpand="True" HorizontalExpand="True">
+                    <BoxContainer Orientation="Vertical" Name="ListViewMain" VerticalExpand="True">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="Name [Assignment]" StyleClasses="LabelKeyText"/>
+                            <Control HorizontalExpand="True" />
+                            <Label Text="Last Time Paid" StyleClasses="LabelKeyText"/>
+                        </BoxContainer>
+                        <BoxContainer Orientation="Vertical" Name="ListView" VerticalExpand="True">
+
+                        </BoxContainer>
                     </BoxContainer>
-                    <Control MinSize="0 8" />
-                    <!-- Job preset selection, grant/revoke all access buttons. -->
-                    <!-- Individual assignment buttons -->
-                    <PanelContainer VerticalExpand="True"
-                                                        HorizontalExpand="True"
-                                                   SizeFlagsStretchRatio="1"
-                                                   Name="AssignmentAccessesPC">
-                        <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#000000" />
-                        </PanelContainer.PanelOverride>
-                        <WrapContainer Name="AccessLevelControlContainer" />
-                    </PanelContainer>
-                </BoxContainer>
-                
-                <BoxContainer Orientation="Vertical" Name="GeneralRecord" VerticalExpand="True">
-                    <TabContainer VerticalExpand="True" Name="GeneralTabs">
+                </ScrollContainer>
 
-                        <BoxContainer Orientation="Vertical" Name="ViewGeneralRecord" VerticalExpand="True">
-                            <Button Name="PrintGeneralRecordBtn" Access="Public" Text="Print Record"/>
-                            <Control MinSize="0 8" />
-                            <PanelContainer VerticalExpand="True"  HorizontalExpand="True" SizeFlagsStretchRatio="1">
-                                <ScrollContainer>
-                                    <Control MinSize="0 8" />
-                                    <RichTextLabel Name="GeneralRecordLabel" VerticalAlignment="Top"></RichTextLabel>
-                                </ScrollContainer>
-                                <PanelContainer.PanelOverride>
-                                    <gfx:StyleBoxFlat BackgroundColor="#000000" />
-                                </PanelContainer.PanelOverride>
-
-                            </PanelContainer>
-                        </BoxContainer>
-
-                        <BoxContainer Orientation="Vertical" Name="EditGeneralRecord" VerticalExpand="True">
-                            <Button Name="SaveGeneralRecordBtn" Access="Public" Text="Save Record"/>
-                            <Control MinSize="0 8" />
-                            <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
-                                <TextEdit Name="GeneralRecordTE"  Access="Public" HorizontalExpand="True" VerticalExpand="True"/>
-                            </PanelContainer>
-                        </BoxContainer>
-                    </TabContainer>
-                </BoxContainer>
-
-                <BoxContainer Orientation="Vertical" Name="CriminalRecord" VerticalExpand="True">
-                    <TabContainer VerticalExpand="True" Name="CriminalTabs">
-
-                        <BoxContainer Orientation="Vertical" Name="ViewCriminalRecord" VerticalExpand="True">
-                            <Button Name="PrintCriminalRecordBtn" Access="Public" Text="Print Record"/>
-                            <Control MinSize="0 8" />
-                            <PanelContainer VerticalExpand="True"  HorizontalExpand="True" SizeFlagsStretchRatio="1">
-                                <ScrollContainer>
-                                    <Control MinSize="0 8" />
-                                    <RichTextLabel Name="CriminalRecordLabel" VerticalAlignment="Top"></RichTextLabel>
-                                </ScrollContainer>
-                                <PanelContainer.PanelOverride>
-                                    <gfx:StyleBoxFlat BackgroundColor="#000000" />
-                                </PanelContainer.PanelOverride>
-
-                            </PanelContainer>
-                        </BoxContainer>
-
-                        <BoxContainer Orientation="Vertical" Name="EditCriminalRecord" VerticalExpand="True">
-                            <Button Name="SaveCriminalRecordBtn" Access="Public" Text="Save Record"/>
-                            <Control MinSize="0 8" />
-                            <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
-                                <TextEdit Name="CriminalRecordTE"  Access="Public" HorizontalExpand="True" VerticalExpand="True"/>
-                            </PanelContainer>
-                        </BoxContainer>
-                    </TabContainer>
-                </BoxContainer>
-                
-                <BoxContainer Orientation="Vertical" Name="MedicalRecord" VerticalExpand="True">
-                    <TabContainer VerticalExpand="True" Name="MedicalTabs">
-
-                        <BoxContainer Orientation="Vertical" Name="ViewMedicalRecord" VerticalExpand="True">
-                            <Button Name="PrintMedicalRecordBtn" Access="Public" Text="Print Record"/>
-                            <Control MinSize="0 8" />
-                            <PanelContainer VerticalExpand="True"  HorizontalExpand="True" SizeFlagsStretchRatio="1">
-                                <ScrollContainer>
-                                    <Control MinSize="0 8" />
-                                    <RichTextLabel Name="MedicalRecordLabel" VerticalAlignment="Top"></RichTextLabel>
-                                </ScrollContainer>
-                                <PanelContainer.PanelOverride>
-                                    <gfx:StyleBoxFlat BackgroundColor="#000000" />
-                                </PanelContainer.PanelOverride>
-
-                            </PanelContainer>
-                        </BoxContainer>
-
-                        <BoxContainer Orientation="Vertical" Name="EditMedicalRecord" VerticalExpand="True">
-                            <Button Name="SaveMedicalRecordBtn" Access="Public" Text="Save Record"/>
-                            <Control MinSize="0 8" />
-                            <PanelContainer StyleIdentifier="PaperEditBackground" VerticalExpand="True" HorizontalExpand="True">
-                                <TextEdit Name="MedicalRecordTE"  Access="Public" HorizontalExpand="True" VerticalExpand="True"/>
-                            </PanelContainer>
-                        </BoxContainer>
-                    </TabContainer>
-                </BoxContainer>
-                
             </TabContainer>
+            
 
         </BoxContainer>
             

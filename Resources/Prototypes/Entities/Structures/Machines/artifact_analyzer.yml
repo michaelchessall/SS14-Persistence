@@ -80,6 +80,33 @@
           False: { visible: false }
 
 - type: entity
+  id: MachineArtifactAnalyzerAdvanced
+  parent: MachineArtifactAnalyzer
+  name: advanced artifact analyzer
+  description: An upgraded analysis platform capable of scanning several artifacts at once.
+  components:
+  # Placeholder sprite: currently a copy of the regular analyzer's RSI, ready to be replaced later.
+  - type: Sprite
+    noRot: true
+    sprite: Structures/Machines/artifact_analyzer_advanced.rsi
+    drawdepth: HighFloorObjects
+    layers:
+    - state: icon
+    - state: unshaded
+      shader: unshaded
+      map: ["enum.PowerDeviceVisualLayers.Powered"]
+  - type: ArtifactAnalyzer
+    advanced: true
+  - type: ItemPlacer
+    # 0 = no limit, so multiple artifacts can sit on the pad at once.
+    maxEntities: 0
+    whitelist:
+      components:
+      - XenoArtifact
+  - type: Machine
+    board: ArtifactAnalyzerAdvancedMachineCircuitboard
+
+- type: entity
   id: MachineArtifactCrusher
   parent: [ ConstructibleMachine, BaseMachinePowered ]
   name: artifact crusher

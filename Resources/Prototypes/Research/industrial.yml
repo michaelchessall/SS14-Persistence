@@ -166,7 +166,9 @@
   recipeUnlocks:
   - ShuttleConsoleCircuitboard
   - ThrusterMachineCircuitboard
+  - ThrusterWallmountCircuitboard
   - GyroscopeMachineCircuitboard
+  - GyroscopeFloorMachineCircuitboard
   - MiniGravityGeneratorCircuitboard
   - StationAnchorCircuitboard
 

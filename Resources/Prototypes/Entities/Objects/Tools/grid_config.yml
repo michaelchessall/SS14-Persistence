@@ -83,7 +83,7 @@
       sound:
         path: /Audio/Items/multitool_drop.ogg
     - type: Sprite
-      sprite: Objects/Tools/access_configurator.rsi
+      sprite: _Persistence14/Objects/Tools/faction-tagger.rsi
       state: icon
     - type: Item
       size: Small
@@ -135,7 +135,7 @@
       sound:
         path: /Audio/Items/multitool_drop.ogg
     - type: Sprite
-      sprite: Objects/Tools/access_configurator.rsi
+      sprite: _Persistence14/Objects/Tools/faction-genesis-device.rsi
       state: icon
     - type: Item
       size: Small

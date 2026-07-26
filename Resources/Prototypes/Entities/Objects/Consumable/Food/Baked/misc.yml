@@ -245,6 +245,41 @@
   - type: Sprite
     state: cookie-sugar
 
+- type: entity
+  name: nuke disk cookie
+  parent: FoodBakedBase
+  id: FoodBakedCookieNuke
+  description: A nuclear cookie disk, capable of being very tasty if used along with milk. Note from the baker reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
+  components:
+  - type: Sprite
+    state: cookie-nuke
+
+- type: entity
+  name: banana cookie
+  parent: FoodBakedBase
+  id: FoodBakedCookieBanana
+  description: Despite the fact that bananas contain potassium, this cookie probably won't explode in water.
+  components:
+  - type: Sprite
+    state: cookie-banana
+  - type: Tag
+    tags:
+    - Fruit
+
+- type: entity
+  name: cotton cookie
+  parent: FoodBakedBase
+  id: FoodBakedCookieCotton
+  description: Are cookies supposed to be this fluffy?
+  components:
+  - type: Sprite
+    state: cookie-cotton
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - ClothMade
+
 # Nuggets
 
 - type: entity

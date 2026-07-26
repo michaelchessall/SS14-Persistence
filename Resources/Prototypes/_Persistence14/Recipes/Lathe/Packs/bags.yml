@@ -1,0 +1,104 @@
+# Civilian Bags
+- type: latheRecipePack
+  id: CivilianBags
+  recipes:
+  - Backpack
+  - BackpackClown
+  - BackpackMime
+  - BackpackEngineering
+  - BackpackAtmospherics
+  - BackpackMedical
+  - BackpackChemistry
+  - BackpackHydroponics
+  - BackpackScience
+  - BackpackVirology
+  - BackpackGenetics
+  - BackpackCargo
+  - BackpackSalvage
+
+  - Satchel
+  - SatchelLeather
+  - SatchelEngineering
+  - SatchelAtmospherics
+  - SatchelClown
+  - SatchelMime
+  - SatchelMedical
+  - SatchelChemistry
+  - SatchelVirology
+  - SatchelGenetics
+  - SatchelScience
+  - SatchelHydroponics
+  - SatchelCargo
+  - SatchelSalvage
+
+  - Duffel
+  - DuffelEngineering
+  - DuffelAtmospherics
+  - DuffelMedical
+  - DuffelClown
+  - DuffelChemistry
+  - DuffelVirology
+  - DuffelGenetics
+  - DuffelMime
+  - DuffelScience
+  - DuffelHydroponics
+  - DuffelCargo
+  - DuffelSalvage
+
+
+# Command Bags
+- type: latheRecipePack
+  id: CommandBags
+  recipes:
+  - BackpackCaptain
+  - BackpackIan
+  - BackpackSecurity
+  - BackpackBrigmedic
+
+  - SatchelCaptain
+  - SatchelSecurity
+  - SatchelBrigmedic
+
+  - DuffelCaptain
+  - DuffelSecurity
+  - DuffelBrigmedic
+
+# CC Bags
+- type: latheRecipePack
+  id: CentralCommandBags
+  recipes: 
+  - BackpackERTLeader
+  - BackpackERTSecurity
+  - BackpackERTMedical
+  - BackpackERTEngineer
+  - BackpackERTJanitor
+  - BackpackERTClown
+  - BackpackERTChaplain 
+  - BackpackDeathSquad
+  - DuffelCBURN
+
+# Contraband Bags
+- type: latheRecipePack
+  id: ContrabandBags
+  recipes:
+  - BackpackMerc
+  - BackpackSyndicate
+  - BackpackCluwne
+
+  - SatchelNinja
+
+  - DuffelSyndicate
+  - DuffelSyndicateAmmo
+  - DuffelSyndicateMedical
+
+
+# Debug Bags
+- type: latheRecipePack
+  id: DebugBags
+  recipes:
+  - BackpackDebug
+  - BackpackDebug2
+  - BackpackDebug3
+  - BackpackDebug4
+
+  - SatchelAdmin

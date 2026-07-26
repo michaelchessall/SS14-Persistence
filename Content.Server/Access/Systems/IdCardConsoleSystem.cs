@@ -298,6 +298,13 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
         var targetIdName = string.Empty;
         CrewAssignment? assignment = null;
         CrewAssignment? privassignment = null;
+        List<CrewRecord> records = new();
+        var sortedrecords = records;
+        if(TryComp(station, out CrewRecordsComponent? crewRecords))
+        {
+            records = crewRecords.CrewRecords.Values.ToList();
+            sortedrecords = records.OrderByDescending(record => record.LastPaid).ToList();
+        }
         var owner = false;
 
         if (component.TargetIdSlot.Item is { Valid: true } targetId) // targetID lsot occupied
@@ -352,7 +359,8 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 possibleAssignments,
                 owner,
                 0,
-                null);
+                null,
+                sortedrecords);
 
 
         }
@@ -374,7 +382,8 @@ public sealed class IdCardConsoleSystem : SharedIdCardConsoleSystem
                 possibleAssignments,
                 owner,
                 component.SelectedRecord.Spent,
-                component.SelectedRecord);
+                component.SelectedRecord,
+                sortedrecords);
 
         }
 

@@ -1,0 +1,47 @@
+- type: reagent
+  id: Nectar
+  name: reagent-name-nectar
+  group: Narcotics
+  desc: reagent-desc-nectar
+  allowedDepartments:
+  - Medical
+  physicalDesc: reagent-physical-desc-nectar
+  flavor: medicine
+  color: "#FFDE59"
+  metabolisms:
+    Bloodstream:
+      effects:
+      #Main Effect
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectSeeingRainbow
+        time: 5
+        type: Add
+      - !type:Drunk #For slurred speech to represent the relaxing of muscles
+        boozePower: 15
+      #Side Effect
+      - !type:MovementSpeedModifier
+        walkSpeedModifier: 0.65
+        sprintSpeedModifier: 0.65
+      - !type:PopupMessage
+        type: Local
+        visualType: Medium
+        messages:
+        - "nectar-effect-relaxed"
+        - "nectar-effect-no-thoughts"
+        - "nectar-effect-sounds"
+        - "psicodine-effect-at-peace" # Borrowed from psicodine; can make Nectar a potential axiety medication?
+        probability: 0.2
+      - !type:HealthChange
+        damage:
+          types:
+            Poison: 0.5
+      # OD
+      - !type:HealthChange
+        conditions:
+          - !type:ReagentCondition
+            reagent: Nectar
+            min: 11
+        damage:
+          types:
+            Poison: 4
+            Cellular: 1

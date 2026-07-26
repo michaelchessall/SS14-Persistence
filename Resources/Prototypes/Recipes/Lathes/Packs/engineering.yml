@@ -22,6 +22,7 @@
   - HandheldStationMap
   - ClothingHeadHatWelding
   - ClothingHeadHatCone
+  - ClothingHeadHatHardhatYellowEmpty
   - AccessConfigurator
   - ToolboxMechanical
   - VoiceSensorCopper
@@ -69,6 +70,15 @@
   - MCTNMachineCircuitboard
   - TrappedFluidExtractorMachineCircuitboard
   - GridControlComputerCircuitboard
+
+- type: latheRecipePack
+  id: EngineeringHardhatsStatic # Persi14
+  recipes:
+  - ClothingHeadHatHardhatBlueEmpty
+  - ClothingHeadHatHardhatOrangeEmpty
+  - ClothingHeadHatHardhatRedEmpty
+  - ClothingHeadHatHardhatWhiteEmpty
+  - ClothingHeadHatHardhatYellowEmpty
 
 ## Dynamic
 

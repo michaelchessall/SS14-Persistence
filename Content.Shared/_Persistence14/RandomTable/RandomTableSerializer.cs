@@ -14,7 +14,13 @@ namespace Content.Shared._Persistence14.RandomTable;
 public sealed class RandomTableTypeSerializer :
     ITypeReader<RandomTableSelector, MappingDataNode>
 {
-    public RandomTableSelector Read(ISerializationManager serializationManager, MappingDataNode node, IDependencyCollection dependencies, SerializationHookContext hookCtx, ISerializationContext? context = null, ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
+    public RandomTableSelector Read(
+        ISerializationManager serializationManager, 
+        MappingDataNode node, 
+        IDependencyCollection dependencies, 
+        SerializationHookContext hookCtx, 
+        ISerializationContext? context = null, 
+        ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
     {
         if (node.Has("value")) return ReadAsValue(serializationManager, node, dependencies, hookCtx, context, instanceProvider);
         if (node.Has("prototype")) return ReadAsPrototype(serializationManager, node, dependencies, hookCtx, context, instanceProvider);
@@ -100,7 +106,13 @@ public sealed class RandomTableTypeSerializer :
 [TypeSerializer]
 public sealed class RandomTableValueSerializer : ITypeReader<RandomTableSelector, ValueDataNode>
 {
-    public RandomTableSelector Read(ISerializationManager serializationManager, ValueDataNode node, IDependencyCollection dependencies, SerializationHookContext hookCtx, ISerializationContext? context = null, ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
+    public RandomTableSelector Read(
+        ISerializationManager serializationManager, 
+        ValueDataNode node, 
+        IDependencyCollection dependencies, 
+        SerializationHookContext hookCtx, 
+        ISerializationContext? context = null, 
+        ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
     {
         if (int.TryParse(node.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var intValue))
             return (RandomTableIntValueDefinition)intValue;

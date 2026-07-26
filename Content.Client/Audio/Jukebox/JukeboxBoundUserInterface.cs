@@ -42,6 +42,11 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         };
 
         _menu.OnSongSelected += SelectSong;
+        _menu.OnQueueSong += QueueSong;
+        _menu.OnClearQueue += ClearQueue;
+        _menu.OnShuffleToggled += SetShuffle;
+        _menu.OnRepeatSongToggled += SetRepeatSong;
+        _menu.OnVolumeChanged += SetVolume;
 
         _menu.SetTime += SetTime;
         PopulateMusic();
@@ -67,6 +72,11 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
         {
             _menu.SetSelectedSong(string.Empty, 0f);
         }
+
+        _menu.SetQueue(jukebox.Queue, _protoManager);
+        _menu.SetShuffleState(jukebox.ShuffleEnabled);
+        _menu.SetRepeatSongState(jukebox.RepeatSongEnabled);
+        _menu.SetVolumeLevel(jukebox.VolumeLevel);
     }
 
     public void PopulateMusic()
@@ -77,6 +87,31 @@ public sealed class JukeboxBoundUserInterface : BoundUserInterface
     public void SelectSong(ProtoId<JukeboxPrototype> songid)
     {
         SendMessage(new JukeboxSelectedMessage(songid));
+    }
+
+    public void QueueSong(ProtoId<JukeboxPrototype> songid)
+    {
+        SendMessage(new JukeboxQueueSongMessage(songid));
+    }
+
+    public void ClearQueue()
+    {
+        SendMessage(new JukeboxClearQueueMessage());
+    }
+
+    public void SetShuffle(bool enabled)
+    {
+        SendMessage(new JukeboxSetShuffleMessage(enabled));
+    }
+
+    public void SetRepeatSong(bool enabled)
+    {
+        SendMessage(new JukeboxSetRepeatSongMessage(enabled));
+    }
+
+    public void SetVolume(int level)
+    {
+        SendMessage(new JukeboxSetVolumeMessage(level));
     }
 
     public void SetTime(float time)

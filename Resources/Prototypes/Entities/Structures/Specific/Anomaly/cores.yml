@@ -372,3 +372,29 @@
     energy: 2.0
     color: "#fc0303"
     castShadows: false
+
+- type: entity
+  parent: BaseAnomalyCore
+  id: AnomalyCorePolymorph
+  suffix: Polymorph
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/polymorph_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#c060ff"
+    castShadows: false
+
+- type: entity
+  parent: BaseAnomalyInertCore
+  id: AnomalyCorePolymorphInert
+  suffix: Polymorph, Inert
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/polymorph_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 2.0
+    color: "#c060ff"
+    castShadows: false

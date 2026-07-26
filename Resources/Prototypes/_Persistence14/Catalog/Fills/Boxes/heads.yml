@@ -10,3 +10,16 @@
         - id: RubberStampApproved
         - id: RubberStampDenied
         - id: RubberStampQmSOL
+
+- type: entity
+  parent: BoxStamps
+  id: BoxCoSSOLStamps
+  name: solar legion chief of staff's stamp box
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: RubberStampApproved
+        - id: RubberStampDenied
+        - id: RubberStampCosSOL

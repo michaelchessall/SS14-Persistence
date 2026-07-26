@@ -82,6 +82,7 @@
   - AnomalySynchronizerCircuitboard
   - APECircuitboard
   - ArtifactAnalyzerMachineCircuitboard
+  - ArtifactAnalyzerAdvancedMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
   - RoboticsConsoleCircuitboard
   - ResearchComputerCircuitboard
@@ -115,5 +116,7 @@
   - ShuttleConsoleCircuitboard
   - RadarConsoleCircuitboard
   - ThrusterMachineCircuitboard
+  - ThrusterWallmountCircuitboard
   - GyroscopeMachineCircuitboard
+  - GyroscopeFloorMachineCircuitboard
   - MiniGravityGeneratorCircuitboard

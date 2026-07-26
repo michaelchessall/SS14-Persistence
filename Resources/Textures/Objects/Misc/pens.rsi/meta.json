@@ -34,6 +34,9 @@
     {
       "name": "pen_exec"
     },
+    {
+      "name": "pen_cos_SOL"
+    },
 	{
 	  "name": "pen_wizard"
 	},
@@ -67,6 +70,14 @@
     },
     {
       "name": "pen_exec-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pen_cos_SOL-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "pen_cos_SOL-inhand-right",
       "directions": 4
     }
   ]

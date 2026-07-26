@@ -19,11 +19,6 @@ public sealed partial class IFFComponent : Component
     /// </summary>
     public static readonly Color IFFColor = Color.Gold;
 
-    public static readonly ProtoId<TagPrototype> SortTagShip = "IFFShip";
-    public static readonly ProtoId<TagPrototype> SortTagStation = "IFFStation";
-    private static readonly ProtoId<TagPrototype>[] ShipSortTags = { SortTagShip };
-    private static readonly ProtoId<TagPrototype>[] StationSortTags = { SortTagStation };
-
     public const float SignatureAlpha = 1f;
     public const float MinSignatureSaturation = 0.8f;
     public const float MinSignatureValue = 0.65f;
@@ -33,10 +28,7 @@ public sealed partial class IFFComponent : Component
     public IFFFlags Flags = IFFFlags.None;
 
     [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-    public IFFDesignation Designation = IFFDesignation.Ship;
-
-    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
-    public List<ProtoId<TagPrototype>> SortTags = new();
+    public IFFDesignation Designation = IFFDesignation.Other;
 
     /// <summary>
     /// Color for this to show up on IFF.
@@ -61,38 +53,22 @@ public sealed partial class IFFComponent : Component
 
         return Color.FromHsv(hsv);
     }
-
-    public IReadOnlyList<ProtoId<TagPrototype>> GetSortTags()
-    {
-        if (SortTags.Count > 0)
-            return SortTags;
-
-        return Designation == IFFDesignation.Station ? StationSortTags : ShipSortTags;
-    }
-
-    public bool HasSortTag(ProtoId<TagPrototype> tag)
-    {
-        foreach (var sortTag in GetSortTags())
-        {
-            if (sortTag == tag)
-                return true;
-        }
-
-        return false;
-    }
 }
 
 public enum IFFDesignation : byte
 {
+    Other,
     Ship,
     Station,
 }
 
+[Flags]
 public enum IFFSortMode : byte
 {
-    None,
-    Ship,
-    Station,
+    None = 0,
+    Other = 1,
+    Ship = 2,
+    Station = 4,
 }
 
 [Flags]

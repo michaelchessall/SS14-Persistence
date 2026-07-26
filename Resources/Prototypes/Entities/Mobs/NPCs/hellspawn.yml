@@ -82,7 +82,7 @@
       450: Dead
   - type: Butcherable
     spawned:
-      - id: ArtifactFragment
+      - id: ArtifactFragment1
         amount: 4
   - type: MeleeWeapon
     attackRate: 0.6

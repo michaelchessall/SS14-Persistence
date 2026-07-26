@@ -1,0 +1,43 @@
+- type: entity
+  name: solar legion executive's laser pistol
+  parent: [BaseWeaponBatterySmall, BaseGrandTheftContraband]
+  id: WeaponExecLaser
+  description: A masterfully crafted variant of the NanoTrasen antique laser pistol. Designed to fit the needs and aesthetics of the Solar Legion.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Weapons/Guns/Battery/execlasergun.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-unshaded-4
+      map: ["enum.GunVisualLayers.MagUnshaded"]
+      shader: unshaded
+  - type: Clothing
+    sprite: _Persistence14/Objects/Weapons/Guns/Battery/execlasergun.rsi
+  - type: Gun
+    soundGunshot:
+      path: /Audio/Weapons/Guns/Gunshots/laser_cannon.ogg
+  - type: BatteryAmmoProvider
+    proto: RedMediumLaser
+    fireCost: 100
+  - type: BatterySelfRecharger
+    autoRechargeRate: 40
+  - type: MagazineVisuals
+    magState: mag
+    steps: 5
+    zeroVisible: true
+  - type: Appearance
+  - type: Tag
+    tags:
+    - HighRiskItem
+    - Sidearm
+    - WeaponAntiqueLaser
+    - LaserWeapon
+  - type: StaticPrice
+    price: 750
+  - type: StealTarget
+    stealGroup: WeaponAntiqueLaser
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+    # not putting a BlockMovement component here cause that's funny.

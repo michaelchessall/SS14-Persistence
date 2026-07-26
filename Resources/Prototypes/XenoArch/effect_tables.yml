@@ -4,7 +4,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsRoot
-      weight: 397.0 # Total weights of the table so distribution remains even
+      weight: 403.0 # Total weights of the table so distribution remains even
     # Eventually full size only artifact effects will go here
 
 - type: entityTable
@@ -31,7 +31,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsRoot
-      weight: 397.0 # Total weights of the table so distribution remains even
+      weight: 403.0 # Total weights of the table so distribution remains even
     - !type:NestedSelector
       tableId: XenoArtifactEffectsRootHandheldOnly
       weight: 54.0 # Total weights of the table so distribution remains even
@@ -75,9 +75,9 @@
     - id: XenoArtifactOldCashSpawn
       weight: 8.0
     - id: XenoArtifactChargeBatteryLow
-      weight: 3.0
+      weight: 8.0
     - id: XenoArtifactChargeBattery
-      weight: 0.0 # Here for parity
+      weight: 1.0
     - id: XenoArtifactChemicalPuddle
       weight: 10.0
     - id: XenoArtifactColdWave

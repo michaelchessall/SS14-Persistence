@@ -20,7 +20,7 @@
                       Orientation="Vertical">
                     <controls1:StripeBack
                         MinSize="48 48">
-                        <controls:Label Name="NavDisplayLabel" Text="{controls:Loc 'shuttle-console-display-label'}"
+                        <controls:Label Name="NavStatusLabel" Text="{controls:Loc 'shuttle-console-nav-status'}"
                                VerticalExpand="True"
                                HorizontalAlignment="Center"/>
                     </controls1:StripeBack>
@@ -30,6 +30,11 @@
                                    HorizontalExpand="True"
                                    Margin="3"
                                    Name="ReadonlyDisplay">
+                        <controls:Label Text="{controls:Loc 'shuttle-console-name'}"/>
+                        <controls:Label Name="GridName"
+                               Text="{controls:Loc 'shuttle-console-unknown'}"
+                               HorizontalExpand="True"
+                               Align="Right"/>
                         <controls:Label Text="{controls:Loc 'shuttle-console-position'}"/>
                         <controls:Label Name="GridPosition"
                                Text="0.0, 0.0"
@@ -63,25 +68,27 @@
                     </controls:GridContainer>
                     <controls1:StripeBack
                         MinSize="48 48">
-                        <controls:Label Name="NavSettingsLabel" Text="{controls:Loc 'shuttle-console-nav-settings'}"
+                        <controls:Label Name="NavDisplayLabel" Text="{controls:Loc 'shuttle-console-display-label'}"
                                VerticalExpand="True"
                                HorizontalAlignment="Center"/>
                     </controls1:StripeBack>
-                    <controls:Button Name="IFFToggle"
-                            Text="{controls:Loc 'shuttle-console-iff-toggle'}"
-                            TextAlign="Center"
-                            ToggleMode="True"/>
-                    <controls:Button Name="DockToggle"
-                            Text="{controls:Loc 'shuttle-console-dock-toggle'}"
-                            TextAlign="Center"
-                            ToggleMode="True"/>
-                                   <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                                          <controls:Label Text="{controls:Loc 'shuttle-console-sort-label'}" HorizontalExpand="True"/>
-                                          <controls:OptionButton HorizontalAlignment="Right" Name="SortModeButton" MinWidth="120"/>
-                                   </controls:BoxContainer>
-                    <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                        <controls:Label Text="{controls:Loc 'shuttle-console-damping-label'}" HorizontalExpand="True"/>
-                        <controls:OptionButton HorizontalAlignment="Right" Name="DampingModeButton" MinWidth="120"/>
+                    <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="10">
+                           <controls:CheckBox Name="IFFToggle" Text="{controls:Loc 'shuttle-console-iff-toggle'}" />
+                            <controls:CheckBox Name="DockToggle" Text="{controls:Loc 'shuttle-console-dock-toggle'}" />
                     </controls:BoxContainer>
+                    <controls:Label Text="{controls:Loc 'shuttle-console-sort-label'}" HorizontalExpand="True"/>
+                    <controls:BoxContainer Orientation="Horizontal" HorizontalExpand="True" SeparationOverride="10">
+                           <controls:CheckBox Name="FilterStation" Text="{controls:Loc 'shuttle-console-sort-station'}" />
+                            <controls:CheckBox Name="FilterShip" Text="{controls:Loc 'shuttle-console-sort-ship'}" />
+                            <controls:CheckBox Name="FilterOther" Text="{controls:Loc 'shuttle-console-sort-other'}" />
+                    </controls:BoxContainer>
+                    <controls1:StripeBack
+                        MinSize="48 48">
+                        <controls:Label Name="NavControlsLabel" Text="{controls:Loc 'shuttle-console-nav-controls'}"
+                               VerticalExpand="True"
+                               HorizontalAlignment="Center"/>
+                    </controls1:StripeBack>
+                     <controls:Label Text="{controls:Loc 'shuttle-console-damping-label'}" HorizontalExpand="True"/>
+                     <controls:BoxContainer Name="DampingModeSelectorContainer" MinWidth="120"/>
                 </controls:BoxContainer>
             </controls:BoxContainer>

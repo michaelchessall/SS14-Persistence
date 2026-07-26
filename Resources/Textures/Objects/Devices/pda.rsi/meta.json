@@ -276,6 +276,9 @@
         },
         {
             "name": "pda-rd-SOL"
+        },
+        {
+            "name": "pda-cos-SOL"
         }
     ]
 }

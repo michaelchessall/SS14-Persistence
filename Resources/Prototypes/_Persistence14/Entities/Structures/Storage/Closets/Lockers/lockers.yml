@@ -80,3 +80,16 @@
     stateDoorOpen: rd-SOL_open
     stateDoorClosed: rd-SOL_door
   - type: AccessReader
+  
+# COS
+- type: entity
+  id: LockerChiefOfStaffSOL
+  parent: LockerBaseSecure
+  name: solar legion chief of staff's locker
+  components:
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: cos-SOL
+    stateDoorOpen: cos-SOL_open
+    stateDoorClosed: cos-SOL_door
+  - type: AccessReader

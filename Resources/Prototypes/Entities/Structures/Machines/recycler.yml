@@ -28,9 +28,10 @@
           bounds: "-0.49,-0.49,0.49,0.49"
         hard: true
         mask:
-        - Impassable
+        - MachineMask
         layer:
         - Opaque
+        - MidImpassable
         - BulletImpassable
       conveyor:
         shape: !type:PolygonShape

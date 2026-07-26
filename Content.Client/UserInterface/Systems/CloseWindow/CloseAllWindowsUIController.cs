@@ -1,5 +1,6 @@
 using Content.Client.Gameplay;
 using Content.Client.Info;
+using Content.Shared._Persistence14.UserInterface;
 using Robust.Client.Input;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.Controllers;
@@ -18,6 +19,8 @@ public sealed class CloseAllWindowsUIController : UIController
     {
         _inputManager.SetInputCommand(EngineKeyFunctions.WindowCloseAll,
             InputCmdHandler.FromDelegate(session => CloseAllWindows()));
+
+        SubscribeNetworkEvent<CloseAllWindowsEvent>((_, __) => CloseAllWindows());
     }
 
     private void CloseAllWindows()

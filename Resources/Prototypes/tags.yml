@@ -34,6 +34,9 @@
   id: AppraisalTool # Storage whitelist: BaseClothingBeltEngineering
 
 - type: Tag
+  id: ApcElectronics # ConstructionGraph
+  
+- type: Tag
   id: Apron # ConstructionGraph: scraparmor
 
 - type: Tag
@@ -814,12 +817,6 @@
   id: Ice # CreateEntityTileReaction whitelist on Fresium
 
 - type: Tag
-  id: IFFShip # IFF sort tag for ships.
-
-- type: Tag
-  id: IFFStation # IFF sort tag for stations.
-
-- type: Tag
   id: Igniter # ConstructionGraph: makeshiftstunprod, FireBomb. Common ingredient in machines (HyperConvection)
 
 - type: Tag
@@ -1152,6 +1149,9 @@
   id: PKAUpgrade # UpgradeableGun whitelist for WeaponProtoKineticAccelerator.
 
 - type: Tag
+  id: PlantAnalyzer # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
+
+- type: Tag
   id: PlantBGone # Storage whitelist: ClothingBeltPlant. ItemMapper: ClothingBeltPlant
 
 - type: Tag
@@ -1211,6 +1211,15 @@
 - type: Tag
   id: PowerCellSmall # Storage whitelist: BaseWeaponPowerCell, PowerCellRecharger, ShuttleGunSvalinnMachineGun.
                      # ConstructionGraph: WallmountSubstation, makeshiftstunprod
+
+- type: Tag
+  id: PowerCellMedium
+
+- type: Tag
+  id: PowerCellHigh
+
+- type: Tag
+  id: PowerCellHyper
 
 - type: Tag
   id: Powerdrill # Storage whitelist: BaseClothingBeltEngineering. ItemMapper: BaseClothingBeltEngineering
@@ -1467,6 +1476,9 @@
 
 - type: Tag
   id: TheaterBagel # used for Bagel Station's randomized theater
+
+- type: Tag
+  id: ThrusterWallmountElectronics # ConstructionGraph: WallmountThrusterGraph
 
 - type: Tag
   id: TimerBrigElectronics # ConstructionGraph: Timer
@@ -1754,6 +1766,6 @@
 
 - type: Tag
   id: XenoMeat
-  
+
 - type: Tag
   id: EggSpider

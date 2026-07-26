@@ -52,6 +52,7 @@ public sealed partial class GridConfigWindow : DefaultWindow
     {
         RobustXamlLoader.Load(this);
         ChangeModeBtn.OnPressed += ChangeMode;
+        ChangeModeBtnPersonal.OnPressed += ChangeMode;
 
         PossibleTargets.OnItemSelected += OnTargetSelected;
         GridConnect.OnPressed += OnGridConnect;
@@ -85,14 +86,16 @@ public sealed partial class GridConfigWindow : DefaultWindow
         MaxPersonalClaimTileCount.Text = $"{state.MaxPersonalClaimTileCount - state.CurrentTileCount} available tiles";
         if (state.PersonalMode)
         {
-            ChangeModeBtn.Text = "Station";
+            ChangeModeBtn.Pressed = false;
+            ChangeModeBtnPersonal.Pressed = true;
             PossibleTargets.Visible = false;
             TargetNameLabel.Text = $"Target Person: {targetName}";
         }
         else
         {
             TargetNameLabel.Text = "Target Station: ";
-            ChangeModeBtn.Text = "Personal";
+            ChangeModeBtn.Pressed = true;
+            ChangeModeBtnPersonal.Pressed = false;
             PossibleTargets.Clear();
             PossibleTargets.Visible = true;
             PossibleTargets.AddItem("None", 0);

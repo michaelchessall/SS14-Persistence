@@ -139,6 +139,61 @@
         id: SheetPaper
         amount: 3
 
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMaterialCopper
+  name: copper crate
+  description: A crate of copper bars.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: IngotCopper
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMaterialTin
+  name: tin crate
+  description: A crate of tin bars.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: IngotTin
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMaterialAluminium
+  name: aluminum crate
+  description: A crate of aluminum sheets.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: SheetAluminium
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMaterialTitanium
+  name: titanium crate
+  description: A crate of titanium sheets.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: SheetTitanium
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMaterialPhoron
+  name: phoron crate
+  description: A crate of phoron.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: MaterialPhoron
+
 - type: entityTable
   id: RandomMaterialCrateTable
   table: !type:GroupSelector

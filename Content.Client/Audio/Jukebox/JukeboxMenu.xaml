@@ -1,20 +1,37 @@
 <ui:FancyWindow xmlns="https://spacestation14.io" xmlns:ui="clr-namespace:Content.Client.UserInterface.Controls"
-                SetSize="400 500" Title="{Loc 'jukebox-menu-title'}">
-    <BoxContainer Margin="4 0" Orientation="Vertical">
-        <ScrollContainer MinHeight="350">
+                SetSize="440 640" Title="{Loc 'jukebox-menu-title'}">
+    <BoxContainer Margin="4 0" Orientation="Vertical" VerticalExpand="True">
+        <ScrollContainer VerticalExpand="True" SizeFlagsStretchRatio="3">
             <ItemList Name="MusicList" SelectMode="Button" Margin="3 3 3 3"
-            HorizontalExpand="True" VerticalExpand="True" SizeFlagsStretchRatio="8"/>
+            HorizontalExpand="True" VerticalExpand="True"/>
         </ScrollContainer>
+        <BoxContainer Orientation="Horizontal" Margin="0 4 0 0">
+            <Button Name="QueueButton" Text="{Loc 'jukebox-menu-buttonqueue'}" />
+            <Button Name="ClearQueueButton" Text="{Loc 'jukebox-menu-buttonclearqueue'}" Margin="6 0 0 0" />
+        </BoxContainer>
         <BoxContainer Orientation="Vertical">
             <Label Name="SongSelected" Text="{Loc 'jukebox-menu-selectedsong'}" />
             <Label Name="SongName" Text="---" />
             <Slider Name="PlaybackSlider" HorizontalExpand="True" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal" HorizontalExpand="True"
-        VerticalExpand="False" SizeFlagsStretchRatio="1">
+        VerticalExpand="False" SizeFlagsStretchRatio="1" Margin="0 6 0 0">
             <Button Name="PlayButton" Text="{Loc 'jukebox-menu-buttonplay'}" />
             <Button Name="StopButton" Text="{Loc 'jukebox-menu-buttonstop'}" />
             <Label Name="DurationLabel" Text="00:00 / 00:00" HorizontalAlignment="Right" HorizontalExpand="True"/>
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" Margin="0 6 0 0">
+            <Label Text="{Loc 'jukebox-menu-volume'}" VerticalAlignment="Center" Margin="0 0 6 0" />
+            <Slider Name="VolumeSlider" MinValue="1" MaxValue="10" Value="7" Rounded="True" RoundingDecimals="0" HorizontalExpand="True" />
+            <Label Name="VolumeValue" Text="7" MinWidth="24" HorizontalAlignment="Right" Margin="6 0 0 0" />
+        </BoxContainer>
+        <Label Text="{Loc 'jukebox-menu-queue-title'}" Margin="0 6 0 0"/>
+        <ScrollContainer VerticalExpand="True" SizeFlagsStretchRatio="1">
+            <ItemList Name="QueueList" Margin="3 3 3 3" HorizontalExpand="True" VerticalExpand="True" />
+        </ScrollContainer>
+        <BoxContainer Orientation="Horizontal" Margin="0 6 0 0">
+            <Button Name="ShuffleToggle" ToggleMode="True" Text="{Loc 'jukebox-menu-shuffle'}" />
+            <Button Name="RepeatSongToggle" ToggleMode="True" Text="{Loc 'jukebox-menu-repeat-song'}" Margin="6 0 0 0" />
         </BoxContainer>
     </BoxContainer>
 </ui:FancyWindow>

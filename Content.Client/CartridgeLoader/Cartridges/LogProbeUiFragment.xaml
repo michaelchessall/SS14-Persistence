@@ -1,4 +1,4 @@
-﻿ <cartridges:LogProbeUiFragment xmlns="https://spacestation14.io"
+ <cartridges:LogProbeUiFragment xmlns="https://spacestation14.io"
                                 xmlns:cartridges="clr-namespace:Content.Client.CartridgeLoader.Cartridges"
                                 xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                                 Orientation="Vertical"

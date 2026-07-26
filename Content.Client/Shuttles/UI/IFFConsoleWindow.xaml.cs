@@ -81,6 +81,7 @@ public sealed partial class IFFConsoleWindow : FancyWindow,
             return;
 
         DesignationOptionButton.Clear();
+        DesignationOptionButton.AddItem(Loc.GetString("iff-console-designation-other"), (int)IFFDesignation.Other);
         DesignationOptionButton.AddItem(Loc.GetString("iff-console-designation-ship"), (int)IFFDesignation.Ship);
         DesignationOptionButton.AddItem(Loc.GetString("iff-console-designation-station"), (int)IFFDesignation.Station);
         _designationOptionsLoaded = true;

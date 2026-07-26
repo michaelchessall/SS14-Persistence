@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 
@@ -87,18 +88,16 @@ public abstract partial class SharedShuttleSystem
         UpdateIFFInterfaces(gridUid, component);
     }
 
-    public bool MatchesSortTag(IFFComponent? component, IFFSortMode sortMode)
+    public bool MatchesSortTags(IFFComponent? component, IFFSortMode sortMode)
     {
         if (sortMode == IFFSortMode.None)
-            return true;
+            return false;
 
-        if (component == null)
-            return sortMode == IFFSortMode.Ship;
-
-        var tag = sortMode == IFFSortMode.Station
-            ? IFFComponent.SortTagStation
-            : IFFComponent.SortTagShip;
-
-        return component.HasSortTag(tag);
+        return component?.Designation switch
+        {
+            IFFDesignation.Station => sortMode.HasFlag(IFFSortMode.Station),
+            IFFDesignation.Ship => sortMode.HasFlag(IFFSortMode.Ship),
+            _ => sortMode.HasFlag(IFFSortMode.Other),
+        };
     }
 }

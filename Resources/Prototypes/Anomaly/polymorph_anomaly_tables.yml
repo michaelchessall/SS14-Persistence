@@ -1,0 +1,374 @@
+# To add a new possible polymorph outcome for the Polymorph anomaly, just add another
+# entry below. `polymorph` must point at a `polymorph` prototype
+# (see Resources/Prototypes/Polymorphs/anomaly_polymorphs.yml and polymorph.yml), `weight`
+# controls how often it's picked relative to the other entries, and minDuration/maxDuration
+# control how long a victim stays transformed if this entry is rolled (higher anomaly severity
+# biases the roll towards max).
+#
+# Deliberately excluded from this table: silicon/robot mobs (borgs, hivebots, etc.) and any
+# playable species (human, lizard-person, moth, etc.) - only animals and non-playable monsters
+# are eligible outcomes.
+
+- type: polymorphAnomalyTable
+  id: DefaultPolymorphAnomalyTable
+  options:
+  - polymorph: Chicken
+    weight: 6
+    minDuration: 30
+    maxDuration: 120
+  - polymorph: Mouse
+    weight: 6
+    minDuration: 30
+    maxDuration: 300
+  - polymorph: ArtifactMonkey
+    weight: 6
+    minDuration: 60
+    maxDuration: 600
+  - polymorph: ArtifactAnomalyCow
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyGoat
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyDuck
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyPig
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyGoose
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyFrog
+    weight: 5
+    minDuration: 20
+    maxDuration: 300
+  - polymorph: ArtifactAnomalySnake
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyCrab
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyPossum
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyRaccoon
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyFox
+    weight: 5
+    minDuration: 60
+    maxDuration: 420
+  - polymorph: ArtifactAnomalyCat
+    weight: 5
+    minDuration: 60
+    maxDuration: 420
+  - polymorph: ArtifactAnomalyCorgi
+    weight: 5
+    minDuration: 60
+    maxDuration: 420
+  - polymorph: ArtifactAnomalyHamster
+    weight: 5
+    minDuration: 120
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyParrot
+    weight: 5
+    minDuration: 60
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyPenguin
+    weight: 5
+    minDuration: 60
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyKangaroo
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyBat
+    weight: 4
+    minDuration: 60
+    maxDuration: 240
+  - polymorph: ArtifactAnomalyBee
+    weight: 4
+    minDuration: 60
+    maxDuration: 240
+  - polymorph: ArtifactAnomalySlug
+    weight: 4
+    minDuration: 60
+    maxDuration: 240
+  - polymorph: ArtifactLizard
+    weight: 3
+    minDuration: 30
+    maxDuration: 120
+  - polymorph: ArtifactLuminous
+    weight: 3
+    minDuration: 180
+    maxDuration: 600
+  - polymorph: ArtifactAnomalyGiantSpider
+    weight: 3
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyCarp
+    weight: 4
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyShark
+    weight: 2
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalySlimeBlue
+    weight: 4
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalySlimeGreen
+    weight: 4
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalySlimeYellow
+    weight: 4
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyWatcher
+    weight: 2
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyFleshGolem
+    weight: 3
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyTick
+    weight: 2
+    minDuration: 300
+    maxDuration: 360
+  - polymorph: ArtifactAnomalySnail
+    weight: 4
+    minDuration: 30
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyCobra
+    weight: 3
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyBear
+    weight: 3
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyGoliath
+    weight: 1
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyBasilisk
+    weight: 1
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyRavager
+    weight: 2
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyXenoDrone
+    weight: 1
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyXenoRunner
+    weight: 3
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyXenoSpitter
+    weight: 3
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyAbomination
+    weight: 4
+    minDuration: 300
+    maxDuration: 1200
+  - polymorph: ArtifactAnomalyHivelord
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyRatKing
+    weight: 0.5
+    minDuration: 600
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyXenoQueen
+    weight: 1
+    minDuration: 600
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyHellspawn
+    weight: 0.5
+    minDuration: 900
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyQuartzCrab
+    weight: 4
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalyIronCrab
+    weight: 4
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalyCoalCrab
+    weight: 4
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalyUraniumCrab
+    weight: 4
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalyBananiumCrab
+    weight: 1
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalySilverCrab
+    weight: 4
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalyGoldCrab
+    weight: 4
+    minDuration: 120
+    maxDuration: 480
+  - polymorph: ArtifactAnomalyKobold
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyGorilla
+    weight: 4
+    minDuration: 180
+    maxDuration: 600
+  - polymorph: ArtifactAnomalyCockroach
+    weight: 6
+    minDuration: 30
+    maxDuration: 60
+  - polymorph: ArtifactAnomalyGlockroach
+    weight: 4
+    minDuration: 30
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyMothroach
+    weight: 6
+    minDuration: 30
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyReindeer
+    weight: 5
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyBoxingKangaroo
+    weight: 4
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyMimic
+    weight: 3
+    minDuration: 60
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyMoproach
+    weight: 4
+    minDuration: 60
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyScurret
+    weight: 4
+    minDuration: 300
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyEmotionalSupportScurret
+    weight: 3
+    minDuration: 420
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyClownSpider
+    weight: 2
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyCarpHolo
+    weight: 3
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyCarpRainbow
+    weight: 1
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyLuminousObject
+    weight: 3
+    minDuration: 30
+    maxDuration: 60
+  - polymorph: ArtifactAnomalyLuminousEntity
+    weight: 3
+    minDuration: 30
+    maxDuration: 60
+  - polymorph: ArtifactAnomalyTomatoKiller
+    weight: 2
+    minDuration: 180
+    maxDuration: 600
+  - polymorph: ArtifactAnomalyArgocyteSlurva
+    weight: 3
+    minDuration: 30
+    maxDuration: 60
+  - polymorph: ArtifactAnomalyArgocyteBarrier
+    weight: 3
+    minDuration: 60
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyArgocyteSkitter
+    weight: 3
+    minDuration: 60
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyArgocyteSwiper
+    weight: 3
+    minDuration: 60
+    maxDuration: 120
+  - polymorph: ArtifactAnomalyArgocyteMolder
+    weight: 2
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyArgocyteGlider
+    weight: 2
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyArgocyteHarvester
+    weight: 2
+    minDuration: 300
+    maxDuration: 900
+  - polymorph: ArtifactAnomalyHivelordBrood
+    weight: 5
+    minDuration: 30
+    maxDuration: 300
+  - polymorph: ArtifactAnomalyBehonkerElectrical
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyBehonkerPyro
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyBehonkerGrav
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyBehonkerIce
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyArgocytePouncer
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyArgocyteCrawler
+    weight: 1
+    minDuration: 600
+    maxDuration: 1500
+  - polymorph: ArtifactAnomalyArgocyteEnforcer
+    weight: 1
+    minDuration: 600
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyArgocyteFounder
+    weight: 1
+    minDuration: 900
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyArgocyteLeviathing
+    weight: 0.5
+    minDuration: 900
+    maxDuration: 1800
+  - polymorph: ArtifactAnomalyLaserRaptor
+    weight: 0.5
+    minDuration: 900
+    maxDuration: 1800

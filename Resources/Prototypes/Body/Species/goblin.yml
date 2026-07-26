@@ -117,8 +117,6 @@
       Male: MaleGoblin
       Female: FemaleGoblin
       Unsexed: MaleGoblin
-  - type: ReplacementAccent
-    accent: goblin_accent
 
 - type: entity
   parent: OrganBase

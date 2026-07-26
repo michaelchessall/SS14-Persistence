@@ -160,8 +160,17 @@
       amount: 5
   group: Precipitate
   effects:
-    - !type:SpawnEntity
-      entity: ShardCrystalRandom
+    - !type:SpawnTable
+      table: !type:RandomTableGroupSelector
+        children:
+        - prototype: ShardCrystalGreen
+        - prototype: ShardCrystalPink
+        - prototype: ShardCrystalOrange
+        - prototype: ShardCrystalBlue
+        - prototype: ShardCrystalCyan
+        - prototype: ShardCrystalYellow
+        - prototype: ShardCrystalBlack
+        - prototype: ShardCrystalGrey
 
 - type: reaction
   id: Gunpowder

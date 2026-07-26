@@ -1,0 +1,3 @@
+nectar-effect-relaxed = You feel very relaxed
+nectar-effect-no-thoughts = You struggle to concentrate...
+nectar-effect-sounds = Everything sounds a bit distant.

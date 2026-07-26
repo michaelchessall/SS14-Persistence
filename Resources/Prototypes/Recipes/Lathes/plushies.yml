@@ -1,6 +1,8 @@
 - type: latheRecipe
   abstract: true
   id: BasePlushieRecipe
+  categories:
+  - Plushies
   completetime: 5
   materials:
     Cloth: 300
@@ -8,6 +10,7 @@
 
 - type: latheRecipe
   abstract: true
+  parent: BasePlushieRecipe
   id: BaseSpecifiedPlushieRecipe
   completetime: 5
   materials:
@@ -18,6 +21,8 @@
 - type: latheRecipe
   abstract: true
   id: BaseWehPlushieRecipe
+  categories:
+  - WehPlushies
   completetime: 5
   materials:
     Cloth: 300
@@ -51,6 +56,7 @@
 
 - type: latheRecipe
   id: PlushieLamp
+  parent: BasePlushieRecipe
   result: PlushieLamp
   completetime: 5
   materials:
@@ -69,12 +75,18 @@
   result: PlushieLizard
 
 - type: latheRecipe
-  parent: BaseWehPlushieRecipe
+  parent: BasePlushieRecipe
   id: PlushieExperiment
   result: PlushieExperiment
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
 
 - type: latheRecipe
   id: PlushieRainbowLizard
+  parent: BaseWehPlushieRecipe
   result: PlushieRainbowLizard
   completetime: 5
   materials:
@@ -95,6 +107,7 @@
 
 - type: latheRecipe
   id: PlushieLizardInversed
+  parent: BaseWehPlushieRecipe
   result: PlushieLizardInversed
   completetime: 5
   materials:
@@ -134,12 +147,18 @@
   result: PlushieNar
 
 - type: latheRecipe
-  parent: BaseWehPlushieRecipe
+  parent: BasePlushieRecipe
   id: PlushieCarp
   result: PlushieCarp
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
 
 - type: latheRecipe
   id: PlushieMagicarp
+  parent: BasePlushieRecipe
   result: PlushieMagicarp
   completetime: 5
   materials:
@@ -150,6 +169,7 @@
 
 - type: latheRecipe
   id: PlushieRainbowCarp
+  parent: BasePlushieRecipe
   result: PlushieRainbowCarp
   completetime: 5
   materials:
@@ -160,6 +180,7 @@
 
 - type: latheRecipe
   id: PlushieHolocarp
+  parent: BasePlushieRecipe
   result: PlushieHolocarp
   completetime: 5
   materials:
@@ -204,9 +225,14 @@
   result: PlushiePenguin
 
 - type: latheRecipe
-  parent: BaseWehPlushieRecipe
+  parent: BasePlushieRecipe
   id: PlushieHuman
   result: PlushieHuman
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
 
 - type: latheRecipe
   parent: BasePlushieRecipe
@@ -220,12 +246,83 @@
 
 - type: latheRecipe
   id: PlushieMeera
+  parent: BasePlushieRecipe
   result: PlushieMeera
   completetime: 5
   materials:
     Cloth: 300
     Cotton: 1000
     Pyrotton: 500
+
+- type: latheRecipe
+  id: PlushieLlewellyn
+  parent: BasePlushieRecipe
+  result: PlushieLlewellyn
+  completetime: 5
+  materials:
+    Cloth: 500
+    Cotton: 1000
+    Plastic: 50
+
+- type: latheRecipe
+  id: PlushieDawn
+  parent: BasePlushieRecipe
+  result: PlushieDawn
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Pyrotton: 800
+
+- type: latheRecipe
+  id: PlushieAna
+  parent: BasePlushieRecipe
+  result: PlushieAna
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Plasma: 50
+
+- type: latheRecipe
+  id: PlushieKamryn
+  parent: BasePlushieRecipe
+  result: PlushieKamryn
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Steel: 100
+
+- type: latheRecipe
+  id: PlushieCade
+  parent: BasePlushieRecipe
+  result: PlushieCade
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 30
+
+- type: latheRecipe
+  id: PlushieDies
+  parent: BaseWehPlushieRecipe
+  result: PlushieDies
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    PlasmaGlass: 50
+
+- type: latheRecipe
+  id: PlushieIsolde
+  parent: BasePlushieRecipe
+  result: PlushieIsolde
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Durathread: 50
 
 - type: latheRecipe
   parent: BasePlushieRecipe
@@ -236,3 +333,258 @@
   parent: BasePlushieRecipe
   id: ToyAmongPequeno
   result: ToyAmongPequeno
+
+
+#the Weh zone
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehAtmos
+  result: PlushieLizardJobAtmospherictechnician
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehBar
+  result: PlushieLizardJobBartender
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehBot
+  result: PlushieLizardJobBotanist
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehCap
+  result: PlushieLizardJobCaptain
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Durathread: 50
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehCargo
+  result: PlushieLizardJobCargotechnician
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehChap
+  result: PlushieLizardJobChaplain
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehChef
+  result: PlushieLizardJobChef
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehChem
+  result: PlushieLizardJobChemist
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehCE
+  result: PlushieLizardJobChiefengineer
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Durathread: 50
+
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehCMO
+  result: PlushieLizardJobChiefmedicalofficer
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Durathread: 50
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehClown
+  result: PlushieLizardJobClown
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehDet
+  result: PlushieLizardJobDetective
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehHoP
+  result: PlushieLizardJobHeadofpersonnel
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Durathread: 50
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehHoS
+  result: PlushieLizardJobHeadofsecurity
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehJani
+  result: PlushieLizardJobJanitor
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehLaw
+  result: PlushieLizardJobLawyer
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehLib
+  result: PlushieLizardJobLibrarian
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehMed
+  result: PlushieLizardJobMedicaldoctor
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehMI
+  result: PlushieLizardJobMedicalintern
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehMime
+  result: PlushieLizardJobMime
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehMusic
+  result: PlushieLizardJobMusician
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehPara
+  result: PlushieLizardJobParamedic
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehTide
+  result: PlushieLizardJobPassenger
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehPsyc
+  result: PlushieLizardJobPsychologist
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehQM
+  result: PlushieLizardJobQuartermaster
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Durathread: 50
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehReport
+  result: PlushieLizardJobReporter
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehRA
+  result: PlushieLizardJobResearchassistant
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehRD
+  result: PlushieLizardJobResearchdirector
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Biomass: 10
+    Durathread: 50
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehSalv
+  result: PlushieLizardJobSalvagespecialist
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehSci
+  result: PlushieLizardJobScientist
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehCadet
+  result: PlushieLizardJobSecuritycadet
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehSec
+  result: PlushieLizardJobSecurityofficer
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehService
+  result: PlushieLizardJobServiceworker
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehEngi
+  result: PlushieLizardJobStationengineer
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehTA
+  result: PlushieLizardJobTechnicalassistant
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehWard
+  result: PlushieLizardJobWarden
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: WehZoo
+  result: PlushieLizardJobZookeeper
+
+- type: latheRecipe
+  parent: BaseWehPlushieRecipe
+  id: MULTIWEH
+  result: PlushieLizardJobMultiweh
+  completetime: 60
+  materials:
+    Cloth: 10000
+    Cotton: 100000
+    Pyrotton: 100000
+    Biomass: 100
+    Durathread: 100
+    Plasma: 100
+    Steel: 100
+    Glass: 100
+    ReinforcedGlass: 100
+    PlasmaGlass: 100
+    Uranium: 100
+    UraniumGlass: 100
+    Bananium: 150
+    Titanium: 100
+    Diamond: 100
+    Bronze: 100
+    Phoron: 1000
+    PhoronGlass: 100
+    Paper: 100
+    Cardboard: 100
+
+
+

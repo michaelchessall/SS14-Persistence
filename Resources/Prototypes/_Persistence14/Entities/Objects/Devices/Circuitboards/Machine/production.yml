@@ -1,0 +1,16 @@
+﻿- type: entity
+  id: SolarLegionTechFabCircuitboard
+  parent: BaseMachineCircuitboard
+  name: solar legion techfab machine board
+  description: A machine printed circuit board for a solar legion techfab.
+  components:
+    - type: Sprite
+      state: command
+    - type: MachineBoard
+      prototype: SolarLegionTechFab
+      stackRequirements:
+        Manipulator: 4
+      tagRequirements:
+        GlassBeaker:
+          amount: 2
+          defaultPrototype: Beaker

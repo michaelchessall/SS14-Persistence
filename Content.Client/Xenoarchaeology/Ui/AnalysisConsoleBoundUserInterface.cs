@@ -34,6 +34,10 @@ public sealed class AnalysisConsoleBoundUserInterface(EntityUid owner, Enum uiKe
         {
             SendMessage(new AnalysisConsoleExtractButtonPressedMessage());
         };
+        _consoleMenu.OnCycleArtifactPressed += forward =>
+        {
+            SendMessage(new AnalysisConsoleCycleArtifactMessage(forward));
+        };
     }
 
     /// <summary>

@@ -337,13 +337,10 @@
   parent: ClothingBackpackClown
   id: ClothingBackpackCluwne
   name: jiggles von jonkerton
-  suffix: Unremoveable
   description: It's a backpack made by Jonk! Co.
   components:
   - type: Sprite
     sprite: Clothing/Back/Backpacks/cluwne.rsi
-  - type: Unremoveable
-    deleteOnDrop: false
 
 - type: entity
   parent: ClothingBackpack

@@ -101,6 +101,30 @@
     FoodTomato: 1
     FoodOnionSlice: 2
 
+- type: microwaveMealRecipe
+  id: RecipeBloodredBurger
+  name: bloodred_burger_recipe
+  result: FoodBurgerBloodred
+  time: 15
+  group: Savory
+  reagents:
+    Ketchup: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 2
+    FoodCabbage: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWeedChicken
+  name: weed_chicken_recipe
+  result: FoodWeedChicken
+  time: 10
+  group: Savory
+  solids:
+    FoodMeatChickenCutlet: 1
+    LeavesCannabis: 1
+
+
 - type: microwaveMealRecipe #Added to metamorph recipes
   id: RecipeBrainBurger
   name: brain_burger_recipe
@@ -679,6 +703,16 @@
   group: Savory
   solids:
     FoodOnionSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeOnionGoggles
+  name: onion_Goggles_recipe
+  result: ClothingEyesHudFriedOnion
+  time: 15
+  group: Savory
+  solids:
+    FoodOnionSlice: 2
+    ClothingEyesGlasses: 1
 
 #Pizzas TODO: contruction graph based pizza
 - type: microwaveMealRecipe
@@ -1553,6 +1587,19 @@
     FoodButterSlice: 1
 
 - type: microwaveMealRecipe
+  id: RecipeNukeCookie
+  name: nuke_cookie_recipe
+  result: FoodBakedCookieNuke
+  time: 5
+  group: BarsAndCookies
+  reagents:
+    Flour: 5
+    Sugar: 5
+    Milk: 5
+  solids:
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
   id: RecipeRaisinCookie
   name: raisin_cookie_recipe
   result: FoodBakedCookieRaisin
@@ -1575,6 +1622,32 @@
     Sugar: 5
   solids:
     FoodButterSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeBananaCookie
+  name: banana_cookie_recipe
+  result: FoodBakedCookieBanana
+  time: 5
+  group: BarsAndCookies
+  reagents:
+    Flour: 5
+    Sugar: 5
+  solids:
+    FoodButterSlice: 1
+    FoodBanana: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCottonCookie
+  name: cotton_cookie_recipe
+  result: FoodBakedCookieCotton
+  time: 5
+  group: BarsAndCookies
+  reagents:
+    Flour: 5
+    Sugar: 5
+    Fiber: 5
+  solids:
+    CottonBol: 1
 
 - type: microwaveMealRecipe
   id: RecipeChocolateChipPancake
@@ -1889,6 +1962,17 @@
   group: Savory
   solids:
     FoodDonkpocketCarp: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFoodPaste
+  name: food_paste_recipe
+  result: FoodPaste
+  time: 15
+  group: Savory
+  solids:
+    FoodOnionSlice: 1
+    FoodMeat: 1
+    DrinkGlass: 1
 
 - type: microwaveMealRecipe
   id: RecipeDonkpocketMoth

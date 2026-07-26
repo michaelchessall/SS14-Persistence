@@ -156,4 +156,17 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
-  - type: BlockMovement
+  
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatHatCosSOL
+  name: solar legion chief of staff's cap
+  description: A dark blue hat with silver laurels attached denoting the wearer's rank as a member of Solar Legion command.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/coscap.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/coscap.rsi
+  - type: Tag
+    tags:
+    - CorgiWearable

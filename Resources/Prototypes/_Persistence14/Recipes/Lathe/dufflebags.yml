@@ -1,0 +1,104 @@
+# Civilian Duffel Bags
+- type: latheRecipe
+  id: Duffel
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffel
+
+- type: latheRecipe
+  id: DuffelEngineering
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelEngineering
+
+- type: latheRecipe
+  id: DuffelAtmospherics
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelAtmospherics
+
+- type: latheRecipe
+  id: DuffelMedical
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelMedical
+
+- type: latheRecipe
+  id: DuffelClown
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelClown
+
+- type: latheRecipe
+  id: DuffelChemistry
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelChemistry
+
+- type: latheRecipe
+  id: DuffelVirology
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelVirology
+
+- type: latheRecipe
+  id: DuffelGenetics
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelGenetics
+
+- type: latheRecipe
+  id: DuffelMime
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelMime
+
+- type: latheRecipe
+  id: DuffelScience
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelScience
+
+- type: latheRecipe
+  id: DuffelHydroponics
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelHydroponics
+
+- type: latheRecipe
+  id: DuffelCargo
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelCargo
+
+- type: latheRecipe
+  id: DuffelSalvage
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelSalvage
+
+
+# Command Duffel Bags
+- type: latheRecipe
+  id: DuffelCaptain
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelCaptain
+
+- type: latheRecipe
+  id: DuffelSecurity
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelSecurity
+
+- type: latheRecipe
+  id: DuffelBrigmedic
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelBrigmedic
+
+
+# Contraband Duffel Bags
+- type: latheRecipe
+  id: DuffelSyndicate
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelSyndicate
+
+- type: latheRecipe
+  id: DuffelSyndicateAmmo
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelSyndicateAmmo
+
+- type: latheRecipe
+  id: DuffelSyndicateMedical
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelSyndicateMedical
+
+- type: latheRecipe
+  id: DuffelCBURN
+  parent: BaseDuffelBag
+  result: ClothingBackpackDuffelCBURN

@@ -11,6 +11,17 @@
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtTanClerkSOL
+  name: solar legion clerk's tan jumpskirt
+  description: A formal jumpskirt with Solar Legion colorations. Worn by members of the Bureaucratic department. Now in tan!
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/clerktan.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/clerktan.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtChiefEngineerSOL
   name: solar legion chief engineer's jumpskirt
   description: It's a high visibility jumpskirt given to those engineers insane enough to achieve the rank of Chief Engineer within the Solar Legion.
@@ -96,3 +107,25 @@
     sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/rndturtle.rsi
   - type: Clothing
     sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/rndturtle.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCosSOL
+  name: solar legion chief of staff's skirt
+  description: It's a blue jumpskirt with Solar Legion colorations. The silver trims denote the wearer as the head of a Solar Legion bureaucracy department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cos.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cos.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCosTurtleSOL
+  name: solar legion chief of staff's turtleneck dress
+  description: It's a very comfortable dark blue dress with Solar Legion colorations. The silver trims on the cuffs denote the wearer as the head of a Solar Legion bureaucracy department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cos_turtle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cos_turtle.rsi

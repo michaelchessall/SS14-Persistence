@@ -2,46 +2,581 @@
   id: APC
   start: start
   graph:
-    - node: start
-      edges:
-        - to: apcFrame
-          steps:
-            - material: Steel
-              amount: 3
-              doAfter: 2
+  - node: start
+    edges:
+    - to: apc-frame
+      steps:
+      - material: Steel
+        amount: 3
+        doAfter: 2
+  
+  - node: apc-frame
+    entity: APCFrame
+    actions: 
+    - !type:AppearanceChange
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 3
+      - !type:DeleteEntity {}
 
-    - node: apcFrame
-      entity: APCFrame
-      edges:
-        - to: apc
-          steps:
-            - component: ApcElectronics
-              name: construction-graph-component-apc-electronics
-              icon:
-                sprite: "Objects/Misc/module.rsi"
-                state: "charger_APC"
-              doAfter: 2
-        - to: start
-          completed:
-            - !type:GivePrototype
-              prototype: SheetSteel1
-              amount: 3
-            - !type:DeleteEntity {}
-          steps:
-            - tool: Screwing
-              doAfter: 2
+    - to: apc-cable-lv
+      steps:
+      - material: Cable
+        amount: 2
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/id_insert.ogg
+    - to: apc-cable-mv
+      steps:
+      - material: CableMV
+        amount: 2
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/id_insert.ogg
+    - to: apc-cable-hv
+      steps:
+      - material: CableHV
+        amount: 2
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/id_insert.ogg
 
-    - node: apc
-      entity: APCConstructed
-      edges:
-        - to: apcFrame
-          completed:
-            - !type:GivePrototype
-              prototype: APCElectronics
-              amount: 1
-          conditions:
-            - !type:WirePanel
-              open: true
-          steps:
-            - tool: Prying
-              doAfter: 4
+  ### LV APC (Standard APC) ###
+  - node: apc-cable-lv
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-frame
+      steps:
+      - tool: Cutting
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: CableApcStack1
+        amount: 2
+      - !type:PlaySound
+        sound: /Audio/Items/wirecutter.ogg
+
+    - to: apc-lv-board
+      steps:
+      - tag: ApcElectronics
+        store: board
+        name: construction-graph-component-apc-electronics
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: charger_APC
+        doAfter: 2
+
+  - node: apc-lv-board
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-cable-lv
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyContainer
+        container: board
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-lv-cell-ready
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriveropen.ogg
+    
+  - node: apc-lv-cell-ready
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-lv-board
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+    
+    - to: apc-standard-open
+      steps:
+      - tag: PowerCellSmall
+        store: powercell
+        name: construction-graph-component-power-cell
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: small
+        doAfter: 2
+
+  # STANDARD APC #
+  - node: apc-standard-open
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-lv-cell-ready
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyContainer
+        container: powercell
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+
+    - to: apc-standard
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+  
+  - node: apc-standard
+    entity: APCConstructed
+    edges:
+    - to: apc-lv-cell-ready
+      steps:
+      - tool: Prying
+        doAfter: 1
+      conditions:
+      - !type:WirePanel
+        open: true
+      completed:
+      - !type:EmptyContainer
+        container: powercell
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+
+  ## MV APC (Medium and High Capacity APCs) ##
+  - node: apc-cable-mv
+    entity: APCFrame
+    actions: 
+    - !type:AppearanceChange
+    edges:
+    - to: apc-frame
+      steps:
+      - tool: Cutting
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: CableMVStack1
+        amount: 2
+      - !type:PlaySound
+        sound: /Audio/Items/wirecutter.ogg
+    
+    - to: apc-mv-board
+      steps:
+      - tag: ApcElectronics
+        store: board
+        name: construction-graph-component-apc-electronics
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: charger_APC
+        doAfter: 2
+    
+  - node: apc-mv-board
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-cable-mv
+      steps:
+      - tool: Prying
+        doAfter: 2
+      completed:
+      - !type:EmptyContainer
+        container: board
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+      
+    - to: apc-mv-cell-ready
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriveropen.ogg
+  
+  - node: apc-mv-cell-ready
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-mv-board
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+
+    - to: apc-medium-open
+      steps:
+      - tag: PowerCellMedium
+        store: powercell
+        name: construction-graph-component-medium-power-cell
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: medium
+        doAfter: 2
+    
+    - to: apc-high-open
+      steps:
+      - tag: PowerCellHigh
+        store: powercell
+        name: construction-graph-component-high-power-cell
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: high
+        doAfter: 2
+
+  # Medium APC
+  - node: apc-medium-open
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-mv-cell-ready
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyContainer
+        container: powercell
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-medium
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+  
+  - node: apc-medium
+    entity: APCMediumCapacity
+    edges:
+    - to: apc-mv-cell-ready
+      steps:
+      - tool: Prying
+        doAfter: 1
+      conditions:
+      - !type:WirePanel
+        open: true
+      completed:
+      - !type:EmptyContainer
+        container: powercell
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+  
+  # High Capacity APC #
+  - node: apc-high-open
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-mv-cell-ready
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyContainer
+        container: powercell
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+
+    - to: apc-high-plating
+      steps:
+      - material: Steel
+        amount: 1
+        doAfter: 1
+  
+  - node: apc-high-plating
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-high-open
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-high-plating-welded
+      steps:
+      - tool: Welding
+        doAfter: 3
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Items/welder.ogg
+  
+  - node: apc-high-plating-welded
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-high-plating
+      steps:
+      - tool: Welding
+        doAfter: 3
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Items/welder.ogg
+    - to: apc-high-open
+      steps:
+      - tool: Prying
+        doAfter: 6
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-high
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+
+  - node: apc-high
+    entity: APCHighCapacity
+    edges:
+    - to: apc-high-plating
+      steps:
+      - tool: Welding
+        doAfter: 3
+      conditions:
+      - !type:WirePanel
+        open: true
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Items/welder.ogg
+    - to: apc-high-open
+      steps:
+      - tool: Prying
+        doAfter: 6
+      conditions:
+      - !type:WirePanel
+        open: true
+      completed:
+      - !type:GivePrototype
+        prototype: SheetSteel1
+        amount: 1
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+  
+  ## HV APC (Hyper Capacity APC) ##
+  - node: apc-cable-hv
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-frame
+      steps:
+      - tool: Cutting
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: CableHVStack1
+        amount: 2
+      - !type:PlaySound
+        sound: /Audio/Items/wirecutter.ogg
+    
+    - to: apc-hv-board
+      steps:
+      - tag: ApcElectronics
+        store: board
+        name: construction-graph-component-apc-electronics
+        icon:
+          sprite: Objects/Misc/module.rsi
+          state: charger_APC
+        doAfter: 2
+  
+  - node: apc-hv-board
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-cable-hv
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyContainer
+        container: board
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+  
+    - to: apc-hv-cell-ready
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriveropen.ogg
+  
+  - node: apc-hv-cell-ready
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-hv-board
+      steps:
+      - tool: Screwing
+        doAfter: 2
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+
+    - to: apc-hyper-open
+      steps:
+      - tag: PowerCellHyper
+        store: powercell
+        name: construction-graph-component-hyper-power-cell
+        icon:
+          sprite: Objects/Power/power_cells.rsi
+          state: hyper
+        doAfter: 2
+
+  
+  # Hyper Capacity APC #
+  - node: apc-hyper-open
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-hv-cell-ready
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:EmptyContainer
+        container: powercell
+        pickup: true
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-hyper-plating
+      steps:
+      - material: Plasteel
+        amount: 1
+        doAfter: 1
+    
+  - node: apc-hyper-plating
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-hyper-open
+      steps:
+      - tool: Prying
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: SheetPlasteel1
+        amount: 1
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-hyper-plating-welded
+      steps:
+      - tool: Welding
+        doAfter: 4
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Items/welder.ogg
+  
+  - node: apc-hyper-plating-welded
+    entity: APCFrame
+    actions:
+    - !type:AppearanceChange
+    edges:
+    - to: apc-hyper-plating
+      steps:
+      - tool: Welding
+        doAfter: 4
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Items/welder.ogg
+    - to: apc-hyper-open
+      steps:
+      - tool: Prying
+        doAfter: 9
+      completed:
+      - !type:GivePrototype
+        prototype: SheetPlasteel1
+        amount: 1
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+    
+    - to: apc-hyper
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Machines/screwdriverclose.ogg
+  
+  - node: apc-hyper
+    entity: APCSuperCapacity
+    edges:
+    - to: apc-hyper-plating
+      steps:
+      - tool: Welding
+        doAfter: 4
+      conditions:
+      - !type:WirePanel
+        open: true
+      completed:
+      - !type:PlaySound
+        sound: /Audio/Items/welder.ogg
+    - to: apc-hyper-open
+      steps:
+      - tool: Prying
+        doAfter: 9
+      conditions:
+      - !type:WirePanel
+        open: true
+      completed:
+      - !type:GivePrototype
+        prototype: SheetPlasteel1
+        amount: 1
+      - !type:PlaySound
+        sound: /Audio/Items/crowbar.ogg
+
+
+
+      

@@ -18,6 +18,8 @@
     - 0,0,5,5
     - 7,0,12,5
     maxItemSize: Huge
+    storageOpenSound: /Audio/Effects/closetopen.ogg
+    storageCloseSound: /Audio/Effects/closetclose.ogg
   - type: UserInterface
     interfaces:
       enum.StorageUiKey.Key:
@@ -35,6 +37,7 @@
   - type: Construction
     graph: StorageCounterGraph
     node: storagecounter
+  - type: InteractionOutline
 
 - type: entity
   id: StorageCounterFrame

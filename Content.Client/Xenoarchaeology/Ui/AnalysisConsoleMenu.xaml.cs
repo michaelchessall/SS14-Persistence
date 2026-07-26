@@ -41,6 +41,11 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
     public event Action? OnServerSelectionButtonPressed;
     public event Action? OnExtractButtonPressed;
 
+    /// <summary>
+    /// Raised when the user cycles artifacts on an advanced analyzer. True = next, false = previous.
+    /// </summary>
+    public event Action<bool>? OnCycleArtifactPressed;
+
     public AnalysisConsoleMenu()
     {
         RobustXamlLoader.Load(this);
@@ -66,6 +71,9 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         };
 
         ExtractButton.OnPressed += StartExtract;
+
+        CyclePrevButton.OnPressed += _ => OnCycleArtifactPressed?.Invoke(false);
+        CycleNextButton.OnPressed += _ => OnCycleArtifactPressed?.Invoke(true);
     }
 
     /// <summary>
@@ -86,7 +94,8 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
 
     private void StartExtract(BaseButton.ButtonEventArgs obj)
     {
-        if (!_artifactAnalyzer.TryGetArtifactFromConsole(_owner, out var artifact))
+        // Preview covers every artifact on the analyzer (one for a regular analyzer, all for an advanced one).
+        if (!_artifactAnalyzer.TryGetArtifactsFromConsole(_owner, out var artifacts))
             return;
 
         ExtractContainer.Visible = true;
@@ -95,22 +104,24 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         _extractionSum = 0;
         var extractionMessage = new FormattedMessage();
 
-        var nodes = _xenoArtifact.GetAllNodes(artifact.Value);
-
         var count = 0;
-        foreach (var node in nodes)
+        foreach (var artifact in artifacts)
         {
-            var pointValue = _xenoArtifact.GetResearchValue(node);
-            if (pointValue <= 0)
-                continue;
+            foreach (var node in _xenoArtifact.GetAllNodes(artifact))
+            {
+                var pointValue = _xenoArtifact.GetResearchValue(node);
+                if (pointValue <= 0)
+                    continue;
 
-            count++;
+                count++;
+                _extractionSum += pointValue;
 
-            var nodeId = _xenoArtifact.GetNodeId(node);
+                var nodeId = _xenoArtifact.GetNodeId(node);
 
-            var text = Loc.GetString("analysis-console-extract-value", ("id", nodeId), ("value", pointValue));
-            extractionMessage.AddMarkupOrThrow(text);
-            extractionMessage.PushNewline();
+                var text = Loc.GetString("analysis-console-extract-value", ("id", nodeId), ("value", pointValue));
+                extractionMessage.AddMarkupOrThrow(text);
+                extractionMessage.PushNewline();
+            }
         }
 
         if (count == 0)
@@ -145,6 +156,19 @@ public sealed partial class AnalysisConsoleMenu : FancyWindow
         GraphControl.SetArtifact(arti);
 
         ExtractButton.Disabled = arti == null;
+
+        // Show the artifact cycling controls only for an advanced analyzer holding more than one artifact.
+        if (_artifactAnalyzer.TryGetArtifactSelection(ent, out var index, out var count, out var advanced)
+            && advanced
+            && count > 1)
+        {
+            CycleContainer.Visible = true;
+            CycleLabel.Text = Loc.GetString("analysis-console-artifact-cycle", ("current", index), ("total", count));
+        }
+        else
+        {
+            CycleContainer.Visible = false;
+        }
 
         if (arti == null)
             NoneSelectedLabel.Visible = false;

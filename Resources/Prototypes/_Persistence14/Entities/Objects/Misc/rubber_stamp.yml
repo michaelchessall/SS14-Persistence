@@ -69,3 +69,15 @@
     stampState: "paper_stamp-rd-SOL"
   - type: Sprite
     state: stamp-rd
+
+- type: entity
+  name: solar legion chief of staff's rubber stamp
+  parent: [RubberStampBase, BaseCommandContraband]
+  id: RubberStampCosSOL
+  components:
+  - type: Stamp
+    stampedName: stamp-component-stamped-name-cos-sol
+    stampedColor: "#1f66a0"
+    stampState: "paper_stamp-cos-SOL"
+  - type: Sprite
+    state: stamp-hop

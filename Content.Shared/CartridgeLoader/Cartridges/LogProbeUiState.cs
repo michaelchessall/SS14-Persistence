@@ -25,10 +25,10 @@ public sealed class LogProbeUiState : BoundUserInterfaceState
 [Serializable, NetSerializable, DataRecord]
 public sealed partial class PulledAccessLog
 {
-    public readonly TimeSpan Time;
+    public readonly DateTime Time;
     public readonly string Accessor;
 
-    public PulledAccessLog(TimeSpan time, string accessor)
+    public PulledAccessLog(DateTime time, string accessor)
     {
         Time = time;
         Accessor = accessor;

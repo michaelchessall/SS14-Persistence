@@ -107,11 +107,11 @@ public sealed partial class AccessReaderComponent : Component
 [DataDefinition, Serializable, NetSerializable]
 public readonly partial record struct AccessRecord(
     [property: DataField, ViewVariables(VVAccess.ReadWrite)]
-    TimeSpan AccessTime,
+    DateTime AccessTime,
     [property: DataField, ViewVariables(VVAccess.ReadWrite)]
     string Accessor)
 {
-    public AccessRecord() : this(TimeSpan.Zero, string.Empty)
+    public AccessRecord() : this(DateTime.MinValue, string.Empty)
     {
     }
 }

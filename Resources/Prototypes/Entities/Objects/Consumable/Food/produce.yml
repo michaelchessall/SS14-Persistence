@@ -1734,6 +1734,8 @@
         reagents:
         # - ReagentId: Omnizine
         #   Quantity: 3
+        - ReagentId: Nectar
+          Quantity: 3
         - ReagentId: SpaceDrugs
           Quantity: 5
         - ReagentId: Nutriment

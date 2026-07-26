@@ -110,7 +110,7 @@
   parent: ClothingEyesHudBase
   id: ClothingEyesHudFriedOnion
   name: fried onion goggles
-  description: Filler
+  description: The new goggles from Donk Co. These fashionable shades will allow you to see how hungry your patrons are to optimally sell them overpriced food.
   components:
   - type: Sprite
     sprite: Clothing/Eyes/Hud/friedonion.rsi

@@ -11,6 +11,9 @@ public sealed partial class PersistentIdRegisterComponent : Component
     [ViewVariables(VVAccess.ReadOnly)]
     private Dictionary<string, Entity<PersistentIdentifierComponent>> _registeredEntities = new();
 
+    [DataField]
+    public bool Global = false;
+
     /// <summary>
     /// Verifies the existance of a valid entity within the register matching a provided key.
     /// </summary>

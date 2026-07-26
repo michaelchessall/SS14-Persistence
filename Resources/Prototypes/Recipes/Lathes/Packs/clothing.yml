@@ -571,3 +571,110 @@
   - ClothingUniformJumpsuitBattleDressUniformArcticShortSleeve
   - ClothingUniformJumpsuitBattleDressUniformArcticTShirt
   - ClothingUniformGenericTacticalTurtleNeck
+
+- type: latheRecipePack
+  id: SOLEquipment
+  recipes:
+  - ClothingBackpackExec
+  - ClothingBackpackDuffelExec
+  - ClothingBackpackSatchelExec
+  - ClothingBeltSheathSpatha
+  - ClothingBeltChiefEngineerSOL
+  - ClothingHandsGlovesExec
+  - ClothingHeadHatBeretRNDSOL
+  - ClothingHeadHatBeretHoSSOL
+  - ClothingHeadHatBeretLieutenantSOL
+  - ClothingHeadHatBeretMedOfficerSOL
+  - ClothingHeadHatBeretExecSecSOL
+  - ClothingHeadHatBeretMDSOL
+  - ClothingHeadHatBeretCargoForemanSOL
+  - ClothingHeadHatBeretSciOfficerSOL
+  - ClothingHeadHatExeccapSOL
+  - ClothingHeadHatHatCosSOL
+  - ClothingNeckCloakExecSOL
+  - ClothingNeckCloakHosSOL
+  - ClothingNeckCloakCeSOL
+  - ClothingCloakCmoSOL
+  - ClothingNeckCloakRdSOL
+  - ClothingNeckCloakQmSOL
+  - ClothingNeckCloakExecFormalSOL
+  - ClothingNeckCloakCosSOL
+  - ClothingNeckMantleExecSOL
+  - ClothingNeckMantleCESOL
+  - ClothingNeckMantleCMOSOL
+  - ClothingNeckMantleHOSSOL
+  - ClothingNeckMantleRDSOL
+  - ClothingNeckMantleQMSOL
+  - ClothingNeckMantleMedOfficerSOL
+  - ClothingNeckMantleExecSecSOL
+  - ClothingNeckMantleCargoForemanSOL
+  - ClothingNeckMantleSciOfficerSOL
+  - ClothingNeckMantleEngiForemanSOL
+  - ClothingNeckMantleCosSOL
+  - ClothingOuterArmorExecutiveCarapaceSOL
+  - ClothingOuterCoatHoSTrenchSOL
+  - ClothingOuterCoatLabCmoSOL
+  - ClothingOuterHardsuitExecSOL
+  - ClothingOuterHardsuitEngineeringWhiteSOL
+  - ClothingOuterHardsuitMedicalSOL
+  - ClothingOuterHardsuitRdSOL
+  - ClothingOuterHardsuitSecurityRedSOL
+  - ClothingOuterWinterHoSSOL
+  - ClothingUniformJumpskirtClerkSOL
+  - ClothingUniformJumpskirtChiefEngineerSOL
+  - ClothingUniformJumpskirtChiefEngineerTurtleSOL
+  - ClothingUniformJumpskirtCmoSOL
+  - ClothingUniformJumpskirtCmoTurtleSOL
+  - ClothingUniformJumpskirtHosSOL
+  - ClothingUniformJumpskirtQuartermasterTurtleneckSOL
+  - ClothingUniformJumpskirtRndSOL
+  - ClothingUniformJumpskirtRndTurtleSOL
+  - ClothingUniformJumpskirtCosSOL
+  - ClothingUniformJumpskirtCosTurtleSOL
+  - ClothingUniformJumpskirtTanClerkSOL
+  - ClothingUniformJumpsuitChiefEngineerSOL
+  - ClothingUniformJumpsuitChiefEngineerTurtleSOL
+  - ClothingUniformJumpsuitClerkSOL
+  - ClothingUniformJumpsuitCMOSOL
+  - ClothingUniformJumpsuitCMOTurtleSOL
+  - ClothingUniformJumpsuitExecSOL
+  - ClothingUniformJumpsuitExecFormalSOL
+  - ClothingUniformJumpsuitHoSAltSOL
+  - ClothingUniformJumpshortsMedicalOfficerSOL
+  - ClothingUniformJumpsuitQMSOL
+  - ClothingUniformJumpsuitQMTurtleneckSOL
+  - ClothingUniformJumpsuitRndTurtleneckSOL
+  - ClothingUniformJumpsuitRndSOL
+  - ClothingUniformJumpsuitCosSOL
+  - QuartermasterPDASOL
+  - ExecutivePDASOL
+  - CEPDASOL
+  - CMOPDASOL
+  - RnDPDASOL
+  - HoSPDASOL
+  - CoSPDASOL
+
+#Handy Flags
+- type: latheRecipePack
+  id: HandyFlags
+  recipes:
+  - BlankHandyFlag
+  - SyndieHandyFlag
+  - LGBTQHandyFlag
+  - PirateHandyFlag
+
+# Bandanas
+- type: latheRecipePack
+  id: Bandanas
+  recipes:
+  - ClothingMaskBandBlack
+  - ClothingMaskBandBlue
+  - ClothingMaskBandBotany
+  - ClothingMaskBandGold
+  - ClothingMaskBandGreen
+  - ClothingMaskBandGrey
+  - ClothingMaskBandRed
+  - ClothingMaskBandSkull
+  - ClothingMaskBandMerc
+  - ClothingMaskBandBrown
+

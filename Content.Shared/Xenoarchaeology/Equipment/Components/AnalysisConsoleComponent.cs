@@ -50,3 +50,15 @@ public enum ArtifactAnalyzerUiKey : byte
 [Serializable, NetSerializable]
 public sealed class AnalysisConsoleExtractButtonPressedMessage : BoundUserInterfaceMessage;
 
+/// <summary>
+/// Sent when the user cycles between multiple artifacts placed on an advanced analyzer.
+/// </summary>
+[Serializable, NetSerializable]
+public sealed class AnalysisConsoleCycleArtifactMessage(bool forward) : BoundUserInterfaceMessage
+{
+    /// <summary>
+    /// True to move to the next artifact, false to move to the previous one.
+    /// </summary>
+    public bool Forward = forward;
+}
+

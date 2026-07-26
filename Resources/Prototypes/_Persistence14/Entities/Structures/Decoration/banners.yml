@@ -1,0 +1,51 @@
+- type: entity
+  id: BannerSolarLegion
+  parent: BannerBase
+  name: solar legion banner
+  description: A banner displaying the Solar Legion logo. Spear tip blunted for safety.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_sl
+  - type: Construction
+    graph: BannerGraph
+    node: bannerSL
+
+- type: entity
+  id: BannerWayfarerDynamics
+  parent: BannerBase
+  name: wayfarer dynamics banner
+  description: A banner displaying the Wayfarer Dynamics logo. Honors the great solar panel bridges of Exodus Station.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_wd
+  - type: Construction
+    graph: BannerGraph
+    node: bannerWD
+
+- type: entity
+  id: BannerFlowerOfEvil
+  parent: BannerBase
+  name: les fleur du mal banner
+  description: A banner displaying the Les Fleur Du Mal logo. Looks sinister...
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_foe
+  - type: Construction
+    graph: BannerGraph
+    node: bannerFoe
+
+- type: entity
+  id: BannerPREG
+  parent: BannerBase
+  name: P.R.E.G banner
+  description: A banner displaying the P.R.E.G logo. Hopes and dreams upon the stars.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_preg
+  - type: Construction
+    graph: BannerGraph
+    node: bannerPREG

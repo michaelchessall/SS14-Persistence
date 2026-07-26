@@ -141,6 +141,20 @@
 # Tier 3
 
 - type: technology
+  id: AdvancedArtifactScanner
+  name: research-technology-advanced-artifact-scanner
+  icon:
+    sprite: Structures/Machines/artifact_analyzer_advanced.rsi
+    state: display
+  discipline: Experimental
+  tier: 3
+  cost: 100000
+  recipeUnlocks:
+  - ArtifactAnalyzerAdvancedMachineCircuitboard
+  technologyPrerequisites:
+  - BasicXenoArcheology
+
+- type: technology
   id: QuantumLeaping
   name: research-technology-quantum-leaping
   icon:

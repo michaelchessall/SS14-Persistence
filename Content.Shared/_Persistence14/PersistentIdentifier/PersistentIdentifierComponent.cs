@@ -12,7 +12,7 @@ public sealed partial class PersistentIdentifierComponent : Component
     /// A serialized identifier used to reference the entity this component is attached to between runtimes.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadOnly), AutoNetworkedField]
-    public string Id = Guid.Empty.ToString();
+    public string Id = PersistentIdentifierSystem.EmptyId;
 
     /// <summary>
     /// Shows the current initialization state of the ID and allows for basic manipulation of that ID.<br/><br/>
@@ -20,5 +20,5 @@ public sealed partial class PersistentIdentifierComponent : Component
     /// Returns false when the ID is null.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool IdInit => Id != Guid.Empty.ToString();
+    public bool IdInit => Id != PersistentIdentifierSystem.EmptyId;
 }
