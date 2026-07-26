@@ -237,6 +237,8 @@
   packetPrototype: AmbrosiaVulgarisSeeds
   productPrototypes:
   - FoodAmbrosiaVulgaris
+  mutationPrototypes:
+  - ambrosiaDeus
   lifespan: 25
   maturation: 10
   production: 3
@@ -270,7 +272,7 @@
   plantRsi: Objects/Specific/Hydroponics/ambrosia_deus.rsi
   packetPrototype: AmbrosiaDeusSeeds
   productPrototypes:
-  - FoodAmbrosiaVulgaris
+  - FoodAmbrosiaDues
   lifespan: 25
   maturation: 10
   production: 3
@@ -283,7 +285,11 @@
       Min: 1
       Max: 2
       PotencyDivisor: 10
-    Omnizine: # Don't kill me
+    #Omnizine: # Don't kill me
+      #Min: 1
+      #Max: 3
+      #PotencyDivisor: 35
+    Nectar:
       Min: 1
       Max: 3
       PotencyDivisor: 35
