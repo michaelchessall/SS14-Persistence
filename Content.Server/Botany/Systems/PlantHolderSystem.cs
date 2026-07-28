@@ -3,6 +3,7 @@ using Content.Server.Atmos.EntitySystems;
 using Content.Server.Botany.Components;
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
+using Content.Server.Radiation.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Atmos;
 using Content.Shared.Botany;
@@ -476,6 +477,8 @@ public sealed class PlantHolderSystem : EntitySystem
             component.UpdateSpriteAfterUpdate = true;
             component.MutationLevel = 0;
         }
+
+        UpdateRadiation(uid, component);
 
         // Weeds might need to be changed due to the plant nutrient rework
         if (CheckRequiredNutrients(uid, component))
@@ -1011,6 +1014,23 @@ public sealed class PlantHolderSystem : EntitySystem
             _mutation.MutateSeed(uid, ref component.Seed, severity);
 
         }
+    }
+
+    private void UpdateRadiation(EntityUid uid, PlantHolderComponent? component = null, RadiationReceiverComponent? receiver = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        if (!Resolve(uid, ref receiver))
+            return;
+        var currentRadiation = component.Nutrients.GetValueOrDefault("Radiation");
+        var maxRadiation = receiver.CurrentRadiation * 10;
+
+        if (currentRadiation >= maxRadiation)
+            return;
+
+        var addRadiation = (maxRadiation - currentRadiation) / 10;
+
+        AdjustNutrient(uid, addRadiation, "Radiation", component);
     }
 
     public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)
