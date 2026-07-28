@@ -12,6 +12,7 @@ namespace Content.Shared.Cargo.BUI;
 public sealed class StationModificationInterfaceState : BoundUserInterfaceState
 {
     public string Name;
+    public string FactionTag;
     public NetEntity Station;
     public List<string> Owners;
     public Dictionary<string, CrewAccess> CrewAccess;
@@ -25,9 +26,10 @@ public sealed class StationModificationInterfaceState : BoundUserInterfaceState
     public bool JobNetEnabled;
     public bool TradeStationClaimed;
 
-    public StationModificationInterfaceState(string name, NetEntity station, List<string> owners, Dictionary<string, CrewAccess> crewAccess, Dictionary<int, CrewAssignment> crewAssignments, int importTax, int exportTax, int salesTax, ProtoId<FactionLevelPrototype> level, int accountBalance, Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> radioData, bool jobNetEnabled, bool tradeStationClaimed)
+    public StationModificationInterfaceState(string name, string factionTag, NetEntity station, List<string> owners, Dictionary<string, CrewAccess> crewAccess, Dictionary<int, CrewAssignment> crewAssignments, int importTax, int exportTax, int salesTax, ProtoId<FactionLevelPrototype> level, int accountBalance, Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> radioData, bool jobNetEnabled, bool tradeStationClaimed)
     {
         Name = name;
+        FactionTag = factionTag;
         Station = station;
         Owners = owners;
         CrewAccess = crewAccess;

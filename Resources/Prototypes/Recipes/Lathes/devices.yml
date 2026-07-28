@@ -151,6 +151,7 @@
     Silver: 750
     Plasma: 1500
     Uranium: 150
+    Phoron: 500
 
 - type: latheRecipe
   parent: ClothingBackpackHolding
@@ -167,6 +168,12 @@
   id: OreBagOfHolding
   result: OreBagOfHolding
   unlockUses: 3
+  materials:
+    Steel: 2000
+    Silver: 750
+    Plasma: 1500
+    Uranium: 150
+    Phoron: 300
 
 - type: latheRecipe
   id: ClothingMaskWeldingGas

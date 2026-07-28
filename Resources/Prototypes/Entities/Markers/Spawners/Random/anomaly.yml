@@ -23,6 +23,7 @@
     - AnomalyShadow
     - AnomalyTech
     - AnomalyPolymorph
+    - AnomalyEye
     #- AnomalySanta
     rareChance: 0.3
     rarePrototypes:

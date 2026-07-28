@@ -143,6 +143,25 @@
           amount: 2
 
 - type: entity
+  parent: CrateEngineering
+  id: CrateEngineeringSolarStarter
+  name: solar starter kit crate
+  description: A kit with solar flatpacks and glass to construct ten solar panels. Comes with boards for a solar tracker and solar control console.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: SolarAssemblyFlatpack
+          amount: 10
+        - id: SheetGlass10
+          amount: 2
+        - id: SolarTrackerElectronics
+          amount: 1
+        - id: SolarControlComputerCircuitboard
+          amount: 1
+
+- type: entity
   parent: CrateEngineeringSecure
   id: CrateEngineeringShuttle
   name: shuttle powering crate

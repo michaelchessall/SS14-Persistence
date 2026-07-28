@@ -1,0 +1,123 @@
+# Weapon preference for Eye-possessed bodies, in priority order: fight with a gun already in hand
+# > equip one already carried on their person (inventory/storage) > walk over and pick up one
+# lying nearby > bare-handed/melee-weapon combat as the last resort. Branches are re-evaluated
+# every replan (top to bottom), so a body that runs dry mid-fight naturally falls back down this
+# same list next cycle, and one that finds/equips a gun this cycle switches over to actually
+# firing it the very next cycle once GunAmmoPrecondition picks up the change.
+- type: htnCompound
+  id: EyeWeaponPreferenceCompound
+  branches:
+  # Already have a usable gun (in hand, or innate) - fight with it. RackGunOperator (cheap no-op
+  # if already racked/no bolt) and WieldGunOperator (cheap no-op if already wielded/not
+  # two-handed) run first since GunAmmoPrecondition only checks ammo, not bolt/wield state, and
+  # nothing in the stock GunCombatCompound chain handles either.
+  - preconditions:
+    - !type:GunAmmoPrecondition
+      minPercent: 0.001
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:RackGunOperator
+
+    - !type:HTNPrimitiveTask
+      operator: !type:WieldGunOperator
+
+    - !type:HTNCompoundTask
+      task: GunCombatCompound
+
+  # Have a gun but it's completely dry (branch 1 already claimed anything with ammo left).
+  # ReloadGunOperator covers every ammo provider type (see its own doc comment) and fails outright
+  # if nothing qualifies, so the planner falls through to finding a different gun or melee instead
+  # of looping on a permanently dry one.
+  - preconditions:
+    - !type:GunAmmoPrecondition
+      minPercent: 0
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:ReloadGunOperator
+
+    - !type:HTNPrimitiveTask
+      operator: !type:RackGunOperator
+
+    - !type:HTNPrimitiveTask
+      operator: !type:WieldGunOperator
+
+    - !type:HTNCompoundTask
+      task: GunCombatCompound
+
+  # The gun I'm already holding is dead weight - no ammo, and nothing can reload it. Just drop it.
+  # Its OWN standalone branch, deliberately: HTNPlanJob only commits an operator's side effects
+  # once its entire branch plans successfully, and bundling this drop ahead of "find a
+  # replacement" (branches below) would roll it back every time nothing else is available to
+  # equip - exactly the case this branch exists for. HasUselessGunPrecondition (narrower than
+  # NoUsableGunPrecondition below) keeps this from firing while holding something else entirely,
+  # like a melee weapon.
+  - preconditions:
+    - !type:HasUselessGunPrecondition
+      minPercent: 0.001
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:ClearActiveHandOperator
+
+  # No usable gun in hand yet - check hands, worn slots, and one level into worn storage for one
+  # with actual ammo, and equip it if found. FindCarriedGunOperator fails outright if nothing
+  # qualifies, falling through to the next branch.
+  #
+  # NoUsableGunPrecondition (not just "branches 1/2 failed") is required - otherwise this branch
+  # would also get selected whenever GunCombatCompound merely has no target in range, and
+  # FindCarriedGunOperator would find the SAME gun already in hand, whose EquipOperator.TryPickup
+  # always fails - an endless Plan-succeeds/Update-fails loop instead of just waiting for a target.
+  #
+  # ClearActiveHandOperator is safe to bundle here (unlike the walk-then-interact branches below)
+  # since FindCarriedGunOperator/EquipOperator both resolve instantly - the whole branch (clear +
+  # equip) commits together in one planning pass, or fails and rolls back together.
+  - preconditions:
+    - !type:NoUsableGunPrecondition
+      minPercent: 0.001
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:ClearActiveHandOperator
+
+    - !type:HTNPrimitiveTask
+      operator: !type:FindCarriedGunOperator
+
+    - !type:HTNPrimitiveTask
+      operator: !type:EquipOperator
+
+  # A better gun IS available nearby, but the active hand isn't free to grab it - clear it. Its
+  # own standalone branch again, same reason as above: PickupGunCompound's move+interact takes
+  # several replan cycles to actually reach the gun, so bundling the hand-clear ahead of it would
+  # only commit on the rare cycle already in interact range, rolling back every other cycle.
+  # Re-running the NearbyGuns query (rather than just "is the hand free") means we only give up
+  # what's in hand when something better is actually there to switch to.
+  #
+  # ActiveHandOccupiedPrecondition is required - without it, ClearActiveHandOperator trivially
+  # no-ops with an already-free hand (e.g. fighting unarmed), and having nothing else to possibly
+  # fail, this branch would win priority over branch 7 (the real walk-and-pick-up) forever.
+  - preconditions:
+    - !type:NoUsableGunPrecondition
+      minPercent: 0.001
+    - !type:ActiveHandOccupiedPrecondition
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:UtilityOperator
+        proto: NearbyGuns
+
+    - !type:HTNPrimitiveTask
+      operator: !type:ClearActiveHandOperator
+
+  # Nothing on our own person either - check for one lying nearby and go get it. Reuses the stock
+  # PickupGunCompound as-is; NearbyGuns reads its search distance from the same
+  # VisionRadius/AggroVisionRadius keys EyeAnomalySystem seeds from AttackRange, so no separate
+  # range-gating is needed. No ClearActiveHandOperator prefix here - the branch above already
+  # clears the hand on an earlier replan by the time this one's turn comes.
+  - preconditions:
+    - !type:NoUsableGunPrecondition
+      minPercent: 0.001
+    tasks:
+    - !type:HTNCompoundTask
+      task: PickupGunCompound
+
+  # Nothing usable anywhere at all - fists/melee weapon.
+  - tasks:
+    - !type:HTNCompoundTask
+      task: MeleeCombatCompound

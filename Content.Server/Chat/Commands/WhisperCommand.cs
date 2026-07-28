@@ -36,7 +36,11 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Whisper, ChatTransmitRange.Normal, false, shell, player);
+            // See the identical comment in SayCommand - same reasoning applies to whispering.
+            var rangeEv = new GetSpeechTransmitRangeEvent(ChatTransmitRange.Normal);
+            EntityManager.EventBus.RaiseLocalEvent(playerEntity, rangeEv);
+
+            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Whisper, rangeEv.Range, false, shell, player);
         }
     }
 }

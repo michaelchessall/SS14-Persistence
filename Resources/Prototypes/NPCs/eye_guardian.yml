@@ -1,0 +1,60 @@
+# Guardian AI for bodies possessed by the Eye anomaly's tether phase. Three branches, tried in
+# priority order:
+#
+#   1. Return to anchor - if beyond our own chase leash (EyeChaseRange) from the anomaly
+#      (EyeAnchorCoordinates), walk straight back. Checked every replan, so a chase that drifts
+#      too far gets interrupted here before the tether's own hard disconnect distance is reached.
+#
+#   2. Combat - via EyeWeaponPreferenceCompound, falling back to stock MeleeCombatCompound if
+#      nothing usable is found. EyeThrall faction isn't hostile to itself, so possessed bodies
+#      never attack each other or the anomaly. Since branch 1 takes priority, combat only ever
+#      starts while already within the leash.
+#
+#   3. Wander near anchor - fallback with no target available. Uses PickPointNearKeyOperator
+#      (samples within EyePatrolRange of EyeAnchorCoordinates) instead of the stock
+#      PickAccessibleOperator, which would wander near wherever the body currently is instead.
+#
+# Required blackboard keys (seeded by EyeAnomalySystem on possession): EyeAnchorCoordinates
+# (EntityCoordinates), EyePatrolRange (float, Y), EyeChaseRange (float, Z), MinimumIdleTime /
+# MaximumIdleTime (float, stock idle timing convention).
+
+- type: htnCompound
+  id: EyeGuardianCompound
+  branches:
+  - preconditions:
+    - !type:CoordinatesNotInRangePrecondition
+      targetKey: EyeAnchorCoordinates
+      rangeKey: EyeChaseRange
+    tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        targetKey: EyeAnchorCoordinates
+        removeKeyOnFinish: false
+        pathfindInPlanning: false
+
+  - tasks:
+    - !type:HTNCompoundTask
+      task: EyeWeaponPreferenceCompound
+
+  - tasks:
+    - !type:HTNPrimitiveTask
+      operator: !type:PickPointNearKeyOperator
+        anchorKey: EyeAnchorCoordinates
+        rangeKey: EyePatrolRange
+
+    - !type:HTNPrimitiveTask
+      operator: !type:MoveToOperator
+        pathfindInPlanning: false
+
+    - !type:HTNPrimitiveTask
+      operator: !type:RandomOperator
+        targetKey: IdleTime
+        minKey: MinimumIdleTime
+        maxKey: MaximumIdleTime
+
+    - !type:HTNPrimitiveTask
+      operator: !type:WaitOperator
+        key: IdleTime
+      preconditions:
+      - !type:KeyExistsPrecondition
+        key: IdleTime

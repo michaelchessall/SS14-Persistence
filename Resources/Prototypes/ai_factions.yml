@@ -5,6 +5,13 @@
   - Syndicate
   - Xeno
   - PetsNT
+
+- type: npcFaction
+  id: EyeThrall
+  hostile:
+  - NanoTrasen
+  - PetsNT
+  - SimpleHostile
   - Zombie
   - Revolutionary
   - AllHostile

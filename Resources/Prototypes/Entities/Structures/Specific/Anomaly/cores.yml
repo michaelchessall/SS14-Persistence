@@ -398,3 +398,30 @@
     energy: 2.0
     color: "#c060ff"
     castShadows: false
+
+- type: entity
+  parent: BaseAnomalyCore
+  id: AnomalyCoreEye
+  description: The crystallized remnant of a shattered eye anomaly. The inside still seems to be watching you.
+  suffix: Eye
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/eye_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#7a3f78"
+    castShadows: false
+
+- type: entity
+  parent: BaseAnomalyInertCore
+  id: AnomalyCoreEyeInert
+  suffix: Eye, Inert
+  components:
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/Cores/eye_core.rsi
+  - type: PointLight
+    radius: 1.5
+    energy: 3.0
+    color: "#7a3f78"
+    castShadows: false

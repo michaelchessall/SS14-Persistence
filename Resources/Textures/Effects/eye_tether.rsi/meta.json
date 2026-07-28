@@ -1,0 +1,22 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Kildar - .kildar(Discord) -> Placeholder art until more official art is ready (AI GENERATED!)",
+    "size": {
+        "x": 8,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "tether",
+            "delays": [
+                [
+                    0.15,
+                    0.15,
+                    0.15,
+                    0.15
+                ]
+            ]
+        }
+    ]
+}

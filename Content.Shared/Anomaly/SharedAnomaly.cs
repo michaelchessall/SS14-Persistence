@@ -7,7 +7,24 @@ namespace Content.Shared.Anomaly;
 public enum AnomalyVisuals : byte
 {
     IsPulsing,
-    Supercritical
+    Supercritical,
+
+    /// <summary>
+    /// Set once by the server, permanently, once AnomalyComponent.SupercriticalAnimationDuration
+    /// has elapsed since going supercritical. Unlike client-local "have I shown this yet"
+    /// tracking, this is authoritative and networked - so any client, including one that
+    /// connects or comes into view long after the fact, can immediately show the correct settled
+    /// state without ever replaying the transition animation.
+    /// </summary>
+    SupercriticalSettled,
+
+    /// <summary>
+    /// Set true while an anomaly is playing its final death animation before deleting itself (see
+    /// AnomalyComponent.DeathAnimationState/Duration - currently only used by the Eye anomaly),
+    /// cleared if that gets cancelled. Takes priority over Supercritical/SupercriticalSettled in
+    /// AnomalySystem's client-side visual handler.
+    /// </summary>
+    Dying
 }
 
 [Serializable, NetSerializable]

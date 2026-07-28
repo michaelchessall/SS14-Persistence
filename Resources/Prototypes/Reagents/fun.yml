@@ -356,7 +356,7 @@
           inverted: true
         - !type:ReagentCondition
           reagent: JuiceThatMakesYouWeh
-          min: 50
+          min: 999999
       - !type:AdjustReagent
         reagent: JuiceThatMakesYouWeh
         amount: -20

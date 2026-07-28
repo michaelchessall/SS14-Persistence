@@ -146,6 +146,142 @@ public sealed partial class AnomalyComponent : Component
     [DataField, AutoNetworkedField]
     [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan SupercriticalDuration = TimeSpan.FromSeconds(10f);
+
+    /// <summary>
+    /// If true, skips the stock scale-up/fade-out visual effect that normally plays for
+    /// SupercriticalDuration while going supercritical - the sprite is left completely alone by
+    /// the base game's own visual handling. Defaults to false, so every existing anomaly's
+    /// behavior is unchanged; only anomalies that explicitly opt in (to play their own fully
+    /// custom animation instead, likely driven off AnomalySupercriticalStartedEvent) set this.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool SkipSupercriticalAnimation;
+
+    /// <summary>
+    /// If true, this anomaly stops pulsing entirely once it has gone supercritical at least
+    /// once, checked via the persistent AnomalyVisuals.Supercritical appearance flag (which is
+    /// set once and never cleared). Defaults to false, so every existing anomaly's behavior is
+    /// unchanged - this only matters for an anomaly that survives its own supercritical event
+    /// (DeleteEntity: false), since normally an anomaly is long deleted before this could ever
+    /// come up. Without this, such an anomaly would just keep pulsing forever afterward, which
+    /// also has the side effect of repeatedly toggling AnomalyVisuals.IsPulsing and re-triggering
+    /// any GenericVisualizer mappings on unrelated appearance keys, visibly resetting whatever
+    /// animation is currently showing even though nothing about it should have changed.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool StopPulsingAfterSupercritical;
+
+    /// <summary>
+    /// If true, suppresses the automatic core drop that would otherwise always happen when this
+    /// anomaly goes supercritical (via AnomalySupercriticalEvent.SpawnCore, read by EndAnomaly).
+    /// Defaults to false, matching existing behavior for every anomaly that doesn't set it.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool SuppressCoreOnSupercritical;
+
+    /// <summary>
+    /// If set, the client directly switches the sprite's Animated layer to this state the moment
+    /// AnomalyVisuals.Supercritical is set - fully replacing whatever animation would otherwise
+    /// show (the stock scale/fade, unless SkipSupercriticalAnimation is also set, or the ordinary
+    /// pulse state) with this anomaly's own custom "going critical" animation. No GenericVisualizer
+    /// wiring needed - any anomaly gets this just by setting this one field in yaml.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string? SupercriticalAnimationState;
+
+    /// <summary>
+    /// If set alongside SupercriticalAnimationState, how long that state plays before the client
+    /// automatically switches to SupercriticalSettledState. If null, SupercriticalAnimationState
+    /// (once applied) is never automatically changed away from.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? SupercriticalAnimationDuration;
+
+    /// <summary>
+    /// The state the client switches the Animated layer to once SupercriticalAnimationDuration
+    /// has elapsed since SupercriticalAnimationState was applied. Ignored if
+    /// SupercriticalAnimationDuration isn't also set.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string? SupercriticalSettledState;
+
+    /// <summary>
+    /// If set (alongside SupercriticalSettledState), the state the Animated layer switches to
+    /// while this anomaly is pulsing AFTER having settled from its supercritical animation -
+    /// letting a surviving, still-pulsing anomaly show a different pulse animation post-crack
+    /// than the one it used before. Reverts to SupercriticalSettledState when the pulse ends.
+    /// Null (default) means post-settle pulses just keep showing SupercriticalSettledState,
+    /// matching previous behavior. Only meaningful for an anomaly that survives supercritical
+    /// (DeleteEntity: false) and keeps pulsing afterward (StopPulsingAfterSupercritical: false).
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string? SupercriticalPulseState;
+
+    /// <summary>
+    /// If set, the client switches the Animated layer to this state the moment
+    /// AnomalyVisuals.Dying is set, taking priority over Supercritical/SupercriticalSettled/pulse
+    /// state - for an anomaly whose "ending" isn't the stock supercritical collapse but a later,
+    /// content-defined death condition (e.g. the Eye anomaly, once its last thrall is gone - see
+    /// EyeAnomalySystem). Null (default) means AnomalyVisuals.Dying has no visual effect.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public string? DeathAnimationState;
+
+    /// <summary>
+    /// How long DeathAnimationState plays before the entity that set AnomalyVisuals.Dying finishes
+    /// whatever it does once that time elapses (e.g. EyeAnomalySystem deleting the anomaly and
+    /// dropping CorePrototype). Purely a timing value read back by that content-specific system -
+    /// the generic AnomalySystem/SharedAnomalySystem never act on Dying by themselves.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? DeathAnimationDuration;
+
+    /// <summary>
+    /// SERVER-ONLY runtime state, not a data field - set once, the moment this anomaly starts
+    /// going supercritical, purely so the server can measure SupercriticalAnimationDuration
+    /// against it later (see SharedAnomalySystem.Update). Clients never need to know this value
+    /// directly - they just react to the AnomalyVisuals.SupercriticalSettled appearance flag,
+    /// which the server sets once this duration has actually elapsed.
+    /// </summary>
+    public TimeSpan? SupercriticalStartedAt;
+
+    /// <summary>
+    /// If true, StartSupercriticalEvent refuses to run a second time for this anomaly, checked
+    /// via the persistent AnomalyVisuals.Supercritical appearance flag (set once, never cleared).
+    /// Defaults to false, so every existing anomaly's behavior is unchanged - a stock anomaly is
+    /// always deleted as part of its first (and only) EndAnomaly call, so it physically can't
+    /// trigger this a second time anyway. This only matters for an anomaly that survives via
+    /// DeleteEntity: false, which can otherwise be pushed back to Severity 1 later (e.g. by more
+    /// transformation particle hits) and replay its entire "going critical" sequence - including
+    /// any custom SupercriticalAnimationState - again from scratch.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool PreventRepeatedSupercritical;
+
+    /// <summary>
+    /// If true, this anomaly ignores every anomalous particle collision entirely once it has
+    /// gone supercritical at least once, checked via the persistent AnomalyVisuals.Supercritical
+    /// appearance flag. Defaults to false, so every existing anomaly's behavior is unchanged -
+    /// again, only relevant for an anomaly that survives via DeleteEntity: false, since a stock
+    /// anomaly is deleted before this could matter. Without this, particle hits (stability/
+    /// severity/health changes) keep affecting the anomaly forever afterward, including
+    /// potentially pushing Severity back up to 1 and triggering StartSupercriticalEvent all over
+    /// again - see PreventRepeatedSupercritical, which blocks that specific outcome directly, but
+    /// this stops the particle hit from doing anything at all in the first place.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    public bool IgnoreParticleHitsAfterSupercritical;
     #endregion
 
     /// <summary>
@@ -288,10 +424,21 @@ public sealed partial class AnomalyComponent : Component
 public readonly record struct AnomalyPulseEvent(EntityUid Anomaly, float Stability, float Severity, float PowerModifier);
 
 /// <summary>
-/// Event raised on an anomaly when it reaches a supercritical point.
+/// Event raised when an anomaly goes supercritical, right before EndAnomaly runs.
 /// </summary>
+/// <param name="Anomaly">The anomaly going supercritical</param>
+/// <param name="PowerModifier">The power modifier from the anomaly's current behavior, if any</param>
 [ByRefEvent]
-public readonly record struct AnomalySupercriticalEvent(EntityUid Anomaly, float PowerModifier);
+public record struct AnomalySupercriticalEvent(EntityUid Anomaly, float PowerModifier)
+{
+    /// <summary>
+    /// Whether EndAnomaly should spawn a core once this event finishes. Defaults to true,
+    /// matching the existing behavior for every anomaly that doesn't touch this field - set it
+    /// to false from a handler to suppress the core drop for this specific supercritical event
+    /// (e.g. an anomaly whose "real" ending is decided by its own later logic instead).
+    /// </summary>
+    public bool SpawnCore = true;
+}
 
 /// <summary>
 /// Event broadcast after an anomaly goes supercritical
@@ -300,6 +447,28 @@ public readonly record struct AnomalySupercriticalEvent(EntityUid Anomaly, float
 /// <param name="Supercritical">Whether or not the anomaly shut down passively or via a supercritical event.</param>
 [ByRefEvent]
 public readonly record struct AnomalyShutdownEvent(EntityUid Anomaly, bool Supercritical);
+
+/// <summary>
+/// Event raised the moment an anomaly BEGINS going supercritical (StartSupercriticalEvent) -
+/// well before AnomalySupercriticalEvent, which doesn't fire until after
+/// AnomalyComponent.SupercriticalDuration has elapsed and the stock wind-up animation (or
+/// whatever replaces it, if AnomalyComponent.SkipSupercriticalAnimation is set) finishes. Added
+/// specifically so content can start its own custom "going critical" visual immediately, in sync
+/// with when the sequence actually begins, rather than only being able to react once it's over.
+/// </summary>
+[ByRefEvent]
+public readonly record struct AnomalySupercriticalStartedEvent(EntityUid Anomaly);
+
+/// <summary>
+/// Event raised exactly once, the moment AnomalyComponent.SupercriticalAnimationDuration has
+/// elapsed and AnomalyVisuals.SupercriticalSettled is set (see SharedAnomalySystem.Update).
+/// Added so content can react to "the crack-open animation has finished" specifically, distinct
+/// from AnomalySupercriticalStartedEvent (which fires at the very beginning of the sequence) -
+/// useful for anything that should only happen once the anomaly has visually finished settling,
+/// e.g. reaching out with a tether effect only after it's fully open rather than mid-transition.
+/// </summary>
+[ByRefEvent]
+public readonly record struct AnomalySupercriticalSettledEvent(EntityUid Anomaly);
 
 /// <summary>
 /// Event broadcast when an anomaly's severity is changed.

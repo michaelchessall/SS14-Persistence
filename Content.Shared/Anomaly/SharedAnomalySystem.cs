@@ -132,6 +132,16 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
+        // don't restart it if it's already happened once before and this anomaly opted into
+        // never repeating it (normally impossible to reach for a stock anomaly, since it would
+        // already be deleted - only relevant for one that survives via DeleteEntity: false)
+        if (ent.Comp.PreventRepeatedSupercritical &&
+            Appearance.TryGetData<bool>(ent, AnomalyVisuals.Supercritical, out var alreadyWent) &&
+            alreadyWent)
+        {
+            return;
+        }
+
         AdminLog.Add(LogType.Anomaly, LogImpact.High, $"Anomaly {ToPrettyString(ent.Owner)} began to go supercritical.");
         if (_net.IsServer)
             Log.Info($"Anomaly is going supercritical. Entity: {ToPrettyString(ent.Owner)}");
@@ -141,8 +151,12 @@ public abstract class SharedAnomalySystem : EntitySystem
         var super = AddComp<AnomalySupercriticalComponent>(ent);
         super.EndTime = Timing.CurTime + ent.Comp.SupercriticalDuration;
         Appearance.SetData(ent, AnomalyVisuals.Supercritical, true);
+        ent.Comp.SupercriticalStartedAt = Timing.CurTime;
         SetScannerSupercritical((ent, ent.Comp), true);
         Dirty(ent, super);
+
+        var startedEv = new AnomalySupercriticalStartedEvent(ent);
+        RaiseLocalEvent(ent, ref startedEv, true);
     }
 
     /// <summary>
@@ -173,10 +187,10 @@ public abstract class SharedAnomalySystem : EntitySystem
             powerMod = beh.PulsePowerModifier;
         }
 
-        var ev = new AnomalySupercriticalEvent(uid, powerMod);
+        var ev = new AnomalySupercriticalEvent(uid, powerMod) { SpawnCore = !component.SuppressCoreOnSupercritical };
         RaiseLocalEvent(uid, ref ev, true);
 
-        EndAnomaly(uid, component, true, logged: true);
+        EndAnomaly(uid, component, true, spawnCore: ev.SpawnCore, logged: true);
     }
 
     /// <summary>
@@ -345,7 +359,30 @@ public abstract class SharedAnomalySystem : EntitySystem
             var secondsUntilNextPulse = (anomaly.NextPulseTime - Timing.CurTime).TotalSeconds;
             if (secondsUntilNextPulse < 0)
             {
+                if (anomaly.StopPulsingAfterSupercritical &&
+                    Appearance.TryGetData<bool>(ent, AnomalyVisuals.Supercritical, out var wentSupercritical) &&
+                    wentSupercritical)
+                {
+                    continue;
+                }
+
                 DoAnomalyPulse(ent, anomaly);
+            }
+
+            // Server-authoritative "has this settled from its custom crit animation yet" check -
+            // deliberately NOT client-tracked, so any client (including one that connects or
+            // comes back into view long after the fact) can immediately show the correct settled
+            // state via the AnomalyVisuals.SupercriticalSettled appearance flag, with no risk of
+            // ever replaying the transition animation from its own local perspective.
+            if (_net.IsServer &&
+                anomaly is { SupercriticalStartedAt: { } startedAt, SupercriticalAnimationDuration: { } animDuration } &&
+                Timing.CurTime - startedAt >= animDuration &&
+                (!Appearance.TryGetData<bool>(ent, AnomalyVisuals.SupercriticalSettled, out var alreadySettled) || !alreadySettled))
+            {
+                Appearance.SetData(ent, AnomalyVisuals.SupercriticalSettled, true);
+
+                var settledEv = new AnomalySupercriticalSettledEvent(ent);
+                RaiseLocalEvent(ent, ref settledEv, true);
             }
         }
 

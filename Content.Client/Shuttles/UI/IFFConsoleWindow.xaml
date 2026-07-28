@@ -16,6 +16,12 @@
                 <Button Name="ShowVesselOffButton" Text="{Loc 'iff-console-off'}" StyleClasses="OpenLeft" />
             </BoxContainer>
 
+            <Label Name="ShowFactionTagLabel" Text="{Loc 'iff-console-show-faction-tag-label'}" HorizontalExpand="True" StyleClasses="highlight" />
+            <BoxContainer Orientation="Horizontal" MinWidth="120">
+                <Button Name="ShowFactionTagOnButton" Text="{Loc 'iff-console-on'}" StyleClasses="OpenRight" />
+                <Button Name="ShowFactionTagOffButton" Text="{Loc 'iff-console-off'}" StyleClasses="OpenLeft" />
+            </BoxContainer>
+
             <Label Text="{Loc 'iff-console-designation-label'}" HorizontalExpand="True" StyleClasses="highlight" />
             <OptionButton Name="DesignationOptionButton" MinWidth="120" />
 

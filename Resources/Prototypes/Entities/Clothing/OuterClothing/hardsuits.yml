@@ -270,10 +270,14 @@
     lowPressureMultiplier: 1000
   - type: Armor
     modifiers:
-      coefficients:
+      coefficients: # Buffed for Persistence 14
         Blunt: 0.75
         Slash: 0.75
         Piercing: 0.7
+        Heat: 0.85
+        Caustic: 0.8
+  - type: ExplosionResistance # Added for Persistence 14
+    damageCoefficient: 0.75
   - type: ClothingSpeedModifier
     walkModifier: 0.8
     sprintModifier: 0.8

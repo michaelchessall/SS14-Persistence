@@ -1,6 +1,7 @@
 iff-console-window-title = IFF console
 iff-console-show-iff-label = Show IFF
 iff-console-show-vessel-label = Show vessel
+iff-console-show-faction-tag-label = Show faction tag
 iff-console-designation-label = Designation
 iff-console-designation-other = None
 iff-console-designation-ship = Ship

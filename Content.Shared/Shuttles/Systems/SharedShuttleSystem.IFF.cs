@@ -1,4 +1,5 @@
 using System.Linq;
+using Content.Shared.Station.Components;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
 
@@ -31,17 +32,31 @@ public abstract partial class SharedShuttleSystem
     {
         var entName = MetaData(gridUid).EntityName;
 
-        if (self)
-        {
-            return entName;
-        }
+        var baseName = string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName;
 
-        if (Resolve(gridUid, ref component, false) && (component.Flags & (IFFFlags.HideLabel | IFFFlags.Hide)) != 0x0)
+        Resolve(gridUid, ref component, false);
+
+        if (!self && component != null && (component.Flags & (IFFFlags.HideLabel | IFFFlags.Hide)) != 0x0)
         {
             return null;
         }
 
-        return string.IsNullOrEmpty(entName) ? Loc.GetString("shuttle-console-unknown") : entName;
+        // Default to showing faction tags when there is no IFF component yet.
+        // This keeps claimed/owned grids readable on radar without extra setup.
+        var showFactionTag = component?.ShowFactionTag ?? true;
+        if (showFactionTag)
+        {
+            var station = Station.GetOwningStation(gridUid);
+            if (station != null && TryComp<StationDataComponent>(station, out var stationData))
+            {
+            // Prefix format mirrors ID cards for quick visual consistency.
+                var tag = stationData.GetResolvedFactionTag(MetaData(station.Value).EntityName);
+                if (!string.IsNullOrEmpty(tag))
+                    return $"[{tag}] {baseName}";
+            }
+        }
+
+        return baseName;
     }
 
     /// <summary>

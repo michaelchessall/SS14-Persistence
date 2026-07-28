@@ -1,0 +1,44 @@
+# The Eye anomaly's tether - a purely visual connector between the anomaly and a nearby mob.
+# Built from SegmentCount (default 7) independent sprite layers, all using the same "tether"
+# state, each individually positioned/rotated/scaled every client frame by
+# Content.Client.Tether.TetherVisualSystem to trace out a gentle animated S-curve between its
+# Source and Target - both endpoints stay exactly anchored regardless, only the middle sways.
+# Positioning is computed entirely client-side (not trusted from the server) specifically so it
+# tracks a client-predicted player's movement with no lag - see TetherVisualComponent's doc
+# comment for the full reasoning.
+- type: entity
+  name: tether
+  id: EyeTetherVisual
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Effects/eye_tether.rsi
+    drawdepth: Effects
+    layers:
+    - state: tether
+      shader: unshaded
+    - state: tether
+      shader: unshaded
+    - state: tether
+      shader: unshaded
+    - state: tether
+      shader: unshaded
+    - state: tether
+      shader: unshaded
+    - state: tether
+      shader: unshaded
+    - state: tether
+      shader: unshaded
+  - type: TetherVisual
+    segmentCount: 7
+    wiggle: true
+    wiggleAmplitude: 0.5
+    wiggleSpeed: 0.3
+    wiggleWaves: 1
+    sourceOffsetDistance: 0.15 # pulls the start point toward the eye's edge instead of its dead center - tune to taste
+  - type: PointLight
+    enabled: true
+    color: "#c060ff"
+    radius: 1.5
+    softness: 1
+    castShadows: false

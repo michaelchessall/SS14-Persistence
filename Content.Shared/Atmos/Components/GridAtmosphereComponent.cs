@@ -161,5 +161,7 @@ public sealed partial class GridAtmosphereComponent : Component
     [DataField("atmosDevicesOrder")]
     public List<EntityUid> AtmosDevicesOrder = new();
 
+    [ViewVariables]
+    public bool RestoreDeviceOrder;
 
 }

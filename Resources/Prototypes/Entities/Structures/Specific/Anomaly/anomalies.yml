@@ -1195,3 +1195,68 @@
     range: 5
     supercriticalRange: 7
     supercriticalPermanentChance: 0.2
+
+# The Eye anomaly - see EyeAnomalyComponent/EyeAnomalySystem for the full pulse/tether/death logic.
+# The crack-open (supercritical) visual itself is entirely generic (see the Anomaly component
+# fields below - skipSupercriticalAnimation, supercriticalAnimationState/Duration,
+# supercriticalSettledState/PulseState, suppressCoreOnSupercritical, stopPulsingAfterSupercritical,
+# deathAnimationState/Duration)
+
+- type: entity
+  id: AnomalyEye
+  parent: BaseAnomaly
+  suffix: Eye, WIP
+  components:
+  - type: Anomaly
+    deleteEntity: false # survive supercritical so the eye-phase sprite is actually visible
+    offset: 0, 0 # disables default floating animation
+    corePrototype: AnomalyCoreEye
+    coreInertPrototype: AnomalyCoreEyeInert
+    supercriticalSoundAtAnimationStart:
+      collection: RadiationPulse
+    supercriticalDuration: 10.3 # timer only - the visual it used to drive is fully replaced below
+    skipSupercriticalAnimation: true
+    supercriticalAnimationState: cocoon-crit
+    supercriticalAnimationDuration: 10.2
+    supercriticalSettledState: eye-idle
+    supercriticalPulseState: eye-pulse # pulse animation shown post-crack, distinct from the pre-crack pulse state
+    suppressCoreOnSupercritical: true
+    stopPulsingAfterSupercritical: false # pulses CONTINUE after cracking - but their effect changes to tether acquisition (see EyeAnomalySystem.OnPulse) and their animation to supercriticalPulseState above
+    deathAnimationState: eye-death # sprite state played while the eye dies after its last thrall is gone
+    deathAnimationDuration: 12.24
+    preventRepeatedSupercritical: true
+    ignoreParticleHitsAfterSupercritical: true
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/eye_anom.rsi
+    layers:
+    - state: cocoon-idle
+      map: ["enum.AnomalyVisualLayers.Base"]
+    - state: cocoon-pulse
+      map: ["enum.AnomalyVisualLayers.Animated"]
+      visible: false
+  - type: PointLight
+    radius: 2.0
+    energy: 5.0
+    color: "#60c0ff"
+    castShadows: false
+  - type: EyeAnomaly
+    # --- pulse phase ---
+    minRange: 2
+    maxRange: 5
+    minTargets: 2
+    maxTargets: 10
+    minDuration: 30
+    maxDuration: 1800
+    revertOnCrit: true
+    revertOnDeath: true
+    # --- crit phase (tether/possession/guardian AI) - tetherVisualPrototype left at its
+    # component default "EyeTetherVisual" ---
+    tetherRange: 5
+    connectDuration: 0.7 # seconds the tether takes to visually reach out from the eye to a victim - raise to make the travel more readable
+    disconnectDuration: 2 # seconds the tether takes to retract back into the eye when it breaks
+    patrolRadius: 5
+    attackRange: 7
+    chaseRange: 10
+    mindShieldGrace: 3
+    grantResearchOnCrack: true
+

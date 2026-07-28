@@ -1,0 +1,19 @@
+# The vessel a tethered victim's mind gets moved into while trapped inside the Eye anomaly - see
+# EyeMindVesselComponent for the full explanation. Deliberately minimal: no Sprite (invisible), no
+# Physics (can't move/collide). MindContainerComponent is added automatically by
+# SharedMindSystem.TransferTo, and EyeMindVesselComponent itself is only ever added
+# programmatically - neither is declared here.
+- type: entity
+  id: EyeMindVessel
+  name: captured mind
+  description: A consciousness, adrift, going nowhere.
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Speech # required for CanSpeak to succeed - SpeechSystem cancels SpeakAttemptEvent without it
+  - type: UserInterface # required for the granted "Open Death Network" action to open at all
+    interfaces:
+      enum.AcceptDeathUiKey.Key:
+        type: AcceptDeathBoundUserInterface
+        requireInputValidation: false
+  - type: Examiner # required for CanExamine to succeed - not inherited from any base mob prototype
+  - type: IntrinsicRadioReceiver # required to actually display received radio messages (see RadioSystem.OnIntrinsicReceive)

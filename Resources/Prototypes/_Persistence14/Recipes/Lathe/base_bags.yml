@@ -7,7 +7,29 @@
   materials:
    Steel: 50
    Cloth: 500
-  
+
+#Persistence 14
+
+- type: latheRecipe
+  id: BaseToughBackpack
+  abstract: true
+  completetime: 3
+  categories:
+  - Bags
+  materials:
+   Plasteel: 50
+   Durathread: 500
+
+- type: latheRecipe
+  id: BaseToughDuffelBag
+  abstract: true
+  completetime: 3
+  categories:
+  - Bags
+  materials:
+   Plasteel: 50
+   Durathread: 500
+
 - type: latheRecipe
   id: BaseSatchel
   parent: BaseBackpack

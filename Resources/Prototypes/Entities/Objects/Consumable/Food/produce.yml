@@ -1734,7 +1734,7 @@
         reagents:
         # - ReagentId: Omnizine
         #   Quantity: 3
-        - ReagentId: Nectar
+        - ReagentId: Nectar # Persistence 14 Omnizine production rework
           Quantity: 3
         - ReagentId: SpaceDrugs
           Quantity: 5

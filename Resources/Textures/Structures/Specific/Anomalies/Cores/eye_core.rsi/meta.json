@@ -1,0 +1,47 @@
+{
+  "version": 1,
+  "license": "CC0-1.0",
+  "copyright": "Kildar - .kildar(Discord) -> Placeholder art until more official art is ready (AI GENERATED!)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "core"
+    },
+    {
+      "name": "inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "pulse",
+      "delays": [
+        [
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16,
+          0.16
+        ]
+      ]
+    }
+  ]
+}

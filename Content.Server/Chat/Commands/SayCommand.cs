@@ -36,7 +36,13 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player);
+            // Lets any system override the transmit range for this specific speaker (e.g. to
+            // suppress the visible bubble for something whose speech is meant to be
+            // heard/relayed some other way instead) without this file needing to know why.
+            var rangeEv = new GetSpeechTransmitRangeEvent(ChatTransmitRange.Normal);
+            EntityManager.EventBus.RaiseLocalEvent(playerEntity, rangeEv);
+
+            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, rangeEv.Range, false, shell, player);
         }
     }
 }

@@ -109,6 +109,7 @@
   color: "#2d5708"
   metabolisms:
     Bloodstream:
+      metabolismRate: 0.1
       effects:
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrunk
@@ -860,7 +861,7 @@
         conditions:
         - !type:TemperatureCondition
         #Minimum added so it can't work in space atmos
-          min: 50.0 
+          min: 50.0
           max: 180.0
         damage:
           Burn: -2
@@ -1372,6 +1373,7 @@
   color: "#07E79E"
   metabolisms:
     Bloodstream:
+      metabolismRate: 0.3
       effects:
       - !type:HealthChange
         conditions:

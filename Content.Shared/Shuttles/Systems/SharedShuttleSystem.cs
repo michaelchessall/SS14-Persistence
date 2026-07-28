@@ -1,6 +1,7 @@
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Shuttles.UI.MapObjects;
+using Content.Shared.Station;
 using Content.Shared.Whitelist;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -14,6 +15,7 @@ namespace Content.Shared.Shuttles.Systems;
 public abstract partial class SharedShuttleSystem : EntitySystem
 {
     [Dependency] private readonly IMapManager _mapManager = default!;
+    [Dependency] protected readonly SharedStationSystem Station = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] protected readonly FixtureSystem Fixtures = default!;
     [Dependency] protected readonly SharedMapSystem Maps = default!;

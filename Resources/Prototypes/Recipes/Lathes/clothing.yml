@@ -1205,6 +1205,16 @@
   parent: BaseJumpsuitRecipe
   id: ClothingUniformGenericTurtleNeckAndJeans
   result: ClothingUniformGenericTurtleNeckAndJeans
+  
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformRandomStandard
+  result: ClothingUniformRandomStandard
+  
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformRandomBra
+  result: ClothingUniformRandomBra
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe

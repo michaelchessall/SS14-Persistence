@@ -4,6 +4,7 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Preferences.Managers;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Access.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Systems;
@@ -31,6 +32,7 @@ public sealed partial class CrewAssignmentSystem : SharedCrewAssignmentSystem
     [Dependency] private readonly IPrototypeManager _protoMan = default!;
     [Dependency] private readonly StationSystem _station2 = default!;
     [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly IdCardSystem _idCard = default!;
 
 
 

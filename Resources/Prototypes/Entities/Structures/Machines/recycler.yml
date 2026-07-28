@@ -18,14 +18,14 @@
       brrt:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.15,-0.15,0.15,0.15"
+          bounds: "-0.32,-0.32,0.32,0"
         hard: false
         layer:
         - FullTileLayer
       collision:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.49,-0.49,0.49,0.49"
+          bounds: "-0.49,-0.31,0.49,0.49"
         hard: true
         mask:
         - MachineMask

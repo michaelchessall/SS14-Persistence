@@ -13,6 +13,7 @@ namespace Content.Server.NPC.Systems;
 /// </summary>
 public sealed partial class NPCCombatSystem : EntitySystem
 {
+    [Dependency] private readonly Content.Shared._Persistence14.PersistentIdentifier.PersistentIdentifierSystem _pid = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IMapManager _mapManager = default!;
     [Dependency] private readonly IRobustRandom _random = default!;

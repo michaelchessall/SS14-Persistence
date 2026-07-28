@@ -596,6 +596,10 @@ namespace Content.Server.Atmos.EntitySystems
             var atmosphere = ent.Comp1;
             if (!atmosphere.ProcessingPaused)
             {
+                // Persistence Edit: reapply saved device ordering before the run queue is snapshotted.
+                if (atmosphere.RestoreDeviceOrder)
+                    ReapplyDeviceOrder(atmosphere);
+
                 atmosphere.CurrentRunAtmosDevices.Clear();
                 atmosphere.CurrentRunAtmosDevices.EnsureCapacity(atmosphere.AtmosDevices.Count);
                 foreach (var device in atmosphere.AtmosDevices)

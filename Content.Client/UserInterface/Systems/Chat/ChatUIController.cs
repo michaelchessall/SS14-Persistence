@@ -865,8 +865,14 @@ public sealed partial class ChatUIController : UIController
             }
         }
 
-        // Local messages that have an entity attached get a speech bubble.
-        if (!speechBubble || msg.SenderEntity == default)
+        // Local messages that have an entity attached get a speech bubble - unless HideChat says
+        // this message shouldn't be visible at all, matching the same check just above for the
+        // log/history. Previously this switch ran unconditionally regardless of HideChat, which
+        // is why a HideChat-flagged "say" message (which still gets delivered to the client,
+        // just flagged - unlike whisper, whose sender skips delivery outright for anything other
+        // than a Full range result) would still show a bubble even though its log entry was
+        // correctly suppressed.
+        if (!speechBubble || msg.SenderEntity == default || msg.HideChat)
             return;
 
         switch (msg.Channel)

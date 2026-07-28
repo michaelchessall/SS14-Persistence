@@ -2,6 +2,7 @@ using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.Radio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using System.Text;
 
 namespace Content.Shared.Station.Components;
 
@@ -12,6 +13,11 @@ namespace Content.Shared.Station.Components;
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class StationDataComponent : Component
 {
+    /// <summary>
+    /// Hard cap for any faction tag shown in UI, IDs, and IFF labels.
+    /// </summary>
+    public const int MaxFactionTagLength = 4;
+
     /// <summary>
     /// The game map prototype, if any, associated with this station.
     /// </summary>
@@ -62,6 +68,74 @@ public sealed partial class StationDataComponent : Component
         { "Service", new FactionRadioData() },
         { "Supply", new FactionRadioData() }
     };
+
+    /// <summary>
+    /// Optional custom faction tag set from the station modification console.
+    /// If null or empty, we fall back to an auto-generated tag.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public string? FactionTag;
+
+    /// <summary>
+    /// Returns the tag that should actually be displayed to players.
+    /// Prefer the configured value, otherwise derive one from the faction name.
+    /// </summary>
+    public string GetResolvedFactionTag(string factionName)
+    {
+        var configured = NormalizeFactionTag(FactionTag);
+        if (!string.IsNullOrEmpty(configured))
+            return configured;
+
+        return GenerateFactionTag(factionName);
+    }
+
+    /// <summary>
+    /// Sanitizes player input so the tag is compact and predictable.
+    /// We strip whitespace and enforce a 4-character cap.
+    /// </summary>
+    public static string NormalizeFactionTag(string? tag)
+    {
+        if (string.IsNullOrWhiteSpace(tag))
+            return string.Empty;
+
+        var sb = new StringBuilder(MaxFactionTagLength);
+        foreach (var ch in tag.Trim())
+        {
+            if (char.IsWhiteSpace(ch))
+                continue;
+
+            sb.Append(ch);
+            if (sb.Length >= MaxFactionTagLength)
+                break;
+        }
+
+        return sb.ToString();
+    }
+
+    /// <summary>
+    /// Generates a default tag from the first letter of each word in the faction name.
+    /// Example: "Wayfarer Dynamics" becomes "WD".
+    /// </summary>
+    public static string GenerateFactionTag(string factionName)
+    {
+        if (string.IsNullOrWhiteSpace(factionName))
+            return string.Empty;
+
+        var sb = new StringBuilder(MaxFactionTagLength);
+        var words = factionName.Split(' ', StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
+
+        foreach (var word in words)
+        {
+            if (word.Length == 0)
+                continue;
+
+            sb.Append(word[0]);
+            if (sb.Length >= MaxFactionTagLength)
+                break;
+        }
+
+        return sb.ToString();
+    }
 
     public bool IsOwner(string owner)
     {

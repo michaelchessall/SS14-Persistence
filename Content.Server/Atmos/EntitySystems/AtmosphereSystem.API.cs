@@ -591,11 +591,9 @@ public partial class AtmosphereSystem
         if (!_atmosQuery.Resolve(grid, ref grid.Comp, false))
             return false;
 
-        // Persistence Edit: sometimes loaded devices may be listed by a grid but have a null JoinedGrid and removing this check fixes that.
-        //if (!grid.Comp.AtmosDevices.Add(device))
-        //    return false;
+        if (!grid.Comp.AtmosDevices.Add(device))
+            return false;
 
-        grid.Comp.AtmosDevices.Add(device);
         device.Comp.JoinedGrid = grid;
         return true;
     }

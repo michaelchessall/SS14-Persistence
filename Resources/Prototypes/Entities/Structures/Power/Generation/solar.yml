@@ -107,7 +107,7 @@
     supplyRampTolerance: 500
     supplyRampRate: 500
   - type: SolarPanel
-    maxSupply: 3000
+    maxSupply: 4000
   - type: Sprite
     sprite: Structures/Power/Generation/solar_panel.rsi
     state: solar_panel_phoron

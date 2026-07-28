@@ -26,6 +26,19 @@
                     Access="Public"
                     Text="Save"/>
                 </BoxContainer>
+                                <Control MinHeight="10"/>
+                                <BoxContainer Orientation="Horizontal">
+                                        <Label Text="Faction Tag:"
+                                            StyleClasses="LabelKeyText" />
+                                        <Control MinWidth="20"/>
+                                        <LineEdit Name="FactionTagField"
+                                        Access="Public"
+                                        MinWidth="48"
+                                        HorizontalExpand="False" />
+                                        <Button Name="FactionTagConfirm"
+                                        Access="Public"
+                                        Text="Save"/>
+                                </BoxContainer>
                 <Control MinHeight="15"/>
                 <BoxContainer Orientation="Horizontal" MinHeight="80">
                     <Label Text="Current Faction Owners:"

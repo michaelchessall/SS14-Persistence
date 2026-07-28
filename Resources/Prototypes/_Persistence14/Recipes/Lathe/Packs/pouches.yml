@@ -1,0 +1,25 @@
+- type: latheRecipePack
+  id: PouchesPack
+  recipes:
+  - PouchUtility
+  - PouchContractor
+  - PouchCaptain
+  - PouchEngineering
+  - PouchAtmos
+  - PouchCargo
+  - PouchSalvage
+  - PouchMedical
+  - PouchFirstAid
+  - PouchScience
+  - PouchJanitor
+  - PouchHydroponics
+  - PouchChaplain
+  - PouchMime
+  - PouchClown
+  - PouchMailCarrier
+  - PouchMercenary
+  - PouchPrivateSecurity
+  - PouchPirate
+  - PouchPirateCaptain
+  - PouchTobacco
+  - PouchPunk
