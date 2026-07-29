@@ -1028,7 +1028,7 @@ public sealed class PlantHolderSystem : EntitySystem
         if (currentRadiation >= maxRadiation)
             return;
 
-        var addRadiation = (maxRadiation - currentRadiation) / 10;
+        var addRadiation = (maxRadiation - currentRadiation) / 5;
 
         AdjustNutrient(uid, addRadiation, "Radiation", component);
     }
