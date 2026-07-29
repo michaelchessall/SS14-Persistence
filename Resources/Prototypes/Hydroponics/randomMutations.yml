@@ -28,7 +28,7 @@
       persists: false
       effect: !type:PlantChangeStat
         targetValue: Viable
-    - name: ChangeWaterConsumption
+    - name: ChangeWaterConsumption # TODO: Remove this
       baseOdds: 0.018
       persists: false
       effect: !type:PlantChangeStat
@@ -36,7 +36,7 @@
         minValue: 0.3
         maxValue: 0.9
         steps: 5
-    - name: ChangeNutrientConsumption
+    - name: ChangeNutrientConsumption # TODO: Remove this
       baseOdds: 0.018
       persists: false
       effect: !type:PlantChangeStat
@@ -60,7 +60,7 @@
         minValue: 2
         maxValue: 25
         steps: 5
-    - name: ChangeToxinsTolerance
+    - name: ChangeToxinsTolerance # TODO: Remove this
       baseOdds: 0.018
       persists: false
       effect: !type:PlantChangeStat
@@ -68,7 +68,7 @@
         minValue: 1
         maxValue: 10
         steps: 5
-    - name: ChangeLowPressureTolerance
+    - name: ChangeLowPressureTolerance # TODO: Update this
       baseOdds: 0.018
       persists: false
       effect: !type:PlantChangeStat
@@ -76,7 +76,7 @@
         minValue: 60
         maxValue: 100
         steps: 5
-    - name: ChangeHighPressureTolerance
+    - name: ChangeHighPressureTolerance # TODO: Update this
       baseOdds: 0.018
       persists: false
       effect: !type:PlantChangeStat
@@ -84,7 +84,7 @@
         minValue: 100
         maxValue: 140
         steps: 5
-    - name: ChangePestTolerance
+    - name: ChangePestTolerance # TODO: Remove this
       baseOdds: 0.018
       persists: false
       effect: !type:PlantChangeStat
