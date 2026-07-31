@@ -1,4 +1,4 @@
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: teaPlant
   name: seeds-teaplant-name
   noun: seeds-noun-seeds
@@ -12,18 +12,27 @@
   maturation: 5
   production: 3
   yield: 2
-  potency: 20
   growthStages: 5
-  waterConsumption: 0.6
   idealLight: 9
   baseIdealHeat: 298
   chemicals:
     Vitamin:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 1
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: cabbage
   name: seeds-cabbage-name
   noun: seeds-noun-seeds
@@ -36,19 +45,33 @@
   maturation: 7
   production: 5
   yield: 3
-  potency: 10
   growthStages: 1
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 2
+      Requirements:
+        Water:
+          Requirement: 2
+        Fertilizer:
+          BonusRequirement: 0.8
+          BonusAmount: 4
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
-
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
+- type: seed
   id: cannabis
   name: seeds-cannabis-name
   noun: seeds-noun-seeds
@@ -66,14 +89,20 @@
   yield: 2
   potency: 20
   growthStages: 3
-  waterConsumption: 0.40
   idealLight: 9
   baseIdealHeat: 298
   chemicals:
     THC:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 3
+      Requirements:
+        Nutrient:
+          Requirement: 3
+        Fertilizer:
+          BonusRequirement: 0.6
+          BonusAmount: 3
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: rainbowCannabis
@@ -120,7 +149,7 @@
       Max: 5
       PotencyDivisor: 33
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: tobacco
   name: seeds-tobacco-name
   noun: seeds-noun-seeds
@@ -134,18 +163,23 @@
   maturation: 5
   production: 5
   yield: 2
-  potency: 20
   growthStages: 3
-  waterConsumption: 0.40
   idealLight: 9
   baseIdealHeat: 298
   chemicals:
     Nicotine:
-      Min: 1
-      Max: 10
-      PotencyDivisor: 10
+      BaseAmount: 3
+      Requirements:
+        Nutrient:
+          Requirement: 3
+        Fertilizer:
+          BonusRequirement: 0.6
+          BonusAmount: 3
+        CarbonDioxide:
+          BonusRequirement: 0.4
+          BonusAmount: 4
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: nettle
   name: seeds-nettle-name
   noun: seeds-noun-seeds
@@ -160,16 +194,23 @@
   maturation: 8
   production: 6
   yield: 2
-  potency: 20
   growthStages: 5
   idealLight: 8
-  waterConsumption: 0.60
   baseIdealHeat: 298
   chemicals:
     Histamine:
-      Min: 1
-      Max: 25
-      PotencyDivisor: 4
+      BaseAmount: 6
+      Requirements:
+        Nutrient:
+          Requirement: 3
+        Water:
+          Requirement: 3
+        Fertilizer:
+          BonusRequirement: 0.5
+          BonusAmount: 6.5
+        CarbonDioxide:
+          BonusRequirement: 1
+          BonusAmount: 12.5
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: deathNettle
@@ -197,10 +238,12 @@
       Min: 1
       Max: 15
       PotencyDivisor: 6
+      BaseAmount: 4
     FluorosulfuricAcid:
       Min: 1
       Max: 15
       PotencyDivisor: 6
+      BaseAmount: 4
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: aloe
@@ -228,7 +271,7 @@
       Max: 10
       PotencyDivisor: 10
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system, remove potency
   id: ambrosiaVulgaris
   name: seeds-ambrosiavulgaris-name
   noun: seeds-noun-seeds
@@ -245,7 +288,6 @@
   yield: 3
   potency: 10
   growthStages: 6
-  waterConsumption: 0.60
   chemicals:
     Nutriment:
       Min: 1
