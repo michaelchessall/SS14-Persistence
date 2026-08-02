@@ -1465,10 +1465,139 @@
     clothingVisuals:
       head:
       - state: equipped-HELMET
-        offset: "0, 0.09"
+        offset: "0, 0.08"
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieAna
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieHuna
+  name: Huna plushie
+  description: A limited grove edition Huna Plush Deluxe with accurate eye bags and fluffy hair! The glint in it's eye makes you feel like something malicious is going to happen soon. Holding it also makes you want to scream 'TONIGHTS THE NIGHT' for some reason.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Huna.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieHunaSound
+      path: /Audio/Voice/Human/femalescream_5.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieHunaSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieHunaSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieHunaSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Human/femalescream_3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Voice/Human/femalescream_2.ogg
+      params:
+        volume: -5
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Huna.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.06"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieHuna
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieHelena
+  name: Helena plushie
+  description: Despite it all, despite the odds, this plushie still looks at you with engineer pride. There's a small disclaimer on the back that says "clipboard not included".
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Helena.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieHelenaSound
+      path: /Audio/Vioce/Talk/vulp.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieHelenaSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieHelenaSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieHelenaSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Effects/squeak3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Effects/Footsteps/carpet4.ogg
+      params:
+        volume: -5
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Helena.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.159"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieHelena
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieMadeline
+  name: Madeline plushie
+  description: Madeline Foxworn, beloved executive secretary of Zenith station, carapace armor and security hardsuit sold separately.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Madeline.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieMadelineSound
+      path: /Audio/Voice/Human/womanlaugh.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound: *PlushieMadelineSound
+  - type: EmitSoundOnActivate
+    sound: *PlushieMadelineSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieMadelineSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Human/femalescream_3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit: *PlushieMadelineSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Madeline.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+        offset: "0, 0.09"
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieMadeline
 
 - type: entity
   parent: BasePlushie
