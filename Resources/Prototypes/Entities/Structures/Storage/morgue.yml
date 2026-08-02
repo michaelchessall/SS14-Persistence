@@ -80,7 +80,7 @@
 - type: entity
   id: MorgueAssembly
   name: morgue assembly
-  description: Used to store bodies once completed. 
+  description: Used to store bodies once completed.
   placement:
     mode: SnapgridCenter
   components:

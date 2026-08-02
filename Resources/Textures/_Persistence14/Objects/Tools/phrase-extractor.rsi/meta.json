@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprite made for PS14 (https://github.com/michaelchessall/SS14-Persistence) by JetBalrog (Discord)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "icon-red",
+      "delays": [
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+	{
+			"name": "inhand-red-left",
+			"directions": 4
+	},
+	{
+			"name": "inhand-red-right",
+			"directions": 4
+	},
+	{
+			"name": "equipped-BELT-red",
+			"directions": 4
+	}
+  ]
+}

@@ -16,17 +16,31 @@
     TriggerPressureHigh: 0.5
     TriggerPressureLow: 1
     TriggerExamine: 1
-    TriggerBruteDamage: 1
-    #TriggerInteraction: 1 #this one interferes with activating artifact AND brute dmg!
+    TriggerBluntDamage: 1
+    TriggerPierceDamage: 1
     TriggerWrenching: 0.5
     TriggerPrying: 0.5
     TriggerScrewing: 0.5
     TriggerPulsing: 0.5
-    TriggerTimer: 0.25
+    TriggerSlicing: 0.5
+    TriggerCutting: 0.5
+    TriggerRolling: 0.5
+    TriggerBrushing: 0.5
+    TriggerTimer: 0.01
     TriggerBlood: 1
     TriggerThrow: 1
     TriggerDeath: 1
     TriggerMagnet: 1
+    TriggerChemBrute: 1
+    TriggerChemBurn: 1
+    TriggerChemToxin: 1
+    TriggerChemGenetic: .5
+    TriggerChemCryo: 1
+    TriggerChemNarcotic: .5
+    TriggerChemAcidic: .5
+    TriggerChemCleaning: 1
+    TriggerChemSticky: .5
+    TriggerChemSlippery: .5
 
 - type: xenoArchTrigger
   id: TriggerMusic
@@ -46,11 +60,10 @@
   - type: XATDamageThresholdReached
     typesNeeded:
       Heat: 20
-# This kinda trivializes the difficulty.
-#  - type: XATToolUse
-#    requiredTool: Welding
-#    delay: 5
-#    fuel: 10
+  - type: XATToolUse
+    requiredTool: Welding
+    delay: 5
+    fuel: 10
 
 - type: xenoArchTrigger
   id: TriggerCold
@@ -173,11 +186,28 @@
 
 - type: xenoArchTrigger
   id: TriggerBruteDamage
-  tip: xenoarch-trigger-tip-brute-damage
+  tip: xenoarch-trigger-tip-blunt-damage
   components:
   - type: XATDamageThresholdReached
     groupsNeeded:
       Brute: 20
+
+- type: xenoArchTrigger
+  id: TriggerBluntDamage
+  tip: xenoarch-trigger-tip-blunt-damage
+  components:
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Blunt: 20
+
+
+- type: xenoArchTrigger
+  id: TriggerPierceDamage
+  tip: xenoarch-trigger-tip-pierce-damage
+  components:
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Piercing: 20
 
 - type: xenoArchTrigger
   id: TriggerInteraction
@@ -222,6 +252,48 @@
     examineText: xenoarch-trigger-examine-pulsing
 
 - type: xenoArchTrigger
+  id: TriggerSlicing
+  tip: xenoarch-trigger-tip-slicing
+  components:
+  - type: XATToolUse
+    requiredTool: Slicing
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Slash: 20
+  - type: XATExaminableText
+    examineText: xenoarch-trigger-examine-slicing
+  
+- type: xenoArchTrigger
+  id: TriggerCutting
+  tip: xenoarch-trigger-tip-cutting
+  components:
+  - type: XATToolUse
+    requiredTool: Cutting
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Slash: 20
+  - type: XATExaminableText
+    examineText: xenoarch-trigger-examine-cutting
+  
+- type: xenoArchTrigger
+  id: TriggerRolling
+  tip: xenoarch-trigger-tip-rolling
+  components:
+  - type: XATToolUse
+    requiredTool: Rolling
+  - type: XATExaminableText
+    examineText: xenoarch-trigger-examine-rolling
+
+- type: xenoArchTrigger
+  id: TriggerBrushing
+  tip: xenoarch-trigger-tip-brushing
+  components:
+  - type: XATToolUse
+    requiredTool: Brushing
+  - type: XATExaminableText
+    examineText: xenoarch-trigger-examine-brushing
+
+- type: xenoArchTrigger
   id: TriggerTimer
   tip: xenoarch-trigger-tip-timer
   components:
@@ -244,6 +316,12 @@
     - ZombieBlood
     - Sap
     - SulfurBlood
+    - Saline
+  - type: XATItemInteract
+    reduceStackBy: 1
+    whitelist:
+     tags:
+     - Bloodpack
 
 - type: xenoArchTrigger
   id: TriggerThrow
@@ -265,3 +343,131 @@
   tip: xenoarch-trigger-tip-magnet
   components:
   - type: XATMagnet
+
+- type: xenoArchTrigger
+  id: TriggerChemBrute
+  tip: xenoarch-trigger-tip-chem-brute
+  components:
+  - type: XATReactive
+    reagents:
+    - Bicaridine
+    - Bruizine
+    - Lacerinol
+    - Puncturase
+    - PolypyryliumOligomers
+    - Omnizine
+    - Tricordrazine
+
+- type: xenoArchTrigger
+  id: TriggerChemBurn
+  tip: xenoarch-trigger-tip-chem-burn
+  components:
+  - type: XATReactive
+    reagents:
+    - Kelotane
+    - Dermaline
+    - Pyrazine
+    - Insuzine
+    - Leporazine
+    - Aloe
+    - Sigynate
+    - Siderlac
+    - Omnizine
+    - Tricordrazine
+
+
+- type: xenoArchTrigger
+  id: TriggerChemToxin
+  tip: xenoarch-trigger-tip-chem-toxin
+  components:
+  - type: XATReactive
+    reagents:
+    - Dylovene
+    - Hyronalin
+    - Arithrazine
+    - Diphenhydramine
+    - Tricordrazine
+    - Omnizine
+
+- type: xenoArchTrigger
+  id: TriggerChemGenetic
+  tip: xenoarch-trigger-tip-chem-genetic
+  components:
+  - type: XATReactive
+    reagents:
+    - Phalanximine
+    - Omnizine
+
+- type: xenoArchTrigger
+  id: TriggerChemCryo
+  tip: xenoarch-trigger-tip-chem-cryo
+  components:
+  - type: XATReactive
+    reagents:
+    - Cryoxadone
+    - Arcryox
+    - Doxarubixadone
+    - Aloxadone
+    - Opporozidone
+
+- type: xenoArchTrigger
+  id: TriggerChemNarcotic
+  tip: xenoarch-trigger-tip-chem-narcotic
+  components:
+  - type: XATReactive
+    reagents:
+    - Desoxyephedrine
+    - Ephedrine
+    - Stimulants
+    - THC
+    - Nicotine
+    - Impedrezene
+    - SpaceDrugs
+    - Bananadine
+    - Nocturine
+    - MuteToxin
+    - NorepinephricAcid
+    - TearGas
+
+- type: xenoArchTrigger
+  id: TriggerChemAcidic
+  tip: xenoarch-trigger-tip-chem-acidic
+  components:
+  - type: XATReactive
+    reagents:
+    - TranexamicAcid
+    - NorepinephricAcid
+    - TearGas
+    - PolytrinicAcid
+    - FerrochromicAcid
+    - FluorosulfuricAcid
+    - SulfuricAcid
+    - TartaricAcid
+
+- type: xenoArchTrigger
+  id: TriggerChemCleaning
+  tip: xenoarch-trigger-tip-cleaning
+  components:
+  - type: XATReactive
+    reagents:
+    - SpaceCleaner
+    - Bleach
+    - SoapReagent
+
+- type: xenoArchTrigger
+  id: TriggerChemSticky
+  tip: xenoarch-trigger-tip-sticky
+  components:
+  - type: XATReactive
+    reagents:
+    - SpaceGlue
+    - ArtifactGlue
+
+- type: xenoArchTrigger
+  id: TriggerChemSlippery
+  tip: xenoarch-trigger-tip-slippery
+  components:
+  - type: XATReactive
+    reagents:
+    - SpaceLube
+    - SoapReagent

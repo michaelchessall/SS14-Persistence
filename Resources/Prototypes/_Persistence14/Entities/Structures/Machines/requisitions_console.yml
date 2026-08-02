@@ -1,0 +1,93 @@
+# Requisitions Console — a customer-facing ordering terminal that links to nearby printing machines
+# (lathes / flatpackers) and lets customers cart + pay for a batch print in one go. A second, access-gated
+# tab lets an operator set raw-material prices and fees. Built from a printed machine board (see
+# _Persistence14/Entities/Objects/Devices/Circuitboards/requisitions_console_board.yml), unlocked by the
+# Tier 2 "Requisitions Logistics" research.
+- type: entity
+  id: MachineRequisitionsConsole
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  name: requisitions console
+  description: A customer-facing ordering terminal. Links to nearby fabricators and prints a whole cart of items at once, for a price.
+  components:
+  # Built from a printed machine board via the shared Machine construction graph.
+  - type: Machine
+    board: MachineRequisitionsConsoleCircuitboard
+  - type: Sprite
+    sprite: Structures/Machines/computers.rsi
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: generic
+    - map: ["computerLayerKeys"]
+      state: generic_keys
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        computerLayerScreen:
+          True: { visible: true }
+          False: { visible: false }
+        computerLayerKeys:
+          True: { visible: true }
+          False: { visible: false }
+  - type: RequisitionsConsole
+    range: 10
+    # Fallback price used for any linked material not listed below.
+    fallbackMaterialPrice: 700
+    # Default per-sheet prices, applied automatically the first time a material becomes priceable.
+    # Derived from cargo crate costs; rounded to whole spesos since the price is a per-sheet integer.
+    defaultMaterialPrices:
+      Paper: 1        # ~1.23/sheet
+      Cardboard: 4    # ~3.67/piece
+      Steel: 15
+      Glass: 15
+      Cloth: 17       # ~16.67/piece
+      Plastic: 20
+      Brass: 30
+      Plasteel: 38
+      Silver: 86      # per bar
+      Plasma: 100
+      Gold: 108       # ~107.5/bar
+  # Lets customers insert their own sheets to lower the bill at checkout.
+  - type: MaterialStorage
+    whitelist:
+      tags:
+      - Sheet
+      - RawMaterial
+      - Ingot
+  # Faction-aware gating for the config tab. Empty by default => open until configured with an Access Overrider.
+  - type: AccessReader
+  - type: ActivatableUI
+    key: enum.RequisitionsConsoleUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: UserInterface
+    interfaces:
+      enum.RequisitionsConsoleUiKey.Key:
+        type: RequisitionsConsoleBoundUserInterface
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.4,-0.4,0.4,0.4"
+        density: 190
+        mask:
+        - MachineMask
+        layer:
+        - MachineLayer
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 300
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  - type: StaticPrice
+    price: 400

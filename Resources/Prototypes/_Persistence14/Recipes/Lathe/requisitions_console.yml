@@ -1,0 +1,7 @@
+# Circuit-imprinter recipe for the requisitions console board. Locked until the "Requisitions Logistics"
+# technology is researched (see _Persistence14/Research/requisitions.yml). Belongs to the Service board
+# category so it shows under the imprinter's Service tab, and is pulled in via the ServiceBoards dynamic pack.
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceMachineRecipeCategory ]
+  id: MachineRequisitionsConsoleCircuitboard
+  result: MachineRequisitionsConsoleCircuitboard
