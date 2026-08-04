@@ -33,21 +33,10 @@ public abstract class SharedResearchSystem : EntitySystem
             return;
 
         var availableTechnology = GetAvailableTechnologies(uid, component);
-        _random.Shuffle(availableTechnology);
 
-        component.CurrentTechnologyCards.Clear();
-        foreach (var discipline in component.SupportedDisciplines)
-        {
-            for (var i = 0; i < 3; i++)
-            {
-                var selected = availableTechnology.FirstOrDefault(p => p.Discipline == discipline);
-                if (selected == null)
-                    continue;
-                component.CurrentTechnologyCards.Add(selected.ID);
-                availableTechnology.Remove(selected);
-                _random.Shuffle(availableTechnology);
-            }
-        }
+        component.CurrentTechnologyCards = availableTechnology
+            .Select(p => (ProtoId<TechnologyPrototype>)p.ID)
+            .ToList();
         Dirty(uid, component);
     }
 
@@ -64,7 +53,11 @@ public abstract class SharedResearchSystem : EntitySystem
                 availableTechnologies.Add(tech);
         }
 
-        return availableTechnologies;
+        return availableTechnologies
+            .OrderBy(p => p.Discipline)
+            .ThenBy(p => p.Tier)
+            .ThenBy(p => p.Name)
+            .ToList();
     }
 
     public bool IsTechnologyAvailable(TechnologyDatabaseComponent component, TechnologyPrototype tech, Dictionary<string, int>? disciplineTiers = null)

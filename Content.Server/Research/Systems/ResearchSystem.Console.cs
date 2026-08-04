@@ -58,6 +58,7 @@ public sealed partial class ResearchSystem
         }
 
         SyncClientWithServer(uid);
+        UpdateTechnologyCards(uid);
         UpdateConsoleInterface(uid, component);
     }
 

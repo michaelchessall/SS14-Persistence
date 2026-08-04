@@ -31,6 +31,10 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
 
     public EntityUid Entity;
 
+    private ResearchConsoleBoundInterfaceState? _currentState;
+    public const int AllDisciplinesFilter = 0;
+    public const int AllTierFilter = 0;
+
     public ResearchConsoleMenu()
     {
         RobustXamlLoader.Load(this);
@@ -41,6 +45,21 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         _accessReader = _entity.System<AccessReaderSystem>();
 
         ServerButton.OnPressed += _ => OnServerButtonPressed?.Invoke();
+
+        TechnologySearch.OnTextChanged += _ => RefreshTechnologyCards();
+        DisciplineFilter.OnItemSelected += args =>
+        {
+            DisciplineFilter.SelectId(args.Id);
+            RefreshTechnologyCards();
+        };
+
+        TierFilter.OnItemSelected += args =>
+        {
+            TierFilter.SelectId(args.Id);
+            RefreshTechnologyCards();
+        };
+
+        PopulateFilters();
     }
 
     public void SetEntity(EntityUid entity)
@@ -50,7 +69,7 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
 
     public void UpdatePanels(ResearchConsoleBoundInterfaceState state)
     {
-        TechnologyCardsContainer.Children.Clear();
+        _currentState = state;
 
         var availableTech = _research.GetAvailableTechnologies(Entity);
         SyncTechnologyList(AvailableCardsContainer, availableTech);
@@ -58,25 +77,11 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
             return;
 
-        // i can't figure out the spacing so here you go
-        TechnologyCardsContainer.AddChild(new Control
-        {
-            MinHeight = 10
-        });
+        var unlockedTech = database.UnlockedTechnologies.Select(_prototype.Index);
 
-        var hasAccess = _player.LocalEntity is not { } local ||
-                        !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
-                        _accessReader.IsAllowed(local, Entity, access);
-        foreach (var techId in database.CurrentTechnologyCards)
-        {
-            var tech = _prototype.Index<TechnologyPrototype>(techId);
-            var cardControl = new TechnologyCardControl(tech, _prototype, _sprite, _research.GetTechnologyDescription(tech, includeTier: false), state.Points, hasAccess);
-            cardControl.OnPressed += () => OnTechnologyCardPressed?.Invoke(techId);
-            TechnologyCardsContainer.AddChild(cardControl);
-        }
-
-        var unlockedTech = database.UnlockedTechnologies.Select(x => _prototype.Index<TechnologyPrototype>(x));
         SyncTechnologyList(UnlockedCardsContainer, unlockedTech);
+
+        RefreshTechnologyCards();
     }
 
     public void UpdateInformationPanel(ResearchConsoleBoundInterfaceState state)
@@ -177,6 +182,105 @@ public sealed partial class ResearchConsoleMenu : FancyWindow
         foreach (var (tech, techControl) in currentTechControls)
         {
             container.Children.Remove(techControl);
+        }
+    }
+
+    public void PopulateFilters()
+    {
+        DisciplineFilter.Clear();
+        DisciplineFilter.AddItem(
+           Loc.GetString("research-console-filter-all-disciplines"),
+           AllDisciplinesFilter);
+
+        var disciplineIndex = 1;
+        foreach (var discipline in _prototype
+            .EnumeratePrototypes<TechDisciplinePrototype>()
+            .OrderBy(discipline => Loc.GetString(discipline.Name)))
+        {
+            DisciplineFilter.AddItem(Loc.GetString(discipline.Name), disciplineIndex);
+            DisciplineFilter.SetItemMetadata(disciplineIndex, discipline.ID);
+            disciplineIndex++;
+        }
+
+        DisciplineFilter.SelectId(AllDisciplinesFilter);
+
+        TierFilter.Clear();
+        TierFilter.AddItem(
+            Loc.GetString("research-console-filter-all-tiers"),
+            AllTierFilter);
+
+        var maximumTier = _prototype
+            .EnumeratePrototypes<TechnologyPrototype>()
+            .Max(technology => technology.Tier);
+
+        for (int tier = 1; tier <= maximumTier; tier++)
+        {
+            TierFilter.AddItem(
+                Loc.GetString("research-console-filter-tier", ("tier", tier)),
+                tier);
+        }
+
+        TierFilter.Select(AllTierFilter);
+    }
+
+    public void RefreshTechnologyCards()
+    {
+        TechnologyCardsContainer.Children.Clear();
+
+        if (_currentState == null)
+            return;
+
+        if (!_entity.TryGetComponent(Entity, out TechnologyDatabaseComponent? database))
+            return;
+
+        var technologies = database.CurrentTechnologyCards.Select(_prototype.Index);
+
+        var searchText = TechnologySearch.Text.Trim();
+
+        if (!string.IsNullOrWhiteSpace(searchText))
+        {
+            technologies = technologies.Where(technology =>
+            {
+                var localizedName = Loc.GetString(technology.Name);
+
+                return localizedName.Contains(searchText, StringComparison.OrdinalIgnoreCase);
+            });
+        }
+
+        if (DisciplineFilter.SelectedId != AllDisciplinesFilter &&
+            DisciplineFilter.GetItemMetadata(DisciplineFilter.SelectedId) is string disciplineId)
+        {
+            technologies = technologies.Where(technology => technology.Discipline == disciplineId);
+        }
+
+        if (TierFilter.SelectedId != AllTierFilter)
+        {
+            var selectedTier = TierFilter.SelectedId;
+
+            technologies = technologies.Where(technology => technology.Tier == selectedTier);
+        }
+
+        technologies = technologies
+            .OrderBy(technology => technology.Discipline)
+            .ThenBy(technology => technology.Tier)
+            .ThenBy(technology => Loc.GetString(technology.Name));
+
+        var hasAccess = _player.LocalEntity is not { } local ||
+            !_entity.TryGetComponent<AccessReaderComponent>(Entity, out var access) ||
+            _accessReader.IsAllowed(local, Entity, access);
+
+        foreach (var technology in technologies)
+        {
+            var cardControl = new TechnologyCardControl(
+                technology,
+                _prototype,
+                _sprite,
+                _research.GetTechnologyDescription(technology, includeTier: false),
+                _currentState.Points,
+                hasAccess);
+
+            cardControl.OnPressed += () => OnTechnologyCardPressed?.Invoke(technology.ID);
+            TechnologyCardsContainer.AddChild(cardControl);
         }
     }
 }
