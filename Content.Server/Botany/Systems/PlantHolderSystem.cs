@@ -149,7 +149,7 @@ public sealed class PlantHolderSystem : EntitySystem
             if (component.PestLevel >= 5)
                 args.PushMarkup(Loc.GetString("plant-holder-component-pest-high-level-message"));
 
-            foreach (var nutrientId in GetSortedNutrientIds(entity, component))
+            foreach (var nutrientId in GetSortedNutrientIds(entity, component)) // Persistence: Nutrient rework
             {
                 var nutrient = _prototype.Index(nutrientId);
                 var requirement = FixedPoint2.Zero;
@@ -478,10 +478,8 @@ public sealed class PlantHolderSystem : EntitySystem
             component.MutationLevel = 0;
         }
 
-        UpdateRadiation(uid, component);
-
         // Weeds might need to be changed due to the plant nutrient rework
-        if (CheckRequiredNutrients(uid, component))
+        if (CheckRequiredNutrients(uid, component)) // Persistence: Plant Nutrient Rework
         {
             var chance = 0f;
             if (component.Seed == null)
@@ -523,14 +521,17 @@ public sealed class PlantHolderSystem : EntitySystem
             return;
         }
 
+        UpdateRadiation(uid, component); // Persistence: Plant Nutrient Rework
+
         // There's a small chance the pest population increases.
         // Can only happen when there's a live seed planted.
+        /* Persistence: Plant Nutrient Rework
         if (_random.Prob(0.01f))
         {
             component.PestLevel += 0.5f * HydroponicsSpeedMultiplier;
             if (component.DrawWarnings)
                 component.UpdateSpriteAfterUpdate = true;
-        }
+        }*/
 
         // Advance plant age here.
         if (component.SkipAging > 0)
@@ -557,11 +558,11 @@ public sealed class PlantHolderSystem : EntitySystem
         if (component.SkipAging < 10)
         {
             // Make sure the plant is not starving.
-            if (CheckRequiredNutrients(uid, component))
+            if (CheckRequiredNutrients(uid, component)) // Persistence: Plant Nutrient Rework
             {
                 component.Health += Convert.ToInt32(_random.Prob(0.7f)) * healthMod;
             }
-            else if (component.HarvestAge)
+            else if (component.HarvestAge) // Persistence: Plant Nutrient Rework
             {
                 AffectGrowth(uid, -1, component);
                 component.Health -= healthMod;
@@ -595,7 +596,7 @@ public sealed class PlantHolderSystem : EntitySystem
             }
         }
 
-        // SeedPrototype pressure resistance.
+        // SeedPrototype pressure resistance. Persistence: Changed pressure to use ideal pressure and tolerance like heat does
         var pressure = environment.Pressure;
 
         var lowPressure = pressure < component.Seed.IdealPressure - component.Seed.PressureTolerance;
@@ -637,7 +638,7 @@ public sealed class PlantHolderSystem : EntitySystem
             }
         }
 
-        // Toxin levels beyond the plant's tolerance cause damage.
+        // Toxin levels beyond the plant's tolerance cause damage. Persistence: Commented out toxins, due to them being converted into a nutrient
         // They are, however, slowly reduced over time.
         /*if (component.Toxins > 0)
         {
@@ -652,7 +653,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 component.UpdateSpriteAfterUpdate = true;
         }
 
-        // Weed levels.
+        // Weed levels. ersistence: Commented out pests, due to them being converted into a nutrient
         if (component.PestLevel > 0)
         {
             // TODO: Carnivorous plants?
@@ -777,7 +778,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 return false;
             }
 
-            if (!CheckRequiredNutrients(plantholder, component)) // This should only happen if a reagent that removes nutrients is added to the plant.
+            if (!CheckRequiredNutrients(plantholder, component)) //Persistence: Plant Nutrient Rework, This should only happen if a reagent that removes nutrients is added to the plant.
             {
                 _popup.PopupCursor(Loc.GetString("plant-holder-component-low-nutrient-cant-harvest-message"), user);
                 component.Harvest = false;
@@ -932,7 +933,7 @@ public sealed class PlantHolderSystem : EntitySystem
         }
     }
 
-    public void AdjustNutrient(EntityUid uid, FixedPoint2 amount, ProtoId<PlantNutrientPrototype> nutrientId, PlantHolderComponent? component = null)
+    public void AdjustNutrient(EntityUid uid, FixedPoint2 amount, ProtoId<PlantNutrientPrototype> nutrientId, PlantHolderComponent? component = null) // Persistence: Plant Nutrient Rework
     {
         if (!Resolve(uid, ref component))
             return;
@@ -948,7 +949,7 @@ public sealed class PlantHolderSystem : EntitySystem
         }
     }
 
-    private void RemoveEmptyNutrient(EntityUid uid, ProtoId<PlantNutrientPrototype> nutrient, PlantHolderComponent? component = null)
+    private void RemoveEmptyNutrient(EntityUid uid, ProtoId<PlantNutrientPrototype> nutrient, PlantHolderComponent? component = null) // Persistence: Plant Nutrient Rework
     {
         if (!Resolve(uid, ref component))
             return;
@@ -958,7 +959,7 @@ public sealed class PlantHolderSystem : EntitySystem
     }
 
 
-    public bool CheckRequiredNutrients(EntityUid uid, PlantHolderComponent? component = null)
+    public bool CheckRequiredNutrients(EntityUid uid, PlantHolderComponent? component = null) // Persistence: Plant Nutrient Rework
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -1016,7 +1017,7 @@ public sealed class PlantHolderSystem : EntitySystem
         }
     }
 
-    private void UpdateRadiation(EntityUid uid, PlantHolderComponent? component = null, RadiationReceiverComponent? receiver = null)
+    private void UpdateRadiation(EntityUid uid, PlantHolderComponent? component = null, RadiationReceiverComponent? receiver = null) // Persistence: Plant Nutrient Rework
     {
         if (!Resolve(uid, ref component))
             return;
