@@ -56,7 +56,7 @@ public sealed class MutationSystem : EntitySystem
         CheckRandomMutations(plantHolder, ref seed, severity);
     }
 
-    public SeedData Cross(SeedData a, SeedData b)
+    public SeedData Cross(SeedData a, SeedData b) // Persistence: Toxin and pest tolerances removed due to them becoming nutrients. Heat and pressure tolerances removed due to them being balanced around the species of the plant.
     {
         SeedData result = b.Clone();
 
@@ -95,7 +95,7 @@ public sealed class MutationSystem : EntitySystem
             result.Seedless = true;
         }
 
-        result.ApplyModifiers();
+        result.ApplyModifiers(); // Persistence: Plant nutrient rework
         return result;
     }
 
