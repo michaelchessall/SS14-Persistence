@@ -574,7 +574,7 @@ public sealed class PlantHolderSystem : EntitySystem
 
         var environment = _atmosphere.GetContainingMixture(uid, true, true) ?? GasMixture.SpaceGas;
 
-        component.MissingGas = 0;
+        /*component.MissingGas = 0; Persistence: Nutrient rework
         if (component.Seed.ConsumeGasses.Count > 0)
         {
             foreach (var (gas, amount) in component.Seed.ConsumeGasses)
@@ -594,7 +594,7 @@ public sealed class PlantHolderSystem : EntitySystem
                 if (component.DrawWarnings)
                     component.UpdateSpriteAfterUpdate = true;
             }
-        }
+        }*/
 
         // SeedPrototype pressure resistance. Persistence: Changed pressure to use ideal pressure and tolerance like heat does
         var pressure = environment.Pressure;
@@ -627,8 +627,8 @@ public sealed class PlantHolderSystem : EntitySystem
         component.LowPressure = lowPressure;
         component.HighPressure = highPressure;
 
-        // Gas production.
-        var exudeCount = component.Seed.ExudeGasses.Count;
+        // Gas production. Persistence: Nutrient rework, Logic moved to UpdateGasses
+        /*var exudeCount = component.Seed.ExudeGasses.Count;
         if (exudeCount > 0)
         {
             foreach (var (gas, amount) in component.Seed.ExudeGasses)
@@ -636,7 +636,9 @@ public sealed class PlantHolderSystem : EntitySystem
                 environment.AdjustMoles(gas,
                     MathF.Max(1f, MathF.Round(amount * MathF.Round(component.Seed.Potency) / exudeCount)));
             }
-        }
+        }*/
+
+        UpdateGasses(uid, environment, component); // Persistence: Nutrient rework
 
         // Toxin levels beyond the plant's tolerance cause damage. Persistence: Commented out toxins, due to them being converted into a nutrient
         // They are, however, slowly reduced over time.
@@ -1032,6 +1034,26 @@ public sealed class PlantHolderSystem : EntitySystem
         var addRadiation = (maxRadiation - currentRadiation) / 5;
 
         AdjustNutrient(uid, addRadiation, "Radiation", component);
+    }
+
+    private void UpdateGasses(EntityUid uid, GasMixture environment, PlantHolderComponent? component = null) // Persistence: Plant nutrient rework
+    {
+        if (!Resolve(uid, ref component))
+            return;
+
+        if (component.Seed == null)
+            return;
+
+        var exudeCount = component.Seed.ExudeGasses.Count;
+        if (exudeCount > 0)
+        {
+            foreach (var (gas, amount) in component.Seed.ExudeGasses)
+            {
+                environment.AdjustMoles(gas,
+                    MathF.Max(1f, MathF.Round(amount * MathF.Round(component.Seed.Potency) / exudeCount)));
+            }
+        }
+
     }
 
     public void UpdateSprite(EntityUid uid, PlantHolderComponent? component = null)

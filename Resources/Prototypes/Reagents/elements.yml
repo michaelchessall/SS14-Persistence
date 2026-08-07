@@ -178,7 +178,7 @@
         minScale: 1.5
         clear: True
         time: 5
-  plantMetabolism: # Remove when plant respiration is added
+  plantRespiration:
   - !type:PlantAdjustNutrient
     amount: 1
     nutrient: Hydrogen
