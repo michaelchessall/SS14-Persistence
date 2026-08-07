@@ -273,3 +273,7 @@
         damage:
           types:
             Cellular: 2
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 10 # I love murder
+    nutrient: Sapient

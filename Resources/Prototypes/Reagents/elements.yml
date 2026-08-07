@@ -178,6 +178,10 @@
         minScale: 1.5
         clear: True
         time: 5
+  plantMetabolism: # Remove when plant respiration is added
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Hydrogen
 
 - type: reagent
   id: Iodine
@@ -408,6 +412,10 @@
   color: "#c0c0c0"
   boilingPoint: 2602.0
   meltingPoint: 231.93
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Tin
 
 - type: reagent
   id: Sulfur

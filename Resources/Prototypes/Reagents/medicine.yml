@@ -956,6 +956,10 @@
         - !type:ReagentCondition
           reagent: Cognizine
           min: 5
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Sapient
 
 - type: reagent
   id: Ethyloxyephedrine

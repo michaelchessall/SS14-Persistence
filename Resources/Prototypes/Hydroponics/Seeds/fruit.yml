@@ -599,8 +599,8 @@
   packetPrototype: AppleSeeds
   productPrototypes:
   - FoodApple
-  # mutationPrototypes:
-  #   - goldenApple
+  mutationPrototypes:
+    - goldenApple
   harvestRepeat: Repeat
   lifespan: 55
   maturation: 6
@@ -633,7 +633,7 @@
           BonusRequirement: 0.1
           BonusAmount: 1
 
-- type: seed # TODO: Convert Doctor's Delight to the new system.
+- type: seed
   id: goldenApple
   name: seeds-goldenapple-name
   noun: seeds-noun-seeds
@@ -673,10 +673,19 @@
         CarbonDioxide:
           BonusRequirement: 0.1
           BonusAmount: 1
-    DoctorsDelight:
-      Min: 3
-      Max: 13
-      PotencyDivisor: 10
+    Gold: # Based vaguely off of my understanding of the magnum opus (process of creating philosopher's stone) from Wikipedia.
+      BaseAmount: 10
+      Requirements:
+        Tin: # Base metal
+          Requirement: 10
+        Toxin: # Nigredo = Decomposition = Toxic
+          Requirement: 2
+        Acid: # Albedo = Washing away impurities. Making a nutrient that requires space cleaner seemed strange, so i used acid instead.
+          Requirement: 2
+        Hydrogen: # Citrinitas = Solar light inherent in ones being = Stars? = Hydrogen
+          Requirement: 2
+        Sapient: # Rubedo = Ego/self?
+          Requirement: 2
 
 - type: seed
   id: chili

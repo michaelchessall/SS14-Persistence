@@ -95,22 +95,40 @@
   color: "#d0d0d0"
 
 - type: plantNutrient
+  id: Tin
+  name: nutrient-name-tin
+  desc: nutrient-desc-tin
+  color: "#c0c0c0"
+
+- type: plantNutrient
   id: Clown
   name: nutrient-name-clown
   desc: nutrient-desc-clown
   color: "#FF4DD2"
 
 - type: plantNutrient
-  id: Plasma
-  name: nutrient-name-plasma
-  desc: nutrient-desc-plasma
-  color: "#7e009e"
+  id: Sapient
+  name: nutrient-name-sapient
+  desc: nutrient-desc-sapient
+  color: "#b50ee8"
 
 - type: plantNutrient
   id: CarbonDioxide
   name: nutrient-name-carbonDioxide
   desc: nutrient-desc-carbonDioxide
   color: "#66ff33"
+
+- type: plantNutrient
+  id: Hydrogen
+  name: nutrient-name-hydrogen
+  desc: nutrient-desc-hydrogen
+  color: "#cccccc"
+
+- type: plantNutrient
+  id: Plasma
+  name: nutrient-name-plasma
+  desc: nutrient-desc-plasma
+  color: "#7e009e"
 
 - type: plantNutrient
   id: Frezon

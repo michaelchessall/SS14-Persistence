@@ -46,14 +46,23 @@ nutrient-desc-silver = OOoo.
 nutrient-name-titanium = titanium
 nutrient-desc-titanium = Strong metal dust.
 
+nutrient-name-tin = tin
+nutrient-desc-tin = Stron
+
 nutrient-name-clown = clown essence
 nutrient-desc-clown = Honk!
 
-nutrient-name-plasma = plasma
-nutrient-desc-plasma = Magic purple space whatever
+nutrient-name-sapient = Smart reagent think of better name
+nutrient-desc-sapient = The stuff i would need to make a better description for this
 
 nutrient-name-carbonDioxide = carbon dioxide
 nutrient-desc-carbonDioxide = Photosynthesis. Supposed to only be added to plants via respiration
+
+nutrient-name-hydrogen = hydrogen
+nutrient-desc-hydrogen = Very small atoms
+
+nutrient-name-plasma = plasma
+nutrient-desc-plasma = Magic purple space whatever
 
 nutrient-name-frezon = frezon
 nutrient-desc-frezon = Description goes here.
