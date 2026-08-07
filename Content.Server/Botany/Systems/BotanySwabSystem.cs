@@ -12,7 +12,6 @@ public sealed class BotanySwabSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly MutationSystem _mutationSystem = default!;
-    [Dependency] private readonly PlantHolderSystem _plantHolderSystem = default!;
 
     public override void Initialize()
     {
