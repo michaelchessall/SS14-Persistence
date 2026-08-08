@@ -22,6 +22,8 @@ guidebook-reagent-effects-metabolite-item = {$reagent} at a rate of { NATURALPER
 guidebook-reagent-effects-metabolites = Metabolizes into { $items }.
 guidebook-reagent-plant-metabolisms-header = Plant Metabolism
 guidebook-reagent-plant-metabolisms-rate = [bold]Plant Metabolism[/bold] [color=gray](1 unit every 3 seconds as base)[/color]
+guidebook-reagent-plant-respiration-header = Plant Respiration
+guidebook-reagent-plant-respiration-rate = [bold]Plant Respiration[/bold] [color=gray](per mol every 15 seconds as base. This is placeholder text)[/color]
 guidebook-reagent-physical-description = [italic]Seems to be {$description}.[/italic]
 guidebook-reagent-recipes-mix-info = {$minTemp ->
     [0] {$hasMax ->

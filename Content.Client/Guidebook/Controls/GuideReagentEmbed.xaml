@@ -58,6 +58,17 @@
                     </CollapsibleBody>
                 </Collapsible>
             </BoxContainer>
+            <BoxContainer Name="PlantRespirationContainer" HorizontalExpand="True"> <!-- Persistence: Plant nutrient rework !-->
+                <Collapsible>
+                    <CollapsibleHeading Title="{Loc 'guidebook-reagent-plant-respiration-header'}"/>
+                    <CollapsibleBody>
+                        <BoxContainer Name="PlantRespirationDescriptionContainer"
+                                      Orientation="Vertical"
+                                      Margin="10 0 10 0"
+                                      HorizontalExpand="True"/>
+                    </CollapsibleBody>
+                </Collapsible>
+            </BoxContainer>
             <BoxContainer Margin="10 5 10 10" HorizontalExpand="True">
                 <!-- The troublemaker !-->
                 <RichTextLabel Name="ReagentDescription" HorizontalAlignment="Left"/>

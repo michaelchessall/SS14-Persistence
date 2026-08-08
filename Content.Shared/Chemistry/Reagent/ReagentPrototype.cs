@@ -180,6 +180,9 @@ namespace Content.Shared.Chemistry.Reagent
         [DataField("plantMetabolism")]
         public List<EntityEffect> PlantMetabolisms = new(0);
 
+        [DataField("plantRespiration")]
+        public List<EntityEffect> PlantRespiration = new(0); // Persistence: Plant nutrient rework
+
         [DataField]
         public float PricePerUnit;
 
@@ -246,6 +249,8 @@ namespace Content.Shared.Chemistry.Reagent
 
         public List<string>? PlantMetabolisms = null;
 
+        public List<string>? PlantRespiration = null; // Persistence: Plant nutrient rework
+
         public ReagentGuideEntry(ReagentPrototype proto, IPrototypeManager prototype, IEntitySystemManager entSys)
         {
             ReagentPrototype = proto.ID;
@@ -256,6 +261,11 @@ namespace Content.Shared.Chemistry.Reagent
             {
                 PlantMetabolisms =
                     new List<string>(proto.GuidebookReagentEffectsDescription(prototype, entSys, proto.PlantMetabolisms, FixedPoint2.New(1f)));
+            }
+            if (proto.PlantRespiration.Count > 0) // Persistence: Plant nutrient rework
+            {
+                PlantRespiration =
+                    new List<string>(proto.GuidebookReagentEffectsDescription(prototype, entSys, proto.PlantRespiration, FixedPoint2.New(1f)));
             }
         }
     }
