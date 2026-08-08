@@ -93,7 +93,7 @@
     nutrient: Plasma
   plantRespiration:
   - !type:PlantAdjustNutrient
-    amount: 1
+    amount: 0.21 # Same amount as condensed
     nutrient: Plasma
   metabolisms:
     Bloodstream:
@@ -151,10 +151,8 @@
     amount: 1
   plantRespiration:
   - !type:PlantAdjustNutrient
-    amount: 1.5
+    amount: 0.4 # Slightly more efficient than condensing it and pouring it onto a plant
     nutrient: radiation
-  - !type:PlantAdjustMutationLevel
-    amount: 1
   metabolisms:
     Bloodstream:
       effects:
@@ -372,7 +370,7 @@
     nutrient: Frezon
   plantRespiration:
     - !type:PlantAdjustNutrient
-      amount: 1
+      amount: 1 # ~5x more efficient than condensing it and pouring it into a tray.
       nutrient: Frezon
   metabolisms:
     Bloodstream:

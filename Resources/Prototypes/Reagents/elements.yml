@@ -180,7 +180,7 @@
         time: 5
   plantRespiration:
   - !type:PlantAdjustNutrient
-    amount: 1
+    amount: 0.21
     nutrient: Hydrogen
 
 - type: reagent
