@@ -23,6 +23,7 @@ using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
 using Content.Shared.Tag;
+using Content.Shared.Body.Systems; // Persistence: Incredibly janky workaround
 using Robust.Server.GameObjects;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
@@ -1043,6 +1044,17 @@ public sealed class PlantHolderSystem : EntitySystem
 
         if (component.Seed == null)
             return;
+
+        foreach (var (gasId, amount) in environment)
+        {
+            if (amount == 0)
+                return;
+            var gasReagent = _atmosphere.GetGas(gasId).Reagent;
+            if (gasReagent == null)
+                return;
+            var reagentProto = _prototype.Index<ReagentPrototype>(gasReagent);
+            _entityEffects.ApplyEffects(uid, reagentProto.PlantRespiration.ToArray(), amount);
+        }
 
         var exudeCount = component.Seed.ExudeGasses.Count;
         if (exudeCount > 0)
