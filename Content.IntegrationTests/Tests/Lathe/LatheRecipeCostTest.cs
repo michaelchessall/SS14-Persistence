@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Content.Server.Cargo.Systems;
+using Content.Shared.CCVar;
 using Content.Shared.Research.Prototypes;
+using Robust.Shared.Configuration;
 
 namespace Content.IntegrationTests.Tests.Lathe;
 
@@ -20,6 +22,7 @@ public sealed class LatheRecipeCostTest
         var proto = server.ProtoMan;
         var entMan = server.EntMan;
         var priceSystem = entMan.System<PricingSystem>();
+        var configMan = server.Resolve<IConfigurationManager>();
 
         var fails = new List<string>();
 
@@ -38,7 +41,7 @@ public sealed class LatheRecipeCostTest
                     if (material.IgnoreArbitrage)
                         ignoreRecipe = true;
 
-                    matPrice += material.Price * count;
+                    matPrice += material.Price * count * configMan.GetCVar(CCVars.PriceMult);
                 }
 
                 if (ignoreRecipe)
@@ -58,5 +61,7 @@ public sealed class LatheRecipeCostTest
             var msg = string.Join("\n", fails) + "\n" + "Following RecipePrototypes are giving Arbitrage when printed!";
             Assert.Fail(msg);
         }
+
+        await pair.CleanReturnAsync();
     }
 }

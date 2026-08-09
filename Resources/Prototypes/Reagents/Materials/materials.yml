@@ -32,7 +32,7 @@
   unit: materials-unit-sheet
   icon: { sprite: /Textures/Objects/Materials/materials.rsi, state: durathread }
   color: "#8291a1"
-  price: 0.6 # 1-1 mix of plastic and cloth.
+  price: 0.3 # 1-1 mix of plastic and cloth.
 
 - type: material
   id: Paper
@@ -107,7 +107,7 @@
   icon: { sprite: Objects/Materials/materials.rsi, state: cotton }
   color: "#cccccc"
   price: 0.02 #Who knew cotton was infinitely more valuable than silk
-  
+
 - type: material
   id: Pyrotton
   name: materials-pyrotton

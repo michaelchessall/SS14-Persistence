@@ -52,7 +52,7 @@
   name: materials-reinforced-uranium-glass
   icon: { sprite: Objects/Materials/Sheets/glass.rsi, state: ruglass }
   color: "#2d872a"
-  price: 1.2 # $120 per. 2-2-1 mix of uranium, glass, and metal.
+  price: 1.1 # $110 per. 2-2-1 mix of uranium, glass, and metal.
 
 - type: material
   id: PhoronGlass
