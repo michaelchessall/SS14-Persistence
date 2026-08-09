@@ -7,13 +7,7 @@
     "y": 32
   },
   "states": [
-	
-    {
-      "name": "invoicepaid"
-    },
-    {
-      "name": "invoiceunpaid"
-    },
+
     {
       "name": "acquisition_form"
     },

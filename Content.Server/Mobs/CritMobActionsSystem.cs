@@ -15,11 +15,13 @@ using Content.Shared.Mobs.Systems;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
 using Content.Shared.Speech.Muting;
+using Content.Shared.Tag;
 using Robust.Server.Console;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Mobs;
 
@@ -41,7 +43,9 @@ public sealed class CritMobActionsSystem : EntitySystem
     [Dependency] private readonly RadioSystem _radio = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
     private const int MaxLastWordsLength = 30;
+    private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib";
 
     public override void Initialize()
     {
@@ -225,6 +229,8 @@ public sealed class CritMobActionsSystem : EntitySystem
                         foundSlot = pair.Key;
                     }
                 }
+
+                _tag.RemoveTag(uid, NoGibTag);
                 _prefsManager.DeleteCharacter(foundSlot, actor.PlayerSession.UserId, actor.PlayerSession);
                 _ticker.Respawn(actor.PlayerSession);
             });

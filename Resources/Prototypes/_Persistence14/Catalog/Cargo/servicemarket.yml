@@ -1,0 +1,1477 @@
+
+
+
+
+#region materials
+
+- type: cargoProduct
+  id: CardboardMaterialSeTS
+  icon:
+    sprite: Objects/Materials/materials.rsi
+    state: cardboard_3
+  product: CrateMaterialCardboard
+  cost: 330
+  category: cargoproduct-category-name-materials
+  group: servicemarket
+
+- type: cargoProduct
+  id: PaperMaterialSeTS
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: paper_3
+  product: CrateMaterialPaper
+  cost: 185
+  category: cargoproduct-category-name-materials
+  group: servicemarket
+
+- type: cargoProduct
+  id: MaterialTextilesSeTS
+  icon:
+    sprite: Objects/Materials/materials.rsi
+    state: cloth_3
+  product: CrateMaterialTextiles
+  cost: 1300
+  category: cargoproduct-category-name-materials
+  group: servicemarket2
+
+- type: cargoProduct
+  id: MaterialBasicSeTS
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: generic_materials
+  product: CrateMaterialBasicResource
+  cost: 2000
+  category: cargoproduct-category-name-materials
+  group: servicemarket2
+
+- type: cargoProduct
+  id: MaterialAluminiumSeTS
+  icon:
+    sprite: Objects/Materials/Sheets/metal.rsi
+    state: titanium_3
+  product: CrateMaterialAluminium
+  cost: 1250
+  category: cargoproduct-category-name-materials
+  group: servicemarket3
+
+- type: cargoProduct
+  id: ServiceBooksSeTS
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: book_icon
+  product: CrateServiceBooks
+  cost: 500
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceGuidebooksSeTS
+  icon:
+    sprite: Objects/Misc/books.rsi
+    state: book_icon
+  product: CrateServiceGuidebooks
+  cost: 700
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+
+
+
+
+
+#region premade food and drink
+
+- type: cargoProduct
+  id: FoodPizzaSeTS
+  icon:
+    sprite: Objects/Consumable/Food/Baked/pizza.rsi
+    state: margherita-slice
+  product: CrateFoodPizza
+  cost: 1000
+  category: cargoproduct-category-name-food
+  group: servicemarket
+
+- type: cargoProduct
+  id: FoodMRESeTS
+  icon:
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: nutribrick
+  product: CrateFoodMRE
+  cost: 2000
+  category: cargoproduct-category-name-food
+  group: servicemarket
+
+- type: cargoProduct
+  id: MaterialWaterTankSeTS
+  icon:
+    sprite: Structures/Storage/tanks.rsi
+    state: watertank
+  product: WaterTankFull
+  cost: 800
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: FoodIceCreamSeTS
+  icon:
+    sprite: Objects/Consumable/Food/frozen.rsi
+    state: sandwich
+  product: CrateFoodIceCream
+  cost: 2000
+  category: cargoproduct-category-name-food
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FoodSnowconeSeTS
+  icon:
+    sprite: Objects/Consumable/Food/frozen.rsi
+    state: cone
+  product: CrateFoodSnowcone
+  cost: 2000
+  category: cargoproduct-category-name-food
+  group: servicemarket2
+
+- type: cargoProduct
+  id: ServiceSodaDispenserSeTS
+  icon:
+    sprite: Objects/Consumable/Drinks/generic_jug.rsi
+    state: icon
+  product: CrateServiceSodaDispenser
+  cost: 850
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceBoozeDispenserSeTS
+  icon:
+    sprite: Objects/Consumable/Drinks/generic_jug.rsi
+    state: icon
+  product: CrateServiceBoozeDispenser
+  cost: 750
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: FoodSoftdrinksSeTS
+  icon:
+    sprite: Objects/Consumable/Drinks/cola.rsi
+    state: icon
+  product: CrateFoodSoftdrinks
+  cost: 1500
+  category: cargoproduct-category-name-food
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FoodHappyHonkMealsSeTS
+  icon:
+    sprite: Objects/Consumable/Food/burger.rsi
+    state: bigbite
+  product: CrateFoodHappyHonkBigBite
+  cost: 2500
+  category: cargoproduct-category-name-food
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceSmokeablesSeTS
+  icon:
+    sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
+    state: icon
+  product: CrateServiceSmokeables
+  cost: 2000
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceCustomSmokableSeTS
+  icon:
+    sprite: Objects/Consumable/Smokeables/Cigarettes/Cartons/green.rsi
+    state: icon
+  product: CrateServiceCustomSmokable
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+
+#region Bureaucracy
+
+- type: cargoProduct
+  id: ServiceBureaucracySeTS
+  icon:
+    sprite: Objects/Misc/pens.rsi
+    state: pen
+  product: CrateServiceBureaucracy
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceFaxMachineSeTS
+  icon:
+    sprite: Structures/Machines/fax_machine.rsi
+    state: inserting_mothroach
+  product: CrateServiceFaxMachine
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: ServicePersonnelSeTS
+  icon:
+    sprite: Objects/Misc/id_cards.rsi
+    state: default
+  product: CrateServicePersonnel
+  cost: 500
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: BusinessStartingKitCrateSeTS
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: acquisition_form_words
+  product: BusinessStartingKit
+  cost: 7000
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+
+#region Toys
+
+- type: cargoProduct
+  id: FunPlushiesSeTS
+  icon:
+    sprite: Objects/Fun/Plushies/human.rsi
+    state: icon
+  product: CrateFunPlushie
+  cost: 500
+  category: cargoproduct-category-name-fun
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FunLizardPlushiesSeTS
+  icon:
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: icon
+  product: CrateFunLizardPlushieBulk
+  cost: 250
+  category: cargoproduct-category-name-fun
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FunSharkPlushiesSeTS
+  icon:
+    sprite: Objects/Fun/Plushies/shark.rsi
+    state: blue
+  product: CrateFunSharkPlushieBulk
+  cost: 250
+  category: cargoproduct-category-name-fun
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FunArtSuppliesSeTS
+  icon:
+    sprite: Objects/Fun/crayons.rsi
+    state: box
+  product: CrateFunArtSupplies
+  cost: 250
+  category: cargoproduct-category-name-fun
+  group: servicemarket
+
+- type: cargoProduct
+  id: FunDartsSetSeTS
+  icon:
+    sprite: Objects/Fun/Darts/dart_red.rsi
+    state: icon
+  product: CrateFunDartsSet
+  cost: 900
+  category: cargoproduct-category-name-fun
+  group: servicemarket
+
+- type: cargoProduct
+  id: FunBoardGamesSeTS
+  icon:
+    sprite: Objects/Fun/dice.rsi
+    state: d6_6
+  product: CrateFunBoardGames
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: servicemarket
+
+- type: cargoProduct
+  id: FunBikeHornImplantsSeTS
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateFunBikeHornImplants
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: servicemarket4
+
+- type: cargoProduct
+  id: FunSadTromboneImplantsSeTS
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateFunSadTromboneImplants
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: servicemarket4
+
+- type: cargoProduct
+  id: FunLightImplantsSeTS
+  icon:
+    sprite: Objects/Specific/Medical/implanter.rsi
+    state: implanter0
+  product: CrateFunLightImplants
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: servicemarket4
+
+- type: cargoProduct
+  id: FunPartySeTS
+  icon:
+    sprite: Objects/Consumable/Food/Baked/cake.rsi
+    state: birthday
+  product: CrateFunParty
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateFunWaterGunsSeTS
+  icon:
+    sprite: Objects/Weapons/Guns/Pistols/water_pistol.rsi
+    state: display
+  product: CrateFunWaterGuns
+  cost: 750
+  category: cargoproduct-category-name-fun
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateFunFoamGunsSeTS
+  icon:
+    sprite: Objects/Fun/Foam/foam_rifle.rsi
+    state: icon
+  product: CrateFunFoamGuns
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunToyBoxSeTS
+  icon:
+    sprite: Structures/Storage/Crates/toybox.rsi
+    state: crate_icon
+  product: CrateFunToyBox
+  cost: 800
+  category: cargoproduct-category-name-fun
+  group: servicemarket
+
+- type: cargoProduct
+  id: FunBoxingSeTS
+  icon:
+    sprite: Clothing/Hands/Gloves/Boxing/boxingred.rsi
+    state: icon
+  product: CrateFunBoxing
+  cost: 500
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunPirateSeTS
+  icon:
+    sprite: Structures/Storage/Crates/piratechest.rsi
+    state: crate_icon
+  product: CrateFunPirate
+  cost: 400
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: ServiceTheatreSeTS
+  icon:
+    sprite: Clothing/Mask/mime.rsi
+    state: icon
+  product: CrateServiceTheatre
+  cost: 1000
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: FunMysteryFigurinesSeTS
+  icon:
+    sprite: Objects/Fun/figurines.rsi
+    state: fig_box
+  product: CrateFunMysteryFigurines
+  cost: 4000
+  category: cargoproduct-category-name-fun
+  group: servicemarket4
+
+- type: cargoProduct
+  id: ServiceEvaKitSeTS
+  icon:
+    sprite: Clothing/Head/Hardsuits/clown.rsi
+    state: icon
+  product: CrateServiceEvaKit
+  cost: 6500
+  category: cargoproduct-category-name-atmospherics
+  group: servicemarket
+
+
+
+
+
+
+
+
+#region Plants
+
+- type: cargoProduct
+  id: HydroponicsSeedsExoticSeTS
+  icon:
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+    state: seed
+  product: CrateHydroponicsSeedsExotic
+  cost: 3000
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: HydroponicsSeedsMedicinalSeTS
+  icon:
+    sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
+    state: seed
+  product: CrateHydroponicsSeedsMedicinal
+  cost: 1500
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: HydroponicsToolsSeTS
+  icon:
+    sprite: Objects/Tools/Hydroponics/hoe.rsi
+    state: icon
+  product: CrateHydroponicsTools
+  cost: 800
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket
+
+- type: cargoProduct
+  id: HydroponicsSeedsSeTS
+  icon:
+    sprite: Objects/Specific/Hydroponics/apple.rsi
+    state: seed
+  product: CrateHydroponicsSeeds
+  cost: 1300
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket
+
+- type: cargoProduct
+  id: HydroponicsTraySeTS
+  icon:
+    sprite: Structures/Hydroponics/containers.rsi
+    state: hydrotray3
+  product: CrateHydroponicsTray
+  cost: 1100
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket
+
+- type: cargoProduct
+  id: FunPlantsSeTS
+  icon:
+    sprite: Structures/Furniture/potted_plants.rsi
+    state: random
+  product: CratePlants
+  cost: 500
+  category: cargoproduct-category-name-fun
+  group: servicemarket
+
+- type: cargoProduct
+  id: BulkPlantBGoneSeTS
+  icon:
+    sprite: Objects/Specific/Chemistry/jug.rsi
+    state: icon_empty
+  product: CratePlantBGone
+  cost: 2000
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket
+
+
+#region Cooking
+
+- type: cargoProduct
+  id: FoodCookIngredientsSeTS
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: flour-big
+  product: CrateFoodCooking
+  cost: 900
+  category: cargoproduct-category-name-food
+  group: servicemarket
+
+- type: cargoProduct
+  id: FoodCookFlourSeTS
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: dough
+  product: CrateFoodBulkFlour
+  cost: 1000
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookMilkSeTS
+  icon:
+    sprite: Objects/Consumable/Drinks/milk.rsi
+    state: icon
+  product: CrateFoodBulkMilk
+  cost: 1000
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookRiceSeTS
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: rice-big
+  product: CrateFoodBulkRice
+  cost: 800
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookSugarSeTS
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: sugar-big
+  product: CrateFoodBulkSugar
+  cost: 800
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookSaltSeTS
+  icon:
+    sprite: Objects/Materials/ore.rsi
+    state: salt
+  product: CrateFoodBulkSalt
+  cost: 800
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookEggSeTS
+  icon:
+    sprite: Objects/Consumable/Food/meals.rsi
+    state: friedegg
+  product: CrateFoodBulkEgg
+  cost: 800
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookOilSeTS
+  icon:
+    sprite: Objects/Consumable/Food/ingredients.rsi
+    state: oliveoil
+  product: CrateFoodBulkOliveOil
+  cost: 800
+  category: cargoproduct-category-name-food
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FoodCookGetmoreSeTS
+  icon:
+    sprite: Objects/Consumable/Food/snacks.rsi
+    state: raisins
+  product: CrateFoodGetMore
+  cost: 750
+  category: cargoproduct-category-name-food
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FoodCookBulkTinsSeTS
+  icon:
+    sprite: Objects/Consumable/Food/plates.rsi
+    state: muffin-tin
+  product: CrateFoodBulkTins
+  cost: 1000
+  category: cargoproduct-category-name-food
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FoodDinnerwareSeTS
+  icon:
+    sprite: Objects/Weapons/Melee/kitchen_knife.rsi
+    state: icon
+  product: CrateFoodDinnerware
+  cost: 750
+  category: cargoproduct-category-name-food
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FoodBarSupplySeTS
+  icon:
+    sprite: Objects/Consumable/Drinks/beerglass.rsi
+    state: icon
+  product: CrateFoodBarSupply
+  cost: 750
+  category: cargoproduct-category-name-food
+  group: servicemarket
+
+
+
+
+
+
+
+
+#region Instruments
+
+- type: cargoProduct
+  id: FunInstrumentsVarietySeTS
+  icon:
+    sprite: Objects/Fun/Instruments/accordion.rsi
+    state: icon
+  product: CrateFunInstrumentsVariety
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: servicemarket2
+
+- type: cargoProduct
+  id: FunInstrumentsBrassSeTS
+  icon:
+    sprite: Objects/Fun/Instruments/structureinstruments.rsi
+    state: tuba
+  product: CrateFunInstrumentsBrass
+  cost: 1500
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunInstrumentsStringSeTS
+  icon:
+    sprite: Objects/Fun/Instruments/bassguitar.rsi
+    state: icon
+  product: CrateFunInstrumentsString
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunInstrumentsWoodwindSeTS
+  icon:
+    sprite: Objects/Fun/Instruments/harmonica.rsi
+    state: icon
+  product: CrateFunInstrumentsWoodwind
+  cost: 2500
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunInstrumentsKeyedPercussionSeTS
+  icon:
+    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
+    state: icon
+  product: CrateFunInstrumentsKeyedPercussion
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunInstrumentsSpecialSeTS
+  icon:
+    sprite: Objects/Fun/Instruments/gunpet.rsi
+    state: icon
+  product: CrateFunInstrumentsSpecial
+  cost: 6000
+  category: cargoproduct-category-name-fun
+  group: servicemarket3
+
+- type: cargoProduct
+  id: FunInstrumentsRandomSeTS
+  icon:
+    sprite: Objects/Fun/Instruments/h_synthesizer.rsi
+    state: supersynth
+  product: CrateFunInstrumentsRandom
+  cost: 2000
+  category: cargoproduct-category-name-fun
+  group: servicemarket2
+
+
+
+
+#region Jani stuff
+
+- type: cargoProduct
+  id: ServiceJanitorialSeTS
+  icon:
+    sprite: Objects/Specific/Janitorial/spray_bottle.rsi
+    state: cleaner
+  product: CrateServiceJanitorialSupplies
+  cost: 500
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceCleanerGrenadesSeTS
+  icon:
+    sprite: Objects/Weapons/Grenades/janitor.rsi
+    state: icon
+  product: CrateServiceCleanerGrenades
+  cost: 200
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: ServiceLightsReplacementSeTS
+  icon:
+    sprite: Objects/Power/light_bulb.rsi
+    state: normal
+  product: CrateServiceReplacementLights
+  cost: 500
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceLightsColorfulSeTS
+  icon:
+    sprite: Objects/Power/light_bulb.rsi
+    state: normal
+  product: CrateServiceColorfulLights
+  cost: 500
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceLightsHolidaySeTS
+  icon:
+    sprite: Objects/Power/light_bulb.rsi
+    state: normal
+  product: CrateServiceHolidayLights
+  cost: 500
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: ServiceCandlesSeTS
+  icon:
+    sprite: Objects/Misc/candles.rsi
+    state: candle-big
+  product: CrateCandles
+  cost: 400
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: ServiceMouseTrapSeTS
+  icon:
+    sprite: Objects/Devices/mousetrap.rsi
+    state: mousetrap
+  product: CrateMousetrapBoxes
+  cost: 100
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: ServiceBoxesSeTS
+  icon:
+    sprite: Objects/Storage/boxes.rsi
+    state: box
+  product: CrateServiceBox
+  cost: 300
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+
+
+
+
+
+
+
+#region Animals
+
+- type: cargoProduct
+  id: HydratedScurretSeTS
+  icon:
+    sprite: Structures/Wallmounts/posters.rsi
+    state: poster55_legit
+  product: CrateFunScurret
+  cost: 20000 # You will surely not regret buying this
+  category: cargoproduct-category-name-fun
+  group: servicemarket4
+
+- type: cargoProduct
+  id: HamletSeTS
+  icon:
+    sprite: Structures/Machines/fax_machine.rsi
+    state: inserting_hamster
+  product: CrateNPCHamlet
+  cost: 20000 # You will surely not regret buying this
+  category: cargoproduct-category-name-fun
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockBeeSeTS
+  icon:
+    sprite: Mobs/Animals/bee.rsi
+    state: 0
+  product: CrateNPCBee
+  cost: 6000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockButterflySeTS
+  icon:
+    sprite: Mobs/Animals/butterfly.rsi
+    state: butterfly
+  product: CrateNPCButterflies
+  cost: 4000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockCatSeTS
+  icon:
+    sprite: Mobs/Pets/cat.rsi
+    state: cat
+  product: CrateNPCCat
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockChickenSeTS
+  icon:
+    sprite: Mobs/Animals/chicken.rsi
+    state: icon-1
+  product: CrateNPCChicken
+  cost: 3000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockCrabSeTS
+  icon:
+    sprite: Mobs/Animals/crab.rsi
+    state: crab
+  product: CrateNPCCrab
+  cost: 2000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockDuckSeTS
+  icon:
+    sprite: Mobs/Animals/duck.rsi
+    state: icon-0
+  product: CrateNPCDuck
+  cost: 3000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockCorgiSeTS
+  icon:
+    sprite: Mobs/Pets/corgi.rsi
+    state: corgi
+  product: CrateNPCCorgi
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockPupCorgiSeTS
+  icon:
+    sprite: Mobs/Pets/corgi.rsi
+    state: puppy
+  product: CrateNPCPuppyCorgi
+  cost: 1200
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockCowSeTS
+  icon:
+    sprite: Mobs/Animals/cow.rsi
+    state: cow
+  product: CrateNPCCow
+  cost: 3000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket2
+
+- type: cargoProduct
+  id: LivestockGoatSeTS
+  icon:
+    sprite: Mobs/Animals/goat.rsi
+    state: goat
+  product: CrateNPCGoat
+  cost: 1000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket2
+
+- type: cargoProduct
+  id: LivestockGooseSeTS
+  icon:
+    sprite: Mobs/Animals/goose.rsi
+    state: goose
+  product: CrateNPCGoose
+  cost: 2100
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockGorillaSeTS
+  icon:
+    sprite: Mobs/Animals/gorilla.rsi
+    state: icon
+  product: CrateNPCGorilla
+  cost: 1100
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockMouseSeTS
+  icon:
+    sprite: Mobs/Animals/mouse.rsi
+    state: icon-0
+  product: CrateNPCMouse
+  cost: 4000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockParrotSeTS
+  icon:
+    sprite: Mobs/Animals/parrot/parrot.rsi
+    state: parrot
+  product: CrateNPCParrot
+  cost: 3000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockPenguinSeTS
+  icon:
+    sprite: Mobs/Animals/penguin.rsi
+    state: penguin
+  product: CrateNPCPenguin
+  cost: 2100
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockPigSeTS
+  icon:
+    sprite: Mobs/Animals/pig.rsi
+    state: pig
+  product: CrateNPCPig
+  cost: 1100
+  category: cargoproduct-category-name-livestock
+  group: servicemarket2
+
+- type: cargoProduct
+  id: LivestockSnakeSeTS
+  icon:
+    sprite: Mobs/Animals/snake.rsi
+    state: snake
+  product: CrateNPCSnake
+  cost: 3000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockHamsterSeTS
+  icon:
+    sprite: Mobs/Animals/hamster.rsi
+    state: icon-0
+  product: CrateNPCHamster
+  cost: 2800
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockLizardSeTS
+  icon:
+    sprite: Mobs/Animals/lizard.rsi
+    state: lizard
+  product: CrateNPCLizard
+  cost: 1000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+- type: cargoProduct
+  id: LivestockKangarooSeTS
+  icon:
+    sprite: Mobs/Animals/kangaroo.rsi
+    state: kangaroo
+  product: CrateNPCKangaroo
+  cost: 2800
+  category: cargoproduct-category-name-livestock
+  group: servicemarket4
+
+- type: cargoProduct
+  id: LivestockMothroachSeTS
+  icon:
+    sprite: Mobs/Animals/mothroach/mothroach.rsi
+    state: mothroach
+  product: CrateNPCMothroach
+  cost: 1000
+  category: cargoproduct-category-name-livestock
+  group: servicemarket3
+
+
+
+
+
+
+
+
+# Machines
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockBoozeSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockBooze
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 3500
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockChefvendSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockChefvend
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 680
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockClothesSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockClothes
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 2500
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockDinnerwareSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockDinnerware
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 2000
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockCondimentStationSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockCondimentStation
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 300
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockGamesSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockGames
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 750
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockHotDrinksSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockHotDrinks
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockNutriMaxSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockNutriMaxFilled
+  cost: 2400
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockPTechSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockPTech
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 1200
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockRobustSoftdrinksSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockRobustSoftdrinks
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockSeedsSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: CrateVendingMachineRestockSeedsFilled
+  cost: 3600
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockSmokesSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockSmokes
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockTankDispenserSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockTankDispenser
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 1000
+  category: cargoproduct-category-name-atmospherics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockHappyHonkSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockHappyHonk
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 1050
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockGetmoreChocolateCorpSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockGetmoreChocolateCorp
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockChangSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockChang
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockDiscountDansSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockDiscountDans
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: CrateVendingMachineRestockDonutSeTS
+  icon:
+    sprite: Objects/Specific/Service/vending_machine_restock.rsi
+    state: base
+  product: VendingMachineRestockDonut
+  container:
+    entity: WrappedParcel
+    containerId: contents
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineBoozeSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/boozeomat.rsi
+    state: off
+  product: VendingMachineBooze
+  cost: 3800
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineChefvendSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/chefvend.rsi
+    state: off
+  product: VendingMachineChefvend
+  cost: 980
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineClothingSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/clothing.rsi
+    state: off
+  product: VendingMachineClothing
+  cost: 2800
+  category: cargoproduct-category-name-service
+  group: servicemarket
+
+- type: cargoProduct
+  id: VendingMachineTheaterSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/theater.rsi
+    state: off
+  product: VendingMachineTheater
+  cost: 2800
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineDinnerwareSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/dinnerware.rsi
+    state: off
+  product: VendingMachineDinnerware
+  cost: 2300
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineCondimentsSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/condiments.rsi
+    state: off
+  product: VendingMachineCondiments
+  cost: 600
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineGamesSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/games.rsi
+    state: off
+  product: VendingMachineGames
+  cost: 1050
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineCoffeeSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/coffee.rsi
+    state: off
+  product: VendingMachineCoffee
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineNutriSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/nutri.rsi
+    state: off
+  product: VendingMachineNutri
+  cost: 2400
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineCartSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/cart.rsi
+    state: off
+  product: VendingMachineCart
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineColaSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/cola.rsi
+    state: off
+  product: VendingMachineCola
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineSeedsUnlockedSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/seeds.rsi
+    state: off
+  product: VendingMachineSeedsUnlocked
+  cost: 3900
+  category: cargoproduct-category-name-hydroponics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineCigsSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/cigs.rsi
+    state: off
+  product: VendingMachineCigs
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineTankDispenserEVASeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/tankdispenser.rsi
+    state: dispenser
+  product: VendingMachineTankDispenserEVA
+  cost: 1300
+  category: cargoproduct-category-name-atmospherics
+  group: servicemarket2
+
+- type: cargoProduct
+  id: VendingMachineHappyHonkSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/happyhonk.rsi
+    state: off
+  product: VendingMachineHappyHonk
+  cost: 2400
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineSnackSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/snack.rsi
+    state: off
+  product: VendingMachineSnack
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineChangSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/changs.rsi
+    state: off
+  product: VendingMachineChang
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineDiscountSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/discount.rsi
+    state: off
+  product: VendingMachineDiscount
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineDonutSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/donut.rsi
+    state: off
+  product: VendingMachineDonut
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineSovietSodaSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/sovietsoda.rsi
+    state: off
+  product: VendingMachineSovietSoda
+  cost: 1500
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+- type: cargoProduct
+  id: VendingMachineSustenanceSeTS
+  icon:
+    sprite: Structures/Machines/VendingMachines/sustenance.rsi
+    state: off
+  product: VendingMachineSustenance
+  cost: 980
+  category: cargoproduct-category-name-service
+  group: servicemarket3
+
+
+
+
+
+
+

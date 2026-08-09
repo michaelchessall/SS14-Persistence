@@ -97,6 +97,7 @@
 - type: latheRecipePack
   id: ServiceBoards
   recipes:
+  - RequisitionsConsoleCircuitboard # _Persistence14: requisitions console (T2 Requisitions Logistics)
   - BiofabricatorMachineCircuitboard
   - FatExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard # roundstart gear being unlocked roundstart when

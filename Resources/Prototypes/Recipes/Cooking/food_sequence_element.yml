@@ -1632,6 +1632,32 @@
   - sprite: _Persistence14/Objects/Fun/Plushies/Isolde.rsi
     state: icon
 
+#Huna Plushie
+- type: foodSequenceElement
+  id: PlushieHuna
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-huna
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Huna.rsi
+    state: icon
+
+#Helena Plushie
+- type: foodSequenceElement
+  id: PlushieHelena
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-helena
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Helena.rsi
+    state: icon
+
+#Madeline Plushie
+- type: foodSequenceElement
+  id: PlushieMadeline
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-madeline
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Madeline.rsi
+    state: icon
 
 #Ian Toy
 

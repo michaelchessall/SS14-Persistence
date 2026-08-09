@@ -265,6 +265,21 @@
 
 - type: entity
   parent: ClothingHeadBase
+  id: ClothingHeadHatBeretSeniorPhysicianNew
+  name: physician beret
+  description: Donning the colours of medical and chemistry, physicians are the pride of this department!
+  components:
+  - type: Sprite
+    sprite: Clothing/Head/Hats/beret_seniorphysician.rsi
+  - type: Clothing
+    sprite: Clothing/Head/Hats/beret_seniorphysician.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
+  parent: ClothingHeadBase
   id: ClothingHeadHatBeretBrigmedic
   name: brigmedical beret
   description: A white beret for brigmedics.

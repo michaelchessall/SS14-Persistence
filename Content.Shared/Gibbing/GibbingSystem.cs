@@ -4,6 +4,8 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Network;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes; // Persistence 14: NoGibTag
+using Content.Shared.Tag; // Persistence 14: NoGibTag
 
 namespace Content.Shared.Gibbing;
 
@@ -15,8 +17,10 @@ public sealed class GibbingSystem : EntitySystem
     [Dependency] private readonly SharedDestructibleSystem _destructible = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly TagSystem _tag = default!; // Persistence 14: NoGibTag
 
     private static readonly SoundSpecifier? GibSound = new SoundCollectionSpecifier("gib", AudioParams.Default.WithVariation(0.025f));
+    private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib"; // Persistence 14: NoGibTag
 
     /// <summary>
     /// Gibs an entity.
@@ -32,6 +36,9 @@ public sealed class GibbingSystem : EntitySystem
         // BodySystem handles prediction rather poorly and causes client-sided bugs when we gib on the client
         // This guard can be removed once it is gone and replaced by a prediction-safe system.
         if (!_net.IsServer)
+            return new();
+
+        if (_tag.HasTag(ent, NoGibTag)) // Persistence 14: NoGibTag
             return new();
 
         if (!_destructible.DestroyEntity(ent))

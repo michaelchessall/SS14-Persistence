@@ -151,3 +151,25 @@
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cos.rsi
   - type: Clothing
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cos.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpsuitParamedicNew
+  name: paramedic jumpsuit
+  description: It's got a plus on it, that's a good thing right?
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/newparamedic.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/newparamedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSeniorPhysicianNew
+  name: senior physician jumpsuit
+  description: A sign of skill and prestige within the medical department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/newsenior_physician.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/newsenior_physician.rsi

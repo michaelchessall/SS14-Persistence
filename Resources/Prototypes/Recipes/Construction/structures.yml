@@ -638,7 +638,6 @@
   category: construction-category-structures
   canBuildInImpassable: true
   conditions:
-    - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   objectType: Structure
   placementMode: SnapgridCenter

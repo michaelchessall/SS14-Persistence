@@ -1,0 +1,39 @@
+- type: reagent
+  id: Pyronitrodone
+  name: reagent-name-pyronitrodone
+  group: Medicine
+  desc: reagent-desc-pyronitrodone
+  physicalDesc: reagent-physical-desc-fizzy
+  flavor: medicine
+  color: "#f2773a"
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            min: 335.0
+          damage:
+            types:
+              Heat: -3
+              Poison: -4
+- type: reagent
+  id: Noxapyrone
+  name: reagent-name-noxapyrone
+  group: Medicine
+  desc: reagent-desc-noxapyrone
+  physicalDesc: reagent-physical-desc-cloudy
+  flavor: medicine
+  color: "#371f4f"
+  worksOnTheDead: true
+  metabolisms:
+    Bloodstream:
+      effects:
+        - !type:HealthChange
+          conditions:
+          - !type:TemperatureCondition
+            min: 350.0
+          damage:
+            types:
+              Heat: -2
+              Radiation: -2

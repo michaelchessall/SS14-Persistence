@@ -24,7 +24,7 @@
     blacklist:
       components: [ Storage ] # No bagception
   - type: StaticPrice
-    price: 50
+    price: 5
   - type: ItemCounter
     count:
       components: [ Item ]

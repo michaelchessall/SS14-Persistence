@@ -461,6 +461,21 @@
         Caustic: 0.75
 
 - type: entity
+  parent: ClothingOuterStorageFoldableBase
+  id: ClothingOuterCoatLabSeniorPhysicianNew
+  name: senior physician lab coat
+  description: A suit that protects against minor chemical spills. Has light blue sleeves and an orange waist trim.
+  components:
+  - type: Sprite
+    sprite: Clothing/OuterClothing/Coats/newlabcoat_senior_physician.rsi
+  - type: Clothing
+    sprite: Clothing/OuterClothing/Coats/newlabcoat_senior_physician.rsi
+  - type: Armor
+    modifiers:
+      coefficients:
+        Caustic: 0.75
+
+- type: entity
   parent: [ClothingOuterStorageFoldableBaseOpened, ClothingOuterCoatLabSeniorPhysician]
   id: ClothingOuterCoatLabSeniorPhysicianOpened
   name: senior physician lab coat

@@ -1,0 +1,12 @@
+# Tier 2 CivilianServices research that unlocks the requisitions console machine board.
+- type: technology
+  id: RequisitionsLogistics
+  name: research-technology-requisitions-logistics
+  icon:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  discipline: CivilianServices
+  tier: 2
+  cost: 25000
+  recipeUnlocks:
+  - RequisitionsConsoleCircuitboard

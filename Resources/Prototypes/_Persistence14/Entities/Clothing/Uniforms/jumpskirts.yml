@@ -129,3 +129,25 @@
     sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cos_turtle.rsi
   - type: Clothing
     sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cos_turtle.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpskirtParamedicNew
+  name: paramedic jumpskirt
+  description: It's got a plus on it, that's a good thing right?
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/newparamedic.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/newparamedic.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpskirtSeniorPhysicianNew
+  name: senior physician jumpskirt
+  description: A sign of skill and prestige within the medical department.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
