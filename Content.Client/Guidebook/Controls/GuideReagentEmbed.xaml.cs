@@ -221,40 +221,6 @@ public sealed partial class GuideReagentEmbed : BoxContainer, IDocumentTag, ISea
         }
         #endregion
 
-        //Persistence: Plant nutrient rework
-        #region PlantRespiration
-        if (_chemistryGuideData.ReagentGuideRegistry.TryGetValue(reagent.ID, out var guideEntryRegistryPlantRespiration) &&
-            guideEntryRegistryPlantRespiration.PlantRespiration != null &&
-            guideEntryRegistryPlantRespiration.PlantRespiration.Count > 0)
-        {
-            PlantRespirationDescriptionContainer.Children.Clear();
-            var metabolismLabel = new RichTextLabel();
-            metabolismLabel.SetMarkup(Loc.GetString("guidebook-reagent-plant-metabolisms-rate"));
-            var descriptionLabel = new RichTextLabel
-            {
-                Margin = new Thickness(25, 0, 10, 0)
-            };
-            var descMsg = new FormattedMessage();
-            var descriptionsCount = guideEntryRegistryPlantRespiration.PlantRespiration.Count;
-            var i = 0;
-            foreach (var effectString in guideEntryRegistryPlantRespiration.PlantRespiration)
-            {
-                descMsg.AddMarkupOrThrow(effectString);
-                i++;
-                if (i < descriptionsCount)
-                    descMsg.PushNewline();
-            }
-            descriptionLabel.SetMessage(descMsg);
-
-            PlantRespirationDescriptionContainer.AddChild(metabolismLabel);
-            PlantRespirationDescriptionContainer.AddChild(descriptionLabel);
-        }
-        else
-        {
-            PlantRespirationContainer.Visible = false;
-        }
-        #endregion
-
         GenerateSources(reagent);
 
         FormattedMessage description = new();
