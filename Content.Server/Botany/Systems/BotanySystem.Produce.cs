@@ -4,6 +4,7 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Botany;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Botany.Systems;
 
@@ -37,7 +38,7 @@ public sealed partial class BotanySystem
             var required = nutrient.Value.Requirement;
             var bonus = nutrient.Value.BonusRequirement;
             if (bonus > 0)
-                bonusRatio.Add(nutrient.Key, FixedPoint2.Clamp((nutrients[nutrient.Key] - required) / bonus, 0, 1));
+                bonusRatio.Add(nutrient.Key, FixedPoint2.Clamp((nutrients.GetValueOrDefault(nutrient.Key) - required) / bonus, 0, 1));
         }
 
         foreach (var (chem, quantity) in seed.Chemicals)
