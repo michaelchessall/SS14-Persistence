@@ -291,7 +291,7 @@
   - type: ExplosionResistance
     damageCoefficient: 0.1
   - type: StaticPrice
-    price: 1000
+    price: 600
 
 #Special
 - type: entity
