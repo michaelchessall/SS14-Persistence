@@ -91,10 +91,6 @@
   - !type:PlantAdjustNutrient
     amount: 1
     nutrient: Plasma
-  plantRespiration:
-  - !type:PlantAdjustNutrient
-    amount: 0.21 # Same amount as condensed
-    nutrient: Plasma
   metabolisms:
     Bloodstream:
       effects:
@@ -149,10 +145,6 @@
     nutrient: Radiation
   - !type:PlantAdjustMutationLevel
     amount: 1
-  plantRespiration:
-  - !type:PlantAdjustNutrient
-    amount: 0.4 # Slightly more efficient than condensing it and pouring it onto a plant
-    nutrient: radiation
   metabolisms:
     Bloodstream:
       effects:
@@ -182,10 +174,6 @@
   physicalDesc: reagent-physical-desc-odorless
   flavor: bitter
   color: "#66ff33"
-  plantRespiration:
-    - !type:PlantAdjustNutrient
-      amount: 1
-      nutrient: CarbonDioxide
   metabolisms:
     Bloodstream:
       effects:
@@ -368,10 +356,6 @@
   - !type:PlantAdjustNutrient
     amount: 1
     nutrient: Frezon
-  plantRespiration:
-    - !type:PlantAdjustNutrient
-      amount: 1 # ~5x more efficient than condensing it and pouring it into a tray.
-      nutrient: Frezon
   metabolisms:
     Bloodstream:
       effects:

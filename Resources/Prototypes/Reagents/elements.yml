@@ -178,10 +178,6 @@
         minScale: 1.5
         clear: True
         time: 5
-  plantRespiration:
-  - !type:PlantAdjustNutrient
-    amount: 0.21
-    nutrient: Hydrogen
 
 - type: reagent
   id: Iodine

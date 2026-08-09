@@ -1048,12 +1048,16 @@ public sealed class PlantHolderSystem : EntitySystem
         foreach (var (gasId, amount) in environment)
         {
             if (amount == 0)
+                continue;
+            var gasPrototype = _atmosphere.GetGas(gasId);
+            if (gasPrototype.Nutrient == null)
+                continue;
+            var gasAbsorbed = Math.Min(amount, gasPrototype.PlantAbsorptionRate);
+            gasAbsorbed = Math.Min(gasAbsorbed, (gasPrototype.MaxNutrient * amount / gasPrototype.NutrientAmount - component.Nutrients.GetValueOrDefault(gasPrototype.Nutrient)).Float());
+            if (gasAbsorbed <= 0)
                 return;
-            var gasReagent = _atmosphere.GetGas(gasId).Reagent;
-            if (gasReagent == null)
-                return;
-            var reagentProto = _prototype.Index<ReagentPrototype>(gasReagent);
-            _entityEffects.ApplyEffects(uid, reagentProto.PlantRespiration.ToArray(), amount);
+            environment.AdjustMoles(gasId, gasAbsorbed);
+            AdjustNutrient(uid, gasPrototype.NutrientAmount * gasAbsorbed, gasPrototype.Nutrient, component);
         }
 
         var exudeCount = component.Seed.ExudeGasses.Count;
