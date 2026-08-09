@@ -694,6 +694,17 @@
     sprite: Clothing/Uniforms/Jumpskirt/senior_physician.rsi
 
 - type: entity
+  parent: ClothingUniformSkirtBase
+  id: ClothingUniformJumpskirtSeniorPhysicianNew
+  name: senior physician jumpskirt
+  description: A sign of skill and prestige within the medical department.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
+
+- type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]
   id: ClothingUniformJumpskirtSeniorOfficer
   name: senior officer jumpskirt

@@ -1,0 +1,8 @@
+### Miscellaneous status effects for Persistence 14 ###
+
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectAntiGrav
+  name: anti-gravity
+  components:
+    - type: AntiGravity

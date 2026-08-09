@@ -11,6 +11,8 @@
     flags:
     - Anchorable
   - type: Rotatable
+  - type: WallMount
+    arc: 360 # This should technically be radians but whatever.
   - type: Sprite
     sprite: Structures/Doors/Shutters/shutters.rsi
     drawdepth: BlastDoors
@@ -220,6 +222,8 @@
     containers:
     - board
   - type: InteractionOutline
+  - type: WallMount
+    arc: 360 # This should technically be radians but whatever.
   - type: Damageable
     damageContainer: StructuralInorganic
     damageModifierSet: Metallic
@@ -247,3 +251,4 @@
         - HighImpassable
   - type: Transform
     noRot: false
+    anchored: true

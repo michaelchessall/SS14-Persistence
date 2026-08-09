@@ -62,3 +62,43 @@
       entity_storage:
         id: JugPlantBGone
         amount: 5
+
+- type: entity # Persistence
+  parent: CrateChemistrySecure
+  id: CrateChemistryMetals
+  name: metal chemicals crate
+  description: Contains useful metal and metalloid elements. Requires Chemistry access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JugAluminium
+        - id: JugLithium
+        - id: JugSodium
+        - id: JugPotassium
+        - id: JugRadium
+        - id: JugIron
+        - id: JugCopper
+        - id: JugMercury
+        - id: JugSilicon
+
+- type: entity # Persistence
+  parent: CrateChemistrySecure
+  id: CrateChemistryNonMetals
+  name: nonmetal chemicals crate
+  description: Contains useful non-metal elements. Requires Chemistry access to open.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: JugCarbon
+        - id: JugChlorine
+        - id: JugFluorine
+        - id: JugIodine
+        - id: JugPhosphorus
+        - id: JugSulfur
+        - id: JugOxygen
+        - id: JugNitrogen
+        - id: JugHydrogen

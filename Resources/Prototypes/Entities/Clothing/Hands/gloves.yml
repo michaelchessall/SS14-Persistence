@@ -199,6 +199,20 @@
 
 - type: entity
   parent: ClothingHandsButcherable
+  id: ClothingHandsGlovesNitrileForensic
+  name: black nitrile gloves
+  description: High-quality black nitrile gloves. Expensive medical PPE, perfect for autopsies.
+  components:
+  - type: Sprite
+    sprite: Clothing/Hands/Gloves/forensicnitrile.rsi
+  - type: Clothing
+    sprite: Clothing/Hands/Gloves/forensicnitrile.rsi
+  - type: Fiber
+    fiberMaterial: fibers-nitrile
+  - type: FingerprintMask
+
+- type: entity
+  parent: ClothingHandsButcherable
   id: ClothingHandsGlovesLeather
   name: botanist's leather gloves
   description: These leather gloves protect against thorns, barbs, prickles, spikes and other harmful objects of floral origin. They're also quite warm.

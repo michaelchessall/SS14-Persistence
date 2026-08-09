@@ -218,6 +218,10 @@
     - Equipment
     - Hardsuits
     - PaperworkDynamic
+    # Moffstation - Start - Modular HUDs
+    - ModularHudFrames
+    - ModularHudModules
+    # Moffstation - End
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -409,6 +413,11 @@
     - SecurityWeapons
     - SecurityDisablers
     - SecurityHardsuits
+    # Moffstation - Start - Modular HUDs
+    - ModularHudFrames
+    - SecurityModularHudFrames
+    - SecurityModularHudModules
+    # Moffstation - End
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SyndicateAmmoStatic
@@ -488,6 +497,10 @@
     dynamicPacks:
     - MedicalHardsuits
     - Chemistry
+    # Moffstation - Start - Modular HUDs
+    - ModularHudFrames
+    - MedicalModularHudModules
+    # Moffstation - End
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget
@@ -547,6 +560,7 @@
     - CentralCommandBags
     - HandyFlags
     - Bandanas
+    - PouchesPack
   - type: MaterialStorage
     whitelist: *StandardMaterialWhitelist
   - type: OreSiloClient

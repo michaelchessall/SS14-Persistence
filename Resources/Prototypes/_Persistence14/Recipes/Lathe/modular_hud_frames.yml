@@ -1,0 +1,46 @@
+- type: latheRecipe
+  id: BaseModularHudFrameRecipe
+  abstract: true
+  categories:
+  - Clothing
+  completetime: 2
+  material:
+    Steel: 100
+    Glass: 200
+    Plastic: 100
+  unlockUses: 2
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudCheapSunglasses
+  result: ClothingEyesModularHudCheapSunglasses
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudGlasses
+  result: ClothingEyesModularHudGlasses
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudGoggles
+  result: ClothingEyesModularHudGoggles
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudJamjars
+  result: ClothingEyesModularHudJamjars
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudPatch
+  result: ClothingEyesModularHudPatch
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudVisor
+  result: ClothingEyesModularHudVisor
+
+- type: latheRecipe
+  parent: BaseModularHudFrameRecipe
+  id: ClothingEyesModularHudSunglasses
+  result: ClothingEyesModularHudSunglasses

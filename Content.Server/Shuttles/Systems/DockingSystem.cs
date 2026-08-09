@@ -160,7 +160,7 @@ namespace Content.Server.Shuttles.Systems
                 return;
 
             // This little gem is for docking deserialization
-            if (component.DockedWith != null)
+            if (component.DockedWith != null && component.DockedWith != EntityUid.Invalid)
             {
                 // They're still initialising so we'll just wait for both to be ready.
                 if (MetaData(component.DockedWith.Value).EntityLifeStage < EntityLifeStage.Initialized)

@@ -1,0 +1,44 @@
+- type: reaction
+  id: Mnemosyne
+  minTemp: 430.0
+  conserveEnergy: false
+  reactants:
+    PolypyryliumOligomers:
+      amount: 2
+    Psicodine:
+      amount: 4
+    Phoron:
+      amount: 1
+      catalyst: true
+  products:
+    Mnemosyne: 1
+
+- type: reaction
+  id: PolyciderElixirWeh
+  reactants:
+    JuiceThatMakesYouWeh:
+      amount: 2
+    Artifexium:
+      amount: 2
+    Phoron:
+      amount: 2
+  products:
+    PolyciderElixir: 2
+    JuiceThatMakesYouHew: 2
+    Plasma: 2
+  
+- type: reaction
+  id: PolyciderElixirHew
+  reactants:
+    JuiceThatMakesYouHew:
+      amount: 2
+    Artifexium:
+      amount: 2
+    Phoron:
+      amount: 2
+  products:
+    PolyciderElixir: 2
+    JuiceThatMakesYouWeh: 2
+    Plasma: 2
+
+    

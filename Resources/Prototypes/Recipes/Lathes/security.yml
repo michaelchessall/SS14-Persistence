@@ -72,15 +72,17 @@
     Plastic: 250
     Cloth: 500
 
-- type: latheRecipe
-  id: ClothingEyesHudSecurity
-  result: ClothingEyesHudSecurity
-  categories:
-  - Clothing
-  completetime: 2
-  materials:
-    Steel: 300
-    Glass: 200
+# Moffstation - Begin - Replaced by modular HUDs
+#- type: latheRecipe
+#  id: ClothingEyesHudSecurity
+#  result: ClothingEyesHudSecurity
+#  categories:
+#  - Clothing
+#  completetime: 2
+#  materials:
+#    Steel: 300
+#    Glass: 200
+# Moffstation - End
 
 - type: latheRecipe
   id: PortableRecharger
@@ -124,6 +126,17 @@
     Steel: 300
     Glass: 800
   unlockUses: 4
+
+- type: latheRecipe
+  parent: BaseShieldRecipe
+  id: RiotLaserShield
+  result: RiotLaserShield
+  materials:
+    Steel: 300
+    Glass: 400
+  unlockUses: 4
+
+
 
 # Targets
 - type: latheRecipe
@@ -391,48 +404,48 @@
 
 - type: latheRecipe
   parent: BaseGlovesClothingRecipeInsulated
-  id: ClothingHandsGlovesCombat 
-  result: ClothingHandsGlovesCombat 
+  id: ClothingHandsGlovesCombat
+  result: ClothingHandsGlovesCombat
   unlockUses: 4
 
 - type: latheRecipe
   parent: BaseBeltsClothingRecipe
-  id: ClothingBeltSecurity 
-  result: ClothingBeltSecurity 
+  id: ClothingBeltSecurity
+  result: ClothingBeltSecurity
   materials:
     Cloth: 400
     Durathread: 100
 
 - type: latheRecipe
   parent: BaseBeltsClothingRecipe
-  id: ClothingBeltHolster 
-  result: ClothingBeltHolster 
+  id: ClothingBeltHolster
+  result: ClothingBeltHolster
 
 - type: latheRecipe
   parent: BaseBeltsClothingRecipe
-  id: ClothingBeltBandolier 
-  result: ClothingBeltBandolier 
+  id: ClothingBeltBandolier
+  result: ClothingBeltBandolier
 
 - type: latheRecipe
   parent: BaseBeltsClothingRecipe
-  id: ClothingBeltSecurityWebbing 
-  result: ClothingBeltSecurityWebbing 
+  id: ClothingBeltSecurityWebbing
+  result: ClothingBeltSecurityWebbing
   materials:
     Cloth: 400
     Durathread: 300
 
 - type: latheRecipe
   parent: BaseBeltsClothingRecipe
-  id: ClothingBeltMercWebbing 
-  result: ClothingBeltMercWebbing 
+  id: ClothingBeltMercWebbing
+  result: ClothingBeltMercWebbing
   materials:
     Cloth: 400
     Durathread: 300
 
 - type: latheRecipe
   parent: BaseBeltsClothingRecipe
-  id: ClothingBeltMilitaryWebbing 
-  result: ClothingBeltMilitaryWebbing 
+  id: ClothingBeltMilitaryWebbing
+  result: ClothingBeltMilitaryWebbing
   materials:
     Cloth: 400
     Durathread: 300
@@ -499,4 +512,3 @@
   parent: BaseShoesClothingRecipeSecurity
   id: ClothingShoesBootsCowboyFancy
   result: ClothingShoesBootsCowboyFancy
-

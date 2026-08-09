@@ -822,6 +822,9 @@
     Bloodstream:
       effects:
       - !type:EvenHealthChange
+        conditions:
+        - !type:DamageThreshold
+          max: 40
         damage:
           Brute: -1
           Burn: -1

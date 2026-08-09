@@ -163,6 +163,24 @@
     - FootstepSound
     - DoorBumpOpener
     - AnomalyHost
+    - NoGib
+  - type: Destructible # Persistence 14: Overwrite blunt gibbing behaviour
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
 
 - type: entity
   save: true

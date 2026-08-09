@@ -22,10 +22,12 @@ public sealed partial class XenoArtifactUnlockingComponent : Component
     public TimeSpan EndTime;
 
     /// <summary>
-    /// Tracks if artifexium has been applied, which changes the unlock behavior slightly.
+    /// Total units of artifexium applied during this unlocking window. Every
+    /// <see cref="XenoArtifactComponent.ArtifexiumCostPerTrigger"/> units substitute for one required
+    /// node trigger when the window resolves. Zero means no artifexium is in effect.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public bool ArtifexiumApplied;
+    public float ArtifexiumScale;
 
     /// <summary>
     /// The sound that plays when an artifact finishes unlocking successfully (with node unlocked).

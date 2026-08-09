@@ -28,7 +28,7 @@
         mask:
         - MachineMask
         layer:
-        - MidImpassable, LowImpassable, BulletImpassable
+        - GlassLayer
   - type: Sprite
     sprite: Structures/Power/Generation/solar_panel.rsi
     state: solar_panel_glass

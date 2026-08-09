@@ -167,6 +167,11 @@
     solution: tank
   - type: StaticPrice
     price: 500
+  - type: Construction # Persistence14
+    graph: WaterCooler
+    node: water-cooler
+    defaultTarget: water-cooler
+    deconstructionTarget: start
 
 - type: entity
   parent: [StorageTankBig, WaterTank]

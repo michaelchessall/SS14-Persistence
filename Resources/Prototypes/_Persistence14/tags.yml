@@ -35,6 +35,8 @@
 ## O ##
 
 ## P ##
+- type: Tag
+  id: PolymorphTransferReagent # Allows reagents to transfer to the new entity upon polymorph and return upon revert.
 
 ## Q ##
 

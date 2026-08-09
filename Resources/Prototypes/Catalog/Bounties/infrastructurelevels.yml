@@ -225,7 +225,7 @@
     HunterBounty : 4
     ExplorationBounty : 1
     ScienceBounty : 1
-  income: -5000
+  income: 0
 
 - type: infrastructureLevel
   id: ILevelHunter2
@@ -289,7 +289,7 @@
     MaterialBounty : 1
     ReagentBounty : 1
     StationBounty : 1
-  income: -5000
+  income: 0
 
 - type: infrastructureLevel
   id: ILevelEngineer2

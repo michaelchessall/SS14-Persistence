@@ -119,32 +119,22 @@
   group: market
 
 - type: cargoProduct
-  id: ChemistryP
+  id: ChemistryMetals
   icon:
     sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     state: icon
-  product: CrateChemistryP
+  product: CrateChemistryMetals
   cost: 850
   category: cargoproduct-category-name-medical
   group: market
 
 - type: cargoProduct
-  id: ChemistryS
+  id: ChemistryNonMetals
   icon:
     sprite: Structures/Storage/Crates/chemcrate_secure.rsi
     state: icon
-  product: CrateChemistryS
-  cost: 750
-  category: cargoproduct-category-name-medical
-  group: market
-
-- type: cargoProduct
-  id: CrateChemistryD
-  icon:
-    sprite: Structures/Storage/Crates/chemcrate_secure.rsi
-    state: icon
-  product: CrateChemistryD
-  cost: 750
+  product: CrateChemistryNonMetals
+  cost: 850
   category: cargoproduct-category-name-medical
   group: market
 

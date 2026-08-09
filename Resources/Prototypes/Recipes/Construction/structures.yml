@@ -638,7 +638,6 @@
   category: construction-category-structures
   canBuildInImpassable: true
   conditions:
-    - !type:EmptyOrWindowValidInTile
     - !type:NoWindowsInTile
   objectType: Structure
   placementMode: SnapgridCenter
@@ -1928,6 +1927,18 @@
   graph: AltarGraph
   startNode: start
   targetNode: altarYellow
+  category: construction-category-furniture
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
+  id: AltarEmbrace
+  graph: AltarGraph
+  startNode: start
+  targetNode: altarEmbrace
   category: construction-category-furniture
   objectType: Structure
   placementMode: SnapgridCenter

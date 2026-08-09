@@ -1,0 +1,60 @@
+### Alcohol for Persistence 14
+
+## Base
+
+## Mixed
+- type: reagent
+  id: liquidElysium
+  name: reagent-name-liquid-elysium
+  parent: BaseAlcohol
+  desc: reagent-desc-liquid-elysium
+  physicalDesc: reagent-physical-desc-liquid-elysium
+  flavor: liquidelysium
+  color: "#e8ce68"
+  metamorphicSprite:
+    sprite: _Persistence14/Objects/Consumable/Drinks/LiquidElysium.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+        - !type:ModifyStatusEffect
+          effectProto: StatusEffectAntiGrav
+          type: Add
+          time: 3
+      metabolites:
+        Ethanol: 0.4
+
+- type: reagent
+  id: tartarusTwist
+  name: reagent-name-tartarus-twist
+  parent: BaseAlcohol
+  desc: reagent-desc-tartarus-twist
+  physicalDesc: reagent-physical-desc-tartarus-twist
+  flavor: tartarustwist
+  color: "#6c844c"
+  metamorphicSprite:
+    sprite: _Persistence14/Objects/Consumable/Drinks/TartarusTwist.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+        - !type:Emote
+          emote: Scream
+          probability: 0.25
+        - !type:GenericStatusEffect
+          key: Stutter
+          component: StutteringAccent
+        - !type:Jitter
+        - !type:PopupMessage
+          type: Local
+          visualType: Large
+          messages: ["tartarus-twist-effect-damned", "tartarus-twist-effect-burning", "tartarus-twist-effect-pain"]
+          probability: 0.1
+      metabolites:
+        Ethanol: 0.6

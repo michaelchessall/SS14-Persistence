@@ -1,0 +1,25 @@
+- type: constructionGraph
+  id: WaterCooler
+  start: start
+  graph:
+  - node: start
+    actions:
+      - !type:DestroyEntity {}
+    edges:
+    - to: water-cooler
+      steps:
+      - material: Plastic
+        amount: 5
+        doAfter: 1
+    
+  - node: water-cooler
+    entity: WaterCooler
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 1
+      completed:
+            - !type:GivePrototype
+              prototype: SheetPlastic1
+              amount: 5

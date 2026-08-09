@@ -1,0 +1,9 @@
+- type: latheRecipe
+  id: ClothingNeckMilitiaCloak
+  parent: BaseNeckClothingRecipe
+  result: ClothingNeckMilitiaCloak
+
+- type: latheRecipe
+  id: ClothingNeckMilitiaLeaderCloak
+  parent: BaseNeckClothingRecipe
+  result: ClothingNeckMilitiaLeaderCloak

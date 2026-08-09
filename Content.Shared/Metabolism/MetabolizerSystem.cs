@@ -71,7 +71,7 @@ public sealed class MetabolizerSystem : EntitySystem
 
             comp.NextUpdate += comp.AdjustedUpdateInterval;
             TryMetabolize((uid, comp));
-            Dirty(uid, comp);
+            if (!TerminatingOrDeleted(uid) && TryComp(uid, out comp)) Dirty(uid, comp);
         }
     }
 

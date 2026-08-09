@@ -1,0 +1,105 @@
+# Forget-Me-Not Reagent, restores entities to their rightful form and protects them from form-altering effects.
+- type: reagent
+  id: Mnemosyne
+  group: Special
+  name: reagent-name-mnemosyne
+  desc: reagent-desc-mnemosyne
+  physicalDesc: reagent-physical-desc-nostalgic
+  color: "#ee458c"
+  tags: [ PolymorphTransferReagent ]
+  metabolisms:
+    Bloodstream:
+      metabolismRate: .25
+      effects:
+      # Revert target entity polymorph
+      - !type:RevertPolymorph
+        conditions:
+        - !type:ReagentCondition
+          reagent: Mnemosyne
+          min: 5
+      
+      # Add protected status effect
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectPolymorphProtection
+        type: Add
+        time: 1
+      
+      # Remove Polymorphing reagents at the cost of faster drain speed
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: JuiceThatMakesYouWeh
+          min: 1
+        reagent: JuiceThatMakesYouWeh
+        amount: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: JuiceThatMakesYouWeh
+          min: 1
+        reagent: Mnemosyne
+        amount: -1
+      
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: CorgiJuice
+          min: 1
+        reagent: CorgiJuice
+        amount: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: CorgiJuice
+          min: 1
+        reagent: Mnemosyne
+        amount: -1
+      
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: PolyciderElixir
+          min: 1
+        reagent: PolyciderElixir
+        amount: -1
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: PolyciderElixir
+          min: 1
+        reagent: Mnemosyne
+        amount: -1
+
+
+# Chaos in a bottle. Polymorphs the entity into a random creature from a random table.
+- type: reagent
+  id: PolyciderElixir
+  group: Special
+  name: reagent-name-polycider
+  desc: reagent-desc-polycider
+  physicalDesc: reagent-physical-desc-amorphous
+  color: "#30e430"
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.5
+      effects:
+      - !type:RandomPolymorph
+        conditions:
+        - !type:ReagentCondition
+          reagent: PolyciderElixir
+          min: 20
+        - !type:HasComponent
+          component: PolymorphProtected
+          inverted: true
+        table: !type:RandomTableNestedSelector
+          tableId: PolyciderElixirPolymorphTable
+      - !type:AdjustReagent
+        conditions:
+        - !type:ReagentCondition
+          reagent: PolyciderElixir
+          min: 20
+        - !type:HasComponent
+          component: PolymorphProtected
+          inverted: true
+        reagent: PolyciderElixir
+        amount: -20

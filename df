@@ -1,0 +1,42 @@
+[35mContent.IntegrationTests/Tests/Nutrition/WaterCoolerInteractionTest.cs[m[36m:[m[32m10[m[36m:[mpublic sealed class [1;31mWaterCooler[mInteractionTest : InteractionTest
+[35mContent.IntegrationTests/Tests/Nutrition/WaterCoolerInteractionTest.cs[m[36m:[m[32m15[m[36m:[m    private static readonly EntProtoId [1;31mWaterCooler[m = "[1;31mWaterCooler[m";
+[35mContent.IntegrationTests/Tests/Nutrition/WaterCoolerInteractionTest.cs[m[36m:[m[32m35[m[36m:[m        var cooler = await SpawnTarget([1;31mWaterCooler[m);
+[35mContent.IntegrationTests/Tests/Nutrition/WaterCoolerInteractionTest.cs[m[36m:[m[32m87[m[36m:[m        await SpawnTarget([1;31mWaterCooler[m);
+[35mResources/Maps/Dungeon/experiment.yml[m[36m:[m[32m10347[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Dungeon/lava_brig.yml[m[36m:[m[32m12269[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Dungeon/snowy_labs.yml[m[36m:[m[32m14028[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Lavaland/pizza_party.yml[m[36m:[m[32m661[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Lavaland/temple.yml[m[36m:[m[32m2439[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Ruins/atmos_interchange.yml[m[36m:[m[32m6201[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Salvage/cargo-1.yml[m[36m:[m[32m1010[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Salvage/ruin-cargo-salvage.yml[m[36m:[m[32m3203[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Salvage/wh-salvage.yml[m[36m:[m[32m2205[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Large-Med-Sec.yml[m[36m:[m[32m7214[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Medium-Eng-Jani.yml[m[36m:[m[32m4455[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Medium-Sec.yml[m[36m:[m[32m4059[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Small-Base.yml[m[36m:[m[32m1564[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Small-CBURN.yml[m[36m:[m[32m1772[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Small-Deathsquad.yml[m[36m:[m[32m1863[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Small-Eng.yml[m[36m:[m[32m2446[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Small-Jani.yml[m[36m:[m[32m1949[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/AdminSpawn/ERT-Small-Sec.yml[m[36m:[m[32m1794[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/ShuttleEvent/quark.yml[m[36m:[m[32m2128[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/infiltrator.yml[m[36m:[m[32m5581[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/Shuttles/trading_outpost_science.yml[m[36m:[m[32m19865[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/bagel.yml[m[36m:[m[32m156540[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/box.yml[m[36m:[m[32m180571[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/centcomm.yml[m[36m:[m[32m61763[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/elkridge.yml[m[36m:[m[32m124048[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/exo.yml[m[36m:[m[32m125281[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/fland.yml[m[36m:[m[32m224433[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/genesis.yml[m[36m:[m[32m103917[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/marathon.yml[m[36m:[m[32m147840[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/oasis.yml[m[36m:[m[32m202934[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/packed.yml[m[36m:[m[32m102385[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/persi-station.yml[m[36m:[m[32m86845[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/plasma.yml[m[36m:[m[32m170266[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/saltern.yml[m[36m:[m[32m69415[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/serpentcrest.yml[m[36m:[m[32m183301[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/snowball.yml[m[36m:[m[32m116769[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Maps/zenith.yml[m[36m:[m[32m563203[m[36m:[m- proto: [1;31mWaterCooler[m
+[35mResources/Prototypes/Entities/Structures/Storage/Tanks/tanks.yml[m[36m:[m[32m124[m[36m:[m  id: [1;31mWaterCooler[m

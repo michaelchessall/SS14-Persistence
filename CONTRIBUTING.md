@@ -9,3 +9,7 @@ The last major guidelines update was on **December 6th, 2025**.
 
 ### Why is this here?
 We put this here so that GitHub will notify you when submitting a pull request that the PR guidelines have changed, if you haven't read the latest version.
+
+## What Persistence Specific Contribution Rules?
+
+Check out [rules-contributing](rules-contributing.md)

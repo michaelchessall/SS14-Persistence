@@ -35,19 +35,21 @@ public sealed partial class ArtifactUnlockEntityEffectSystem : EntityEffectSyste
 
     protected override void Effect(Entity<XenoArtifactComponent> entity, ref EntityEffectEvent<ArtifactUnlock> args)
     {
+        // Scale is the units of artifexium applied in this reaction.
+        var units = args.Scale;
+
         if (EnsureComp<XenoArtifactUnlockingComponent>(entity, out var unlocking))
         {
-            if (unlocking.ArtifexiumApplied)
-                return;
-
+            // Window already open: add to it and let the normal timer run out.
             _popup.PopupEntity(Loc.GetString("artifact-activation-artifexium"), entity, PopupType.Medium);
         }
         else
         {
-            _xenoArtifact.TriggerXenoArtifact(entity, null, force: true);
+            // Artifexium opened the window: resolve instantly.
+            _xenoArtifact.SetInstantUnlock((entity, unlocking));
         }
 
-        _xenoArtifact.SetArtifexiumApplied((entity, unlocking), true);
+        _xenoArtifact.AddArtifexiumScale((entity, unlocking), units);
     }
 }
 

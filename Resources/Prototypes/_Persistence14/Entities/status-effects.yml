@@ -1,0 +1,7 @@
+# Protects the entity from polymorph events so long as this status effect is active.
+- type: entity
+  parent: MobStatusEffectBase
+  id: StatusEffectPolymorphProtection
+  name: polymorph protection
+  components:
+  - type: PolymorphProtected

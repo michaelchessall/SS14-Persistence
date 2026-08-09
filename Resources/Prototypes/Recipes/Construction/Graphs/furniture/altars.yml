@@ -279,6 +279,16 @@
               state: "shard1"
               doAfter: 1
 
+        - to: altarEmbrace
+          steps:
+          - tag: Candle
+            name: construction-graph-tag-candle
+            store: candle
+            icon:
+              sprite: "Objects/Misc/candles.rsi"
+              state: "candle-big"
+              doAfter: 1
+
         - to: altarClear
           completed:
           - !type:SpawnPrototype
@@ -387,9 +397,7 @@
       edges:
         - to: altarRed
           completed:
-          - !type:SpawnPrototype
-                prototype: Candle
-                amount: 1
+          - !type:EmptyAllContainers
           steps:
             - tool: Prying
               doAfter: 1
@@ -403,3 +411,13 @@
           steps:
             - tool: Prying
               doAfter: 1
+
+    - node: altarEmbrace
+      entity: AltarEmbrace
+      edges:
+        - to: altarBlack
+          completed:
+          - !type:EmptyAllContainers
+          steps:
+            - tool: Prying
+              doAfter: 5

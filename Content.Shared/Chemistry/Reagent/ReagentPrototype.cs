@@ -7,6 +7,7 @@ using Content.Shared.Metabolism;
 using Content.Shared.Nutrition;
 using Content.Shared.Roles;
 using Content.Shared.Slippery;
+using Content.Shared.Tag;
 using Robust.Shared.Audio;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -185,6 +186,12 @@ namespace Content.Shared.Chemistry.Reagent
 
         [DataField]
         public SoundSpecifier FootstepSound = new SoundCollectionSpecifier("FootstepPuddle");
+
+        /// <summary>
+        /// A list of tags that can be attached to reagents to be referenced by other systems.
+        /// </summary>
+        [DataField]
+        public HashSet<ProtoId<TagPrototype>> Tags = new();
 
         // TODO: Reaction tile doesn't work properly and destroys reagents way too quickly
         public FixedPoint2 ReactionTile(TileRef tile, FixedPoint2 reactVolume, IEntityManager entityManager, List<ReagentData>? data)

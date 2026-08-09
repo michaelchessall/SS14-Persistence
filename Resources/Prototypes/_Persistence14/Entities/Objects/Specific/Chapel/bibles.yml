@@ -1,0 +1,29 @@
+- type: entity
+  id: BibleEmbrace
+  name: Codex Threshold
+  parent: Bible
+  description: "The codex read and used by those who worship the Threshold itself. It's cover shows space, stars, the and the Candle of the Threshold."
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chapel/embracebible.rsi
+  - type: Item
+    sprite: _Persistence14/Objects/Specific/Chapel/embracebible.rsi
+
+- type: entity
+  name: The Threshold Candle
+  description: "An artifact of the Threshold's Embrace. This candle was lit by the light of the very Threshold itself. It's ever-burning wick is a sign of the vitality of the Threshold."
+  parent: CandleInfinite
+  id: CandleThresholdInfinite
+  components:
+  - type: Sprite
+    noRot: true
+    sprite: _Persistence14/Objects/Specific/Chapel/thresholdcandle.rsi
+    layers:
+      - state: icon
+      - state: flame
+        shader: unshaded
+  - type: PointLight
+    radius: 1.7
+    color: "#e39c40"
+    power: 10
+    autoRot: true

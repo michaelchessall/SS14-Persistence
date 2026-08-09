@@ -454,3 +454,22 @@
   - type: Construction
     graph: AltarGraph
     node: altarClear
+
+- type: entity
+  id: AltarEmbrace
+  parent: AltarBase
+  name: threshold's embrace altar
+  description: An altar decorated for followers of the Threshold's Embrace.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Furniture/Altars/ThresholdsEmbrace/embrace.rsi
+    state: thresholdsembrace
+  - type: Icon
+    sprite: _Persistence14/Structures/Furniture/Altars/ThresholdsEmbrace/embrace.rsi
+    state: thresholdsembrace
+  - type: Construction
+    graph: AltarGraph
+    node: altarEmbrace
+  - type: ContainerContainer
+    containers:
+      candle: !type:Container

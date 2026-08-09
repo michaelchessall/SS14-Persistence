@@ -1,0 +1,12 @@
+- type: randomTable
+  id: PolyciderElixirPolymorphTable
+  table: !type:RandomTableGroupSelector
+    children:
+    - prototype: ArtifactLizard
+      weight: 4
+    - prototype: ArtifactMonkey
+      weight: 4
+    - prototype: ArtifactLuminous
+      weight: 2
+    - prototype: ArtifactCluwne
+      weight: 1

@@ -25,7 +25,7 @@
   recipes:
   - Jug
   - ChemistryEmptyBottle01
-  - ClothingEyesGlassesChemical
+#  - ClothingEyesGlassesChemical # Moffstation - Replaced by modular HUDs
 
 - type: latheRecipePack
   id: SurgeryStatic
@@ -62,6 +62,7 @@
   recipes:
   - ClothingHandsGlovesLatex
   - ClothingHandsGlovesNitrile
+  - ClothingHandsGlovesNitrileForensic
   - ClothingMaskSterile
 
 # These are all empty

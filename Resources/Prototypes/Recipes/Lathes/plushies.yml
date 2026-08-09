@@ -315,6 +315,36 @@
     PlasmaGlass: 50
 
 - type: latheRecipe
+  id: PlushieHuna
+  parent: BasePlushieRecipe
+  result: PlushieHuna
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Durathread: 50
+
+- type: latheRecipe
+  id: PlushieHelena
+  parent: BasePlushieRecipe
+  result: PlushieHelena
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Plastic: 50
+
+- type: latheRecipe
+  id: PlushieMadeline
+  parent: BasePlushieRecipe
+  result: PlushieMadeline
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Durathread: 50
+
+- type: latheRecipe
   id: PlushieIsolde
   parent: BasePlushieRecipe
   result: PlushieIsolde

@@ -1,0 +1,29 @@
+### Persistence 14 drink recipes
+
+- type: reaction
+  id: liquidElysium
+  reactants:
+    Champagne:
+      amount: 10
+    Cognac:
+      amount: 10
+    Grenadine:
+      amount: 5
+    Nectar:
+      amount: 5
+  products:
+    liquidElysium: 30
+
+- type: reaction
+  id: tartarusTwist
+  reactants:
+    Absinthe:
+      amount: 10
+    Moonshine:
+      amount: 10
+    WeldingFuel:
+      amount: 5
+    Nectar:
+      amount: 5
+  products:
+    tartarusTwist: 30

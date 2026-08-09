@@ -1,0 +1,10 @@
+- type: construction
+  id: WaterCooler
+  graph: WaterCooler
+  startNode: start
+  targetNode: water-cooler
+  category: construction-category-storage
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+  - !type:TileNotBlocked
