@@ -23,7 +23,7 @@ namespace Content.Client.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchableControl
 {
-    private static readonly ProtoId<MixingCategoryPrototype> DefaultMixingCategory = "DummyMix";
+    private static readonly ProtoId<MixingCategoryPrototype> DefaultMixingCategory = "DummyPlantOsmosis";
 
     private readonly IPrototypeManager _protoMan;
 
@@ -44,7 +44,9 @@ public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchable
             nutrients.Add(prod, 1);
         }
         SetNutrients(nutrients, ref productContainer, protoMan, false);
-        SetMixingCategory(sysMan);
+
+        var mixingCategories = new List<MixingCategoryPrototype> { protoMan.Index(DefaultMixingCategory) };
+        SetMixingCategory(mixingCategories, sysMan);
     }
 
     public GuidePlantNutrientSource(EntityPrototype prototype,
@@ -74,7 +76,7 @@ public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchable
 
         Container productContainer = NutrientsContainer;
         SetNutrients(solution.Contents, ref productContainer, protoMan, false);
-        SetMixingCategory(/*categories,*/ sysMan);
+        SetMixingCategory(categories, sysMan);
     }
 
     public GuidePlantNutrientSource(GasPrototype prototype,
@@ -89,16 +91,16 @@ public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchable
         SourcesContainer.Visible = true;
         SourcesContainer.AddChild(label);
 
-        if (prototype.Reagent != null)
+        if (prototype.Nutrient != null)
         {
             var quantity = new Dictionary<string, FixedPoint2>
             {
-                { prototype.Reagent, FixedPoint2.New(0.21f) }
+                { prototype.Nutrient, prototype.NutrientAmount }
             };
             Container productContainer = NutrientsContainer;
             SetNutrients(quantity, ref productContainer, protoMan, false);
         }
-        SetMixingCategory(/*categories,*/ sysMan);
+        SetMixingCategory(categories, sysMan);
     }
 
     private Dictionary<string, FixedPoint2> GetNutrients(ReagentPrototype reagent)
@@ -184,7 +186,7 @@ public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchable
         container.Visible = true;
     }
 
-    /*private void SetMixingCategory(IReadOnlyList<ProtoId<MixingCategoryPrototype>> mixingCategories, IEntitySystemManager sysMan)
+    private void SetMixingCategory(IReadOnlyList<ProtoId<MixingCategoryPrototype>> mixingCategories, IEntitySystemManager sysMan)
     {
         var foo = new List<MixingCategoryPrototype>();
         foreach (var cat in mixingCategories)
@@ -192,11 +194,11 @@ public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchable
             foo.Add(_protoMan.Index(cat));
         }
         SetMixingCategory(foo, sysMan);
-    }*/
+    }
 
-    private void SetMixingCategory(/*IReadOnlyList<MixingCategoryPrototype> mixingCategories, */IEntitySystemManager sysMan)
+    private void SetMixingCategory(IReadOnlyList<MixingCategoryPrototype> mixingCategories, IEntitySystemManager sysMan)
     {
-        /*if (mixingCategories.Count == 0)
+        if (mixingCategories.Count == 0)
             return;
 
         // only use the first one for the icon.
@@ -204,9 +206,11 @@ public sealed partial class GuidePlantNutrientSource : BoxContainer, ISearchable
         {
             MixTexture.Texture = sysMan.GetEntitySystem<SpriteSystem>().Frame0(primaryCategory.Icon);
         }
-        */
 
-        var text = Loc.GetString("guidebook-plant-nutrients-source-info", ("verb", Loc.GetString("plant-nutrient-source-verb-default-osmosis")));
+        var mixingVerb = ContentLocalizationManager.FormatList(mixingCategories
+            .Select(p => Loc.GetString(p.VerbText)).ToList());
+
+        var text = Loc.GetString("guidebook-plant-nutrients-source-info", ("verb", mixingVerb));
 
         MixLabel.SetMarkup(text);
     }
