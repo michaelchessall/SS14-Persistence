@@ -51,6 +51,14 @@
             "directions": 4
         },
         {
+            "name": "inhand-left-fill-4",
+            "directions": 4
+        },
+        {
+            "name": "inhand-left-fill-5",
+            "directions": 4
+        },
+        {
             "name": "inhand-right",
             "directions": 4
         },
@@ -64,6 +72,14 @@
         },
         {
             "name": "inhand-right-fill-3",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-fill-4",
+            "directions": 4
+        },
+        {
+            "name": "inhand-right-fill-5",
             "directions": 4
         }
     ]
