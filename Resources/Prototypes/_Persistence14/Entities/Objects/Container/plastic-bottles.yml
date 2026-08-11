@@ -1,0 +1,105 @@
+# inspired by "Probably stolen" great game! made for Persistence 14
+
+# tiny empty bottle
+
+- type: entity 
+  parent: SmallPlasticBottle
+  id: TinyPlasticBottle
+  name: Tiny bottle
+  description: A tiny plastic bottle for storing liquids.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/tiny-plastic-bottle.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    inHandsMaxFillLevels: 3
+
+# Empty small plastic bottle
+
+- type: entity 
+  parent: [ DrinkBaseMaterialPlastic, DrinkBase, DrinkBaseOpenable, DrinkVisualsAll] #I wanna make it recyclable sooo not gonna use DrinkBottlePlasticSmallBaseFull
+  id: SmallPlasticBottle
+  name: Small bottle
+  description: A small plastic bottle for storing liquids.
+  components:
+  - type: Item
+    size: Small
+  - type: Openable
+    sound:
+      collection: bottleOpenSounds
+    closeable: true
+    closeSound:
+      collection: bottleCloseSounds
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/small-plastic-bottle.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 60
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    inHandsMaxFillLevels: 3
+  - type: Tag
+    tags:
+    - DrinkBottle
+    - Recyclable
+    - EmptyBottle #adding it to the HandLabeler tags
+
+# Empty plastic bottle
+
+- type: entity
+  parent: SmallPlasticBottle
+  id: PlasticBottle
+  name: Plastic bottle
+  description: A plastic bottle for storing liquids.
+  components:
+  - type: Item
+    size: Small
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/plastic-bottle.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 120
+
+#Empty large plastic bottle
+
+- type: entity
+  parent: SmallPlasticBottle
+  id: LargePlasticBottle
+  name: Large bottle
+  description: A large plastic bottle for storing liquids.
+  components:
+  - type: Item
+    size: Normal
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/large-plastic-bottle.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 240
+
+- type: entity
+  parent: SmallPlasticBottle
+  id: WaterJug
+  name: Water Jug
+  description: A plastic jug made for storing water.
+  components:
+  - type: Item
+    size: Ginormous
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/water-jug.rsi
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 500
+  - type: MultiHandedItem
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    inHandsMaxFillLevels: 6

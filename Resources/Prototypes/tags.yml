@@ -534,6 +534,9 @@
   id: EmitterBolt # Default value in ContainmentFieldGeneratorComponent for tagged collisions that power the generator.
 
 - type: Tag
+  id: EmptyBottle # SmallPlasticBottle needs it in order to add handlabels  
+
+- type: Tag
   id: EncryptionCargo # ItemMapper: TelecomServer
 
 - type: Tag

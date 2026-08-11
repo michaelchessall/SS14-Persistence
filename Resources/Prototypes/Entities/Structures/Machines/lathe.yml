@@ -202,6 +202,7 @@
     staticPacks:
     - ChemistryStatic
     - SurgeryStatic
+    - PlasticBottlesPack
     dynamicPacks:
     - AdvancedTools
     - ScienceEquipment
