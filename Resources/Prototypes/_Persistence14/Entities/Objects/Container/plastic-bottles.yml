@@ -84,6 +84,9 @@
     solutions:
       drink:
         maxVol: 240
+  - type: SolutionContainerVisuals
+    maxFillLevels: 6
+    inHandsMaxFillLevels: 5
 
 - type: entity
   parent: SmallPlasticBottle
