@@ -2,6 +2,8 @@ using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Shuttles.Components;
 using JetBrains.Annotations;
+using Robust.Shared.Physics;
+using Robust.Shared.Physics.Components;
 
 namespace Content.Shared.Shuttles.Systems;
 
@@ -37,6 +39,11 @@ public abstract partial class SharedShuttleSystem
         Resolve(gridUid, ref component, false);
 
         if (!self && component != null && (component.Flags & (IFFFlags.HideLabel | IFFFlags.Hide)) != 0x0)
+        {
+            return null;
+        }
+
+        if (component == null && TryComp(gridUid, out PhysicsComponent? physics) && physics.BodyType == BodyType.Dynamic && physics.Mass < 10f) // Persistence 14
         {
             return null;
         }

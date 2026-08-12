@@ -143,7 +143,7 @@ public abstract partial class SharedShuttleSystem : EntitySystem
         if (!Resolve(gridUid, ref physics))
             return true;
 
-        if (physics.BodyType != BodyType.Static && physics.Mass < 10f)
+        if (physics.BodyType != BodyType.Static && physics.Mass < 2f) //Persistence 14: Reduced minimum mass to show on IFF consoles from 10 to 2.
         {
             return false;
         }
