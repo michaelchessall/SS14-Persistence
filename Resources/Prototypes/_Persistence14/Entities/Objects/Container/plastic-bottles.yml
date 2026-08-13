@@ -19,6 +19,9 @@
     - DrinkBottle
     - Recyclable
     - EmptyBottle #adding it to the HandLabeler tags
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 40
 
 # tiny empty bottle
 
@@ -39,6 +42,9 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 3
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 45
 
 # Empty small plastic bottle
 
@@ -59,6 +65,9 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 3
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 90
 
 # Empty plastic bottle
 
@@ -76,6 +85,9 @@
     solutions:
       drink:
         maxVol: 120
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 180
 
 #Empty large plastic bottle
 
@@ -96,6 +108,9 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 5
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 315
 
 - type: entity
   parent: BasePlasticBottle
@@ -115,3 +130,6 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 6
+  - type: PhysicalComposition
+    materialComposition:
+      Plastic: 540
