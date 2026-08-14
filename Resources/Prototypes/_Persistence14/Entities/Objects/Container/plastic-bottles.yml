@@ -18,7 +18,6 @@
     tags:
     - DrinkBottle
     - Recyclable
-    - EmptyBottle #adding it to the HandLabeler tags
   - type: PhysicalComposition
     materialComposition:
       Plastic: 40
