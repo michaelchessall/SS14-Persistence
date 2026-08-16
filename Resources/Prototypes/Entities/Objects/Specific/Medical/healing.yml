@@ -323,12 +323,9 @@
       - Biological
     damage:
       types:
-        Slash: -5
-        Piercing: -10
+        Slash: -0.25
+        Piercing: -0.25
     bloodlossModifier: -10
-    conditions:
-      - !type:DamageThreshold
-        max: 40
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
       params:

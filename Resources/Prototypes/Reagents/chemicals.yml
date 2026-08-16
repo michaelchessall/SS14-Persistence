@@ -40,7 +40,7 @@
       - !type:HealthChange
         damage:
           types:
-            Poison: -1
+            Poison: -0.01
       - !type:CleanBloodstream
         excluded: Charcoal
         cleanseRate: 3

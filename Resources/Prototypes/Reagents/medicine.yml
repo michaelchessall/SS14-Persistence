@@ -1239,12 +1239,12 @@
   color: "#aa4308"
   metabolisms:
     Bloodstream:
-      metabolismRate: 0.01 # slow metabolism to not be a godly combat med, its for treating burn victims efficiently// oh we making it HELLA slow now
+      metabolismRate: 0.01667 # slow metabolism to not be a godly combat med, its for treating burn victims efficiently// oh we making it HELLA slow now// nope making it stronger
       effects:
       - !type:HealthChange
         damage:
           types:
-            Heat: -0.1
+            Heat: -0.1667
       # od causes massive bleeding
       - !type:HealthChange
         conditions:
@@ -1279,13 +1279,13 @@
   color: "#8147ff"
   metabolisms:
     Bloodstream:
-      metabolismRate: 0.025
+      metabolismRate: 0.04167
       effects:
       # heals shocks and removes shock chems
       - !type:HealthChange
         damage:
           types:
-            Shock: -0.15 # 6 per u
+            Shock: -0.09375 # 6 per u
       - !type:AdjustReagent
         reagent: Licoxide
         amount: -2
