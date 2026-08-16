@@ -239,7 +239,7 @@
       - Prying
       speedModifier: 2 # Very powerful to balance out the desire to sell or scrap for points
       useSound: /Audio/Items/crowbar.ogg
-    
+
 
 - type: entity
   id: XenoArtifactToolScrewdriver
@@ -404,6 +404,92 @@
       - behavior: Pulsing
         changeSound:
           path: /Audio/Items/change_drill.ogg
+
+# _Persistence14 content
+# Forced-emote effects: on activation, every living mob within `radius` (line of sight ignored) that
+# can perform the emote is made to repeat it for `duration` seconds. The repeat cadence/probability
+# come from the referenced AutoEmote prototype (see _Persistence14/Voice/auto_emotes.yml).
+# To add another, pair a new autoEmote prototype with a copy of one of these (new id + autoEmote).
+- type: entity
+  id: XenoArtifactEffectLaughingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable laughter in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedLaugh
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectSighingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable sighing in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedSigh
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectSneezingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable sneezing in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedSneeze
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectCoughingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable coughing in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedCough
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectWhistlingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable whistling in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedWhistle
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectCryingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable crying in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedCry
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectYawningFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable yawning in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedYawn
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectScreamingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable screaming in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedScream
+    radius: 5
+    duration: 10
+# end _Persistence14 content
 
 - type: entity
   id: XenoArtifactEffectBadFeeling
@@ -1377,7 +1463,7 @@
           range: 3, 8
         children:
         - id: SheetGlass1
-  
+
 - type: entity
   id: XenoArtifactMaterialSpawnGlassMany
   parent: BaseXenoArtifactEffect
@@ -1432,7 +1518,7 @@
           range: 3, 8
         children:
         - id: SheetSteel1
-  
+
 - type: entity
   id: XenoArtifactMaterialSpawnSteelMany
   parent: BaseXenoArtifactEffect
@@ -1487,7 +1573,7 @@
           range: 3, 8
         children:
         - id: SheetPlastic1
-  
+
 - type: entity
   id: XenoArtifactMaterialSpawnPlasticMany
   parent: BaseXenoArtifactEffect
@@ -1597,7 +1683,7 @@
         Heat: -50
         Cold: -50
         Shock: -50
-  
+
 - type: entity
   id: XenoArtifactHealRare
   parent: BaseXenoArtifactEffect

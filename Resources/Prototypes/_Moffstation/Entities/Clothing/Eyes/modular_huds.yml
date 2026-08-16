@@ -44,7 +44,7 @@
       Frame: frame
   - type: ModularHud
     moduleContainerId: modular-hud-modules
-    maximumContainedModules: 3
+    maximumContainedModules: 4
     moduleExtractionToolQuality: Screwing
     moduleRemovalDelay: 1s
   - type: ContainerContainer

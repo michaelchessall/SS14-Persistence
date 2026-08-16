@@ -123,7 +123,8 @@ namespace Content.Shared.Atmos
         public void SetMoles(int gasId, float quantity)
         {
             if (!float.IsFinite(quantity) || float.IsNegative(quantity))
-                throw new ArgumentException($"Invalid quantity \"{quantity}\" specified!", nameof(quantity));
+                quantity = 0;
+               // throw new ArgumentException($"Invalid quantity \"{quantity}\" specified!", nameof(quantity));
 
             if (!Immutable)
                 Moles[gasId] = quantity;
@@ -142,7 +143,8 @@ namespace Content.Shared.Atmos
                 return;
 
             if (!float.IsFinite(quantity))
-                throw new ArgumentException($"Invalid quantity \"{quantity}\" specified!", nameof(quantity));
+                quantity = 0;
+            //throw new ArgumentException($"Invalid quantity \"{quantity}\" specified!", nameof(quantity));
 
             // Clamping is needed because x - x can be negative with floating point numbers. If we don't
             // clamp here, the caller always has to call GetMoles(), clamp, then SetMoles().

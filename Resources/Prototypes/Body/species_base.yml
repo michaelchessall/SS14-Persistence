@@ -181,7 +181,7 @@
         damage: 40
       behaviors:
       - !type:VomitBehavior
-
+#there are new to Perisitence 14 changes below.
 - type: entity
   save: true
   abstract: true
@@ -205,10 +205,10 @@
     - Alive
     damage:
       types:
-        Heat: -0.07
-        Blunt: -0.05
-        Piercing: -0.05
-        Slash: -0.05
+        Heat: -0.007 #so for posterity, all these values have been divided by 10 for the whole "slower metabolism" thing. The original values were 0.07 and 0.05, respectively.
+        Blunt: -0.005
+        Piercing: -0.005
+        Slash: -0.005
   - type: Fingerprint
   - type: Blindable
   - type: Temperature

@@ -56,5 +56,14 @@ namespace Content.Shared.Materials
         /// </summary>
         [DataField(required: true)]
         public double Price = 0;
+
+        /// <summary>
+        /// Persistence Edit
+        /// If true, this material will be excluded from the LatheRecipeCostTest,
+        /// meaning the recipe can give price arbitrage when printed compared to the required materials.
+        /// Use this only for materials that can't be simply ordered in cargo (for example ore).
+        /// </summary>
+        [DataField]
+        public bool IgnoreArbitrage;
     }
 }

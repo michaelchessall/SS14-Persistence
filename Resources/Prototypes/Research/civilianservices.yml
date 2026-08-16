@@ -1,5 +1,18 @@
 # Tier 1
 
+# _Persistence14 content
+- type: technology
+  id: PlushieSoundActivation
+  name: research-technology-plushie-sound-activation
+  icon:
+    sprite: Objects/Fun/Plushies/lizard.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 1
+  cost: 5000
+  recipeUnlocks:
+  - PlushieSoundActivator
+
 - type: technology
   id: Hydroponics
   name: research-technology-basic-hydroponics

@@ -117,7 +117,7 @@
   id: RandomGateInput
   name: signal-port-name-logic-random-input
   description: signal-port-description-logic-random-input
-  
+
 - type: sinkPort
   id: SetParticleDelta
   name: signal-port-name-set-particle-delta
@@ -137,3 +137,56 @@
   id: SetParticleSigma
   name: signal-port-name-set-particle-sigma
   description: signal-port-description-set-particle-sigma
+
+# _Persistence14 content
+# Plushie Sound Activator: one generic port per plushie sound. The activator maps these to the
+# actual sounds of whatever plushie it is inside, so only as many as the plushie has are shown.
+- type: sinkPort
+  id: PlushieSound1
+  name: signal-port-name-plushie-sound-1
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound2
+  name: signal-port-name-plushie-sound-2
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound3
+  name: signal-port-name-plushie-sound-3
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound4
+  name: signal-port-name-plushie-sound-4
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound5
+  name: signal-port-name-plushie-sound-5
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound6
+  name: signal-port-name-plushie-sound-6
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound7
+  name: signal-port-name-plushie-sound-7
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound8
+  name: signal-port-name-plushie-sound-8
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound9
+  name: signal-port-name-plushie-sound-9
+  description: signal-port-description-plushie-sound
+
+- type: sinkPort
+  id: PlushieSound10
+  name: signal-port-name-plushie-sound-10
+  description: signal-port-description-plushie-sound

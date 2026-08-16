@@ -92,3 +92,16 @@ signal-port-description-logic-enable = Only loads the input signal into the memo
 
 signal-port-name-logic-random-input = Input Signal
 signal-port-description-logic-random-input = Receives any signal to trigger a random output.
+
+# _Persistence14 content
+signal-port-description-plushie-sound = Plays one of the plushie's sounds.
+signal-port-name-plushie-sound-1 = Sound 1
+signal-port-name-plushie-sound-2 = Sound 2
+signal-port-name-plushie-sound-3 = Sound 3
+signal-port-name-plushie-sound-4 = Sound 4
+signal-port-name-plushie-sound-5 = Sound 5
+signal-port-name-plushie-sound-6 = Sound 6
+signal-port-name-plushie-sound-7 = Sound 7
+signal-port-name-plushie-sound-8 = Sound 8
+signal-port-name-plushie-sound-9 = Sound 9
+signal-port-name-plushie-sound-10 = Sound 10
