@@ -361,6 +361,9 @@
           tags:
             - PowerCell
             - PowerCellSmall
+            - PowerCellMedium
+            - PowerCellHigh
+            - PowerCellHyper
   - type: BatteryAmmoProvider
     proto: BulletKineticShuttle
     fireCost: 25
