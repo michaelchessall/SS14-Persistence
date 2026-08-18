@@ -122,7 +122,13 @@
   id: Hydrogen
   name: nutrient-name-hydrogen
   desc: nutrient-desc-hydrogen
-  color: "#cccccc"
+  color: "#D4F1FF"
+
+- type: plantNutrient
+  id: NitrousOxide
+  name: nutrient-name-nitrous-oxide
+  desc: nutrient-desc-nitrous-oxide
+  color: "#8F00FF"
 
 - type: plantNutrient
   id: Plasma

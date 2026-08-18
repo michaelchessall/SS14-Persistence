@@ -104,6 +104,10 @@
   color: 8F00FF
   reagent: NitrousOxide
   pricePerMole: 0.25
+  nutrient: NitrousOxide # Persistence: Plant nutrient rework
+  nutrientAmount: 1
+  maxNutrient: 0.5
+  plantAbsorptionRate: 3.0
 
 - type: gas
   id: Frezon

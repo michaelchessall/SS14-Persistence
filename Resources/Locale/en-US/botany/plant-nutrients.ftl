@@ -61,6 +61,9 @@ nutrient-desc-carbonDioxide = Photosynthesis. Supposed to only be added to plant
 nutrient-name-hydrogen = hydrogen
 nutrient-desc-hydrogen = Very small atoms
 
+nutrient-name-nitrous-oxide = nitrous oxide
+nutrient-desc-nitrous-oxide = Sleep
+
 nutrient-name-plasma = plasma
 nutrient-desc-plasma = Magic purple space whatever
 
