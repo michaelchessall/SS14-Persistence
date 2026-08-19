@@ -71,7 +71,7 @@
       Max: 12
       PotencyDivisor: 10
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: soybeans
   name: seeds-soybeans-name
   noun: seeds-noun-seeds
@@ -87,14 +87,15 @@
   maturation: 6
   production: 6
   yield: 3
-  potency: 5
   idealLight: 7
-  nutrientConsumption: 0.40
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Water:
+        Requirement: 1
+      Fertilizer:
+        BonusRequirement: 0.1
+        BonusAmount: 1
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: koibean
@@ -123,7 +124,7 @@
       Max: 4
       PotencyDivisor: 30
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: cocoa
   name: seeds-cocoa-name
   noun: seeds-noun-seeds
@@ -138,18 +139,28 @@
   production: 6
   yield: 6
   idealLight: 7
-  waterConsumption: 1
-  nutrientConsumption: 0.8
   baseIdealHeat: 298
   chemicals:
     Vitamin:
-      Min: 1
-      Max: 4
-      PotencyDivisor: 25
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 1
+          BonusRequirement: 1
+          BonusAmount: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
+        CarbonDioxide:
+          BonusRequirement: 0.1
+          BonusAmount: 1
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Water:
+        Requirement: 1
+      Fertilizer:
+        BonusRequirement: 0.1
+        BonusAmount: 1
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: pea

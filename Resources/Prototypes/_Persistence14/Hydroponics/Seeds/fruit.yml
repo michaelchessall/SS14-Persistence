@@ -39,7 +39,7 @@
           BonusRequirement: 0.2
           BonusAmount: 1
 
-- type: seed # TODO: Convert mute toxin to the new system
+- type: seed
   id: mimana
   name: seeds-mimana-name
   noun: seeds-noun-seeds
@@ -57,9 +57,14 @@
   baseIdealHeat: 298
   chemicals:
     MuteToxin:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 20
+      BaseAmount: 1
+      Requirements:
+        Nutrient:
+          Requirement: 5
+        NitrousOxide:
+          Requirement: 1
+          BonusRequirement: 4
+          BonusAmount: 4
     Nutriment:
       BaseAmount: 1
       Requirements:
@@ -721,15 +726,16 @@
           BonusRequirement: 0.4
           BonusAmount: 4
     Nutriment:
-      BaseAmount: 1
-      Water:
-        Requirement: 1
-      Fertilizer:
-        BonusRequirement: 0.3
-        BonusAmount: 1.5
-      CarbonDioxide:
-        BonusRequirement: 0.15
-        BonusAmount: 1.5
+      BaseAmount: 1 `
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.3
+          BonusAmount: 1.5
+        CarbonDioxide:
+          BonusRequirement: 0.15
+          BonusAmount: 1.5
     Vitamin:
       BaseAmount: 1
       Requirements:
