@@ -683,6 +683,8 @@
       Requirements:
         Tin: # Base metal
           Requirement: 10
+        Copper: # More expensive base metal.
+          Requirement: 5
         Toxin: # Nigredo = Decomposition = Toxic
           Requirement: 2
         Acid: # Albedo = Washing away impurities. Making a nutrient that requires space cleaner seemed strange, so i used acid instead.
