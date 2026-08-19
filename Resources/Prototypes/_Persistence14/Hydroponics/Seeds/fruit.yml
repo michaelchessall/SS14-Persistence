@@ -726,7 +726,7 @@
           BonusRequirement: 0.4
           BonusAmount: 4
     Nutriment:
-      BaseAmount: 1 `
+      BaseAmount: 1
       Requirements:
         Water:
           Requirement: 1
