@@ -143,6 +143,7 @@
     - ReligionStatic
     - GasMasksStatic # Persi14
     - PlasticBottlesPack #Persi14
+    - HydroponicsStatic # Persi: early pull of wizden/45463
   - type: EmagLatheRecipes
     emagStaticPacks:
     - SecurityAmmoStatic
