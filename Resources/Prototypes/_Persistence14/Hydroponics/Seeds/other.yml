@@ -47,7 +47,7 @@
     Nutrient:
       Requirement: 3
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: eggy
   name: seeds-eggy-name
   noun: seeds-noun-seeds
@@ -61,15 +61,22 @@
   maturation: 6
   production: 12
   yield: 2
-  potency: 20
-  nutrientConsumption: 0.50
   idealLight: 9
   baseIdealHeat: 298
   chemicals:
     Egg:
-      Min: 4
-      Max: 12
-      PotencyDivisor: 10
+      BaseAmount: 6
+      Requirements:
+        Nutrient:
+          Requirement: 4
+        Water:
+          Requirement: 4
+        Fertilizer:
+          BonusRequirement: 1
+          BonusAmount: 3
+        CarbonDioxide:
+          BonusRequirement: 3
+          BonusAmount: 3
 
 - type: seed
   id: soybeans
@@ -278,7 +285,7 @@
       Max: 2
       PotencyDivisor: 50
 
-- type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
+- type: seed
   id: cotton
   name: seeds-cotton-name
   noun: seeds-noun-seeds
@@ -293,15 +300,20 @@
   maturation: 8
   production: 3
   yield: 3
-  potency: 5
   idealLight: 8
   growthStages: 3
-  waterConsumption: 0.60
   chemicals:
     Fiber:
-      Min: 5
-      Max: 10
-      PotencyDivisor: 20
+      BaseAmount: 5
+      Requirements:
+        Water:
+          Requirement: 5
+        Fertiliser:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
+        CarbonDioxide:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
 
 - type: seed # TODO: Convert chemicals to the new system, remove potency, remove water/nutrient Consumption
   id: pyrotton
@@ -322,9 +334,16 @@
   waterConsumption: 0.80
   chemicals:
     Fiber:
-      Min: 5
-      Max: 10
-      PotencyDivisor: 20
+      BaseAmount: 5
+      Requirements:
+        Water:
+          Requirement: 5
+        Fertiliser:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
+        CarbonDioxide:
+          BonusRequirement: 0.5
+          BonusAmount: 2.5
     Phlogiston:
       Min: 4
       Max: 8
