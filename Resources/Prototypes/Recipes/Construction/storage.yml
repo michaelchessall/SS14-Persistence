@@ -12,6 +12,18 @@
     - !type:TileNotBlocked
 
 - type: construction
+  id: MedicineCabinet
+  graph: FilingCabinet
+  startNode: start
+  targetNode: medicineCabinet
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
+  conditions:
+    - !type:TileNotBlocked
+
+- type: construction
   id: TallCabinet
   graph: FilingCabinet
   startNode: start
