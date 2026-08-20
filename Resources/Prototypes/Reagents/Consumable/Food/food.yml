@@ -43,7 +43,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 0.5
-    nutrient: Pest
+    nutrient: Nutrient
   - !type:PlantAdjustHealth
     amount: 1.5
   pricePerUnit: 2.5
