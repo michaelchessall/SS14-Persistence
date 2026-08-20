@@ -334,16 +334,11 @@ public partial class SeedData
 
         foreach (var requirement in Chemicals.SelectMany(t => t.Value.Requirements))
         {
-            if (TotalRequirements.TryGetValue(requirement.Key, out var currentRequirement))
-            {
-                currentRequirement.Requirement += requirement.Value.Requirement;
-                currentRequirement.BonusRequirement += requirement.Value.BonusRequirement;
-                TotalRequirements[requirement.Key] = currentRequirement;
-            }
-            else
-            {
-                TotalRequirements.Add(requirement.Key, requirement.Value);
-            }
+            NutrientRequirement currentRequirement;
+            TotalRequirements.TryGetValue(requirement.Key, out currentRequirement);
+            currentRequirement.Requirement += requirement.Value.Requirement * Yield;
+            currentRequirement.BonusRequirement += requirement.Value.BonusRequirement * Yield;
+            TotalRequirements[requirement.Key] = currentRequirement;
         }
 
     }
