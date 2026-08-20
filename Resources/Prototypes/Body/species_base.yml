@@ -181,6 +181,8 @@
       - ActionCritSuccumb
       - ActionCritFakeDeath
       - ActionCritLastWords
+      Dead:
+      - ActionAcceptDeath
   # funky end
   - type: Tag
     tags:
