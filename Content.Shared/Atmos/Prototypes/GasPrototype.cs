@@ -95,7 +95,7 @@ namespace Content.Shared.Atmos.Prototypes
         public FixedPoint2 NutrientAmount { get; private set; } = default!;
 
         /// <summary>
-        /// Persistence: The maximum amount of nutrients a plant can absorb from this gas, relative to the number of mols in the environment.
+        /// Persistence: The maximum amount of nutrients a plant can absorb from this gas, relative to the fraction of the atmosphere that is this gas.
         /// </summary>
         [DataField("maxNutrient")]
         public FixedPoint2 MaxNutrient { get; private set; } = default!;

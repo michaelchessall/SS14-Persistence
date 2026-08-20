@@ -1053,7 +1053,9 @@ public sealed class PlantHolderSystem : EntitySystem
             if (gasPrototype.Nutrient == null)
                 continue;
             var gasAbsorbed = Math.Min(amount, gasPrototype.PlantAbsorptionRate);
-            gasAbsorbed = Math.Min(gasAbsorbed, (gasPrototype.MaxNutrient * amount / gasPrototype.NutrientAmount - component.Nutrients.GetValueOrDefault(gasPrototype.Nutrient)).Float());
+            var gasPercentage = amount / environment.TotalMoles;
+            var nutrientToAbsorb = gasPrototype.MaxNutrient * gasPercentage - component.Nutrients.GetValueOrDefault(gasPrototype.Nutrient);
+            gasAbsorbed = Math.Min(gasAbsorbed, (nutrientToAbsorb / gasPrototype.NutrientAmount).Float());
             if (gasAbsorbed <= 0)
                 return;
             environment.AdjustMoles(gasId, gasAbsorbed);
