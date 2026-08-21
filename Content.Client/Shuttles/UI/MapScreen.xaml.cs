@@ -116,23 +116,23 @@ public sealed partial class MapScreen : BoxContainer
             FilterMapObjects();
         };
 
-        WaypointCoordsX.OnTextEntered += args =>
-        {
-            if (int.TryParse(args.Text, out var amount))
-            {
-                UpdateWaypoint(new Vector2(amount, MapRadar.WaypointCoords?.Y ?? 0));
-            }
-        };
-        WaypointCoordsY.OnTextEntered += args =>
-        {
-            if (int.TryParse(args.Text, out var amount))
-            {
-                UpdateWaypoint(new Vector2(MapRadar.WaypointCoords?.X ?? 0, amount));
-            }
-        };
+        WaypointCoordsX.OnTextEntered += _ => UpdateWaypointEdits();
+        WaypointCoordsY.OnTextEntered += _ => UpdateWaypointEdits();
         WaypointButton.OnPressed += _ => UpdateWaypoint(null);
 
         SearchBar.OnTextChanged += _ => FilterMapObjects();
+    }
+
+    private void UpdateWaypointEdits()
+    {
+        UpdateWaypoint(new Vector2(
+            int.TryParse(WaypointCoordsX.Text, out var xAmount)
+                ? xAmount
+                : MapRadar.WaypointCoords?.X ?? 0,
+            int.TryParse(WaypointCoordsY.Text, out var yAmount)
+                ? yAmount
+                : MapRadar.WaypointCoords?.Y ?? 0
+        ));
     }
 
     public void UpdateState(ShuttleMapInterfaceState state)
