@@ -144,6 +144,13 @@ public sealed partial class MapScreen : BoxContainer
         _state = state.FTLState;
         _ftlTime = state.FTLTime;
         MapRadar.InFtl = true;
+
+        //Need this to initialize the value when first opening the gui if a waypoint exists, but updating it every frame causes unresponsive behavior.
+        if (MapRadar.WaypointCoords == null && state.Waypoint != null)
+        {
+            UpdateWaypoint(state.Waypoint);
+        }
+
         switch (_state)
         {
             case FTLState.Available:
