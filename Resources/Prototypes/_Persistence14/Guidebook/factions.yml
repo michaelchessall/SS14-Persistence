@@ -3,7 +3,7 @@
   id: Factions
   name: guide-entry-factions
   priority: 12 # After Threshold
-  text: "/ServerInfo/Guidebook/_Persistence14/Factions/Factions.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Factions/Factions.xml"
   children:
   - FactionCreation
   - FactionModification
@@ -11,9 +11,9 @@
 - type: guideEntry
   id: FactionCreation
   name: guide-entry-faction-creation
-  text: "/ServerInfo/Guidebook/_Persistence14/Factions/FactionCreation.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Factions/FactionCreation.xml"
 
 - type: guideEntry
   id: FactionModification
   name: guide-entry-faction-modification
-  text: "/ServerInfo/Guidebook/_Persistence14/Factions/FactionModification.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Factions/FactionModification.xml"

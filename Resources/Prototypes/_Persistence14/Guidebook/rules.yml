@@ -3,4 +3,4 @@
   name: guide-entry-rules
   ruleEntry: true
   priority: 10 # After NewPlayer
-  text: "/ServerInfo/Guidebook/ServerRules/PersistenceRules/Rules.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/ServerRules/Rules.xml"

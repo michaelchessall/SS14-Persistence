@@ -3,7 +3,7 @@
   id: Precursor
   name: guide-entry-precursor
   priority: 13 # After Factions
-  text: "/ServerInfo/Guidebook/_Persistence14/Precursor/Precursor.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Precursor/Precursor.xml"
   children:
   - Dealer
   - BountyHunter
@@ -13,19 +13,19 @@
 - type: guideEntry
   id: Dealer
   name: guide-entry-dealer
-  text: "/ServerInfo/Guidebook/_Persistence14/Precursor/Dealer.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Precursor/Dealer.xml"
 
 - type: guideEntry
   id: BountyHunter
   name: guide-entry-bounty-hunter
-  text: "/ServerInfo/Guidebook/_Persistence14/Precursor/Hunter.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Precursor/Hunter.xml"
 
 - type: guideEntry
   id: Purchases
   name: guide-entry-purchases
-  text: "/ServerInfo/Guidebook/_Persistence14/Precursor/Purchases.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Precursor/Purchases.xml"
 
 - type: guideEntry
   id: SectorChaos
   name: guide-entry-sector-chaos
-  text: "/ServerInfo/Guidebook/_Persistence14/Precursor/SectorChaos.xml"
+  text: "/ServerInfo/_Persistence14/Guidebook/Precursor/SectorChaos.xml"
