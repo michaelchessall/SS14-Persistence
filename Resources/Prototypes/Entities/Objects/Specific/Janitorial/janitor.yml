@@ -78,8 +78,8 @@
       sprite: Objects/Specific/Janitorial/advmop.rsi
     - type: Absorbent
       pickupAmount: 100
-      footprintCleaningRange: .75 # Funky: Footprints & Stains
-      maxCleanedFootprints: .25 # Funky: Footprints & Stains
+      footprintCleaningRange: 0.75 # Funky: Footprints & Stains
+      maxCleanedFootprints: 25 # Funky: Footprints & Stains
     - type: SolutionRegeneration
       solution: absorbed
       generated:
