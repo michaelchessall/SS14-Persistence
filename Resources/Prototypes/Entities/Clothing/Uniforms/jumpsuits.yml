@@ -922,8 +922,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/operative.rsi
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: ClothingUniformBase
@@ -1269,17 +1267,6 @@
     sprite: Clothing/Uniforms/Jumpsuit/senior_physician.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpsuit/senior_physician.rsi
-
-- type: entity
-  parent: ClothingUniformBase
-  id: ClothingUniformJumpsuitSeniorPhysicianNew
-  name: senior physician jumpsuit
-  description: A sign of skill and prestige within the medical department.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpsuit/newsenior_physician.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpsuit/newsenior_physician.rsi
 
 - type: entity
   parent: [ClothingUniformBase, BaseSecurityContraband]

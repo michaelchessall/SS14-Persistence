@@ -65,14 +65,28 @@ public sealed class SolutionTransferSystem : EntitySystem
             Priority = 1
         });
 
+        // Build the clickable amounts: the standard presets within the container's range, plus the
+        // container's own min and max so the exact bounds are always selectable even when they aren't
+        // one of the standard presets (e.g. a 40u cap that sits between the 25 and 50 presets).
+        var amounts = new List<FixedPoint2>();
+        foreach (var amount in DefaultTransferAmounts)
+        {
+            if (amount >= ent.Comp.MinimumTransferAmount && amount <= ent.Comp.MaximumTransferAmount)
+                amounts.Add(amount);
+        }
+
+        if (!amounts.Contains(ent.Comp.MinimumTransferAmount))
+            amounts.Add(ent.Comp.MinimumTransferAmount);
+        if (!amounts.Contains(ent.Comp.MaximumTransferAmount))
+            amounts.Add(ent.Comp.MaximumTransferAmount);
+
+        amounts.Sort((a, b) => a > b ? 1 : a < b ? -1 : 0);
+
         // Add specific transfer verbs according to the container's size
         var priority = 0;
         var user = args.User;
-        foreach (var amount in DefaultTransferAmounts)
+        foreach (var amount in amounts)
         {
-            if (amount < ent.Comp.MinimumTransferAmount || amount > ent.Comp.MaximumTransferAmount)
-                continue;
-
             AlternativeVerb verb = new();
             verb.Text = Loc.GetString("comp-solution-transfer-verb-amount", ("amount", amount));
             verb.Category = VerbCategory.SetTransferAmount;

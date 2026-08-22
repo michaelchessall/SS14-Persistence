@@ -185,6 +185,7 @@
         - id: HudModuleShowMindShieldIcons
         - id: HudModuleShowCriminalRecordIcons
         - id: HudModuleShowContrabandDetails
+        - id: HudModuleFlashImmunity
   - type: Label
     currentLabel: modularhud-premade-security
 

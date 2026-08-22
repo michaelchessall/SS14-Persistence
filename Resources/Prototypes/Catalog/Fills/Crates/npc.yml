@@ -241,6 +241,7 @@
 - type: entity
   parent: CrateRodentCage
   id: CrateNPCHamlet
+  name: Hamlet crate
   suffix: Hamlet
   components:
   - type: EntityTableContainerFill

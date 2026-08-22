@@ -291,6 +291,8 @@
   - ClothingHeadHatParamedicsoft
   - ClothingBeltMedical
   - ClothingNeckStethoscope
+  - ClothingUniformJumpsuitParamedicNew
+  - ClothingUniformJumpskirtParamedicNew
   - ClothingUniformJumpsuitCoroner
 
 - type: latheRecipePack

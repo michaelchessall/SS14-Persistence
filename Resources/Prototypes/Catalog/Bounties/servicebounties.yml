@@ -283,3 +283,31 @@
   group: ServiceBounty
   bountyType: PayPer
 
+#Persistence 14
+
+
+- type: cargoBounty
+  id: BountyWehPlushie
+  reward: 900
+  description: bounty-description-banana
+  entries:
+  - name: bounty-item-weh-plushie
+    amount: 15
+    whitelist:
+      tags:
+      - PlushieLizard
+  group: ServiceBounty
+  bountyType: PayPer
+
+- type: cargoBounty
+  id: BountyHandyFlag
+  reward: 500
+  description: bounty-description-banana
+  entries:
+  - name: bounty-item-handy-flag
+    amount: 25
+    whitelist:
+      tags:
+      - FlagHand
+  group: ServiceBounty
+  bountyType: PayPer

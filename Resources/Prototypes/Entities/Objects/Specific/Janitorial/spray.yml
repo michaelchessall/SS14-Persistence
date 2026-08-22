@@ -80,6 +80,14 @@
     sprayDistance: 4.5
     spraySound:
       path: /Audio/Effects/spray2.ogg
+    # The mega spray bottle's spray amount is player-selectable via the "set transfer amount"
+    # context verb (SolutionTransfer below).
+    useSolutionTransferAmount: true
+  - type: SolutionTransfer
+    transferAmount: 15
+    minTransferAmount: 5
+    maxTransferAmount: 40
+    canChangeTransferAmount: true
 
 - type: entity
   parent: SprayBottle

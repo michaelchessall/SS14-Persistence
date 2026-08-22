@@ -131,6 +131,36 @@
         groups:
           StationBounty : 2
 
+#Persistence 14
+
+- type: entity
+  parent: MarkerBase
+  id: TradeStationServiceSpawnerMarker
+  name: Grid Spawner
+  suffix: Service Trade Station
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: GridSpawner
+    gridPath: /Maps/Shuttles/trading_outpost_industrial.yml
+    stationGrid: True
+    addComponents:
+      - type: TradeStation
+        levels:
+          - ILevelService1
+          - ILevelService2
+          - ILevelService3
+          - ILevelService4
+        markets:
+        - engineermarket
+      - type: StationCargoBountyDatabase
+        groups:
+          ServiceBounty : 3
+          StationBounty : 2
+
 - type: entity
   parent: MarkerBase
   id: TradeStationExplorationSpawnerMarker

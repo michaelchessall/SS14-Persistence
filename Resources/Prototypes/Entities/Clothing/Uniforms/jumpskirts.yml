@@ -521,8 +521,6 @@
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/operative_s.rsi
-  - type: StaticPrice
-    price: 500
 
 - type: entity
   parent: ClothingUniformSkirtBase
@@ -692,17 +690,6 @@
     sprite: Clothing/Uniforms/Jumpskirt/senior_physician.rsi
   - type: Clothing
     sprite: Clothing/Uniforms/Jumpskirt/senior_physician.rsi
-
-- type: entity
-  parent: ClothingUniformSkirtBase
-  id: ClothingUniformJumpskirtSeniorPhysicianNew
-  name: senior physician jumpskirt
-  description: A sign of skill and prestige within the medical department.
-  components:
-  - type: Sprite
-    sprite: Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
-  - type: Clothing
-    sprite: Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseSecurityContraband]

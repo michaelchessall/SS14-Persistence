@@ -194,6 +194,21 @@
         - id: ClothingOuterHardsuitEVA
           amount: 2
 
+#Persistence 14
+
+- type: entity
+  parent: CrateToyBox
+  id: CrateServiceEvaKit
+  name: service EVA kit
+  description: A set consisting of two VERY prestigious EVA suits.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitClown
+        - id: ClothingOuterHardsuitMime
+
 - type: entity
   parent: CrateEngineering
   id: CrateRCDAmmo

@@ -533,6 +533,7 @@
 - type: Tag
   id: EmitterBolt # Default value in ContainmentFieldGeneratorComponent for tagged collisions that power the generator.
 
+
 - type: Tag
   id: EncryptionCargo # ItemMapper: TelecomServer
 
@@ -594,6 +595,11 @@
 
 - type: Tag
   id: FirelockElectronics # ConstructionGraph: Firelock
+
+#Persistence 14
+
+- type: Tag
+  id: FlagHand # Handy flags for bounties
 
 - type: Tag
   id: Flare # Storage whitelist: BaseClothingBeltEngineering

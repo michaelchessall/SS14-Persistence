@@ -242,8 +242,6 @@
   income: 0
   level: 2
 
-
-
 - type: infrastructureLevel
   id: ILevelHunter3
   demotionXP: 650
@@ -276,6 +274,68 @@
     ScienceBounty : 3
   income: 30000
   level: 4
+
+#Persistence 14
+
+- type: infrastructureLevel
+  id: ILevelService1
+  demotionXP: 0
+  requiredXP: 0
+  name: Simple Corner Store (1)
+  markets:
+    - servicemarket
+  groups:
+    ServiceBounty : 4
+    HunterBounty : 2
+
+  income: -5000
+
+- type: infrastructureLevel
+  id: ILevelService2
+  demotionXP: 150
+  requiredXP: 200
+  name: Burgeoning Bodega (2)
+  markets:
+    - servicemarket
+    - servicemarket2
+  groups:
+    ServiceBounty : 7
+    HunterBounty : 2
+  income: 0
+  level: 2
+
+- type: infrastructureLevel
+  id: ILevelService3
+  demotionXP: 650
+  requiredXP: 700
+  name: Robust General Store (3)
+  markets:
+    - servicemarket
+    - servicemarket2
+    - servicemarket3
+  groups:
+    ServiceBounty : 9
+    HunterBounty : 3
+  income: 10000
+  level: 3
+
+- type: infrastructureLevel
+  id: ILevelService4
+  demotionXP: 1400
+  requiredXP: 1500
+  name: Space Mall (4)
+  markets:
+    - servicemarket
+    - servicemarket2
+    - servicemarket3
+    - servicemarket4
+  groups:
+    ServiceBounty : 10
+    HunterBounty : 5
+  income: 30000
+  level: 4
+
+
 
 - type: infrastructureLevel
   id: ILevelEngineer1

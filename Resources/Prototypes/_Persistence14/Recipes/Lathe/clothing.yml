@@ -1,0 +1,29 @@
+- type: latheRecipe
+  parent: BaseCoatRecipe
+  id: ClothingOuterCoatLabSeniorPhysicianNew
+  result: ClothingOuterCoatLabSeniorPhysicianNew
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitSeniorPhysicianNew
+  result: ClothingUniformJumpsuitSeniorPhysicianNew
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtSeniorPhysicianNew
+  result: ClothingUniformJumpskirtSeniorPhysicianNew
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitParamedicNew
+  result: ClothingUniformJumpsuitParamedicNew
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpskirtParamedicNew
+  result: ClothingUniformJumpskirtParamedicNew
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatBeretSeniorPhysicianNew
+  result: ClothingHeadHatBeretSeniorPhysicianNew

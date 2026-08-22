@@ -438,11 +438,6 @@
 
 - type: latheRecipe
   parent: BaseCoatRecipe
-  id: ClothingOuterCoatLabSeniorPhysicianNew
-  result: ClothingOuterCoatLabSeniorPhysicianNew
-
-- type: latheRecipe
-  parent: BaseCoatRecipe
   id: ClothingOuterCoatRnd
   result: ClothingOuterCoatRnd
 
@@ -827,18 +822,8 @@
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
-  id: ClothingUniformJumpsuitSeniorPhysicianNew
-  result: ClothingUniformJumpsuitSeniorPhysicianNew
-
-- type: latheRecipe
-  parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpskirtSeniorPhysician
   result: ClothingUniformJumpskirtSeniorPhysician
-
-- type: latheRecipe
-  parent: BaseJumpsuitRecipe
-  id: ClothingUniformJumpskirtSeniorPhysicianNew
-  result: ClothingUniformJumpskirtSeniorPhysicianNew
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
@@ -1675,11 +1660,6 @@
   parent: BaseHatRecipe
   id: ClothingHeadHatBeretSeniorPhysician
   result: ClothingHeadHatBeretSeniorPhysician
-
-- type: latheRecipe
-  parent: BaseHatRecipe
-  id: ClothingHeadHatBeretSeniorPhysicianNew
-  result: ClothingHeadHatBeretSeniorPhysicianNew
 
 - type: latheRecipe
   parent: BaseHatRecipe

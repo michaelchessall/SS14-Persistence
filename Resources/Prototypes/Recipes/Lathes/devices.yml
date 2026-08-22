@@ -10,7 +10,7 @@
   result: SignalTrigger
   unlockUses: 4
 
-- type: latheRecipe 
+- type: latheRecipe
   parent: BasePartRecipe
   id: VoiceTrigger
   result: VoiceTrigger
@@ -151,7 +151,6 @@
     Silver: 750
     Plasma: 1500
     Uranium: 150
-    Phoron: 500
 
 - type: latheRecipe
   parent: ClothingBackpackHolding
@@ -289,6 +288,13 @@
     Plastic: 100
     Glass: 100
 
+# _Persistence14 content
+- type: latheRecipe
+  parent: BasePartRecipe
+  id: PlushieSoundActivator
+  result: PlushieSoundActivator
+  unlockUses: 4
+
 # Persi14 PDAs
 
 - type: latheRecipe
@@ -339,4 +345,4 @@
 - type: latheRecipe
   parent: BaseSOLPDARecipe
   id: CoSPDASOL
-  result: CoSPDASOL 
+  result: CoSPDASOL

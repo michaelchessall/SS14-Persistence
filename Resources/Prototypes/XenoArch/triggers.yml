@@ -16,6 +16,17 @@
     TriggerPressureHigh: 0.5
     TriggerPressureLow: 1
     TriggerExamine: 1
+    # _Persistence14 content: emote triggers (common tier, weight 1 like most triggers)
+    TriggerLaugh: 1
+    TriggerSigh: 1
+    TriggerSneeze: 1
+    TriggerCough: 1
+    TriggerWhistle: 1
+    TriggerCry: 1
+    TriggerClap: 1
+    TriggerYawn: 1
+    TriggerScream: 1
+    # end _Persistence14 content
     TriggerBluntDamage: 1
     TriggerPierceDamage: 1
     TriggerWrenching: 0.5
@@ -184,6 +195,82 @@
   components:
   - type: XATExamine
 
+# _Persistence14 content
+# Emote triggers. Each is its own trigger keyed to a single emote via XATEmote's `emotes` list.
+# To add another, copy one of these with a new id + emote + a matching tip loc string.
+- type: xenoArchTrigger
+  id: TriggerLaugh
+  tip: xenoarch-trigger-tip-laugh
+  components:
+  - type: XATEmote
+    emotes:
+    - Laugh
+
+- type: xenoArchTrigger
+  id: TriggerSigh
+  tip: xenoarch-trigger-tip-sigh
+  components:
+  - type: XATEmote
+    emotes:
+    - Sigh
+
+- type: xenoArchTrigger
+  id: TriggerSneeze
+  tip: xenoarch-trigger-tip-sneeze
+  components:
+  - type: XATEmote
+    emotes:
+    - Sneeze
+
+- type: xenoArchTrigger
+  id: TriggerCough
+  tip: xenoarch-trigger-tip-cough
+  components:
+  - type: XATEmote
+    emotes:
+    - Cough
+
+- type: xenoArchTrigger
+  id: TriggerWhistle
+  tip: xenoarch-trigger-tip-whistle
+  components:
+  - type: XATEmote
+    emotes:
+    - Whistle
+
+- type: xenoArchTrigger
+  id: TriggerCry
+  tip: xenoarch-trigger-tip-cry
+  components:
+  - type: XATEmote
+    emotes:
+    - Crying
+
+- type: xenoArchTrigger
+  id: TriggerClap
+  tip: xenoarch-trigger-tip-clap
+  components:
+  - type: XATEmote
+    emotes:
+    - Clap
+
+- type: xenoArchTrigger
+  id: TriggerYawn
+  tip: xenoarch-trigger-tip-yawn
+  components:
+  - type: XATEmote
+    emotes:
+    - Yawn
+
+- type: xenoArchTrigger
+  id: TriggerScream
+  tip: xenoarch-trigger-tip-scream
+  components:
+  - type: XATEmote
+    emotes:
+    - Scream
+# end _Persistence14 content
+
 - type: xenoArchTrigger
   id: TriggerBruteDamage
   tip: xenoarch-trigger-tip-blunt-damage
@@ -262,7 +349,7 @@
       Slash: 20
   - type: XATExaminableText
     examineText: xenoarch-trigger-examine-slicing
-  
+
 - type: xenoArchTrigger
   id: TriggerCutting
   tip: xenoarch-trigger-tip-cutting
@@ -274,7 +361,7 @@
       Slash: 20
   - type: XATExaminableText
     examineText: xenoarch-trigger-examine-cutting
-  
+
 - type: xenoArchTrigger
   id: TriggerRolling
   tip: xenoarch-trigger-tip-rolling
