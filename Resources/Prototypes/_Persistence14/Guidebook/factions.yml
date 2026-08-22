@@ -1,0 +1,19 @@
+# Only entries which are children of this first entry (or their children & so on) should be defined in this file.
+- type: guideEntry
+  id: Factions
+  name: guide-entry-factions
+  priority: 12 # After Threshold
+  text: "/ServerInfo/Guidebook/_Persistence14/Factions/Factions.xml"
+  children:
+  - FactionCreation
+  - FactionModification
+
+- type: guideEntry
+  id: FactionCreation
+  name: guide-entry-faction-creation
+  text: "/ServerInfo/Guidebook/_Persistence14/Factions/FactionCreation.xml"
+
+- type: guideEntry
+  id: FactionModification
+  name: guide-entry-faction-modification
+  text: "/ServerInfo/Guidebook/_Persistence14/Factions/FactionModification.xml"

@@ -1,0 +1,61 @@
+# Only entries which are children of this first entry (or their children & so on) should be defined in this file.
+- type: guideEntry
+  id: Threshold
+  name: guide-entry-threshold
+  priority: 11 # After PersistRuleset
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/Threshold.xml"
+  children:
+    - MakingMoney
+    - ThresholdCargo
+    - ThresholdMiningHunting
+    - ThresholdGasMining
+    - ThresholdScience
+    - Death
+    - Achievements
+    - GridControl
+    - AccessControl
+
+- type: guideEntry
+  id: MakingMoney
+  name: guide-entry-making-money
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/MakingMoney.xml"
+
+- type: guideEntry
+  id: ThresholdCargo
+  name: guide-entry-threshold-cargo
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/ThresholdCargo.xml"
+
+- type: guideEntry
+  id: ThresholdMiningHunting
+  name: guide-entry-threshold-mining-hunting
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/ThresholdMiningHunting.xml"
+
+- type: guideEntry
+  id: ThresholdGasMining
+  name: guide-entry-threshold-gas-mining
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/ThresholdGasMining.xml"
+
+- type: guideEntry
+  id: ThresholdScience
+  name: guide-entry-threshold-science
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/ThresholdScience.xml"
+
+- type: guideEntry
+  id: Death
+  name: guide-entry-death
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/Death.xml"
+
+- type: guideEntry
+  id: Achievements
+  name: guide-entry-achievements
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/Achievements.xml"
+
+- type: guideEntry
+  id: GridControl
+  name: guide-entry-grid-control
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/GridControl.xml"
+
+- type: guideEntry
+  id: AccessControl
+  name: guide-entry-access-control
+  text: "/ServerInfo/Guidebook/_Persistence14/Threshold/AccessControl.xml"

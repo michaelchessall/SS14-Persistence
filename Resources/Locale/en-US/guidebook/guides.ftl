@@ -63,7 +63,6 @@ guide-entry-jobs = Jobs
 guide-entry-cargo = Cargo
 guide-entry-cargo-bounties = Cargo Bounties
 guide-entry-salvage = Salvage
-guide-entry-gas-mining = Gas Mining
 guide-entry-survival = Survival
 guide-entry-janitorial = Janitorial
 guide-entry-bartender = Bartender
