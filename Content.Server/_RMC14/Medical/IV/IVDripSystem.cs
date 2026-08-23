@@ -7,6 +7,7 @@ using Content.Server.Body.Components;
 using Content.Server.Chat.Systems;
 using Content.Shared._RMC14.Medical.IV;
 using Content.Shared.Body.Components;
+using Content.Shared.Body.Systems;
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -22,6 +23,7 @@ public sealed class IVDripSystem : SharedIVDripSystem
     [Dependency] private readonly ChatSystem _chat = default!;
     [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
     [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
     private bool TryGetBloodstream(
@@ -87,32 +89,31 @@ public sealed class IVDripSystem : SharedIVDripSystem
                     // 1. Remove the full amount from the pack first
                     var taken = _solutionContainer.SplitSolution(packSolEnt.Value, ivComp.TransferAmount);
 
-                    // 2. Separate Chems from Blood based on whitelist
-                    // 'chems' gets the non-matching reagents. 'taken' keeps the Blood.
-                    var chems = taken.SplitSolutionWithout(taken.Volume, packComponent.TransferableReagents);
+                    // Start Persistence: Most of this has been adjusted/refactored to allow blood transfusions
+                    //                      and to help prevent OD while still utilizing bloodstream for injection
+                    var bloodRefReagentQuantity = bsComp.BloodReferenceSolution.Contents[0];
 
-                    // 3. Inject Blood -> Blood Stream
-                    if (taken.Volume > 0)
+                    // 2. Separate the blood (which matches the blood of the patient) from the removed reagents
+                    var bloodTaken = taken.SplitSolutionWithOnly(taken.Volume, bloodRefReagentQuantity.Reagent.Prototype);
+
+                    // 3. Adjust bloodlevel
+                    if (bloodTaken.Volume > 0)
                     {
-                        // Check if it fits
-                        if (streamSol.AvailableVolume >= taken.Volume)
-                        {
-                            _solutionContainer.TryAddSolution(streamSolEnt.Value, taken);
-                        }
+                        // If the patient already has 100% blood level, return the blood to the bag.
+                        if (streamSol.TryGetReagent(bloodRefReagentQuantity.Reagent, out var currentBloodQuantity) &&
+                              currentBloodQuantity.Quantity >= bloodRefReagentQuantity.Quantity)
+                            _solutionContainer.TryAddSolution(packSolEnt.Value, bloodTaken);
                         else
-                        {
-                            // If full, put blood back in pack
-                            _solutionContainer.TryAddSolution(packSolEnt.Value, taken);
-                        }
+                            _bloodstreamSystem.TryRegulateBloodLevel(attachedTo, bloodTaken.Volume);
                     }
 
-                    // 4. Inject Chems -> Chem Stream
-                    if (chems.Volume > 0)
+                    // 4. Inject Remaining Chems -> Blood Stream
+                    if (taken.Volume > 0)
                     {
-                        // Begin Persistence: Prevent OD from IV drip
+                        // 5. Prevent OD from IV drip, but use bloodstream
                         var someChemsAlreadyInBloodstream = false;
                         // Only inject reagents that aren't currently present in the bloodstream
-                        foreach (var reagent in chems.Contents)
+                        foreach (var reagent in taken.Contents)
                         {
                             if (streamSol.TryGetReagent(reagent.Reagent, out var _))
                             {
@@ -121,19 +122,18 @@ public sealed class IVDripSystem : SharedIVDripSystem
                             }
                         }
 
-                        if (!someChemsAlreadyInBloodstream && // End Persistence
-                            _solutionContainer.TryGetSolution(attachedTo, bsComp.BloodSolutionName, out var chemSolEnt, out var chemSol) &&
-                            chemSol.AvailableVolume >= chems.Volume)
+                        if (!someChemsAlreadyInBloodstream &&
+                            streamSol.AvailableVolume >= taken.Volume)
                         {
-                            _solutionContainer.TryAddSolution(chemSolEnt.Value, chems);
+                            _solutionContainer.TryAddSolution(streamSolEnt.Value, taken);
                         }
                         else
                         {
                             // If full or no chem stream, put drugs back in pack
-                            _solutionContainer.TryAddSolution(packSolEnt.Value, chems);
+                            _solutionContainer.TryAddSolution(packSolEnt.Value, taken);
                         }
                     }
-
+                    // End Persistence
                     Dirty(packSolEnt.Value);
                 }
             }
