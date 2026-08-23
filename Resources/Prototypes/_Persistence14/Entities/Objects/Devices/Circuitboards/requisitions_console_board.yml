@@ -1,0 +1,12 @@
+# Computer board for the requisitions console. Print it on a circuit imprinter (unlocked by the
+# "Requisitions Logistics" T2 research), then build a computer with it like any other console.
+- type: entity
+  id: RequisitionsConsoleCircuitboard
+  parent: BaseComputerCircuitboard
+  name: requisitions console computer board
+  description: A computer printed circuit board for a requisitions console.
+  components:
+  - type: Sprite
+    state: cpu_supply
+  - type: ComputerBoard
+    prototype: MachineRequisitionsConsole

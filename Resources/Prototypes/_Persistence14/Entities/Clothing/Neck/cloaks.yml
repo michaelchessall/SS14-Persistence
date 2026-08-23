@@ -69,3 +69,59 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Neck/Cloaks/cos.rsi
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMilitiaCloak
+  name: threshold militia cloak
+  description: A dark purple cloak designed to look like the very place the brave wearer fights to defend. The Threshold Candle is depicted on the back, a burning reminder of the Threshold's own vitality and will. The stars and flame are made out of a special material that causes them to glow.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/militia.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/Cloaks/militia.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+      neck-vox: # For some reason it's neccessary to define specific sprites for vox/vulpkanin otherwise they simply won't have the intended glow.
+      - state: equipped-neck-vox
+      - state: equipped-neck-unshaded-vox
+        shader: unshaded
+      neck-vulpkanin:
+      - state: equipped-neck-vulpkanin
+      - state: equipped-neck-unshaded-vulpkanin
+        shader: unshaded
+
+- type: entity
+  parent: ClothingNeckBase
+  id: ClothingNeckMilitiaLeaderCloak
+  name: threshold militia leader cloak
+  description: A dark purple cloak designed to wrap the wearer in the embrace of a spacer's true home. This unique version has silver trim running the bottom and silver clasps around the neck to denote the wearer's importance as the leader of the Threshold militia. Wear this with pride, Warrior of the Threshold.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/militialeader.rsi
+    layers:
+    - state: icon
+    - state: icon-unshaded
+      shader: unshaded
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/Cloaks/militialeader.rsi
+    clothingVisuals:
+      neck:
+      - state: equipped-NECK
+      - state: equipped-NECK-unshaded
+        shader: unshaded
+      neck-vox:
+      - state: equipped-neck-vox
+      - state: equipped-neck-unshaded-vox
+        shader: unshaded
+      neck-vulpkanin:
+      - state: equipped-neck-vulpkanin
+      - state: equipped-neck-unshaded-vulpkanin
+        shader: unshaded

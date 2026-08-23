@@ -35,7 +35,7 @@
 
 - type: Tag
   id: ApcElectronics # ConstructionGraph
-  
+
 - type: Tag
   id: Apron # ConstructionGraph: scraparmor
 
@@ -533,6 +533,7 @@
 - type: Tag
   id: EmitterBolt # Default value in ContainmentFieldGeneratorComponent for tagged collisions that power the generator.
 
+
 - type: Tag
   id: EncryptionCargo # ItemMapper: TelecomServer
 
@@ -594,6 +595,11 @@
 
 - type: Tag
   id: FirelockElectronics # ConstructionGraph: Firelock
+
+#Persistence 14
+
+- type: Tag
+  id: FlagHand # Handy flags for bounties
 
 - type: Tag
   id: Flare # Storage whitelist: BaseClothingBeltEngineering
@@ -1025,6 +1031,9 @@
 
 - type: Tag
   id: NoConsoleSound # Blacklist on BaseComputer, StationMap. Tagged entity will not make sound when opening the UI.
+
+- type: Tag
+  id: NoGib # Persistence 14: Prevents anything this is put on from being gibbed. Temporary solution to gibbing related glitches.
 
 - type: Tag
   id: NotGhostnadoWarpable # Prevents the entity from being selected via "Warp to most followed" ghost warp

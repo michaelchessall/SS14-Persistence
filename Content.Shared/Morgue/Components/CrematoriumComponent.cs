@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -39,4 +40,13 @@ public sealed partial class CrematoriumComponent : Component
 
     [DataField]
     public SoundSpecifier CremateFinishSound = new SoundPathSpecifier("/Audio/Machines/ding.ogg");
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public DamageSpecifier CremateDamage = new DamageSpecifier()// Persistence 14: Deal damage to entities which cannot be ashed.
+    {
+        DamageDict = new()
+        {
+            {"Heat", 400},
+        }
+    };
 }

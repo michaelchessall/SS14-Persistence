@@ -1,4 +1,5 @@
 using Content.Shared.Anomaly.Effects;
+using Content.Shared.Damage;
 using Content.Shared.Humanoid.Prototypes;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
@@ -69,6 +70,17 @@ public sealed partial class InnerBodyAnomalyComponent : Component
     /// </summary>
     [DataField]
     public string LayerMap = "inner_anomaly_layer";
+
+    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    public DamageSpecifier SupercriticalDamage = new DamageSpecifier()// Persistence 14: Deal damage to entities which cannot be gibbed.
+    {
+        DamageDict = new()
+        {
+            {"Blunt", 400},
+            {"Cellular", 150},
+            {"Radiation", 450}
+        }
+    };
 }
 
 /// <summary>

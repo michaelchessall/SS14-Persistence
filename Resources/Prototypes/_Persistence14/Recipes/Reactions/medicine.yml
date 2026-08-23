@@ -17,3 +17,31 @@
     Omnizine: 1
     Acetone: 1
     Radium: 2
+
+- type: reaction
+  id: Pyronitrodone
+  minTemp: 370
+  reactants:
+    Nitrogen:
+      amount: 2
+    Oil:
+      amount: 1
+    TranexamicAcid:
+      amount: 1
+  products:
+    Pyronitrodone: 4
+
+- type: reaction
+  id: Noxapyrone
+  minTemp: 400
+  reactants:
+    Plasma:
+      amount: 1
+    Benzene:
+      amount: 1
+    Pyronitrodone:
+      amount: 1
+    Nectar:
+      amount: 1
+  products:
+    Noxapyrone: 2

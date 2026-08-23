@@ -807,6 +807,11 @@
 
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitCoroner
+  result: ClothingUniformJumpsuitCoroner
+
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpskirtMedicalDoctor
   result: ClothingUniformJumpskirtMedicalDoctor
 
@@ -1205,12 +1210,12 @@
   parent: BaseJumpsuitRecipe
   id: ClothingUniformGenericTurtleNeckAndJeans
   result: ClothingUniformGenericTurtleNeckAndJeans
-  
+
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformRandomStandard
   result: ClothingUniformRandomStandard
-  
+
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformRandomBra

@@ -87,16 +87,19 @@
   - WeaponSprayNozzle
   - ClothingBackpackWaterTank
   - MegaSprayBottle
+  - WashingMachineCircuitboard # Funky: Footprints & Stains
 
 - type: latheRecipePack
   id: Instruments
   recipes:
   - SynthesizerInstrument
   - PushHorn
+  - PlushieSoundActivator # _Persistence14 content
 
 - type: latheRecipePack
   id: ServiceBoards
   recipes:
+  - RequisitionsConsoleCircuitboard # _Persistence14: requisitions console (T2 Requisitions Logistics)
   - BiofabricatorMachineCircuitboard
   - FatExtractorMachineCircuitboard
   - HydroponicsTrayMachineCircuitboard # roundstart gear being unlocked roundstart when

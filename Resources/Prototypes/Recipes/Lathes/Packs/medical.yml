@@ -49,6 +49,8 @@
   - OffsetCane
   - OffsetCaneWood
   - JetInjector
+  - CMBloodPack
+  - CMIV
 
 - type: latheRecipePack
   id: RollerBedsStatic
@@ -62,6 +64,7 @@
   recipes:
   - ClothingHandsGlovesLatex
   - ClothingHandsGlovesNitrile
+  - ClothingHandsGlovesNitrileForensic
   - ClothingMaskSterile
 
 # These are all empty

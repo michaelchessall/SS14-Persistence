@@ -1,0 +1,62 @@
+- type: entity
+  parent: BaseItem
+  id: BSPAnchorKey
+  name: anchor key
+  description: WIP.
+  components:
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/multitool_drop.ogg
+    - type: Sprite
+      sprite: _Persistence14/Objects/Devices/anchor_key.rsi
+      layers:
+        - state: noid_unstored
+          map: ["enum.BSPAnchorKeyVisualLayers.Base"]
+    - type: Item
+      size: Small
+      sprite: _Persistence14/Objects/Devices/anchor_key.rsi
+    - type: Clothing
+      sprite: _Persistence14/Objects/Devices/anchor_key.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: Appearance
+    - type: GenericVisualizer
+      visuals:
+        enum.BSPAnchorKeyVisuals.State:
+          enum.BSPAnchorKeyVisualLayers.Base:
+            NoIdUnstored: { state: noid_unstored }
+            NoIdStored: { state: noid_stored }
+            IdUnstored: { state: id_unstored }
+            IdStored: { state: id_stored }
+    - type: BSPAnchorKey
+      privilegedIdSlot:
+        name: id-card-console-privileged-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+#      denialSound: # pleasing the linter - field denialSound not found in component
+#        path: /Audio/Machines/custom_deny.ogg
+#      doAfter: 0.5 # pleasing the linter - field doAfter not found in component
+    - type: UserInterface
+      interfaces:
+        enum.BSPAnchorKeyUiKey.Key:
+          type: BSPAnchorKeyBoundUserInterface
+    - type: ActivatableUI
+      key: enum.BSPAnchorKeyUiKey.Key
+      requiresComplex: true
+      requireActiveHand: false
+      singleUser: true
+      inHandsOnly: true
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        BSPAnchorKey-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100

@@ -54,6 +54,133 @@
         - id: FoodContainerEgg
           amount: 2
 
+#Persistence 14
+
+- type: entity
+  parent: CratePlastic
+  id: CrateFoodBulkFlour
+  name: bulk flour crate
+  description: Extra flour for those extra large batches.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ReagentContainerFlour
+          amount: 10
+
+- type: entity
+  parent: CrateFreezer
+  id: CrateFoodBulkMilk
+  name: bulk milk crate
+  description: In case the cows go on a hunger strike.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: DrinkMilkCarton
+          amount: 8
+        - id: DrinkSoyMilkCarton
+          amount: 4
+
+- type: entity
+  parent: CratePlastic
+  id: CrateFoodBulkRice
+  name: bulk rice crate
+  description: Extra rice for those who want to feed a monastery.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ReagentContainerRice
+          amount: 10
+
+- type: entity
+  parent: CratePlastic
+  id: CrateFoodBulkSugar
+  name: bulk sugar crate
+  description: Extra sugar for those who have a sweet tooth.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ReagentContainerSugar
+          amount: 8
+
+- type: entity
+  parent: CratePlastic
+  id: CrateFoodBulkSalt
+  name: bulk salt crate
+  description: More salt than a [insert topical community here] convention.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FoodCondimentPacketSalt
+          amount: 15
+
+- type: entity
+  parent: CrateFreezer
+  id: CrateFoodBulkEgg
+  name: bulk egg crate
+  description: Bulk eggs for baking or throwing at people you dont like.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FoodContainerEgg
+          amount: 6
+
+- type: entity
+  parent: CratePlastic
+  id: CrateFoodBulkOliveOil
+  name: bulk olive oil crate
+  description: Bulk olive oil for the aspiring pasta chef.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ReagentContainerOliveoil
+          amount: 8
+
+- type: entity
+  parent: CrateFreezer
+  id: CrateFoodBulkTins
+  name: baking tin crate
+  description: Perfect for those that want to start a bakery.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FoodPlateMuffinTin
+          amount: 8
+        - id: FoodPlateTin
+          amount: 8
+
+- type: entity
+  parent: CratePlastic
+  id: CrateFoodBulkUtensils
+  name: kitchen utensils crate
+  description: Extra kitchen utensils, in case the clown was allowed in the cafeteria unsupervised.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BoxUtensil
+          amount: 5
+        - id: FoodKebabSkewer
+          amount: 8
+        - id: KitchenKnife
+        - id: DrinkGlass
+
 - type: entity
   parent: CratePlastic
   id: CrateFoodDinnerware

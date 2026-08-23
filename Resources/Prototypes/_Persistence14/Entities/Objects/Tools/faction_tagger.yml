@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseItem
+  id: StationTagger
+  name: faction tagger
+  description: Used to link specific machines and structures with a station.
+  components:
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/multitool_drop.ogg
+    - type: Sprite
+      sprite: _Persistence14/Objects/Tools/faction-tagger.rsi
+      state: icon
+    - type: Item
+      size: Small
+    - type: Clothing
+      sprite: Objects/Tools/access_configurator.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: StationTagger
+      privilegedIdSlot:
+        name: id-card-console-privileged-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+#      denialSound:  # pleasing the linter - field denialSound not found in component
+#        path: /Audio/Machines/custom_deny.ogg
+      doAfter: 0.5
+    - type: UserInterface
+      interfaces:
+        enum.StationTaggerUiKey.Key:
+          type: StationTaggerBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StationTaggerUiKey.Key
+      requiresComplex: true
+      requireActiveHand: false
+      singleUser: true
+      inHandsOnly: true
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        StationTagger-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100

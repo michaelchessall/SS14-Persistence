@@ -1,0 +1,11 @@
+### Persistence 14 flavors
+
+- type: flavor
+  id: liquidelysium
+  flavorType: Complex
+  description: flavor-complex-liquid-elysium
+
+- type: flavor
+  id: tartarustwist
+  flavorType: Complex
+  description: flavor-complex-tartarus-twist

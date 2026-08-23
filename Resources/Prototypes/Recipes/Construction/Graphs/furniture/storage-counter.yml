@@ -121,6 +121,7 @@
       - !type:SpawnPrototype
         prototype: MaterialWoodPlank1
         amount: 1
+      - !type:EmptyAllContainers
       steps:
       - tool: Sawing
         doAfter: 3

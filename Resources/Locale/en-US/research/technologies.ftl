@@ -69,6 +69,7 @@ research-technology-basic-hydroponics = Basic Hydroponics
 research-technology-critter-mechs = Critter Mechs
 research-technology-food-service = Food Service
 research-technology-advanced-entertainment = Advanced Entertainment
+research-technology-plushie-sound-activation = Plushie Sound Activation # _Persistence14 content
 research-technology-audio-visual-communication = A/V Communication
 research-technology-faux-astro-tiles = Faux Astro-Tiles
 research-technology-biochemical-stasis = Biochemical Stasis

@@ -1,0 +1,52 @@
+# _Persistence14 content
+# AutoEmote prototypes that drive the artifact forced-emote effects (XAEForcedEmote).
+# Each affected mob attempts this emote every `interval` seconds with `chance` probability of it
+# firing. `force` is left default (false), so a mob that cannot perform the emote is skipped.
+# Add a new forced-emote effect by pairing a new entry here with an effect entity in effects.yml.
+- type: autoEmote
+  id: XenoArchForcedLaugh
+  emote: Laugh
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedSigh
+  emote: Sigh
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedSneeze
+  emote: Sneeze
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedCough
+  emote: Cough
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedWhistle
+  emote: Whistle
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedCry
+  emote: Crying
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedYawn
+  emote: Yawn
+  interval: 0.2
+  chance: 0.3
+
+- type: autoEmote
+  id: XenoArchForcedScream
+  emote: Scream
+  interval: 0.2
+  chance: 0.3

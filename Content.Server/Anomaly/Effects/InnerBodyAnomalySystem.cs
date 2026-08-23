@@ -8,6 +8,8 @@ using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Effects;
 using Content.Shared.Chat;
 using Content.Shared.Database;
+using Content.Shared.Damage; // Persistence 14: Deal damage to entities which cannot be gibbed.
+using Content.Shared.Damage.Systems; // Persistence 14: Deal damage to entities which cannot be gibbed.
 using Content.Shared.Gibbing;
 using Content.Shared.Mobs;
 using Content.Shared.Popups;
@@ -33,6 +35,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
     [Dependency] private readonly SharedPopupSystem _popup = default!;
     [Dependency] private readonly IPrototypeManager _proto = default!;
     [Dependency] private readonly StunSystem _stun = default!;
+    [Dependency] private readonly DamageableSystem _damage = default!; // Persistence 14: Deal damage to entities which cannot be gibbed.
 
     private readonly Color _messageColor = Color.FromSrgb(new Color(201, 22, 94));
 
@@ -130,6 +133,7 @@ public sealed class InnerBodyAnomalySystem : SharedInnerBodyAnomalySystem
 
     private void OnAnomalySupercritical(Entity<InnerBodyAnomalyComponent> ent, ref AnomalySupercriticalEvent args)
     {
+        _damage.TryChangeDamage(ent.Owner, ent.Comp.SupercriticalDamage, true); // Persistence 14: Deal damage to entities which cannot be gibbed.
         _gibbing.Gib(ent.Owner);
     }
 

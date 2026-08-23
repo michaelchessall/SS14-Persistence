@@ -84,6 +84,13 @@ public sealed partial class XenoArtifactComponent : Component
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextUnlockTime;
+
+    /// <summary>
+    /// Units of artifexium that substitute for one required node trigger. A node needing N triggers
+    /// unlocks with N * this many units. Keep in sync with the ArtifactUnlock effect's minScale.
+    /// </summary>
+    [DataField]
+    public float ArtifexiumCostPerTrigger = 5f;
     #endregion
 
     // NOTE: you should not be accessing any of these values directly. Use the methods in SharedXenoArtifactSystem.Graph

@@ -14,15 +14,6 @@
       state: unshaded
   - type: DiskConsole
   - type: ResearchClient
-  - type: ActivatableUI
-    key: enum.DiskConsoleUiKey.Key
-  - type: ActivatableUIRequiresPower
-  - type: UserInterface
-    interfaces:
-      enum.DiskConsoleUiKey.Key:
-        type: DiskConsoleBoundUserInterface
-      enum.ResearchClientUiKey.Key:
-        type: ResearchClientBoundUserInterface
   - type: ExtensionCableReceiver
   - type: Computer
     board: TechDiskComputerCircuitboard

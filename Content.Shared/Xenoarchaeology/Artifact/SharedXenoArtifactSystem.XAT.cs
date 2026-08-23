@@ -6,6 +6,7 @@ using Content.Shared.Movement.Pulling.Events;
 using Content.Shared.Throwing;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
+using Content.Shared.Xenoarchaeology.Artifact.XAT;
 using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
 using System.Linq;
 
@@ -23,6 +24,7 @@ public abstract partial class SharedXenoArtifactSystem
         XATRelayLocalEvent<InteractHandEvent>();
         XATRelayLocalEvent<ReactionEntityEvent>();
         XATRelayLocalEvent<LandEvent>();
+        XATRelayLocalEvent<XATItemInteractDoAfterEvent>();
 
         // special case this one because we need to order the messages
         SubscribeLocalEvent<XenoArtifactComponent, ExaminedEvent>(OnExamined);
@@ -94,9 +96,21 @@ public abstract partial class SharedXenoArtifactSystem
         }
     }
 
-    public void SetArtifexiumApplied(Entity<XenoArtifactUnlockingComponent> ent, bool val)
+    /// <summary>
+    /// Adds units of applied artifexium to the current unlocking window.
+    /// </summary>
+    public void AddArtifexiumScale(Entity<XenoArtifactUnlockingComponent> ent, float amount)
     {
-        ent.Comp.ArtifexiumApplied = val;
+        ent.Comp.ArtifexiumScale += amount;
+        Dirty(ent);
+    }
+
+    /// <summary>
+    /// Sets the window to resolve on the next update tick instead of waiting out the timer.
+    /// </summary>
+    public void SetInstantUnlock(Entity<XenoArtifactUnlockingComponent> ent)
+    {
+        ent.Comp.EndTime = _timing.CurTime;
         Dirty(ent);
     }
 }

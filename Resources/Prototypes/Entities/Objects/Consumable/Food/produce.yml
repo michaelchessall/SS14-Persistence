@@ -194,6 +194,13 @@
   id: Log
   parent: ProduceBase
   components:
+  # Persistence 14 - adds the ability to juice tower-cap logs for sap
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Sap
+        Quantity: 1
+  # Persistence 14 - End
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/towercap.rsi
   - type: Item

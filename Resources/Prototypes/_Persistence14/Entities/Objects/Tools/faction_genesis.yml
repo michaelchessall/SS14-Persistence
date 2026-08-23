@@ -1,0 +1,50 @@
+- type: entity
+  parent: BaseItem
+  id: StationGenesisDevice
+  name: faction genesis device
+  description: A one time use device which creates a new faction network which grids can be connected to.
+  components:
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/multitool_drop.ogg
+    - type: Sprite
+      sprite: _Persistence14/Objects/Tools/faction-genesis-device.rsi
+      state: icon
+    - type: Item
+      size: Small
+    - type: Clothing
+      sprite: Objects/Tools/access_configurator.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: StationCreator
+      privilegedIdSlot:
+        name: id-card-console-privileged-id
+        ejectSound: /Audio/Machines/id_swipe.ogg
+        insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
+        ejectOnBreak: true
+        swap: false
+        whitelist:
+          components:
+          - IdCard
+#      denialSound: # pleasing the linter - field denialSound not found in component
+#        path: /Audio/Machines/custom_deny.ogg
+      doAfter: 0.5
+    - type: UserInterface
+      interfaces:
+        enum.StationCreatorUiKey.Key:
+          type: StationCreatorBoundUserInterface
+    - type: ActivatableUI
+      key: enum.StationCreatorUiKey.Key
+      requiresComplex: true
+      requireActiveHand: false
+      singleUser: true
+      inHandsOnly: true
+    - type: ItemSlots
+    - type: ContainerContainer
+      containers:
+        StationCreator-privilegedId: !type:ContainerSlot
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100

@@ -1,0 +1,24 @@
+- type: entity
+  parent: BaseItem
+  id: PrecursorExtractor
+  name: secret phrase extractor
+  description: Can be used on a handcuffed, critical or dead person to extract a secret phrase.
+  components:
+    - type: EmitSoundOnLand
+      sound:
+        path: /Audio/Items/multitool_drop.ogg
+    - type: Sprite
+      sprite: _Persistence14/Objects/Tools/phrase-extractor.rsi
+      state: icon-red
+    - type: Item
+      size: Small
+    - type: Clothing
+      sprite: _Persistence14/Objects/Tools/phrase-extractor.rsi
+      quickEquip: false
+      slots:
+        - Belt
+    - type: PrecursorExtractor
+    - type: PhysicalComposition
+      materialComposition:
+        Plastic: 50
+        Steel: 100

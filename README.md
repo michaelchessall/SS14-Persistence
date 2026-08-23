@@ -1,6 +1,5 @@
 <div class="header" align="center">  
-<img alt="Space Station 14" width="880" height="300" src="https://raw.githubusercontent.com/space-wizards/asset-dump/de329a7898bb716b9d5ba9a0cd07f38e61f1ed05/github-logo.svg">  
-</div>
+<img src="persistence-logo.webp" alt="Persistence Logo" width="200"></div>
 
 Space Station 14 Persistence is a fork of Space Station 14.
 
@@ -22,3 +21,7 @@ Most assets are licensed under [CC-BY-SA 3.0](https://creativecommons.org/licens
 
 > [!NOTE]
 > Some assets are licensed under the non-commercial [CC-BY-NC-SA 3.0](https://creativecommons.org/licenses/by-nc-sa/3.0/) or similar non-commercial licenses and will need to be removed if you wish to use this project commercially.
+
+## Contributions
+
+All contributions must follow our [contribution policy](rules-contributing.md)

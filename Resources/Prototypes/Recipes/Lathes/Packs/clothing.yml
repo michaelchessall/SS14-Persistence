@@ -204,6 +204,7 @@
   - ClothingOuterCoatLabGene
   - ClothingOuterCoatLab
   - ClothingOuterCoatLabSeniorPhysician
+  - ClothingOuterCoatLabSeniorPhysicianNew
   - ClothingOuterCoatRnd
   - ClothingOuterCoatRobo
   - ClothingOuterCoatRD
@@ -273,6 +274,7 @@
   - ClothingUniformJumpsuitCMOTurtle
   - ClothingUniformJumpskirtCMOTurtle
   - ClothingHeadHatBeretSeniorPhysician
+  - ClothingHeadHatBeretSeniorPhysicianNew
   - ClothingUniformJumpsuitMedicalDoctor
   - ClothingUniformJumpskirtMedicalDoctor
   - ClothingUniformJumpsuitPsychologist
@@ -281,12 +283,17 @@
   - UniformScrubsColorGreen
   - UniformScrubsColorPurple
   - ClothingUniformJumpsuitSeniorPhysician
+  - ClothingUniformJumpsuitSeniorPhysicianNew
   - ClothingUniformJumpskirtSeniorPhysician
+  - ClothingUniformJumpskirtSeniorPhysicianNew
   - ClothingUniformJumpsuitParamedic
   - ClothingUniformJumpskirtParamedic
   - ClothingHeadHatParamedicsoft
   - ClothingBeltMedical
   - ClothingNeckStethoscope
+  - ClothingUniformJumpsuitParamedicNew
+  - ClothingUniformJumpskirtParamedicNew
+  - ClothingUniformJumpsuitCoroner
 
 - type: latheRecipePack
   id: ClothingScience
@@ -655,6 +662,8 @@
   - RnDPDASOL
   - HoSPDASOL
   - CoSPDASOL
+  - ClothingNeckMilitiaCloak
+  - ClothingNeckMilitiaLeaderCloak
 
 #Handy Flags
 - type: latheRecipePack

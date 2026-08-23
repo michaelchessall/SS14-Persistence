@@ -242,6 +242,7 @@ public sealed class SmokeSystem : EntitySystem
     /// </summary>
     public void SmokeReact(EntityUid entity, EntityUid smokeUid, SmokeComponent? component = null)
     {
+        if (smokeUid == null || smokeUid == EntityUid.Invalid) return;
         if (!Resolve(smokeUid, ref component))
             return;
 

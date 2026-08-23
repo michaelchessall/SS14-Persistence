@@ -1,0 +1,15 @@
+# Placeholder sprite: reuses the voice trigger device RSI until a dedicated sprite exists.
+- type: entity
+  parent: BaseItem
+  id: PlushieSoundActivator
+  name: plushie sound activator
+  description: A little squeaker-brain that, tucked inside a plushie, lets you wire its sounds to buttons and other things.
+  components:
+  - type: Item
+    size: Tiny
+  - type: Sprite
+    sprite: Objects/Devices/voice.rsi
+    state: voice
+  - type: StaticPrice
+    price: 40
+  - type: PlushieSoundActivator

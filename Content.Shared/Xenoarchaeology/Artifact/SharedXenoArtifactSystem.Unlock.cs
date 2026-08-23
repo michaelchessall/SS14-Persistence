@@ -124,9 +124,9 @@ public abstract partial class SharedXenoArtifactSystem
             var requiredIndices = GetPredecessorNodes((ent, artifactComponent), nodeIndex);
             requiredIndices.Add(nodeIndex);
 
-            if (!ent.Comp1.ArtifexiumApplied)
+            if (artifactUnlockingComponent.ArtifexiumScale <= 0f)
             {
-                // Make sure the two sets are identical
+                // No artifexium: triggered set must match the required set exactly.
                 if (requiredIndices.Count != artifactUnlockingComponent.TriggeredNodeIndexes.Count
                     || !artifactUnlockingComponent.TriggeredNodeIndexes.All(requiredIndices.Contains))
                     continue;
@@ -135,10 +135,14 @@ public abstract partial class SharedXenoArtifactSystem
                 return true; // exit early
             }
 
-            // If we apply artifexium, check that the sets are identical EXCEPT for one extra node.
-            // This node is a "wildcard" and we'll make a pool so we can pick one to actually unlock.
-            if (!artifactUnlockingComponent.TriggeredNodeIndexes.All(requiredIndices.Contains) ||
-                requiredIndices.Count - 1 != artifactUnlockingComponent.TriggeredNodeIndexes.Count)
+            // With artifexium: triggered set must be a subset of the required set, and artifexium must
+            // cover every trigger that wasn't performed manually (ArtifexiumCostPerTrigger units each).
+            if (!artifactUnlockingComponent.TriggeredNodeIndexes.All(requiredIndices.Contains))
+                continue;
+
+            var missingTriggers = requiredIndices.Count - artifactUnlockingComponent.TriggeredNodeIndexes.Count;
+            var wildcardsAvailable = (int) (artifactUnlockingComponent.ArtifexiumScale / artifactComponent.ArtifexiumCostPerTrigger);
+            if (missingTriggers > wildcardsAvailable)
                 continue;
 
             potentialNodes.Add(curNode);
