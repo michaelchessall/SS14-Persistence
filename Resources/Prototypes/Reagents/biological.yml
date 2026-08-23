@@ -35,7 +35,7 @@
     Bloodstream: # Don't inject someone else's blood into yourself! Your own blood won't actually metabolise.
       effects:
         - !type:ModifyBloodLevel
-          amount: 2
+          amount: 6
   plantMetabolism:
     - !type:PlantAdjustWater
       amount: 0.5
