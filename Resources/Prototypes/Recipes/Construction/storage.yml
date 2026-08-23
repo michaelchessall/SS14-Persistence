@@ -11,17 +11,19 @@
   conditions:
     - !type:TileNotBlocked
 
+#Persistence 14 start
 - type: construction
-  id: MedicineCabinet
-  graph: FilingCabinet
+  id: cabinetMed
+  graph: medicineCabinet
   startNode: start
-  targetNode: medicineCabinet
+  targetNode: medCabinet
   category: construction-category-storage
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+#Persistence 14 end
 
 - type: construction
   id: TallCabinet

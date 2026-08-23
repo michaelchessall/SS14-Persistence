@@ -70,22 +70,18 @@
   - type: StaticPrice
     price: 40
   - type: Construction
-    graph: FilingCabinet
+    graph: medicineCabinet
 
 - type: entity
   name: medicine cabinet
   parent: MedicineCabinet
-  id: medicineCabinet
+  id: cabinetMed
   components:
   - type: Sprite
-    state: filingcabinet
+    state: medicinecabinet
     layers:
     - state: cabinet
     - state: cabinet-open
       map: ["openLayer"]
   - type: Construction
-    node: medicineCabinet
-
-- type: entity
-  parent: [BaseBureaucraticStorageFill, filingCabinet]
-  id: medicineCabinetRandom
+    node: medCabinet
