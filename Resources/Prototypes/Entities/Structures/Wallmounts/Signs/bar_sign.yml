@@ -332,6 +332,7 @@
   - type: BarSign
     current: EmpBarSign
 
+# Persistence start
 - type: entity
   parent: BaseBarSign
   id: BarSignpregluxuries
@@ -340,7 +341,7 @@
   components:
   - type: BarSign
     current: pregluxuries
-# Persistence start
+
 # Medical Signs
 - type: entity
   parent: BaseBarSign
@@ -350,3 +351,5 @@
   components:
   - type: BarSign
     current: nosmoking
+
+#Persistence end
