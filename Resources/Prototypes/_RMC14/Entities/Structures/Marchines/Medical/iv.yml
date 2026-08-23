@@ -79,8 +79,35 @@
       map: ["enum.BloodPackVisuals.Fill"]
       visible: false
     - state: bloodpack
-    - state: blank
-      map: ["enum.BloodPackVisuals.Label"]
+    - state: label # Start Persistence: Paper labels on IV bags
+      visible: false
+      map: ["enum.PaperLabelVisuals.Layer"]
+  - type: GenericVisualizer
+    visuals:
+      enum.PaperLabelVisuals.HasLabel:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: true }
+          False: { visible: false }
+      enum.StorageVisuals.Open:
+        enum.PaperLabelVisuals.Layer:
+          True: { visible: false }
+      enum.PaperLabelVisuals.LabelType:
+        enum.PaperLabelVisuals.Layer:
+          Paper: { state: label }
+          Bounty: { state: label }
+          CaptainsPaper: { state: label }
+          Invoice: { state: label }
+  - type: ItemSlots
+  - type: PaperLabel
+    labelSlot:
+      insertVerbText: comp-paper-label-insert
+      ejectVerbText: comp-paper-label-eject
+      whitelist:
+        components:
+        - Paper
+      blacklist:
+        tags:
+        - Book # End Persistence
   - type: Item
     size: Small
     sprite: _RMC14/Objects/Medical/blood_pack.rsi
