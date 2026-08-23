@@ -90,7 +90,8 @@ public sealed class IVDripSystem : SharedIVDripSystem
         if (!TryComp(pack, out SpriteComponent? sprite))
             return;
 
-        sprite.LayerSetVisible(BloodPackVisuals.Label, false);
+        // Persistence: Replaced this implementation with PaperLabel & related dependencies to allow custom labels
+        // sprite.LayerSetVisible(BloodPackVisuals.Label, false);
 
         if (sprite.LayerMapTryGet(BloodPackVisuals.Fill, out var fillLayer))
         {
