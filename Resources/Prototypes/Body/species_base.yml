@@ -279,3 +279,4 @@
   - type: FireVisuals
     alternateState: Standing
   - type: StunVisuals
+  - type: FootprintOwner # Funky: Footprints & Stains

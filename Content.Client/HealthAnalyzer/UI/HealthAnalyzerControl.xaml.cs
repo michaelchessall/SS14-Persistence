@@ -152,6 +152,8 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
         {
             MobState.Alive => Loc.GetString("health-analyzer-window-entity-alive-text"),
             MobState.Critical => Loc.GetString("health-analyzer-window-entity-critical-text"),
+            MobState.SoftCritical => Loc.GetString("health-analyzer-window-entity-critical-text"), // Persistence: Make status label aware of soft-crit
+            MobState.HardCritical => Loc.GetString("health-analyzer-window-entity-critical-text"), // Persistence: Make status label aware of hard-crit
             MobState.Dead => Loc.GetString("health-analyzer-window-entity-dead-text"),
             _ => Loc.GetString("health-analyzer-window-entity-unknown-text"),
         };
