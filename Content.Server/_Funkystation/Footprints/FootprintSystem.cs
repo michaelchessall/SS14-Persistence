@@ -9,7 +9,7 @@ using Content.Shared.Fluids.Components;
 using Content.Shared.Gravity;
 using Content.Shared.Inventory;
 using Content.Shared.Standing;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using Content.Shared.Maps; // Persistence: Prevent footprints on space tiles (lattice)
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -27,6 +27,7 @@ public sealed class FootprintSystem : EntitySystem
     [Dependency] private readonly SharedPuddleSystem _puddle = null!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
     [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly TurfSystem _turf = default!; // Persistence: Prevent footprints on space tiles (lattice)
     [Dependency] private readonly InventorySystem _inventory = null!;
 
     private static readonly FixedPoint2 MaxVolumePerTile = 50;
@@ -115,6 +116,11 @@ public sealed class FootprintSystem : EntitySystem
 
         var xform = Transform(uid);
         if (xform.GridUid is not { } gridUid || !TryComp<MapGridComponent>(gridUid, out var grid))
+            return;
+
+        // Persistence: Prevent footprints on space tiles (lattice)
+        var tileRef = _map.GetTileRef(gridUid, grid, args.Component.Coordinates);
+        if (tileRef.Tile.IsEmpty || _turf.IsSpace(tileRef))
             return;
 
         var oldLocal = _map.WorldToLocal(gridUid, grid, prevPos);
