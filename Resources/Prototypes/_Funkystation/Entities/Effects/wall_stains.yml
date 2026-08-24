@@ -42,6 +42,9 @@
     energy: 1.5
     color: "#FF5500"
     enabled: false
+#  - type: Tag # Persistence: Firebots can target reagent fires. Commented because they fail to reach wall fires
+#    tags:
+#    - ReagentFire
 
 - type: entity
   parent: PuddleSparkle
