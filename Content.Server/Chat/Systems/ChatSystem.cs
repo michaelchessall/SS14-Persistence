@@ -34,6 +34,7 @@ using Robust.Shared.Utility;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using Content.Shared._RMC14.Chat; // Persistence: Chat stacking from RMC14 - pull/7587
 
 namespace Content.Server.Chat.Systems;
 
@@ -524,7 +525,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(ChatChannel.Whisper, obfuscatedMessage, wrappedUnknownMessage, source, false, session.Channel);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(ChatChannel.Whisper, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range), repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(source))); // Persistence: Chat stacking from RMC14 - pull/7587
 
         var ev = new EntitySpokeEvent(source, message, channel, obfuscatedMessage);
         RaiseLocalEvent(source, ev, true);
@@ -722,7 +723,7 @@ public sealed partial class ChatSystem : SharedChatSystem
                 _chatManager.ChatMessageToOne(channel, message, wrappedMessage, source, entHideChat, session.Channel, author: author);
         }
 
-        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range)));
+        _replay.RecordServerMessage(new ChatMessage(channel, message, wrappedMessage, GetNetEntity(source), null, MessageRangeHideChatForReplay(range), repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(source))); // Persistence: Chat stacking from RMC14 - pull/7587
     }
 
     /// <summary>
