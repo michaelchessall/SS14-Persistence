@@ -346,9 +346,9 @@
         amount: -5
       - !type:HealthChange
         conditions:
-          # they gotta be in crit first
+          # they gotta be in soft or hard crit first
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstate: SoftCritical
         - !type:ReagentCondition
           reagent: Epinephrine
           max: 20
@@ -358,9 +358,32 @@
             Poison: -0.5
       - !type:EvenHealthChange
         conditions:
-          # they gotta be in crit first
+          # they gotta be in soft or hard crit first
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstate: SoftCritical
+        - !type:ReagentCondition
+          reagent: Epinephrine
+          max: 20
+        damage:
+          Brute: -0.5
+          Burn: -0.5
+      - !type:HealthChange
+        conditions:
+          # they gotta be in soft or hard crit first
+        - !type:MobStateCondition
+          mobstate: HardCritical
+        - !type:ReagentCondition
+          reagent: Epinephrine
+          max: 20
+        damage:
+          types:
+            Asphyxiation: -3
+            Poison: -0.5
+      - !type:EvenHealthChange
+        conditions:
+          # they gotta be in soft or hard crit first
+        - !type:MobStateCondition
+          mobstate: HardCritical
         - !type:ReagentCondition
           reagent: Epinephrine
           max: 20
@@ -478,9 +501,17 @@
       effects:
       - !type:HealthChange
         conditions:
-          # they gotta be in crit first
+          # they gotta be in soft or hard crit first
         - !type:MobStateCondition
-          mobstate: Critical
+          mobstate: SoftCritical
+        damage:
+          types:
+            Asphyxiation: -2
+      - !type:HealthChange
+        conditions:
+          # they gotta be in soft or hard crit first
+        - !type:MobStateCondition
+          mobstate: HardCritical
         damage:
           types:
             Asphyxiation: -2
