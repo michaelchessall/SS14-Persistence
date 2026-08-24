@@ -6,8 +6,10 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
+using Content.Shared.Gravity;
 using Content.Shared.Inventory;
 using Content.Shared.Standing;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Robust.Server.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -85,6 +87,11 @@ public sealed class FootprintSystem : EntitySystem
     private void OnEntityMoved(EntityUid uid, FootprintOwnerComponent component, ref MoveEvent args)
     {
         if (HasComp<NoFootprintsComponent>(uid))
+            return;
+
+        // Persistence: Footprints shouldn't form when there's no gravity
+        if (TryComp<GravityAffectedComponent>(uid, out var gravityAffected) &&
+            gravityAffected.Weightless)
             return;
 
         if (_inventory.TryGetSlotEntity(uid, "shoes", out var shoes) && HasComp<NoFootprintsComponent>(shoes))
