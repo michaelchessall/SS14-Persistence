@@ -57,7 +57,21 @@ namespace Content.Server.Speech.EntitySystems
             // ideally both aren't used at the same time (but we don't have a way to enforce that in serialization yet)
             if (prototype.FullReplacements != null)
             {
-                return prototype.FullReplacements.Length != 0 ? Loc.GetString(_random.Pick(prototype.FullReplacements)) : "";
+                // Preserve punctuation for full replacement
+                string punctuation;
+                if (message.Substring(message.Length - 3) == "...")
+                    punctuation = "...";
+                else if (message.Substring(message.Length - 2) == "!!")
+                    punctuation = "!!";
+                else if (message.Last().ToString() == "," ||
+                         message.Last().ToString() == "." ||
+                         message.Last().ToString() == "!" ||
+                         message.Last().ToString() == "?")
+                    punctuation = message.Last().ToString();
+                else
+                    punctuation = ".";
+
+                return prototype.FullReplacements.Length != 0 ? Loc.GetString(_random.Pick(prototype.FullReplacements)) + punctuation : "";
             }
 
             // Prohibition of repeated word replacements.
