@@ -176,7 +176,7 @@
             types:
               Heat: 0
         - type: ReagentPuddleFireEffect # Persistence: Firebots put out reagent fires
-#        - type: WallStainFireVisuals # Persistence: Firebots put out reagent fires # Commented because they can't seem to reach wall stain fires
+        - type: WallStainFireVisuals # Persistence: Firebots put out reagent fires # Commented because they can't seem to reach wall stain fires
   considerations:
     - !type:TargetDistanceCon
       curve: !type:PresetCurve
