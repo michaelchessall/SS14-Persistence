@@ -118,7 +118,7 @@
               doAfter: 1
         
         - to: titaniumShuttleWallDiagonal
-          complete:
+          completed:
           - !type:SnapToGrid
             southRotation: false
           conditions:

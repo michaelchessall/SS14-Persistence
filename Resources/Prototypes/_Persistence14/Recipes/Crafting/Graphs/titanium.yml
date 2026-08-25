@@ -8,6 +8,6 @@
       steps:
       - material: Titanium
         amount: 1
-        doafter: 2
+        doAfter: 2
   - node: titanium-rod
     entity: PartRodTitanium2

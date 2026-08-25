@@ -24,7 +24,7 @@
       steps:
       - tool: Screwing
         doAfter: 5
-      complete:
+      completed:
       - !type:GivePrototype
         prototype: SheetTitanium1
         amount: 5
@@ -58,7 +58,7 @@
       steps:
       - tool: Screwing
         doAfter: 5
-      complete:
+      completed:
       - !type:GivePrototype
         prototype: SheetTitanium1
         amount: 5
