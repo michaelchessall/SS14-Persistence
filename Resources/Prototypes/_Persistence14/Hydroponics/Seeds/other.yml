@@ -74,8 +74,8 @@
         Fertilizer:
           BonusRequirement: 1
           BonusAmount: 3
-        CarbonDioxide:
-          BonusRequirement: 3
+        Pest: # egg = chicken = eat bug and worm
+          BonusRequirement: 6
           BonusAmount: 3
 
 - type: seed
@@ -268,7 +268,7 @@
   idealLight: 8
   harvestRepeat: Repeat
   chemicals:
-    Happiness:
+    Happiness: # TODO: update Happiness
       Min: 1
       Max: 3
       PotencyDivisor: 25
@@ -280,7 +280,7 @@
         Fertilizer:
           BonusRequirement: 0.2
           BonusAmount: 1
-    Pax:
+    Pax: # TODO: update Pax
       Min: 1
       Max: 2
       PotencyDivisor: 50
