@@ -133,7 +133,7 @@ public sealed class RadioSystem : EntitySystem
             ChatChannel.Radio,
             message,
             wrappedMessage,
-            NetEntity.Invalid,
+            GetNetEntity(messageSource), // Persistence: Chat stacking from RMC14 - pull/7587
             _chatManager.EnsurePlayer(CompOrNull<ActorComponent>(messageSource)?.PlayerSession.UserId)?.Key,  // Persistence: Chat stacking from RMC14 - pull/7587
             repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(radioSource));  // Persistence: Chat stacking from RMC14 - pull/7587
         var chatMsg = new MsgChatMessage { Message = chat };
