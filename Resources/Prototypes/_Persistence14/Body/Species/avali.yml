@@ -150,7 +150,7 @@
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Speech
     speechSounds: Parrot
-    speechVerb: chat-speech-verb-name-avali
+    speechVerb: Avali
     allowedEmotes: [ 'Chirp', 'Hisses', 'Purr', 'Growl', 'Scree', 'Call', 'Squawk']
   - type: Vocal
     sounds:
@@ -184,7 +184,7 @@
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
-      - ReagentId: SulfurBlood
+      - ReagentId: AmmoniaBlood
         Quantity: 300
 
 - type: entity
@@ -198,7 +198,7 @@
   abstract: true
   components:
   - type: Metabolizer
-    metabolizerTypes: [ Animal ]
+    metabolizerTypes: [ Avali ]
 
 - type: entity
   parent: OrganAvali
