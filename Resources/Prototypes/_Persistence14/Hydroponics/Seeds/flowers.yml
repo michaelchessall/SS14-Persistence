@@ -1,4 +1,4 @@
-- type: seed # TODO: Convert chemicals to the new system, remove water/nutrient Consumption
+- type: seed
   id: poppy
   name: seeds-poppy-name
   noun: seeds-noun-seeds
@@ -13,20 +13,31 @@
   maturation: 10
   production: 3
   yield: 3
-  potency: 10
   growthStages: 3
-  waterConsumption: 0.60
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
     Bicaridine:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 5
+      BaseAmount: 5
+      Requirements:
+        Nutriment:
+          Requirement: 5
+          BonusRequirement: 5
+          BonusAmount: 5
+        CarbonDioxide:
+          BonusRequirement: 0.5
+          BonusAmount: 5
+        Sugar:
+          BonusRequirement: 2.5
+          BonusAmount: 5
 
-- type: seed # TODO: Convert chemicals to the new system, remove water/nutrient Consumption
+- type: seed
   id: lily
   name: seeds-lily-name
   noun: seeds-noun-seeds
@@ -41,20 +52,31 @@
   maturation: 10
   production: 3
   yield: 3
-  potency: 10
   growthStages: 3
-  waterConsumption: 0.60
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 2
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer:
+          BonusRequirement: 0.2
+          BonusAmount: 1
     Bicaridine:
-      Min: 1
-      Max: 20
-      PotencyDivisor: 5
+      BaseAmount: 5
+      Requirements:
+        Nutriment:
+          Requirement: 5
+          BonusRequirement: 5
+          BonusAmount: 5
+        CarbonDioxide:
+          BonusRequirement: 0.5
+          BonusAmount: 5
+        Sugar:
+          BonusRequirement: 2.5
+          BonusAmount: 5
 
-- type: seed # TODO: Convert chemicals to the new system, remove water/nutrient Consumption
+- type: seed
   id: spacemansTrumpet
   name: seeds-spacemans-trumpet-name
   noun: seeds-noun-seeds
@@ -68,17 +90,29 @@
   maturation: 14
   production: 3
   yield: 2
-  potency: 10
-  waterConsumption: 0.60
   chemicals:
     Nutriment:
-      Min: 1
-      Max: 5
-      PotencyDivisor: 50
+      BaseAmount: 1
+      Requirements:
+        Water:
+          Requirement: 1
+        Fertilizer: # No CO2 requirement due to this being a space plant
+          BonusRequirement: 0.4
+          BonusAmount: 2
     PolypyryliumOligomers:
-      Min: 1
-      Max: 15
-      PotencyDivisor: 5
+      BaseAmount: 5
+      ModifyIdealPressure: -101 # Space plant
+      ModifyIdealHeat: -150 # Able to survive space temperatures
+      ModifyHeatTolerance: 150
+      Requirements:
+        Sugar:
+          Requirement: 5
+        Fertilizer:
+          BonusRequirement: 2.5
+          BonusAmount: 5
+        Plasma:
+          BonusRequirement: 2.5
+          BonusAmount: 5
 
 - type: seed # TODO: Convert chemicals to the new system, remove water/nutrient Consumption
   id: galaxythistle
@@ -102,7 +136,7 @@
       Max: 25
       PotencyDivisor: 4
 
-- type: seed # TODO: Convert chemicals to the new system, remove water/nutrient Consumption
+- type: seed # TODO: Convert chemicals to the new system
   id: glasstle
   name: seeds-glasstle-name
   noun: seeds-noun-seeds
@@ -114,16 +148,23 @@
   lifespan: 25
   maturation: 10
   production: 3
-  yield: 1
-  potency: 10
+  yield: 3 # Yield is inherited from the base plant when changing species, so this does not matter.
   growthStages: 3
-  waterConsumption: 0.5
   chemicals:
-    Razorium:
-      Min: 1
-      Max: 25
-      PotencyDivisor: 4
+    Razorium: # Incredibly cheap, will probably get swabbed out anyway.
+      BaseAmount: 3
+      Requirements:
+        Nutriment:
+          Requirement: 1
+          BonusRequirement: 4
+          BonusAmount: 12
     Desoxyephedrine: # meff!!
       Min: 1
       Max: 10
       PotencyDivisor: 10
+  baseIdealHeat: 1593 # Taken from the wikipedia article for glassblowing
+  baseHeatTolerance: 230
+  basePressureTolerance: 50
+  Requirements:
+    Carbon:
+      Requirement: 5
