@@ -34,6 +34,8 @@ using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
+using System.Linq;
+using Content.Shared.Tag; // Persistence: Firebots can target reagent fires
 
 namespace Content.Server.NPC.Systems;
 
@@ -60,7 +62,9 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SatiationSystem _satiation = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
-    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
+
+    [Dependency] private EntityQuery<PuddleComponent> _puddleQuery; // Persistence
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery; // Persistence
 
     private ObjectPool<HashSet<EntityUid>> _entPool =
         new DefaultObjectPool<HashSet<EntityUid>>(new SetPolicy<EntityUid>(), 256);
@@ -366,11 +370,16 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 return 0f;
             }
             case TargetOnFireCon:
-            {
-                if (TryComp(targetUid, out FlammableComponent? fire) && fire.OnFire)
-                    return 1f;
-                return 0f;
-            }
+                {
+                    if (TryComp(targetUid, out FlammableComponent? fire) && fire.OnFire)
+                        return 1f;
+
+                    // Persistence: Firebots can target reagent fires
+                    if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains((ProtoMan.Index<TagPrototype>("ReagentFire"))))
+                        return 1f;
+
+                    return 0f;
+                }
             case TargetIsStunnedCon:
             {
                 return HasComp<StunnedComponent>(targetUid) ? 1f : 0f;
@@ -486,13 +495,31 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 break;
             }
             case NearbyHostilesQuery:
-            {
-                foreach (var ent in _npcFaction.GetNearbyHostiles(owner, vision))
                 {
-                    entities.Add(ent);
+                    foreach (var ent in _npcFaction.GetNearbyHostiles(owner, vision))
+                    {
+                        entities.Add(ent);
+                    }
+                    break;
                 }
-                break;
-            }
+            case ComponentQueryAny compQueryAny: // Persistence: Firebots can target reagent fires
+                {
+                    if (compQueryAny.Components.Count == 0)
+                        return;
+
+                    var mapPos = _transform.GetMapCoordinates(owner, xform: _xformQuery.GetComponent(owner));
+                    _compTypes.Clear();
+                    _entitySet.Clear();
+                    foreach (var comp in compQueryAny.Components.Values)
+                    {
+                        _lookup.GetEntitiesInRange(comp.Component.GetType(), mapPos, vision, _entitySet);
+                    }
+
+                    foreach (var ent in _entitySet)
+                        entities.Add(ent);
+
+                    break;
+                }
             default:
                 throw new NotImplementedException();
         }
