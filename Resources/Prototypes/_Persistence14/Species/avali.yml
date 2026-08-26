@@ -1,0 +1,11 @@
+- type: species
+  id: Avali
+  name: species-name-vulpkanin
+  roundStart: true
+  prototype: MobAvali
+  defaultSkinTone: "#5a3f2d"
+  dollPrototype: AppearanceAvali
+  skinColoration: VulpkaninColors
+  maleFirstNames: names_vulpkanin_male
+  femaleFirstNames: names_vulpkanin_female
+  lastNames: names_vulpkanin_last
