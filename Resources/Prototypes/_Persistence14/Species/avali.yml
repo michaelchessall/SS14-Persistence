@@ -1,6 +1,6 @@
 - type: species
   id: Avali
-  name: species-name-vulpkanin
+  name: species-name-avali
   roundStart: true
   prototype: MobAvali
   defaultSkinTone: "#5a3f2d"
