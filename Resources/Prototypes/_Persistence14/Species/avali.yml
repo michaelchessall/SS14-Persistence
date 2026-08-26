@@ -5,7 +5,7 @@
   prototype: MobAvali
   defaultSkinTone: "#5a3f2d"
   dollPrototype: AppearanceAvali
-  skinColoration: VulpkaninColors
-  maleFirstNames: names_vulpkanin_male
-  femaleFirstNames: names_vulpkanin_female
-  lastNames: names_vulpkanin_last
+  skinColoration: AvaliColors
+  maleFirstNames: names_avali_first
+  femaleFirstNames: names_avali_first
+  lastNames: names_avali_packs
