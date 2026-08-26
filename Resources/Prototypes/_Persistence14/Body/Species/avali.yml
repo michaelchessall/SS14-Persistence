@@ -150,7 +150,7 @@
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Speech
     speechSounds: Parrot
-    speechVerb: Avali
+    speechVerb: chat-speech-verb-name-avali
     allowedEmotes: [ 'Chirp', 'Hisses', 'Purr', 'Growl', 'Scree', 'Call', 'Squawk']
   - type: Vocal
     sounds:
