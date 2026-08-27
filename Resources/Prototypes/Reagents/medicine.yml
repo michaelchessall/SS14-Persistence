@@ -289,7 +289,7 @@
       - !type:HealthChange
         damage:
           types:
-            poison: 1
+            Poison: 1
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Avali]
@@ -327,7 +327,7 @@
       - !type:HealthChange
         damage:
           types:
-            poison: 3
+            Poison: 3
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Avali]
@@ -778,7 +778,7 @@
         - !type:HealthChange
           damage:
             types:
-              poision: 1
+              Poison: 1
           conditions:
             - !type:MetabolizerTypeCondition
               type: [Avali]
