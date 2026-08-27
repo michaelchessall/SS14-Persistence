@@ -10,13 +10,13 @@ public sealed partial class WashingMachineComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan WashTime = TimeSpan.FromSeconds(5);
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public TimeSpan? WashFinishTime;
 
     [DataField, AutoNetworkedField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(6);
 
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField]
     public TimeSpan NextWashAllowed;
 
     [DataField]

@@ -4,11 +4,14 @@ using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Fluids;
+using Content.Shared.Fluids.Components;
+using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
 using Content.Shared.Popups;
 using Content.Shared.Verbs;
 using Robust.Shared.Containers;
+using Robust.Shared.Player;
 using Robust.Shared.Serialization;
 using Robust.Shared.Utility;
 
@@ -22,10 +25,12 @@ public enum StainVisuals : byte
 
 public abstract class SharedStainSystem : EntitySystem
 {
-    [Dependency] private SharedSolutionContainerSystem _solution = null!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = null!;
+    [Dependency] private readonly SharedHandsSystem _hands = null!;
     [Dependency] private readonly SharedItemSystem _item = null!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = null!;
     [Dependency] private readonly SharedContainerSystem _container = null!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = null!;
     [Dependency] private readonly InventorySystem _inventory = null!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = null!;
     [Dependency] private readonly SharedPuddleSystem _puddle = null!;
@@ -132,14 +137,35 @@ public abstract class SharedStainSystem : EntitySystem
         if (!_solution.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var sol) || sol.Volume <= 0)
             return;
 
+        MakeWringVerb(args.Target, ent.Comp.WringDoAfterDuration, ref args, "stain-verb-wring");
+    }
+
+    /// <summary>
+    ///
+    /// </summary>
+    /// <param name="ent">The entity to be wrung out</param>
+    /// <param name="duration">How long the doafter will take</param>
+    /// <param name="args"></param>
+    /// <param name="used">The entity the wring verb was used on</param>
+    public void MakeWringVerb(EntityUid ent, float duration, ref GetVerbsEvent<Verb> args, string? LocString = null, EntityUid? used = null)
+    {
+        if (!args.CanAccess || !args.CanInteract)
+            return;
+
         var user = args.User;
         args.Verbs.Add(new Verb
         {
-            Text = Loc.GetString("stain-verb-wring"),
-            Icon = new SpriteSpecifier.Texture(new ("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
+            Text = Loc.GetString(LocString ?? "stain-verb-wring"),
+            Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/bubbles.svg.192dpi.png")),
             Act = () =>
             {
-                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager, user, ent.Comp.WringDoAfterDuration, new WringStainDoAfterEvent(), ent.Owner)
+                _doAfter.TryStartDoAfter(new DoAfterArgs(EntityManager,
+                    user,
+                    duration,
+                    new WringStainDoAfterEvent(),
+                    ent,
+                    ent,
+                    used)
                 {
                     BreakOnMove = true,
                     BreakOnDamage = true,
@@ -153,15 +179,37 @@ public abstract class SharedStainSystem : EntitySystem
     {
         if (args.Handled || args.Cancelled)
             return;
+
+        TryWring(ent, ref args);
+    }
+
+    private void TryWring(Entity<StainableComponent> ent, ref WringStainDoAfterEvent args)
+    {
+        if (args.Handled || args.Cancelled)
+            return;
         args.Handled = true;
 
         if (!_solution.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out var solComp, out var sol))
             return;
 
         var split = _solution.SplitSolution(solComp.Value, sol.Volume);
-        UpdateVisuals(ent);
 
-        if (_puddle.TrySpillAt(args.User, split, out _))
+        if (args.Used is not null && // Wring into drain
+            TryComp<DrainComponent>(args.Used, out var drainComp) &&
+            drainComp.Solution is not null &&
+            _solution.TryAddSolution(drainComp.Solution.Value, split))
+        {
+            _popup.PopupEntity(Loc.GetString("stain-verb-wring-drain-success"), args.User, args.User);
+        }
+        else if (_puddle.TrySpillAt(ent.Owner, split, out _)) // Wring onto floor
+        {
             _popup.PopupEntity(Loc.GetString("stain-verb-wring-success"), args.User, args.User);
+        }
+        else // Return to stainable item
+        {
+            _popup.PopupEntity(Loc.GetString("stain-verb-wring-failure"), args.User, args.User);
+            _solution.TryAddSolution(solComp.Value, split);
+        }
+        UpdateVisuals(ent);
     }
 }
