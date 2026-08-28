@@ -22,6 +22,10 @@
     {
       "name": "northern",
       "directions": 4
+    },
+    {
+      "name": "wild",
+      "directions": 4
     }
   ]
 }
