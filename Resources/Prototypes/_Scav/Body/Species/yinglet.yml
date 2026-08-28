@@ -76,6 +76,74 @@
       Stomach: OrganYingletStomach
       Liver: OrganYingletLiver
       Kidneys: OrganYingletKidneys
+  - type: Sprite
+    layers:
+    # Torso
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+
+    # Head
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+
+    # Limbs
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+
+    # Extremities - Non-Default, yinglets' extremities overlap their torso
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+
+    # Underwear & clothing
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+
+    # Stuff that goes over the body but below equipment
+    - map: ["enum.HumanoidVisualLayers.Overlay"]
+
+    # More equipment
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "suitstorage" ]
+
+    # Stuff that goes in front of equipment
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
+
+    # Stuff that goes in front of stuff that goes in front of equipment
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+
+    # Extra stuff
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+
+    - map: [ "clownedon" ] # Dynamically generated
+      sprite: "Effects/creampie.rsi"
+      state: "creampie_human"
+      visible: false
   - type: Inventory
     speciesId: yinglet
     displacements:
@@ -84,6 +152,47 @@
           32:
             sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
             state: jumpsuit
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: eyes
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: hand
+      back:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: shoes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: head
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: belt
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: jumpsuit-female
       eyes:
         sizeMaps:
           32:

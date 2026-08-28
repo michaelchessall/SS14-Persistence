@@ -53,6 +53,10 @@
         {
             "name": "hand_r",
             "directions": 4
+        },
+        {
+            "name": "jumpsuit-female",
+            "directions": 4
         }
     ]
 }
