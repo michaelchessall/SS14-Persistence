@@ -1,3 +1,6 @@
+# Biology should use hard cannon while player-based rp without regards to mechanical things should use either the hard
+# or soft cannon
+
 - type: markingsGroup
   parent: Undergarments
   id: Avali
@@ -151,7 +154,21 @@
   - type: Speech
     speechSounds: Parrot
     speechVerb: Avali
-    allowedEmotes: [ 'Chirp', 'Hisses', 'Purr', 'Growl', 'Scree', 'Call', 'Squawk']
+    allowedEmotes: [ 'Chirp', 'Hisses', 'Purr', 'Growl', 'Scree', 'Call', 'Squawk', "Trill"]
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+      Acidic: [Touch, Ingestion]
+    reactions:
+    - reagents: [Water, SpaceCleaner]
+      methods: [Touch]
+      effects:
+      - !type:WashCreamPie
+      - !type:Emote
+        emote: Hiss
+        showInChat: true
+
   - type: Vocal
     sounds:
       Male: MaleAvali
@@ -169,9 +186,31 @@
         Slash: 3
   - type: Temperature
     specificHeat: 44
+  - type: ThermalRegulator
+    # Ammonia boils at normal tempature
+    # Though, All Avali in the threshold have gotten an implant to unnaturally cool their ammonia based-bloodstream (https://avali.fandom.com/wiki/Biology#Ammonia_Biology)
+    # The Cooler will first work on the bloodstream but it cannot cool them down in a fast enough past 320K.
+
+    implicitHeatRegulation: 5000
+    metabolismHeat: 300
+    radiatedHeat: 1000
+    sweatHeatRegulation: 2000
+    shiveringHeatRegulation: 2000
+    normalBodyTemperature: 220
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      80: SoftCritical
+      130: HardCritical
+      180: Dead
+    stateAlertDict:
+      Alive: HumanHealth
+      SoftCritical: HumanCrit
+      HardCritical: HumanCrit
+      Dead: HumanDead
   - type: TemperatureDamage
     heatDamageThreshold: 320
-    coldDamageThreshold: 230
+    coldDamageThreshold: 200
     coldDamage:
       types:
         Cold: 0.05 # Per second, scales with temperature & other constants
