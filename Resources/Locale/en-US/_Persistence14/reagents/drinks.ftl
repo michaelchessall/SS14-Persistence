@@ -13,3 +13,9 @@ reagent-physical-desc-tartarus-twist = hellish
 tartarus-twist-effect-burning = You're insides are burning up!!
 tartarus-twist-effect-pain = Everything hurts, OH GOD EVERYTHING HURTS!!
 tartarus-twist-effect-damned = You can hear the screams of the damned.
+
+# Cherry Limeade
+reagent-name-cherry-limeade = Cherry Limeade
+reagent-desc-cherry-limeade = Who says life gives you lemons? Sometimes it gives you limes.
+flavor-complex-cherry-limeade = sweet and sour, with a slight bitter undertone
+reagent-physical-desc-cherry-limeade = light red
