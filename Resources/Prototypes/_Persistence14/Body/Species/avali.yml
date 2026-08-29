@@ -186,12 +186,13 @@
         Slash: 3
   - type: Temperature
     specificHeat: 44
+    currentTemperature: 220
   - type: ThermalRegulator
     # Ammonia boils at normal tempature
     # Though, All Avali in the threshold have gotten an implant to unnaturally cool their ammonia based-bloodstream (https://avali.fandom.com/wiki/Biology#Ammonia_Biology)
     # The Cooler will first work on the bloodstream but it cannot cool them down in a fast enough past 320K.
 
-    implicitHeatRegulation: 5000
+    implicitHeatRegulation: 1000
     metabolismHeat: 300
     radiatedHeat: 1000
     sweatHeatRegulation: 2000
@@ -209,7 +210,7 @@
       HardCritical: HumanCrit
       Dead: HumanDead
   - type: TemperatureDamage
-    heatDamageThreshold: 320
+    heatDamageThreshold: 280
     coldDamageThreshold: 200
     coldDamage:
       types:
@@ -219,7 +220,7 @@
         Heat: 2.5 # Per second, scales with temperature & other constants
   - type: TemperatureProtection
     heatingCoefficient: 1.2
-    coolingCoefficient: 0.3
+    coolingCoefficient: 3
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

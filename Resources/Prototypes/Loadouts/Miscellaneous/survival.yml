@@ -19,6 +19,14 @@
     - Moth
     - Reptilian
     - Vulpkanin
+    - Avali # Persisistance14 Edit
+
+- type: loadoutEffectGroup # Persistance14 Edit
+  id: EffectSpeciesAvali
+  effects:
+    - !type:SpeciesLoadoutEffect
+      species:
+      - Avali
 
 - type: loadoutEffectGroup
   id: EffectSpeciesVox
@@ -213,6 +221,7 @@
 
 # Pre-equipped species gear
 
+
 # Full tank for vox as part of any Survival loadout
 - type: loadout
   id: LoadoutSpeciesVoxNitrogen
@@ -264,6 +273,16 @@
     proto: EffectSpeciesVox
   equipment:
     outerClothing: ClothingOuterVestTank
+
+# Avali evaporate extremely quickly if they don't have a suit on - Persistance14
+
+- type: loadout
+  id: LoadoutFireSuit
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: EffectSpeciesAvali
+  equipment:
+    outerClothing: ClothingOuterSuitFire
 
 # Breath Tool On Face
 - type: loadout

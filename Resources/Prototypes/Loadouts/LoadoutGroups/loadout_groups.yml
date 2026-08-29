@@ -1,3 +1,4 @@
+
 # Miscellaneous
 - type: loadoutGroup
   id: Trinkets
@@ -63,6 +64,13 @@
   hidden: true
   loadouts:
   - LoadoutTankHarness
+
+- type: loadoutGroup # Persistance14
+  id: GroupFireSuitAvali
+  name: loadout-group-firesuit-avali
+  hidden: true
+  loadouts:
+  - LoadoutFireSuit
 
 - type: loadoutGroup
   id: Survival
