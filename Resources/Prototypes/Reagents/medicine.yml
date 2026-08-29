@@ -1290,6 +1290,7 @@
         damage:
           types:
             Heat: -0.1667
+
       # od causes massive bleeding
       - !type:HealthChange
         conditions:
