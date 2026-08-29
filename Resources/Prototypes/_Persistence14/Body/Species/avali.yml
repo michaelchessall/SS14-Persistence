@@ -166,8 +166,8 @@
       effects:
       - !type:WashCreamPie
       - !type:Emote
-        emote: Hiss
-        showInChat: true
+        emote: Hisses
+        showInChat: false
 
   - type: Vocal
     sounds:
