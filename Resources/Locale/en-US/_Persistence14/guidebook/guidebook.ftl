@@ -1,4 +1,4 @@
-## Small and Simple Guidebook Entires for Persistence14
+## Small and Simple Guidebook Entries for Persistence14
 
 # Polymorph #
 entity-effect-guidebook-revert-polymorph = Reverts the target to its original form
@@ -34,3 +34,12 @@ guide-entry-death = Death
 guide-entry-achievements = Achievements
 guide-entry-grid-control = Grid Control
 guide-entry-access-control = Access Control
+guide-entry-threshold-medical = Threshold Medical
+# Threshold Medical #
+guide-entry-threshold-medicine-metabolism = Medicine & Metabolism
+guide-entry-threshold-topicals = Topicals
+guide-entry-threshold-resuscitation = Resuscitation
+
+# Writing #
+
+guide-entry-text-colors = Text Colors
