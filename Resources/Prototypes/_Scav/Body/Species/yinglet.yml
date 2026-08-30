@@ -1,4 +1,3 @@
-#TODO: eyes look weird, tail doesnt render on female in-game (only on preview), female displacement doesnt get applied in preview
 - type: markingsGroup
   parent: Undergarments
   id: Yinglet

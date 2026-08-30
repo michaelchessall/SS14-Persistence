@@ -11,8 +11,9 @@
        type:
         !type:SkinColoring
       long_inner:
-       type:
-        !type:SkinColoring
+        type:
+          !type:SimpleColoring
+            color: "#ffc5c5"
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
     state: long
@@ -35,7 +36,8 @@
         !type:SkinColoring
       short_inner:
        type:
-        !type:SkinColoring
+          !type:SimpleColoring
+            color: "#ffc5c5"
   sprites:
   - sprite: _Scav/Mobs/Customization/Yinglet/yinglet_ears.rsi
     state: short
