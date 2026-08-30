@@ -1,3 +1,4 @@
+#TODO: eyes look weird, tail doesnt render on female in-game (only on preview), female displacement doesnt get applied in preview
 - type: markingsGroup
   parent: Undergarments
   id: Yinglet
@@ -109,7 +110,6 @@
     # More equipment
     - map: [ "gloves" ]
     - map: [ "shoes" ]
-    - map: [ "ears" ]
     - map: [ "eyes" ]
     - map: [ "belt" ]
     - map: [ "id" ]
@@ -128,6 +128,7 @@
     - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
 
     # Stuff that goes in front of stuff that goes in front of equipment
+    - map: [ "ears" ] # Non-Default, headphones need to render over ears
     - map: [ "mask" ]
     - map: [ "head" ]
     - map: [ "pocket1" ]
