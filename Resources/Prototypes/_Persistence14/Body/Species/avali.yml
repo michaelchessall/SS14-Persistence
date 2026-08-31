@@ -189,16 +189,13 @@
     currentTemperature: 220
   - type: ThermalRegulator
     # Ammonia boils at normal tempature
-    # Though, All Avali in the threshold have gotten an implant to unnaturally cool their ammonia based-bloodstream (https://avali.fandom.com/wiki/Biology#Ammonia_Biology)
-    # The Cooler will first work on the bloodstream but it cannot cool them down in a fast enough past 320K.
-
-    implicitHeatRegulation: 1000
+    implicitHeatRegulation: 100
     metabolismHeat: 300
     radiatedHeat: 1000
-    sweatHeatRegulation: 2000
+    sweatHeatRegulation: 200 # Avali aren't used to heat so they wouldn't sweat as much
     shiveringHeatRegulation: 2000
     normalBodyTemperature: 220
-  - type: MobThresholds
+  - type: MobThresholds # Small bird + Hollow bones means you have less health to work with
     thresholds:
       0: Alive
       80: SoftCritical
