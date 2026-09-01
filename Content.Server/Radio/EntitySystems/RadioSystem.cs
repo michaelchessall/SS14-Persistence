@@ -1,6 +1,7 @@
 using Content.Server.Administration.Logs;
-using Content.Server.Chat.Managers; // Persistence: Chat stacking from RMC14 - pull/7587
+using Content.Server.Chat.Managers;
 using Content.Server.Chat.Systems;
+using Content.Server.Ghost;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
 using Content.Shared._RMC14.Chat; // Persistence: Chat stacking from RMC14 - pull/7587
@@ -36,10 +37,11 @@ public sealed partial class RadioSystem : EntitySystem
     [Dependency] private readonly IPrototypeManager _prototype = default!;
     [Dependency] private readonly IRobustRandom _random = default!;
     [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private IChatManager _chatManager = default!;
+    [Dependency] private GhostSystem _ghost = default!;
     [Dependency] private readonly HeadsetSystem _headset = default!;
     [Dependency] private readonly StationSystem _station = default!;
     [Dependency] private readonly SharedTransformSystem _xform = default!;
-    [Dependency] private readonly IChatManager _chatManager = default!; // Persistence: Chat stacking from RMC14 - pull/7587    [Dependency] private EntityQuery<TelecomExemptComponent> _exemptQuery = default!;
 
     [Dependency] private EntityQuery<TelecomExemptComponent> _exemptQuery = default!;
 
@@ -75,8 +77,25 @@ public sealed partial class RadioSystem : EntitySystem
 
     private void OnIntrinsicReceive(EntityUid uid, IntrinsicRadioReceiverComponent component, ref RadioReceiveEvent args)
     {
-        if (TryComp(uid, out ActorComponent? actor))
-            _netMan.ServerSendMessage(args.ChatMsg, actor.PlayerSession.Channel);
+        if (!TryComp(uid, out ActorComponent? actor))
+            return;
+
+        var msg = args.ChatMsg;
+        if (_ghost.CanGhostWarp(actor.PlayerSession, out _))
+        {
+            msg = new MsgChatMessage
+            {
+                Message = new ChatMessage(args.ChatMsg.Message)
+                {
+                    WrappedMessage = _chatManager.PrependFollowButtonIfAppropriate(
+                        args.ChatMsg.Message.WrappedMessage,
+                        args.MessageSource,
+                        actor.PlayerSession.Channel),
+                },
+            };
+        }
+
+        _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
     }
 
     /// <summary>

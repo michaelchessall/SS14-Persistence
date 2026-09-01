@@ -24,7 +24,6 @@ using Content.Server.ServerInfo;
 using Content.Server.ServerUpdates;
 using Content.Server.Voting.Managers;
 using Content.Shared.CCVar;
-using Content.Shared.Kitchen;
 using Content.Shared.Localizations;
 using Robust.Server;
 using Robust.Server.ServerStatus;
@@ -73,7 +72,6 @@ namespace Content.Server.Entry
         [Dependency] private MultiServerKickManager _multiServerKick = default!;
         [Dependency] private PlayTimeTrackingManager _playTimeTracking = default!;
         [Dependency] private PlayerRateLimitManager _rateLimit = default!;
-        [Dependency] private RecipeManager _recipe = default!;
         [Dependency] private RulesManager _rules = default!;
         [Dependency] private ServerApi _serverApi = default!;
         [Dependency] private ServerInfoManager _serverInfo = default!;
@@ -157,7 +155,6 @@ namespace Content.Server.Entry
                 return;
             }
 
-            _recipe.Initialize();
             _admin.Initialize();
             _afk.Initialize();
             _rules.Initialize();

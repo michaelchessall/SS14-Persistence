@@ -16,6 +16,8 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Shared.Tools.Systems;
+using Content.Shared.Tools;
 
 namespace Content.Server.Botany.Systems;
 
@@ -30,6 +32,9 @@ public sealed partial class BotanySystem : EntitySystem
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private RandomHelperSystem _randomHelper = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private SharedToolSystem _tools = default!;
+
+    private static readonly ProtoId<ToolQualityPrototype> HarvestTool = "Slicing";
 
     public override void Initialize()
     {
@@ -184,7 +189,7 @@ public sealed partial class BotanySystem : EntitySystem
 
     public bool CanHarvest(SeedData proto, EntityUid? held = null)
     {
-        return !proto.Ligneous || proto.Ligneous && held != null && HasComp<SharpComponent>(held);
+        return !proto.Ligneous || proto.Ligneous && held != null && _tools.HasQuality(held.Value, HarvestTool);
     }
 
     public static int CalculateTotalYield(int yield, int yieldMod)

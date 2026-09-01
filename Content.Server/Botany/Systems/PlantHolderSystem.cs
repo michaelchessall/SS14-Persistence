@@ -16,7 +16,6 @@ using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
-using Content.Shared.Kitchen.Components;
 using Content.Shared.Labels.Components;
 using Content.Shared.Popups;
 using Content.Shared.Random;
@@ -27,6 +26,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Content.Shared.Tools.Systems;
 
 namespace Content.Server.Botany.Systems;
 
@@ -48,6 +48,7 @@ public sealed partial class PlantHolderSystem : EntitySystem
     [Dependency] private ItemSlotsSystem _itemSlots = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private SharedToolSystem _tool = default!;
 
     public const float HydroponicsSpeedMultiplier = 1f;
     public const float HydroponicsConsumptionMultiplier = 2f;
@@ -321,7 +322,8 @@ public sealed partial class PlantHolderSystem : EntitySystem
             return;
         }
 
-        if (HasComp<SharpComponent>(args.Used))
+        var harvestToolQuality = entity.Comp.HarvestToolQuality;
+        if (harvestToolQuality.HasValue && _tool.HasQuality(args.Used, harvestToolQuality.Value))
         {
             args.Handled = true;
             DoHarvest(uid, args.User, component);

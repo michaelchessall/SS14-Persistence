@@ -11,6 +11,7 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Bed.Cryostorage;
 using Content.Shared.Chat;
 using Content.Shared.Climbing.Systems;
+using Content.Shared.Clothing.Components;
 using Content.Shared.Database;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
@@ -202,7 +203,6 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
             var ev = new PersonalCryoEvent(true);
             RaiseLocalEvent(cryostorageEnt.Value, ref ev);
         }
-            
 
         _audio.PlayPvs(cryostorageComponent.RemoveSound, ent);
 
@@ -303,12 +303,15 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         var enumerator = _inventory.GetSlotEnumerator(uid);
         while (enumerator.NextItem(out var item, out var slotDef))
         {
+            if (HasComp<AttachedClothingComponent>(item))
+                continue;
+
             data.ItemSlots.Add(slotDef.Name, Name(item));
         }
 
         foreach (var hand in _hands.EnumerateHands(uid))
         {
-            if (!_hands.TryGetHeldItem(uid, hand, out var heldEntity))
+            if (!_hands.TryGetHeldItem(uid, hand, out var heldEntity, true))
                 continue;
 
             data.HeldItems.Add(hand, Name(heldEntity.Value));

@@ -1,5 +1,5 @@
 using Content.Server.Beam;
-using Content.Server.Beam.Components;
+using Content.Shared.Beam.Components;
 using Content.Server.Lightning.Components;
 using Content.Shared.Lightning;
 using Robust.Server.GameObjects;

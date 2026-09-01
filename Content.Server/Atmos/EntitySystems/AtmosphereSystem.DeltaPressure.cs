@@ -1,3 +1,6 @@
+using System.Buffers;
+using System.Collections.Concurrent;
+using System.Numerics.Tensors;
 using Content.Server.Atmos.Components;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
@@ -5,8 +8,6 @@ using Content.Shared.Atmos.EntitySystems;
 using Content.Shared.Damage;
 using Robust.Shared.Random;
 using Robust.Shared.Threading;
-using System.Buffers;
-using System.Collections.Concurrent;
 
 namespace Content.Server.Atmos.EntitySystems;
 
@@ -162,9 +163,9 @@ public sealed partial class AtmosphereSystem
             }
 
             // Time to get crankin
-            NumericsHelpers.Max(groupA, groupB, groupMax);
-            NumericsHelpers.Sub(groupA, groupB);
-            NumericsHelpers.Abs(groupA);
+            TensorPrimitives.Max(groupA, groupB, groupMax);
+            TensorPrimitives.Subtract(groupA, groupB, groupA);
+            TensorPrimitives.Abs(groupA, groupA);
 
             // Now go through each entity and determine their max pressure & delta pressure.
             // Queue for damage if necessary.
