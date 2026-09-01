@@ -22,6 +22,7 @@
   - BioGenRobustHarvest
   - BioGenDiseaseSwab
   - BioGenCompostAmmonia
+  - BioGenUristekCube
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic
