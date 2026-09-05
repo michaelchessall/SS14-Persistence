@@ -32,7 +32,6 @@ public sealed partial class RadiationSystem
         }
         if (radiationSource.Intensity > activation.Comp.MaxIntensity)
             radiationSource.Intensity = activation.Comp.MaxIntensity;
-        Dirty(activation.Owner, radiationSource);
     }
 
     private float CalculateIntensityIncrease(Entity<RadiationActivationComponent> activation, float rads, float frameTime)

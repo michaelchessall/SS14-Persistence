@@ -296,7 +296,11 @@
     sprite: Structures/Power/Generation/rtg.rsi
     state: rtg_damaged
   - type: RadiationSource # ideally only when opened.
-    intensity: 2
+    intensity: 4
+  - type: RadioactiveDecay
+    halfLife: 4h
+  - type: RadiationActivation
+    maxIntensity: 10
   - type: Destructible
     thresholds:
     - trigger:
