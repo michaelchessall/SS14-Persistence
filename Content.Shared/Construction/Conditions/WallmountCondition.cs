@@ -16,6 +16,8 @@ namespace Content.Shared.Construction.Conditions
     public sealed partial class WallmountCondition : IConstructionCondition
     {
         private static readonly ProtoId<TagPrototype> WallTag = "Wall";
+        private static readonly ProtoId<TagPrototype> WindowTag = "Window";
+        private static readonly ProtoId<TagPrototype> DirectionalWindowTag = "DirectionalWindow";
 
         public bool Condition(EntityUid user, EntityCoordinates location, Direction direction)
         {
@@ -45,7 +47,7 @@ namespace Content.Shared.Construction.Conditions
             var tagSystem = entManager.System<TagSystem>();
 
             var userToObjRaycastResults = physics.IntersectRayWithPredicate(entManager.GetComponent<TransformComponent>(user).MapID, rUserToObj, maxLength: length,
-                predicate: (e) => !tagSystem.HasTag(e, WallTag));
+                predicate: (e) => !tagSystem.HasTag(e, WallTag) && !tagSystem.HasTag(e, WindowTag) || tagSystem.HasTag(e, DirectionalWindowTag));
 
             var targetWall = userToObjRaycastResults.FirstOrNull();
 
