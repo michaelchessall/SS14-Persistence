@@ -29,7 +29,8 @@ public sealed partial class IrradiateEntityEffectSystem : EntityEffectSystem<Tra
         if (args.Effect.Activates)
         {
             EnsureComp<RadiationActivationComponent>(entity.Owner, out var activationComponent);
-            activationComponent.MaxIntensity = args.Effect.MaxIntensity;
+            if (activationComponent.MaxIntensity < args.Effect.MaxIntensity)
+                activationComponent.MaxIntensity = args.Effect.MaxIntensity;
         }
     }
 }
