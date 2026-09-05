@@ -62,7 +62,9 @@ namespace Content.Shared.Construction.Conditions
             // check that we didn't try to build wallmount that facing another adjacent wall
             var rAdjWall = new CollisionRay(objWorldPosition, directionWithOffset.Normalized(), (int)CollisionGroup.Impassable);
             var adjWallRaycastResults = physics.IntersectRayWithPredicate(entManager.GetComponent<TransformComponent>(user).MapID, rAdjWall, maxLength: 0.5f,
-               predicate: e => e == targetWall.Value.HitEntity || !tagSystem.HasTag(e, WallTag));
+               predicate: e => e == targetWall.Value.HitEntity || !tagSystem.HasTag(e, WallTag) &&
+                               !tagSystem.HasTag(e, WindowTag) || // Persistence: Prevent wallmounts facing windows
+                               tagSystem.HasTag(e, DirectionalWindowTag)); // Persistence: Unless they are directional windows
 
             return !adjWallRaycastResults.Any();
         }
