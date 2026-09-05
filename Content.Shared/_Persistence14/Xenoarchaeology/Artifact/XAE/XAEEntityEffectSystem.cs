@@ -36,7 +36,7 @@ public sealed partial class XAEEntityEffectSystem : BaseXAESystem<XAEEntityEffec
         // Ignores all distance/whitelist restrictions
         if (effect.Flags.HasFlag(XAEEntityEffectTargetFlags.Artifact))
         {
-            yield return ent.Owner;
+            yield return args.Artifact;
         }
 
         /// Ignores whitelist and minimum distance restrictions

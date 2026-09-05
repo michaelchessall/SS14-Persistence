@@ -9,6 +9,6 @@ public sealed partial class RadioactiveDecayComponent : Component
     /// 
     /// With default values, the entity will half in intensity once every 5 hours (once a shift).
     /// </summary>
-    [DataField(required: true)]
+    [DataField]
     public TimeSpan HalfLife = TimeSpan.FromHours(5);
 }
