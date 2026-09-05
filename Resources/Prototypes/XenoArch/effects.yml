@@ -758,8 +758,8 @@
     - flags: Artifact
       effect: !type:Irradiate
         intensity: 2.0
-        halfLife: 4h
-        maxIntensity: 2.0
+        halfLife: 5h
+        maxIntensity: 6.0
 
 - type: entity
   id: XenoArtifactChargeBatteryLow
@@ -1443,8 +1443,8 @@
     - flags: Artifact
       effect: !type:Irradiate
         intensity: 4
-        halfLife: 4h
-        maxIntensity: 4
+        halfLife: 5h
+        maxIntensity: 12
         
 
 - type: entity
