@@ -169,6 +169,10 @@ public partial class RadiationSystem
         if (source.Transform.MapID != destTrs.MapID)
             return null;
 
+        // Persistence14 - Prevents entities from irradiating themself.
+        if (source.Entity.Owner == destUid)
+            return null;
+
         var mapId = destTrs.MapID;
 
         // get direction from rad source to destination and its distance

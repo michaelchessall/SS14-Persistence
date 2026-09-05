@@ -14,7 +14,9 @@ public sealed partial class RadiationActivationComponent : Component
 
     /// <summary>
     /// How effectively incoming radiation becomes activity.
+    /// 
+    /// At default rate, constant exposure to a given radiation intensity will accumulate that same intensity over 5 hours, ignoring decay.
     /// </summary>
     [DataField]
-    public float ActivationRate = 0.01f;
+    public float ActivationRate = 1f / 18000f;
 }

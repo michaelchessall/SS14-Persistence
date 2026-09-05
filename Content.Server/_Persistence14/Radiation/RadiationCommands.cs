@@ -38,13 +38,11 @@ public sealed partial class AddRadiationCommand : IConsoleCommand
         if (_entityManager.TryGetComponent<RadiationSourceComponent>(ent, out var source))
         {
             source.Intensity += intensity;
-            _entityManager.Dirty(ent, source);
             return;
         }
 
         source = _entityManager.AddComponent<RadiationSourceComponent>(ent);
         source.Intensity = intensity;
-        _entityManager.Dirty(ent, source);
         return;
     }
 }

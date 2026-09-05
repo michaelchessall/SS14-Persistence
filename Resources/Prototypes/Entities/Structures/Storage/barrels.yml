@@ -65,11 +65,10 @@
     state: radbarrel
   - type: RadiationSource
     intensity: 2.0
-    slope: 0.25
   - type: RadioactiveDecay
-    halfLife: 4h
   - type: RadiationActivation
     maxIntensity: 6
+  - type: RadiationReceiver
 
 - type: entityTable
   id: RandomChemicalBarrel

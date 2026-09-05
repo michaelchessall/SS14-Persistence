@@ -514,9 +514,11 @@
       Uranium: 2500 # 25 sheets
       Plastic: 500 # 5 sheets
   - type: RadiationSource
-    intensity: 3.0
+    intensity: 3
   - type: RadioactiveDecay
-    halfLife: 4h
+  - type: RadiationReceiver
+  - type: RadiationActivation
+    maxIntensity: 9
 
 - type: entity
   parent: BaseScrapLarge
@@ -542,7 +544,9 @@
   - type: RadiationSource
     intensity: 1.5
   - type: RadioactiveDecay
-    halfLife: 4h
+  - type: RadiationReceiver
+  - type: RadiationActivation
+    maxIntensity: 9.0 # Same as leaking generator
 
 - type: entity
   parent: BaseScrapLarge

@@ -7,29 +7,21 @@ public sealed partial class RadiationSystem
 {
     private void IncreaseSourceIntensity(Entity<RadiationActivationComponent?> activation, float rads, float frameTime)
     {
-        if (!Resolve(activation, ref activation.Comp))
+        if (!Resolve(activation, ref activation.Comp, false))
             return;
 
         var increase = CalculateIntensityIncrease((activation, activation.Comp), rads, frameTime);
-
         if (increase <= 0f)
             return;
 
-
         if (!TryComp<RadiationSourceComponent>(activation, out var radiationSource))
         {
-            if (TryComp<RadioactiveDecayComponent>(activation.Owner, out var decay) && increase < decay.MinimumRadiationIntesnity)
-                return;
-
             radiationSource = AddComp<RadiationSourceComponent>(activation.Owner);
             radiationSource.Intensity = increase;
         }
-        else
-        {
-            if (TryComp<RadioactiveDecayComponent>(activation.Owner, out var decay) && radiationSource.Intensity + increase < decay.MinimumRadiationIntesnity)
-                return;
+        else if (rads > radiationSource.Intensity)
             radiationSource.Intensity += increase;
-        }
+
         if (radiationSource.Intensity > activation.Comp.MaxIntensity)
             radiationSource.Intensity = activation.Comp.MaxIntensity;
     }

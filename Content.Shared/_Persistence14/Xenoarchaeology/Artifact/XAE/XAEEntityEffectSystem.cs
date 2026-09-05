@@ -9,7 +9,6 @@ using Robust.Shared.Random;
 
 namespace Content.Shared._Persistence14.Xenoarcheology.Artifact.XAE;
 
-[RegisterComponent]
 public sealed partial class XAEEntityEffectSystem : BaseXAESystem<XAEEntityEffectComponent>
 {
     [Dependency] private IRobustRandom _random = default!;
