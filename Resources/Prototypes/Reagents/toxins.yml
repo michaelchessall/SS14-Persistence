@@ -78,14 +78,26 @@
     Bloodstream:
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         damage:
           types:
             Poison: 4
       - !type:PopupMessage
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
+      - !type:Drunk
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
 
 - type: reagent
   id: ChloralHydrate
@@ -132,11 +144,18 @@
     Bloodstream:
       effects:
         - !type:HealthChange
+          conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Yinglet ]
+            inverted: true
           damage:
             types:
               Poison: 2
         - !type:Vomit
           conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ Yinglet ]
+            inverted: true
           - !type:ReagentCondition
             reagent: GastroToxin
             min: 2
@@ -500,9 +519,18 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         damage:
           types:
             Poison: 3
+      - !type:Drunk
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+        boozePower: 2
 
 - type: reagent
   id: VentCrud
@@ -706,6 +734,10 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         damage:
           types:
             Poison: 1.8
