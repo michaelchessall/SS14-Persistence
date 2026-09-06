@@ -43,6 +43,7 @@
   id: JobPassenger
   groups:
   - GroupTankHarness
+  - GroupFireSuitAvali # Persistance 14 edit
   - PassengerJumpsuit
   - CommonBackpack
   - PassengerNeck
