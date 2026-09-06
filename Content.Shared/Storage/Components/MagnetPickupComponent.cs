@@ -26,4 +26,7 @@ public sealed partial class MagnetPickupComponent : Component
 
     [ViewVariables(VVAccess.ReadWrite), DataField("range")]
     public float Range = 1f;
+
+    [DataField, AutoNetworkedField]
+    public bool Active = true;
 }
