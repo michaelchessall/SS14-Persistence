@@ -366,8 +366,8 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
 
         if (damageVisComp.TargetLayers != null && damageVisComp.DamageOverlayGroups != null)
             UpdateDisabledLayers(uid, spriteComponent, component, damageVisComp);
-
-        if (damageVisComp.Overlay && damageVisComp.DamageOverlayGroups != null && damageVisComp.TargetLayers == null)
+        // fix for Persistence =] now walls can use damagevisuals!!!
+        if (damageVisComp.Overlay && damageVisComp.TargetLayers == null) 
             CheckOverlayOrdering((uid, spriteComponent), damageVisComp);
 
         if (AppearanceSystem.TryGetData<bool>(uid, DamageVisualizerKeys.ForceUpdate, out var update, component)
@@ -475,7 +475,8 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
                 new(sprite.Sprite),
                 $"{statePrefix}_{threshold}"
             ),
-            spriteLayer);
+            // Fix for persi! now walls can have the damage visuals component.
+            spriteEnt.Comp.AllLayers.Count());
         SpriteSystem.LayerMapSet(spriteEnt.AsNullable(), key, spriteLayer);
         SpriteSystem.LayerSetVisible(spriteEnt.AsNullable(), spriteLayer, visibility);
         // this is somewhat iffy since it constantly reallocates
