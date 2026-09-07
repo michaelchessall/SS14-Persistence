@@ -85,6 +85,26 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Slime]
+      - !type:EvenHealthChange # Same benefits as Vitamin, specifically for yinglets for yinglets. In Digestion instead of Metabolites since slime is accessible in much greater quantities
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+        probability: 0.5
+        damage:
+          Brute: -0.5
+          Burn: -0.5
+      - !type:ModifyBleed
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+        amount: -0.25
+      - !type:ModifyStatusEffect # Yinglets also get high from it
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+        effectProto: StatusEffectSeeingRainbow
+        type: Add
+        time: 5
   footstepSound:
     collection: FootstepSlime # makes sense
     params:

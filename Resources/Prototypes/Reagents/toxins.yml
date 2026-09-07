@@ -98,6 +98,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
+        boozePower: 10
 
 - type: reagent
   id: ChloralHydrate
@@ -530,7 +531,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
-        boozePower: 2
+        boozePower: 5
 
 - type: reagent
   id: VentCrud

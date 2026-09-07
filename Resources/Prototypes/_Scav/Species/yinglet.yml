@@ -3,7 +3,7 @@
   name: species-name-yinglet
   roundStart: true
   prototype: MobYinglet
-  defaultSkinTone: "#ffda93"
+  defaultSkinTone: "#AD8667FF"
   dollPrototype: AppearanceYinglet
   skinColoration: Hues
   maleFirstNames: NamesYingletMale
