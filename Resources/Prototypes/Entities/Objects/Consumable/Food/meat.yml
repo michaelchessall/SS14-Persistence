@@ -901,6 +901,19 @@
       - state: slime-inhand-left
       right:
       - state: slime-inhand-right
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: UncookedAnimalProteins
+          Quantity: 1
+        - ReagentId: Fat
+          Quantity: 5
+        - ReagentId: Slime
+          Quantity: 10
 
 - type: entity
   parent: FoodMeatRawBase
@@ -913,7 +926,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 20
         reagents:
         - ReagentId: UncookedAnimalProteins
           Quantity: 3
@@ -921,6 +934,8 @@
           Quantity: 3
         - ReagentId: Water
           Quantity: 4 #It makes saline if you add salt!
+        - ReagentId: Slime
+          Quantity: 20
   - type: Item
     storedOffset: -1,-3
     inhandVisuals:
@@ -1582,7 +1597,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 15
+        maxVol: 18
         reagents:
         - ReagentId: Nutriment
           Quantity: 3
@@ -1590,6 +1605,8 @@
           Quantity: 3
         - ReagentId: Water
           Quantity: 4 # makes saline if you add salt!
+        - ReagentId: Slime
+          Quantity: 3
   - type: FoodSequenceElement
     entries:
       Burger: MeatSnail
