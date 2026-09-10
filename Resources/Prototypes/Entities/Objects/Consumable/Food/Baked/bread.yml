@@ -21,7 +21,7 @@
       food:
         maxVol: 26
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 20
 
 - type: entity
@@ -43,7 +43,7 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 4
 
 # Custom Bread Example
@@ -144,7 +144,7 @@
       food:
         maxVol: 26
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 10
         - ReagentId: Fiber
           Quantity: 10
@@ -174,7 +174,7 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 2
         - ReagentId: Fiber
           Quantity: 2
@@ -199,7 +199,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 15
 # Tastes like bread, banana, nut.
 
@@ -221,7 +221,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 3
 
 - type: entity
@@ -245,7 +245,7 @@
       food:
         maxVol: 35
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 20
         - ReagentId: Vitamin
           Quantity: 5
@@ -270,7 +270,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 1.2
@@ -295,8 +295,10 @@
       food:
         maxVol: 45
         reagents:
+        - ReagentId: Grain
+          Quantity: 20
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
   - type: Tag
@@ -323,8 +325,10 @@
       food:
         maxVol: 10
         reagents:
+        - ReagentId: Grain
+          Quantity: 4
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 2
         - ReagentId: Vitamin
           Quantity: 1.2
   - type: Tag
@@ -353,7 +357,7 @@
       food:
         maxVol: 40
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 15
         - ReagentId: Vitamin
           Quantity: 5
@@ -381,7 +385,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -432,7 +436,7 @@
       food:
         maxVol: 45
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
@@ -461,7 +465,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 1
@@ -493,8 +497,10 @@
       food:
         maxVol: 45
         reagents:
+        - ReagentId: Grain
+          Quantity: 20
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
   - type: Tag
@@ -521,8 +527,10 @@
       food:
         maxVol: 12
         reagents:
+        - ReagentId: Grain
+          Quantity: 4
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 2
         - ReagentId: Vitamin
           Quantity: 1.2
   - type: Tag
@@ -551,8 +559,10 @@
       food:
         maxVol: 48
         reagents:
+        - ReagentId: Grain
+          Quantity: 20
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 10
         - ReagentId: Protein
           Quantity: 12
 # Tastes like bread, tofu.
@@ -575,8 +585,10 @@
       food:
         maxVol: 10
         reagents:
+        - ReagentId: Grain
+          Quantity: 4
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 2
         - ReagentId: Vitamin
           Quantity: 2.4
 
@@ -600,8 +612,10 @@
       food:
         maxVol: 45
         reagents:
+        - ReagentId: Grain
+          Quantity: 20
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
   - type: Tag
@@ -628,8 +642,10 @@
       food:
         maxVol: 10
         reagents:
+        - ReagentId: Grain
+          Quantity: 4
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 2
         - ReagentId: Vitamin
           Quantity: 1.2
   - type: Tag
@@ -656,7 +672,7 @@
       food:
         maxVol: 15
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 1
@@ -716,7 +732,7 @@
       food:
         maxVol: 15
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 3
         - ReagentId: Fiber
           Quantity: 3
@@ -740,7 +756,7 @@
       food:
         maxVol: 2
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 0.5
         - ReagentId: Vitamin
           Quantity: 0.1
@@ -769,7 +785,7 @@
       food:
         maxVol: 2
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 0.25
         - ReagentId: Fiber
           Quantity: 0.25
@@ -797,8 +813,10 @@
       food:
         maxVol: 10
         reagents:
+        - ReagentId: Grain
+          Quantity: 4
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
 # Tastes like bread, butter.
@@ -820,7 +838,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 2
@@ -844,8 +862,10 @@
       food:
         maxVol: 15
         reagents:
+        - ReagentId: Grain
+          Quantity: 4
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 2
         - ReagentId: Vitamin
           Quantity: 5
 # Tastes like garlic, Italy.
@@ -868,7 +888,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 4
         - ReagentId: Vitamin
           Quantity: 4
@@ -891,7 +911,7 @@
       food:
         maxVol: 15
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 4
         - ReagentId: Mold
           Quantity: 7
@@ -911,7 +931,7 @@
       food:
         maxVol: 15
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 2
@@ -936,7 +956,7 @@
       food:
         maxVol: 45
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain
           Quantity: 10
         - ReagentId: Vitamin
           Quantity: 5
