@@ -193,6 +193,7 @@
   - type: Tag
     tags:
     - Recyclable
+    - Book
 
 - type: entity
   id: BookFactionHandbook
