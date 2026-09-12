@@ -123,8 +123,6 @@
       weight: 1.0
     - id: XenoArtifactEmp
       weight: 1.0
-    # - id: XenoArtifactExplosionScary
-      #   weight: 0.0
     - id: XenoArtifactFaunaSpawn
       weight: 8.0
     - id: XenoArtifactFloraSpawn
@@ -304,8 +302,6 @@
       weight: 6.0
     - id: XenoArtifactEmp
       weight: 6.0
-    # - id: XenoArtifactExplosionScary
-      #   weight: 0.0
     - id: XenoArtifactFaunaSpawn
       weight: 7.0
     - id: XenoArtifactFloraSpawn
@@ -485,8 +481,6 @@
       weight: 10.0
     - id: XenoArtifactEmp
       weight: 10.0
-    # - id: XenoArtifactExplosionScary
-      #   weight: 0.0
     - id: XenoArtifactFaunaSpawn
       weight: 3.0
     - id: XenoArtifactFloraSpawn
@@ -666,14 +660,6 @@
     children:
     - id: XenoArtifactSpeedUp
       weight: 8.0
-     - id: XenoArtifactToolCrowbar
-         weight: 0.0
-     - id: XenoArtifactToolScrewdriver
-         weight: 0.0
-     - id: XenoArtifactToolWrench
-         weight: 0.0
-     - id: XenoArtifactToolWirecutter
-         weight: 0.0
     - id: XenoArtifactToolJaws
       weight: 3.0
     - id: XenoArtifactToolPowerDrill
