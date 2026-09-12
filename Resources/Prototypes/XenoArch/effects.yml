@@ -1215,7 +1215,7 @@
 - type: entity
   id: XenoArtifactOldCashSpawn
   parent: BaseXenoArtifactEffect
-  description: Create money
+  description: Create coins
   components:
   - type: XenoArtifactNode
     maxDurability: 2

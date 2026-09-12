@@ -1,57 +1,57 @@
 - type: weightedRandomXenoArchTrigger
   id: DefaultTriggers
   weights:
-    TriggerMusic: 1
-    TriggerHeat: 1
-    TriggerCold: 0.5
-    TriggerNoOxygen: 1
-    TriggerWater: 1
-    TriggerCO2: 0.5
-    TriggerPlasma: 0.5
-    TriggerN2O: 0.5
-    TriggerTritium: 0.1
-    TriggerAmmonia: 0.1
-    TriggerFrezon: 0.1
-    TriggerRadiation: 1
-    TriggerPressureHigh: 0.5
-    TriggerPressureLow: 1
-    TriggerExamine: 1
+    TriggerMusic: 8
+    TriggerHeat: 7
+    TriggerCold: 5
+    TriggerNoOxygen: 7
+    TriggerWater: 8
+    TriggerCO2: 5
+    TriggerPlasma: 5
+    TriggerN2O: 5
+    TriggerTritium: 5
+    TriggerAmmonia: 5
+    TriggerFrezon: 5
+    TriggerRadiation: 7
+    TriggerPressureHigh: 5
+    TriggerPressureLow: 7
+    TriggerExamine: 7
     # _Persistence14 content: emote triggers (common tier, weight 1 like most triggers)
-    TriggerLaugh: 1
-    TriggerSigh: 1
-    TriggerSneeze: 1
-    TriggerCough: 1
-    TriggerWhistle: 1
-    TriggerCry: 1
-    TriggerClap: 1
-    TriggerYawn: 1
-    TriggerScream: 1
+    TriggerLaugh: 6
+    TriggerSigh: 6
+    TriggerSneeze: 6
+    TriggerCough: 6
+    TriggerWhistle: 6
+    TriggerCry: 6
+    TriggerClap: 6
+    TriggerYawn: 6
+    TriggerScream: 6
     # end _Persistence14 content
-    TriggerBluntDamage: 1
-    TriggerPierceDamage: 1
-    TriggerWrenching: 0.5
-    TriggerPrying: 0.5
-    TriggerScrewing: 0.5
-    TriggerPulsing: 0.5
-    TriggerSlicing: 0.5
-    TriggerCutting: 0.5
-    TriggerRolling: 0.5
-    TriggerBrushing: 0.5
-    TriggerTimer: 0.01
-    TriggerBlood: 1
-    TriggerThrow: 1
-    TriggerDeath: 1
-    TriggerMagnet: 1
-    TriggerChemBrute: 1
-    TriggerChemBurn: 1
-    TriggerChemToxin: 1
-    TriggerChemGenetic: .5
-    TriggerChemCryo: 1
-    TriggerChemNarcotic: .5
-    TriggerChemAcidic: .5
-    TriggerChemCleaning: 1
-    TriggerChemSticky: .5
-    TriggerChemSlippery: .5
+    TriggerBluntDamage: 10
+    TriggerPierceDamage: 10
+    TriggerWrenching: 10
+    TriggerPrying: 10
+    TriggerScrewing: 10
+    TriggerPulsing: 10
+    TriggerSlicing: 10
+    TriggerCutting: 10
+    TriggerRolling: 10
+    TriggerBrushing: 10
+    TriggerTimer: 1
+    TriggerBlood: 7
+    TriggerThrow: 7
+    TriggerDeath: 4
+    TriggerMagnet: 8
+    # TriggerChemBrute: 0
+    # TriggerChemBurn: 0
+    # TriggerChemToxin: 0
+    # TriggerChemGenetic: 0
+    # TriggerChemCryo: 0
+    # TriggerChemNarcotic: 0
+    # TriggerChemAcidic: 0
+    # TriggerChemCleaning: 0
+    TriggerChemSticky: 3
+    TriggerChemSlippery: 1
 
 - type: xenoArchTrigger
   id: TriggerMusic
