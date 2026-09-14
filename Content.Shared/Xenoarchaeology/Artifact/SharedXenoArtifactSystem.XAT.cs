@@ -25,6 +25,7 @@ public abstract partial class SharedXenoArtifactSystem
         XATRelayLocalEvent<ReactionEntityEvent>();
         XATRelayLocalEvent<LandEvent>();
         XATRelayLocalEvent<XATItemInteractDoAfterEvent>();
+        XATRelayLocalEvent<XATFeedDoAfterEvent>(); // _Persistence14: feed-an-item triggers
 
         // special case this one because we need to order the messages
         SubscribeLocalEvent<XenoArtifactComponent, ExaminedEvent>(OnExamined);
