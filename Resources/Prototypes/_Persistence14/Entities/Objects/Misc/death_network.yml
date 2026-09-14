@@ -1,0 +1,8 @@
+# This entity is used as the voice of death network SOS broadcasts
+- type: entity
+  name: Sector Medical Alert System
+  id: DeathNetworkSpeaker
+  components:
+  - type: DeathNetworkSpeaker
+  - type: Speech # Borg voice
+    speechVerb: Robotic
