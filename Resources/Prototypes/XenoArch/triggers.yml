@@ -8,10 +8,14 @@
     TriggerWater: 1
     TriggerCO2: 0.5
     TriggerPlasma: 0.5
-    TriggerN2O: 0.5
-    TriggerTritium: 0.1
     TriggerAmmonia: 0.1
-    TriggerFrezon: 0.1
+    TriggerCombustion: 1
+    TriggerSynthesis: 1
+    TriggerOxidation: 1
+    TriggerDirectGas: 1
+    TriggerThermalDecomposition: 1
+    TriggerCoolant: 1
+    TriggerCryogenic: 1
     TriggerRadiation: 1
     TriggerPressureHigh: 0.5
     TriggerPressureLow: 1
@@ -52,6 +56,63 @@
     TriggerChemCleaning: 1
     TriggerChemSticky: .5
     TriggerChemSlippery: .5
+    # _Persistence14 content: ingredient "feed a prepared dish" triggers
+    TriggerFeedDough: 1
+    TriggerFeedCheese: 1
+    TriggerFeedMilk: 1
+    TriggerFeedButter: 1
+    TriggerFeedEgg: 1
+    TriggerFeedFlour: 1
+    TriggerFeedMeat: 1
+    TriggerFeedFish: 1
+    TriggerFeedChicken: 1
+    TriggerFeedTomato: 1
+    TriggerFeedChili: 1
+    TriggerFeedCarrot: 1
+    TriggerFeedPotato: 1
+    TriggerFeedCabbage: 1
+    TriggerFeedApple: 1
+    TriggerFeedBerries: 1
+    TriggerFeedRice: 1
+    TriggerFeedOats: 1
+    # bar drink triggers (by ingredient + mixing method)
+    TriggerDrinkRum: 1
+    TriggerDrinkVodka: 1
+    TriggerDrinkWhiskey: 1
+    TriggerDrinkGin: 1
+    TriggerDrinkTequila: 1
+    TriggerDrinkBeer: 1
+    TriggerDrinkCoffee: 1
+    TriggerDrinkVermouth: 1
+    TriggerDrinkAbsinthe: 1
+    TriggerDrinkCognac: 1
+    TriggerDrinkBlueCuracao: 1
+    TriggerDrinkWine: 1
+    TriggerDrinkAle: 1
+    TriggerDrinkChampagne: 1
+    TriggerDrinkShaken: 1
+    TriggerDrinkStirred: 1
+    # botany mutant-plant triggers (rare — mutation-only produce)
+    TriggerFeedMeatwheat: 1
+    TriggerFeedMimana: 1
+    TriggerFeedLaughinPea: 1
+    TriggerFeedWorldPea: 1
+    TriggerFeedLemoon: 1
+    TriggerFeedExtradimensionalOrange: 1
+    TriggerFeedPapercane: 1
+    TriggerFeedBlueTomato: 1
+    TriggerFeedBloodTomato: 1
+    TriggerFeedBloonion: 1
+    TriggerFeedRainbowCannabis: 1
+    TriggerFeedDeathNettle: 1
+    TriggerFeedChillyPepper: 1
+    TriggerFeedLily: 1
+    TriggerFeedSpacemansTrumpet: 1
+    TriggerFeedAmbrosiaDeus: 1
+    TriggerFeedKoibean: 1
+    TriggerFeedHolymelon: 1
+    TriggerFeedBluePumpkin: 1
+    TriggerFeedPyrotton: 1
 
 - type: xenoArchTrigger
   id: TriggerMusic
@@ -92,7 +153,8 @@
   tip: xenoarch-trigger-tip-no-oxygen
   components:
   - type: XATGas
-    targetGas: Oxygen
+    gases:
+    - Oxygen
     moles: 10
     shouldBePresent: false
 
@@ -101,7 +163,8 @@
   tip: xenoarch-trigger-tip-water
   components:
   - type: XATGas
-    targetGas: WaterVapor
+    gases:
+    - WaterVapor
   - type: XATReactive
     reagents:
     - Water
@@ -111,7 +174,8 @@
   tip: xenoarch-trigger-tip-co2
   components:
   - type: XATGas
-    targetGas: CarbonDioxide
+    gases:
+    - CarbonDioxide
   - type: XATReactive
     reagents:
     - CarbonDioxide
@@ -121,47 +185,108 @@
   tip: xenoarch-trigger-tip-plasma
   components:
   - type: XATGas
-    targetGas: Plasma
+    gases:
+    - Plasma
   - type: XATReactive
     reagents:
     - Plasma
-
-- type: xenoArchTrigger
-  id: TriggerTritium
-  tip: xenoarch-trigger-tip-tritium
-  components:
-  - type: XATGas
-    targetGas: Tritium
-  - type: XATReactive
-    reagents:
-    - Tritium
 
 - type: xenoArchTrigger
   id: TriggerAmmonia
   tip: xenoarch-trigger-tip-ammonia
   components:
   - type: XATGas
-    targetGas: Ammonia
+    gases:
+    - Ammonia
   - type: XATReactive
     reagents:
     - Ammonia
 
 - type: xenoArchTrigger
-  id: TriggerN2O
-  tip: xenoarch-trigger-tip-n2o
+  id: TriggerCombustion
+  tip: xenoarch-trigger-tip-combustion
   components:
   - type: XATGas
-    targetGas: NitrousOxide
+    gases:
+    - Tritium
+    - WaterVapor
+    - CarbonDioxide
+  - type: XATReactive
+    reagents:
+    - Tritium
+
+- type: xenoArchTrigger
+  id: TriggerSynthesis
+  tip: xenoarch-trigger-tip-synthesis
+  components:
+  - type: XATGas
+    gases:
+    - Methane
+    - ChlorineTrifluoride
+    - WaterVapor
+  - type: XATReactive
+    reagents:
+    - Methane
+    - ChlorineTrifluoride
+
+- type: xenoArchTrigger
+  id: TriggerOxidation
+  tip: xenoarch-trigger-tip-oxidation
+  components:
+  - type: XATGas
+    gases:
+    - Hydrogen
+    - Fluorine
+    - CarbonDioxide
+    - WaterVapor
+  - type: XATReactive
+    reagents:
+    - Hydrogen
+    - Fluorine
+
+- type: xenoArchTrigger
+  id: TriggerDirectGas
+  tip: xenoarch-trigger-tip-direct-gas
+  components:
+  - type: XATGas
+    gases:
+    - Chlorine
+    - Fluorine
+    - CarbonDioxide
+  - type: XATReactive
+    reagents:
+    - Chlorine
+    - Fluorine
+
+- type: xenoArchTrigger
+  id: TriggerThermalDecomposition
+  tip: xenoarch-trigger-tip-thermal-decomposition
+  components:
+  - type: XATGas
+    gases:
+    - Nitrogen
+  - type: XATReactive
+    reagents:
+    - Nitrogen
+
+- type: xenoArchTrigger
+  id: TriggerCoolant
+  tip: xenoarch-trigger-tip-coolant
+  components:
+  - type: XATGas
+    gases:
+    - NitrousOxide
   - type: XATReactive
     reagents:
     - NitrousOxide
 
 - type: xenoArchTrigger
-  id: TriggerFrezon
-  tip: xenoarch-trigger-tip-frezon
+  id: TriggerCryogenic
+  tip: xenoarch-trigger-tip-cryogenic
   components:
   - type: XATGas
-    targetGas: Frezon
+    gases:
+    - Frezon
   - type: XATReactive
     reagents:
     - Frezon
@@ -558,3 +683,841 @@
     reagents:
     - SpaceLube
     - SoapReagent
+
+# _Persistence14 content
+- type: xenoArchTrigger
+  id: TriggerFeedDough
+  tip: xenoarch-trigger-tip-feed-dough
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBagelPoppy
+    - FoodPieAmanita
+    - FoodPieApple
+    - FoodPieBaklava
+    - FoodPieBananaCream
+    - FoodPieClafoutis
+    - FoodPieCherry
+    - FoodPieFrosty
+    - FoodPieMeat
+    - FoodPiePumpkin
+    - FoodPieXeno
+    - FoodTartCoco
+    - FoodTartGapple
+    - FoodTartGrape
+    - FoodTartMime
+    - FoodBreadBanana
+    - FoodBreadCreamcheese
+    - FoodBreadMeat
+    - FoodBreadMimana
+    - FoodBreadSausage
+    - FoodBreadMeatSpider
+    - FoodBreadTofu
+    - FoodBreadMeatXeno
+    - FoodBreadBaguette
+    - FoodBreadBaguetteCotton
+    - WeaponBaguette
+    - FoodMealCubancarp
+    - FoodPizzaMargherita
+    - FoodPizzaMushroom
+    - FoodPizzaMeat
+    - FoodPizzaVegetable
+    - FoodPizzaPineapple
+    - FoodPizzaDank
+    - FoodPizzaDonkpocket
+    - FoodPizzaUranium
+    - FoodPizzaCotton
+    - FoodBakedDumplings
+    - FoodBakedMuffin
+    - FoodBakedMuffinChocolate
+    - FoodBakedMuffinBerry
+    - FoodBakedMuffinBanana
+    - FoodBakedMuffinCherry
+    - FoodMacaroniCheese
+    - FoodNoodlesBoiled
+    - FoodNoodlesBoiledFlat
+    - FoodMealRavioli
+    - FoodMealNachos
+    - FoodMealNachosCheesy
+    - FoodMealNachosCuban
+
+- type: xenoArchTrigger
+  id: TriggerFeedCheese
+  tip: xenoarch-trigger-tip-feed-cheese
+  components:
+  - type: XATFeed
+    foods:
+    - FoodCakeCheese
+    - FoodBurgerBacon
+    - FoodBurgerBig
+    - FoodBurgerCheese
+    - FoodBurgerCrazy
+    - FoodBurgerDuck
+    - FoodBurgerCarp
+    - FoodBurgerMcguffin
+    - FoodBurgerSoy
+    - FoodBurgerSuper
+    - FoodBurgerLung
+    - FoodBurgerLiver
+    - FoodBurgerStomach
+    - FoodBurgerKidneys
+    - FoodBurgerHeart
+    - FoodBreadCreamcheese
+    - FoodBreadMeat
+    - FoodBreadMeatSpider
+    - FoodBreadMeatXeno
+    - FoodPizzaMargherita
+    - FoodPizzaMeat
+    - FoodPizzaDank
+    - FoodPizzaDonkpocket
+    - FoodSoupOnion
+    - FoodMealCubancarp
+    - FoodMealPotatoLoaded
+    - FoodMealFriesCheesy
+    - FoodMealNachosCheesy
+    - FoodMealQueso
+    - FoodMealOmelette
+    - FoodMacaroniCheese
+    - FoodMealRavioli
+    - FoodSaladCaesar
+    - FoodTacoBeef
+    - FoodTacoChicken
+    - FoodTacoRat
+    - FoodTacoBeefSupreme
+    - FoodTacoChickenSupreme
+    - FoodBakedGrilledCheeseSandwich
+    - FoodBakedGrilledCheeseSandwichCotton
+
+- type: xenoArchTrigger
+  id: TriggerFeedMilk
+  tip: xenoarch-trigger-tip-feed-milk
+  components:
+  - type: XATFeed
+    foods:
+    - FoodSoupMushroom
+    - FoodBreadCreamcheese
+    - FoodBreadFrenchToast
+    - FoodRicePudding
+    - FoodTartCoco
+    - FoodTartGapple
+    - FoodTartGrape
+    - FoodTartMime
+    - FoodBakedPancake
+    - FoodBakedPancakeBb
+    - FoodBakedPancakeCc
+    - FoodBakedWaffle
+    - FoodBakedCookieNuke
+    - MobCatCake
+    - FoodCakeBerryDelight
+    - FoodMealScrambledEgg
+    - FoodMealOmelette
+    - FoodMacaroniCheese
+
+- type: xenoArchTrigger
+  id: TriggerFeedButter
+  tip: xenoarch-trigger-tip-feed-butter
+  components:
+  - type: XATFeed
+    foods:
+    - FoodNoodlesButter
+    - FoodBreadButteredToast
+    - FoodBreadGarlicSlice
+    - FoodBakedCookie
+    - FoodBakedCookieSugar
+    - FoodBakedCookieNuke
+    - FoodBakedCookieOatmeal
+    - FoodBakedCookieBanana
+    - FoodBakedCookieCandle
+    - FoodMealOmelette
+    - FoodMealRavioli
+    - FoodMealCornInButter
+    - FoodSoupEscargot
+    - FoodBakedBrownieBatch
+    - FoodBakedCroissant
+    - FoodBakedCroissantCotton
+    - WeaponCroissant
+    - FoodBakedGrilledCheeseSandwich
+    - FoodBakedGrilledCheeseSandwichCotton
+
+- type: xenoArchTrigger
+  id: TriggerFeedEgg
+  tip: xenoarch-trigger-tip-feed-egg
+  components:
+  - type: XATFeed
+    foods:
+    - FoodMealFriedegg
+    - FoodBurgerMcguffin
+    - FoodBurgerSuper
+    - FoodBreadFrenchToast
+    - FoodNoodlesChowmein
+    - FoodSoupNettle
+    - FoodRiceEgg
+    - FoodBakedPancake
+    - FoodBakedPancakeBb
+    - FoodBakedPancakeCc
+    - FoodBakedWaffle
+    - FoodBakedWaffleSoy
+    - FoodBakedBrownieBatch
+    - FoodBakedCannabisBrownieBatch
+    - FoodBakedCookieCandle
+    - FoodMealScrambledEgg
+    - FoodMealOmelette
+    - FoodBreakfastAmerican
+    - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedFlour
+  tip: xenoarch-trigger-tip-feed-flour
+  components:
+  - type: XATFeed
+    foods:
+    - FoodSoupMonkey
+    - FoodBakedPancake
+    - FoodBakedPancakeBb
+    - FoodBakedPancakeCc
+    - FoodBakedWaffle
+    - FoodBakedWaffleSoy
+    - FoodBakedCookie
+    - FoodBakedCookieSugar
+    - FoodBakedCookieNuke
+    - FoodBakedCookieRaisin
+    - FoodBakedCookieBanana
+    - FoodBakedCookieCotton
+    - FoodBakedCookieCandle
+    - FoodBakedBrownieBatch
+    - FoodBakedCannabisBrownieBatch
+
+- type: xenoArchTrigger
+  id: TriggerFeedMeat
+  tip: xenoarch-trigger-tip-feed-meat
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBurgerPlain
+    - FoodBurgerBig
+    - FoodBurgerBloodred
+    - FoodBurgerCat
+    - FoodBurgerCheese
+    - FoodBurgerCrazy
+    - FoodBurgerFive
+    - FoodBurgerSuper
+    - FoodBurgerBacon
+    - FoodBurgerBear
+    - FoodBurgerCorgi
+    - FoodBurgerCrab
+    - FoodBurgerDuck
+    - FoodBurgerHuman
+    - FoodBurgerRat
+    - FoodBurgerXeno
+    - FoodPizzaMeat
+    - FoodBreadSausage
+    - FoodBreadMeat
+    - FoodBreadMeatSpider
+    - FoodBreadMeatXeno
+    - FoodPieMeat
+    - FoodMealRibs
+    - FoodMealEnchiladas
+    - FoodPaste
+    - FoodRicePork
+    - FoodRiceGumbo
+    - FoodNoodlesMeatball
+    - FoodSoupMeatball
+    - FoodSoupStew
+    - FoodSoupChiliHot
+    - FoodSoupChiliClown
+    - FoodSoupWingFangChu
+    - FoodSoupEscargot
+    - FoodMeatSnailCooked
+    - FoodSaladValid
+    - FoodTacoBeef
+    - FoodTacoBeefSupreme
+    - FoodTacoDragon
+    - FoodTacoRat
+    - FoodBreakfastAmerican
+    - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedFish
+  tip: xenoarch-trigger-tip-feed-fish
+  components:
+  - type: XATFeed
+    foods:
+    - FoodMealSashimi
+    - FoodBurgerCarp
+    - FoodSoupBisque
+    - FoodMealCubancarp
+    - FoodTacoFish
+
+- type: xenoArchTrigger
+  id: TriggerFeedChicken
+  tip: xenoarch-trigger-tip-feed-chicken
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBurgerChicken
+    - FoodWeedChicken
+    - FoodPizzaPineapple
+    - FoodTacoChicken
+    - FoodTacoChickenSupreme
+
+- type: xenoArchTrigger
+  id: TriggerFeedTomato
+  tip: xenoarch-trigger-tip-feed-tomato
+  components:
+  - type: XATFeed
+    foods:
+    - FoodSoupTomato
+    - FoodBurgerBig
+    - FoodBurgerSuper
+    - FoodPizzaMargherita
+    - FoodPizzaMeat
+    - FoodPizzaVegetable
+    - FoodPizzaDank
+    - FoodPizzaDonkpocket
+    - FoodPizzaUranium
+    - FoodNoodles
+    - FoodSoupBisque
+    - FoodSoupStew
+    - FoodSoupChiliHot
+    - FoodSoupClown
+    - FoodSoupChiliClown
+    - FoodTacoFish
+    - FoodTacoBeefSupreme
+    - FoodTacoChickenSupreme
+    - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedChili
+  tip: xenoarch-trigger-tip-feed-chili
+  components:
+  - type: XATFeed
+    foods:
+    - FoodSoupBungo
+    - FoodBurgerCrazy
+    - FoodBurgerFive
+    - FoodPizzaUranium
+    - FoodRiceGumbo
+    - FoodMealCubancarp
+    - FoodMealNachosCuban
+    - FoodMealEnchiladas
+    - FoodMealQueso
+    - FoodSoupChiliHot
+    - FoodSoupChiliClown
+    - FoodTacoDragon
+
+- type: xenoArchTrigger
+  id: TriggerFeedCarrot
+  tip: xenoarch-trigger-tip-feed-carrot
+  components:
+  - type: XATFeed
+    foods:
+    - FoodCakeCarrot
+    - FoodPizzaVegetable
+    - FoodNoodlesChowmein
+    - FoodRiceEgg
+    - FoodSoupMeatball
+    - FoodSoupEyeball
+    - FoodSoupStew
+    - FoodSoupVegetable
+    - FoodMealFriesCarrot
+    - FoodSaladKimchi
+
+- type: xenoArchTrigger
+  id: TriggerFeedPotato
+  tip: xenoarch-trigger-tip-feed-potato
+  components:
+  - type: XATFeed
+    foods:
+    - FoodMealFries
+    - FoodSoupMeatball
+    - FoodSoupEyeball
+    - FoodSoupStew
+    - FoodSoupVegetable
+    - FoodMealPotatoLoaded
+    - FoodMealFriesCheesy
+    - FoodSaladValid
+    - FoodBreakfastAmerican
+    - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedCabbage
+  tip: xenoarch-trigger-tip-feed-cabbage
+  components:
+  - type: XATFeed
+    foods:
+    - FoodSaladColeslaw
+    - FoodBurgerBloodred
+    - FoodBurgerCrazy
+    - FoodSaladCaesar
+    - FoodSaladKimchi
+    - FoodTacoFish
+    - FoodTacoBeefSupreme
+    - FoodTacoChickenSupreme
+
+- type: xenoArchTrigger
+  id: TriggerFeedApple
+  tip: xenoarch-trigger-tip-feed-apple
+  components:
+  - type: XATFeed
+    foods:
+    - FoodCakeApple
+    - FoodPieApple
+    - FoodTartGapple
+    - FoodSaladHerb
+    - FoodSaladFruit
+    - FoodSaladJungle
+    - FoodSaladWatermelonFruitBowl
+
+- type: xenoArchTrigger
+  id: TriggerFeedBerries
+  tip: xenoarch-trigger-tip-feed-berries
+  components:
+  - type: XATFeed
+    foods:
+    - FoodCakeBlueberry
+    - FoodPieClafoutis
+    - FoodBakedPancakeBb
+    - FoodCakeLemoon
+    - FoodCakeBerryDelight
+    - FoodBakedMuffinBerry
+
+- type: xenoArchTrigger
+  id: TriggerFeedRice
+  tip: xenoarch-trigger-tip-feed-rice
+  components:
+  - type: XATFeed
+    foods:
+    - FoodRiceBoiled
+    - FoodRicePudding
+    - FoodRicePork
+    - FoodRiceGumbo
+    - FoodRiceEgg
+
+- type: xenoArchTrigger
+  id: TriggerFeedOats
+  tip: xenoarch-trigger-tip-feed-oats
+  components:
+  - type: XATFeed
+    foods:
+    - FoodOatmeal
+    - FoodBakedCookieOatmeal
+
+# Bar drink triggers
+- type: xenoArchTrigger
+  id: TriggerDrinkRum
+  tip: xenoarch-trigger-tip-drink-rum
+  components:
+  - type: XATReactive
+    reagents:
+    - CubaLibre
+    - Andalusia
+    - BahamaMama
+    - Booger
+    - CoconutRum
+    - CrushDepth
+    - DarkandStormy
+    - DemonsBlood
+    - DevilsKiss
+    - Eggnog
+    - Grog
+    - JungleBird
+    - Mojito
+    - PinaColada
+    - ToxinsSpecial
+    - Caipirinha
+    - Daiquiri
+    - ZombieCocktail
+
+- type: xenoArchTrigger
+  id: TriggerDrinkVodka
+  tip: xenoarch-trigger-tip-drink-vodka
+  components:
+  - type: XATReactive
+    reagents:
+    - VodkaTonic
+    - AlliesCocktail
+    - Amasec
+    - Antifreeze
+    - BlackRussian
+    - BloodyMary
+    - Cosmopolitan
+    - FourteenLoko
+    - GargleBlaster
+    - Gildlager
+    - LongIslandIcedTea
+    - Moonshine
+    - Sbiten
+    - ScrewdriverCocktail
+    - TheMartinez
+    - VodkaMartini
+    - VodkaRedBool
+
+- type: xenoArchTrigger
+  id: TriggerDrinkWhiskey
+  tip: xenoarch-trigger-tip-drink-whiskey
+  components:
+  - type: XATReactive
+    reagents:
+    - WhiskeySoda
+    - Andalusia
+    - BeepskySmash
+    - ErikaSurprise
+    - GargleBlaster
+    - IrishCream
+    - Manhattan
+    - ManhattanProject
+    - Moonshine
+    - WhiskeyCola
+    - WatermelonWakeup
+    - WhiskeySour
+
+- type: xenoArchTrigger
+  id: TriggerDrinkGin
+  tip: xenoarch-trigger-tip-drink-gin
+  components:
+  - type: XATReactive
+    reagents:
+    - GinTonic
+    - Bronx
+    - DriestMartini
+    - GargleBlaster
+    - GinFizz
+    - LongIslandIcedTea
+    - Martini
+    - MonkeyBusiness
+    - Empress75
+
+- type: xenoArchTrigger
+  id: TriggerDrinkTequila
+  tip: xenoarch-trigger-tip-drink-tequila
+  components:
+  - type: XATReactive
+    reagents:
+    - TequilaSunrise
+    - BudgetInsulsDrink
+    - BraveBull
+    - LongIslandIcedTea
+    - Margarita
+    - Moonshine
+    - Patron
+
+- type: xenoArchTrigger
+  id: TriggerDrinkBeer
+  tip: xenoarch-trigger-tip-drink-beer
+  components:
+  - type: XATReactive
+    reagents:
+    - IcedBeer
+    - ManlyDorf
+    - Radler
+    - SnowWhite
+    - SyndicateBomb
+    - WhiteGilgamesh
+
+- type: xenoArchTrigger
+  id: TriggerDrinkCoffee
+  tip: xenoarch-trigger-tip-drink-coffee
+  components:
+  - type: XATReactive
+    reagents:
+    - CafeLatte
+    - FourteenLoko
+    - IcedCoffee
+    - IrishCoffee
+    - Rewriter
+    - SoyLatte
+    - EspressoMartini
+
+- type: xenoArchTrigger
+  id: TriggerDrinkVermouth
+  tip: xenoarch-trigger-tip-drink-vermouth
+  components:
+  - type: XATReactive
+    reagents:
+    - Barefoot
+    - Bronx
+    - Manhattan
+    - Martini
+    - ToxinsSpecial
+    - VodkaMartini
+
+- type: xenoArchTrigger
+  id: TriggerDrinkAbsinthe
+  tip: xenoarch-trigger-tip-drink-absinthe
+  components:
+  - type: XATReactive
+    reagents:
+    - TheSunAlsoRises
+    - MonkeyBusiness
+    - DeathInTheAfternoon
+    - BacchusBlessing
+
+- type: xenoArchTrigger
+  id: TriggerDrinkCognac
+  tip: xenoarch-trigger-tip-drink-cognac
+  components:
+  - type: XATReactive
+    reagents:
+    - B52
+    - CogChamp
+    - GargleBlaster
+    - JackRose
+
+- type: xenoArchTrigger
+  id: TriggerDrinkBlueCuracao
+  tip: xenoarch-trigger-tip-drink-bluecuracao
+  components:
+  - type: XATReactive
+    reagents:
+    - AlienBrainHemorrhage
+    - BlueHawaiian
+    - ElectricShark
+    - SuiDream
+
+- type: xenoArchTrigger
+  id: TriggerDrinkWine
+  tip: xenoarch-trigger-tip-drink-wine
+  components:
+  - type: XATReactive
+    reagents:
+    - Kalimotxo
+    - AcidSpit
+    - Amasec
+
+- type: xenoArchTrigger
+  id: TriggerDrinkAle
+  tip: xenoarch-trigger-tip-drink-ale
+  components:
+  - type: XATReactive
+    reagents:
+    - IrishSlammer
+    - ErikaSurprise
+    - ManlyDorf
+
+- type: xenoArchTrigger
+  id: TriggerDrinkChampagne
+  tip: xenoarch-trigger-tip-drink-champagne
+  components:
+  - type: XATReactive
+    reagents:
+    - Mimosa
+    - DeathInTheAfternoon
+    - Empress75
+
+# Mixing-method triggers
+- type: xenoArchTrigger
+  id: TriggerDrinkShaken
+  tip: xenoarch-trigger-tip-drink-shaken
+  components:
+  - type: XATReactive
+    reagents:
+    - Painkiller
+    - AlliesCocktail
+    - Amasec
+    - BlueHawaiian
+    - BahamaMama
+    - BeepskySmash
+    - Bronx
+    - DriestMartini
+    - Eggnog
+    - ElectricShark
+    - ErikaSurprise
+    - GargleBlaster
+    - Gildlager
+    - JackRose
+    - JungleBird
+    - Manhattan
+    - Martini
+    - Mojito
+    - MonkeyBusiness
+    - Patron
+    - ScrewdriverCocktail
+    - ToxinsSpecial
+    - Vampiro
+    - VodkaMartini
+    - Caipirinha
+    - Empress75
+    - EspressoMartini
+    - WhiskeySour
+
+- type: xenoArchTrigger
+  id: TriggerDrinkStirred
+  tip: xenoarch-trigger-tip-drink-stirred
+  components:
+  - type: XATReactive
+    reagents:
+    - DoctorsDelight
+    - Andalusia
+    - BloodyMary
+    - DemonsBlood
+    - DevilsKiss
+    - IrishCoffee
+    - OrangeLimeSoda
+    - Lemonade
+    - LemonLime
+    - LongIslandIcedTea
+    - RedMead
+    - Tortuga
+    - Daiquiri
+    - MoscowMule
+
+# Botany mutant-plant triggers
+- type: xenoArchTrigger
+  id: TriggerFeedMeatwheat
+  tip: xenoarch-trigger-tip-feed-meatwheat
+  components:
+  - type: XATFeed
+    foods:
+    - MeatwheatBushel
+
+- type: xenoArchTrigger
+  id: TriggerFeedMimana
+  tip: xenoarch-trigger-tip-feed-mimana
+  components:
+  - type: XATFeed
+    foods:
+    - FoodMimana
+
+- type: xenoArchTrigger
+  id: TriggerFeedLaughinPea
+  tip: xenoarch-trigger-tip-feed-laughinpea
+  components:
+  - type: XATFeed
+    foods:
+    - FoodLaughinPeaPod
+
+- type: xenoArchTrigger
+  id: TriggerFeedWorldPea
+  tip: xenoarch-trigger-tip-feed-worldpea
+  components:
+  - type: XATFeed
+    foods:
+    - FoodWorldPeas
+
+- type: xenoArchTrigger
+  id: TriggerFeedLemoon
+  tip: xenoarch-trigger-tip-feed-lemoon
+  components:
+  - type: XATFeed
+    foods:
+    - FoodLemoon
+
+- type: xenoArchTrigger
+  id: TriggerFeedExtradimensionalOrange
+  tip: xenoarch-trigger-tip-feed-extradimensionalorange
+  components:
+  - type: XATFeed
+    foods:
+    - FoodExtradimensionalOrange
+
+- type: xenoArchTrigger
+  id: TriggerFeedPapercane
+  tip: xenoarch-trigger-tip-feed-papercane
+  components:
+  - type: XATFeed
+    foods:
+    - Papercane
+
+- type: xenoArchTrigger
+  id: TriggerFeedBlueTomato
+  tip: xenoarch-trigger-tip-feed-bluetomato
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBlueTomato
+
+- type: xenoArchTrigger
+  id: TriggerFeedBloodTomato
+  tip: xenoarch-trigger-tip-feed-bloodtomato
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBloodTomato
+
+- type: xenoArchTrigger
+  id: TriggerFeedBloonion
+  tip: xenoarch-trigger-tip-feed-bloonion
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBloonion
+
+- type: xenoArchTrigger
+  id: TriggerFeedRainbowCannabis
+  tip: xenoarch-trigger-tip-feed-rainbowcannabis
+  components:
+  - type: XATFeed
+    foods:
+    - LeavesCannabisRainbow
+
+- type: xenoArchTrigger
+  id: TriggerFeedDeathNettle
+  tip: xenoarch-trigger-tip-feed-deathnettle
+  components:
+  - type: XATFeed
+    foods:
+    - DeathNettle
+
+- type: xenoArchTrigger
+  id: TriggerFeedChillyPepper
+  tip: xenoarch-trigger-tip-feed-chillypepper
+  components:
+  - type: XATFeed
+    foods:
+    - FoodChillyPepper
+
+- type: xenoArchTrigger
+  id: TriggerFeedLily
+  tip: xenoarch-trigger-tip-feed-lily
+  components:
+  - type: XATFeed
+    foods:
+    - FoodLily
+
+- type: xenoArchTrigger
+  id: TriggerFeedSpacemansTrumpet
+  tip: xenoarch-trigger-tip-feed-spacemanstrumpet
+  components:
+  - type: XATFeed
+    foods:
+    - FoodSpacemansTrumpet
+
+- type: xenoArchTrigger
+  id: TriggerFeedAmbrosiaDeus
+  tip: xenoarch-trigger-tip-feed-ambrosiadeus
+  components:
+  - type: XATFeed
+    foods:
+    - FoodAmbrosiaDeus
+
+- type: xenoArchTrigger
+  id: TriggerFeedKoibean
+  tip: xenoarch-trigger-tip-feed-koibean
+  components:
+  - type: XATFeed
+    foods:
+    - FoodKoibean
+
+- type: xenoArchTrigger
+  id: TriggerFeedHolymelon
+  tip: xenoarch-trigger-tip-feed-holymelon
+  components:
+  - type: XATFeed
+    foods:
+    - FoodHolymelon
+
+- type: xenoArchTrigger
+  id: TriggerFeedBluePumpkin
+  tip: xenoarch-trigger-tip-feed-bluepumpkin
+  components:
+  - type: XATFeed
+    foods:
+    - FoodBluePumpkin
+
+- type: xenoArchTrigger
+  id: TriggerFeedPyrotton
+  tip: xenoarch-trigger-tip-feed-pyrotton
+  components:
+  - type: XATFeed
+    foods:
+    - PyrottonBol
