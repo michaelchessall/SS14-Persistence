@@ -30,6 +30,7 @@
       - WeldingMask
       - RemoteSignaller
       - UtilityKnife
+      - ConstructionChalk # Funky
       components:
       - StationMap
       - SprayPainter

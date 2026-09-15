@@ -192,6 +192,9 @@ public sealed partial class WallStainSystem : EntitySystem
         if (!IsWall(args.Target.Value))
             return;
 
+        if (HasComp<AbsorbentComponent>(uid)) // Don't spill mops onto walls
+            return;
+
         if (!_solution.TryGetSolution(uid, component.SolutionName, out var solComp) || solComp.Value.Comp.Solution.Volume <= 0)
             return;
 
