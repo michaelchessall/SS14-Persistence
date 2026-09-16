@@ -39,6 +39,8 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
     [Dependency] private IAdminLogManager _adminLog = default!;
     [Dependency] private SharedMapSystem _mapping = default!;
 
+    private List<Entity<MapGridComponent>> _grids = new();
+
     [GeneratedRegex("[^a-zA-Z0-9 -]")]
     private static partial Regex SafeGridNameRgx();
 
@@ -444,7 +446,9 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
             var box2Rot = new Box2Rotated(box2, angle, finalCoords.Position).Enlarged(-0.5f);
 
             // This doesn't stop it from spawning on top of random things in space
-            if (_mapping.FindGridsIntersecting(finalCoords.MapId, box2Rot).Any())
+            _grids.Clear();
+            _mapping.FindGridsIntersecting(finalCoords.MapId, box2Rot, ref _grids);
+            if (_grids.Any())
             {
                 // Bump it further and further just in case.
                 var fraction = (float)(i + 1) / maxIterations;

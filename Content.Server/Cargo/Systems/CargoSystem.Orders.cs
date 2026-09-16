@@ -288,7 +288,7 @@ namespace Content.Server.Cargo.Systems
                 //                 if (ev.FulfillmentEntity == null)
                 // >>>>>>> d86219c50a2a3e83036d3199604273490876b373
                 {
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-station-not-found"));
+                    _popup.PopupCursor(Loc.GetString("cargo-console-station-not-found"), args.Actor);
                     PlayDenySound(uid, component);
                     return;
                 }
@@ -352,7 +352,7 @@ namespace Content.Server.Cargo.Systems
                 // Invalid order
                 if (!ProtoMan.Resolve(order.Product, out var product))
                 {
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-invalid-product"));
+                    _popup.PopupCursor(Loc.GetString("cargo-console-invalid-product"), args.Actor);
                     PlayDenySound(uid, component);
                     return;
                 }
@@ -363,7 +363,7 @@ namespace Content.Server.Cargo.Systems
                 // Too many orders, avoid them getting spammed in the UI.
                 if (amount >= capacity)
                 {
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-too-many"));
+                    _popup.PopupCursor(Loc.GetString("cargo-console-too-many"), args.Actor);
                     PlayDenySound(uid, component);
                     return;
                 }
@@ -374,7 +374,7 @@ namespace Content.Server.Cargo.Systems
                 if (cappedAmount != order.OrderQuantity)
                 {
                     order.OrderQuantity = cappedAmount;
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-snip-snip"));
+                    _popup.PopupCursor(Loc.GetString("cargo-console-snip-snip"), args.Actor);
                     PlayDenySound(uid, component);
                 }
                 var cost = product.Cost * order.OrderQuantity;
@@ -388,7 +388,7 @@ namespace Content.Server.Cargo.Systems
                 // Not enough balance
                 if (cost > accountBalance)
                 {
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)));
+                    _popup.PopupCursor(Loc.GetString("cargo-console-insufficient-funds", ("cost", cost)), args.Actor);
                     PlayDenySound(uid, component);
                     return;
                 }
@@ -403,14 +403,14 @@ namespace Content.Server.Cargo.Systems
 
                     if (ev.FulfillmentEntity == null)
                     {
-                        ConsolePopup(args.Actor, Loc.GetString("cargo-console-unfulfilled"));
+                        _popup.PopupCursor(Loc.GetString("cargo-console-unfulfilled"), args.Actor);
                         PlayDenySound(uid, component);
                         return;
                     }
                 }
                 if (!_bank.TryBankWithdraw(args.Actor, cost))
                 {
-                    ConsolePopup(args.Actor, "Withdraw error!");
+                    _popup.PopupCursor("Withdraw error!", args.Actor);
                     PlayDenySound(uid, component);
                     return;
                 }
@@ -430,7 +430,7 @@ namespace Content.Server.Cargo.Systems
                 order.Approved = true;
                 _audio.PlayPvs(ApproveSound, uid);
 
-                ConsolePopup(args.Actor, Loc.GetString("cargo-console-trade-station", ("destination", MetaData(ev.FulfillmentEntity.Value).EntityName)));
+                _popup.PopupCursor(Loc.GetString("cargo-console-trade-station", ("destination", MetaData(ev.FulfillmentEntity.Value).EntityName)), args.Actor);
 
                 // Log order approval
                 _adminLogger.Add(LogType.Action,
@@ -470,13 +470,15 @@ namespace Content.Server.Cargo.Systems
                     return;
                 }
 
+                var cost = product.Cost * order.OrderQuantity;
+
                 var amount = GetOutstandingOrderCount((station.Value, orderDatabase), order.Account);
                 var capacity = orderDatabase.Capacity;
 
                 // Too many orders, avoid them getting spammed in the UI.
                 if (amount >= capacity)
                 {
-                    ConsolePopup(args.Actor, Loc.GetString("cargo-console-too-many"));
+                    _popup.PopupCursor(Loc.GetString("cargo-console-too-many"), args.Actor);
                     PlayDenySound(uid, component);
                     return;
                 }

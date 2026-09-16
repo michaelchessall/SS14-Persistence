@@ -13,6 +13,7 @@ using Content.Shared.HijackBeacon;
 using Robust.Shared.Audio;
 using System.Linq;
 using Content.Shared.Cargo.Components;
+using Robust.Shared.Prototypes; // Persistence
 
 namespace Content.Server.Cargo.Systems;
 
@@ -23,6 +24,8 @@ public sealed partial class CargoSystem
     /*
     * Handles cargo shuttle / trade mechanics.
     */
+
+    [Dependency] private readonly PrototypeManager _protoMan = default!; // Persistence
 
     [Dependency] private readonly HandsSystem _hands = default!;
     [Dependency] private readonly TransformSystem _transform = default!;

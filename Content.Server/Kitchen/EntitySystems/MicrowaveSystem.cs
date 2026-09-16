@@ -45,6 +45,7 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Power.EntitySystems;
 using Content.Shared.Temperature.Components;
 using Content.Shared.IdentityManagement;
+using System.Linq;
 
 namespace Content.Server.Kitchen.EntitySystems
 {

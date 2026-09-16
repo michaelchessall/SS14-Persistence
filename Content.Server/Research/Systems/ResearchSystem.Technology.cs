@@ -8,6 +8,8 @@ namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
+    [Dependency] private readonly PrototypeManager _protoMan = default!;
+
     /// <summary>
     /// Syncs the primary entity's database to that of the secondary entity's database.
     /// </summary>
@@ -123,7 +125,7 @@ public sealed partial class ResearchSystem
         var addedRecipes = new List<string>();
         foreach (var unlock in technology.RecipeUnlocks)
         {
-            PrototypeManager.Resolve(unlock, out var recipeProto);
+            _protoMan.Resolve(unlock, out var recipeProto);
             if (recipeProto == null) continue;
             if (component.UnlockedRecipes.ContainsKey(unlock))
             {

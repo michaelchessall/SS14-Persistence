@@ -47,6 +47,8 @@ namespace Content.Server.GameTicking
         [Dependency] private readonly BankSystem _bankSystem = default!;
         [Dependency] private readonly CrewMetaRecordsSystem _crewMetaRecords = default!;
         [Dependency] private readonly StationSystem _stationSystem = default!;
+        [Dependency] private readonly PrototypeManager _prototypeManager = default!;
+
         public static readonly EntProtoId ObserverPrototypeName = "MobObserver";
         public static readonly EntProtoId AdminObserverPrototypeName = "AdminObserver";
 
