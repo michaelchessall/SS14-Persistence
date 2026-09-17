@@ -1,0 +1,85 @@
+# Meals for Persisting
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealScrambledEgg
+  name: scrambled egg
+  description: A scrambled egg, seasoned with salt.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+  - type: FlavorProfile
+    flavors:
+      - egg
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: scrambled-egg
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 8
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: TableSalt
+          Quantity: 1
+  - type: Tag
+    tags:
+    - Meat
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealRavioli
+  name: ravioli
+  description: A plate of cheese-filled pasta squares in a brown butter sauce.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+  - type: FlavorProfile
+    flavors:
+      - pasta
+      - cheesy
+      - butter
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: ravioli
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 18
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealCottonRavioli
+  name: cotton ravioli
+  description: A plate of cheese-filled cotton pasta squares in a brown butter sauce.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+  - type: FlavorProfile
+    flavors:
+      - pasta
+      - cheesy
+      - butter
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: cotton-ravioli
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 4
+        - ReagentId: Fiber
+          Quantity: 14
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+      - ClothMade

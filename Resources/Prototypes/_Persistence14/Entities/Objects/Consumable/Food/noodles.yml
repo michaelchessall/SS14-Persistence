@@ -1,0 +1,49 @@
+
+# Noodles
+
+- type: entity
+  parent: FoodNoodlesBase
+  id: FoodNoodlesBoiledFlat
+  name: boiled fettuccine
+  description: A plain dish of flat noodles, this needs more ingredients.
+  components:
+  - type: Item
+    storedOffset: 0,-4
+  - type: FlavorProfile
+    flavors:
+      - pasta
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/noodles.rsi
+    state: fettuccine
+# Tastes like pasta.
+
+- type: entity
+  parent: FoodNoodlesBase
+  id: FoodNoodlesCottonBoiledFlat
+  name: boiled cotton fettuccine
+  description: A plain dish of flat cotton noodles, this needs more ingredients.
+  components:
+  - type: Item
+    storedOffset: 0,-4
+  - type: FlavorProfile
+    flavors:
+      - pasta
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/noodles.rsi
+    state: cotton-fettuccine
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.5
+        - ReagentId: Fiber
+          Quantity: 5.5
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+      - ClothMade
+# Tastes like pasta, cotton.

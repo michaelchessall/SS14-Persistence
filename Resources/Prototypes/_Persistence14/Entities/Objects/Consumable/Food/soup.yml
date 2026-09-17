@@ -1,0 +1,56 @@
+
+# Persistence foods in bowls
+
+- type: entity
+  name: macaroni and cheese
+  parent: FoodBowlBase
+  id: FoodMacaroniCheese
+  description: A bowl of macaroni and cheese.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - pasta
+      - cheesy
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: macaroni-cheese
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 25
+
+- type: entity
+  name: cotton macaroni and cheese
+  parent: FoodBowlBase
+  id: FoodCottonMacaroniCheese
+  description: A bowl of cotton macaroni and cheese.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - pasta
+      - cheesy
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/bowl.rsi
+    layers:
+    - state: bowl
+    - state: cotton-macaroni-cheese
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 30
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+        - ReagentId: Fiber
+          Quantity: 20
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+      - ClothMade

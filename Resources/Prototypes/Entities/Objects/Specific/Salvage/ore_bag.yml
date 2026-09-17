@@ -7,7 +7,9 @@
   - type: MagnetPickup
   - type: Sprite
     sprite: Objects/Specific/Mining/ore_bag.rsi
-    state: icon
+    layers:
+    - state: icon
+      map: ["enumToggleableVisuals.Layer"] # Persistence: Add magnet toggle to ore bag
   - type: Clothing
     sprite: Objects/Specific/Mining/ore_bag.rsi
     quickEquip: false
@@ -30,6 +32,23 @@
       tags:
       - OreBox
       - OreProcessor
+# Start Persistence: add magnet toggle to ore bag
+  - type: ItemToggle
+    soundActivate: &soundActivate
+      collection: sparks
+      params:
+        variation: 0.25
+    soundDeactivate: *soundActivate
+    onActivate: true
+    onUse: false
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.ToggleableVisuals.Enabled:
+        enum.ToggleableVisuals.Layer:
+          True: { state: icon-on }
+          False: { state: icon }
+# End Persistence
 
 - type: entity
   parent: OreBag
