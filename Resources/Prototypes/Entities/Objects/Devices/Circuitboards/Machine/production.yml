@@ -1480,7 +1480,7 @@
       Cable: 2
 
 - type: entity
-  id: TelecomServer1kCircuitboard
+  id: TelecomServerAdvancedCircuitboard
   parent: BaseMachineCircuitboard
   name: high tech telecommunication server machine board
   description: A machine printed circuit board for an high tech telecommunication server.
@@ -1488,7 +1488,7 @@
   - type: Sprite
     state: engineering
   - type: MachineBoard
-    prototype: TelecomServer1k
+    prototype: AdvancedTelecomServer
     stackRequirements:
       Steel: 1
       Cable: 2

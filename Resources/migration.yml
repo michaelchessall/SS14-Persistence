@@ -806,3 +806,7 @@ CrateVendingMachineRestockGetmoreChocolateCorpFilled: VendingMachineRestockGetmo
 CrateVendingMachineRestockChangFilled: VendingMachineRestockChang
 CrateVendingMachineRestockDiscountDansFilled: VendingMachineRestockDiscountDans
 CrateVendingMachineRestockDonutFilled: VendingMachineRestockDonut
+
+# Persistence 14 - 9/14/2026
+TelecomServer1k: AdvancedTelecomServer
+TelecomServer1kCircuitboard: TelecomServerAdvancedCircuitboard

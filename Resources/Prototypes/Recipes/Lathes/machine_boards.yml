@@ -569,8 +569,8 @@
 
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseEngineeringMachineRecipeCategory ]
-  id: TelecomServer1kCircuitboard
-  result: TelecomServer1kCircuitboard
+  id: TelecomServerAdvancedCircuitboard
+  result: TelecomServerAdvancedCircuitboard
   unlockUses: 1
 
 - type: latheRecipe
