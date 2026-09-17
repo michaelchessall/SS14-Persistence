@@ -66,6 +66,12 @@ public sealed class EntityWhitelistSystem : EntitySystem
                 return true;
         }
 
+        if (list.PrototypeIds != null && MetaData(uid).EntityPrototype is { } protoId)
+        {
+            if (list.PrototypeIds.Contains(protoId))
+                return true;
+        }
+
         if (list.Tags != null)
         {
             return list.RequireAll

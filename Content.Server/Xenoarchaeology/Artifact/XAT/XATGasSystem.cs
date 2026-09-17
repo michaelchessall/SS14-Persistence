@@ -20,17 +20,29 @@ public sealed class XATGasSystem : BaseQueryUpdateXATSystem<XATGasComponent>
             return;
 
         var gasTrigger = node.Comp1;
-        var moles = mixture.GetMoles(gasTrigger.TargetGas);
+        if (gasTrigger.Gases.Count == 0)
+            return;
 
         if (gasTrigger.ShouldBePresent)
         {
-            if (moles >= gasTrigger.Moles)
-                Trigger(artifact, node);
+            foreach (var gas in gasTrigger.Gases)
+            {
+                if (mixture.GetMoles(gas) >= gasTrigger.Moles)
+                {
+                    Trigger(artifact, node);
+                    return;
+                }
+            }
         }
         else
         {
-            if (moles <= gasTrigger.Moles)
-                Trigger(artifact, node);
+            foreach (var gas in gasTrigger.Gases)
+            {
+                if (mixture.GetMoles(gas) > gasTrigger.Moles)
+                    return;
+            }
+
+            Trigger(artifact, node);
         }
     }
 }

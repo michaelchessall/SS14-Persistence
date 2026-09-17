@@ -1,3 +1,5 @@
+using Content.Shared._Persistence14.RandomTable;
+using Content.Shared._Persistence14.RandomTable.Selectors;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
 using Content.Shared.Destructible.Thresholds;
@@ -183,11 +185,21 @@ public sealed partial class XenoArtifactComponent : Component
         TableId = "XenoArtifactDefaultEffectsDeep"
     };
 
-    /// <summary>
-    /// Triggers that can be used during this artefact generation.
-    /// </summary>
+
     [DataField]
-    public ProtoId<WeightedRandomXenoArchTriggerPrototype> TriggerWeights = "DefaultTriggers";
+    public RandomTableSelector RootTriggerTable = new RandomTableNestedSelector("XenoArchTriggersDefaultRoot");
+    [DataField(readOnly: true), AutoNetworkedField]
+    public Dictionary<ProtoId<XenoArchTriggerPrototype>, float> PossibleRootTriggers = new();
+
+    [DataField]
+    public RandomTableSelector MainTriggerTable = new RandomTableNestedSelector("XenoArchTriggersDefaultMain");
+    [DataField(readOnly: true), AutoNetworkedField]
+    public Dictionary<ProtoId<XenoArchTriggerPrototype>, float> PossibleMainTriggers = new();
+
+    [DataField]
+    public RandomTableSelector DeepTriggerTable = new RandomTableNestedSelector("XenoArchTriggersDefaultDeep");
+    [DataField(readOnly: true), AutoNetworkedField]
+    public Dictionary<ProtoId<XenoArchTriggerPrototype>, float> PossibleDeepTriggers = new();
     #endregion
 
     /// <summary>

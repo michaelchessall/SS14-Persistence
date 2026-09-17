@@ -1,4 +1,6 @@
 using System.Linq;
+using Content.Shared._Persistence14.Log;
+using Content.Shared._Persistence14.Random;
 using Content.Shared.Database;
 using Content.Shared.EntityTable;
 using Content.Shared.NameIdentifier;
@@ -97,17 +99,46 @@ public abstract partial class SharedXenoArtifactSystem
     /// <summary>
     /// Creates artifact node entity, attaching trigger and marking depth level for future use.
     /// </summary>
-    public Entity<XenoArtifactNodeComponent> CreateNode(Entity<XenoArtifactComponent> ent, XenoArchTriggerPrototype trigger, int depth = 0)
+    public bool TryCreateNode(Entity<XenoArtifactComponent> ent, out Entity<XenoArtifactNodeComponent> entity, int depth = 0)
     {
+        entity = default!;
         // Get the correct table based on the depth of the node. Deeper nodes have more valuable options.
-        var tableByDepth = depth <= ent.Comp.RootNodeThreshold ? ent.Comp.RootEffectsTable :
+        var effectsByDepth = depth <= ent.Comp.RootNodeThreshold ? ent.Comp.RootEffectsTable :
             depth >= ent.Comp.DeepNodeThreshold ? ent.Comp.DeepEffectsTable :
             ent.Comp.MainEffectsTable;
 
-        var entProtoId = _entityTable.GetSpawns(tableByDepth).First();
+        var possibleTriggersByDepth = depth <= ent.Comp.RootNodeThreshold ? ent.Comp.PossibleRootTriggers :
+            depth >= ent.Comp.DeepNodeThreshold ? ent.Comp.PossibleDeepTriggers :
+            ent.Comp.PossibleMainTriggers;
 
-        AddNode((ent, ent), entProtoId, out var nodeEnt, dirty: false);
-        DebugTools.Assert(nodeEnt.HasValue, "Failed to create node on artifact.");
+        Dictionary<ProtoId<XenoArchTriggerPrototype>, float>[] otherTables =
+            depth <= ent.Comp.RootNodeThreshold ? [ent.Comp.PossibleDeepTriggers, ent.Comp.PossibleMainTriggers] :
+            depth >= ent.Comp.DeepNodeThreshold ? [ent.Comp.PossibleMainTriggers, ent.Comp.PossibleRootTriggers] :
+            [ent.Comp.PossibleDeepTriggers, ent.Comp.PossibleRootTriggers];
+
+        var triggerId = RobustRandom.PickAndTakeWeighted(possibleTriggersByDepth).FirstOrNull();
+        if (triggerId is null)
+            return LogManager.GetSawmill("xeno-artifact-system").WarningFalse($"Insufficient artifacts triggers to generate node.");
+        foreach (var table in otherTables) // Clear duplicate IDs from other tables.
+            table.Remove(triggerId.Value);
+
+        var trigger = PrototypeManager.Index(triggerId);
+
+        foreach (var incompatible in trigger.IncompatibleTriggers)
+        {
+            possibleTriggersByDepth.Remove(incompatible);
+            foreach (var table in otherTables)
+                table.Remove(incompatible);
+        }
+
+        var spawns = _entityTable.GetSpawns(effectsByDepth);
+        if (!spawns.Any())
+            return LogManager.GetSawmill("xeno-artifact-system").ErrorFalse($"Insufficient artifact effects to generate node. This really shouldn't happen...");
+        var nodeProtoId = spawns.First();
+
+        AddNode((ent, ent), nodeProtoId, out var nodeEnt, dirty: false);
+        if (nodeEnt is null)
+            return LogManager.GetSawmill("xeno-artifact-system").ErrorFalse($"Failed to add artifact node to artifact...");
 
         var nodeComponent = nodeEnt.Value.Comp;
         nodeComponent.Depth = depth;
@@ -115,7 +146,8 @@ public abstract partial class SharedXenoArtifactSystem
         EntityManager.AddComponents(nodeEnt.Value, trigger.Components);
 
         Dirty(nodeEnt.Value);
-        return nodeEnt.Value;
+        entity = nodeEnt.Value;
+        return true;
     }
 
     /// <summary> Checks if all predecessor nodes are marked as 'unlocked'. </summary>

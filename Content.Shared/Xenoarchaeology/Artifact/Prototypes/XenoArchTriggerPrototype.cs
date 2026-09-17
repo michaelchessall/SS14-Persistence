@@ -26,6 +26,12 @@ public sealed partial class XenoArchTriggerPrototype : IPrototype
     public EntityWhitelist? Whitelist;
 
     /// <summary>
+    /// Triggers that cannot coexist on the same artifact.
+    /// </summary>
+    [DataField]
+    public HashSet<ProtoId<XenoArchTriggerPrototype>> IncompatibleTriggers = new();
+
+    /// <summary>
     /// List of components that represent ways to trigger node.
     /// </summary>
     [DataField]

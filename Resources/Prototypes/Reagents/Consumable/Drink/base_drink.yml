@@ -20,6 +20,8 @@
   tileReactions:
   - !type:ExtinguishTileReaction { }
   - !type:SpillIfPuddlePresentTileReaction { }
+  tags:
+  - Drink
 
 - type: reagent
   id: BaseSoda

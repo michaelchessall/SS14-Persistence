@@ -4,7 +4,7 @@
     children:
     - !type:NestedSelector
       tableId: Debug
-      weight: 483.0 # Total weights of the table so distribution remains even
+      weight: 480.0 # Total weights of the table so distribution remains even
     # Eventually full size only artifact effects will go here
 
 - type: entityTable
@@ -13,7 +13,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsMain
-      weight: 505.0 # Total weights of the table so distribution remains even
+      weight: 497.0 # Total weights of the table so distribution remains even
     # Eventually full size only artifact effects will go here
 
 - type: entityTable
@@ -22,7 +22,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsDeep
-      weight: 417.0 # Total weights of the table so distribution remains even
+      weight: 407.0 # Total weights of the table so distribution remains even
     # Eventually full size only artifact effects will go here
 
 - type: entityTable
@@ -31,7 +31,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsRoot
-      weight: 483.0 # Total weights of the table so distribution remains even
+      weight: 480.0 # Total weights of the table so distribution remains even
     - !type:NestedSelector
       tableId: XenoArtifactEffectsRootHandheldOnly
       weight: 54.0 # Total weights of the table so distribution remains even
@@ -42,7 +42,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsMain
-      weight: 505.0 # Total weights of the table so distribution remains even
+      weight: 497.0 # Total weights of the table so distribution remains even
     - !type:NestedSelector
       tableId: XenoArtifactEffectsMainHandheldOnly
       weight: 37.0 # Total weights of the table so distribution remains even
@@ -53,7 +53,7 @@
     children:
     - !type:NestedSelector
       tableId: XenoArtifactEffectsDeep
-      weight: 417.0 # Total weights of the table so distribution remains even
+      weight: 407.0 # Total weights of the table so distribution remains even
     - !type:NestedSelector
       tableId: XenoArtifactEffectsDeepHandheldOnly
       weight: 30.0 # Total weights of the table so distribution remains even
@@ -113,8 +113,8 @@
       weight: 8.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 10.0
-    - id: XenoArtifactEffectCreationGasFrezon
-      weight: 3.0
+    #- id: XenoArtifactEffectCreationGasFrezon
+    #  weight: 3.0
     - id: XenoArtifactEffectCreationGasNitrousOxide
       weight: 10.0
     - id: XenoArtifactEffectCreationGasPlasma
@@ -294,8 +294,8 @@
       weight: 3.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 8.0
-    - id: XenoArtifactEffectCreationGasFrezon
-      weight: 8.0
+    #- id: XenoArtifactEffectCreationGasFrezon
+    #  weight: 8.0
     - id: XenoArtifactEffectCreationGasNitrousOxide
       weight: 8.0
     - id: XenoArtifactEffectCreationGasPlasma
@@ -475,8 +475,8 @@
       weight: 3.0
     - id: XenoArtifactEffectCreationGasCarbonDioxide
       weight: 3.0
-    - id: XenoArtifactEffectCreationGasFrezon
-      weight: 10.0
+    #- id: XenoArtifactEffectCreationGasFrezon
+    #  weight: 10.0
     - id: XenoArtifactEffectCreationGasNitrousOxide
       weight: 3.0
     - id: XenoArtifactEffectCreationGasPlasma

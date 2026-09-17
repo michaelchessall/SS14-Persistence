@@ -11,10 +11,32 @@
 ## C ##
 
 ## D ##
+- type: Tag
+  id: Drink # Marks a reagent as a drink
 
 ## E ##
 
 ## F ##
+
+# Food reagents for classifying food items.
+- type: Tag
+  id: FoodDairy
+- type: Tag
+  id: FoodEgg
+- type: Tag
+  id: FoodFlour
+- type: Tag
+  id: FoodMeat
+- type: Tag
+  id: FoodVeggie
+- type: Tag
+  id: FoodFruit
+- type: Tag
+  id: FoodRice
+- type: Tag
+  id: FoodOats
+- type: Tag
+  id: FoodCotton
 
 ## G ##
 
