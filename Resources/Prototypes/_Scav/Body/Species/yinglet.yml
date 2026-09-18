@@ -239,7 +239,6 @@
           32:
             sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
             state: hand_r
-  #need to add body parts
   - type: HumanoidProfile
     species: Yinglet
 
@@ -268,7 +267,7 @@
     - id: FoodMeat
       amount: 2
   - type: Fixtures
-    fixtures: # TODO: This needs a second fixture just for mob collisions.
+    fixtures:
       fix1:
         shape:
           !type:PhysShapeCircle
