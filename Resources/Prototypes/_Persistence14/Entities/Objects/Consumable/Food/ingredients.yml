@@ -1,0 +1,243 @@
+
+# Pasta Dough
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughPasta
+  name: pasta dough
+  description: A big ball of dough, perfect for making pasta.
+  components:
+  - type: Item
+    size: Normal
+  - type: FlavorProfile
+    flavors:
+      - dough
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: pasta-dough
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughPastaSlice
+  - type: Construction
+    graph: Pasta
+    node: start
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughPastaSlice
+  name: pasta dough slice
+  description: A slice of pasta dough. Can be rolled out and cooked to make different kinds of pasta.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - dough
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: pasta-dough-slice
+  - type: Tag
+    tags:
+    - Slice
+  - type: Construction
+    graph: DoughRopePasta
+    node: start
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughPastaRope
+  name: pasta dough rope
+  description: A thin noodle of pasta dough. Can be cooked into macaroni or spaghetti.
+  components:
+  - type: Item
+    storedRotation: -45
+  - type: FlavorProfile
+    flavors:
+      - dough
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: pasta-dough-rope
+  - type: Construction
+    graph: DoughRopePasta
+    node: rolled
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 5
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughPastaFlat
+  name: flat pasta dough
+  description: Flattened pasta dough.
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: pasta-dough-flat
+  - type: Construction
+    graph: Pasta
+    node: flat
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughPastaStrip
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughPastaStrip
+  name: flat pasta strip
+  description: A long strip of flattened pasta dough.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - dough
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: pasta-dough-strip
+
+# Cotton Pasta Dough
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughCottonPasta
+  name: cotton pasta dough
+  description: A big ball of fibrous dough, perfect for making cotton pasta.
+  components:
+  - type: Item
+    size: Normal
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: cotton-pasta-dough
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughCottonPastaSlice
+  - type: Construction
+    graph: CottonPasta
+    node: start
+  - type: Tag
+    tags:
+     - ClothMade
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughCottonPastaSlice
+  name: cotton pasta dough slice
+  description: A slice of cotton pasta dough. Can be rolled out and cooked to make different kinds of cotton pasta.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: cotton-pasta-dough-slice
+  - type: Tag
+    tags:
+    - Slice
+    - ClothMade
+  - type: Construction
+    graph: DoughRopeCottonPasta
+    node: start
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.5
+        - ReagentId: Fiber
+          Quantity: 3.5
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughCottonPastaRope
+  name: cotton pasta dough rope
+  description: A thin noodle of cotton pasta dough. Can be cooked into cotton macaroni.
+  components:
+  - type: Item
+    storedRotation: -45
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: cotton-pasta-dough-rope
+  - type: Construction
+    graph: DoughRopeCottonPasta
+    node: rolled
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 6
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 1.5
+        - ReagentId: Fiber
+          Quantity: 3.5
+  - type: Tag
+    tags:
+     - ClothMade
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughCottonPastaFlat
+  name: flat cotton pasta dough
+  description: Flattened cotton pasta dough.
+  components:
+  - type: Item
+    size: Normal
+    shape:
+    - 0,0,2,1
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: cotton-pasta-dough-flat
+  - type: Construction
+    graph: CottonPasta
+    node: flat
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughCottonPastaStrip
+  - type: Tag
+    tags:
+     - ClothMade
+
+- type: entity
+  parent: FoodBakingBase
+  id: FoodDoughCottonPastaStrip
+  name: flat cotton pasta strip
+  description: A long strip of flattened cotton pasta dough.
+  components:
+  - type: Item
+    size: Tiny
+  - type: FlavorProfile
+    flavors:
+      - dough
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
+    state: cotton-pasta-dough-strip
+  - type: Tag
+    tags:
+     - ClothMade

@@ -828,16 +828,16 @@
     FoodWorldPeas: 3
 
 #Italian
-- type: microwaveMealRecipe
-  id: RecipeBoiledSpaghetti
-  name: boiled_spaghetti_recipe
-  result: FoodNoodlesBoiled
-  time: 15
-  group: Pasta
-  reagents:
-    Flour: 15
-    Egg: 6
-    OilOlive: 5
+#- type: microwaveMealRecipe
+#  id: RecipeBoiledSpaghetti
+#  name: boiled_spaghetti_recipe
+#  result: FoodNoodlesBoiled
+#  time: 15
+#  group: Pasta
+#  reagents:
+#    Flour: 15
+#    Egg: 6
+#    OilOlive: 5
 
 - type: microwaveMealRecipe
   id: RecipePastaTomato

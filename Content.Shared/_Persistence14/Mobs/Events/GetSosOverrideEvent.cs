@@ -28,4 +28,14 @@ public sealed class GetSosOverrideEvent : EntityEventArgs
     /// no sense to show as the sender, this redirects that label to the original body instead.
     /// </summary>
     public EntityUid? SpeakerOverride;
+
+    public GetSosOverrideEvent(
+        bool allowWhileAlive = false,
+        string? messageOverride = null,
+        EntityUid? speakerOverride = null)
+    {
+        AllowWhileAlive = allowWhileAlive;
+        MessageOverride = messageOverride;
+        SpeakerOverride = speakerOverride;
+    }
 }

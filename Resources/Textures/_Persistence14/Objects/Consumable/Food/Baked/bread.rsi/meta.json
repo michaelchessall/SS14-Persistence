@@ -1,0 +1,17 @@
+{
+    "version": 1,
+    "license": "CC-BY-SA-3.0",
+    "copyright": "cotton buttered and french toasts modified from cotton slice and base toasts by @SilverSS14 (YouTube)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "cotton-buttered-toast"
+        },
+        {
+            "name": "cotton-french-toast"
+        }
+    ]
+}

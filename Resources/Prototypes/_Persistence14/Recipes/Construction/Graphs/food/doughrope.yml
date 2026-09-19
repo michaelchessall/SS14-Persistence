@@ -1,0 +1,29 @@
+#Roll pasta dough slices into pasta dough ropes
+
+- type: constructionGraph
+  id: DoughRopePasta
+  start: start
+  graph:
+  - node: start
+    entity: FoodDoughPastaSlice
+    edges:
+    - to: rolled
+      steps:
+      - tool: Rolling
+        doAfter: 1
+  - node: rolled
+    entity: FoodDoughPastaRope
+
+- type: constructionGraph
+  id: DoughRopeCottonPasta
+  start: start
+  graph:
+  - node: start
+    entity: FoodDoughCottonPastaSlice
+    edges:
+    - to: rolled
+      steps:
+      - tool: Rolling
+        doAfter: 1
+  - node: rolled
+    entity: FoodDoughCottonPastaRope

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "cookie-candle by @SilverSS14 (YouTube).",
+    "copyright": "cookie-candle and moffins by @SilverSS14 (YouTube), cotton pancakes by @mothew14 (Discord).",
     "size": {
         "x": 32,
         "y": 32
@@ -9,6 +9,39 @@
     "states": [
         {
             "name": "cookie-candle"
+        },
+        {
+            "name": "cotton-pancakes1"
+        },
+        {
+            "name": "cotton-pancakes2"
+        },
+        {
+            "name": "cotton-pancakes3"
+        },
+        {
+            "name": "cotton-pancakes4"
+        },
+        {
+            "name": "cotton-pancakes5"
+        },
+        {
+            "name": "cotton-pancakes6"
+        },
+        {
+            "name": "cotton-pancakes7"
+        },
+        {
+            "name": "cotton-pancakes8"
+        },
+        {
+            "name": "cotton-pancakes9"
+        },
+        {
+            "name": "moffin"
+        },
+        {
+            "name": "moffin-berry"
         }
     ]
 }
