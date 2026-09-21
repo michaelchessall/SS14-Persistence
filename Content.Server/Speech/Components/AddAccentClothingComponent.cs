@@ -25,5 +25,6 @@ public sealed partial class AddAccentClothingComponent : Component
     /// <summary>
     ///     Is that clothing is worn and affecting someones accent?
     /// </summary>
+    [DataField]
     public bool IsActive = false;
 }
