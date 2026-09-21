@@ -1,5 +1,6 @@
 - type: entity
   parent: [ BaseMachinePowered, ConstructibleMachine ]
+  categories: [ HideSpawnMenu ]
   id: SalvageMagnet
   name: salvage magnet
   description: Pulls in salvage.
@@ -43,22 +44,3 @@
     powerLoad: 2500 # TODO change this to a HV power draw that really hits the grid hard WHEN active
   - type: Machine
     board: SalvageMagnetMachineCircuitboard
-
-# For Knightship
-- type: entity
-  parent: SalvageMagnet
-  id: SalvageLocator
-  name: salvage locator
-  description: Locates salvage.
-  components:
-  - type: SalvageMagnet
-  - type: ApcPowerReceiver
-    powerLoad: 1000
-
-#- type: weightedRandomEntity # pleasing the linter, these protos dont  exist
-#  id: RandomAsteroidPool
-#  weights:
-#    AsteroidSalvageSmall: 3
-#    AsteroidSalvageMedium: 7
-#    AsteroidSalvageLarge: 5
-#    AsteroidSalvageHuge: 3

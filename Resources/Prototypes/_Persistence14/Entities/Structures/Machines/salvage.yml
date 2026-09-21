@@ -1,0 +1,64 @@
+- type: entity
+  parent: [ BaseMachinePowered ]
+  id: SalvageMagnetAnchored
+  name: threshold salvage isolation magnet
+  description: Attracts debris floating about the threshold. Mysterious powers anchor this device to a fixed point in space.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/salvage.rsi
+    layers:
+    - state: salvage-magnet
+    - state: salvage-magnet-ready
+      visible: false
+      map: [ "ready" ]
+    - state: salvage-magnet-ready-blinking
+      visible: false
+      map: [ "readyBlinking" ]
+    - state: salvage-magnet-unready
+      visible: false
+      map: [ "unready" ]
+    - state: salvage-magnet-unready-blinking
+      visible: false
+      map: [ "unreadyBlinking" ]
+    - state: salvage-magnet-o4
+      map: ["chargeState"]
+      shader: unshaded
+  - type: Appearance
+  - type: Rotatable
+  - type: Transform
+    noRot: false
+  - type: Anchorable
+    flags: Anchorable
+  - type: UserInterface
+    interfaces:
+      enum.SalvageMagnetUiKey.Key:
+        type: SalvageMagnetBoundUserInterface
+  - type: ActivatableUI
+    key: enum.SalvageMagnetUiKey.Key
+  - type: ActivatableUIRequiresPower
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
+  - type: SalvageMagnet
+  - type: IntrinsicRadioReceiver
+  - type: ActiveRadio
+    channels:
+    - Supply
+
+- type: entity
+  parent: [ BaseMachine ]
+  id: SalvageMagnetBroken
+  name: broken salvage magnet
+  description: Was once used to collect space junk. Rendered useless through time, space magic, or both.
+  components:
+  - type: Sprite
+    sprite: Structures/Machines/salvage.rsi
+    layers:
+    - state: salvage-magnet
+  - type: PhysicalComposition
+    materialComposition: 
+      Steel: 2500
+  - type: Tag
+    tags: 
+    - Recyclable
+  - type: InteractionPopup
+    interactSuccessString: "That won't work!"
