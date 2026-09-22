@@ -15,6 +15,10 @@
             "directions": 4
         },
         {
+            "name": "outerClothing",
+            "directions": 4
+        },
+        {
             "name": "back",
             "directions": 4
         },
@@ -44,6 +48,10 @@
         },
         {
             "name": "mask",
+            "directions": 4
+        },
+        {
+            "name": "neck",
             "directions": 4
         },
         {

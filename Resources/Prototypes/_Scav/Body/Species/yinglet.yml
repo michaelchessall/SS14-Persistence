@@ -152,11 +152,26 @@
           32:
             sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
             state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: outerClothing
       eyes:
         sizeMaps:
           32:
             sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
             state: eyes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: mask
       gloves:
         sizeMaps:
           32:
@@ -198,6 +213,16 @@
           32:
             sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
             state: eyes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: mask
       gloves:
         sizeMaps:
           32:
@@ -392,6 +417,10 @@
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganYingletExternal ]
   id: OrganYingletTorso
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Tail
 
 - type: entity
   parent: [ OrganBaseHeadSexed, OrganBaseHead, OrganYingletExternal ]
