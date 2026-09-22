@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.Mobs;
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -49,6 +50,7 @@ namespace Content.Server.Anomaly.Effects;
 /// </summary>
 public sealed partial class EyeAnomalySystem : EntitySystem
 {
+<<<<<<< HEAD
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
@@ -71,6 +73,31 @@ public sealed partial class EyeAnomalySystem : EntitySystem
     [Dependency] private NPCSystem _npcSystem = default!;
     [Dependency] private NpcFactionSystem _npcFaction = default!;
     [Dependency] private PersistentIdentifierSystem _pid = default!;
+=======
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private readonly TetherVisualSystem _tetherVisual = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly HeadsetSystem _headsetSystem = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly HTNSystem _htn = default!;
+    [Dependency] private readonly NPCSystem _npcSystem = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly PersistentIdentifierSystem _pid = default!;
+    [Dependency] private readonly CritMobActionsSystem _critMobActions = default!;
+>>>>>>> origin/staging-stable
 
     private readonly HashSet<Entity<MobStateComponent>> _pulseTargets = new();
     private readonly HashSet<EntityUid> _returning = new();
@@ -102,7 +129,7 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         if (!_pid.TryResolveId(ent.Comp.OriginalBody, out var body))
             return;
 
-        args.SpeakerOverride = body.Owner;
+        // args.SpeakerOverride = body.Owner;
 
         if (_pid.TryResolveId(ent.Comp.Eye, out var eye) && TryComp<EyeAnomalyComponent>(eye.Owner, out var eyeComp))
         {
@@ -467,9 +494,14 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         var template = hadMindShield ? ent.Comp.SosMessageMindShielded : ent.Comp.SosMessageUnshielded;
 
         var mapPos = _transform.GetWorldPosition(victim);
+        var xform = Transform(victim);
         var message = string.Format(template, Name(victim), mapPos.X, mapPos.Y);
 
+<<<<<<< HEAD
         _radio.SendRadioMessage(victim, message, ProtoMan.Index(ent.Comp.BroadcastChannel), victim, true);
+=======
+        _radio.SendRadioMessage(_critMobActions.EnsureDeathNetworkSpeaker(xform.Coordinates), message, "Common", victim, true, false);
+>>>>>>> origin/staging-stable
 
         actions.SOSCooldown = _timing.CurTime + TimeSpan.FromSeconds(_configurationManager.GetCVar(CCVars.AcceptDeathTime));
     }
