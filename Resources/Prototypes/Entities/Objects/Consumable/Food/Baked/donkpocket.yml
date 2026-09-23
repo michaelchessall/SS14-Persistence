@@ -26,6 +26,7 @@
 
 # Warm gives +5 nutriment.
 # Warm ones contain a small amount of Omnizine.
+# Omni changed to Ichor for Persistence 14
 
 - type: entity
   name: donk-pocket
@@ -59,7 +60,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 8
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
 
 - type: entity
@@ -97,7 +98,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 4
 
 - type: entity
@@ -131,7 +132,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
   - type: Sprite
     state: spicy
@@ -167,7 +168,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
 
 - type: entity
@@ -209,7 +210,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 15
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
 
 - type: entity
@@ -251,7 +252,7 @@
           Quantity: 10
         - ReagentId: Honk
           Quantity: 1
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
 
 - type: entity
@@ -289,7 +290,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
         - ReagentId: Sugar
           Quantity: 2
@@ -328,7 +329,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
 
 - type: entity
@@ -365,7 +366,7 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 10
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2
 
 - type: entity
@@ -429,5 +430,5 @@
           Quantity: 10
         - ReagentId: Fiber
           Quantity: 5
-        - ReagentId: Omnizine
+        - ReagentId: Ichor
           Quantity: 2

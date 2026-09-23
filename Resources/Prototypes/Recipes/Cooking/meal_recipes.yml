@@ -101,30 +101,6 @@
     FoodTomato: 1
     FoodOnionSlice: 2
 
-- type: microwaveMealRecipe
-  id: RecipeBloodredBurger
-  name: bloodred_burger_recipe
-  result: FoodBurgerBloodred
-  time: 15
-  group: Savory
-  reagents:
-    Ketchup: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 2
-    FoodCabbage: 1
-
-- type: microwaveMealRecipe
-  id: RecipeWeedChicken
-  name: weed_chicken_recipe
-  result: FoodWeedChicken
-  time: 10
-  group: Savory
-  solids:
-    FoodMeatChickenCutlet: 1
-    LeavesCannabis: 1
-
-
 - type: microwaveMealRecipe #Added to metamorph recipes
   id: RecipeBrainBurger
   name: brain_burger_recipe
@@ -1586,18 +1562,6 @@
   solids:
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
-  id: RecipeNukeCookie
-  name: nuke_cookie_recipe
-  result: FoodBakedCookieNuke
-  time: 5
-  group: BarsAndCookies
-  reagents:
-    Flour: 5
-    Sugar: 5
-    Milk: 5
-  solids:
-    FoodButterSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeRaisinCookie
@@ -1962,17 +1926,6 @@
   group: Savory
   solids:
     FoodDonkpocketCarp: 1
-
-- type: microwaveMealRecipe
-  id: RecipeFoodPaste
-  name: food_paste_recipe
-  result: FoodPaste
-  time: 15
-  group: Savory
-  solids:
-    FoodOnionSlice: 1
-    FoodMeat: 1
-    DrinkGlass: 1
 
 - type: microwaveMealRecipe
   id: RecipeDonkpocketMoth
@@ -2601,3 +2554,189 @@
     Fiber: 10
   solids:
     FoodCakePlain: 1
+
+
+
+#Persistence 14 added recipes and foods
+
+
+- type: microwaveMealRecipe
+  id: RecipeBloodredBurger
+  name: bloodred_burger_recipe
+  result: FoodBurgerBloodred
+  time: 15
+  group: Savory
+  reagents:
+    Ketchup: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 2
+    FoodCabbage: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWeedChicken
+  name: weed_chicken_recipe
+  result: FoodWeedChicken
+  time: 10
+  group: Savory
+  solids:
+    FoodMeatChickenCutlet: 1
+    LeavesCannabis: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFoodPaste
+  name: food_paste_recipe
+  result: FoodPaste
+  time: 15
+  group: Savory
+  solids:
+    FoodOnionSlice: 1
+    FoodMeat: 1
+    DrinkGlass: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNukeCookie
+  name: nuke_cookie_recipe
+  result: FoodBakedCookieNuke
+  time: 5
+  group: BarsAndCookies
+  reagents:
+    Flour: 5
+    Sugar: 5
+    Milk: 5
+  solids:
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketPlain
+  name: donk_pocket_recipe
+  result: FoodDonkpocket
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketDank
+  name: donk_pocket_recipe_dank
+  result: FoodDonkpocketDank
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    LeavesCannabis: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketSpicy
+  name: donk_pocket_recipe_spicy
+  result: FoodDonkpocketSpicy
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodChiliPepper: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketTeriyaki
+  name: donk_pocket_recipe_teriyaki
+  result: FoodDonkpocketTeriyaki
+  secretRecipe: true
+  time: 20
+  group: Secret
+  reagents:
+    Soysauce: 5
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodMeatCutlet: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketPizza
+  name: donk_pocket_recipe_pizza
+  result: FoodDonkpocketPizza
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketHonk
+  name: donk_pocket_recipe_honk
+  result: FoodDonkpocketHonk
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodBanana: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketBerry
+  name: donk_pocket_recipe_berry
+  result: FoodDonkpocketBerry
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodBerries: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketStonk
+  name: donk_pocket_recipe_stonk
+  result: FoodDonkpocketStonk
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    SpaceCash: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketCarp
+  name: donk_pocket_recipe_carp
+  result: FoodDonkpocketCarp
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodMeatFish: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketDink
+  name: donk_pocket_recipe_dink
+  result: FoodDonkpocketDink
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodCarrot: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketMoth
+  name: donk_pocket_recipe_moth
+  result: FoodDonkpocketMoth
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughCottonSlice: 1
+
