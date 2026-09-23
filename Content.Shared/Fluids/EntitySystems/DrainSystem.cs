@@ -81,7 +81,7 @@ public sealed class DrainSystem : EntitySystem
         if (!_solutionContainerSystem.TryGetSolution(held.Owner, held.SolutionName, out _, out var heldSol) || heldSol.Volume <= 0)
             return;
 
-        _stain.MakeWringVerb(held.Owner, held.WringDoAfterDuration * 0.75f, ref args, "stain-verb-wring-drain", ent);
+        _stain.MakeWringVerb(held.Owner, held.WringDoAfterDuration * 0.4f, ref args, "stain-verb-wring-drain", ent);
     }
 
     private void AddEmptyVerb(Entity<DrainComponent> ent, ref GetVerbsEvent<Verb> args)
