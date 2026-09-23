@@ -199,15 +199,15 @@ public abstract class SharedStainSystem : EntitySystem
             drainComp.Solution is not null &&
             _solution.TryAddSolution(drainComp.Solution.Value, split))
         {
-            _popup.PopupEntity(Loc.GetString("stain-verb-wring-drain-success"), args.User, args.User);
+            _popup.PopupPredicted(Loc.GetString("stain-verb-wring-drain-success"), args.User, args.User);
         }
         else if (_puddle.TrySpillAt(ent.Owner, split, out _)) // Wring onto floor
         {
-            _popup.PopupEntity(Loc.GetString("stain-verb-wring-success"), args.User, args.User);
+            _popup.PopupPredicted(Loc.GetString("stain-verb-wring-success"), args.User, args.User);
         }
         else // Return to stainable item
         {
-            _popup.PopupEntity(Loc.GetString("stain-verb-wring-failure"), args.User, args.User);
+            _popup.PopupPredicted(Loc.GetString("stain-verb-wring-failure"), args.User, args.User);
             _solution.TryAddSolution(solComp.Value, split);
         }
         UpdateVisuals(ent);
