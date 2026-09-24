@@ -525,9 +525,7 @@ namespace Content.Shared.Preferences
             name = name.Trim();
 
             if (configManager.GetCVar(CCVars.RestrictedNames))
-            {
-                name = RestrictedNameRegex.Replace(name, string.Empty);
-            }
+                ApplyRestrictedNameRegex(ref name);
 
             if (configManager.GetCVar(CCVars.ICNameCase))
             {
@@ -641,6 +639,11 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
+        }
+
+        public void ApplyRestrictedNameRegex(ref string name)
+        {
+            name = RestrictedNameRegex.Replace(name, string.Empty);
         }
 
         /// <summary>
