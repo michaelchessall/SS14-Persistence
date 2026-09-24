@@ -206,9 +206,10 @@
   - type: Action
     itemIconStyle: BigAction
     priority: -20
-    icon:
-      sprite: Objects/Devices/communication.rsi
-      state: old-radio
+  - type: Sprite
+    sprite: Objects/Devices/communication.rsi
+    layers:
+    - state: old-radio
   - type: InstantAction
     event: !type:OpenJobNetImplantEvent
 

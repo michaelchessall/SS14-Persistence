@@ -10,17 +10,17 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  id: PlasmaWindoorSecure
-  graph: Windoor
-  startNode: start
-  targetNode: pwindoorSecure
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+#- type: construction
+#  id: PlasmaWindoorSecure
+#  graph: Windoor
+#  startNode: start
+#  targetNode: pwindoorSecure
+#  category: construction-category-structures
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
 
 - type: construction
   id: UraniumWindoor
@@ -34,17 +34,17 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  id: UraniumWindoorSecure
-  graph: Windoor
-  startNode: start
-  targetNode: uwindoorSecure
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+#- type: construction
+#  id: UraniumWindoorSecure
+#  graph: Windoor
+#  startNode: start
+#  targetNode: uwindoorSecure
+#  category: construction-category-structures
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked
 
 - type: construction
   id: WindoorPhoron
@@ -58,14 +58,14 @@
   conditions:
     - !type:TileNotBlocked
 
-- type: construction
-  id: WindoorPhoronSecure
-  graph: Windoor
-  startNode: start
-  targetNode: phwindoorSecure
-  category: construction-category-structures
-  objectType: Structure
-  placementMode: SnapgridCenter
-  canBuildInImpassable: false
-  conditions:
-    - !type:TileNotBlocked
+#- type: construction
+#  id: WindoorPhoronSecure
+#  graph: Windoor
+#  startNode: start
+#  targetNode: phwindoorSecure
+#  category: construction-category-structures
+#  objectType: Structure
+#  placementMode: SnapgridCenter
+#  canBuildInImpassable: false
+#  conditions:
+#    - !type:TileNotBlocked

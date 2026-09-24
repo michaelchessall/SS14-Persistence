@@ -1576,7 +1576,7 @@
           tags:
           - CableCoil
     - hand:
-        emptyRepresentative: FloorTileItemExoBorg
+        emptyRepresentative: FloorTileItemXenoborg # Persistence: FloorTileItemExoBorg < FloorTileItemXenoborg
         emptyLabel: borg-slot-tiles-empty
         whitelist:
           components:
