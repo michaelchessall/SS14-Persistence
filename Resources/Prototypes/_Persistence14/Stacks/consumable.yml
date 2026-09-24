@@ -1,0 +1,8 @@
+# Food
+
+- type: stack
+  id: CottonPancake
+  name: stack-cotton-pancake
+  icon: { sprite: /Textures/_Persistence14/Objects/Consumable/Food/Baked/misc.rsi, state: cotton-pancakes1 }
+  spawn: FoodBakedCottonPancake
+  maxCount: 9

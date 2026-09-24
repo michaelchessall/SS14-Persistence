@@ -33,6 +33,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System.Linq;
+using Content.Server.Mobs;
 
 namespace Content.Server.Anomaly.Effects;
 
@@ -102,7 +103,7 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         if (!_pid.TryResolveId(ent.Comp.OriginalBody, out var body))
             return;
 
-        args.SpeakerOverride = body.Owner;
+        // args.SpeakerOverride = body.Owner;
 
         if (_pid.TryResolveId(ent.Comp.Eye, out var eye) && TryComp<EyeAnomalyComponent>(eye.Owner, out var eyeComp))
         {
@@ -467,6 +468,7 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         var template = hadMindShield ? ent.Comp.SosMessageMindShielded : ent.Comp.SosMessageUnshielded;
 
         var mapPos = _transform.GetWorldPosition(victim);
+        var xform = Transform(victim);
         var message = string.Format(template, Name(victim), mapPos.X, mapPos.Y);
 
         _radio.SendRadioMessage(victim, message, ProtoMan.Index(ent.Comp.BroadcastChannel), victim, true);
