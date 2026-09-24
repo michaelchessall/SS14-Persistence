@@ -194,7 +194,16 @@ namespace Content.Server.GameTicking
 
             _bankSystem.EnsureAccount(character.Name, 50);
             if (_crewMetaRecords.MetaRecords != null)
-                _crewMetaRecords.MetaRecords.CreateRecord(character!.Name, out _);
+            {
+                _crewMetaRecords.MetaRecords.CreateRecord(character!.Name, out var createdRecord);
+                if(createdRecord != null)
+                {
+                    if (character.Alignment != null) createdRecord.Alignment = character.Alignment.Value;
+                    if (character.UniverseOrigin != null) createdRecord.Origin = character.UniverseOrigin.Value;
+                    if (character.Motive != null) createdRecord.Motive = character.Motive.Value;
+                }
+            }
+            
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station.Value, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;

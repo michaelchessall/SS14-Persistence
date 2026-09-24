@@ -1,0 +1,115 @@
+- type: trait
+  id: Good
+  name: Good
+  description: "You value helping others."
+  components:
+    - type: Alignment
+      goodness: Good
+  selectable: false
+
+- type: trait
+  id: LawfulGood
+  name: Lawful Good
+  description: "You value helping others and respecting the law."
+  components:
+    - type: Alignment
+      goodness: Good
+      lawfulness: Lawful
+  selectable: false
+
+- type: trait
+  id: ChaoticGood
+  name: Chaotic Good
+  description: "You value helping others and individual freedom."
+  components:
+    - type: Alignment
+      goodness: Good
+      lawfulness: Chaotic
+  selectable: false
+
+- type: trait
+  id: Lawful
+  name: Lawful
+  description: "You value the law."
+  components:
+    - type: Alignment
+      lawfulness: Lawful
+  selectable: false
+
+- type: trait
+  id: Chaotic
+  name: Chaotic
+  description: "You value individual freedom."
+  components:
+    - type: Alignment
+      lawfulness: Chaotic
+  selectable: false
+
+
+- type: trait
+  id: Neutral
+  name: Neutral
+  description: "You value balance."
+  components:
+    - type: Alignment
+  selectable: false
+
+- type: trait
+  id: Evil
+  name: Evil
+  description: "You value yourself above all others."
+  components:
+    - type: Alignment
+      goodness: Evil
+  selectable: false
+
+- type: trait
+  id: ChaoticEvil
+  name: Chaotic Evil
+  description: "You value yourself above all others and hate the law."
+  components:
+    - type: Alignment
+      goodness: Evil
+      lawfulness: Chaotic
+  selectable: false
+
+- type: trait
+  id: LawfulEvil
+  name: Lawful Evil
+  description: "You value yourself above all others. You seek to impose order."
+  components:
+    - type: Alignment
+      goodness: Evil
+      lawfulness: Lawful
+  selectable: false
+
+- type: trait
+  id: OriginZenith
+  name: Oath to Queen Valeria
+  description: "You pledged an oath of loyalty to Queen Valeria and the Solar Legion."
+  selectable: false
+
+- type: trait
+  id: OriginGreen
+  name: Nanotrasen Contract
+  description: "You signed a contract to work for Nanotrasen in the Threshold."
+  selectable: false
+
+- type: trait
+  id: OriginMarine
+  name: Enlisted in Xeno Wars
+  description: "You provided service to a military fighting a war against Xenos."
+  selectable: false
+
+- type: trait
+  id: OriginPrecursor
+  name: Syndicate Associate
+  description: "You associated with syndicate operatives while traveling through the Threshold."
+  selectable: false
+
+- type: trait
+  id: OriginShadow
+  name: Seen too much
+  description: "You came into contact with mind-breaking entities of pure shadow and evil whhile traveling through the Threshold."
+  selectable: false
+

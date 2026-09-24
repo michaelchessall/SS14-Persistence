@@ -1,0 +1,97 @@
+- type: backgroundEffect
+  id: TraitGood
+  description: "[color=green]You will gain the 'Good' trait."
+  traits:
+    - Good
+
+- type: backgroundEffect
+  id: TraitLawfulGood
+  description: "[color=green]You will gain the 'Lawful Good' trait."
+  traits:
+    - LawfulGood
+
+- type: backgroundEffect
+  id: TraitChaoticGood
+  description: "[color=green]You will gain the 'Chaotic Good' trait."
+  traits:
+    - ChaoticGood
+
+- type: backgroundEffect
+  id: TraitChaotic
+  description: "[color=green]You will gain the 'Chaotic' trait."
+  traits:
+    - Chaotic
+
+- type: backgroundEffect
+  id: TraitLawful
+  description: "[color=green]You will gain the 'Lawful' trait."
+  traits:
+    - Lawful
+
+- type: backgroundEffect
+  id: TraitNeutral
+  description: "[color=green]You will gain the 'Neutral' trait."
+  traits:
+    - Neutral
+
+- type: backgroundEffect
+  id: TraitEvil
+  description: "[color=green]You will gain the 'Evil' trait."
+  traits:
+    - Evil
+
+- type: backgroundEffect
+  id: TraitLawfulEvil
+  description: "[color=green]You will gain the 'Lawful Evil' trait."
+  traits:
+    - LawfulEvil
+
+- type: backgroundEffect
+  id: TraitChaoticEvil
+  description: "[color=green]You will gain the 'Chaotic Evil' trait."
+  traits:
+    - ChaoticEvil
+
+- type: backgroundEffect
+  id: TraitOriginZenith
+  description: "[color=green]You will gain the 'Oath to Queen Valeria' trait."
+  traits:
+    - OriginZenith
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorRed
+
+- type: backgroundEffect
+  id: TraitOriginGreen
+  description: "[color=green]You will gain the 'Nanotrasen Contract' trait."
+  traits:
+    - OriginGreen
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGreen
+
+- type: backgroundEffect
+  id: TraitOriginMarine
+  description: "[color=green]You will gain the 'Enlisted in Xeno Wars' trait."
+  traits:
+    - OriginMarine
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBattleDressUniformWoodlandTShirt
+
+
+- type: backgroundEffect
+  id: TraitOriginPrecursor
+  description: "[color=green]You will gain the 'Syndicate Associate' trait."
+  traits:
+    - OriginPrecursor
+  equipment:
+    jumpsuit: ClothingUniformGenericTurtleNeckAndJeans
+
+- type: backgroundEffect
+  id: TraitOriginShadow
+  description: "[color=green]You will gain the 'Seen too much' trait."
+  traits:
+    - OriginShadow
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+
+
+

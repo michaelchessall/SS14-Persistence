@@ -45,6 +45,7 @@
   components:
     - type: Unrevivable
       cloneable: true
+  selectable: false
 
 - type: trait
   id: Monochromacy

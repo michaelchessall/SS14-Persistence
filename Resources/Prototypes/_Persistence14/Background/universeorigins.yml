@@ -1,0 +1,34 @@
+- type: universeOrigin
+  id: Zenith
+  name: Zenith Universe
+  description: "The Threshold in the Zenith Universe is controlled by the Solar Legion.\nNew colonists are required to swear an oath to the Queen Valeria before being free to explore the Threshold.\n[italic]This is a suitable choice for characters from past Persistence 14 iterations."
+  effects:
+    - TraitOriginZenith
+
+- type: universeOrigin
+  id: Green
+  name: Green Universe
+  description: "The Threshold in the Green Universe is controlled by Nanotrasen. \nColonists sign a contract of loyalty with the Corporation.\n[italic]This is a suitable choice for traditional SS14 characters."
+  effects:
+    - TraitOriginGreen
+
+- type: universeOrigin
+  id: Marine
+  name: Marine Universe
+  description: "The Threshold in the Marine Universe is contested between the United Nations and an endless hoard of hostile aliens.\nColonists are drawn into the Threshold to support the conflict.\n[italic]This is a suitable choice for RMC characters."
+  effects:
+    - TraitOriginMarine
+
+- type: universeOrigin
+  id: Precursor
+  name: Precursor Universe
+  description: "The Threshold in the Precursor Universe is controlled by a group of corporations which calls itself 'The Syndicate'.\nColonists are lured into the Threshold to become unwitting agents of the Syndicate.\n[italic]This is a suitable choice for rougish characters."
+  effects:
+    - TraitOriginPrecursor
+
+- type: universeOrigin
+  id: Shadow
+  name: Shadow Universe
+  description: "The Threshold in the Shadow Universe is controlled by insipid, malevolent entities that manipulate mortals to do their bidding.\nColonists are tricked into entering the Threshold by the gambits of the Shadow Entities.\n[italic]This is an unusual origin."
+  effects:
+    - TraitOriginShadow

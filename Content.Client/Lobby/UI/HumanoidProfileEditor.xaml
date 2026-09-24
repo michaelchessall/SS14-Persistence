@@ -56,6 +56,7 @@
                             <Button Name="ExportImageButton" Text="{Loc 'humanoid-profile-editor-export-image-button'}"/>
                             <Button Name="OpenImagesButton" Text="{Loc 'humanoid-profile-editor-open-image-button'}"/>
                             <Button Name="JoinGameButton" Text="Join Game"/>
+                            <RichTextLabel Name="RequirementsLbl" />
                         </BoxContainer>
                     </ui:HighlightedContainer>
                 </BoxContainer>
@@ -133,56 +134,74 @@
                     <humanoid:MarkingPicker Name="Markings" HorizontalExpand="True" VerticalExpand="True" />
                 </BoxContainer>
                 <BoxContainer Name="Background" Orientation="Vertical" Margin="10">
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="This character has the moral alignment of " />
-                        <OptionButton Name="AlignmentButton" HorizontalAlignment="Right" />
-                    </BoxContainer>
-                    <BoxContainer Orientation="Vertical" >
-                        <Label Name="AlignTitleLabel" Text="True Neutral" StyleClasses="LabelHeading" />
-                        <RichTextLabel Name="AlignDescLabel" HorizontalAlignment="Left"/>
-                    </BoxContainer>
-                    <Control MinHeight="50" />
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="This character previously lived on a " />
-                        <OptionButton Name="BGButton" HorizontalAlignment="Right" />
-                    </BoxContainer>
-                    <BoxContainer Orientation="Vertical" >
-                        <Label Name="BGTitleLabel" Text="Corporate Space Station" StyleClasses="LabelHeading" />
-                        <Control MinHeight="30" />
-                        <RichTextLabel Name="BGDescLabel" HorizontalAlignment="Left"/>
-                    </BoxContainer>
-                    <Control MinHeight="50" />
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="This character came to the Threshold seeking  " />
-                        <OptionButton Name="MotiveButton" HorizontalAlignment="Right" />
-                    </BoxContainer>
-                    <BoxContainer Orientation="Vertical" >
-                        <Label Name="MotiveTitleLabel" Text="Corporate Space Station" StyleClasses="LabelHeading" />
-                        <Control MinHeight="30" />
-                        <RichTextLabel Name="MotiveDescLabel" HorizontalAlignment="Left"/>
-                    </BoxContainer>
+                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
+                        <BoxContainer Orientation="Vertical" >
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="This character has the moral alignment of " />
+                                <OptionButton Name="AlignmentButton" HorizontalAlignment="Right" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" >
+                                <Label Name="AlignTitleLabel" Text="" StyleClasses="LabelHeading" />
+                                <RichTextLabel Name="AlignDescLabel" HorizontalAlignment="Left"/>
+                                <RichTextLabel Name="AlignEffectsLabel" HorizontalAlignment="Left"/>
+                            </BoxContainer>
+                            <Control MinHeight="50" />
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="This character comes from the " />
+                                <OptionButton Name="BGButton" HorizontalAlignment="Right" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" >
+                                <Label Name="BGTitleLabel" Text="" StyleClasses="LabelHeading" />
+                                <Control MinHeight="30" />
+                                <RichTextLabel Name="BGDescLabel" HorizontalAlignment="Left"/>
+                                <RichTextLabel Name="BGEffectsLabel" HorizontalAlignment="Left"/>
+                            </BoxContainer>
+                            <Control MinHeight="50" />
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="This character came to the Threshold seeking  " />
+                                <OptionButton Name="MotiveButton" HorizontalAlignment="Right" />
+                            </BoxContainer>
+                            <BoxContainer Orientation="Vertical" >
+                                <Label Name="MotiveTitleLabel" Text="" StyleClasses="LabelHeading" />
+                                <Control MinHeight="30" />
+                                <RichTextLabel Name="MotiveDescLabel" HorizontalAlignment="Left"/>
+                                <RichTextLabel Name="MotiveEffectsLabel" HorizontalAlignment="Left"/>
+                            </BoxContainer>
+                        </BoxContainer>
+                    </ScrollContainer>
+              
                 </BoxContainer>
-                <BoxContainer Name="Threshold" Orientation="Vertical" Margin="10">
-                    <Label Text="The Threshold" StyleClasses="LabelHeading" />
-                    <Control MinHeight="30" />
-                    <RichTextLabel HorizontalAlignment="Left"
-                                   Name="ThresholdLoreLabel" />
-                    <Control MinHeight="50" />
-                    <Label Text="Nanotrasen" StyleClasses="LabelHeading" />
-                    <Control MinHeight="30" />
-                    <RichTextLabel HorizontalAlignment="Left"
-                                   Name="NanotrasenLabel" />
-                    <Control MinHeight="50" />
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="While traveling to the Threshold this character witnessed " />
-                        <OptionButton Name="SigilButton" HorizontalAlignment="Right" />
-                        <Label Text=" Sigil" />
-                    </BoxContainer>
-                    <Label Name="SigilTitle" Text="The Whale" StyleClasses="LabelHeading" />
-                    <Control MinHeight="30" />
-                    <RichTextLabel HorizontalAlignment="Left"
-                                   Name="SigilLabel" />
+                <BoxContainer Name="Journey" Orientation="Vertical" Margin="10">
+                    <ScrollContainer VerticalExpand="True">
+                        <BoxContainer Orientation="Vertical" >
+                            <Label Text="The Threshold" StyleClasses="LabelHeading" />
+                            <Control MinHeight="30" />
+                            <RichTextLabel HorizontalAlignment="Left"
+                                           Name="ThresholdLoreLabel" />
+                            <Control MinHeight="50" />
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="While traveling to the Threshold this character witnessed " />
+                                <OptionButton Name="SigilButton" HorizontalAlignment="Right" />
+                                <Label Text=" Sigil" />
+                            </BoxContainer>
+                            <Label Name="SigilTitle" Text="The Whale" StyleClasses="LabelHeading" />
+                            <Control MinHeight="30" />
+                            <RichTextLabel HorizontalAlignment="Left"
+                                           Name="SigilLabel" />
+                        </BoxContainer>
+                    </ScrollContainer>
                 </BoxContainer>
+                <BoxContainer Orientation="Vertical" Margin="10">
+                    <!-- Traits -->
+                    <ScrollContainer VerticalExpand="True">
+                        <BoxContainer Name="TraitsMainBC" Orientation="Vertical">
+                            <Label Text="Background Traits" StyleClasses="LabelHeading" />
+                            <BoxContainer Name="BackgroundTraits" Orientation="Vertical" />
+                            <BoxContainer Name="TraitsList" Orientation="Horizontal" />
+                        </BoxContainer>
+                    </ScrollContainer>
+                </BoxContainer>
+                
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

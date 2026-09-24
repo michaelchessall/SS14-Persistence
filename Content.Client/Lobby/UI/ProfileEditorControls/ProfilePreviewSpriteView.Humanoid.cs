@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Humanoid;
 using Content.Client.Station;
+using Content.Shared._Persistence14.Background.Prototypes;
 using Content.Shared.Body;
 using Content.Shared.Clothing;
 using Content.Shared.GameTicking;
@@ -178,5 +179,74 @@ public sealed partial class ProfilePreviewSpriteView
                 inventorySys.TryEquip(PreviewDummy, item, slot.Name, true, true);
             }
         }
+
+        if(profile.Alignment != null)
+        {
+            var alignment = _prototypeManager.Index<AlignmentPrototype>(profile.Alignment);
+            foreach (var effect in alignment.Effects)
+            {
+                if (!_prototypeManager.Resolve(effect, out var effectProto))
+                    continue;
+                foreach(var kv in effectProto.Equipment)
+                {
+                    var itemType = kv.Value;
+                    if (inventorySys.TryUnequip(PreviewDummy, kv.Key, out var unequippedItem, silent: true, force: true, reparent: false))
+                    {
+                        EntMan.DeleteEntity(unequippedItem.Value);
+                    }
+                    if (itemType != string.Empty)
+                    {
+                        var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                        inventorySys.TryEquip(PreviewDummy, item, kv.Key, true, true);
+                    }
+                }
+            }
+        }
+        if (profile.UniverseOrigin != null)
+        {
+            var universeOrigin = _prototypeManager.Index<UniverseOriginPrototype>(profile.UniverseOrigin);
+            foreach (var effect in universeOrigin.Effects)
+            {
+                if (!_prototypeManager.Resolve(effect, out var effectProto))
+                    continue;
+                foreach (var kv in effectProto.Equipment)
+                {
+                    var itemType = kv.Value;
+                    if (inventorySys.TryUnequip(PreviewDummy, kv.Key, out var unequippedItem, silent: true, force: true, reparent: false))
+                    {
+                        EntMan.DeleteEntity(unequippedItem.Value);
+                    }
+                    if (itemType != string.Empty)
+                    {
+                        var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                        inventorySys.TryEquip(PreviewDummy, item, kv.Key, true, true);
+                    }
+                }
+            }
+        }
+        if (profile.Motive != null)
+        {
+            var motive = _prototypeManager.Index<MotivePrototype>(profile.Motive);
+            foreach (var effect in motive.Effects)
+            {
+                if (!_prototypeManager.Resolve(effect, out var effectProto))
+                    continue;
+                foreach (var kv in effectProto.Equipment)
+                {
+                    var itemType = kv.Value;
+                    if (inventorySys.TryUnequip(PreviewDummy, kv.Key, out var unequippedItem, silent: true, force: true, reparent: false))
+                    {
+                        EntMan.DeleteEntity(unequippedItem.Value);
+                    }
+                    if (itemType != string.Empty)
+                    {
+                        var item = EntMan.SpawnEntity(itemType, MapCoordinates.Nullspace);
+                        inventorySys.TryEquip(PreviewDummy, item, kv.Key, true, true);
+                    }
+                }
+            }
+        }
+
+
     }
 }
