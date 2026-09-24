@@ -16,9 +16,10 @@
   - type: Action
     startDelay: true
     useDelay: 10
-    icon:
-      sprite: Mobs/Ghosts/ghost_human.rsi
-      state: icon
+  - type: Sprite
+    sprite: Mobs/Ghosts/ghost_human.rsi
+    layers:
+    - state: icon
   - type: InstantAction
     event: !type:AcceptDeathEvent
 

@@ -344,7 +344,7 @@
   icon:
     sprite: Objects/Power/light_bulb.rsi
     state: normal
-  product: CrateServiceReplacementLights
+  product: CrateJanitorialReplacementLights
   cost: 750
   category: cargoproduct-category-name-service
   group: explorermarket

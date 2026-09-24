@@ -3,7 +3,7 @@
   table: !type:GroupSelector
     children:
     - !type:NestedSelector
-      tableId: Debug
+      tableId: XenoArtifactEffectsRoot
       weight: 483.0 # Total weights of the table so distribution remains even
     # Eventually full size only artifact effects will go here
 

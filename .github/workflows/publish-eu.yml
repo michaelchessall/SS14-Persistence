@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # To run before EU shifts. Scheduled at 15:00 UTC
-    #- cron: '0 15 * * 1,6' Disabling automatic run until testing is complete
+    - cron: '0 15 * * 1,6'
 
 jobs:
   publish:

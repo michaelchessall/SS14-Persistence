@@ -708,7 +708,7 @@
   icon:
     sprite: Objects/Specific/Janitorial/spray_bottle.rsi
     state: cleaner
-  product: CrateServiceJanitorialSupplies
+  product: CrateJanitorialSupplies
   cost: 500
   category: cargoproduct-category-name-service
   group: servicemarket
@@ -718,7 +718,7 @@
   icon:
     sprite: Objects/Weapons/Grenades/janitor.rsi
     state: icon
-  product: CrateServiceCleanerGrenades
+  product: CrateJanitorialCleanerGrenades
   cost: 200
   category: cargoproduct-category-name-service
   group: servicemarket2
@@ -728,7 +728,7 @@
   icon:
     sprite: Objects/Power/light_bulb.rsi
     state: normal
-  product: CrateServiceReplacementLights
+  product: CrateJanitorialReplacementLights
   cost: 500
   category: cargoproduct-category-name-service
   group: servicemarket
@@ -738,7 +738,7 @@
   icon:
     sprite: Objects/Power/light_bulb.rsi
     state: normal
-  product: CrateServiceColorfulLights
+  product: CrateJanitorialColorfulLights
   cost: 500
   category: cargoproduct-category-name-service
   group: servicemarket
@@ -748,7 +748,7 @@
   icon:
     sprite: Objects/Power/light_bulb.rsi
     state: normal
-  product: CrateServiceHolidayLights
+  product: CrateJanitorialHolidayLights
   cost: 500
   category: cargoproduct-category-name-service
   group: servicemarket2
