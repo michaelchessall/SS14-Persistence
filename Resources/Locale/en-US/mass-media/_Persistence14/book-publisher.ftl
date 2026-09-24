@@ -1,0 +1,10 @@
+book-publisher-ui-title = Book Publisher
+book-publisher-book-status = Book Status
+book-publisher-no-book = No book inserted
+book-publisher-book-inserted = Book inserted: {$name}
+book-publisher-title-label = Book Title
+book-publisher-title-tooltip = Enter the title of the book
+book-publisher-publish = Publish
+book-publisher-eject = Eject Book
+book-publisher-no-paper = No paper content found in book
+book-publisher-publishing = Publishing book: {$title}
