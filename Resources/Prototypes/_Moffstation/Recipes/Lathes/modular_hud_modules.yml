@@ -98,12 +98,12 @@
   id: HudModuleShowMedicalIcons
   result: HudModuleShowMedicalIcons
 
-#- type: latheRecipe
-#  parent: BaseModularHudModuleT2Recipe
-#  id: HudModuleShowHungerIcons
-#  result: HudModuleShowHungerIcons
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowHungerIcons
+  result: HudModuleShowHungerIcons
 
-#- type: latheRecipe
-#  parent: BaseModularHudModuleT2Recipe
-#  id: HudModuleShowThirstIcons
-#  result: HudModuleShowThirstIcons
+- type: latheRecipe
+  parent: BaseModularHudModuleT2Recipe
+  id: HudModuleShowThirstIcons
+  result: HudModuleShowThirstIcons

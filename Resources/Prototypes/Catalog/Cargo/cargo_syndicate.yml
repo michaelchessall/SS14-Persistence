@@ -35,7 +35,7 @@
   cost: 500
   category: cargoproduct-category-name-syndicate
   group: syndicatemarket
-  
+
 - type: cargoProduct
   id: SyndicateToolbox
   icon:
@@ -134,7 +134,7 @@
   group: syndicatemarket
 
 
-# Rank 2: Price range: 1000-3000 
+# Rank 2: Price range: 1000-3000
 - type: cargoProduct
   id: MedicalKit
   icon:
@@ -414,7 +414,7 @@
   id: AccessBreaker
   icon:
     sprite: Objects/Tools/access_breaker.rsi
-    state: icon
+    state: syndi-icon
   product: AccessBreaker
   cost: 2800
   category: cargoproduct-category-name-syndicate

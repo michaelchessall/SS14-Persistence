@@ -176,6 +176,17 @@
 
 - type: entity
   parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitCoroner
+  name: coroner jumpsuit
+  description: A suit made for staff who take care of the morgue. It has a cross patch on the right shoulder denoting that the wearer is trained medical personnel.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/coroner.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/coroner.rsi
+
+- type: entity
+  parent: ClothingUniformBase
   id: ClothingUniformJumpsuitThreshPriest
   name: threshold's embrace jumpsuit
   description: WIP
@@ -184,3 +195,91 @@
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/threshpriest.rsi
   - type: Clothing
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/threshpriest.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecBlueAlt
+  name: blue security jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/security_blue_new.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/security_blue_new.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecGreyAlt
+  name: grey security jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/security_grey_new.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/security_grey_new.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecAlt
+  name: dark red security jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/security_new.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/security_new.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecCorpsmanBlue
+  name: blue security corpsman jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/newbrigmedic.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/newbrigmedic.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecCorpsmanBlack
+  name: black security corpsman jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/newbrigmedic_alt.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/newbrigmedic_alt.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecDetectiveBlue
+  name: blue detective jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/newdetective.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/newdetective.rsi
+
+- type: entity
+  parent: ClothingUniformBase
+  id: ClothingUniformJumpsuitSecDetectiveBlack
+  name: black detective jumpsuit
+  description: A jumpsuit made of strong material, providing robust protection.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/newdetective_alt.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/newdetective_alt.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseSecurityContraband]
+  id: ClothingUniformSecurityTrooperSenior
+  name: senior trooper uniform
+  description: A formal uniform issued to senior Nanotrasen Troopers, usually it comes with a car.
+  components:
+  - type: Sprite
+    sprite: Clothing/Uniforms/Jumpsuit/seniortrooper.rsi
+  - type: Clothing
+    sprite: Clothing/Uniforms/Jumpsuit/seniortrooper.rsi

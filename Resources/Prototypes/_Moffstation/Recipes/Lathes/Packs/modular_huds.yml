@@ -21,10 +21,10 @@
   - HudModuleNoirOverlay
   #- HudModuleShowAccessReaderSettings
   - HudModuleShowContrabandDetails
-  #- HudModuleShowHungerIcons
+  - HudModuleShowHungerIcons
   - HudModuleShowJobIcons
   - HudModuleShowMedicalIcons
-  #- HudModuleShowThirstIcons
+  - HudModuleShowThirstIcons
   - HudModuleSolutionScanner
   - HudModuleVisionCorrection
 
@@ -42,8 +42,8 @@
 - type: latheRecipePack
   id: MedicalModularHudModules
   recipes:
-  #- HudModuleShowHungerIcons
+  - HudModuleShowHungerIcons
   - HudModuleShowMedicalIcons
-  #- HudModuleShowThirstIcons
+  - HudModuleShowThirstIcons
   - HudModuleSolutionScanner
   - HudModuleVisionCorrection
