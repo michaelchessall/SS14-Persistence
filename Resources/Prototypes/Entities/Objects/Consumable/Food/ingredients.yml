@@ -373,7 +373,7 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 5
 
 - type: entity
@@ -397,7 +397,7 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 5
 
 - type: entity
@@ -521,7 +521,7 @@
       food:
         maxVol: 18
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 5
         - ReagentId: Fiber
           Quantity: 10
@@ -552,7 +552,7 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 1.5
         - ReagentId: Fiber
           Quantity: 3.5
@@ -579,7 +579,7 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 1.5
         - ReagentId: Fiber
           Quantity: 3.5
@@ -1001,7 +1001,7 @@
       food:
         maxVol: 4
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 3
 
 - type: entity

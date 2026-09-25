@@ -18,9 +18,11 @@
         maxVol: 60
         reagents:
         - ReagentId: Nutriment
-          Quantity: 40
+          Quantity: 20 # Persistence: 40 < 20
         - ReagentId: Vitamin
           Quantity: 10
+        - ReagentId: Grain # Persistence
+          Quantity: 20
 
 # Breakfasts
 
