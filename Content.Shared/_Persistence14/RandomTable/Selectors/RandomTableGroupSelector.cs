@@ -6,7 +6,7 @@ namespace Content.Shared._Persistence14.RandomTable.Selectors;
 /// <summary>
 /// Selects an item from the children of the selector base
 /// </summary>
-public sealed partial class RandomTableGroupSelector : RandomTableSelector
+public sealed partial class RandomTableGroupSelector : RandomTableSelector, IRandomTableCollectionSelector
 {
     [DataField]
     public List<RandomTableSelector> Children = new();
@@ -23,7 +23,7 @@ public sealed partial class RandomTableGroupSelector : RandomTableSelector
 
         foreach (var child in activeChildren)
         {
-            acc += child.Weight;
+            acc += child.GetWeight(ctx);
             if (acc > rand)
             {
                 foreach (var item in child.Run(ctx))
@@ -42,7 +42,7 @@ public sealed partial class RandomTableGroupSelector : RandomTableSelector
 
         foreach (var child in activeChildren)
         {
-            var childProbability = child.Weight / totalWeight;
+            var childProbability = child.GetWeight(ctx) / totalWeight;
             foreach (var (value, prob) in child.List(ctx, probabilityMultipler * childProbability))
                 yield return (value, prob);
         }
@@ -67,11 +67,17 @@ public sealed partial class RandomTableGroupSelector : RandomTableSelector
 
             if (!useConditions || child.CheckConditions(ctx)) // Ignore inactive children.
             {
-                sum += child.Weight;
+                sum += child.GetWeight(ctx);
                 activeChildren.Add(child);
             }
         }
 
         return sum;
+    }
+
+    public IEnumerable<RandomTableSelector> GetChildren(RandomTableContext ctx)
+    {
+        foreach (var child in Children)
+            yield return child;
     }
 }

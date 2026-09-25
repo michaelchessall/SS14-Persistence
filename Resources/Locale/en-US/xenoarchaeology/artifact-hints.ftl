@@ -49,10 +49,7 @@ xenoarch-trigger-tip-no-oxygen = Oxygen-free environment
 xenoarch-trigger-tip-water = Water
 xenoarch-trigger-tip-co2 = Carbon dioxide
 xenoarch-trigger-tip-plasma = Non-solid plasma
-xenoarch-trigger-tip-tritium = Tritium
 xenoarch-trigger-tip-ammonia = Ammonia
-xenoarch-trigger-tip-n2o = Nitrous oxide
-xenoarch-trigger-tip-frezon = Frezon
 xenoarch-trigger-tip-radiation = Radiation
 xenoarch-trigger-tip-brute-damage = Physical damage
 xenoarch-trigger-tip-interaction = Physical interaction
@@ -68,17 +65,7 @@ xenoarch-trigger-tip-blood = Blood
 xenoarch-trigger-tip-throw = Being thrown
 xenoarch-trigger-tip-death = Death
 xenoarch-trigger-tip-magnet = Magnetic waves
-# _Persistence14 content: emote trigger tips
-xenoarch-trigger-tip-laugh = Laughter
-xenoarch-trigger-tip-sigh = A weary sigh
-xenoarch-trigger-tip-sneeze = A sneeze
-xenoarch-trigger-tip-cough = A cough
-xenoarch-trigger-tip-whistle = Whistling
-xenoarch-trigger-tip-cry = Tears
-xenoarch-trigger-tip-clap = Applause
-xenoarch-trigger-tip-yawn = A yawn
-xenoarch-trigger-tip-scream = A scream
-# end _Persistence14 content
+
 
 ### Description hints
 xenoarch-trigger-examine-wrenching = There's a loose bit spinning around.

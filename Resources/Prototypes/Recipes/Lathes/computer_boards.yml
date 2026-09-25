@@ -148,6 +148,13 @@
   result: ComputerMassMediaCircuitboard
   unlockUses: 4
 
+#Persistence14 BookPublisher
+- type: latheRecipe
+  parent: [ BaseCircuitboardRecipe, BaseServiceComputerRecipeCategory ]
+  id: BookPublisherCircuitboard
+  result: ComputerBookPublisherCircuitboard
+  unlockUses: 4
+
 - type: latheRecipe
   parent: [ BaseCircuitboardRecipe, BaseServiceComputerRecipeCategory ]
   id: BlockGameArcadeComputerCircuitboard

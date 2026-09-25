@@ -13,3 +13,189 @@
     Egg: 6
   solids:
     FoodButterSlice: 1
+
+#Eggs
+
+- type: microwaveMealRecipe
+  id: RecipeScrambledEgg
+  name: scrambled_egg_recipe
+  result: FoodMealScrambledEgg
+  time: 10
+  group: Savory
+  reagents:
+    Egg: 12
+    Milk: 5
+    TableSalt: 2
+
+- type: microwaveMealRecipe
+  id: RecipeFriedEgg
+  name: fried_egg_recipe
+  result: FoodMealFriedegg
+  time: 10
+  group: Savory
+  reagents:
+    Egg: 12
+    TableSalt: 2
+    Blackpepper: 2
+
+- type: microwaveMealRecipe
+  id: RecipeOmelette
+  name: omelette_recipe
+  result: FoodMealOmelette
+  time: 15
+  group: Savory
+  reagents:
+    Egg: 12
+    Milk: 5
+    TableSalt: 2
+    Blackpepper: 2
+  solids:
+    FoodButterSlice: 1
+    FoodCheeseSlice: 1
+
+#Pasta
+
+- type: microwaveMealRecipe
+  id: RecipeMacaroniCheese
+  name: macaroni_cheese_recipe
+  result: FoodMacaroniCheese
+  time: 15
+  group: Pasta
+  reagents:
+    Milk: 5
+  solids:
+    FoodDoughPastaRope: 2
+    FoodBowlBig: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeRavioli
+  name: ravioli_recipe
+  result: FoodMealRavioli
+  time: 15
+  group: Pasta
+  solids:
+    FoodDoughPastaFlat: 1
+    FoodCheeseSlice: 2
+    FoodButterSlice: 2
+
+- type: microwaveMealRecipe
+  id: RecipeBoiledNoodles
+  name: boiled_noodles_recipe
+  result: FoodNoodlesBoiled
+  time: 15
+  group: Pasta
+  reagents:
+    Water: 10
+  solids:
+    FoodDoughPastaRope: 3
+
+- type: microwaveMealRecipe
+  id: RecipeBoiledFettuccine
+  name: boiled_fettuccine_recipe
+  result: FoodNoodlesBoiledFlat
+  time: 15
+  group: Pasta
+  reagents:
+    Water: 10
+  solids:
+    FoodDoughPastaStrip: 3
+
+- type: microwaveMealRecipe
+  id: RecipeCottonMacaroniCheese
+  name: cotton_macaroni_cheese_recipe
+  result: FoodCottonMacaroniCheese
+  time: 15
+  group: Moth
+  reagents:
+    Milk: 5
+  solids:
+    FoodDoughCottonPastaRope: 2
+    FoodBowlBig: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCottonRavioli
+  name: cotton_ravioli_recipe
+  result: FoodMealCottonRavioli
+  time: 15
+  group: Moth
+  solids:
+    FoodDoughCottonPastaFlat: 1
+    FoodCheeseSlice: 2
+    FoodButterSlice: 2
+
+- type: microwaveMealRecipe
+  id: RecipeBoiledCottonFettuccine
+  name: boiled_cotton_fettuccine_recipe
+  result: FoodNoodlesCottonBoiledFlat
+  time: 15
+  group: Moth
+  reagents:
+    Water: 10
+  solids:
+    FoodDoughCottonPastaStrip: 3
+
+# Moffins
+
+- type: microwaveMealRecipe
+  id: RecipeMoffin
+  name: moffin_recipe
+  result: FoodBakedMoffin
+  time: 15
+  group: Moth
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughCottonSlice: 1
+  reagents:
+    Sugar: 10
+
+- type: microwaveMealRecipe
+  id: RecipeMoffinBerry
+  name: berry_moffin_recipe
+  result: FoodBakedMoffinBerry
+  time: 15
+  group: Moth
+  solids:
+    FoodPlateMuffinTin: 1
+    FoodDoughCottonSlice: 1
+    FoodBerries: 1
+  reagents:
+    Sugar: 10
+
+#Pancakes
+
+- type: microwaveMealRecipe
+  id: RecipeCottonPancake
+  name: cotton_pancake_recipe
+  result: FoodBakedCottonPancake
+  time: 5
+  group: Moth
+  reagents:
+    Fiber: 5
+    Milk: 5
+    Egg: 6
+
+#Toasts
+
+- type: microwaveMealRecipe
+  id: RecipeCottonButteredToast
+  name: cotton_buttered_toast_recipe
+  result: FoodBreadCottonButteredToast
+  time: 5
+  group: Moth
+  solids:
+    FoodBreadCottonSlice: 1
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeCottonFrenchToast
+  name: cotton_french_toast_recipe
+  result: FoodBreadCottonFrenchToast
+  time: 5
+  group: Moth
+  reagents:
+    Milk: 5
+    Egg: 12
+  solids:
+    FoodBreadCottonSlice: 1

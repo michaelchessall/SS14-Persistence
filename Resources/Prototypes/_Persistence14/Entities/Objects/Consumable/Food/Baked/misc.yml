@@ -10,3 +10,123 @@
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Food/Baked/misc.rsi
     state: cookie-candle
+
+# Moffins - muffins for moths
+
+- type: entity
+  name: moffin
+  parent: FoodInjectableBase
+  id: FoodBakedMoffin
+  description: A delicious and spongy little cotton cake.
+  components:
+  - type: Edible
+    trash:
+    - FoodPlateMuffinTin
+    requiresSpecialDigestion: true
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/Baked/misc.rsi
+    state: moffin
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - cotton
+  - type: Item
+    size: Tiny
+  - type: Tag
+    tags:
+      - ClothMade
+
+- type: entity
+  name: berry moffin
+  parent: FoodBakedMoffin
+  id: FoodBakedMoffinBerry
+  description: A delicious and spongy little cotton cake, with berries.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/Baked/misc.rsi
+    state: moffin-berry
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 12
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 6
+        - ReagentId: Nutriment
+          Quantity: 2
+        - ReagentId: JuiceBerry
+          Quantity: 2
+  - type: Tag
+    tags:
+    - Fruit
+    - ClothMade
+
+# Cotton Pancakes
+
+- type: entity
+  name: cotton pancake
+  parent: FoodBakedBase
+  id: FoodBakedCottonPancake
+  description: A fluffy cotton pancake.
+  components:
+  - type: Stack
+    stackType: CottonPancake
+    count: 1
+    composite: true
+    layerStates:
+    - cotton-pancakes1
+    - cotton-pancakes2
+    - cotton-pancakes3
+    - cotton-pancakes4
+    - cotton-pancakes5
+    - cotton-pancakes6
+    - cotton-pancakes7
+    - cotton-pancakes8
+    - cotton-pancakes9
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/Baked/misc.rsi
+    state: cotton-pancakes1
+    layers:
+    - state: cotton-pancakes1
+      map: ["cotton-pancakes1"]
+      visible: false
+    - state: cotton-pancakes2
+      map: ["cotton-pancakes2"]
+      visible: false
+    - state: cotton-pancakes3
+      map: ["cotton-pancakes3"]
+      visible: false
+    - state: cotton-pancakes4
+      map: ["cotton-pancakes4"]
+      visible: false
+    - state: cotton-pancakes5
+      map: ["cotton-pancakes5"]
+      visible: false
+    - state: cotton-pancakes6
+      map: ["cotton-pancakes6"]
+      visible: false
+    - state: cotton-pancakes7
+      map: ["cotton-pancakes7"]
+      visible: false
+    - state: cotton-pancakes8
+      map: ["cotton-pancakes8"]
+      visible: false
+    - state: cotton-pancakes9
+      map: ["cotton-pancakes9"]
+      visible: false
+  - type: Appearance
+  - type: Tag
+    tags:
+    - Pancake
+    - ClothMade
+  - type: Edible
+    requiresSpecialDigestion: true

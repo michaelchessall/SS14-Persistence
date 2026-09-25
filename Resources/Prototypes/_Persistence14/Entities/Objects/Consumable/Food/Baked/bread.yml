@@ -1,0 +1,60 @@
+
+#Cotton Toasts
+
+- type: entity
+  name: cotton buttered toast
+  parent: FoodBreadSliceBase
+  id: FoodBreadCottonButteredToast
+  description: A soft, but crunchy, slice of cotton bread spread with butter.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - butter
+      - bread
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/Baked/bread.rsi
+    state: cotton-buttered-toast
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 5
+        - ReagentId: Nutriment
+          Quantity: 1
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+      - ClothMade
+
+- type: entity
+  name: cotton french toast
+  parent: FoodBreadSliceBase
+  id: FoodBreadCottonFrenchToast
+  description: A slice of cotton bread soaked in a beaten egg mixture.
+  components:
+  - type: FlavorProfile
+    flavors:
+      - syrupy
+      - bread
+      - cotton
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/Baked/bread.rsi
+    state: cotton-french-toast
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 4
+        - ReagentId: Nutriment
+          Quantity: 2
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+      - ClothMade

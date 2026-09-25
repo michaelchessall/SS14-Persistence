@@ -1,0 +1,1249 @@
+- type: xenoArchTrigger
+  id: TriggerRolling
+  tip: xenoarch-trigger-tip-rolling
+  components:
+  - type: XATToolUse
+    requiredTool: Rolling
+  - type: XATExaminableText
+    examineText: xenoarch-trigger-examine-rolling
+
+- type: xenoArchTrigger
+  id: TriggerBrushing
+  tip: xenoarch-trigger-tip-brushing
+  components:
+  - type: XATToolUse
+    requiredTool: Brushing
+  - type: XATExaminableText
+    examineText: xenoarch-trigger-examine-brushing
+
+# Damage Triggers
+- type: xenoArchTrigger
+  id: TriggerBruteDamage
+  tip: xenoarch-trigger-tip-blunt-damage
+  components:
+  - type: XATDamageThresholdReached
+    groupsNeeded:
+      Brute: 20
+
+- type: xenoArchTrigger
+  id: TriggerBluntDamage
+  tip: xenoarch-trigger-tip-blunt-damage
+  components:
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Blunt: 20
+
+- type: xenoArchTrigger
+  id: TriggerPierceDamage
+  tip: xenoarch-trigger-tip-pierce-damage
+  components:
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Piercing: 20
+
+# Emote Triggers
+- type: xenoArchTrigger
+  id: TriggerLaugh
+  tip: xenoarch-trigger-tip-laugh
+  components:
+  - type: XATEmote
+    emotes:
+    - Laugh
+
+- type: xenoArchTrigger
+  id: TriggerSigh
+  tip: xenoarch-trigger-tip-sigh
+  components:
+  - type: XATEmote
+    emotes:
+    - Sigh
+
+- type: xenoArchTrigger
+  id: TriggerSneeze
+  tip: xenoarch-trigger-tip-sneeze
+  components:
+  - type: XATEmote
+    emotes:
+    - Sneeze
+
+- type: xenoArchTrigger
+  id: TriggerCough
+  tip: xenoarch-trigger-tip-cough
+  components:
+  - type: XATEmote
+    emotes:
+    - Cough
+
+- type: xenoArchTrigger
+  id: TriggerWhistle
+  tip: xenoarch-trigger-tip-whistle
+  components:
+  - type: XATEmote
+    emotes:
+    - Whistle
+
+- type: xenoArchTrigger
+  id: TriggerCry
+  tip: xenoarch-trigger-tip-cry
+  components:
+  - type: XATEmote
+    emotes:
+    - Crying
+
+- type: xenoArchTrigger
+  id: TriggerClap
+  tip: xenoarch-trigger-tip-clap
+  components:
+  - type: XATEmote
+    emotes:
+    - Clap
+
+- type: xenoArchTrigger
+  id: TriggerYawn
+  tip: xenoarch-trigger-tip-yawn
+  components:
+  - type: XATEmote
+    emotes:
+    - Yawn
+
+- type: xenoArchTrigger
+  id: TriggerScream
+  tip: xenoarch-trigger-tip-scream
+  components:
+  - type: XATEmote
+    emotes:
+    - Scream
+
+# Complex Gas Triggers
+- type: xenoArchTrigger
+  id: TriggerRespirationGas
+  tip: xenoarch-trigger-tip-respiration
+  components:
+  - type: XATGas
+    gases:
+    - CarbonDioxide
+    - NitrousOxide
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - CarbonDioxide
+      - NitrousOxide
+
+- type: xenoArchTrigger
+  id: TriggerSynthesisGas
+  tip: xenoarch-trigger-tip-synthesis
+  components:
+  - type: XATGas
+    gases:
+    - Methane
+    - ChlorineTrifluoride
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Methane
+      - ChlorineTrifluoride
+
+- type: xenoArchTrigger
+  id: TriggerElementalGas
+  tip: xenoarch-trigger-tip-element-gas
+  components:
+  - type: XATGas
+    gases:
+    - Chlorine
+    - Fluorine
+    - Hydrogen
+
+- type: xenoArchTrigger
+  id: TriggerCryogenicGas
+  tip: xenoarch-trigger-tip-cryogenic
+  components:
+  - type: XATGas
+    gases:
+    - Frezon
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Frezon
+
+# Chem Triggers
+- type: xenoArchTrigger
+  id: TriggerChemBotany
+  tip: xenoarch-trigger-tip-chem-botany
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Laughter
+      - LaughinSyrup
+      - Sap
+      - Histamine
+      - MuteToxin
+      - Nothing
+      - Oculine
+      - Allicin
+      - Haloperidol
+      - Cornoil
+      - Enzyme
+      - CapsaicinOil
+      - FrostOil
+      - Aloe
+      - Ultravasculine
+      - Nectar
+      - Stellibinin
+      - Amatoxin
+      - PolypyryliumOligomers
+      - Wine
+      - TartaricAcid
+      - Bungotoxin
+      - Happiness
+      - Pax
+      - Phlogiston
+      - Toxin
+      - Artifexium
+
+- type: xenoArchTrigger
+  id: TriggerMedicine
+  tip: xenoarch-trigger-tip-chem-therapeutic
+  incompatibleTriggers:
+  - TriggerChemBrute
+  - TriggerChemBurn
+  - TriggerChemGenetic
+  - TriggerChemCryo
+  - TriggerChemToxin
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Cryptobiolin
+      - Dylovene
+      - Diphenhydramine
+      - Ethylredoxrazine
+      - Arithrazine
+      - Bicaridine
+      - Cryoxadone
+      - Doxarubixadone
+      - Dermaline
+      - Dexalin
+      - DexalinPlus
+      - Epinephrine
+      - Hyronalin
+      - Inaprovaline
+      - Kelotane
+      - Leporazine
+      - Phalanximine
+      - PolypyryliumOligomers
+      - Ambuzol
+      - AmbuzolPlus
+      - Saline
+      - Siderlac
+      - Stellibinin
+      - Synaptizine
+      - TranexamicAcid
+      - Tricordrazine
+      - Lipozine
+      - Omnizine
+      - Ultravasculine
+      - Oculine
+      - Ethyloxyephedrine
+      - Diphenylmethylamine
+      - Sigynate
+      - Lacerinol
+      - Puncturase
+      - Bruizine
+      - Holywater
+      - Pyrazine
+      - Insuzine
+      - Opporozidone
+      - Arcryox
+      - Aloxadone
+      - Psicodine
+      - Haloperidol
+
+- type: xenoArchTrigger
+  id: TriggerChemBrute
+  tip: xenoarch-trigger-tip-chem-brute
+  incompatibleTriggers:
+  - TriggerMedicine
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Bicaridine
+      - Bruizine
+      - Lacerinol
+      - Puncturase
+      - PolypyryliumOligomers
+      - Omnizine
+      - Tricordrazine
+  - type: XATItemInteract
+    use: 1
+    whitelist:
+      tags:
+      - Brutepack
+      - Gauze
+
+- type: xenoArchTrigger
+  id: TriggerChemBurn
+  tip: xenoarch-trigger-tip-chem-burn
+  incompatibleTriggers:
+  - TriggerMedicine
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Kelotane
+      - Dermaline
+      - Pyrazine
+      - Insuzine
+      - Leporazine
+      - Aloe
+      - Sigynate
+      - Siderlac
+      - Omnizine
+      - Tricordrazine
+  - type: XATItemInteract
+    use: 1
+    whitelist:
+      tags:
+      - Ointment
+
+
+- type: xenoArchTrigger
+  id: TriggerChemToxin
+  tip: xenoarch-trigger-tip-chem-toxin
+  incompatibleTriggers:
+  - TriggerMedicine
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Dylovene
+      - Hyronalin
+      - Arithrazine
+      - Diphenhydramine
+      - Tricordrazine
+      - Omnizine
+
+- type: xenoArchTrigger
+  id: TriggerChemGenetic
+  tip: xenoarch-trigger-tip-chem-genetic
+  incompatibleTriggers:
+  - TriggerMedicine
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Phalanximine
+      - Omnizine
+
+- type: xenoArchTrigger
+  id: TriggerChemCryo
+  tip: xenoarch-trigger-tip-chem-cryo
+  incompatibleTriggers:
+  - TriggerMedicine
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Cryoxadone
+      - Arcryox
+      - Doxarubixadone
+      - Aloxadone
+      - Opporozidone
+      - Omnizine
+
+- type: xenoArchTrigger
+  id: TriggerChemNarcotic
+  tip: xenoarch-trigger-tip-chem-narcotic
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Desoxyephedrine
+      - Ephedrine
+      - Stimulants
+      - THC
+      - Nicotine
+      - Impedrezene
+      - SpaceDrugs
+      - Bananadine
+      - Nocturine
+      - MuteToxin
+      - NorepinephricAcid
+      - TearGas
+
+- type: xenoArchTrigger
+  id: TriggerChemAcidic
+  tip: xenoarch-trigger-tip-chem-acidic
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - TranexamicAcid
+      - NorepinephricAcid
+      - TearGas
+      - PolytrinicAcid
+      - FerrochromicAcid
+      - FluorosulfuricAcid
+      - SulfuricAcid
+      - TartaricAcid
+
+- type: xenoArchTrigger
+  id: TriggerChemCleaning
+  tip: xenoarch-trigger-tip-cleaning
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - SpaceCleaner
+      - Bleach
+      - SoapReagent
+  - type: XATItemInteract
+    whitelist:
+      tags:
+      - Soap
+
+- type: xenoArchTrigger
+  id: TriggerChemSticky
+  tip: xenoarch-trigger-tip-sticky
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - SpaceGlue
+      - ArtifactGlue
+      - Slime
+      - Sap
+
+- type: xenoArchTrigger
+  id: TriggerChemSlippery
+  tip: xenoarch-trigger-tip-slippery
+  components:
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - SpaceLube
+      - SoapReagent
+  - type: XATItemInteract
+    whitelist:
+      tags:
+      - Soap
+
+# Food Triggers     
+- type: xenoArchTrigger
+  id: TriggerFeedCheese
+  tip: xenoarch-trigger-tip-feed-cheese
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodCakeCheese
+      - FoodBurgerBacon
+      - FoodBurgerBig
+      - FoodBurgerCheese
+      - FoodBurgerCrazy
+      - FoodBurgerDuck
+      - FoodBurgerCarp
+      - FoodBurgerMcguffin
+      - FoodBurgerSoy
+      - FoodBurgerSuper
+      - FoodBurgerLung
+      - FoodBurgerLiver
+      - FoodBurgerStomach
+      - FoodBurgerKidneys
+      - FoodBurgerHeart
+      - FoodBreadCreamcheese
+      - FoodBreadMeat
+      - FoodBreadMeatSpider
+      - FoodBreadMeatXeno
+      - FoodPizzaMargherita
+      - FoodPizzaMeat
+      - FoodPizzaDank
+      - FoodPizzaDonkpocket
+      - FoodSoupOnion
+      - FoodMealCubancarp
+      - FoodMealPotatoLoaded
+      - FoodMealFriesCheesy
+      - FoodMealNachosCheesy
+      - FoodMealQueso
+      - FoodMealOmelette
+      - FoodMacaroniCheese
+      - FoodMealRavioli
+      - FoodSaladCaesar
+      - FoodTacoBeef
+      - FoodTacoChicken
+      - FoodTacoRat
+      - FoodTacoBeefSupreme
+      - FoodTacoChickenSupreme
+      - FoodBakedGrilledCheeseSandwich
+      - FoodBakedGrilledCheeseSandwichCotton
+
+- type: xenoArchTrigger
+  id: TriggerFeedMilk
+  tip: xenoarch-trigger-tip-feed-milk
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodSoupMushroom
+      - FoodBreadCreamcheese
+      - FoodBreadFrenchToast
+      - FoodRicePudding
+      - FoodTartCoco
+      - FoodTartGapple
+      - FoodTartGrape
+      - FoodTartMime
+      - FoodBakedPancake
+      - FoodBakedPancakeBb
+      - FoodBakedPancakeCc
+      - FoodBakedWaffle
+      - FoodBakedCookieNuke
+      - MobCatCake
+      - FoodCakeBerryDelight
+      - FoodMealScrambledEgg
+      - FoodMealOmelette
+      - FoodMacaroniCheese
+
+- type: xenoArchTrigger
+  id: TriggerFeedButter
+  tip: xenoarch-trigger-tip-feed-butter
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodNoodlesButter
+      - FoodBreadButteredToast
+      - FoodBreadGarlicSlice
+      - FoodBakedCookie
+      - FoodBakedCookieSugar
+      - FoodBakedCookieNuke
+      - FoodBakedCookieOatmeal
+      - FoodBakedCookieBanana
+      - FoodBakedCookieCandle
+      - FoodMealOmelette
+      - FoodMealRavioli
+      - FoodMealCornInButter
+      - FoodSoupEscargot
+      - FoodBakedBrownieBatch
+      - FoodBakedCroissant
+      - FoodBakedCroissantCotton
+      - WeaponCroissant
+      - FoodBakedGrilledCheeseSandwich
+      - FoodBakedGrilledCheeseSandwichCotton
+
+- type: xenoArchTrigger
+  id: TriggerFeedEgg
+  tip: xenoarch-trigger-tip-feed-egg
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodMealFriedegg
+      - FoodBurgerMcguffin
+      - FoodBurgerSuper
+      - FoodBreadFrenchToast
+      - FoodNoodlesChowmein
+      - FoodSoupNettle
+      - FoodRiceEgg
+      - FoodBakedPancake
+      - FoodBakedPancakeBb
+      - FoodBakedPancakeCc
+      - FoodBakedWaffle
+      - FoodBakedWaffleSoy
+      - FoodBakedBrownieBatch
+      - FoodBakedCannabisBrownieBatch
+      - FoodBakedCookieCandle
+      - FoodMealScrambledEgg
+      - FoodMealOmelette
+      - FoodBreakfastAmerican
+      - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedFlour
+  tip: xenoarch-trigger-tip-feed-flour
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodSoupMonkey
+      - FoodBakedPancake
+      - FoodBakedPancakeBb
+      - FoodBakedPancakeCc
+      - FoodBakedWaffle
+      - FoodBakedWaffleSoy
+      - FoodBakedCookie
+      - FoodBakedCookieSugar
+      - FoodBakedCookieNuke
+      - FoodBakedCookieRaisin
+      - FoodBakedCookieBanana
+      - FoodBakedCookieCotton
+      - FoodBakedCookieCandle
+      - FoodBakedBrownieBatch
+      - FoodBakedCannabisBrownieBatch
+      - FoodBagelPoppy
+      - FoodPieAmanita
+      - FoodPieApple
+      - FoodPieBaklava
+      - FoodPieBananaCream
+      - FoodPieClafoutis
+      - FoodPieCherry
+      - FoodPieFrosty
+      - FoodPieMeat
+      - FoodPiePumpkin
+      - FoodPieXeno
+      - FoodTartCoco
+      - FoodTartGapple
+      - FoodTartGrape
+      - FoodTartMime
+      - FoodBreadBanana
+      - FoodBreadCreamcheese
+      - FoodBreadMeat
+      - FoodBreadMimana
+      - FoodBreadSausage
+      - FoodBreadMeatSpider
+      - FoodBreadTofu
+      - FoodBreadMeatXeno
+      - FoodBreadBaguette
+      - FoodBreadBaguetteCotton
+      - WeaponBaguette
+      - FoodMealCubancarp
+      - FoodPizzaMargherita
+      - FoodPizzaMushroom
+      - FoodPizzaMeat
+      - FoodPizzaVegetable
+      - FoodPizzaPineapple
+      - FoodPizzaDank
+      - FoodPizzaDonkpocket
+      - FoodPizzaUranium
+      - FoodBakedDumplings
+      - FoodBakedMuffin
+      - FoodBakedMuffinChocolate
+      - FoodBakedMuffinBerry
+      - FoodBakedMuffinBanana
+      - FoodBakedMuffinCherry
+      - FoodMacaroniCheese
+      - FoodNoodlesBoiled
+      - FoodNoodlesBoiledFlat
+      - FoodMealRavioli
+      - FoodMealNachos
+      - FoodMealNachosCheesy
+      - FoodMealNachosCuban
+
+- type: xenoArchTrigger
+  id: TriggerFeedMeat
+  tip: xenoarch-trigger-tip-feed-meat
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodBurgerPlain
+      - FoodBurgerBig
+      - FoodBurgerBloodred
+      - FoodBurgerCat
+      - FoodBurgerCheese
+      - FoodBurgerCrazy
+      - FoodBurgerFive
+      - FoodBurgerSuper
+      - FoodBurgerBacon
+      - FoodBurgerBear
+      - FoodBurgerCorgi
+      - FoodBurgerCrab
+      - FoodBurgerDuck
+      - FoodBurgerHuman
+      - FoodBurgerRat
+      - FoodBurgerXeno
+      - FoodPizzaMeat
+      - FoodBreadSausage
+      - FoodBreadMeat
+      - FoodBreadMeatSpider
+      - FoodBreadMeatXeno
+      - FoodPieMeat
+      - FoodMealRibs
+      - FoodMealEnchiladas
+      - FoodPaste
+      - FoodRicePork
+      - FoodRiceGumbo
+      - FoodNoodlesMeatball
+      - FoodSoupMeatball
+      - FoodSoupStew
+      - FoodSoupChiliHot
+      - FoodSoupChiliClown
+      - FoodSoupWingFangChu
+      - FoodSoupEscargot
+      - FoodMeatSnailCooked
+      - FoodSaladValid
+      - FoodTacoBeef
+      - FoodTacoBeefSupreme
+      - FoodTacoDragon
+      - FoodTacoRat
+      - FoodBreakfastAmerican
+      - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedFish
+  tip: xenoarch-trigger-tip-feed-fish
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodMealSashimi
+      - FoodBurgerCarp
+      - FoodSoupBisque
+      - FoodMealCubancarp
+      - FoodTacoFish
+
+- type: xenoArchTrigger
+  id: TriggerFeedChicken
+  tip: xenoarch-trigger-tip-feed-chicken
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodBurgerChicken
+      - FoodWeedChicken
+      - FoodPizzaPineapple
+      - FoodTacoChicken
+      - FoodTacoChickenSupreme
+
+- type: xenoArchTrigger
+  id: TriggerFeedTomato
+  tip: xenoarch-trigger-tip-feed-tomato
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodSoupTomato
+      - FoodBurgerBig
+      - FoodBurgerSuper
+      - FoodPizzaMargherita
+      - FoodPizzaMeat
+      - FoodPizzaVegetable
+      - FoodPizzaDank
+      - FoodPizzaDonkpocket
+      - FoodPizzaUranium
+      - FoodNoodles
+      - FoodSoupBisque
+      - FoodSoupStew
+      - FoodSoupChiliHot
+      - FoodSoupClown
+      - FoodSoupChiliClown
+      - FoodTacoFish
+      - FoodTacoBeefSupreme
+      - FoodTacoChickenSupreme
+      - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedChili
+  tip: xenoarch-trigger-tip-feed-chili
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodSoupBungo
+      - FoodBurgerCrazy
+      - FoodBurgerFive
+      - FoodPizzaUranium
+      - FoodRiceGumbo
+      - FoodMealCubancarp
+      - FoodMealNachosCuban
+      - FoodMealEnchiladas
+      - FoodMealQueso
+      - FoodSoupChiliHot
+      - FoodSoupChiliClown
+      - FoodTacoDragon
+
+- type: xenoArchTrigger
+  id: TriggerFeedCarrot
+  tip: xenoarch-trigger-tip-feed-carrot
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodCakeCarrot
+      - FoodPizzaVegetable
+      - FoodNoodlesChowmein
+      - FoodRiceEgg
+      - FoodSoupMeatball
+      - FoodSoupEyeball
+      - FoodSoupStew
+      - FoodSoupVegetable
+      - FoodMealFriesCarrot
+      - FoodSaladKimchi
+
+- type: xenoArchTrigger
+  id: TriggerFeedPotato
+  tip: xenoarch-trigger-tip-feed-potato
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodMealFries
+      - FoodSoupMeatball
+      - FoodSoupEyeball
+      - FoodSoupStew
+      - FoodSoupVegetable
+      - FoodMealPotatoLoaded
+      - FoodMealFriesCheesy
+      - FoodSaladValid
+      - FoodBreakfastAmerican
+      - FoodBreakfastEnglish
+
+- type: xenoArchTrigger
+  id: TriggerFeedCabbage
+  tip: xenoarch-trigger-tip-feed-cabbage
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodSaladColeslaw
+      - FoodBurgerBloodred
+      - FoodBurgerCrazy
+      - FoodSaladCaesar
+      - FoodSaladKimchi
+      - FoodTacoFish
+      - FoodTacoBeefSupreme
+      - FoodTacoChickenSupreme
+
+- type: xenoArchTrigger
+  id: TriggerFeedApple
+  tip: xenoarch-trigger-tip-feed-apple
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodCakeApple
+      - FoodPieApple
+      - FoodTartGapple
+      - FoodSaladHerb
+      - FoodSaladFruit
+      - FoodSaladJungle
+      - FoodSaladWatermelonFruitBowl
+
+- type: xenoArchTrigger
+  id: TriggerFeedBerries
+  tip: xenoarch-trigger-tip-feed-berry
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodCakeBlueberry
+      - FoodPieClafoutis
+      - FoodBakedPancakeBb
+      - FoodCakeLemoon
+      - FoodCakeBerryDelight
+      - FoodBakedMuffinBerry
+
+- type: xenoArchTrigger
+  id: TriggerFeedRice
+  tip: xenoarch-trigger-tip-feed-rice
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodRiceBoiled
+      - FoodRicePudding
+      - FoodRicePork
+      - FoodRiceGumbo
+      - FoodRiceEgg
+
+- type: xenoArchTrigger
+  id: TriggerFeedOats
+  tip: xenoarch-trigger-tip-feed-oats
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodOatmeal
+      - FoodBakedCookieOatmeal
+
+# Drinks by liquor
+- type: xenoArchTrigger
+  id: TriggerDrinkRum
+  tip: xenoarch-trigger-tip-drink-rum
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Rum
+
+- type: xenoArchTrigger
+  id: TriggerDrinkVodka
+  tip: xenoarch-trigger-tip-drink-vodka
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Vodka
+
+- type: xenoArchTrigger
+  id: TriggerDrinkWhiskey
+  tip: xenoarch-trigger-tip-drink-whiskey
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Whiskey
+
+- type: xenoArchTrigger
+  id: TriggerDrinkGin
+  tip: xenoarch-trigger-tip-drink-gin
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Gin
+
+- type: xenoArchTrigger
+  id: TriggerDrinkTequila
+  tip: xenoarch-trigger-tip-drink-tequila
+  components:
+  - type: XATReactive
+    whitelist:
+     reactants:
+     - Tequila
+
+- type: xenoArchTrigger
+  id: TriggerDrinkBeer
+  tip: xenoarch-trigger-tip-drink-beer
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Beer
+
+- type: xenoArchTrigger
+  id: TriggerDrinkCoffee
+  tip: xenoarch-trigger-tip-drink-coffee
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Coffee
+
+- type: xenoArchTrigger
+  id: TriggerDrinkVermouth
+  tip: xenoarch-trigger-tip-drink-vermouth
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Vermouth
+
+- type: xenoArchTrigger
+  id: TriggerDrinkAbsinthe
+  tip: xenoarch-trigger-tip-drink-absinthe
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Absinthe
+
+- type: xenoArchTrigger
+  id: TriggerDrinkCognac
+  tip: xenoarch-trigger-tip-drink-cognac
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Cognac
+
+- type: xenoArchTrigger
+  id: TriggerDrinkWine
+  tip: xenoarch-trigger-tip-drink-wine
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Wine
+
+- type: xenoArchTrigger
+  id: TriggerDrinkAle
+  tip: xenoarch-trigger-tip-drink-ale
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Ale
+
+- type: xenoArchTrigger
+  id: TriggerDrinkChampagne
+  tip: xenoarch-trigger-tip-drink-champagne
+  components:
+  - type: XATReactive
+    whitelist:
+      reactants:
+      - Champagne
+
+# Drinks by method
+- type: xenoArchTrigger
+  id: TriggerDrinkShaken
+  tip: xenoarch-trigger-tip-drink-shaken
+  components:
+  - type: XATReactive
+    whitelist:
+      mixingCategories:
+      - Shake
+
+- type: xenoArchTrigger
+  id: TriggerDrinkStirred
+  tip: xenoarch-trigger-tip-drink-stirred
+  components:
+  - type: XATReactive
+    whitelist:
+      mixingCategories:
+      - Stir
+
+# Botany mutant-plant triggers
+- type: xenoArchTrigger
+  id: TriggerFeedMeatwheat
+  tip: xenoarch-trigger-tip-feed-meatwheat
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - MeatwheatBushel
+
+- type: xenoArchTrigger
+  id: TriggerFeedMimana
+  tip: xenoarch-trigger-tip-feed-mimana
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodMimana
+
+- type: xenoArchTrigger
+  id: TriggerFeedLaughinPea
+  tip: xenoarch-trigger-tip-feed-laughinpea
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodLaughinPeaPod
+
+- type: xenoArchTrigger
+  id: TriggerFeedWorldPea
+  tip: xenoarch-trigger-tip-feed-worldpea
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodWorldPeas
+
+- type: xenoArchTrigger
+  id: TriggerFeedLemoon
+  tip: xenoarch-trigger-tip-feed-lemoon
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodLemoon
+
+- type: xenoArchTrigger
+  id: TriggerFeedExtradimensionalOrange
+  tip: xenoarch-trigger-tip-feed-extradimensionalorange
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodExtradimensionalOrange
+
+- type: xenoArchTrigger
+  id: TriggerFeedPapercane
+  tip: xenoarch-trigger-tip-feed-papercane
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - Papercane
+
+- type: xenoArchTrigger
+  id: TriggerFeedBlueTomato
+  tip: xenoarch-trigger-tip-feed-bluetomato
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodBlueTomato
+
+- type: xenoArchTrigger
+  id: TriggerFeedBloodTomato
+  tip: xenoarch-trigger-tip-feed-bloodtomato
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodBloodTomato
+
+- type: xenoArchTrigger
+  id: TriggerFeedBloonion
+  tip: xenoarch-trigger-tip-feed-bloonion
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodBloonion
+
+- type: xenoArchTrigger
+  id: TriggerFeedRainbowCannabis
+  tip: xenoarch-trigger-tip-feed-rainbowcannabis
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - LeavesCannabisRainbow
+
+- type: xenoArchTrigger
+  id: TriggerFeedDeathNettle
+  tip: xenoarch-trigger-tip-feed-deathnettle
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - DeathNettle
+
+- type: xenoArchTrigger
+  id: TriggerFeedChillyPepper
+  tip: xenoarch-trigger-tip-feed-chillypepper
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodChillyPepper
+
+- type: xenoArchTrigger
+  id: TriggerFeedLily
+  tip: xenoarch-trigger-tip-feed-lily
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodLily
+
+- type: xenoArchTrigger
+  id: TriggerFeedSpacemansTrumpet
+  tip: xenoarch-trigger-tip-feed-spacemanstrumpet
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodSpacemansTrumpet
+
+- type: xenoArchTrigger
+  id: TriggerFeedAmbrosiaDeus
+  tip: xenoarch-trigger-tip-feed-ambrosiadeus
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodAmbrosiaDeus
+
+- type: xenoArchTrigger
+  id: TriggerFeedKoibean
+  tip: xenoarch-trigger-tip-feed-koibean
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodKoibean
+
+- type: xenoArchTrigger
+  id: TriggerFeedHolymelon
+  tip: xenoarch-trigger-tip-feed-holymelon
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodHolymelon
+
+- type: xenoArchTrigger
+  id: TriggerFeedBluePumpkin
+  tip: xenoarch-trigger-tip-feed-bluepumpkin
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - FoodBluePumpkin
+
+- type: xenoArchTrigger
+  id: TriggerFeedPyrotton
+  tip: xenoarch-trigger-tip-feed-pyrotton
+  components:
+  - type: XATItemInteract
+    use: 1
+    useTime: 1s
+    whitelist:
+      prototypeIds:
+      - PyrottonBol

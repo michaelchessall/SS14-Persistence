@@ -15,13 +15,13 @@ using System.Linq;
 
 namespace Content.Server.Radio.EntitySystems;
 
-public sealed class HeadsetSystem : SharedHeadsetSystem
+public sealed partial class HeadsetSystem : SharedHeadsetSystem
 {
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly SharedMindSystem _mind = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
 
     public override void Initialize()
     {
@@ -221,7 +221,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
             {
                 if (!args.Channel.Encrypted)
                 {
-                    _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset);
+                    _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, transmitterRange: headsetComp.MaxBroadcastRange);
                     args.Channel = null; // prevent duplicate messages from other listeners.
                     return;
                 }
@@ -239,7 +239,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
 
                     if (HasChannelAccess(args.Source, targetedFaction.Value, args.Channel))
                     {
-                        _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, encryptionID: targetedEncryptionId);
+                        _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, encryptionID: targetedEncryptionId, transmitterRange: headsetComp.MaxBroadcastRange);
                         args.Channel = null; // prevent duplicate messages from other listeners.
                     }
 
@@ -252,7 +252,7 @@ public sealed class HeadsetSystem : SharedHeadsetSystem
                     if (TryComp<StationDataComponent>(faction, out var stationData)
                         && HasChannelAccess(args.Source, faction, args.Channel))
                     {
-                        _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, encryptionID: stationData.UID);
+                        _radio.SendRadioMessage(uid, args.Message, args.Channel, component.Headset, encryptionID: stationData.UID, transmitterRange: headsetComp.MaxBroadcastRange);
                         sent = true;
                     }
                 }

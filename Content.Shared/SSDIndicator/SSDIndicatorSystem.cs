@@ -181,7 +181,7 @@ public sealed class SSDIndicatorSystem : EntitySystem
             Act = () => ToggleManualSSD(uid),
             Text = Loc.GetString(label),
             Message = Loc.GetString(desc),
-            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Effects/ssd.rsi/default0-blue.png")),
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/_Persistence14/Interface/VerbIcons/ssd-2-shrinking.svg.256dpi.png")),
         });
     }
 }

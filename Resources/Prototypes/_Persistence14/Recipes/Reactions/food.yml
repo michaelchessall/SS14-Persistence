@@ -1,0 +1,35 @@
+#Persistence food reactions
+
+- type: reaction
+  id: CreateDoughPasta
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Flour:
+      amount: 15
+    Egg:
+      amount: 6
+    OilOlive:
+      amount: 5
+  group: Precipitate
+  effects:
+  - !type:SpawnEntity
+      entity: FoodDoughPasta
+
+- type: reaction
+  id: CreateDoughCottonPasta
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Fiber:
+      amount: 15
+    Egg:
+      amount: 6
+    OilOlive:
+      amount: 5
+  group: Precipitate
+  effects:
+  - !type:SpawnEntity
+      entity: FoodDoughCottonPasta

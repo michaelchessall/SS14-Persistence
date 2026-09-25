@@ -2,16 +2,21 @@
   id: Hardsuits
   recipes:
   - Spationautsuit
+  - Donknautsuit
   - EVAsuit
   - EVAsuitHelmet
   - Engineeringsuit
   - Atmossuit
+  - AtmosFireSuit
+  - AtmosFireHelmet
   - Miningsuit
   - Luxuryminingsuit
   - Researchdirectorsuit
   - Chiefengineersuit
   - Captainsuit
   - ClothingHandsGlovesCaptain
+  - ExtendedEmergencyOxygenTank
+  - ExtendedEmergencyNitrogenTank
 
 - type: latheRecipePack
   id: SecurityHardsuits
@@ -25,3 +30,4 @@
   id: MedicalHardsuits
   recipes:
   - Chiefmedicalsuit
+  - Paramedsuit

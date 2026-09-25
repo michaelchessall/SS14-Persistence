@@ -78,6 +78,11 @@
     board: PersonalCryoMachineCircuitboard
   - type: Cryostorage
     personalMode: true
+  - type: PointLight
+    color: Magenta
+    radius: 1.5
+    energy: 0.5
+    castShadows: false
   - type: ContainerContainer
     containers:
       storage: !type:ContainerSlot

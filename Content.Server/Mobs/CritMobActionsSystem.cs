@@ -1,3 +1,4 @@
+using Content.Server._Persistence14.Medical; // Persistence
 using Content.Server.Administration;
 using Content.Server.Chat.Systems;
 using Content.Server.GameTicking;
@@ -19,6 +20,7 @@ using Content.Shared.Tag;
 using Robust.Server.Console;
 using Robust.Server.GameObjects;
 using Robust.Shared.Configuration;
+using Robust.Shared.Map; // Persistence
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
@@ -36,6 +38,7 @@ public sealed class CritMobActionsSystem : EntitySystem
     [Dependency] private readonly MobStateSystem _mobState = default!;
     [Dependency] private readonly PopupSystem _popupSystem = default!;
     [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    // Start Persistence
     [Dependency] private readonly GameTicker _ticker = default!;
     [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
@@ -44,8 +47,9 @@ public sealed class CritMobActionsSystem : EntitySystem
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly IConfigurationManager _configurationManager = default!;
     [Dependency] private readonly TagSystem _tag = default!;
+    // End Persistence
     private const int MaxLastWordsLength = 30;
-    private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib";
+    private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib"; // Persistence: Gib prevention
 
     public override void Initialize()
     {
@@ -54,9 +58,9 @@ public sealed class CritMobActionsSystem : EntitySystem
         SubscribeLocalEvent<MobStateActionsComponent, CritSuccumbEvent>(OnSuccumb);
         SubscribeLocalEvent<MobStateActionsComponent, CritFakeDeathEvent>(OnFakeDeath);
         SubscribeLocalEvent<MobStateActionsComponent, CritLastWordsEvent>(OnLastWords);
-        SubscribeLocalEvent<MobStateActionsComponent, AcceptDeathEvent>(OnAcceptDeath);
-        SubscribeLocalEvent<MobStateActionsComponent, AcceptDeathFinalizeMessage>(FinalizeAcceptDeath);
-        SubscribeLocalEvent<MobStateActionsComponent, AcceptDeathSOSMessage>(TriggerSOS);
+        SubscribeLocalEvent<MobStateActionsComponent, AcceptDeathEvent>(OnAcceptDeath); // Persistence: PK Opt-in
+        SubscribeLocalEvent<MobStateActionsComponent, AcceptDeathFinalizeMessage>(FinalizeAcceptDeath); // Persistence: PK Opt-in
+        SubscribeLocalEvent<MobStateActionsComponent, AcceptDeathSOSMessage>(TriggerSOS); // Persistence: SOS broadcast
     }
 
 
@@ -114,6 +118,7 @@ public sealed class CritMobActionsSystem : EntitySystem
         args.Handled = true;
     }
 
+    // Start Persistence: Death Network, PK opt-in, and SOS
     public void ToggleUi(EntityUid user, EntityUid jobnetEnt, MobStateActionsComponent? component = null)
     {
         if (!Resolve(user, ref component))
@@ -163,6 +168,15 @@ public sealed class CritMobActionsSystem : EntitySystem
         return true;
     }
 
+    public EntityUid EnsureDeathNetworkSpeaker(EntityCoordinates coords)
+    {
+        if (!EntityQueryEnumerator<DeathNetworkSpeakerComponent>().MoveNext(out var defaultSpeaker, out _))
+        {
+            defaultSpeaker = Spawn("DeathNetworkSpeaker", coords);
+        }
+        return defaultSpeaker;
+    }
+
     private void TriggerSOS(EntityUid uid, MobStateActionsComponent component, AcceptDeathSOSMessage args)
     {
         if (!ValidateSOS(uid, component))
@@ -172,7 +186,7 @@ public sealed class CritMobActionsSystem : EntitySystem
         var xform = Transform(uid);
         var mapPos = _transform.GetWorldPosition(xform);
 
-        var overrideEv = new GetSosOverrideEvent();
+        var overrideEv = new GetSosOverrideEvent(speakerOverride: EnsureDeathNetworkSpeaker(xform.Coordinates));
         RaiseLocalEvent(uid, overrideEv);
         var message = overrideEv.MessageOverride ?? $"{Name(uid)} has died at ({mapPos.X:F1}, {mapPos.Y:F1}) and is broadcasting an SOS.";
 
@@ -236,4 +250,5 @@ public sealed class CritMobActionsSystem : EntitySystem
             });
 
     }
+    // End Persistence
 }

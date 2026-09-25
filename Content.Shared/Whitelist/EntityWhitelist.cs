@@ -53,6 +53,12 @@ public sealed partial class EntityWhitelist
     public List<ProtoId<TagPrototype>>? Tags;
 
     /// <summary>
+    ///     Ids that the item may come from.
+    /// </summary>
+    [DataField]
+    public List<EntProtoId>? PrototypeIds;
+
+    /// <summary>
     ///     If false, an entity only requires one of these components or tags to pass the whitelist. If true, an
     ///     entity requires to have ALL of these components and tags to pass.
     ///     The "Sizes" criteria will ignores this, since an item can only have one size.

@@ -1,12 +1,13 @@
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
+using Content.Shared._Persistence14.RandomTable;
 
 namespace Content.Shared._Persistence14.RandomTable.Selectors;
 
 /// <summary>
 /// Returns all children items as valid items from the table.
 /// </summary>
-public sealed partial class RandomTableAllSelector : RandomTableSelector
+public sealed partial class RandomTableAllSelector : RandomTableSelector, IRandomTableCollectionSelector
 {
     [DataField]
     public List<RandomTableSelector> Children = new();
@@ -24,5 +25,11 @@ public sealed partial class RandomTableAllSelector : RandomTableSelector
         foreach (var child in Children)
             foreach (var (value, prob) in child.List(ctx, probabilityMultipler))
                 yield return (value, prob);
+    }
+
+    public IEnumerable<RandomTableSelector> GetChildren(RandomTableContext ctx)
+    {
+        foreach (var child in Children)
+            yield return child;
     }
 }

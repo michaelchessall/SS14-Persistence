@@ -1,0 +1,39 @@
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerBookPublisher
+  name: book publisher console
+  description: Show your book to the world!
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: service
+    - map: ["computerLayerKeys"]
+      state: service_keys
+    - map: ["enum.WiresVisualLayers.MaintenancePanel"]
+      state: generic_panel_open
+  - type: Computer
+    board: ComputerBookPublisherCircuitboard
+  - type: DeviceNetworkRequiresPower
+  - type: BookPublisher
+    bookSlot:
+      insertSound: /Audio/Machines/scanning.ogg
+      ejectSound: /Audio/Machines/tray_eject.ogg
+      whitelist:
+        components:
+          - Paper
+  - type: ItemSlots
+  - type: ContainerContainer
+    containers:
+      Book: !type:ContainerSlot
+  - type: ActivatableUIRequiresVision
+  - type: ActivatableUI
+    key: enum.BookPublisherUiKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.BookPublisherUiKey.Key:
+        type: BookPublisherBoundUserInterface

@@ -88,7 +88,8 @@ public sealed class SolutionHeaterSystem : EntitySystem
                 var energy = heater.HeatPerSecond * frameTime;
                 foreach (var (_, soln) in _solutionContainer.EnumerateSolutions((heatingEntity, container)))
                 {
-                    _solutionContainer.AddThermalEnergy(soln, energy);
+                    // Persistence: Use AddThermalEnergyClamped to prevent coldplate from cooling reagents below absolute zero
+                    _solutionContainer.AddThermalEnergyClamped(soln, energy, 173.15f, float.MaxValue); // minimum -100c, leaves maximum unchanged
                 }
             }
         }

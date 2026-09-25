@@ -1,6 +1,7 @@
 ﻿using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared._Funkystation.WashingMachine;
 
@@ -10,13 +11,13 @@ public sealed partial class WashingMachineComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan WashTime = TimeSpan.FromSeconds(5);
 
-    [DataField, AutoNetworkedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
     public TimeSpan? WashFinishTime;
 
     [DataField, AutoNetworkedField]
     public TimeSpan Cooldown = TimeSpan.FromSeconds(6);
 
-    [DataField, AutoNetworkedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoNetworkedField]
     public TimeSpan NextWashAllowed;
 
     [DataField]

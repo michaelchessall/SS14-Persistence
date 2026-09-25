@@ -243,6 +243,7 @@
     solutions:
       drink:
         maxVol: 300
+        temperature: 268 # Persistence: Ice is cold
         reagents:
         - ReagentId: Ice
           Quantity: 300

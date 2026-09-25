@@ -27,6 +27,7 @@
   - type: SolutionContainerManager
     solutions:
       drink:
+        temperature: 268 # Persistence: Ice is cold
         reagents:
         - ReagentId: Ice
           Quantity: 200

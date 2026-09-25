@@ -149,6 +149,7 @@
   cost: 7500
   recipeUnlocks:
   - Spationautsuit
+  - Donknautsuit
   - EVAsuit
   - EVAsuitHelmet
 
@@ -232,7 +233,12 @@
   recipeUnlocks:
   - Engineeringsuit
   - Atmossuit
+  - AtmosFireSuit
+  - AtmosFireHelmet
   - Miningsuit
+  - ExtendedEmergencyOxygenTank
+  - ExtendedEmergencyNitrogenTank
+  - Paramedsuit
   technologyPrerequisites:
   - EVAManufacturing
 

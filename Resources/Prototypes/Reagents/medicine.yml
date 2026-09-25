@@ -1018,6 +1018,7 @@
     Bloodstream:
       effects:
       - !type:MakeSentient
+        allowSpeech: false #Persistence14
         conditions:
         - !type:ReagentCondition
           reagent: Cognizine

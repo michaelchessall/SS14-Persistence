@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "raviolis by @SilverSS14 (YouTube) and scrambled-egg modified from friedegg by @SilverSS14 (YouTube)",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "ravioli"
+    },
+    {
+      "name": "cotton-ravioli"
+    },
+    {
+      "name": "scrambled-egg"
+    }
+  ]
+}

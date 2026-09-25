@@ -11,6 +11,7 @@ public sealed partial class RandomTableContext
     public required IPrototypeManager PrototypeManager { get; init; }
     public required RandomTableSystem RandomTableSystem { get; init; }
     public required IEntityManager EntityManager { get; init; }
+    public required ILogManager LogManager { get; init; }
     public RandomTableStateComponent? State { get; init; } = null;
 
     /// <summary>
