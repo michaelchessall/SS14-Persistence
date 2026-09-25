@@ -312,7 +312,8 @@
   - type: MobThresholds #Yinglets have a little over half the normal hp (originally was exactly half, but this was too severe in testing)
     thresholds:
       0: Alive
-      75: Critical
+      75: SoftCritical
+      100: HardCritical
       125: Dead
   - type: Destructible #they also gib faster
     thresholds:
