@@ -89,12 +89,16 @@
       - state: equipped-head-light
       head-vox:
       - state: equipped-head-light-vox
+      head-yinglet:
+      - state: equipped-head-light-yinglet
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
       head-vox:
       - state: equipped-head-vox
+      head-yinglet:
+      - state: equipped-head-yinglet
   - type: TemperatureProtection
     heatingCoefficient: 0.1
     coolingCoefficient: 0.1

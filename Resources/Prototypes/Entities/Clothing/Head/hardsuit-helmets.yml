@@ -39,6 +39,9 @@
       head-reptilian:
       - state: equipped-head-light-reptilian
         shader: unshaded
+      head-yinglet:
+      - state: equipped-head-light-yinglet
+        shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -56,6 +59,10 @@
       head-reptilian:
       - state: equipped-head-reptilian
       - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-yinglet:
+      - state: equipped-head-yinglet
+      - state: equipped-head-unshaded-yinglet
         shader: unshaded
   - type: PointLight
     color: "#adffe6"
@@ -105,6 +112,9 @@
       head-reptilian:
       - state: equipped-head-light-reptilian
         shader: unshaded
+      head-yinglet:
+      - state: equipped-head-light-yinglet
+        shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -122,6 +132,10 @@
       head-reptilian:
       - state: equipped-head-reptilian
       - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-yinglet:
+      - state: equipped-head-yinglet
+      - state: equipped-head-unshaded-yinglet
         shader: unshaded
   - type: PointLight
     color: "#ffdbad"
@@ -165,6 +179,9 @@
       head-reptilian:
       - state: equipped-head-light-reptilian
         shader: unshaded
+      head-yinglet:
+      - state: equipped-head-light-yinglet
+        shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -182,6 +199,10 @@
       head-reptilian:
       - state: equipped-head-reptilian
       - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-yinglet:
+      - state: equipped-head-yinglet
+      - state: equipped-head-unshaded-yinglet
         shader: unshaded
   - type: PointLight
     radius: 6
@@ -418,6 +439,9 @@
       head-reptilian:
       - state: equipped-head-light-reptilian
         shader: unshaded
+      head-yinglet:
+      - state: equipped-head-light-yinglet
+        shader: unshaded
   - type: Clothing
     clothingVisuals:
       head:
@@ -435,6 +459,10 @@
       head-reptilian:
       - state: equipped-head-reptilian
       - state: equipped-head-unshaded-reptilian
+        shader: unshaded
+      head-yinglet:
+      - state: equipped-head-yinglet
+      - state: equipped-head-unshaded-yinglet
         shader: unshaded
   - type: PointLight
     color: "#daffad"
