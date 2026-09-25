@@ -103,15 +103,6 @@ namespace Content.Client.Lobby.UI
             { "The Void", "[bold]Dreaming is impossible in the perfect void of cryosleep.[/bold]\n\nBut as you enter the Threshold the void grows even darker than pitch. You hit the surface of nothingness and go beneath the waters\n\nIt's so cold and when you look up you see yourself looking down at a reflection." }
         };
 
-        //public Dictionary<string, string> Backgrounds = new Dictionary<string, string>
-        //{
-        //    { "Corporate Space Station", "You have worked aboard a large space station for one of the galaxies largest ultra-mega-corps. You didn't get many breaks." },
-        //    { "Labor World", "You lived on an impoverished world where everyone worked all the time to produce profit for off-world shareholders." },
-        //    { "War Cursed World", "You lived on a world which is a constant warzone. Survival was a desperate prospect." },
-        //    { "Suburb World", "You lived on a underpopulated and unimportant world. It wasn't a very exciting place." },
-        //    { "Core World", "You lived on a world controlled by the Solar Legion, one of the wealthiest Empires in the Galaxy. The planet was in decline." },
-        //    { "Commune", "You lived as part of a communist refuge. Supplies were very limited." }
-        //};
         private MarkingsViewModel _markingsModel = new();
 
         public HumanoidProfileEditor(
@@ -598,6 +589,7 @@ namespace Content.Client.Lobby.UI
 
                 SaveButton.Visible = true;
                 RequirementsLbl.Visible = true;
+                RandomizerPanel.Visible = true;
                 JoinGameButton.Visible = false;
 
                 ImportButton.Visible = true;
@@ -617,6 +609,7 @@ namespace Content.Client.Lobby.UI
 
                 SaveButton.Visible = false;
                 RequirementsLbl.Visible = false;
+                RandomizerPanel.Visible = false;
                 JoinGameButton.Visible = true;
 
                 ImportButton.Visible = false;
@@ -666,7 +659,7 @@ namespace Content.Client.Lobby.UI
                 foreach (var motive in _prototypeManager.EnumeratePrototypes<MotivePrototype>())
                 {
                     ind++;
-                    if(motive.Name == motiveStatus)
+                    if(motive.ID == motiveStatus)
                     {
                         MotiveButton.SelectId(ind);
                         MotiveTitleLabel.Text = motive.Name;
@@ -694,7 +687,7 @@ namespace Content.Client.Lobby.UI
                 foreach (var background in _prototypeManager.EnumeratePrototypes<UniverseOriginPrototype>())
                 {
                     ind++;
-                    if (background.Name == originStatus)
+                    if (background.ID == originStatus)
                     {
                         BGButton.SelectId(ind);
                         BGTitleLabel.Text = background.Name;
@@ -722,7 +715,7 @@ namespace Content.Client.Lobby.UI
                 foreach (var alignment in _prototypeManager.EnumeratePrototypes<AlignmentPrototype>())
                 {
                     ind++;
-                    if (alignment.Name == alignmentStatus)
+                    if (alignment.ID == alignmentStatus)
                     {
                         AlignmentButton.SelectId(ind);
                         AlignTitleLabel.Text = alignment.Name;
