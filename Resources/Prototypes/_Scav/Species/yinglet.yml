@@ -15,5 +15,5 @@
   maxAge: 30
 
 
-  markingLimits: MobYingletMarkingLimits
-  sprites: MobYingletSprites
+#  markingLimits: MobYingletMarkingLimits
+#  sprites: MobYingletSprites

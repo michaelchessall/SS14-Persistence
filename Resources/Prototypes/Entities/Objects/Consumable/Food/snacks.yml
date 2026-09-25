@@ -29,6 +29,8 @@
   id: FoodSnackGrainBase
   abstract: true
   components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
   - type: SolutionContainerManager
     solutions:
       food:
