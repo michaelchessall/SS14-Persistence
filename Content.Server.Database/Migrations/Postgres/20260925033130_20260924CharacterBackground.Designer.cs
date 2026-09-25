@@ -6,6 +6,7 @@ using System.Text.Json;
 using Content.Server.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using NpgsqlTypes;
@@ -15,9 +16,11 @@ using NpgsqlTypes;
 namespace Content.Server.Database.Migrations.Postgres
 {
     [DbContext(typeof(PostgresServerDbContext))]
-    partial class PostgresServerDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260925033130_20260924CharacterBackground")]
+    partial class _20260924CharacterBackground
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1112,10 +1115,6 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("integer")
                         .HasColumnName("age");
 
-                    b.Property<string>("Alignment")
-                        .HasColumnType("text")
-                        .HasColumnName("alignment");
-
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -1160,17 +1159,9 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
-                    b.Property<string>("Motive")
-                        .HasColumnType("text")
-                        .HasColumnName("motive");
-
                     b.Property<JsonDocument>("OrganMarkings")
                         .HasColumnType("jsonb")
                         .HasColumnName("organ_markings");
-
-                    b.Property<string>("Origin")
-                        .HasColumnType("text")
-                        .HasColumnName("origin");
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("integer")

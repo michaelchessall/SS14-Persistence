@@ -83,7 +83,7 @@ public partial class CrewMetaRecord
     public TimeSpan NextMessageBoardComment = TimeSpan.Zero;
 
     [DataField]
-    public ProtoId<AlignmentPrototype> Alignment = "Neutral";
+    public ProtoId<AlignmentPrototype> Alignment = "TrueNeutral";
     [DataField]
     public ProtoId<UniverseOriginPrototype> Origin = "Zenith";
     [DataField]

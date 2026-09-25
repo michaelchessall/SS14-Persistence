@@ -56,9 +56,12 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
             foreach (var kv in effectProto.Equipment)
             {
                 var itemType = kv.Value;
-                if (_inventorySystem.TryUnequip(mob, kv.Key, out var unequippedItem, silent: true, force: true, reparent: false))
+                if (_inventorySystem.TryUnequip(mob, kv.Key, out var unequippedItem, silent: true, force: true, reparent: false, skipChildren: true))
                 {
-                    EntityManager.DeleteEntity(unequippedItem.Value);
+                    if (unequippedItem != null)
+                    {
+                        Del(unequippedItem.Value);
+                    }
                 }
                 if (itemType != string.Empty)
                 {
