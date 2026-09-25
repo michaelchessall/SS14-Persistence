@@ -18,8 +18,8 @@
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5 # Persistence: 20 < 5
-        - ReagentId: Grain # Persistence
+          Quantity: 5 # Scav: 20 < 5
+        - ReagentId: Grain # Scav
           Quantity: 15
 
 # Noodles
@@ -59,8 +59,8 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 20 # Persistence: 35 < 20
-        - ReagentId: Grain # Persistence
+          Quantity: 20 # Scav: 35 < 20
+        - ReagentId: Grain # Scav
           Quantity: 15
   - type: Tag
     tags:
@@ -92,7 +92,7 @@
         maxVol: 80
         reagents:
         - ReagentId: Nutriment
-          Quantity: 55 # Persistence: 70 < 55
+          Quantity: 55 # Scav: 70 < 55
 # Tastes like pasta, bad humor.
 
 - type: entity
@@ -114,7 +114,7 @@
       food:
         maxVol: 25
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 15
         - ReagentId: Protein
           Quantity: 6
@@ -142,7 +142,7 @@
       food:
         maxVol: 15
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 6
@@ -168,12 +168,12 @@
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5 # Persistence: 20 < 5
+          Quantity: 5 # Scav: 20 < 5
         - ReagentId: Protein
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 20
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 15
 # Tastes like pasta, tomato.
 
@@ -197,7 +197,7 @@
         maxVol: 25
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 23 < 8
-        - ReagentId: Grain # Persistence
+          Quantity: 8 # Scav: 23 < 8
+        - ReagentId: Grain # Scav
           Quantity: 15
 # Tastes like pasta, butter.

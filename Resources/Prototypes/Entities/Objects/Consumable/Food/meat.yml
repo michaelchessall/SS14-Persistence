@@ -1529,7 +1529,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 5
         - ReagentId: Protein
           Quantity: 5
@@ -1564,7 +1564,7 @@
     solutions:
       food:
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 7.5
         - ReagentId: Protein
           Quantity: 7.5

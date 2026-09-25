@@ -23,7 +23,7 @@
     heldPrefix: packet
     size: Tiny
 
-# Persistence: Grain-based base for yinglet metabolism
+# Scav: Grain-based base for yinglet metabolism
 - type: entity
   parent: FoodBase
   id: FoodSnackGrainBase
@@ -43,7 +43,7 @@
 
 - type: entity
   name: boritos
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackBoritos
   description: Crunchy, salty tortilla chips. You could probably make nachos with these.
   components:
@@ -77,7 +77,7 @@
 
 - type: entity
   name: cheesie honkers
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackCheesie
   description: Bite sized cheesie snacks that will honk all over your mouth.
   components:
@@ -95,7 +95,7 @@
 
 - type: entity
   name: chips
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackChips
   description: Commander Riker's What-The-Crisps.
   components:
@@ -184,7 +184,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackEnergyBar
   name: energy bar
   description: An energy bar with a lot of punch.
@@ -226,7 +226,7 @@
 
 - type: entity
   name: popcorn
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackPopcorn
   description: Grown on an unknown planet, by an unknown farmer, popped by some jerk on a space station.
   components:
@@ -319,7 +319,7 @@
 
 - type: entity
   name: syndi-cakes
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackSyndi
   description: An extremely moist snack cake that tastes just as good after being nuked.
   components:
@@ -399,7 +399,7 @@
       food:
         maxVol: 30 # Room for extra condiments
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 10
         - ReagentId: Soysauce
           Quantity: 2
@@ -428,7 +428,7 @@
       food:
         maxVol: 30 # Room for extra condiments
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 10
         - ReagentId: CapsaicinOil
           Quantity: 2
@@ -454,7 +454,7 @@
       food:
         maxVol: 1
         reagents:
-        - ReagentId: Grain # Persistence: Nutriment < Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 1
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
@@ -538,7 +538,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  parent: FoodSnackGrainBase # Persistence: FoodSnackBase < FoodSnackGrainBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackMREBrownieOpen
   name: brownie
   suffix: MRE

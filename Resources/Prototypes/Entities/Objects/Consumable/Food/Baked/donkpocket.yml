@@ -14,8 +14,8 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence 3 < 2
-        - ReagentId: Grain # Persistence
+          Quantity: 2 # Scav 3 < 2
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Item
     size: Tiny
@@ -26,7 +26,7 @@
 
 # Donkpocket
 
-# Persistence: Warm gives +4 nutriment & +1 grain.
+# Scav: Warm gives +4 nutriment & +1 grain.
 # Warm ones contain a small amount of Omnizine.
 
 - type: entity
@@ -60,10 +60,10 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6 # Persistence 8 < 6
+          Quantity: 6 # Scav 8 < 6
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -81,8 +81,8 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4 # Persistence: 5 < 4
-        - ReagentId: Grain # Persistence
+          Quantity: 4 # Scav: 5 < 4
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: dank
@@ -102,10 +102,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Omnizine
           Quantity: 4
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -138,10 +138,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
   - type: Sprite
     state: spicy
@@ -176,10 +176,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -199,8 +199,8 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
-        - ReagentId: Grain # Persistence
+          Quantity: 8 # Scav: 10 < 8
+        - ReagentId: Grain # Scav
           Quantity: 2
   - type: Sprite
     state: pizza
@@ -222,10 +222,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15 # Persistence: 15 < 13
+          Quantity: 15 # Scav: 15 < 13
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -243,10 +243,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4 # Persistence 5 < 4
+          Quantity: 4 # Scav 5 < 4
         - ReagentId: Honk
           Quantity: 0.50
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: banana
@@ -266,12 +266,12 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Honk
           Quantity: 1
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -289,8 +289,8 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4 # Persistence: 5 < 4
-        - ReagentId: Grain # Persistence
+          Quantity: 4 # Scav: 5 < 4
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: berry
@@ -310,12 +310,12 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Omnizine
           Quantity: 2
         - ReagentId: Sugar
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -333,8 +333,8 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4 # Persistence: 5 < 4
-        - ReagentId: Grain # Persistence
+          Quantity: 4 # Scav: 5 < 4
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: stonk
@@ -353,10 +353,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -374,8 +374,8 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4  # Persistence: 5 < 4
-        - ReagentId: Grain # Persistence
+          Quantity: 4  # Scav: 5 < 4
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: carp
@@ -394,10 +394,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 - type: entity
@@ -415,10 +415,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 1 # Persistence: 2 < 1
+          Quantity: 1 # Scav: 2 < 1
         - ReagentId: JuiceCarrot
           Quantity: 1
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: dink
@@ -438,10 +438,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 4 # Persistence: 5 < 4
+          Quantity: 4 # Scav: 5 < 4
         - ReagentId: Fiber
           Quantity: 5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 1
   - type: Sprite
     state: moth
@@ -462,10 +462,10 @@
       food:
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Persistence: 10 < 8
+          Quantity: 8 # Scav: 10 < 8
         - ReagentId: Fiber
           Quantity: 5
         - ReagentId: Omnizine
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2

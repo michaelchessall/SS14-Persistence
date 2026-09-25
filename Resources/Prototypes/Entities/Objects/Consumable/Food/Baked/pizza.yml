@@ -18,10 +18,10 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 12 # Persistence: 30 < 12
+          Quantity: 12 # Scav: 30 < 12
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
   - type: SliceableFood
     count: 8
@@ -53,10 +53,10 @@
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 5 < 2
+          Quantity: 2 # Scav: 5 < 2
         - ReagentId: Vitamin
           Quantity: 0.8
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
   - type: Item
     size: Tiny
@@ -213,7 +213,7 @@
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
 
 - type: entity
@@ -242,12 +242,12 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 4 < 2
+          Quantity: 2 # Scav: 4 < 2
         - ReagentId: JuiceCarrot
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
 
 # Tastes like crust, tomato, cheese, carrot.
@@ -277,7 +277,7 @@
           Quantity: 6
         - ReagentId: Omnizine
           Quantity: 9
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
   - type: Tag
     tags:
@@ -305,12 +305,12 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 5 < 2
+          Quantity: 2 # Scav: 5 < 2
         - ReagentId: Vitamin
           Quantity: 1
         - ReagentId: Omnizine
           Quantity: 1.5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
   - type: Tag
     tags:
@@ -342,10 +342,10 @@
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 20 < 2
+          Quantity: 2 # Scav: 20 < 2
         - ReagentId: THC
           Quantity: 30
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
 
 - type: entity
@@ -371,10 +371,10 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 0.5 # Persistence: 4.5 < 0.5
+          Quantity: 0.5 # Scav: 4.5 < 0.5
         - ReagentId: THC
           Quantity: 5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
 # Tastes like crust, tomato, cheese, meat, satisfaction.
 
@@ -497,14 +497,14 @@
         maxVol: 85
         reagents:
         - ReagentId: Nutriment
-          Quantity: 12 # Persistence 30 < 12
+          Quantity: 12 # Scav 30 < 12
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Iron
           Quantity: 10
         - ReagentId: Omnizine
           Quantity: 30
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
   - type: Tag
     tags:
@@ -535,14 +535,14 @@
         maxVol: 15
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 5 < 2
+          Quantity: 2 # Scav: 5 < 2
         - ReagentId: Vitamin
           Quantity: 0.8
         - ReagentId: Iron
           Quantity: 1.6
         - ReagentId: Omnizine
           Quantity: 5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
   - type: Tag
     tags:
@@ -583,7 +583,7 @@
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
 # Tastes like stale crust, rancid cheese, mushroom.
 
@@ -617,12 +617,12 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 20 < 2
+          Quantity: 2 # Scav: 20 < 2
         - ReagentId: Radium
           Quantity: 4
         - ReagentId: Uranium
           Quantity: 16
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
 
 - type: entity
@@ -656,12 +656,12 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 0.5 # Persistence: 2.5 < 0.5
+          Quantity: 0.5 # Scav: 2.5 < 0.5
         - ReagentId: Radium
           Quantity: 0.5
         - ReagentId: Uranium
           Quantity: 2
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
 
 # Tastes like crust, tomato, cheese, radiation.
@@ -693,12 +693,12 @@
         maxVol: 40
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 20 < 2
+          Quantity: 2 # Scav: 20 < 2
         - ReagentId: Vitamin
           Quantity: 5
         - ReagentId: Fiber
           Quantity: 10
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
 
 - type: entity
@@ -727,12 +727,12 @@
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
-          Quantity: 0.5 # Persistence: 3.5 < 0.5
+          Quantity: 0.5 # Scav: 3.5 < 0.5
         - ReagentId: Vitamin
           Quantity: 0.8
         - ReagentId: Fiber
           Quantity: 1.5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 3
 
 - type: entity
@@ -756,12 +756,12 @@
         maxVol: 45
         reagents:
         - ReagentId: Nutriment
-          Quantity: 2 # Persistence: 20 < 2
+          Quantity: 2 # Scav: 20 < 2
         - ReagentId: Happiness
           Quantity: 12
         - ReagentId: Pax
           Quantity: 8
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 18
 
 - type: entity
@@ -785,10 +785,10 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 0.5 # Persistence: 3.5 < 0.5
+          Quantity: 0.5 # Scav: 3.5 < 0.5
         - ReagentId: Happiness
           Quantity: 2
         - ReagentId: Pax
           Quantity: 1.5
-        - ReagentId: Grain # Persistence
+        - ReagentId: Grain # Scav
           Quantity: 2
