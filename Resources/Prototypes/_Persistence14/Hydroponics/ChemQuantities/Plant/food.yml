@@ -1,0 +1,395 @@
+- type: plantChemQuantity
+  id: BasicNutriment2
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: BasicNutriment3
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: BasicNutriment4
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.3
+      bonusAmount: 1.5
+    CarbonDioxide:
+      bonusRequirement: 0.15
+      bonusAmount: 1.5
+
+- type: plantChemQuantity
+  id: BasicNutriment5
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: BasicNutriment7
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: BasicNutriment10
+  baseAmount: 2
+  requirements:
+    Water:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: BasicVitamin2
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: BasicVitamin3
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: BasicVitamin4
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 1
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: BasicVitamin5
+  baseAmount: 2
+  requirements:
+    Nutrient:
+      requirement: 2
+      bonusRequirement: 1
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: BasicGrain10
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 2.5
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 2.5
+    CarbonDioxide:
+      bonusRequirement: 0.25
+      bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: BasicGrain15
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 2.5
+    Fertilizer:
+      bonusRequirement: 1
+      bonusAmount: 5
+    CarbonDioxide:
+      bonusRequirement: 0.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: MeatwheatProtein
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 2
+    Nutrient:
+      requirement: 2.5
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 2.5
+    CarbonDioxide:
+      bonusRequirement: 0.25
+      bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: Rice
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+    Nutrient:
+      bonusRequirement: 0.5
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: BungoNutriment
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+    CarbonDioxide:
+      requirement: 0.5
+      bonusRequirement: 0.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: BungoEnzyme
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+    Sugar:
+      bonusRequirement: 2
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: PumpkinFlesh
+  baseAmount: 2
+  requirements:
+    Water:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 1.6
+      bonusAmount: 8
+    CarbonDioxide:
+      bonusRequirement: 0.8
+      bonusAmount: 8
+
+- type: plantChemQuantity
+  id: BluePumpkinVitamin
+  baseAmount: 4
+  requirements:
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: TomatoWater
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+      bonusRequirement: 3
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: MelonWater
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+      bonusRequirement: 9
+      bonusAmount: 9
+
+- type: plantChemQuantity
+  id: HolyMelonWater # Currently the same as AbsorbWater4, but kept separate in case holy water becomes more valuable.
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+      bonusRequirement: 3
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: LemoonMilk
+  baseAmount: 10
+  requirements:
+    Water:
+      requirement: 10
+    Protein:
+      requirement: 1
+      bonusRequirement: 2
+      bonusAmount: 10
+
+- type: plantChemQuantity
+  id: CapsaicinOil
+  baseAmount: 2
+  requirements:
+    Water:
+      requirement: 2
+    Nutrient:
+      bonusRequirement: 1
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: FrostOil
+  baseAmount: 2
+  requirements:
+    Water:
+      requirement: 3
+    Nutrient:
+      bonusRequirement: 1
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    Frezon:
+      bonusRequirement: 0.1
+      bonusAmount: 5
+  heatToleranceModifier:
+    low: -25
+    high: -25
+
+- type: plantChemQuantity
+  id: KillerTomatoJuice
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+    Nutrient:
+      bonusRequirement: 0.5
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: CaneSugar
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 2
+    Nutrient:
+      requirement: 2
+
+- type: plantChemQuantity
+  id: LaughinPeaSugar
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 2
+    Nutrient:
+      requirement: 2
+    CarbonDioxide:
+      bonusRequirement: 0.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: Egg
+  baseAmount: 6
+  requirements:
+    Water:
+      requirement: 4
+    Nutrient:
+      requirement: 4
+    Fertilizer:
+      bonusRequirement: 1
+      bonusAmount: 3
+    Pest: # egg = chicken = eat bug and worm
+      bonusRequirement: 6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: CottonFiber
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 2.5
+    CarbonDioxide:
+      bonusRequirement: 0.25
+      bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: CarrotJuice
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+      bonusRequirement: 1
+      bonusAmount: 1
+    Nutrient:
+      bonusRequirement: 1
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: CarrotOculine
+  baseAmount: 2
+  requirements:
+    Nutrient:
+      requirement: 0.5
+      bonusRequirement: 0.5
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3

@@ -70,8 +70,9 @@
           reagent: Dylovene
           min: 15
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -10
+  - !type:PlantAdjustNutrient
+    amount: -1
+    nutrient: toxin
   - !type:PlantAdjustHealth
     amount: 1
 
@@ -191,8 +192,9 @@
   flavor: medicine
   color: "#0091ff"
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -5
+  - !type:PlantAdjustNutrient
+    amount: -0.5
+    Nutrient: Toxin
   - !type:PlantAdjustHealth
     amount: 5
   - !type:PlantCryoxadone {}
@@ -650,8 +652,9 @@
   flavor: medicine
   color: "#c8ff75"
   plantMetabolism:
-    - !type:PlantAdjustToxins
-      amount: 6
+    - !type:PlantAdjustNutrient
+      amount: 0.6
+      nutrient: Toxin
     - !type:PlantPhalanximine
       minScale: 4
   metabolisms:
@@ -817,8 +820,9 @@
   flavor: medicine
   color: "#2b2f77"
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: -5
+  - !type:PlantAdjustNutrient
+    amount: -0.5
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       metabolismRate: 0.05
@@ -1041,6 +1045,10 @@
         - !type:ReagentCondition
           reagent: Cognizine
           min: 5
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Sapient
 
 - type: reagent
   id: Ethyloxyephedrine
@@ -1280,8 +1288,9 @@
           types:
             Holy: 0.5
   plantMetabolism:
-  - !type:PlantAdjustWater
+  - !type:PlantAdjustNutrient
     amount: 1
+    nutrient: Water
   tileReactions:
   - !type:ExtinguishTileReaction { }
 

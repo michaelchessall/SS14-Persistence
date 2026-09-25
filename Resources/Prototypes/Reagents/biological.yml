@@ -39,9 +39,13 @@
         damage:
           types:
             Poison: 0.2
-  plantMetabolism:
-    - !type:PlantAdjustWater
-      amount: 0.5
+  plantMetabolism: # Persistence 14
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Water
+    - !type:PlantAdjustNutrient
+      amount: 0.2
+      nutrient: Protein
   footstepSound:
     collection: FootstepBlood
     params:
@@ -118,6 +122,13 @@
     collection: FootstepSlime
     params:
       volume: 6
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 0.9
+    nutrient: Water
+  - !type:PlantAdjustNutrient
+    amount: 0.1
+    nutrient: Sugar
 
 - type: reagent
   parent: Blood
@@ -295,6 +306,10 @@
         damage:
           types:
             Cellular: 2
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 10
+    nutrient: Sapient
 
 - type: reagent
   id: LivingTissue

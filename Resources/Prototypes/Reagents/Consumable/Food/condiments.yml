@@ -148,16 +148,20 @@
   boilingPoint: 1465.0
   meltingPoint: 800.7
   plantMetabolism:
-  - !type:PlantAdjustWater
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: -3
-  - !type:PlantAdjustNutrition
+    nutrient: Water
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: -0.3
-  - !type:PlantAdjustToxins
-    amount: 8
+    nutrient: Nutrient
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 0.8
+    nutrient: Toxin
   - !type:PlantAdjustWeeds
     amount: -2
-  - !type:PlantAdjustPests
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: -1
+    nutrient: Pest
   - !type:PlantAdjustHealth
     amount: -2
   metabolisms:
@@ -187,6 +191,13 @@
       - !type:Satiate
         satiationType: Hunger
         factor: 6.0 #Stronger than cookedramen
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Sugar
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Pest
   footstepSound:
     collection: FootstepSlime
     params:

@@ -1,0 +1,76 @@
+- type: plantChemQuantity
+  id: BlueTomatoLube
+  baseAmount: 6
+  requirements:
+    Water:
+      requirement: 5
+    Nutrient:
+      requirement: 1.5
+    Iron:
+      bonusrequirement: 1.5
+      bonusAmount: 9
+
+- type: plantChemQuantity
+  id: TomatoBlood
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 1
+      bonusrequirement: 2
+      bonusAmount: 2
+    Protein:
+      requirement: 0.25
+      bonusrequirement: 0.5
+      bonusAmount: 2
+    Iron:
+      bonusrequirement: 0.2
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: AlchemyGold
+  baseAmount: 10
+  requirements:
+    Tin: # Base metal
+      requirement: 10
+    Copper: # More expensive base metal.
+      requirement: 5
+    Toxin: # Nigredo = Decomposition = Toxic
+      requirement: 2
+    Acid: # Albedo = Washing away impurities. Making a nutrient that requires space cleaner seemed strange, so i used acid instead.
+      requirement: 2
+    Hydrogen: # Citrinitas = Solar light inherent in ones being = Stars? = Hydrogen
+      requirement: 2
+    Sapient: # Rubedo = Ego/self?
+      requirement: 2
+
+- type: plantChemQuantity
+  id: Sulfur
+  baseAmount: 1
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 2
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: Artifexium
+  baseAmount: 1
+  requirements: # Placeholder values
+    Plasma:
+      requirement: 3
+
+- type: plantChemQuantity
+  id: Laughter
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 2.5
+    NitrousOxide:
+      bonusRequirement: 0.25
+      bonusAmount: 2.5

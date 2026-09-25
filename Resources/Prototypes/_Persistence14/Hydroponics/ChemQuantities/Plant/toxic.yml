@@ -1,0 +1,138 @@
+- type: plantChemQuantity
+  id: Razorium
+  baseAmount: 3
+  requirements:
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 4
+      bonusAmount: 12
+
+- type: plantChemQuantity
+  id: MimanaMuteToxin
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 5
+    NitrousOxide:
+      requirement: 1
+      bonusRequirement: 4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: Amatoxin
+  baseAmount: 2
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 14
+
+- type: plantChemQuantity
+  id: RainbowCannabisLipolicide
+  baseAmount: 3
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+    CarbonDioxide:
+      bonusRequirement: 0.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: NettleHistamine
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 3
+    Water:
+      requirement: 3
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 6.5
+    CarbonDioxide:
+      bonusRequirement: 1
+      bonusAmount: 12.5
+
+- type: plantChemQuantity
+  id: DeathNettleSulfuricAcid
+  baseAmount: 4
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 2
+    Water:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.7
+      bonusAmount: 7
+
+- type: plantChemQuantity
+  id: DeathNettleFluorosulfuricAcid
+  baseAmount: 4
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 2
+    Water:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.7
+      bonusAmount: 7
+
+- type: plantChemQuantity
+  id: Carpotoxin
+  baseAmount: 1
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 1
+      bonusAmount: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: PyrottonPhlogiston
+  baseAmount: 4
+  requirements: # Placeholder values
+    Water:
+      requirement: 4
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: BasicAllicin
+  baseAmount: 2
+  requirements:
+    Water:
+      requirement: 0.5
+
+- type: plantChemQuantity
+  id: BloonionAllicin
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 0.5
+    Nutrient:
+      bonusRequirement: 1
+      bonusAmount: 4
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 5

@@ -1,5 +1,6 @@
 # TODO: Reagent Args which allow more selective scaling.
 # Currently all Gas metabolisms scale by reagent quantity metabolized, where other Metabolisms are modified by metabolism rate!
+# Persistence 14: Add PlantAdjustNutrient
 
 - type: reagent
   id: Oxygen
@@ -112,6 +113,10 @@
         minScale: 1.5
         clear: True
         time: 5
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Plasma
   reactiveEffects:
     Flammable:
       methods: [ Touch ]
@@ -158,6 +163,10 @@
         minScale: 1.5
         clear: True
         time: 5
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Radiation
 
 - type: reagent
   id: CarbonDioxide
@@ -397,6 +406,10 @@
         messages: [ "frezon-euphoric" ]
         probability: 0.1
         minScale: 1
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Frezon
 
 - type: reagent
   id: Methane

@@ -1,0 +1,152 @@
+- type: plantChemQuantity
+  id: Bicaridine5
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 1
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+    Sugar:
+      bonusRequirement: 1
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: Bicaridine10
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+      bonusRequirement: 5
+      bonusAmount: 5
+    CarbonDioxide:
+      bonusRequirement: 0.5
+      bonusAmount: 5
+    Sugar:
+      bonusRequirement: 2.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: PolypyryliumOligomers
+  baseAmount: 5
+  requirements:
+    Sugar:
+      requirement: 5
+    Fertilizer:
+      bonusRequirement: 2.5
+      bonusAmount: 5
+    Plasma:
+      bonusRequirement: 2.5
+      bonusAmount: 5
+  heatToleranceModifier:
+    low: -300 # Space is cold
+  pressureToleranceModifier:
+    low: -101 # Survives space pressure
+    high: -101 # Does not survive normal pressure
+    damage: 0.2 # Plant does not instantly die once mutated.
+
+- type: plantChemQuantity
+  id: Stellibinin
+  baseAmount: 3
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 3
+      bonusRequirement: 2
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 2
+      bonusAmount: 10
+    CarbonDioxide:
+      bonusRequirement: 1
+      bonusAmount: 10
+
+- type: plantChemQuantity
+  id: Haloperidol
+  baseAmount: 1
+  requirements:
+    Aluminum:
+      requirement: 1
+    Nutrient:
+      bonusRequirement: 2
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: Ultravasculine
+  baseAmount: 3
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 3
+    Fertilizer:
+      bonusRequirement: 1.4
+      bonusAmount: 7
+    CarbonDioxide:
+      bonusRequirement: 1
+      bonusAmount: 10
+
+- type: plantChemQuantity
+  id: Epinephrine
+  baseAmount: 3
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 3
+    Fertilizer:
+      bonusRequirement: 1.4
+      bonusAmount: 7
+    CarbonDioxide:
+      bonusRequirement: 1
+      bonusAmount: 10
+
+- type: plantChemQuantity
+  id: RainbowCannabisPsicodine
+  baseAmount: 1
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: Aloe
+  baseAmount: 2
+  requirements: # Placeholder requirements
+    Water:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: AloeDermaline
+  baseAmount: 2
+  requirements:
+    Nutrient:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: AmbrosiaVulgarisKelotane
+  baseAmount: 1
+  requirements:
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
