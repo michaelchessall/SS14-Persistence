@@ -166,6 +166,7 @@
       Male: MaleAvali
       Female: FemaleAvali
       Unsexed: MaleAvali
+    allowedEmotes: [ 'Hisses', 'Purr', 'Scree', 'Call', 'Squawk', 'Trill' ]
   - type: Damageable
     damageModifierSet: Avali
   - type: MeleeWeapon
