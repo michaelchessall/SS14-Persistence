@@ -17,7 +17,9 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence 3 < 2c
+        - ReagentId: Grain # Persistence
+          Quantity: 2
   - type: Item
     sprite: Objects/Consumable/Food/Baked/donut.rsi
     size: Tiny
@@ -69,8 +71,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 
 # Donuts
@@ -186,8 +190,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence 3 < 2
         - ReagentId: Theobromine
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like donut, bitterness.
 
@@ -260,8 +266,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 
 - type: entity
@@ -280,8 +288,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 
 - type: entity
@@ -298,8 +308,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, violets.
 
@@ -317,8 +329,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 
 # Tastes like jelly-donut, green apples.
@@ -337,8 +351,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, buttery sweetness.
 
@@ -356,10 +372,12 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Theobromine
           Quantity: 1
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, bitterness.
 
@@ -381,8 +399,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, blue pumpkin.
 
@@ -400,8 +420,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, tropical sweetness.
 
@@ -419,8 +441,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, matcha.
 
@@ -438,8 +462,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, fizzy tutti frutti.
 
@@ -457,8 +483,10 @@
         maxVol: 5
         reagents:
         - ReagentId: Nutriment
-          Quantity: 3
+          Quantity: 2 # Persistence: 3 < 2
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Grain # Persistence
           Quantity: 1
 # Tastes like jelly-donut, fizzy tutti frutti.
 

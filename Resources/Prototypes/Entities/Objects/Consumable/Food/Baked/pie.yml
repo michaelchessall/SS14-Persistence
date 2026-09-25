@@ -19,7 +19,7 @@
       food:
         maxVol: 50
         reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 30
         - ReagentId: Vitamin
           Quantity: 14
@@ -52,7 +52,7 @@
       food:
         maxVol: 7
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 7.5
         - ReagentId: Vitamin
           Quantity: 3.5
@@ -519,7 +519,7 @@
       food:
         maxVol: 30
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 15
         - ReagentId: Vitamin
           Quantity: 5
@@ -567,7 +567,9 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
+          Quantity: 10 # Persistence: 25 < 10
         - ReagentId: Theobromine
+          Quantity: 2
+        - ReagentId: Grain # Persistence
           Quantity: 2
 # Tastes like tart, dark chocolate.

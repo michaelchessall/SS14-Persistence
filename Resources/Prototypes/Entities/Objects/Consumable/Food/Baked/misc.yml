@@ -14,7 +14,9 @@
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 3 # Persistence: 5 < 3
+        - ReagentId: Grain # Persistence
+          Quantity: 2
   - type: Item
     size: Tiny
 
@@ -37,7 +39,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -60,7 +62,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -83,7 +85,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -118,7 +120,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -138,7 +140,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -182,8 +184,10 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 4 # Persistence 6 < 4
         - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Grain # Persistence
           Quantity: 2
 
 # Cookies
@@ -210,7 +214,7 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
@@ -228,7 +232,7 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
@@ -482,9 +486,11 @@
         maxVol: 6
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 3 # Persistence: 5 < 3
         - ReagentId: Theobromine
           Quantity: 1
+        - ReagentId: Grain # Persistence
+          Quantity: 2
 
 - type: entity
   name: waffles
@@ -501,7 +507,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 1
@@ -522,9 +528,11 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 5 # Persistence: 10 < 5
         - ReagentId: Vitamin
           Quantity: 1
+        - ReagentId: Grain # Persistence
+          Quantity: 5
 
 - type: entity
   name: soylent waffles
@@ -542,9 +550,11 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 8 # Persistence: 10 < 8
         - ReagentId: Vitamin
           Quantity: 1
+        - ReagentId: Grain # Persistence
+          Quantity: 2
 
 - type: entity
   name: roffle waffles
@@ -561,7 +571,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 2
@@ -591,9 +601,11 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 3 # Persistence: 5 < 3
         - ReagentId: Vitamin
           Quantity: 1
+        - ReagentId: Grain # Persistence
+          Quantity: 2
 
 - type: entity
   name: dumplings
@@ -609,8 +621,10 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8
+          Quantity: 6 # Persistence: 8 < 6
         - ReagentId: Protein
+          Quantity: 2
+        - ReagentId: Grain # Persistence
           Quantity: 2
   - type: FlavorProfile
     flavors:
@@ -639,7 +653,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 0.5
@@ -669,7 +683,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 1
         - ReagentId: Fiber
           Quantity: 1
@@ -698,9 +712,11 @@
         maxVol: 78
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 18 # Persistence: 30 < 18
         - ReagentId: Theobromine
           Quantity: 18
+        - ReagentId: Grain # Persistence
+          Quantity: 12
   - type: SliceableFood
     count: 6
     slice: FoodBakedBrownie
@@ -725,9 +741,11 @@
         maxVol: 13
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 3 # Persistence: 5 < 3
         - ReagentId: Theobromine
           Quantity: 3
+        - ReagentId: Grain # Persistence
+          Quantity: 2
   - type: Tag
     tags:
     - Slice
@@ -755,11 +773,13 @@
         maxVol: 228
         reagents:
         - ReagentId: Nutriment
-          Quantity: 30
+          Quantity: 18 # Persistence 30 < 18
         - ReagentId: Theobromine
           Quantity: 18
         - ReagentId: THC
           Quantity: 150
+        - ReagentId: Grain # Persistence
+          Quantity: 12
   - type: SliceableFood
     count: 6
     slice: FoodBakedCannabisBrownie
@@ -784,11 +804,13 @@
         maxVol: 38
         reagents:
         - ReagentId: Nutriment
-          Quantity: 5
+          Quantity: 3 # Persistence: 5 < 3
         - ReagentId: Theobromine
           Quantity: 3
         - ReagentId: THC
           Quantity: 25
+        - ReagentId: Grain # Persistence
+          Quantity: 2
   - type: Tag
     tags:
     - Slice
@@ -840,7 +862,7 @@
       food:
         maxVol: 7
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 3
         - ReagentId: Butter
           Quantity: 2
@@ -875,7 +897,7 @@
       food:
         maxVol: 7
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Persistence: Nutriment < Grain
           Quantity: 1.5
         - ReagentId: Fiber
           Quantity: 1.5
@@ -907,11 +929,13 @@
         maxVol: 21
         reagents:
         - ReagentId: Nutriment
-          Quantity: 11
+          Quantity: 6 # Persistence: 11 < 6
         - ReagentId: Butter
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 3
+        - ReagentId: Grain # Persistence
+          Quantity: 5
 
 - type: entity
   parent: FoodBakedGrilledCheeseSandwich
@@ -938,13 +962,15 @@
         maxVol: 21
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 4 # Persistence: 6 < 2
         - ReagentId: Fiber
           Quantity: 5
         - ReagentId: Butter
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 3
+        - ReagentId: Grain # Persistence
+          Quantity: 2
 
 # Entity Tables
 
