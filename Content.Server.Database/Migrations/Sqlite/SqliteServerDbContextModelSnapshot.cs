@@ -1047,6 +1047,10 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("INTEGER")
                         .HasColumnName("age");
 
+                    b.Property<string>("Alignment")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("alignment");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("TEXT")
@@ -1091,9 +1095,17 @@ namespace Content.Server.Database.Migrations.Sqlite
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
+                    b.Property<string>("Motive")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("motive");
+
                     b.Property<byte[]>("OrganMarkings")
                         .HasColumnType("jsonb")
                         .HasColumnName("organ_markings");
+
+                    b.Property<string>("Origin")
+                        .HasColumnType("TEXT")
+                        .HasColumnName("origin");
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("INTEGER")
