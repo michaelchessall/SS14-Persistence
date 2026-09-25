@@ -208,6 +208,11 @@
           32:
             sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
             state: jumpsuit-female
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/Yinglet/displacement.rsi
+            state: outerClothing
       eyes:
         sizeMaps:
           32:
