@@ -525,7 +525,7 @@ namespace Content.Shared.Preferences
             name = name.Trim();
 
             if (configManager.GetCVar(CCVars.RestrictedNames))
-                ApplyRestrictedNameRegex(ref name);
+                ApplyRestrictedNameRegex(ref name); // Persistence: Move logic to separate function
 
             if (configManager.GetCVar(CCVars.ICNameCase))
             {
@@ -641,6 +641,12 @@ namespace Content.Shared.Preferences
             }
         }
 
+        /// <summary>
+        /// Persistence
+        /// Apply <see cref="RestrictedNameRegex "/> to a reference string.
+        /// This function does not check <see cref="CCVars.RestrictedNames"/>, callers should perform the check instead.
+        /// </summary>
+        /// <param name="name">A reference to the string to apply the regex to</param>
         public void ApplyRestrictedNameRegex(ref string name)
         {
             name = RestrictedNameRegex.Replace(name, string.Empty);
