@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Vox state made by Flareguy for SS14. Tail sprites by Tiniest Shark (github).",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Vox state made by Flareguy for SS14. Tail sprites by Tiniest Shark (github). Yinglet sprites by NuclearCreeperIII (github), based on https://github.com/ScavStation/ScavStation/commit/8ca1e3123eae61ad8b3a248c5ec653f45e120769",
     "size": {
         "x": 32,
         "y": 32
@@ -20,6 +20,10 @@
         },
         {
             "name": "equipped-OUTERCLOTHING-reptilian",
+            "directions": 4
+        },
+        {
+            "name": "equipped-OUTERCLOTHING-yinglet",
             "directions": 4
         },
         {

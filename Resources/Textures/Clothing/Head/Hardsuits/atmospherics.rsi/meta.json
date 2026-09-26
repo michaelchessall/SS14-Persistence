@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Vox states made by Flareguy for SS14. equipped-head-dog modified from equipped-head by Sparlight (GitHub). equipped-head-light-dog modified from equipped-head-light by Sparlight (GitHub). Vulpkanin and Reptilian states by TiniestShark (Github).",
+    "copyright": "Taken from tgstation at commit https://github.com/tgstation/tgstation/commit/4f6190e2895e09116663ef282d3ce1d8b35c032e. Vox states made by Flareguy for SS14. equipped-head-dog modified from equipped-head by Sparlight (GitHub). equipped-head-light-dog modified from equipped-head-light by Sparlight (GitHub). Vulpkanin and Reptilian states by TiniestShark (Github). Yinglet sprites by NuclearCreeperIII (github), based on https://github.com/ScavStation/ScavStation/commit/8ca1e3123eae61ad8b3a248c5ec653f45e120769.",
     "size": {
         "x": 32,
         "y": 32
@@ -65,6 +65,18 @@
         },
         {
             "name": "equipped-head-unshaded-reptilian",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-light-yinglet",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-unshaded-yinglet",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-yinglet",
             "directions": 4
         }
     ]

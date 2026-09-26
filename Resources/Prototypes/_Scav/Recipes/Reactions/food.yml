@@ -1,0 +1,9 @@
+- type: reaction
+  id: SaturateGrain
+  reactants:
+    Enzyme:
+      amount: 1
+    Grain:
+      amount: 1
+  products:
+    Nutriment: 1

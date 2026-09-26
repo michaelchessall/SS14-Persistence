@@ -187,6 +187,11 @@ public sealed partial class HumanoidProfileEditor
         // In case there's species restrictions for loadouts
         RefreshLoadouts();
         UpdateSexControls(); // update sex for new species
+        // Start Scav
+        var speciesPrototype = _prototypeManager.Index<SpeciesPrototype>(newSpecies);
+        SetAge((speciesPrototype.MinAge + speciesPrototype.YoungAge) / 2); //default age to the equivalent of 24 for this species
+        UpdateAgeEdit();
+        // End Scav
         UpdateSpeciesGuidebookIcon();
         ReloadPreview();
     }
@@ -216,6 +221,7 @@ public sealed partial class HumanoidProfileEditor
 
         UpdateGenderControls();
         _markingsModel.SetOrganSexes(newSex);
+        _markingsModel.ValidateMarkings(); // Scav
         ReloadPreview();
     }
 
