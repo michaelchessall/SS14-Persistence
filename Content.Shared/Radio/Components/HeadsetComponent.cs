@@ -25,6 +25,12 @@ public sealed partial class HeadsetComponent : Component
     [DataField, AutoNetworkedField]
     public int RecieveFrom = 0;
 
+    /// <summary>
+    /// Limits the range at which this headset can broadcast to a telecomm server
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public float MaxBroadcastRange = 512f;
+
 }
 [Serializable, NetSerializable]
 public sealed class HeadsetMenuBoundUserInterfaceState : BoundUserInterfaceState

@@ -3,6 +3,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Stacks;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
+using Robust.Shared.Network;
 
 namespace Content.Shared.Xenoarchaeology.Artifact.XAT;
 
@@ -12,6 +13,7 @@ public sealed partial class XATItemInteractSystem : BaseXATSystem<XATItemInterac
     [Dependency] private SharedDoAfterSystem _doafter = default!;
     [Dependency] private SharedStackSystem _stack = default!;
     [Dependency] private ILogManager _log = default!;
+    [Dependency] private INetManager _net = default!;
 
     public override void Initialize()
     {
@@ -56,25 +58,19 @@ public sealed partial class XATItemInteractSystem : BaseXATSystem<XATItemInterac
 
     private void OnDoAfter(Entity<XenoArtifactComponent> artifact, Entity<XATItemInteractComponent, XenoArtifactNodeComponent> node, ref XATItemInteractDoAfterEvent args)
     {
-        _log.GetSawmill("xat-item-interact").Info("Do After Event Received");
         if (args.Cancelled || args.Handled)
             return;
-        _log.GetSawmill("xat-item-interact").Info("Valid cancel and handle status");
         if (GetEntity(args.Node) != node.Owner)
             return;
 
-        _log.GetSawmill("xat-item-interact").Info("node entity valid and matching");
         if (args.Used is not { } used)
             return;
 
-        _log.GetSawmill("xat-item-interact").Info("item valid");
         if (TerminatingOrDeleted(used))
             return;
 
-        _log.GetSawmill("xat-item-interact").Info("item still exists");
         if (!_whitelist.IsWhitelistPass(node.Comp1.Whitelist, used))
             return;
-        _log.GetSawmill("xat-item-interact").Info("item matches whitelist");
 
         ModifyStack(node.Comp1, used);
         Trigger(artifact, node);
@@ -83,11 +79,11 @@ public sealed partial class XATItemInteractSystem : BaseXATSystem<XATItemInterac
 
     private bool CanModifyStack(XATItemInteractComponent xatComponent, EntityUid item)
     {
-        if (xatComponent.ReduceStackBy <= 0 || !CanModifyStack(xatComponent, item))
+        if (xatComponent.ReduceStackBy <= 0)
             return true;
 
         if (!TryComp<StackComponent>(item, out var stack))
-            return false;
+            return true;
 
         return stack.Unlimited || stack.Count >= xatComponent.ReduceStackBy;
     }
@@ -96,9 +92,16 @@ public sealed partial class XATItemInteractSystem : BaseXATSystem<XATItemInterac
     {
         if (xatComponent.ReduceStackBy <= 0) return;
 
-        if (!TryComp<StackComponent>(item, out var stack) || stack.Unlimited) return;
+        if (!TryComp<StackComponent>(item, out var stack))
+        {
+            if (_net.IsServer)
+                QueueDel(item);
+            return;
+        }
 
-        if (!CanModifyStack(xatComponent, item)) return;
+        if (stack.Unlimited) return;
+
+        if (stack.Count < xatComponent.ReduceStackBy) return;
 
         _stack.TryUse((item, stack), xatComponent.ReduceStackBy);
     }

@@ -261,7 +261,6 @@
       speedModifier: 2 # Very powerful to balance out the desire to sell or scrap for points
       useSound: /Audio/Items/crowbar.ogg
 
-
 - type: entity
   id: XenoArtifactToolScrewdriver
   parent: BaseOneTimeXenoArtifactEffect
@@ -305,6 +304,7 @@
       useSound: /Audio/Items/ratchet.ogg
 
 - type: entity
+<<<<<<< HEAD
   id: XenoArtifactToolJaws
   parent: BaseOneTimeXenoArtifactEffect
   description: Obtains ability to cut and pry
@@ -384,6 +384,9 @@
       path: /Audio/Weapons/bladeslice.ogg
 
 - type: entity
+=======
+  id: XenoArtifactOmnitool
+>>>>>>> origin/staging-stable
   parent: BaseOneTimeXenoArtifactEffect
   id: XenoArtifactOmnitool
   description: Obtains ability of omnitool
@@ -429,92 +432,6 @@
       - behavior: [ Pulsing ]
         changeSound:
           path: /Audio/Items/change_drill.ogg
-
-# _Persistence14 content
-# Forced-emote effects: on activation, every living mob within `radius` (line of sight ignored) that
-# can perform the emote is made to repeat it for `duration` seconds. The repeat cadence/probability
-# come from the referenced AutoEmote prototype (see _Persistence14/Voice/auto_emotes.yml).
-# To add another, pair a new autoEmote prototype with a copy of one of these (new id + autoEmote).
-- type: entity
-  id: XenoArtifactEffectLaughingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable laughter in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedLaugh
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectSighingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable sighing in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedSigh
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectSneezingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable sneezing in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedSneeze
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectCoughingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable coughing in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedCough
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectWhistlingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable whistling in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedWhistle
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectCryingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable crying in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedCry
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectYawningFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable yawning in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedYawn
-    radius: 5
-    duration: 10
-
-- type: entity
-  id: XenoArtifactEffectScreamingFit
-  parent: BaseXenoArtifactEffect
-  description: Induces uncontrollable screaming in nearby minds
-  components:
-  - type: XAEForcedEmote
-    autoEmote: XenoArchForcedScream
-    radius: 5
-    duration: 10
-# end _Persistence14 content
 
 - type: entity
   parent: BaseXenoArtifactEffect
@@ -787,6 +704,7 @@
         maxIntensity: 6.0
 
 - type: entity
+<<<<<<< HEAD
   id: XenoArtifactChargeBatteryLow
   parent: BaseXenoArtifactEffect
   description: Partially charges nearby batteries
@@ -798,6 +716,9 @@
     - charge-artifact-popup
 
 - type: entity
+=======
+  id: XenoArtifactChargeBattery
+>>>>>>> origin/staging-stable
   parent: BaseXenoArtifactEffect
   id: XenoArtifactChargeBattery
   description: Charges up batteries
@@ -857,6 +778,7 @@
       movementVisibilityRate: 0.10
 
 - type: entity
+<<<<<<< HEAD
   id: XenoArtifactRawMaterialSpawn
   abstract: true
   parent: BaseXenoArtifactEffect
@@ -1138,6 +1060,9 @@
             range: 13, 25
 
 - type: entity
+=======
+  id: XenoArtifactAngryCarpSpawn
+>>>>>>> origin/staging-stable
   parent: BaseXenoArtifactEffect
   id: XenoArtifactAngryCarpSpawn
   description: Create hostile fish
@@ -1238,6 +1163,7 @@
         - id: MobKangarooSpace
 
 - type: entity
+<<<<<<< HEAD
   id: XenoArtifactOldCashSpawn
   parent: BaseXenoArtifactEffect
   description: Create money
@@ -1268,6 +1194,9 @@
           weight: 0.1
 
 - type: entity
+=======
+  id: XenoArtifactCashSpawn
+>>>>>>> origin/staging-stable
   parent: BaseXenoArtifactEffect
   id: XenoArtifactCashSpawn
   description: Create money
@@ -1470,6 +1399,7 @@
         intensity: 4
         halfLife: 5h
         maxIntensity: 12
+<<<<<<< HEAD
         
 
 - type: entity
@@ -1639,6 +1569,8 @@
       table: !type:GroupSelector
         children:
         - id: SheetPlastic
+=======
+>>>>>>> origin/staging-stable
 
 - type: entity
   parent: BaseXenoArtifactEffect
@@ -1680,6 +1612,7 @@
     - shuffle-artifact-popup
 
 - type: entity
+<<<<<<< HEAD
   id: XenoArtifactHealBrute
   parent: BaseXenoArtifactEffect
   description: Mends brute injuries
@@ -1732,6 +1665,9 @@
         Cellular: -50
 
 - type: entity
+=======
+  id: XenoArtifactHealAll
+>>>>>>> origin/staging-stable
   parent: BaseXenoArtifactEffect
   id: XenoArtifactHealAll
   description: Miraculous healing

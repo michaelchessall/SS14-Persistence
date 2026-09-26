@@ -291,5 +291,5 @@
   tier: 3
   cost: 100000
   recipeUnlocks:
-  - TelecomServer1kCircuitboard
+  - TelecomServerAdvancedCircuitboard
   - HolopadLongRangeMachineCircuitboard

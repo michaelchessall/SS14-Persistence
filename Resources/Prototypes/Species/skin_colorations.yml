@@ -45,6 +45,7 @@
 
 - type: skinColoration
   id: VulpkaninColors
+<<<<<<< HEAD
   strategy: !type:HueNodeClampedHsvColoration
     nodes:
     - hue: 0 # From red to orange slowly increase saturation. (0.75 -> 0.9)
@@ -66,3 +67,14 @@
       saturation: [ 0, 0.75 ]
       value: [ 0.2, 0.9 ]
   squashEyeHairColors: true
+=======
+  strategy: !type:ClampedHslColoration
+    saturation: [0.0, 0.60]
+    lightness: [0.2, 0.9]
+
+# Persistance14 Edit
+- type: skinColoration
+  id: AvaliColors
+  strategy: !type:ClampedHslColoration
+     saturation: [0, 0.60]
+>>>>>>> origin/staging-stable

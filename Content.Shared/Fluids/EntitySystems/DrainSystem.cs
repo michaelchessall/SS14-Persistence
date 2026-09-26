@@ -1,4 +1,11 @@
+using Content.Shared._Funkystation.Stains.Components;
+using Content.Shared._Funkystation.Stains.Systems;
 using Content.Shared.Audio;
+<<<<<<< HEAD
+=======
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+>>>>>>> origin/staging-stable
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -26,6 +33,7 @@ namespace Content.Shared.Fluids.EntitySystems;
 /// </summary>
 public sealed partial class DrainSystem : EntitySystem
 {
+<<<<<<< HEAD
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
@@ -36,6 +44,20 @@ public sealed partial class DrainSystem : EntitySystem
     [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
     [Dependency] private TagSystem _tag = default!;
     [Dependency] private IGameTiming _timing = default!;
+=======
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedStainSystem _stain = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+>>>>>>> origin/staging-stable
 
     private readonly HashSet<Entity<PuddleComponent>> _puddles = [];
 
@@ -45,7 +67,7 @@ public sealed partial class DrainSystem : EntitySystem
         base.Initialize();
 
         SubscribeLocalEvent<DrainComponent, MapInitEvent>(OnDrainMapInit);
-        SubscribeLocalEvent<DrainComponent, GetVerbsEvent<Verb>>(AddEmptyVerb);
+        SubscribeLocalEvent<DrainComponent, GetVerbsEvent<Verb>>(AddVerbs);
         SubscribeLocalEvent<DrainComponent, ExaminedEvent>(OnExamined);
         SubscribeLocalEvent<DrainComponent, AfterInteractUsingEvent>(OnInteract);
         SubscribeLocalEvent<DrainComponent, DrainDoAfterEvent>(OnDoAfter);
@@ -57,6 +79,26 @@ public sealed partial class DrainSystem : EntitySystem
         // Randomise puddle drains so roundstart ones don't all dump at the same time.
         ent.Comp.NextUpdate = _timing.CurTime + _random.Next(ent.Comp.DrainInterval);
         Dirty(ent);
+    }
+
+    private void AddVerbs(Entity<DrainComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        AddEmptyVerb(ent, ref args);
+        AddWringVerb(ent, ref args);
+    }
+
+    private void AddWringVerb(Entity<DrainComponent> ent, ref GetVerbsEvent<Verb> args)
+    {
+        if (!args.CanInteract || !args.CanAccess || args.Using == null || !TryComp<StainableComponent>(args.Using, out var held))
+            return;
+
+        if (ent.Comp.Solution is null)
+            return;
+
+        if (!_solutionContainerSystem.TryGetSolution(held.Owner, held.SolutionName, out _, out var heldSol) || heldSol.Volume <= 0)
+            return;
+
+        _stain.MakeWringVerb(held.Owner, held.WringDoAfterDuration * 0.4f, ref args, "stain-verb-wring-drain", ent);
     }
 
     private void AddEmptyVerb(Entity<DrainComponent> ent, ref GetVerbsEvent<Verb> args)

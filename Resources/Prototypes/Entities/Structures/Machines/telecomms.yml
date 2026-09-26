@@ -179,6 +179,7 @@
     keysExtractionMethod: Prying
     keySlots: 10
   - type: TelecomServer
+    maxRange: 1024 # Increased from 512 for Persistence14
   - type: ContainerContainer
     containers:
       key_slots: !type:Container
@@ -188,6 +189,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilled
+  categories: [ HideSpawnMenu ]
   suffix: Filled All
   components:
   - type: ContainerFill
@@ -205,6 +207,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCommon
+  categories: [ HideSpawnMenu ]
   suffix: Common
   components:
   - type: ContainerFill
@@ -215,6 +218,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCargo
+  categories: [ HideSpawnMenu ]
   suffix: Cargo
   components:
   - type: ContainerFill
@@ -225,6 +229,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledEngineering
+  categories: [ HideSpawnMenu ]
   suffix: Engineering
   components:
   - type: ContainerFill
@@ -235,6 +240,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledMedical
+  categories: [ HideSpawnMenu ]
   suffix: Medical
   components:
   - type: ContainerFill
@@ -245,6 +251,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledScience
+  categories: [ HideSpawnMenu ]
   suffix: Science
   components:
   - type: ContainerFill
@@ -255,6 +262,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledSecurity
+  categories: [ HideSpawnMenu ]
   suffix: Security
   components:
   - type: ContainerFill
@@ -265,6 +273,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledService
+  categories: [ HideSpawnMenu ]
   suffix: Service
   components:
   - type: ContainerFill
@@ -275,6 +284,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCommand
+  categories: [ HideSpawnMenu ]
   suffix: Command
   components:
   - type: ContainerFill
@@ -285,12 +295,12 @@
 
 - type: entity
   parent: TelecomServer
-  id: TelecomServer1k
+  id: AdvancedTelecomServer
   name: high tech telecommunication server
   components:
   - type: TelecomServer
-    maxRange: 1024
+    maxRange: 2048 # Increased from 1024
   - type: ApcPowerReceiver
-    powerLoad: 10000 
+    powerLoad: 15000 
   - type: Machine
-    board: TelecomServer1kCircuitboard
+    board: TelecomServerAdvancedCircuitboard

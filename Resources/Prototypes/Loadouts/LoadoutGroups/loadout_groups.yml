@@ -1,3 +1,4 @@
+
 # Miscellaneous
 - type: loadoutGroup
   id: Glasses
@@ -71,6 +72,13 @@
   loadouts:
   - LoadoutTankHarness
 
+- type: loadoutGroup # Persistance14
+  id: GroupAvaliHeatProtection
+  name: loadout-group-firesuit-avali
+  hidden: true
+  loadouts:
+  - LoadoutAvaliHeatProtection
+
 - type: loadoutGroup
   id: Survival
   name: loadout-group-survival-basic
@@ -80,6 +88,7 @@
   - EmergencyNitrogen
   - EmergencyOxygen
   - LoadoutSpeciesVoxNitrogen
+  - EmergencyOxygenCooler # Persistance14 Edit
 
 # nitrogen or oxygen tank, depending on what your species needs
 - type: loadoutGroup
