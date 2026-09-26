@@ -122,6 +122,20 @@
 
 - type: latheRecipe
   parent: BaseHardsuitRecipe
+  id: DonkMicrowaveSuit
+  result: ClothingOuterHardsuitDonkMicrowave
+  materials:
+    Plasteel: 2000
+    Durathread: 1500
+    Glass: 500
+    Silver: 500
+    Gold: 600
+    Uranium: 500
+  completetime: 20
+
+#Persistence 14
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
   id: Miningsuit
   result: ClothingOuterHardsuitSalvage
   materials:

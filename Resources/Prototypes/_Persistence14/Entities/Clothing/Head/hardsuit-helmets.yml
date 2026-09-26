@@ -169,3 +169,28 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+
+#Donk Microwave suit
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitDonkMicrowave
+  name: Donk co mining hardsuit helmet
+  description: Lightweight hardsuit helmet that doesn't restrict your head movements. you hear a faint humming when its turned on.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/donkmicrowave.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/donkmicrowave.rsi
+    unequipSound: /Audio/Machines/microwave_done_beep.ogg
+  - type: PointLight
+    radius: 7
+    energy: 3
+    color: "#07e807"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - WhitelistChameleon
