@@ -286,9 +286,9 @@
     allowedEmotes: ['Weh', 'Squeak']
   - type: Vocal
     sounds:
-      Male: UnisexYinglet
-      Female: UnisexYinglet
-      Unsexed: UnisexYinglet
+      Male: MaleHuman # TODO: Add UnisexYinglet
+      Female: FemaleHuman # TODO: Add UnisexYinglet
+      Unsexed: MaleHuman # TODO: Add UnisexYinglet
   - type: TypingIndicator
     proto: default
   - type: Butcherable
@@ -312,7 +312,8 @@
   - type: MobThresholds #Yinglets have a little over half the normal hp (originally was exactly half, but this was too severe in testing)
     thresholds:
       0: Alive
-      75: Critical
+      75: SoftCritical
+      100: HardCritical
       125: Dead
   - type: Destructible #they also gib faster
     thresholds:
