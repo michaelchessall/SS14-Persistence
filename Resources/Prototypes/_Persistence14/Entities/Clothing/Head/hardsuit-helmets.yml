@@ -52,7 +52,7 @@
       head-reptilian:
       - state: equipped-head-light-reptilian
         shader: unshaded
-      head-yinglet:
+      head-yinglet: # Scav
       - state: equipped-head-light-yinglet
         shader: unshaded
   - type: Clothing
@@ -73,7 +73,7 @@
       - state: equipped-head-reptilian
       - state: equipped-head-unshaded-reptilian
         shader: unshaded
-      head-yinglet:
+      head-yinglet: # Scav
       - state: equipped-head-yinglet
       - state: equipped-head-unshaded-yinglet
         shader: unshaded

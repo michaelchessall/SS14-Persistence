@@ -4,7 +4,7 @@ using Robust.Shared.Prototypes;
 using System.Collections.Frozen;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Runtime.InteropServices;
+using System.Runtime.InteropServices; // Scav
 
 namespace Content.Shared.Humanoid.Markings;
 
@@ -192,7 +192,7 @@ public sealed class MarkingManager
     /// <summary>
     /// Ensures the list of <see cref="markingSets"/> is valid per the limits of the <see cref="group"/>
     /// </summary>
-    public void EnsureValidLimits(Dictionary<HumanoidVisualLayers, List<Marking>> markingSets, ProtoId<MarkingsGroupPrototype> group, HashSet<HumanoidVisualLayers> layers, Color? skinColor, Color? eyeColor, Sex? sex, bool useOptionalDefaults = false)
+    public void EnsureValidLimits(Dictionary<HumanoidVisualLayers, List<Marking>> markingSets, ProtoId<MarkingsGroupPrototype> group, HashSet<HumanoidVisualLayers> layers, Color? skinColor, Color? eyeColor, Sex? sex, bool useOptionalDefaults = false) // Scav: Add Sex? sex, bool useOptionalDefaults = false
     {
         var groupProto = _prototype.Index(group);
         var counts = new Dictionary<HumanoidVisualLayers, int>();
@@ -228,6 +228,7 @@ public sealed class MarkingManager
 
             var layerCounts = counts.GetValueOrDefault(layer);
 
+            // Start Scav
             if (layerLimit.Required)
             {
                 if (layerCounts > 0)
@@ -258,7 +259,7 @@ public sealed class MarkingManager
                     markingSets[layer].Add(new(marking, colors));
                 }
             }
-
+            // End Scav
 
         }
     }

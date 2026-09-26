@@ -89,7 +89,7 @@
       - state: equipped-head-light
       head-vox:
       - state: equipped-head-light-vox
-      head-yinglet:
+      head-yinglet: # Scav
       - state: equipped-head-light-yinglet
   - type: Clothing
     clothingVisuals:
@@ -97,7 +97,7 @@
       - state: equipped-head
       head-vox:
       - state: equipped-head-vox
-      head-yinglet:
+      head-yinglet: # Scav
       - state: equipped-head-yinglet
   - type: TemperatureProtection
     heatingCoefficient: 0.1

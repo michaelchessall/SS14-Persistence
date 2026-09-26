@@ -28,7 +28,7 @@ public sealed partial class ProfilePreviewSpriteView
             return;
 
         EntMan.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, humanoid);
-        EntMan.System<HumanoidProfileSystem>().ApplyProfileTo(PreviewDummy, humanoid);
+        EntMan.System<HumanoidProfileSystem>().ApplyProfileTo(PreviewDummy, humanoid); // Scav
     }
 
     /// <summary>
@@ -54,7 +54,7 @@ public sealed partial class ProfilePreviewSpriteView
             var dummy = _prototypeManager.Index(humanoid.Species).DollPrototype;
             PreviewDummy = EntMan.SpawnEntity(dummy, MapCoordinates.Nullspace);
             EntMan.System<SharedVisualBodySystem>().ApplyProfileTo(PreviewDummy, humanoid);
-            EntMan.System<HumanoidProfileSystem>().ApplyProfileTo(PreviewDummy, humanoid);
+            EntMan.System<HumanoidProfileSystem>().ApplyProfileTo(PreviewDummy, humanoid); // Scav
         }
         else
         {

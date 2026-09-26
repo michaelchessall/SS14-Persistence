@@ -85,7 +85,7 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Slime]
-      - !type:EvenHealthChange # Same benefits as Vitamin, specifically for yinglets for yinglets. In Digestion instead of Metabolites since slime is accessible in much greater quantities
+      - !type:EvenHealthChange # Scav: Same benefits as Vitamin, specifically for yinglets for yinglets. In Digestion instead of Metabolites since slime is accessible in much greater quantities
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
@@ -93,12 +93,12 @@
         damage:
           Brute: -0.5
           Burn: -0.5
-      - !type:ModifyBleed
+      - !type:ModifyBleed # Scav
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
         amount: -0.25
-      - !type:ModifyStatusEffect # Yinglets also get high from it
+      - !type:ModifyStatusEffect # Scav: Yinglets also get high from it
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]

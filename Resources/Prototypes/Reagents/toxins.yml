@@ -78,7 +78,7 @@
     Bloodstream:
       effects:
       - !type:HealthChange
-        conditions:
+        conditions: # Scav
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
           inverted: true
@@ -86,7 +86,7 @@
           types:
             Poison: 4
       - !type:PopupMessage
-        conditions:
+        conditions: # Scav
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
           inverted: true
@@ -94,7 +94,7 @@
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
-      - !type:Drunk
+      - !type:Drunk # Scav
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
@@ -145,7 +145,7 @@
     Bloodstream:
       effects:
         - !type:HealthChange
-          conditions:
+          conditions: # Scav
           - !type:MetabolizerTypeCondition
             type: [ Yinglet ]
             inverted: true
@@ -154,7 +154,7 @@
               Poison: 2
         - !type:Vomit
           conditions:
-          - !type:MetabolizerTypeCondition
+          - !type:MetabolizerTypeCondition # Scav
             type: [ Yinglet ]
             inverted: true
           - !type:ReagentCondition
@@ -520,14 +520,14 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
-        conditions:
+        conditions: # Scav
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
           inverted: true
         damage:
           types:
             Poison: 3
-      - !type:Drunk
+      - !type:Drunk # Scav
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
@@ -582,7 +582,7 @@
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Goblin, Yinglet ]
+          type: [ Animal, Vox, Goblin, Yinglet ] # Scav: Add Yinglet
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -592,12 +592,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Goblin, Yinglet ]
+          type: [ Animal, Vox, Plant, Goblin, Yinglet ] # Scav: Add Yinglet
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Goblin, Yinglet ]
+          type: [ Animal, Vox, Plant, Goblin, Yinglet ] # Scav: Add Yinglet
           inverted: true
         damage:
           types:
@@ -621,7 +621,7 @@
           type: [ Goblin ]
         reagent: Protein
         amount: 0.5
-      - !type:AdjustReagent
+      - !type:AdjustReagent # Scav
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
@@ -735,7 +735,7 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
-        conditions:
+        conditions: # Scav
         - !type:MetabolizerTypeCondition
           type: [ Yinglet ]
           inverted: true
