@@ -16,7 +16,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Grain
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 3
   - type: Item
     sprite: Objects/Consumable/Food/Baked/donut.rsi
