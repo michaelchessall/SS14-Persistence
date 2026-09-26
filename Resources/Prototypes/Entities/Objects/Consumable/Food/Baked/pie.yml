@@ -571,5 +571,5 @@
         - ReagentId: Theobromine
           Quantity: 2
         - ReagentId: Grain # Scav
-          Quantity: 2
+          Quantity: 15
 # Tastes like tart, dark chocolate.

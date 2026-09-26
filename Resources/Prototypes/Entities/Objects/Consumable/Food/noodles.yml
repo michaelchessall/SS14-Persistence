@@ -93,6 +93,8 @@
         reagents:
         - ReagentId: Nutriment
           Quantity: 55 # Scav: 70 < 55
+        - ReagentId: Grain # Scav
+          Quantity: 15
 # Tastes like pasta, bad humor.
 
 - type: entity
