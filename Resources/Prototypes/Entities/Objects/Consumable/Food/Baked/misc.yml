@@ -13,10 +13,8 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3 # Scav: 5 < 3
-        - ReagentId: Grain # Scav
-          Quantity: 2
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 5
   - type: Item
     size: Tiny
 
@@ -485,12 +483,10 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3 # Scav: 5 < 3
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 1
-        - ReagentId: Grain # Scav
-          Quantity: 2
 
 - type: entity
   name: waffles
@@ -550,11 +546,9 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 8 # Scav: 10 < 8
+          Quantity: 10
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Grain # Scav
-          Quantity: 2
 
 - type: entity
   name: roffle waffles
@@ -600,12 +594,10 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3 # Scav: 5 < 3
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
-        - ReagentId: Grain # Scav
-          Quantity: 2
 
 - type: entity
   name: dumplings
@@ -620,11 +612,9 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 6 # Scav: 8 < 6
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 8
         - ReagentId: Protein
-          Quantity: 2
-        - ReagentId: Grain # Scav
           Quantity: 2
   - type: FlavorProfile
     flavors:
@@ -711,12 +701,10 @@
       food:
         maxVol: 78
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 18 # Scav: 30 < 18
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 30
         - ReagentId: Theobromine
           Quantity: 18
-        - ReagentId: Grain # Scav
-          Quantity: 12
   - type: SliceableFood
     count: 6
     slice: FoodBakedBrownie
@@ -740,12 +728,10 @@
       food:
         maxVol: 13
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3 # Scav: 5 < 3
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 3
-        - ReagentId: Grain # Scav
-          Quantity: 2
   - type: Tag
     tags:
     - Slice
@@ -772,14 +758,12 @@
       food:
         maxVol: 228
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 18 # Scav 30 < 18
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 30
         - ReagentId: Theobromine
           Quantity: 18
         - ReagentId: THC
           Quantity: 150
-        - ReagentId: Grain # Scav
-          Quantity: 12
   - type: SliceableFood
     count: 6
     slice: FoodBakedCannabisBrownie
@@ -803,14 +787,12 @@
       food:
         maxVol: 38
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 3 # Scav: 5 < 3
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 5
         - ReagentId: Theobromine
           Quantity: 3
         - ReagentId: THC
           Quantity: 25
-        - ReagentId: Grain # Scav
-          Quantity: 2
   - type: Tag
     tags:
     - Slice
@@ -928,14 +910,12 @@
       food:
         maxVol: 21
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 6 # Scav: 11 < 6
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 11
         - ReagentId: Butter
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 3
-        - ReagentId: Grain # Scav
-          Quantity: 5
 
 - type: entity
   parent: FoodBakedGrilledCheeseSandwich
@@ -961,16 +941,14 @@
       food:
         maxVol: 21
         reagents:
-        - ReagentId: Nutriment
-          Quantity: 4 # Scav: 6 < 2
+        - ReagentId: Grain # Scav Nutriment < Grain
+          Quantity: 6
         - ReagentId: Fiber
           Quantity: 5
         - ReagentId: Butter
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 3
-        - ReagentId: Grain # Scav
-          Quantity: 2
 
 # Entity Tables
 
