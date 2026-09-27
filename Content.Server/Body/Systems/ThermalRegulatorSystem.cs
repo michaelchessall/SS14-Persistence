@@ -1,7 +1,9 @@
 using Content.Server.Body.Components;
 using Content.Server.Temperature.Systems;
+using Content.Server.Temperature.Components;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Temperature.Components;
+using Content.Shared.Inventory;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Body.Systems;
@@ -11,6 +13,7 @@ public sealed class ThermalRegulatorSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly TemperatureSystem _tempSys = default!;
     [Dependency] private readonly ActionBlockerSystem _actionBlockerSys = default!;
+    [Dependency] private readonly InventorySystem _inventorySystem = default!; // Persistance14
 
     public override void Initialize()
     {
@@ -58,6 +61,16 @@ public sealed class ThermalRegulatorSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp2, logMissing: false))
             return;
 
+        // Persi14
+
+        var inTemperatureProtection = false;
+        if (EntityManager.TryGetComponent<InventoryComponent>(ent, out var inventory) &&
+           _inventorySystem.TryGetSlotContainer(ent, "outerClothing", out var outerClothingContainer, out var _)) {
+            inTemperatureProtection = EntityManager.TryGetComponent<TemperatureProtectionComponent>(outerClothingContainer.ContainedEntity, out var tempProtectionComp);
+        }
+
+        // Persi14 end
+
         // TODO: Why do we have two datafields for this if they are only ever used once here?
         var totalMetabolismTempChange = ent.Comp1.MetabolismHeat - ent.Comp1.RadiatedHeat;
 
@@ -82,9 +95,10 @@ public sealed class ThermalRegulatorSystem : EntitySystem
 
         // if body temperature is not within comfortable, thermal regulation
         // processes starts
-        if (tempDiff < ent.Comp1.ThermalRegulationTemperatureThreshold)
+        if (tempDiff < ent.Comp1.ThermalRegulationTemperatureThreshold || inTemperatureProtection)
             return;
 
+        // persistance14 - this felt bad with sweating.
         if (ent.Comp2.CurrentTemperature > ent.Comp1.NormalBodyTemperature)
         {
             if (!_actionBlockerSys.CanSweat(ent))
