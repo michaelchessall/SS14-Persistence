@@ -35,8 +35,12 @@ namespace Content.Shared.Preferences
     public sealed partial class HumanoidCharacterProfile
     {
         public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
+<<<<<<< HEAD
         public static readonly ProtoId<EmoteSoundsPrototype> DefaultVoice = "MaleHuman";
         private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9 '\-]");
+=======
+        private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9, '\-]");
+>>>>>>> origin/staging-stable
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
         /// <summary>
@@ -704,9 +708,7 @@ namespace Content.Shared.Preferences
             name = name.Trim();
 
             if (configManager.GetCVar(CCVars.RestrictedNames))
-            {
-                name = RestrictedNameRegex.Replace(name, string.Empty);
-            }
+                ApplyRestrictedNameRegex(ref name); // Persistence: Move logic to separate function
 
             if (configManager.GetCVar(CCVars.ICNameCase))
             {
@@ -821,6 +823,17 @@ namespace Content.Shared.Preferences
             {
                 _loadouts.Remove(value);
             }
+        }
+
+        /// <summary>
+        /// Persistence
+        /// Apply <see cref="RestrictedNameRegex "/> to a reference string.
+        /// This function does not check <see cref="CCVars.RestrictedNames"/>, callers should perform the check instead.
+        /// </summary>
+        /// <param name="name">A reference to the string to apply the regex to</param>
+        public void ApplyRestrictedNameRegex(ref string name)
+        {
+            name = RestrictedNameRegex.Replace(name, string.Empty);
         }
 
         /// <summary>

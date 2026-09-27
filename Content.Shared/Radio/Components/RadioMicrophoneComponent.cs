@@ -46,5 +46,12 @@ public sealed partial class RadioMicrophoneComponent : Component
     /// Whether the speaker must have an unobstructed path to the radio to speak, or now.
     /// </summary>
     [DataField]
+<<<<<<< HEAD
     public bool UnobstructedRequired;
+=======
+    public bool UnobstructedRequired = false;
+
+    [DataField]
+    public float MaxBroadcastRange = float.PositiveInfinity;
+>>>>>>> origin/staging-stable
 }

@@ -35,6 +35,7 @@
   name: ice bucket
   description: A special bucket of refreshy ice. Prohibited use for challenge with the same name!
   components:
+<<<<<<< HEAD
   - type: Item
     size: Large
   - type: Solution
@@ -42,6 +43,15 @@
       reagents:
       - ReagentId: Ice
         Quantity: 240
+=======
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        temperature: 268 # Persistence: Ice is cold
+        reagents:
+        - ReagentId: Ice
+          Quantity: 200
+>>>>>>> origin/staging-stable
   - type: Sprite
     sprite: Objects/Consumable/Drinks/icebucket.rsi
     state: icon

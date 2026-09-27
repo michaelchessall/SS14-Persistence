@@ -643,6 +643,7 @@
     maxFillLevels: 1
     changeColor: false
     emptySpriteName: morphen_empty
+<<<<<<< HEAD
   - type: Solution
     solution:
       reagents:
@@ -650,6 +651,17 @@
         Quantity: 25
       - ReagentId: TranexamicAcid
         Quantity: 5
+=======
+  - type: SolutionContainerManager
+    solutions:
+      pen:
+        maxVol: 30
+        reagents:
+        - ReagentId: Ichor #new to persitence 14
+          Quantity: 25
+        - ReagentId: TranexamicAcid
+          Quantity: 5
+>>>>>>> origin/staging-stable
   - type: StaticPrice
     price: 50
 

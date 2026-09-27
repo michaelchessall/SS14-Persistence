@@ -50,5 +50,10 @@
   name: metabolizer-type-goblin
 
 - type: metabolizerType
+<<<<<<< HEAD
   id: Changeling
   name: metabolizer-type-changeling
+=======
+  id: Avali
+  name: metabolizer-type-avali
+>>>>>>> origin/staging-stable
