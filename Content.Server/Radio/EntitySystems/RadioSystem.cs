@@ -96,7 +96,7 @@ public sealed partial class RadioSystem : SharedRadioSystem
     }
 
     /// <inheritdoc/>
-    public override void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true)
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true, bool useNetworkOverride = true, float transmitterRange = float.PositiveInfinity)
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -172,12 +172,12 @@ public sealed partial class RadioSystem : SharedRadioSystem
             transmitterNode = new NetworkNode()
             {
                 IsPowered = true,
-                Range = float.PositiveInfinity,
+                Range = transmitterRange,
                 MapCoordinates = _xform.GetMapCoordinates(sourceTransform)
             };
         }
         else
-            hasActiveServer = true;// HasActiveServer(sourceMapId, channel.ID);
+            hasActiveServer = true; // Changed from HasActiveServer(mapId, channelId)
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
         var encryptionID = 0;

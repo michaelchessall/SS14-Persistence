@@ -1070,3 +1070,7 @@ MeteorRockUranium: AsteroidRockUranium
 
 #2026-08-18
 DrinkNeurotoxinGlass: null
+
+# Persistence 14 - 9/14/2026
+TelecomServer1k: AdvancedTelecomServer
+TelecomServer1kCircuitboard: TelecomServerAdvancedCircuitboard

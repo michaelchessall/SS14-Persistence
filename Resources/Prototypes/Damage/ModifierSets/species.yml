@@ -42,6 +42,13 @@
     Heat: 1.15
     Cold: 0.85
 
+# Persistance14 Port From Starlight
+- type: damageModifierSet
+  id: Avali
+  coefficients:
+    Cold: 0.6
+    Heat: 1.4
+
 #endregion
 #region Special
 

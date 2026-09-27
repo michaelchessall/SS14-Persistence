@@ -19,7 +19,7 @@
   parent: CrateGenericSteel
   id: CrateEmergencyFire
   name: firefighting crate
-  description: Only you can prevent station fires. Partner up with two firefighter suits, gas masks, flashlights, large oxygen tanks, extinguishers, and hardhats!
+  description: Only you can prevent station fires. Partner up with two firefighter suits, gas masks, flashlights, large oxygen tanks, extinguishers, Cooling Units, and hardhats!
   components:
   - type: EntityTableContainerFill
     containers:
@@ -34,6 +34,8 @@
         - id: ClothingMaskGas
           amount: 2
         - id: ClothingOuterSuitFire
+          amount: 2
+        - id: CoolingUnit # Persistence
           amount: 2
         - id: OxygenTankFilled
           amount: 2

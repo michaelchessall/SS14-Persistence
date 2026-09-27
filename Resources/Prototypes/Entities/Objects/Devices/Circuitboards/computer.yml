@@ -581,6 +581,20 @@
     - type: ComputerBoard
       prototype: ComputerMassMedia
 
+#Persistence14 BookPublisher
+- type: entity
+  parent: BaseComputerCircuitboard
+  id: ComputerBookPublisherCircuitboard
+  name: book publisher console board
+  description: Show your book to the world!
+  components:
+    - type: Sprite
+      state: cpu_service
+    - type: StaticPrice
+      price: 90
+    - type: ComputerBoard
+      prototype: ComputerBookPublisher
+
 - type: entity
   parent: BaseComputerCircuitboard
   id: SensorConsoleCircuitboard

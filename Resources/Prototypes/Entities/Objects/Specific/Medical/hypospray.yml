@@ -646,7 +646,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Ichor
+      - ReagentId: Ichor # Persistence: Switch to Ichor
         Quantity: 25
       - ReagentId: TranexamicAcid
         Quantity: 5

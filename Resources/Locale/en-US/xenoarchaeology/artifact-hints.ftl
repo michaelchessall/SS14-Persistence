@@ -69,28 +69,7 @@ xenoarch-trigger-tip-blood = Blood
 xenoarch-trigger-tip-throw = Being thrown
 xenoarch-trigger-tip-death = Death
 xenoarch-trigger-tip-magnet = Magnetic waves
-xenoarch-trigger-tip-money = Bribery
-xenoarch-trigger-tip-knowledge = Knowledge Intake
-xenoarch-trigger-tip-carbs = Carbohydrate Intake
-xenoarch-trigger-tip-meat = Protein Intake
-xenoarch-trigger-tip-produce = Healthy Produce Intake
-xenoarch-trigger-tip-stamp = Bureaucratic Approval
-xenoarch-trigger-tip-shock = Electrical Shock
-xenoarch-trigger-tip-particle = Singularity-Effecting Particles
-xenoarch-trigger-tip-anomparticle = Anomaly-Effecting Particles
-xenoarch-trigger-tip-stamina-damage = Organic Exhaustion
-xenoarch-trigger-tip-laser = High-Intensity photon impacts
-# _Persistence14 content: emote trigger tips
-xenoarch-trigger-tip-laugh = Laughter
-xenoarch-trigger-tip-sigh = A weary sigh
-xenoarch-trigger-tip-sneeze = A sneeze
-xenoarch-trigger-tip-cough = A cough
-xenoarch-trigger-tip-whistle = Whistling
-xenoarch-trigger-tip-cry = Tears
-xenoarch-trigger-tip-clap = Applause
-xenoarch-trigger-tip-yawn = A yawn
-xenoarch-trigger-tip-scream = A scream
-# end _Persistence14 content
+
 
 ### Description hints
 xenoarch-trigger-examine-wrenching = There's a loose bit spinning around.

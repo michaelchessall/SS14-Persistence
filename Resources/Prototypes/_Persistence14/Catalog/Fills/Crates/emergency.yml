@@ -34,11 +34,13 @@
         - id: ClothingMaskBreath
           amount: 6
         - id: OxygenTankFilled
-          amount: 6
+          amount: 5
         - id: NitrogenTankFilled
           amount: 6
         - id: ClothingOuterSuitEmergency
           amount: 6
+        - id: CoolingUnit
+          amount: 1
 
 - type: entity
   parent: CrateInternals
@@ -56,3 +58,5 @@
           amount: 2
         - id: NitrogenTankFilled
           amount: 4
+        - id: CoolingUnit
+          amount: 3

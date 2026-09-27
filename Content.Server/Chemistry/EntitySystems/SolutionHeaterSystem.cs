@@ -85,7 +85,8 @@ public sealed partial class SolutionHeaterSystem : EntitySystem
             {
                 foreach (var (_, soln) in _solutionContainer.EnumerateSolutions(heatingEntity))
                 {
-                    _solutionContainer.AddThermalEnergy(soln, energy);
+                    // Persistence: Use AddThermalEnergyClamped to prevent coldplate from cooling reagents below absolute zero
+                    _solutionContainer.AddThermalEnergyClamped(soln, energy, 173.15f, float.MaxValue); // minimum -100c, leaves maximum unchanged
                 }
             }
         }

@@ -47,4 +47,7 @@ public sealed partial class RadioMicrophoneComponent : Component
     /// </summary>
     [DataField]
     public bool UnobstructedRequired;
+
+    [DataField]
+    public float MaxBroadcastRange = float.PositiveInfinity;
 }
