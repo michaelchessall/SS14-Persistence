@@ -1,0 +1,7 @@
+- type: metaFaction
+  id: Precursor
+  name: Syndicate
+  description: "The Syndicate controls the Precursor Universe."
+  rumors:
+    - BasicRumor
+  color: Purple

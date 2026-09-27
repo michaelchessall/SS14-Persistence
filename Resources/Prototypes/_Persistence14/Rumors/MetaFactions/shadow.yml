@@ -1,0 +1,7 @@
+- type: metaFaction
+  id: Shadow
+  name: Strange Signal
+  description: "Unknown Entities control the Shadow Universe."
+  rumors:
+    - BasicRumor
+  color: DarkGray

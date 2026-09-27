@@ -31,6 +31,12 @@
     <AdditionalFiles Update="CrewAssignments\UI\PrecursorObjective.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
+    <AdditionalFiles Update="CrewAssignments\UI\ReputationBoxFragment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="CrewAssignments\UI\RumorBoxFragment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
     <AdditionalFiles Update="GridControl\UI\StationTaggerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>

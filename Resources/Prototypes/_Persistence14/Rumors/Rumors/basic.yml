@@ -1,7 +1,21 @@
 - type: rumor
   id: BasicRumor
-  name: Testing Rumor
-  description: "Test."
+  name: Salvage Tip
+  description: "We've lost track of a small bit of salvage.\nFind it and its yours!"
   eventGrids:
+    - /Maps/Salvage/small-1.yml
+    - /Maps/Salvage/small-2.yml
+    - /Maps/Salvage/small-ship-1.yml
+    - /Maps/Salvage/small-3.yml
+    - /Maps/Salvage/small-ai-survey-drone.yml
+    - /Maps/Salvage/small-4.yml
+    - /Maps/Salvage/small-cargo.yml
+    - /Maps/Salvage/small-chapel.yml
     - /Maps/Salvage/small-chef.yml
-  spawnDistance: 500
+    - /Maps/Salvage/small-party.yml
+    - /Maps/Salvage/small-a-1.yml
+    - /Maps/Salvage/medium-1.yml
+    - /Maps/Salvage/medium-vault-1.yml
+    - /Maps/Salvage/medium-silent-orchestra.yml
+  cashReward: 2500
+  reputationReward: 50

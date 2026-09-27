@@ -1,3 +1,4 @@
+using Content.Server._NF.Bank;
 using Content.Server.Administration.Managers;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
@@ -23,11 +24,15 @@ using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
+using Robust.Shared.Utility;
+using Serilog.Parsing;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Numerics;
 using System.Text;
+using System.Xml.Linq;
 
 namespace Content.Shared._Persistence14.Rumors.Systems;
 
@@ -47,6 +52,7 @@ public sealed partial class RumorsSystem : EntitySystem
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private MetaDataSystem _meta = default!;
     [Dependency] private PersistentIdentifierSystem _pid = default!;
+    [Dependency] private BankSystem _bank = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -57,7 +63,7 @@ public sealed partial class RumorsSystem : EntitySystem
     private void OnGridChanged(Entity<RumorGetterComponent> ent, ref GridUidChangedEvent args)
     {
         EntityUid? player = null;
-        var implant = Transform(uid);
+        var implant = Transform(ent);
         player = implant.ParentUid;
         if (player == null) return;
         if (args.NewGrid == null) return;
@@ -74,7 +80,7 @@ public sealed partial class RumorsSystem : EntitySystem
                             rumor.Targets.Remove(pid);
                             if(rumor.Targets.Count == 0)
                             {
-                                NotifyPlayer(player.Value, $"You have completed the {rumor.Name} rumor!");
+                                CompleteRumor(ent, player.Value, rumor);
                             }
                             else
                             {
@@ -85,6 +91,27 @@ public sealed partial class RumorsSystem : EntitySystem
                 }
             }
         }
+    }
+
+    private void CompleteRumor(Entity<RumorGetterComponent> ent, EntityUid player, ActiveRumor rumor)
+    {
+        if (_crewMeta.MetaRecords == null) return;
+        var name = Name(player);
+        _crewMeta.MetaRecords.TryGetRecord(name, out var metaRecord);
+        if (metaRecord == null) return;
+        var reputation = 0;
+        metaRecord.MetaFactionReputations.TryGetValue(rumor.Faction, out var rep);
+        if (rep != null) reputation += rep;
+        metaRecord.MetaFactionReputations[rumor.Faction] = reputation + rumor.ReputationReward;
+        var bank = _bank.GetMoneyAccountsComponent();
+        if (bank == null) return;
+        if (bank.TryGetAccount(name, out var account) && account != null)
+        {
+            account.Balance += rumor.CashReward;
+        }
+
+        NotifyPlayer(player, $"You have completed the {rumor.Name} rumor! You have gained {rumor.ReputationReward} reputation with the {rumor.Faction} and ${rumor.CashReward}!", new SoundPathSpecifier("/Audio/Effects/kaching.ogg"));
+        ent.Comp.Rumors.Remove(rumor);
     }
 
     private void OnComponentInit(Entity<RumorGetterComponent> ent, ref ComponentInit args)
@@ -160,6 +187,7 @@ public sealed partial class RumorsSystem : EntitySystem
 
     private ActiveRumor? GenerateRumor(EntityUid uid, RumorGetterComponent comp, ProtoId<MetaFactionPrototype>? factionId = null)
     {
+        if (comp.Rumors.Count >= 6) return null;
         var metaFactions = _protoMan.EnumeratePrototypes<MetaFactionPrototype>().ToList();
         if (_crewMeta.MetaRecords == null) return null;
         _crewMeta.MetaRecords.TryGetRecord(Name(uid), out var metaRecord);
@@ -221,7 +249,7 @@ public sealed partial class RumorsSystem : EntitySystem
         ActiveRumor final = new();
         RumorPrototype rumorProto = _protoMan.Index<RumorPrototype>(chosenRumor);
         final.CompletionType = rumorProto.CompletionType;
-        final.Name = rumorProto.Name;
+        final.Name = $"{rumorProto.Name} ({chosenFaction.Name})";
         final.Faction = chosenFaction.ID;
         if(rumorProto.EventGrids.Count > 0)
         {
@@ -229,10 +257,33 @@ public sealed partial class RumorsSystem : EntitySystem
             final.EventGrids.AddRange(_random.GetItems(rumorProto.EventGrids, rumorProto.GridsToSpawn));
             final.TargetPosition = _mapBounds.GetRandomInBounds(_crewMeta.MetaRecords.Owner);
             final.SpawnDistance = rumorProto.SpawnDistance;
+            final.GridsToSpawn = rumorProto.GridsToSpawn;
         }
+        final.CashReward = rumorProto.CashReward;
+        final.ReputationReward = rumorProto.ReputationReward;
+        final.Description = RealizeDescription(rumorProto, chosenFaction, final);
         return final;
+        
     }
 
+    private string RealizeDescription(RumorPrototype rumor, MetaFactionPrototype chosenFaction, ActiveRumor active)
+    {
+        if(rumor.CompletionType == CompletionType.Discover)
+        {
+            if (active.TargetPosition == null) return rumor.Description;
+            string addon = "\n";
+            if(active.GridsToSpawn > 1)
+            {
+                addon += $"{active.GridsToSpawn} grids will arrive as you approach\n[color=yellow]{Math.Round(active.TargetPosition.Value.Position.X)}, {Math.Round(active.TargetPosition.Value.Position.Y)})[/color]\nExplore them all.";
+            }
+            else
+            {
+                addon += $"A grid will arrive as you approach\n[color=yellow]({Math.Round(active.TargetPosition.Value.Position.X)}, {Math.Round(active.TargetPosition.Value.Position.Y)})[/color]\nExplore it!";
+            }
+            return rumor.Description + addon;
+        }
+        return rumor.Description;
+    }
 
     private void SpawnEventGrids(ActiveRumor rumor, EntityUid player)
     {

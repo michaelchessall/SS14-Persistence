@@ -24,5 +24,6 @@ public sealed partial class MetaFactionPrototype : IPrototype
     [DataField]
     public List<ProtoId<RumorPrototype>> Rumors = new List<ProtoId<RumorPrototype>>();
 
-
+    [DataField]
+    public Color Color = Color.DarkRed;
 }

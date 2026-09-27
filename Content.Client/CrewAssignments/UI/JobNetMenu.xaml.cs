@@ -2,6 +2,7 @@ using Content.Client.Actions;
 using Content.Client.Cargo.UI;
 using Content.Client.Message;
 using Content.Client.Store.Ui;
+using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CrewAssignments;
 using Content.Shared.CrewAssignments.Components;
@@ -167,6 +168,23 @@ public sealed partial class JobNetMenu : DefaultWindow
             }
             NextBenefitsLabel.SetMarkup(nextLevelDesc);
         }
+        var metaFactions = _prototypeManager.EnumeratePrototypes<MetaFactionPrototype>();
+        Current.RemoveAllChildren();
+        Reputations.RemoveAllChildren();
+        foreach(var faction in metaFactions)
+        {
+            int rep = 0;
+            if (state.MetaFactionReputations.TryGetValue(faction.ID, out var repVal))
+                rep = repVal;
+            ReputationBoxFragment repLabel = new(faction, rep);
+            Reputations.AddChild(repLabel);
+        }
+        foreach(var rumor in state.Rumors)
+        {
+            RumorBoxFragment rumorLabel = new(rumor);
+            Current.AddChild(rumorLabel);
+        }
+
     }
     
 

@@ -29,6 +29,10 @@ public sealed partial class RumorPrototype : IPrototype
     [DataField]
     public float SpawnDistance { get; set; } = 500f;
 
+    [DataField]
+    public int CashReward { get; set; } = 0;
+    [DataField]
+    public int ReputationReward { get; set; } = 0;
 
 }
 public enum CompletionType
@@ -49,6 +53,8 @@ public partial class ActiveRumor
 {
     [DataField("_name")]
     public string Name = "Unnamed Rumor";
+    [DataField]
+    public string Description = "No description provided.";
 
     [DataField]
     public MapCoordinates? TargetPosition;
@@ -60,7 +66,7 @@ public partial class ActiveRumor
     public CompletionType CompletionType = CompletionType.Discover;
 
     [DataField]
-    public ProtoId<MetaFactionPrototype>? Faction = null;
+    public ProtoId<MetaFactionPrototype> Faction = "Zenith";
 
     [DataField]
     public List<ResPath> EventGrids { get; set; } = new List<ResPath>();
@@ -71,5 +77,9 @@ public partial class ActiveRumor
     public float SpawnDistance { get; set; } = 500f;
     [DataField]
     public List<string> Targets { get; set; } = new List<string>();
+    [DataField]
+    public int CashReward { get; set; } = 2500;
+    [DataField]
+    public int ReputationReward { get; set; } = 50;
 
 }

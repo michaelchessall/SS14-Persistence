@@ -2,8 +2,8 @@
     xmlns="https://spacestation14.io"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="Job Network"
-    MinSize="650 470"
-    SetSize="650 470">
+    MinSize="700 470"
+    SetSize="700 470">
     <BoxContainer Orientation="Vertical" Access="Public" VerticalExpand="True">
         <BoxContainer Orientation="Horizontal">
             <Label Text="Account Balance:"
@@ -139,11 +139,11 @@
 
             <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
                 <BoxContainer Orientation="Vertical">
-                    <TabContainer>
-                        <BoxContainer Name="Current">
-                            
+                    <TabContainer VerticalExpand="True">
+                        <BoxContainer Name="CurrentHolder" Orientation="Vertical">
+                            <GridContainer Name="Current" Columns="2" />
                         </BoxContainer>
-                        <BoxContainer Name="Reputations">
+                        <BoxContainer Name="Reputations" Orientation="Vertical">
                             
                         </BoxContainer>
                     </TabContainer>
