@@ -11,16 +11,14 @@ using Robust.Shared.Serialization;
 
 namespace Content.Shared.Movement.Systems;
 
-public abstract partial class SharedJetpackSystem : EntitySystem
+public abstract class SharedJetpackSystem : EntitySystem
 {
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] protected SharedAppearanceSystem Appearance = default!;
-    [Dependency] protected SharedContainerSystem Container = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private ActionContainerSystem _actionContainer = default!;
-
-    [Dependency] private EntityQuery<JetpackComponent> _jetpackQuery = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
+    [Dependency] protected readonly SharedContainerSystem Container = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly ActionContainerSystem _actionContainer = default!;
 
     public override void Initialize()
     {
@@ -56,13 +54,15 @@ public abstract partial class SharedJetpackSystem : EntitySystem
     private void OnJetpackUserGravityChanged(ref GravityChangedEvent ev)
     {
         var gridUid = ev.ChangedGridIndex;
+        var jetpackQuery = GetEntityQuery<JetpackComponent>();
+
         var query = EntityQueryEnumerator<JetpackUserComponent, TransformComponent>();
         while (query.MoveNext(out var uid, out var user, out var transform))
         {
             if (transform.GridUid == gridUid && ev.HasGravity &&
-                _jetpackQuery.TryGetComponent(user.Jetpack, out var jetpack))
+                jetpackQuery.TryGetComponent(user.Jetpack, out var jetpack))
             {
-                _popup.PopupEntity(Loc.GetString("jetpack-to-grid"), uid, uid);
+                _popup.PopupClient(Loc.GetString("jetpack-to-grid"), uid, uid);
 
                 SetEnabled(user.Jetpack, jetpack, false, uid);
             }
@@ -92,7 +92,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem
         {
             SetEnabled(component.Jetpack, jetpack, false, uid);
 
-            _popup.PopupEntity(Loc.GetString("jetpack-to-grid"), uid, uid);
+            _popup.PopupClient(Loc.GetString("jetpack-to-grid"), uid, uid);
         }
     }
 
@@ -132,7 +132,7 @@ public abstract partial class SharedJetpackSystem : EntitySystem
 
         if (TryComp(uid, out TransformComponent? xform) && !CanEnableOnGrid(xform.GridUid))
         {
-            _popup.PopupEntity(Loc.GetString("jetpack-no-station"), uid, args.Performer);
+            _popup.PopupClient(Loc.GetString("jetpack-no-station"), uid, args.Performer);
 
             return;
         }

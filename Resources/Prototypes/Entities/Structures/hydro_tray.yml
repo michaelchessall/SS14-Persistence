@@ -1,6 +1,6 @@
 - type: entity
   name: hydroponics tray
-  parent: [ BaseHydroponicsSoil, SmallConstructibleMachine, BaseSmallConstructibleMachineDestructible]
+  parent: [ hydroponicsSoil, SmallConstructibleMachine]
   id: hydroponicsTray
   description: An interstellar-grade space farmplot allowing for rapid growth and selective breeding of crops. Just... keep in mind the space weeds.
   components:
@@ -45,27 +45,27 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.PlantTrayVisuals.HealthLight:
+      enum.PlantHolderVisuals.HealthLight:
         health_alert:
           True: { visible: true }
           False: { visible: false }
-      enum.PlantTrayVisuals.WaterLight:
+      enum.PlantHolderVisuals.WaterLight:
         water_alert:
           True: { visible: true }
           False: { visible: false }
-      enum.PlantTrayVisuals.NutritionLight:
+      enum.PlantHolderVisuals.NutritionLight:
         nutri_alert:
           True: { visible: true }
           False: { visible: false }
-      enum.PlantTrayVisuals.AlertLight:
+      enum.PlantHolderVisuals.AlertLight:
         undefined_alert:
           True: { visible: true }
           False: { visible: false }
-      enum.PlantTrayVisuals.HarvestLight:
+      enum.PlantHolderVisuals.HarvestLight:
         harvest_alert:
           True: { visible: true }
           False: { visible: false }
-  - type: PlantTray
+  - type: PlantHolder
     drawWarnings: true
     wateringSound:
       path: /Audio/Effects/Fluids/slosh.ogg
@@ -78,9 +78,13 @@
         !type:DamageTrigger
         damage: 100
       behaviors:
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Machine
     board: HydroponicsTrayMachineCircuitboard
   - type: WiresPanel
@@ -99,6 +103,8 @@
   id: HydroponicsTrayEmpty
   suffix: Empty
   components:
-  - type: PlantTray
+  - type: PlantHolder
     waterLevel: 0
     nutritionLevel: 0
+    # for the lights to update immediately
+    updateSpriteAfterUpdate: true

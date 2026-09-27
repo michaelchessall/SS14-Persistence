@@ -1,5 +1,6 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Content.Server.Botany.Components;
 using Content.Server.Popups;
 using Content.Shared.AbstractAnalyzer;
 using Content.Shared.Botany.Components;
@@ -15,17 +16,17 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Botany.Systems;
 
-public sealed partial class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerComponent, PlantAnalyzerDoAfterEvent>
+public sealed class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAnalyzerComponent, PlantAnalyzerDoAfterEvent>
 {
-    [Dependency] private UserInterfaceSystem _uiSystem = default!;
-    [Dependency] private IEntityManager _entityManager = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private PopupSystem _popupSystem = default!;
-    [Dependency] private SharedHandsSystem _handsSystem = default!;
-    [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private PaperSystem _paperSystem = default!;
-    [Dependency] private LabelSystem _labelSystem = default!;
-    [Dependency] private PlantAnalyzerLocalizationHelper _localizationHelper = default!;
+    [Dependency] private readonly UserInterfaceSystem _uiSystem = default!;
+    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly PaperSystem _paperSystem = default!;
+    [Dependency] private readonly LabelSystem _labelSystem = default!;
+    [Dependency] private readonly PlantAnalyzerLocalizationHelper _localizationHelper = default!;
 
     public override void Initialize()
     {
@@ -56,9 +57,6 @@ public sealed partial class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAn
         PlantAnalyzerTrayData? trayData = null;
         PlantAnalyzerTolerancesData? tolerancesData = null;
         PlantAnalyzerProduceData? produceData = null;
-
-        // Persistence14: Deprecated until such time as I can fix this mess with the new changes...
-        /*
         if (_entityManager.TryGetComponent<PlantHolderComponent>(target, out var plantHolder))
         {
             if (plantHolder.Seed is not null)
@@ -106,7 +104,6 @@ public sealed partial class PlantAnalyzerSystem : AbstractAnalyzerSystem<PlantAn
                 chemicals: plantHolder.SoilSolution?.Comp.Solution.Contents.Select(r => r.Reagent.Prototype).ToList()
             );
         }
-        */
 
         return new PlantAnalyzerScannedUserMessage(
             GetNetEntity(target),

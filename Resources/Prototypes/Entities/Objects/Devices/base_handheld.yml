@@ -4,7 +4,6 @@
   id: BaseHandheldComputer
   components:
   - type: ActivatableUIRequiresPowerCell
-  - type: ItemToggleExaminableStatus
   - type: ItemToggle
     onUse: false # above component does the toggling
   - type: PowerCellDraw

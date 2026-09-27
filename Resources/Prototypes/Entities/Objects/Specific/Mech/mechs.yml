@@ -1,5 +1,4 @@
 - type: entity
-  parent: StructureHealthMachineMassive
   id: BaseMech
   save: true
   abstract: true
@@ -7,11 +6,6 @@
   - type: MobMover
   - type: Mech
   - type: MechAir
-  - type: Vehicle
-    canAttack: true
-  - type: ContainerVehicle
-    containerId: "mech-pilot-slot"
-  - type: ContainerVehicleEntry
   - type: AirFilter
     # everything except oxygen and nitrogen
     gases:
@@ -53,7 +47,7 @@
     damage:
       types:
         Blunt: 25 #thwack
-        Structural: 8
+        Structural: 20
     soundHit:
       collection: MetalThud
   - type: Puller
@@ -92,7 +86,8 @@
       mech-equipment-container: !type:Container
       mech-battery-slot: !type:ContainerSlot
   - type: Damageable
-    damageModifierSet: SteelMod
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: FootstepModifier
     footstepSoundCollection:
       path: /Audio/Mecha/mechmove03.ogg
@@ -108,13 +103,10 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-    - trigger:
-        !type:DamageTrigger
-        damage: 275
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: start
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
 
 - type: entity
   id: MechRipley
@@ -136,20 +128,10 @@
     baseState: ripley
     openState: ripley-open
     brokenState: ripley-broken
-  - type: Vehicle
-    transferDamageModifier:
-      coefficients:
-        Blunt: 0.75
-        Slash: 0.75
-        Piercing: 0.75
-        Cold: 0.75
-        Heat: 0.75
-        Shock: 0.75
-    operatorWhitelist:
+    mechToPilotDamageMultiplier: 0.75
+    pilotWhitelist:
       components:
         - HumanoidProfile
-  - type: VehicleHandBlocker
-    blockedHands: 2
   - type: MeleeWeapon
     hidden: true
     attackRate: 1
@@ -193,20 +175,10 @@
     baseState: honker
     openState: honker-open
     brokenState: honker-broken
-  - type: Vehicle
-    transferDamageModifier:
-      coefficients:
-        Blunt: 0.5
-        Slash: 0.5
-        Piercing: 0.5
-        Cold: 0.5
-        Heat: 0.5
-        Shock: 0.5
-    operatorWhitelist:
+    mechToPilotDamageMultiplier: 0.5
+    pilotWhitelist:
       components:
       - HumanoidProfile
-  - type: VehicleHandBlocker
-    blockedHands: 2
 
 - type: entity
   parent: MechHonker
@@ -238,22 +210,13 @@
     baseState: hamtr
     openState: hamtr-open
     brokenState: hamtr-broken
+    mechToPilotDamageMultiplier: 0.2
     maxEquipmentAmount: 2
     airtight: true
     equipmentWhitelist:
       tags:
       - SmallMech
-  - type: Vehicle
-    requiresHands: false
-    transferDamageModifier:
-      coefficients:
-        Blunt: 0.2
-        Slash: 0.2
-        Piercing: 0.2
-        Cold: 0.2
-        Heat: 0.2
-        Shock: 0.2
-    operatorWhitelist:
+    pilotWhitelist:
       tags:
       - Hamster
   - type: MeleeWeapon
@@ -262,6 +225,7 @@
     damage:
       types:
         Blunt: 10 #thwack
+        Structural: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.4
     baseSprintSpeed: 3.7
@@ -312,18 +276,10 @@
     openState: vim-open
     brokenState: vim-broken
     maxEquipmentAmount: 0
+    # keep mouse safe
+    mechToPilotDamageMultiplier: 0.1
     airtight: true
-  - type: Vehicle
-    requiresHands: false
-    transferDamageModifier:
-      coefficients:
-        Blunt: 0.1
-        Slash: 0.1
-        Piercing: 0.1
-        Cold: 0.1
-        Heat: 0.1
-        Shock: 0.1
-    operatorWhitelist:
+    pilotWhitelist:
       tags:
       - VimPilot
   - type: MeleeWeapon
@@ -332,6 +288,7 @@
     damage:
       types:
         Blunt: 10 #thwack
+        Structural: 2
   - type: MovementSpeedModifier
     baseWalkSpeed: 2.25
     baseSprintSpeed: 3.6

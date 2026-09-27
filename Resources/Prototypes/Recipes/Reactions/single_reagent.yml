@@ -59,21 +59,6 @@
   products:
     Holywater: 1
 
-- type: reaction
-  id: Hivarol
-  requiredMixerCategories:
-  - Electrolysis
-  minTemp: 370
-  reactants:
-    LivingTissue:
-      amount: 1
-    Licoxide:
-      amount: 1
-    Impedrezene:
-      amount: 1
-  products:
-    Hivarol: 1
-
 # Persistence: Make ice reagent obtainable
 - type: reaction
   id: WatertoIce

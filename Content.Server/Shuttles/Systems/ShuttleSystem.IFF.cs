@@ -92,10 +92,11 @@ public sealed partial class ShuttleSystem
             return;
         }
 
-        if (!Color.TryFromHex(args.ColorHex, out var parsed))
+        var parsed = Color.TryFromHex(args.ColorHex);
+        if (!parsed.HasValue)
             return;
 
-        var normalized = IFFComponent.NormalizeSignatureColor(parsed);
+        var normalized = IFFComponent.NormalizeSignatureColor(parsed.Value);
         SetIFFColor(gridUid, normalized);
     }
 

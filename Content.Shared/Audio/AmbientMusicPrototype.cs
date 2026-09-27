@@ -1,6 +1,8 @@
-using Content.Shared.EntityConditions;
+using Content.Shared.Random;
+using Content.Shared.Random.Rules;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Audio;
 
@@ -15,28 +17,24 @@ public sealed partial class AmbientMusicPrototype : IPrototype
     /// <summary>
     /// Traditionally you'd prioritise most rules to least as priority but in our case we'll just be explicit.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("priority")]
     public int Priority = 0;
 
     /// <summary>
     /// Can we interrupt this ambience for a better prototype if possible?
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("interruptable")]
     public bool Interruptable = false;
-
-    //Whether this ambience is allowed to play twice in a row
-    [DataField]
-    public bool AllowRepeat = true;
 
     /// <summary>
     /// Do we fade-in. Useful for songs.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("fadeIn")]
     public bool FadeIn;
 
-    [DataField(required: true)]
+    [ViewVariables(VVAccess.ReadWrite), DataField("sound", required: true)]
     public SoundSpecifier Sound = default!;
 
-    [DataField]
-    public EntityCondition[]? Conditions;
+    [ViewVariables(VVAccess.ReadWrite), DataField("rules", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<RulesPrototype>))]
+    public string Rules = string.Empty;
 }

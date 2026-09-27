@@ -37,6 +37,11 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
         _menu._spriteSystem = spriteSystem;
         _menu.PossibleJobs.OnItemSelected += OnJobPressed;
         _menu.LevelPurchaseButton.OnPressed += OnLevelPurchase;
+        _menu.DealerSelect.OnPressed += DealerSelect_OnPressed;
+        _menu.AssassinSelect.OnPressed += AssassinSelect_OnPressed;
+        _menu.BountyHSelect.OnPressed += BountyHSelect_OnPressed;
+        _menu.HuntedLEB.OnPressed += HuntedLEB_OnPressed;
+        _menu.HuntLEB.OnPressed += HuntLEB_OnPressed;
         _menu.OnItemSelected += (row) =>
         {
             if (row == null || row.Product == null)
@@ -49,6 +54,38 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
             SendMessage(new JobNetDealerLabelMessage(id));
         };
         CodexMenu = new();
+        _menu.PrecursorGuidebook.OnPressed += (ButtonEventArgs obj) =>
+        {
+            var guidebookController = _menu.UserInterfaceManager.GetUIController<GuidebookUIController>();
+            guidebookController.OpenGuidebook(selected: "Precursor");
+        };
+    }
+
+    private void HuntLEB_OnPressed(ButtonEventArgs obj)
+    {
+        if (_menu == null) return;
+        SendMessage(new JobNetSubmitHuntMessage(_menu.HuntLE.Text));
+    }
+
+    private void HuntedLEB_OnPressed(ButtonEventArgs obj)
+    {
+        if (_menu == null) return;
+        SendMessage(new JobNetSubmitHuntedMessage(_menu.HuntedLE.Text));
+    }
+
+    private void BountyHSelect_OnPressed(ButtonEventArgs obj)
+    {
+        SendMessage(new JobNetSelectRogueNetMessage(RogueNetworkType.BountyHunter));
+    }
+
+    private void AssassinSelect_OnPressed(ButtonEventArgs obj)
+    {
+        SendMessage(new JobNetSelectRogueNetMessage(RogueNetworkType.Assassin));
+    }
+
+    private void DealerSelect_OnPressed(ButtonEventArgs obj)
+    {
+        SendMessage(new JobNetSelectRogueNetMessage(RogueNetworkType.Dealer));
     }
 
     public void OnLevelPurchase(ButtonEventArgs args)

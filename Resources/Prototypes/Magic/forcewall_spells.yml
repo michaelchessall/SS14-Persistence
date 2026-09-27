@@ -9,10 +9,9 @@
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/forcewall.ogg
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: shield
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: shield
   - type: InstantAction
     event: !type:InstantSpawnSpellEvent
       prototype: WallForce

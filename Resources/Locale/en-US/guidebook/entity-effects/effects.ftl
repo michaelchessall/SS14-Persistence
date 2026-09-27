@@ -67,13 +67,22 @@ entity-effect-guidebook-smoke-area =
         *[other] create
     } large quantities of smoke
 
-entity-effect-guidebook-satiate =
+entity-effect-guidebook-satiate-thirst =
     { $chance ->
         [1] Satiates
         *[other] satiate
     } { $relative ->
-        [1] {$type} averagely
-        *[other] {$type} at {NATURALFIXED($relative, 3)}x the average rate
+        [1] thirst averagely
+        *[other] thirst at {NATURALFIXED($relative, 3)}x the average rate
+    }
+
+entity-effect-guidebook-satiate-hunger =
+    { $chance ->
+        [1] Satiates
+        *[other] satiate
+    } { $relative ->
+        [1] hunger averagely
+        *[other] hunger at {NATURALFIXED($relative, 3)}x the average rate
     }
 
 entity-effect-guidebook-health-change =
@@ -129,19 +138,19 @@ entity-effect-guidebook-status-effect =
         [update]{ $chance ->
                     [1] Causes
                     *[other] cause
-                 } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                 } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
+                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} with accumulation
         [set]  { $chance ->
                     [1] Causes
                     *[other] cause
-                } {$key} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
+                } {LOC($key)} for at least {NATURALFIXED($time, 3)} {MANY("second", $time)} without accumulation
         *[remove]{ $chance ->
                     [1] Removes
                     *[other] remove
-                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {$key}
+                } {NATURALFIXED($time, 3)} {MANY("second", $time)} of {LOC($key)}
     } { $delay ->
         [0] immediately
         *[other] after a {NATURALFIXED($delay, 3)} second delay
@@ -152,19 +161,19 @@ entity-effect-guidebook-status-effect-indef =
         [update]{ $chance ->
                     [1] Causes
                     *[other] cause
-                 } permanent {$key}
+                 } permanent {LOC($key)}
         [add]   { $chance ->
                     [1] Causes
                     *[other] cause
-                } permanent {$key}
+                } permanent {LOC($key)}
         [set]  { $chance ->
                     [1] Causes
                     *[other] cause
-                } permanent {$key}
+                } permanent {LOC($key)}
         *[remove]{ $chance ->
                     [1] Removes
                     *[other] remove
-                } {$key}
+                } {LOC($key)}
     } { $delay ->
         [0] immediately
         *[other] after a {NATURALFIXED($delay, 3)} second delay
@@ -470,8 +479,8 @@ entity-effect-guidebook-plant-attribute =
         [1] Adjusts
         *[other] adjust
     } {$attribute} by {$positive ->
-    [false] [color=red]{$amount}[/color]
-    *[true] [color=green]{$amount}[/color]
+    [true] [color=red]{$amount}[/color]
+    *[false] [color=green]{$amount}[/color]
     }
 
 entity-effect-guidebook-plant-cryoxadone =
@@ -510,32 +519,8 @@ entity-effect-guidebook-plant-seeds-remove =
         *[other] remove the
     } seeds of the plant
 
-entity-effect-guidebook-plant-mutate-exude-gasses =
-    { $chance ->
-        [1] Mutates
-        *[other] mutate
-    } the plant to exude gases between {$minValue} and {$maxValue} moles
-
-entity-effect-guidebook-plant-mutate-consume-gasses =
-    { $chance ->
-        [1] Mutates
-        *[other] mutate
-    } the plant to consume gases between {$minValue} and {$maxValue} moles
-
 entity-effect-guidebook-plant-mutate-chemicals =
     { $chance ->
         [1] Mutates
         *[other] mutate
     } a plant to produce {$name}
-
-entity-effect-guidebook-add-reagent-to-bloodstream =
-    { $chance ->
-        [1] Injects
-        *[other] inject
-    } {$quantity} of {$reagent} directly into the bloodstream
-
-entity-effect-disarm =
-    { $chance ->
-        [1] Disarms
-        *[other] disarms
-    } the entity

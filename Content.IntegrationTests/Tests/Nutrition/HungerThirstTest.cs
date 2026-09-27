@@ -1,7 +1,6 @@
 using Content.IntegrationTests.Tests.Interaction;
 using Content.Shared.Nutrition.Components;
 using Content.Shared.Nutrition.EntitySystems;
-using Robust.Shared.GameObjects;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests.Nutrition;
@@ -25,34 +24,30 @@ public sealed class HungerThirstTest : InteractionTest
         // Ensure that the player can breathe and not suffocate
         await AddAtmosphere();
 
-        var satiationComponent = Comp<SatiationComponent>(Player);
-        var entity = new Entity<SatiationComponent>(SPlayer, satiationComponent);
-        var satiationSystem = SEntMan.System<SatiationSystem>();
+        var hungerComponent = Comp<HungerComponent>(Player);
+        var thirstComponent = Comp<ThirstComponent>(Player);
+        var hungerSystem = SEntMan.System<HungerSystem>();
+        var thirstSystem = SEntMan.System<ThirstSystem>();
         var ingestionSystem = SEntMan.System<IngestionSystem>();
 
-        const string okayThresholdKey = "Okay";
-
         // Set initial value
-        Assert.That(satiationSystem.GetKeysForType(entity, SatiationSystem.Hunger), Contains.Item(okayThresholdKey));
-        satiationSystem.SetValue(entity, SatiationSystem.Hunger, okayThresholdKey);
-        Assert.That(satiationSystem.GetKeysForType(entity, SatiationSystem.Thirst), Contains.Item(okayThresholdKey));
-        satiationSystem.SetValue(entity, SatiationSystem.Thirst, okayThresholdKey);
+        hungerSystem.SetHunger(SPlayer, hungerComponent.Thresholds[HungerThreshold.Okay], hungerComponent);
+        thirstSystem.SetThirst(SPlayer, thirstComponent, thirstComponent.ThirstThresholds[ThirstThreshold.Okay]);
 
         // Ensure hunger and thirst value decrease over time (the Urist gets hungrier/thirstier)
-        var previousHungerValue = satiationSystem.GetValueOrNull(entity, SatiationSystem.Hunger);
-        Assert.That(previousHungerValue, Is.Not.Null);
-        var previousThirstValue = satiationSystem.GetValueOrNull(entity, SatiationSystem.Thirst);
-        Assert.That(previousThirstValue, Is.Not.Null);
+        var previousHungerValue = hungerSystem.GetHunger(hungerComponent);
+        var previousThirstValue = thirstComponent.CurrentThirst; // TODO: combined sation system with a sane API
 
         // Simulate long enough for both update loops to run
-        await RunSeconds(2);
+        var runTime = Math.Max((float)hungerComponent.ThresholdUpdateRate.TotalSeconds, (float)thirstComponent.UpdateRate.TotalSeconds) + 1f;
+        await RunSeconds(runTime);
 
-        var currentHungerValue = satiationSystem.GetValueOrNull(entity, SatiationSystem.Hunger);
-        Assert.That(currentHungerValue, Is.Not.Null.And.LessThan(previousHungerValue), "Hunger value did not decrease over time");
+        var currentHungerValue = hungerSystem.GetHunger(hungerComponent);
+        Assert.That(currentHungerValue, Is.LessThan(previousHungerValue), "Hunger value did not decrease over time");
         previousHungerValue = currentHungerValue;
 
-        var currentThirstValue = satiationSystem.GetValueOrNull(entity, SatiationSystem.Thirst);
-        Assert.That(currentThirstValue, Is.Not.Null.And.LessThan(previousThirstValue), "Thirst value did not decrease over time");
+        var currentThirstValue = thirstComponent.CurrentThirst;
+        Assert.That(currentThirstValue, Is.LessThan(previousThirstValue), "Thirst value did not decrease over time");
         previousThirstValue = currentThirstValue;
 
         // Now we spawn food in the Urist's hand
@@ -69,7 +64,7 @@ public sealed class HungerThirstTest : InteractionTest
         Assert.That(foodEaten, Is.Null, "Food item did not disappear after eating it");
 
         // Ensure that the hunger value has increased (The Urist is less hungry)
-        Assert.That(satiationSystem.GetValueOrNull(entity, SatiationSystem.Hunger), Is.GreaterThan(previousHungerValue!), "Hunger value did not increase after eating food");
+        Assert.That(hungerSystem.GetHunger(hungerComponent), Is.GreaterThan(previousHungerValue), "Hunger value did not increase after eating food");
 
         // Now we spawn a drink in the Urist's hand
         var drink = await PlaceInHands(_drink);
@@ -91,7 +86,7 @@ public sealed class HungerThirstTest : InteractionTest
         Assert.That(solution.Value.Comp.Solution.Volume, Is.LessThan(initialSolutionVolume), "Solution volume did not decrease after drinking");
 
         // Ensure that the thirst value has increased (The Urist is less thirsty)
-        Assert.That(satiationSystem.GetValueOrNull(entity, SatiationSystem.Thirst), Is.GreaterThan(previousThirstValue!), "Thirst value did not increase after drinking");
+        Assert.That(thirstComponent.CurrentThirst, Is.GreaterThan(previousThirstValue), "Thirst value did not increase after drinking");
 
         // Make sure that the glass did not get deleted after drinking from it
         var glass = HandSys.GetActiveItem((SPlayer, Hands));

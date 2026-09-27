@@ -62,7 +62,7 @@
     proto: OxygenBreather
   storage:
     back:
-    - BoxSurvivalHug
+    - BoxHug
 
 - type: loadout
   id: EmergencyNitrogenClown
@@ -71,7 +71,54 @@
     proto: NitrogenBreather
   storage:
     back:
-    - BoxSurvivalHugNitrogen
+    - BoxHugNitrogen
+
+# Mime
+- type: loadoutEffectGroup
+  id: OxygenBreatherMime
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Arachnid
+    - Diona
+    - Dwarf
+    - Human
+    - Reptilian
+    - Vulpkanin
+
+- type: loadoutEffectGroup
+  id: OxygenBreatherMimeMoth
+  effects:
+  - !type:SpeciesLoadoutEffect
+    species:
+    - Moth
+
+- type: loadout
+  id: EmergencyOxygenMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherMime
+  storage:
+    back:
+    - BoxMime
+
+- type: loadout
+  id: EmergencyNitrogenMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - BoxMimeNitrogen
+
+- type: loadout
+  id: EmergencySpeciesMothMime
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreatherMimeMoth
+  storage:
+    back:
+    - BoxMimeMoth
 
 # Engineering / Extended
 - type: loadout
@@ -130,26 +177,7 @@
     back:
     - BoxSurvivalSecurityNitrogen
 
-# Antagonist
-
-- type: loadout
-  id: EmergencyOxygenExtendedAntag
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: OxygenBreather
-  storage:
-    back:
-    - BoxSurvivalDeluxeExtended
-
-- type: loadout
-  id: EmergencyNitrogenExtendedAntag
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NitrogenBreather
-  storage:
-    back:
-    - BoxSurvivalDeluxeExtendedNitrogen
-
+# Syndicate
 - type: loadout
   id: EmergencyOxygenSyndicate
   effects:

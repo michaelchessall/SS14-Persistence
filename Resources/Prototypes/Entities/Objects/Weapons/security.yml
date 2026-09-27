@@ -9,11 +9,10 @@
     layers:
     - state: stunbaton_off
       map: [ "enum.ToggleableVisuals.Layer" ]
-  - type: ItemToggleExaminableStatus
-  - type: ItemToggleRequiresCharge
-    requiredCharge: 50
+  - type: Stunbaton
+    energyPerUse: 50
   - type: ItemToggle
-    onActivate: false
+    predictable: false
     soundActivate:
       collection: sparks
       params:
@@ -41,10 +40,6 @@
     bluntStaminaDamageFactor: 2.0
     angle: 60
     animation: WeaponArcThrust
-  - type: MeleeBatteryHitsLeft
-  - type: StaminaDamageOnHitRequiresToggle
-  - type: StaminaDamageOnHitRequiresCharge
-    requiredCharge: 50
   - type: StaminaDamageOnHit
     damage: 35
     sound: /Audio/Weapons/egloves.ogg
@@ -76,9 +71,10 @@
   - type: StaticPrice
     price: 80
   - type: Riggable
-  - type: SolutionManager
+  - type: SolutionContainerManager
     solutions:
-    - SolutionRiggable
+      battery:
+        maxVol: 5
   - type: InjectableSolution
     solution: battery
   - type: DrawableSolution
@@ -94,9 +90,6 @@
   - type: GuideHelp
     guides:
     - Security
-  - type: Tag
-    tags:
-    - Stunbaton
 
 - type: entity
   name: truncheon
@@ -153,7 +146,6 @@
         visible: false
         shader: unshaded
     - type: Flash
-    - type: RevolutionaryConverter
     - type: LimitedCharges
       maxCharges: 5
     - type: MeleeWeapon
@@ -199,7 +191,7 @@
 
 - type: entity
   name: portable flasher
-  parent: [BaseMachine, BaseSecurityContraband, BaseMachineDestructible]
+  parent: [BaseMachine, BaseSecurityContraband]
   id: PortableFlasher
   description: An ultrabright flashbulb with a proximity trigger, useful for making an area security-only.
   components:
@@ -242,12 +234,3 @@
     - type: GuideHelp
       guides:
       - Security
-#      - Antagonists
-    - type: Destructible
-      thresholds:
-      - trigger: !type:DamageTrigger
-          damage: 175
-        behaviors:
-        - !type:PlaySoundBehavior
-          sound:
-            collection: MetalGlassBreak

@@ -3,6 +3,7 @@
   id: ClothingMaskBandanaBase
   abstract: true
   components:
+  - type: Appearance
   - type: Foldable
     canFoldInsideContainer: true
   - type: FoldableClothing

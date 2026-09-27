@@ -35,7 +35,6 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceDiona
-  categories: [ HideSpawnMenu ]
   name: diona appearance
   components:
   - type: Inventory
@@ -79,12 +78,10 @@
     damageRecovery:
       types:
         Asphyxiation: -1.0
-  - type: Satiation
-    satiations:
-      Hunger:
-        prototype: DionaHunger
-      Thirst:
-        prototype: DionaThirst
+  - type: Hunger
+    baseDecayRate: 0.00415
+  - type: Thirst
+    baseDecayRate: 0.00415
   - type: Damageable
     damageModifierSet: Diona
   - type: DamageVisuals
@@ -95,6 +92,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Butcherable
+    butcheringType: Spike
     spawned:
       - id: FoodMeatPlant
         amount: 5
@@ -102,7 +100,7 @@
     bloodReferenceSolution:
       reagents:
       - ReagentId: Sap
-        Quantity: 600
+        Quantity: 300
   - type: Reactive
     groups:
       Flammable: [ Touch ]
@@ -155,7 +153,10 @@
     speechVerb: Plant
     allowedEmotes: ['Chirp']
   - type: Vocal
-    emoteSounds: UnisexDiona
+    sounds:
+      Male: UnisexDiona
+      Female: UnisexDiona
+      Unsexed: UnisexDiona
   - type: TypingIndicator
     proto: diona
   - type: BodyEmotes
@@ -171,7 +172,7 @@
   - type: Rootable
 
 - type: entity
-  parent: OrganBaseOrganic
+  parent: OrganBase
   id: OrganDiona
   abstract: true
   suffix: Diona
@@ -280,16 +281,7 @@
     stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
-  abstract: true
-  id: BaseNymphingOrgan
-  components:
-  - type: Nymph
-    blacklist:
-      components:
-      - ChangelingTransform
-
-- type: entity
-  parent: [ OrganDionaBrain, BaseNymphingOrgan ]
+  parent: OrganDionaBrain
   suffix: "Diona, Nymphing"
   id: OrganDionaBrainNymphing
   components:
@@ -298,7 +290,7 @@
     entityPrototype: OrganDionaNymphBrain
 
 - type: entity
-  parent: [ OrganDionaLungs, BaseNymphingOrgan ]
+  parent: OrganDionaLungs
   suffix: "Diona, Nymphing"
   id: OrganDionaLungsNymphing
   components:
@@ -306,7 +298,7 @@
     entityPrototype: OrganDionaNymphLungs
 
 - type: entity
-  parent: [ OrganDionaStomach, BaseNymphingOrgan ]
+  parent: OrganDionaStomach
   suffix: "Diona, Nymphing"
   id: OrganDionaStomachNymphing
   components:

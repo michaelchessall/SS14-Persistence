@@ -1,5 +1,4 @@
 using Content.Shared.Security;
-using Content.Shared.StationRecords;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.CriminalRecords;
@@ -8,8 +7,8 @@ namespace Content.Shared.CriminalRecords;
 /// Criminal record for a crewmember.
 /// Can be viewed and edited in a criminal records console by security.
 /// </summary>
-[Serializable, NetSerializable]
-public sealed partial record CriminalRecord : StationRecord
+[Serializable, NetSerializable, DataRecord]
+public sealed partial record CriminalRecord
 {
     /// <summary>
     /// Status of the person (None, Wanted, Detained).

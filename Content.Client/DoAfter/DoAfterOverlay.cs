@@ -37,15 +37,6 @@ public sealed class DoAfterOverlay : Overlay
     private const float StartX = 2;
     private const float EndX = 22f;
 
-    // Time after which the doafter will lerp to max alpha.
-    private static readonly TimeSpan MaxAlphaTime = TimeSpan.FromSeconds(0.3f);
-
-    // After finishing, how long it takes to fade out to 0 alpha
-    private static readonly TimeSpan FadeoutAlphaTime = TimeSpan.FromSeconds(0.2f);
-
-    // Time after which the doafter will lerp to its final y offset.
-    private static readonly TimeSpan MaxYPosTime = TimeSpan.FromSeconds(0.5f);
-
     public override OverlaySpace Space => OverlaySpace.WorldSpaceBelowFOV;
 
     public DoAfterOverlay(IEntityManager entManager, IPrototypeManager protoManager, IGameTiming timing, IPlayerManager player)
@@ -119,29 +110,19 @@ public sealed class DoAfterOverlay : Overlay
             foreach (var doAfter in comp.DoAfters.Values)
             {
                 // Hide some DoAfters from other players for stealthy actions (ie: thieving gloves)
-                var maxAlpha = 1f;
+                var alpha = 1f;
                 if (doAfter.Args.Hidden || isInContainer)
                 {
                     if (uid != localEnt)
                         continue;
 
                     // Hints to the local player that this do-after is not visible to other players.
-                    maxAlpha = 0.5f;
+                    alpha = 0.5f;
                 }
-
-                var elapsed = time - doAfter.StartTime;
-
-                var alpha = MathHelper.Lerp(0f, maxAlpha, (float)Math.Clamp(elapsed / MaxAlphaTime, 0.0, 1.0));
-                // fade out if doafter finished
-                if (elapsed >= doAfter.Args.Delay)
-                    alpha = MathHelper.Lerp(maxAlpha, 0f, (float)Math.Clamp((elapsed - doAfter.Args.Delay) / FadeoutAlphaTime, 0.0, 1.0));
 
                 // Use the sprite itself if we know its bounds. This means short or tall sprites don't get overlapped
                 // by the bar.
-                var spriteBounds = _sprite.GetLocalBounds((uid, sprite));
-                var yFinished = spriteBounds.Height / 2f + 0.05f;
-                var yStart = yFinished / 6f;
-                var yOffset = MathHelper.Lerp(yStart, yFinished, Easings.OutSine((float)Math.Clamp(elapsed / MaxYPosTime, 0.0, 1.0)));
+                var yOffset = _sprite.GetLocalBounds((uid, sprite)).Height / 2f + 0.05f;
 
                 // Position above the entity (we've already applied the matrix transform to the entity itself)
                 // Offset by the texture size for every do_after we have.
@@ -149,7 +130,7 @@ public sealed class DoAfterOverlay : Overlay
                     yOffset / scale + offset / EyeManager.PixelsPerMeter * scale);
 
                 // Draw the underlying bar texture
-                handle.DrawTexture(_barTexture, position, Color.White.WithAlpha(alpha));
+                handle.DrawTexture(_barTexture, position);
 
                 Color color;
                 float elapsedRatio;
@@ -157,7 +138,7 @@ public sealed class DoAfterOverlay : Overlay
                 // if we're cancelled then flick red / off.
                 if (doAfter.CancelledTime != null)
                 {
-                    elapsed = doAfter.CancelledTime.Value - doAfter.StartTime;
+                    var elapsed = doAfter.CancelledTime.Value - doAfter.StartTime;
                     elapsedRatio = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
                     var cancelElapsed = (time - doAfter.CancelledTime.Value).TotalSeconds;
                     var flash = Math.Floor(cancelElapsed / FlashTime) % 2 == 0;
@@ -165,6 +146,7 @@ public sealed class DoAfterOverlay : Overlay
                 }
                 else
                 {
+                    var elapsed = time - doAfter.StartTime;
                     elapsedRatio = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
                     color = GetProgressColor(elapsedRatio, alpha);
                 }

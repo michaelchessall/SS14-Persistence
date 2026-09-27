@@ -1,7 +1,0 @@
-- type: metaFaction
-  id: Green
-  name: Nanotrasen
-  description: "Nanotrasen controls the Green Universe."
-  rumors:
-    - DiscoverSmallSalvage
-  color: Green

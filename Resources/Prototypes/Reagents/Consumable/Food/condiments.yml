@@ -129,11 +129,9 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         factor: 0.5
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -0.5 # high salt content
 
 - type: reagent
@@ -164,8 +162,7 @@
     Digestion:
       effects:
       # eating salt on its own kinda sucks, kids
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -0.5
 
 - type: reagent
@@ -184,8 +181,7 @@
     Digestion:
       # 12 diona blood for 1 unit of syrup, this stuff better be worthwhile.
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         factor: 6.0 #Stronger than cookedramen
   footstepSound:
     collection: FootstepSlime

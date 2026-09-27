@@ -45,9 +45,13 @@
       storagebase: !type:AllSelector
         children:
         - id: JugBicaridine
-        - id: JugPunctTranex
-        - id: JugPyraDerma
-        - id: JugDexPlusSaline
+        - id: JugPuncturase
+        - id: JugDermaline
+        - id: JugDylovene
+        - id: JugHyronalin
+        - id: JugSaline
+        - id: JugDexalinPlus
+        - id: JugTranexamicAcid
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateBundle
@@ -136,6 +140,26 @@
           amount: 4
         - id: GrenadeFrag
           amount: 4
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateFilledCarbine
+  name: M-90gl bundle
+  description: "A versatile battle rifle with an attached grenade launcher, bundled with 3 magazines and 6 grenades of various capabilities."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: WeaponRifleM90GrenadeLauncher
+        - id: MagazineRifle
+          amount: 2
+        - id: GrenadeBlast
+          amount: 2
+        - id: GrenadeFlash
+          amount: 2
+        - id: GrenadeFrag
+          amount: 2
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateAmmo
@@ -349,8 +373,9 @@
         - id: SyringeRomerol
         - id: WeaponRevolverPython
         - id: MagazineBoxMagnumIncendiary
-        - id: PillCanisterAmbuzol
-          amount: 5
+        - id: PillAmbuzolPlus
+        - id: PillAmbuzol
+          amount: 3
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicateMedicalBundle

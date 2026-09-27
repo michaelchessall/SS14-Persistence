@@ -1,6 +1,5 @@
 #nullable enable
 using System.Collections.Generic;
-using Content.IntegrationTests.Fixtures;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown;
@@ -9,7 +8,7 @@ using Robust.UnitTesting;
 
 namespace Content.IntegrationTests.Tests.PrototypeTests;
 
-public sealed class PrototypeTests : GameTest
+public sealed class PrototypeTests
 {
     /// <summary>
     /// This test writes all known server prototypes as yaml files, then validates that the result is valid yaml.
@@ -18,9 +17,10 @@ public sealed class PrototypeTests : GameTest
     [Test]
     public async Task TestAllServerPrototypesAreSerializable()
     {
-        var ser = Pair.Server.ResolveDependency<ISerializationManager>();
-        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
-        await SaveThenValidatePrototype(Pair.Server, "server", context);
+        await using var pair = await PoolManager.GetServerClient();
+        var context = new PrototypeSaveTest.TestEntityUidContext();
+        await SaveThenValidatePrototype(pair.Server, "server", context);
+        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -30,9 +30,10 @@ public sealed class PrototypeTests : GameTest
     [Test]
     public async Task TestAllClientPrototypesAreSerializable()
     {
-        var ser = Pair.Server.ResolveDependency<ISerializationManager>();
-        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
-        await SaveThenValidatePrototype(Pair.Client, "client", context);
+        await using var pair = await PoolManager.GetServerClient();
+        var context = new PrototypeSaveTest.TestEntityUidContext();
+        await SaveThenValidatePrototype(pair.Client, "client", context);
+        await pair.CleanReturnAsync();
     }
 
     public async Task SaveThenValidatePrototype(RobustIntegrationTest.IntegrationInstance instance, string instanceId,
@@ -68,9 +69,10 @@ public sealed class PrototypeTests : GameTest
     [Test]
     public async Task ServerPrototypeSaveLoadSaveTest()
     {
-        var ser = Pair.Server.ResolveDependency<ISerializationManager>();
-        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
-        await SaveLoadSavePrototype(Pair.Server, context);
+        await using var pair = await PoolManager.GetServerClient();
+        var context = new PrototypeSaveTest.TestEntityUidContext();
+        await SaveLoadSavePrototype(pair.Server, context);
+        await pair.CleanReturnAsync();
     }
 
     /// <summary>
@@ -79,9 +81,10 @@ public sealed class PrototypeTests : GameTest
     [Test]
     public async Task ClientPrototypeSaveLoadSaveTest()
     {
-        var ser = Pair.Server.ResolveDependency<ISerializationManager>();
-        var context = new PrototypeSaveTest.TestEntityUidContext(ser);
-        await SaveLoadSavePrototype(Pair.Client, context);
+        await using var pair = await PoolManager.GetServerClient();
+        var context = new PrototypeSaveTest.TestEntityUidContext();
+        await SaveLoadSavePrototype(pair.Client, context);
+        await pair.CleanReturnAsync();
     }
 
     private async Task SaveLoadSavePrototype(

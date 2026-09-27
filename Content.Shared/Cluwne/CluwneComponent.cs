@@ -1,7 +1,6 @@
 using Content.Shared.Chat.Prototypes;
 using Content.Shared.Damage;
 using Content.Shared.Roles;
-using Content.Shared.StatusEffectNew.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
@@ -12,12 +11,6 @@ namespace Content.Shared.Cluwne;
 [NetworkedComponent]
 public sealed partial class CluwneComponent : Component
 {
-    /// <summary>
-    /// A status effect applied to those afflicted with cluwneness.
-    /// </summary>
-    [DataField]
-    public EntProtoId<StatusEffectComponent> CluwneStatus = "StatusEffectClumsyCluwne";
-
     /// <summary>
     /// timings for giggles and knocks.
     /// </summary>

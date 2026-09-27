@@ -1,7 +1,7 @@
 - type: entity
-  parent: SolutionLarge
-  abstract: true
-  id: BaseHydroponicsSoil
+  id: hydroponicsSoil
+  name: soil
+  description: A mix of organic matter and minerals creating a soil to grow your plant in space. Seems to be dry.
   placement:
     mode: SnapgridCenter
   components:
@@ -21,12 +21,27 @@
         - FullTileMask
         layer:
         - FullTileMask
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Sprite
+    sprite: Structures/Hydroponics/misc.rsi
+    state: soil
     noRot: true
-  - type: PlantTray
+  - type: PlantHolder
     drawWarnings: false
-  - type: Solution
-    id: soil
+  - type: SolutionContainerManager
+    solutions:
+      soil:
+        maxVol: 200
   - type: RefillableSolution
     solution: soil
     maxRefill: 50
@@ -41,28 +56,7 @@
         reagent: Water
         solution: soil
   - type: Appearance
-  - type: PlantTrayVisuals
-
-- type: entity
-  parent: [ BaseHydroponicsSoil, StructureHealthContainer ]
-  id: hydroponicsSoil
-  name: soil
-  description: A mix of organic matter and minerals creating a soil to grow your plant in space. Seems to be dry.
-  components:
-  - type: Damageable
-    damageModifierSet: RockMod
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/break_stone.ogg
-  - type: Sprite
-    sprite: Structures/Hydroponics/misc.rsi
-    state: soil
+  - type: PlantHolderVisuals
 
 - type: entity
   parent: hydroponicsSoil
@@ -77,6 +71,6 @@
     sprite: Structures/Hydroponics/misc.rsi
     state: fungal_soil
     noRot: true
-  - type: PlantTray
+  - type: PlantHolder
     waterLevel: 0
     nutritionLevel: 0

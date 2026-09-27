@@ -8,7 +8,7 @@ using Robust.Shared.Timing;
 
 namespace Content.Shared.CombatMode;
 
-public abstract partial class SharedCombatModeSystem : EntitySystem
+public abstract class SharedCombatModeSystem : EntitySystem
 {
     [Dependency] protected readonly IGameTiming Timing = default!;
     [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
@@ -47,7 +47,7 @@ public abstract partial class SharedCombatModeSystem : EntitySystem
         SetInCombatMode(uid, !component.IsInCombatMode, component);
 
         var msg = component.IsInCombatMode ? "action-popup-combat-enabled" : "action-popup-combat-disabled";
-        _popup.PopupEntity(Loc.GetString(msg), args.Performer, args.Performer);
+        _popup.PopupClient(Loc.GetString(msg), args.Performer, args.Performer);
     }
 
     public void SetCanDisarm(EntityUid entity, bool canDisarm, CombatModeComponent? component = null)

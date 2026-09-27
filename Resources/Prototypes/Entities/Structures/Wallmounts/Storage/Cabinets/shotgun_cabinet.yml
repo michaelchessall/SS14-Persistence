@@ -31,9 +31,9 @@
       visible: true
     - state: glass
       map: ["enum.OpenableVisuals.Layer"]
-    - state: locked
-      shader: unshaded
-      map: ["enum.LockVisualLayers.Lock"]
+  - type: Icon
+    sprite: Structures/Wallmounts/fireaxe_cabinet.rsi
+    state: "cabinet"
   - type: ItemSlots
     slots:
       ItemCabinet:

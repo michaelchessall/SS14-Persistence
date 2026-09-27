@@ -51,6 +51,9 @@
     collectionName: substation
 
   # Damage
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallicStrong
   - type: PacifismDangerousAttack
 
   # Guidebook
@@ -70,7 +73,7 @@
 - type: entity
   abstract: true
   id: BaseSubstation
-  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine, BaseConstructibleMachineDestructible ]
+  parent: [ CoreSubstation, BaseMachine, ConstructibleMachine ]
   name: substation
   description: Reduces the voltage of electricity put into it.
   placement:
@@ -100,12 +103,25 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 175
+        damage: 200
       behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
       - !type:ExplodeBehavior
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          MachineFrameDestroyed:
+            min: 1
+            max: 1
       - !type:SpawnGasBehavior
         gasMixture:
           volume: 1000
@@ -132,8 +148,8 @@
 
 # Compact Wall Substation Base
 - type: entity
-  parent: [ CoreSubstation, StructureHealthMachine ]
   id: BaseSubstationWall
+  parent: CoreSubstation
   categories: [ HideSpawnMenu ]
   name: wallmount substation
   description: A substation designed for compact shuttles and spaces.
@@ -176,14 +192,20 @@
   - type: PowerMonitoringDevice
     sprite: Structures/Power/substation.rsi
     state: substation_wall_static
-  - type: Damageable
-    damageModifierSet: SteelMod
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 175
+        damage: 200
       behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
       - !type:ExplodeBehavior
       - !type:PlaySoundBehavior
         sound:

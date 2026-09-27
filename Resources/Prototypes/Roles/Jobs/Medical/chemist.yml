@@ -26,7 +26,6 @@
   job: Chemist
   equipment:
     head: ClothingHeadHatBeretMedic
-    eyes: ClothingEyesGlassesChemical
     mask: ClothingMaskSterile
     neck: ClothingNeckStethoscope
     outerClothing: ClothingOuterCoatLabChem

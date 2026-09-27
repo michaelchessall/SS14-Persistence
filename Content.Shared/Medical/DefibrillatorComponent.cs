@@ -61,6 +61,12 @@ public sealed partial class DefibrillatorComponent : Component
     public bool AllowDoAfterMovement = true;
 
     /// <summary>
+    /// Can the defibrilator be used on mobs in critical mobstate?
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public bool CanDefibCrit = true;
+
+    /// <summary>
     /// The sound to play when someone is zapped.
     /// </summary>
     [DataField]

@@ -69,7 +69,4 @@ public sealed partial class TraitPrototype : IPrototype
     /// </summary>
     [DataField]
     public ProtoId<TraitCategoryPrototype>? Category;
-
-    [DataField]
-    public bool Selectable = true;
 }

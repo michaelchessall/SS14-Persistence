@@ -32,11 +32,5 @@ public sealed partial class EntityTableSpawnerComponent : Component
     /// </summary>
     [DataField]
     public bool DeleteSpawnerAfterSpawn = true;
-
-    /// <summary>
-    /// Marker, if produced entities should be spawned stacked if they could be.
-    /// </summary>
-    [DataField]
-    public bool AutoStack = false;
 }
 

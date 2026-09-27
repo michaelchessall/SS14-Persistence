@@ -82,9 +82,7 @@ public sealed class PopupUIController : UIController, IOnStateEntered<GameplaySt
         }
 
         var dimensions = handle.GetDimensions(font, popup.Text, scale);
-        var drawPosition = updatedPosition - dimensions / 2f;
-        var outline = TextOutline.Default with { Color = TextOutline.Default.Color.WithAlpha(alpha) };
-        handle.DrawString(font, drawPosition, popup.Text, scale, color.WithAlpha(alpha), outline);
+        handle.DrawString(font, updatedPosition - dimensions / 2f, popup.Text, scale, color.WithAlpha(alpha));
     }
 
     /// <summary>

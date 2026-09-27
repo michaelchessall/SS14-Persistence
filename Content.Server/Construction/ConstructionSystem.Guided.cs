@@ -11,7 +11,7 @@ namespace Content.Server.Construction
 {
     public sealed partial class ConstructionSystem
     {
-        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private readonly SharedPopupSystem _popup = default!;
 
         private readonly Dictionary<ConstructionPrototype, ConstructionGuide> _guideCache = new();
 
@@ -24,7 +24,7 @@ namespace Content.Server.Construction
 
         private void OnGuideRequested(RequestConstructionGuide msg, EntitySessionEventArgs args)
         {
-            if (!ProtoMan.TryIndex(msg.ConstructionId, out ConstructionPrototype? prototype))
+            if (!PrototypeManager.TryIndex(msg.ConstructionId, out ConstructionPrototype? prototype))
                 return;
 
             if (GetGuide(prototype) is { } guide)
@@ -40,7 +40,7 @@ namespace Content.Server.Construction
                 component.Node == component.DeconstructionNode)
                 return;
 
-            if (!ProtoMan.TryIndex(component.Graph, out ConstructionGraphPrototype? graph))
+            if (!PrototypeManager.TryIndex(component.Graph, out ConstructionGraphPrototype? graph))
                 return;
 
             if (component.DeconstructionNode == null)
@@ -88,18 +88,9 @@ namespace Content.Server.Construction
                     }
                     else
                     {
-                        // Try to get the name of the prototype on the node, if one exists.
-                        var targetProtoId = target.Entity.GetId(uid, args.Examiner, new(EntityManager));
-                        if (targetProtoId != null
-                            && ProtoMan.TryIndex(targetProtoId, out var targetPrototype))
-                        {
-                            args.PushMarkup(Loc.GetString("construction-component-to-create-prototype-header",
-                            ("targetName", targetPrototype.Name)) + "\n");
-                        }
-                        else
-                        {
-                            args.PushMarkup(Loc.GetString("construction-component-to-create-header") + "\n");
-                        }
+                        args.PushMarkup(Loc.GetString(
+                            "construction-component-to-create-header",
+                            ("targetName", target.Name)) + "\n");
                     }
                 }
 
@@ -153,7 +144,7 @@ namespace Content.Server.Construction
                 return guide;
 
             // If the graph doesn't actually exist, do nothing.
-            if (!ProtoMan.Resolve(construction.Graph, out ConstructionGraphPrototype? graph))
+            if (!PrototypeManager.Resolve(construction.Graph, out ConstructionGraphPrototype? graph))
                 return null;
 
             // If either the start node or the target node are missing, do nothing.

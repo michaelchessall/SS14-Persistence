@@ -9,6 +9,7 @@
   "states": [
     {
       "name": "sparkles",
+      "directions": 1,
       "delays": [
         [
           0.14,

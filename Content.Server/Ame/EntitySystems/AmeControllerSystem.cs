@@ -17,14 +17,14 @@ using System.Linq;
 
 namespace Content.Server.Ame.EntitySystems;
 
-public sealed partial class AmeControllerSystem : EntitySystem
+public sealed class AmeControllerSystem : EntitySystem
 {
-    [Dependency] private IAdminLogManager _adminLogger = default!;
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private AppearanceSystem _appearanceSystem = default!;
-    [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private UserInterfaceSystem _userInterfaceSystem = default!;
-    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
 
     public override void Initialize()
     {
@@ -112,11 +112,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
 
                 // only play audio if we actually had an injection
                 if (availableInject > 0)
-                {
-                    var audioParams = controller.InjectSound?.Params ?? AudioParams.Default;
-                    audioParams = audioParams.AddVolume(overloading ? 10f : 0f);
-                    _audioSystem.PlayPvs(controller.InjectSound, uid, audioParams);
-                }
+                    _audioSystem.PlayPvs(controller.InjectSound, uid, AudioParams.Default.WithVolume(overloading ? 10f : 0f));
                 UpdateUi(uid, controller);
             }
         }
@@ -345,10 +341,7 @@ public sealed partial class AmeControllerSystem : EntitySystem
         if (!PlayerCanUseController(uid, user, needsPower, comp))
             return;
 
-        var audioParams = comp.ClickSound?.Params ?? AudioParams.Default;
-        audioParams = audioParams.AddVolume(-2f);
-        _audioSystem.PlayPvs(comp.ClickSound, uid, audioParams);
-
+        _audioSystem.PlayPvs(comp.ClickSound, uid, AudioParams.Default.WithVolume(-2f));
         switch (msg.Button)
         {
             case UiButton.Eject:

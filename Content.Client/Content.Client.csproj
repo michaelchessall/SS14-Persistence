@@ -3,7 +3,7 @@
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <OutputPath>..\bin\Content.Client\</OutputPath>
     <OutputType Condition="'$(FullRelease)' != 'True'">Exe</OutputType>
-    <WarningsAsErrors>RA0032;nullable;CS8785</WarningsAsErrors>
+    <WarningsAsErrors>RA0032;nullable</WarningsAsErrors>
   </PropertyGroup>
   <Import Project="../MSBuild/Content.props" />
   <ItemGroup>
@@ -26,15 +26,8 @@
   </ItemGroup>
   <Import Project="..\RobustToolbox\MSBuild\Robust.Properties.targets" />
   <Import Project="..\RobustToolbox\MSBuild\XamlIL.targets" />
-  <Import Project="..\RobustToolbox\MSBuild\Robust.EntitySystemSubscriptionsGenerator.targets" />
   <ItemGroup>
     <AdditionalFiles Update="CrewAssignments\UI\PrecursorObjective.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </AdditionalFiles>
-    <AdditionalFiles Update="CrewAssignments\UI\ReputationBoxFragment.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </AdditionalFiles>
-    <AdditionalFiles Update="CrewAssignments\UI\RumorBoxFragment.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
     <AdditionalFiles Update="GridControl\UI\StationTaggerWindow.xaml">

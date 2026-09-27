@@ -1,8 +1,4 @@
 #nullable enable
-using System;
-using System.IO;
-using System.Runtime.CompilerServices;
-using System.Threading.Tasks;
 using BenchmarkDotNet.Attributes;
 using BenchmarkDotNet.Configs;
 using Content.IntegrationTests;
@@ -18,6 +14,9 @@ using Robust.Shared.GameObjects;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
+using System;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 namespace Content.Benchmarks;
 
@@ -45,7 +44,7 @@ public class ComponentQueryBenchmark
         ProgramShared.PathOffset = "../../../../";
         PoolManager.Startup(typeof(QueryBenchSystem).Assembly);
 
-        _pair = PoolManager.GetServerClient(testContext: new ExternalTestContext("Benchmark", StreamWriter.Null)).GetAwaiter().GetResult();
+        _pair = PoolManager.GetServerClient().GetAwaiter().GetResult();
         _entMan = _pair.Server.ResolveDependency<IEntityManager>();
 
         _itemQuery = _entMan.GetEntityQuery<ItemComponent>();
@@ -259,7 +258,7 @@ public struct QueryBenchEvent
     public int HashCode;
 }
 
-public sealed partial class QueryBenchSystem : EntitySystem
+public sealed class QueryBenchSystem : EntitySystem
 {
     public override void Initialize()
     {

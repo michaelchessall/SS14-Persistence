@@ -1,10 +1,7 @@
 using Content.Server.Worldgen.Components.Debris;
 using Content.Server.Worldgen.Systems.Debris;
 using Content.Shared.Movement.Components;
-using Robust.Server.GameObjects;
-using Robust.Shared.Map;
 using Robust.Shared.Physics.Systems;
-using Robust.Shared.Random;
 using System.Numerics;
 
 namespace Content.Server.Movement.Systems;
@@ -13,7 +10,7 @@ public sealed class MapBoundsSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -44,15 +41,5 @@ public sealed class MapBoundsSystem : EntitySystem
 
         _physics.ApplyLinearImpulse(ent.Owner, (Vector2.Zero - args.NewPosition.Position).Normalized() * (MathF.Sqrt(distSquared) - mapBounds.Radius) * mapBounds.BaseImpulseVelocity);
 
-    }
-
-    public MapCoordinates GetRandomInBounds(EntityUid map)
-    {
-        if (!TryComp<MapBoundsComponent>(map, out var mapBounds) || mapBounds == null)
-            return MapCoordinates.Nullspace;
-        var random = IoCManager.Resolve<IRobustRandom>();
-        var angle = random.NextFloat(0, 2 * MathF.PI);
-        var radius = random.NextFloat(0, mapBounds.Radius);
-        return new MapCoordinates(new Vector2(MathF.Cos(angle), MathF.Sin(angle)) * radius, _transform.GetMapId(map));
     }
 }

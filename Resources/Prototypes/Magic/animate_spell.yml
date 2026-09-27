@@ -8,10 +8,9 @@
     useDelay: 0
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/staff_animation.ogg
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: spell_default
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: spell_default
   - type: EntityTargetAction
     whitelist:
       components:
@@ -53,9 +52,8 @@
       - type: MovementAlwaysTouching
       - type: CanMoveInAir
       - type: Damageable
-        damageModifierSet: ManifestedSpirit
-      - type: Injurable
         damageContainer: ManifestedSpirit
+        damageModifierSet: ManifestedSpirit
       - type: Destructible
         thresholds:
         - trigger:

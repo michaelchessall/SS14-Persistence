@@ -7,6 +7,7 @@ using Content.Shared.Damage;
 using Content.Shared.Damage.Prototypes;
 using Content.Shared.Destructible;
 using Content.Shared.Storage.Components;
+using Content.Server.Forensics;
 using Content.Shared.Clothing.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Prototypes;
@@ -14,20 +15,18 @@ using Robust.Shared.Random;
 using System.Linq;
 using Content.Shared.Chemistry;
 using Content.Shared.Damage.Systems;
-using Content.Shared.Forensics.Systems;
-using Content.Shared.Forensics.Components;
 
 namespace Content.Server._Funkystation.WashingMachine;
 
-public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
+public sealed class WashingMachineSystem : SharedWashingMachineSystem
 {
-    [Dependency] private SharedSolutionContainerSystem _solution = null!;
-    [Dependency] private SharedStainSystem _stains = null!;
-    [Dependency] private ForensicsSystem _forensics = null!;
-    [Dependency] private DamageableSystem _damageable = null!;
-    [Dependency] private IRobustRandom _random = null!;
-    [Dependency] private ReactiveSystem _reactive = null!;
-    private const string BluntProtoId = "Blunt";
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = null!;
+    [Dependency] private readonly SharedStainSystem _stains = null!;
+    [Dependency] private readonly ForensicsSystem _forensics = null!;
+    [Dependency] private readonly DamageableSystem _damageable = null!;
+    [Dependency] private readonly IPrototypeManager _proto = null!;
+    [Dependency] private readonly IRobustRandom _random = null!;
+    [Dependency] private readonly ReactiveSystem _reactive = null!;
 
     private static readonly SoundSpecifier HitSound = new SoundCollectionSpecifier("MetalThud");
 
@@ -67,7 +66,7 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
         if (!TryComp<EntityStorageComponent>(uid, out var storage) || storage.Contents.ContainedEntities.Count == 0)
             return;
 
-        var bluntProto = ProtoMan.Index<DamageTypePrototype>(BluntProtoId);
+        var bluntProto = _proto.Index<DamageTypePrototype>("Blunt");
         var damage = new DamageSpecifier(bluntProto, comp.BluntDamagePerSecond * frameTime);
 
         var waterSpray = new Solution();
@@ -125,7 +124,7 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
                 if (TryComp<StainableComponent>(item, out var stain) && _solution.TryGetSolution(item, stain.SolutionName, out var sol))
                 {
                     if (TryComp<ForensicsComponent>(uid, out var machineForensics))
-                        machineForensics.DNAs.UnionWith(_forensics.GetSolutionsDNA(sol.Value.Comp.Solution));
+                        machineForensics.DNAs.AddRange(_forensics.GetSolutionsDNA(sol.Value.Comp.Solution));
 
                     _solution.RemoveAllSolution(sol.Value);
                     _stains.UpdateVisuals((item, stain));
@@ -146,7 +145,7 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
 
         if (comp.AccumulatedSelfDamage > 0)
         {
-            var bluntProto = ProtoMan.Index<DamageTypePrototype>(BluntProtoId);
+            var bluntProto = _proto.Index<DamageTypePrototype>("Blunt");
             var selfDamage = new DamageSpecifier(bluntProto, comp.AccumulatedSelfDamage);
             _damageable.TryChangeDamage(uid, selfDamage, ignoreResistances: true);
             comp.AccumulatedSelfDamage = 0;

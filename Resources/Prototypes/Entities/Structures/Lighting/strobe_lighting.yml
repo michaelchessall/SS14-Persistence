@@ -1,13 +1,8 @@
 - type: entity
-  parent: BaseLightHousingDestructible
   id: AlwaysPoweredStrobeLight
   name: strobe
-  suffix: Always powered
   description: "UH?! Sorry, all I can hear is WEE-OOO-WEE-OOO!"
-  placement:
-    mode: SnapgridCenter
-    snap:
-    - Wallmount
+  suffix: Always powered
   components:
   - type: AmbientSound
     volume: -15
@@ -36,7 +31,7 @@
       shader: unshaded
     state: base
   - type: PointLight
-    lightMask: ConeDouble
+    mask: /Textures/Effects/LightMasks/double_cone.png
     color: "#FFE4CE"
     energy: 5
     radius: 10
@@ -56,17 +51,33 @@
         - None
         layer:
         - TabletopMachineLayer
+  - type: Damageable
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 50
+        damage: 100
+      behaviors: #excess damage, don't spawn entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 25
       behaviors:
+      - !type:EmptyAllContainersBehaviour
       - !type:SpawnEntitiesBehavior
         spawn:
           SheetSteel1:
             min: 1
             max: 1
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+  placement:
+    mode: SnapgridCenter
+    snap:
+    - Wallmount
 
 - type: entity
   name: strobe
@@ -89,7 +100,6 @@
   - type: PoweredLight
     bulb: Bulb
     on: false
-  - type: SpookyPoweredLight
   - type: ApcPowerReceiver
   - type: ExtensionCableReceiver
   - type: DeviceNetwork

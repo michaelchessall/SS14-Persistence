@@ -2,20 +2,25 @@ using Content.Shared.Construction;
 using Content.Shared.Coordinates.Helpers;
 using JetBrains.Annotations;
 
-namespace Content.Server.Construction.Completions;
-
-[UsedImplicitly]
-[DataDefinition]
-public sealed partial class SnapToGrid : IGraphAction
+namespace Content.Server.Construction.Completions
 {
-    [DataField] public bool SouthRotation { get; private set; }
-
-    public void PerformAction(EntityUid uid, EntityUid? userUid, IEntityManager entityManager)
+    [UsedImplicitly]
+    [DataDefinition]
+    public sealed partial class SnapToGrid : IGraphAction
     {
-        var transform = entityManager.GetComponent<TransformComponent>(uid);
-        var xformSystem = entityManager.System<SharedTransformSystem>();
+        [DataField("southRotation")] public bool SouthRotation { get; private set; }
 
-        if (!transform.Anchored)
-            xformSystem.SetCoordinates(uid, transform, transform.Coordinates.SnapToGrid(entityManager), rotation: SouthRotation ? Angle.Zero : null);
+        public void PerformAction(EntityUid uid, EntityUid? userUid, IEntityManager entityManager)
+        {
+            var transform = entityManager.GetComponent<TransformComponent>(uid);
+
+            if (!transform.Anchored)
+                entityManager.System<SharedTransformSystem>().SetCoordinates(uid, transform.Coordinates.SnapToGrid(entityManager));
+
+            if (SouthRotation)
+            {
+                transform.LocalRotation = Angle.Zero;
+            }
+        }
     }
 }

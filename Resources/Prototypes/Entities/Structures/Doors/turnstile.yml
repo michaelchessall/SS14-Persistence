@@ -45,21 +45,37 @@
       - Pullable # no dragging things in
   - type: Appearance
   - type: Damageable
-    damageModifierSet: SteelMod
+    damageContainer: Inorganic
+    damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 200
+        damage: 500
       behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: AccessReader
   - type: Construction
     graph: Turnstile
     node: turnstile
-  - type: DirectionalArrowIndicator
+
+- # Spawned by the client-side turnstile examine code to indicate the direction to pass through.
+  type: entity
+  id: TurnstileArrow
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/turnstile.rsi
+    color: "#FFFFFFBB"
+    layers:
+    - state: arrow
+      offset: 0, 0.78125
+  - type: TimedDespawn
+    lifetime: 2
+  - type: Tag
+    tags:
+    - HideContextMenu
 
 # Genpop
 

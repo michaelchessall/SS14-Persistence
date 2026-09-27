@@ -15,10 +15,9 @@
         pitch: 1.2
         maxDistance: 5
         variation: 0.2
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: item_recall
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: item_recall
   - type: InstantAction
     event: !type:OnItemRecallActionEvent
   - type: ItemRecall

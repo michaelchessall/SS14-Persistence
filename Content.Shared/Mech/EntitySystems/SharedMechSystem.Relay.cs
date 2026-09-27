@@ -5,20 +5,29 @@ namespace Content.Shared.Mech.EntitySystems;
 
 public abstract partial class SharedMechSystem
 {
-    [SubscribeLocalEvent]
-    private void OnGettingAttackedAttempt(Entity<MechComponent> ent, ref GettingAttackedAttemptEvent args)
+    private void InitializeRelay()
     {
-        RelayRefToPilot(ent, ref args);
+        SubscribeLocalEvent<MechComponent, GettingAttackedAttemptEvent>(RelayRefToPilot);
     }
 
-    private void RelayRefToPilot<T>(Entity<MechComponent> uid, ref T args) where T : struct
+    private void RelayToPilot<T>(Entity<MechComponent> uid, T args) where T : class
     {
-        if (!Vehicle.TryGetOperator(uid.Owner, out var operatorEnt))
+        if (uid.Comp.PilotSlot.ContainedEntity is not { } pilot)
             return;
 
         var ev = new MechPilotRelayedEvent<T>(args);
 
-        RaiseLocalEvent(operatorEnt.Value, ref ev);
+        RaiseLocalEvent(pilot, ref ev);
+    }
+
+    private void RelayRefToPilot<T>(Entity<MechComponent> uid, ref T args) where T : struct
+    {
+        if (uid.Comp.PilotSlot.ContainedEntity is not { } pilot)
+            return;
+
+        var ev = new MechPilotRelayedEvent<T>(args);
+
+        RaiseLocalEvent(pilot, ref ev);
 
         args = ev.Args;
     }

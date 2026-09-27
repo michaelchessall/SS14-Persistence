@@ -1,5 +1,6 @@
 using Content.Shared.Random;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Procedural.Loot;
 
@@ -8,25 +9,25 @@ namespace Content.Shared.Procedural.Loot;
 /// </summary>
 public sealed partial class RandomSpawnsLoot : IDungeonLoot
 {
-    [DataField(required: true)]
+    [ViewVariables(VVAccess.ReadWrite), DataField("entries", required: true)]
     public List<RandomSpawnLootEntry> Entries = new();
 }
 
 [DataDefinition]
 public partial record struct RandomSpawnLootEntry() : IBudgetEntry
 {
-    [DataField(required: true)]
-    public EntProtoId Proto { get; set; }
+    [ViewVariables(VVAccess.ReadWrite), DataField("proto", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string Proto { get; set; } = string.Empty;
 
     /// <summary>
     /// Cost for this loot to spawn.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("cost")]
     public float Cost { get; set; } = 1f;
 
     /// <summary>
     /// Unit probability for this entry. Weighted against the entire table.
     /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite), DataField("prob")]
     public float Prob { get; set; } = 1f;
 }

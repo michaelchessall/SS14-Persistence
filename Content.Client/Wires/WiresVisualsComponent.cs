@@ -1,17 +1,7 @@
-namespace Content.Client.Wires;
-
-/// <summary>
-/// Denotes an entity with an openable maintenance panel.
-/// The sprite layer with a map of "enum.WiresVisualLayers.MaintenancePanel" will be hidden and shown when the maintenance panel is open.
-/// </summary>
-/// <seealso cref="WiresVisuals.MaintenancePanelState"/>
-[RegisterComponent]
-public sealed partial class WiresVisualsComponent : Component
+namespace Content.Client.Wires
 {
-    /// <summary>
-    /// If true, the maintenance panel should be visible when the panel is closed.
-    /// If false, it should only be visible when the panel is open (typical for most machines).
-    /// </summary>
-    [DataField]
-    public bool VisibleWhenClosed;
+    [RegisterComponent]
+    public sealed partial class WiresVisualsComponent : Component
+    {
+    }
 }

@@ -3,7 +3,7 @@ using Content.Shared.Objectives.Components;
 
 namespace Content.Server.Objectives.Systems;
 
-public sealed partial class FreeObjectiveSystem : EntitySystem
+public sealed class FreeObjectiveSystem : EntitySystem
 {
     public override void Initialize()
     {

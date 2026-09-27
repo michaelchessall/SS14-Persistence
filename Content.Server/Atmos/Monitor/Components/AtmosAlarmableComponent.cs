@@ -1,10 +1,9 @@
 using Content.Shared.Atmos.Monitor;
 using Content.Shared.Tag;
 using Robust.Shared.Audio;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Set;
 
 namespace Content.Server.Atmos.Monitor.Components;
-
 // AtmosAlarmables are entities that can be alarmed
 // by a linked AtmosMonitor (alarmer?) if a threshold
 // is passed in some way. The intended use is to
@@ -32,32 +31,30 @@ public sealed partial class AtmosAlarmableComponent : Component
     [ViewVariables]
     public readonly Dictionary<string, AtmosAlarmType> NetworkAlarmStates = new();
 
-    [ViewVariables]
-    public AtmosAlarmType LastAlarmState = AtmosAlarmType.Invalid;
+    [ViewVariables] public AtmosAlarmType LastAlarmState = AtmosAlarmType.Invalid;
 
-    [ViewVariables]
-    public bool IgnoreAlarms;
+    [ViewVariables] public bool IgnoreAlarms { get; set; } = false;
 
-    [DataField]
-    public SoundSpecifier AlarmSound = new SoundPathSpecifier("/Audio/Machines/alarm.ogg");
+    [DataField("alarmSound")]
+    public SoundSpecifier AlarmSound { get; set; } = new SoundPathSpecifier("/Audio/Machines/alarm.ogg");
 
-    [DataField]
-    public float AlarmVolume = -10;
+    [DataField("alarmVolume")]
+    public float AlarmVolume { get; set; } = -10;
 
     /// <summary>
     ///     List of tags to check for when synchronizing alarms.
     /// </summary>
-    [DataField("syncWith")]
-    public HashSet<ProtoId<TagPrototype>> SyncWithTags = new();
+    [DataField("syncWith", customTypeSerializer: typeof(PrototypeIdHashSetSerializer<TagPrototype>))]
+    public HashSet<string> SyncWithTags { get; private set; } = new();
 
-    [DataField]
-    public AtmosMonitorThresholdTypeFlags MonitorAlertTypes;
+    [DataField("monitorAlertTypes")]
+    public AtmosMonitorThresholdTypeFlags MonitorAlertTypes { get; private set; }
 
     /// <summary>
     ///     If this device should receive only. If it can only
     ///     receive, that means that attempting to sync outwards
     ///     will result in nothing happening.
     /// </summary>
-    [DataField]
-    public bool ReceiveOnly;
+    [DataField("receiveOnly")]
+    public bool ReceiveOnly { get; private set; }
 }

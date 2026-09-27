@@ -57,8 +57,7 @@ public static class ServerPackaging
         "ru",
         "tr",
         "zh-Hans",
-        "zh-Hant",
-        "server_config.toml" // RT config (use our Content-facing one)
+        "zh-Hant"
     };
 
     public static async Task PackageServer(bool skipBuild, bool hybridAcz, bool logBuild, IPackageLogger logger, string configuration, List<string>? platforms = null)
@@ -173,12 +172,6 @@ public static class ServerPackaging
         var passes = graph.AllPasses.ToList();
 
         pass.Dependencies.Add(new AssetPassDependency(graph.Output.Name));
-
-        // Include a TOML config file - include the ss14 one from Resources if possible, using the RT one as a fallback.
-        var toml = Path.Combine(contentDir, "Resources", "ConfigPresets", "server_config.toml");
-        var robustToml = Path.Combine("RobustToolbox", "bin", "Server", platform.Rid, "publish", "server_config.toml");
-        pass.InjectFileFromDisk("server_config.toml", File.Exists(toml) ? toml : robustToml);
-
         passes.Add(pass);
 
         AssetGraph.CalculateGraph(passes, logger);

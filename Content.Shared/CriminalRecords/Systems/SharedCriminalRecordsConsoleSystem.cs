@@ -3,15 +3,17 @@ using Content.Shared.Security;
 using Content.Shared.Security.Components;
 using Content.Shared.Station;
 using Content.Shared.StationRecords;
-using Content.Shared.StationRecords.Systems;
 
 namespace Content.Shared.CriminalRecords.Systems;
 
-public abstract partial class SharedCriminalRecordsConsoleSystem : EntitySystem
+/// <summary>
+/// Station records aren't predicted, just exists for access.
+/// </summary>
+public abstract class SharedCriminalRecordsConsoleSystem : EntitySystem
 {
-    [Dependency] private SharedCriminalRecordsSystem _criminalRecords = default!;
-    [Dependency] private StationRecordsSystem _records = default!;
-    [Dependency] private SharedStationSystem _station = default!;
+    [Dependency] private readonly SharedCriminalRecordsSystem _criminalRecords = default!;
+    [Dependency] private readonly SharedStationRecordsSystem _records = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
 
     /// <summary>
     /// Checks if the new identity's name has a criminal record attached to it, and gives the entity the icon that

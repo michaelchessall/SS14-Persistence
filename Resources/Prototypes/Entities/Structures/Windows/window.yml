@@ -40,6 +40,7 @@
         layer:
         - GlassLayer
   - type: Damageable
+    damageContainer: StructuralInorganic
     damageModifierSet: Glass
   - type: ExaminableDamage
     messages: WindowMessages
@@ -92,8 +93,6 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: Injurable
-    damageContainer: StructuralInorganic
   - type: StaticPrice
     price: 100
   - type: BlockWeather
@@ -171,9 +170,8 @@
         - GlassLayer
   - type: Repairable
   - type: Damageable
-    damageModifierSet: Glass
-  - type: Injurable
     damageContainer: StructuralInorganic
+    damageModifierSet: Glass
   - type: ExaminableDamage
     messages: WindowMessages
   - type: RCDDeconstructable

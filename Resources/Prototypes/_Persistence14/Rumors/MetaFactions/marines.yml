@@ -1,7 +1,0 @@
-- type: metaFaction
-  id: Marines
-  name: UNMC Marines
-  description: "The UNMC controls the Marines Universe."
-  rumors:
-    - DiscoverSmallSalvage
-  color: Olive

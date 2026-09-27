@@ -15,14 +15,15 @@ namespace Content.Client.Machines.EntitySystems;
 /// Handles client side examination events to show the expected layout of the machine
 /// based on the origin of the main entity.
 /// </summary>
-public sealed partial class MultipartMachineSystem : SharedMultipartMachineSystem
+public sealed class MultipartMachineSystem : SharedMultipartMachineSystem
 {
     private readonly EntProtoId _ghostPrototype = "MultipartMachineGhost";
     private readonly Color _partiallyTransparent = new Color(255, 255, 255, 180);
 
-    [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private MetaDataSystem _metaData = default!;
-    [Dependency] private ISerializationManager _serialization = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
+    [Dependency] private readonly ISerializationManager _serialization = default!;
 
     public override void Initialize()
     {
@@ -55,7 +56,12 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
                 continue;
 
             var entityCoords = new EntityCoordinates(ent.Owner, part.Offset);
-            var ghostEnt = SpawnAttachedTo(_ghostPrototype, entityCoords, rotation: part.Rotation);
+            var ghostEnt = Spawn(_ghostPrototype, entityCoords);
+
+            if (!XformQuery.TryGetComponent(ghostEnt, out var xform))
+                break;
+
+            xform.LocalRotation = part.Rotation;
 
             Comp<MultipartMachineGhostComponent>(ghostEnt).LinkedMachine = ent;
 
@@ -64,7 +70,7 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
             if (part.GhostProto == null)
                 continue;
 
-            var entProto = ProtoMan.Index(part.GhostProto.Value);
+            var entProto = _prototype.Index(part.GhostProto.Value);
             if (!entProto.Components.TryGetComponent("Sprite", out var s) || s is not SpriteComponent protoSprite)
                 return;
 

@@ -3,7 +3,7 @@ using Content.Server.Administration.Managers;
 using Content.Server.EUI;
 using Content.Server.GameTicking.Events;
 using Content.Server.Ghost.Roles.Components;
-using Content.Shared.Ghost.Roles.Raffles;
+using Content.Server.Ghost.Roles.Events;
 using Content.Server.Ghost.Roles.UI;
 using Content.Server.Popups;
 using Content.Shared.Administration;
@@ -14,6 +14,7 @@ using Content.Shared.GameTicking;
 using Content.Shared.Ghost;
 using Content.Shared.Ghost.Roles;
 using Content.Shared.Ghost.Roles.Components;
+using Content.Shared.Ghost.Roles.Raffles;
 using Content.Shared.Mind;
 using Content.Shared.Mind.Components;
 using Content.Shared.Mobs;
@@ -34,26 +35,26 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
-using Content.Shared.Ghost.Systems;
-using Content.Shared.Ghost.Components;
 
 namespace Content.Server.Ghost.Roles;
 
 [UsedImplicitly]
-public sealed partial class GhostRoleSystem : EntitySystem
+public sealed class GhostRoleSystem : EntitySystem
 {
-    [Dependency] private IBanManager _ban = default!;
-    [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private EuiManager _euiManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private IAdminLogManager _adminLogger = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private FollowerSystem _followerSystem = default!;
-    [Dependency] private TransformSystem _transform = default!;
-    [Dependency] private SharedMindSystem _mindSystem = default!;
-    [Dependency] private SharedRoleSystem _roleSystem = default!;
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IBanManager _ban = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly EuiManager _euiManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly FollowerSystem _followerSystem = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedMindSystem _mindSystem = default!;
+    [Dependency] private readonly SharedRoleSystem _roleSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly PopupSystem _popupSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
 
     private uint _nextRoleIdentifier;
     private bool _needsUpdateGhostRoleCount = true;
@@ -245,7 +246,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
             }
 
             var foundWinner = false;
-            var deciderPrototype = ProtoMan.Index(ghostRole.RaffleConfig.Decider);
+            var deciderPrototype = _prototype.Index(ghostRole.RaffleConfig.Decider);
 
             // use the ghost role's chosen winner picker to find a winner
             deciderPrototype.Decider.PickWinner(
@@ -354,7 +355,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
             return; // should, realistically, never be reached but you never know
 
         var settings = config.SettingsOverride
-                       ?? ProtoMan.Index<GhostRoleRaffleSettingsPrototype>(config.Settings).Settings;
+                       ?? _prototype.Index<GhostRoleRaffleSettingsPrototype>(config.Settings).Settings;
 
         if (settings.MaxDuration < settings.InitialDuration)
         {
@@ -531,9 +532,10 @@ public sealed partial class GhostRoleSystem : EntitySystem
         // If there is no mind, check the mindRole prototypes
         foreach (var proto in roleEnt.Comp.MindRoles)
         {
-            if (!ProtoMan.TryIndex(proto, out var indexed)
-                || !indexed.TryComp<MindRoleComponent>(out var roleComp, Factory))
+            if (!_prototype.TryIndex(proto, out var indexed)
+                || !indexed.TryGetComponent<MindRoleComponent>(out var comp, _ent.ComponentFactory))
                 continue;
+            var roleComp = (MindRoleComponent)comp;
 
             if (roleComp.JobPrototype is not null)
                 jobs.Add(roleComp.JobPrototype.Value);
@@ -620,7 +622,8 @@ public sealed partial class GhostRoleSystem : EntitySystem
     /// </summary>
     public int GetGhostRoleCount()
     {
-        return _ghostRoles.Count(pair => MetaData(pair.Value.Owner).EntityPaused == false);
+        var metaQuery = GetEntityQuery<MetaDataComponent>();
+        return _ghostRoles.Count(pair => metaQuery.GetComponent(pair.Value.Owner).EntityPaused == false);
     }
 
     /// <summary>
@@ -632,10 +635,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
     public GhostRoleInfo[] GetGhostRolesInfo(ICommonSession? player)
     {
         var roles = new List<GhostRoleInfo>();
+        var metaQuery = GetEntityQuery<MetaDataComponent>();
 
         foreach (var (id, (uid, role)) in _ghostRoles)
         {
-            if (MetaData(uid).EntityPaused)
+            if (metaQuery.GetComponent(uid).EntityPaused)
                 continue;
 
 
@@ -779,13 +783,11 @@ public sealed partial class GhostRoleSystem : EntitySystem
         if (string.IsNullOrEmpty(component.Prototype))
             throw new NullReferenceException("Prototype string cannot be null or empty!");
 
-        if (!_transform.TryGetMapOrGridCoordinates(uid, out var spawnCoordinates))
-            return;
-
-        var mob = Spawn(component.Prototype, spawnCoordinates.Value);
+        var mob = Spawn(component.Prototype, Transform(uid).Coordinates);
+        _transform.AttachToGridOrMap(mob);
 
         var spawnedEvent = new GhostRoleSpawnerUsedEvent(uid, mob);
-        RaiseLocalEvent(mob, ref spawnedEvent);
+        RaiseLocalEvent(mob, spawnedEvent);
 
         if (ghostRole.MakeSentient)
             _mindSystem.MakeSentient(mob, ghostRole.AllowMovement, ghostRole.AllowSpeech);
@@ -856,7 +858,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
         foreach (var prototypeID in prototypes)
         {
-            if (ProtoMan.TryIndex<GhostRolePrototype>(prototypeID, out var prototype))
+            if (_prototype.TryIndex<GhostRolePrototype>(prototypeID, out var prototype))
             {
                 var verb = CreateVerb(uid, component, args.User, prototype);
                 verbs.Add(verb);
@@ -902,7 +904,7 @@ public sealed partial class GhostRoleSystem : EntitySystem
 
     public void OnGhostRoleRadioMessage(Entity<GhostRoleMobSpawnerComponent> entity, ref GhostRoleRadioMessage args)
     {
-        if (!ProtoMan.Resolve(args.ProtoId, out var ghostRoleProto))
+        if (!_prototype.Resolve(args.ProtoId, out var ghostRoleProto))
             return;
 
         // if the prototype chosen isn't actually part of the selectable options, ignore it
@@ -917,9 +919,9 @@ public sealed partial class GhostRoleSystem : EntitySystem
 }
 
 [AnyCommand]
-public sealed partial class GhostRoles : IConsoleCommand
+public sealed class GhostRoles : IConsoleCommand
 {
-    [Dependency] private IEntityManager _e = default!;
+    [Dependency] private readonly IEntityManager _e = default!;
 
     public string Command => "ghostroles";
     public string Description => "Opens the ghost role request window.";

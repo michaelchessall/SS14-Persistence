@@ -35,25 +35,22 @@ namespace Content.Client.ContextMenu.UI
     /// </remarks>
     public sealed partial class EntityMenuUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>
     {
-        [Dependency] private IEntitySystemManager _systemManager = default!;
-        [Dependency] private IEntityManager _entityManager = default!;
-        [Dependency] private IPlayerManager _playerManager = default!;
-        [Dependency] private IStateManager _stateManager = default!;
-        [Dependency] private IInputManager _inputManager = default!;
-        [Dependency] private IConfigurationManager _cfg = default!;
-        [Dependency] private IGameTiming _gameTiming = default!;
-        [Dependency] private IUserInterfaceManager _userInterfaceManager = default!;
-        [Dependency] private IEyeManager _eyeManager = default!;
-        [Dependency] private ContextMenuUIController _context = default!;
-        [Dependency] private VerbMenuUIController _verb = default!;
+        [Dependency] private readonly IEntitySystemManager _systemManager = default!;
+        [Dependency] private readonly IEntityManager _entityManager = default!;
+        [Dependency] private readonly IPlayerManager _playerManager = default!;
+        [Dependency] private readonly IStateManager _stateManager = default!;
+        [Dependency] private readonly IInputManager _inputManager = default!;
+        [Dependency] private readonly IConfigurationManager _cfg = default!;
+        [Dependency] private readonly IGameTiming _gameTiming = default!;
+        [Dependency] private readonly IUserInterfaceManager _userInterfaceManager = default!;
+        [Dependency] private readonly IEyeManager _eyeManager = default!;
+        [Dependency] private readonly ContextMenuUIController _context = default!;
+        [Dependency] private readonly VerbMenuUIController _verb = default!;
 
         [UISystemDependency] private readonly VerbSystem _verbSystem = default!;
         [UISystemDependency] private readonly ExamineSystem _examineSystem = default!;
         [UISystemDependency] private readonly TransformSystem _xform = default!;
         [UISystemDependency] private readonly CombatModeSystem _combatMode = default!;
-
-        private EntityQuery<TransformComponent> _xformQuery;
-        private EntityQuery<SpriteComponent> _spriteQuery;
 
         private bool _updating;
 
@@ -74,9 +71,6 @@ namespace Content.Client.ContextMenu.UI
             CommandBinds.Builder
                 .Bind(EngineKeyFunctions.UseSecondary, new PointerInputCmdHandler(HandleOpenEntityMenu, outsidePrediction: true))
                 .Register<EntityMenuUIController>();
-
-            _xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
-            _spriteQuery = _entityManager.GetEntityQuery<SpriteComponent>();
         }
 
         public void OnStateExited(GameplayState state)
@@ -217,20 +211,13 @@ namespace Content.Client.ContextMenu.UI
             visibility = ev.Visibility;
 
             _entityManager.TryGetComponent(player, out ExaminerComponent? examiner);
+            var xformQuery = _entityManager.GetEntityQuery<TransformComponent>();
 
             foreach (var entity in Elements.Keys.ToList())
             {
-                if (!_xformQuery.TryGetComponent(entity, out var xform))
+                if (!xformQuery.TryGetComponent(entity, out var xform))
                 {
                     // entity was deleted
-                    RemoveEntity(entity);
-                    continue;
-                }
-
-                if ((visibility & MenuVisibility.Invisible) == 0
-                    && _spriteQuery.TryGetComponent(entity, out var sprite)
-                    && !sprite.Visible)
-                {
                     RemoveEntity(entity);
                     continue;
                 }
@@ -238,7 +225,7 @@ namespace Content.Client.ContextMenu.UI
                 if ((visibility & MenuVisibility.NoFov) == MenuVisibility.NoFov)
                     continue;
 
-                var pos = new MapCoordinates(_xform.GetWorldPosition(xform, _xformQuery), xform.MapID);
+                var pos = new MapCoordinates(_xform.GetWorldPosition(xform, xformQuery), xform.MapID);
 
                 if (!_examineSystem.CanExamine(player, pos, e => e == player || e == entity, entity, examiner))
                     RemoveEntity(entity);
@@ -325,7 +312,7 @@ namespace Content.Client.ContextMenu.UI
 
             // remove the element
             var parent = element.ParentMenu?.ParentElement;
-            element.Orphan();
+            element.Dispose();
             Elements.Remove(entity);
 
             // update any parent elements
@@ -353,7 +340,7 @@ namespace Content.Client.ContextMenu.UI
             if (entity == null)
             {
                 // This whole element has no associated entities. We should remove it
-                element.Orphan();
+                element.Dispose();
                 return;
             }
 
@@ -365,7 +352,7 @@ namespace Content.Client.ContextMenu.UI
                 // There was only one entity in the sub-menu. So we will just remove the sub-menu and point directly to
                 // that entity.
                 element.Entity = entity;
-                element.SubMenu.Orphan();
+                element.SubMenu.Dispose();
                 element.SubMenu = null;
                 Elements[entity.Value] = element;
             }

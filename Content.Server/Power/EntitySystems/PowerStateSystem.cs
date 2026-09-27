@@ -4,27 +4,18 @@ using Content.Shared.Power.EntitySystems;
 
 namespace Content.Server.Power.EntitySystems;
 
-/// <inheritdoc/>>
-public sealed partial class PowerStateSystem : SharedPowerStateSystem
+public sealed class PowerStateSystem : SharedPowerStateSystem
 {
-    [Dependency] EntityQuery<PowerConsumerComponent> _powerConsumerQuery = default!;
-
-    /// <summary> Init IsWorking and power values on startup. </summary>
-    [SubscribeLocalEvent]
-    private void OnComponentStartup(Entity<PowerStateComponent> ent, ref ComponentStartup args)
+    public override void Initialize()
     {
-        if (ent.Comp.EnsureApc)
-            EnsureComp<ApcPowerReceiverComponent>(ent);
+        base.Initialize();
 
-        SetPowerLoad(ent, ent.Comp.IsWorking);
+        SubscribeLocalEvent<PowerStateComponent, ComponentStartup>(OnComponentStartup);
     }
 
-    /// <inheritdoc/>>
-    protected override void SetPowerLoad(Entity<PowerStateComponent> ent, bool isWorking)
+    private void OnComponentStartup(Entity<PowerStateComponent> ent, ref ComponentStartup args)
     {
-        base.SetPowerLoad(ent, isWorking);
-
-        if (_powerConsumerQuery.TryComp(ent, out var powerConsumer))
-            powerConsumer.DrawRate = isWorking ? ent.Comp.WorkingPowerDraw : ent.Comp.IdlePowerDraw;
+        EnsureComp<ApcPowerReceiverComponent>(ent);
+        SetWorkingState(ent.Owner, ent.Comp.IsWorking);
     }
 }

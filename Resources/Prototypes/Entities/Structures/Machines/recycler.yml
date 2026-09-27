@@ -1,6 +1,6 @@
-- type: entity
-  parent: [ BaseMachinePowered, StructureHealthMachineStrong, ConstructibleMachine ]
+﻿- type: entity
   id: Recycler
+  parent: [ BaseMachinePowered, ConstructibleMachine ]
   name: recycler
   description: A large crushing machine used to recycle small items inefficiently. There are lights on the side.
   components:
@@ -55,16 +55,12 @@
     noRot: false
   - type: Sprite
     drawdepth: Doors
-    sprite: Structures/Machines/recycler.rsi
+    sprite: Structures/Machines/recycling.rsi
     layers:
-    - state: recycler-o0
+    - state: grinder-o0
       map: ["enum.RecyclerVisualLayers.Main"]
   - type: Appearance
   - type: RecyclerVisuals
-  - type: DirectionalArrowIndicator
-    arrows:
-    - offset: 0, -1.35
-    - offset: 0, 0
 
   - type: CollideMaterialReclaimer
   - type: MaterialReclaimer
@@ -95,30 +91,17 @@
   - type: Repairable
     doAfterDelay: 5
     fuelCost: 25
-  - type: Damageable
-    damageModifierSet: SteelMod
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 275
+        damage: 300
       behaviors:
+      - !type:DoActsBehavior
+        acts: ["Breakage"]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-      - !type:SpawnEntitiesBehavior
-        offset: 0
-        spawn:
-          MachineFrameDestroyed:
-            min: 1
-            max: 1
-    - trigger:
-        !type:DamageTrigger
-        damage: 175
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalCrunch
   - type: InteractionPopup
     successChance: 1.0
     interactSuccessString: petting-success-recycler

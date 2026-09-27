@@ -28,14 +28,17 @@
       - ExCable
     overTile: true
   - type: Appearance
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Thermite
-        Quantity: 3
-      - ReagentId: Charcoal
-        Quantity: 2
-  - type: Injurable
+  - type: Extractable
+    grindableSolutionName: excable
+  - type: SolutionContainerManager
+    solutions:
+      mvcable:
+        reagents:
+        - ReagentId: Thermite
+          Quantity: 3
+        - ReagentId: Charcoal
+          Quantity: 2
+  - type: Damageable
     damageContainer: StructuralInorganic
   - type: Destructible # should have the same general explosive behavior as in cables.yml & detonator.yml
     thresholds:
@@ -47,8 +50,12 @@
       - !type:DoActsBehavior
         acts: ["Destruction"]
       - !type:ExplodeBehavior
-    # the 50 damage destruction node is inherited from the parent
-    # idea here is to prevent you from just beating it until it explodes.
+    - trigger:
+        !type:DamageTrigger # the idea here is to prevent you from just beating it until it explodes.
+        damage: 50
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Explosive
     explosionType: DemolitionCharge
     totalIntensity: 60
@@ -64,9 +71,9 @@
     # whitelist:
       # components:
       # - Airlock
-      # - Wall
       # tags:
       # - Window
+      # - Wall
   # - type: StickyVisualizer
 
 - type: entity

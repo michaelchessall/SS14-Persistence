@@ -1,17 +1,18 @@
 using Content.Shared.DeviceLinking;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
-namespace Content.Server.DeviceLinking.Components;
-
-/// <summary>
-/// Sends out a signal to machine linked objects when used in hand (Z).
-/// </summary>
-[RegisterComponent]
-public sealed partial class SignallerComponent : Component
+namespace Content.Server.DeviceLinking.Components
 {
     /// <summary>
-    /// The port that gets invoked when used.
+    /// Sends out a signal to machine linked objects.
     /// </summary>
-    [DataField]
-    public ProtoId<SourcePortPrototype> Port = "Pressed";
+    [RegisterComponent]
+    public sealed partial class SignallerComponent : Component
+    {
+        /// <summary>
+        ///     The port that gets signaled when the switch turns on.
+        /// </summary>
+        [DataField("port", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
+        public string Port = "Pressed";
+    }
 }

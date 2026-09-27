@@ -1,7 +1,4 @@
 using Content.Shared.Objectives;
-using Content.Shared.Roles;
-using Robust.Shared.CPUJob.JobQueues;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.CharacterInfo;
@@ -21,22 +18,22 @@ public sealed class RequestCharacterInfoEvent : EntityEventArgs
 public sealed class CharacterInfoEvent : EntityEventArgs
 {
     public readonly NetEntity NetEntity;
-    public readonly ProtoId<JobPrototype>? Job;
+    public readonly string JobTitle;
     public readonly string? Faction;
     public readonly string BankBal;
     public readonly Dictionary<string, List<ObjectiveInfo>> Objectives;
     public readonly string? Briefing;
     public readonly string? DetailExaminable;
 
-    public CharacterInfoEvent(NetEntity netEntity, string? faction, string bankBal, Dictionary<string, List<ObjectiveInfo>> objectives, string? briefing, string? detailExaminable, ProtoId<JobPrototype>? job)
+    public CharacterInfoEvent(NetEntity netEntity, string jobTitle, string? faction, string bankBal, Dictionary<string, List<ObjectiveInfo>> objectives, string? briefing, string? detailExaminable)
     {
         NetEntity = netEntity;
+        JobTitle = jobTitle;
+        Faction = faction;
+        BankBal = bankBal;
         Objectives = objectives;
         Briefing = briefing;
         DetailExaminable = detailExaminable;
-        Faction = faction;
-        BankBal = bankBal;
-        Job = job;
     }
 }
 

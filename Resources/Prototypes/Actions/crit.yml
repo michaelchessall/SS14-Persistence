@@ -16,10 +16,9 @@
   - type: Action
     startDelay: true
     useDelay: 10
-  - type: Sprite
-    sprite: Mobs/Ghosts/ghost_human.rsi
-    layers:
-    - state: icon
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
   - type: InstantAction
     event: !type:AcceptDeathEvent
 
@@ -32,10 +31,9 @@
   - type: Action
     startDelay: true
     useDelay: 10
-  - type: Sprite
-    sprite: Mobs/Ghosts/ghost_human.rsi
-    layers:
-    - state: icon
+    icon:
+      sprite: Mobs/Ghosts/ghost_human.rsi
+      state: icon
   - type: InstantAction
     event: !type:CritSuccumbEvent
 
@@ -47,10 +45,9 @@
   components:
   - type: Action
     useDelay: 30
-  - type: Sprite
-    sprite: Interface/Actions/actions_crit.rsi
-    layers:
-    - state: fakedeath
+    icon:
+      sprite: Interface/Actions/actions_crit.rsi
+      state: fakedeath
   - type: InstantAction
     event: !type:CritFakeDeathEvent
 
@@ -61,9 +58,8 @@
   description: Whisper your last words to anyone nearby, and then succumb to your fate. You only have 30 characters to work with.
   components:
   - type: Action
-  - type: Sprite
-    sprite: Interface/Actions/actions_crit.rsi
-    layers:
-    - state: lastwords
+    icon:
+      sprite: Interface/Actions/actions_crit.rsi
+      state: lastwords
   - type: InstantAction
     event: !type:CritLastWordsEvent

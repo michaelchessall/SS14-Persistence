@@ -8,7 +8,8 @@
   "copyright": "Made by brainfood1183 (github) for ss14",
   "states": [
     {
-      "name": "bell"
+      "name": "bell",
+      "directions": 4
     }
   ]
 }

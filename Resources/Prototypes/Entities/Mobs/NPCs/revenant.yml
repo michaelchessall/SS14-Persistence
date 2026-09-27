@@ -22,9 +22,8 @@
     allowed:
     - Corporeal
   - type: Damageable
-    damageModifierSet: ManifestedSpirit
-  - type: Injurable
     damageContainer: ManifestedSpirit
+    damageModifierSet: ManifestedSpirit
   - type: NoSlip
   - type: Eye
     drawFov: false
@@ -33,6 +32,8 @@
       - Ghost
   - type: ContentEye
     maxZoom: 1.2, 1.2
+  - type: NameIdentifier
+    group: GenericNumber
   - type: GhostRole
     makeSentient: true
     name: ghost-role-information-revenant-name
@@ -79,9 +80,6 @@
     - NamesRevenantAdjective
     - NamesRevenantTheme
     nameFormat: name-format-revenant
-  - type: Grammar
-    attributes:
-      proper: true
   - type: Speech
     speechVerb: Ghost
   - type: Reactive
@@ -91,4 +89,3 @@
     tags:
     - SlowImmune
     - KnockdownImmune
-    - AllowPortalTraversal

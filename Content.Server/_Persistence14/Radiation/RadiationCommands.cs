@@ -1,5 +1,4 @@
 using Content.Server.Administration;
-using Content.Server.Radiation.Systems;
 using Content.Shared.Radiation.Components;
 using Robust.Shared.Console;
 
@@ -16,8 +15,6 @@ public sealed partial class AddRadiationCommand : IConsoleCommand
 
     public void Execute(IConsoleShell shell, string argStr, string[] args)
     {
-        var radiationSystem = _entityManager.System<RadiationSystem>();
-
         if (args.Length != 2)
         {
             shell.WriteError(Help);
@@ -40,12 +37,12 @@ public sealed partial class AddRadiationCommand : IConsoleCommand
 
         if (_entityManager.TryGetComponent<RadiationSourceComponent>(ent, out var source))
         {
-            radiationSystem.SetIntensity((ent, source), source.Intensity + intensity);
+            source.Intensity += intensity;
             return;
         }
 
         source = _entityManager.AddComponent<RadiationSourceComponent>(ent);
-        radiationSystem.SetIntensity((ent, source), intensity);
+        source.Intensity = intensity;
         return;
     }
 }

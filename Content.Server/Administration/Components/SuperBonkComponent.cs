@@ -20,13 +20,19 @@ public sealed partial class SuperBonkComponent : Component
     /// How often should we bonk.
     /// </summary>
     [DataField]
-    public TimeSpan BonkCooldown = TimeSpan.FromMilliseconds(1500);
+    public TimeSpan BonkCooldown = TimeSpan.FromMilliseconds(100);
 
     /// <summary>
     /// Next time when we will bonk.
     /// </summary>
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan NextBonk = TimeSpan.Zero;
+
+    /// <summary>
+    /// Whether to remove the clumsy component from the target after SuperBonk is done.
+    /// </summary>
+    [DataField]
+    public bool RemoveClumsy = true;
 
     /// <summary>
     /// Whether to stop Super Bonk on the target once he dies. Otherwise it will continue until no other tables are left

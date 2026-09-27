@@ -64,24 +64,17 @@
   - type: Sprite
     sprite: Clothing/Head/Misc/pumpkin.rsi
   - type: Clothing
-    clothingVisuals:
-      head:
-      - state: equipped-helmet
+    sprite: Clothing/Head/Misc/pumpkin.rsi
   - type: IngestionBlocker
   - type: IdentityBlocker
   - type: PointLight
     enabled: false
     radius: 3
     energy: 1
-    lightMask: ConeSingle
+    mask: /Textures/Effects/LightMasks/cone.png
     autoRot: true
     color: "#cc6600"
     netsync: false
-  - type: ToggleableVisuals
-    clothingVisuals:
-      head:
-      - state: equipped-helmet-light
-        shader: unshaded
   - type: ItemSlots
     slots:
       cell_slot:
@@ -92,12 +85,6 @@
     - HeadTop
     - HeadSide
     - FacialHair
-  - type: Item
-    inhandVisuals:
-      left:
-      - state: inhand-left
-      right:
-      - state: inhand-right
 
 - type: entity
   parent: ClothingHeadBase
@@ -197,8 +184,8 @@
     proto: regal
   - type: StaticPrice
     price: 1500
-  - type: MobsterAccent
-    relayAccent: true
+  - type: AddAccentClothing
+    accent: MobsterAccent
 
 - type: entity
   parent: [ ClothingHeadBase, BaseSyndicateContraband ]
@@ -213,8 +200,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/catears.rsi
-  - type: OwOAccent
-    relayAccent: true
+  - type: AddAccentClothing
+    accent: OwOAccent
   - type: StaticPrice
     price: 7500
 
@@ -237,8 +224,8 @@
     sprite: Clothing/Head/Hats/catears.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/catears.rsi
-  - type: OwOAccent
-    relayAccent: true
+  - type: AddAccentClothing
+    accent: OwOAccent
 
 - type: entity
   parent: BaseToggleAction
@@ -257,8 +244,8 @@
     sprite: Clothing/Head/Hats/dogears.rsi
   - type: Clothing
     sprite: Clothing/Head/Hats/dogears.rsi
-  - type: BarkAccent
-    relayAccent: true
+  - type: AddAccentClothing
+    accent: BarkAccent
 
 - type: entity
   parent: ClothingHeadBase
@@ -297,7 +284,7 @@
     - FacialHair
 
 - type: entity
-  parent: [SolutionDrink, Clothing]
+  parent: Clothing
   id: WaterDropletHat
   name: water droplet
   description: Makes 8-eyed friends 8 times more adorable!
@@ -323,19 +310,19 @@
       - water
   - type: DrainableSolution
     solution: drink
-  - type: Solution
-    solution:
-      maxVol: 2 # Droplets are pretty small.
-      reagents:
-      - ReagentId: Water
-        Quantity: 2
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 2
+        reagents:
+        - ReagentId: Water
+          Quantity: 2
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 0.1
     damage:
       types:
         Blunt: 1
   - type: Damageable
-  - type: Injurable
     damageContainer: Biological
   - type: Destructible
     thresholds:

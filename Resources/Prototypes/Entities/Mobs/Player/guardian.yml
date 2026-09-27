@@ -73,7 +73,6 @@
           layer:
             - Opaque
     - type: Damageable
-    - type: Injurable
       damageContainer: Biological
     - type: MobState
       allowedStates:
@@ -97,7 +96,7 @@
       damage:
         types:
           Blunt: 20
-          Structural: 8 # Activate Star Platinum's signature move: Digging a hole
+          Structural: 20
     - type: MeleeSpeech
     - type: UserInterface
       interfaces:
@@ -232,8 +231,9 @@
     - type: Inventory
       templateId: holoclown
     - type: Hands
-      startingHands:
-        hand_left:
+      activeHandId: Hand
+      hands:
+        Hand:
           location: Left
     - type: ComplexInteraction
     - type: MeleeWeapon
@@ -261,9 +261,7 @@
   description: Either manifests the guardian or recalls it back into your body
   components:
   - type: Action
+    icon: Interface/Actions/manifest.png
     useDelay: 2
-  - type: Sprite
-    layers:
-    - texture: Interface/Actions/manifest.png
   - type: InstantAction
     event: !type:GuardianToggleActionEvent

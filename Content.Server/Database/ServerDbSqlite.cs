@@ -38,8 +38,7 @@ namespace Content.Server.Database
             IConfigurationManager cfg,
             bool synchronous,
             ISawmill opsLog,
-            ISerializationManager serialization,
-            bool snapshot)
+            ISerializationManager serialization)
             : base(opsLog, serialization)
         {
             _options = options;
@@ -52,12 +51,7 @@ namespace Content.Server.Database
 
             if (synchronous)
             {
-                // EnsureCreated means you can't apply migrations later, fine for tests
-                if (snapshot)
-                    prefsCtx.Database.EnsureCreated();
-                else
-                    prefsCtx.Database.Migrate();
-
+                prefsCtx.Database.Migrate();
                 _dbReadyTask = Task.CompletedTask;
                 prefsCtx.Dispose();
             }

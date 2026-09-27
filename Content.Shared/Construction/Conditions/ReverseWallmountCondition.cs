@@ -2,7 +2,6 @@ using System.Linq;
 using System.Numerics;
 using Content.Shared.Physics;
 using Content.Shared.Tag;
-using Content.Shared.Wall;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -16,7 +15,7 @@ namespace Content.Shared.Construction.Conditions
     [DataDefinition]
     public sealed partial class ReverseWallmountCondition : IConstructionCondition
     {
-        [Dependency] private IEntityManager _entManager = default!;
+        private static readonly ProtoId<TagPrototype> WallTag = "Wall";
 
         public bool Condition(EntityUid user, EntityCoordinates location, Direction direction)
         {
@@ -46,7 +45,7 @@ namespace Content.Shared.Construction.Conditions
             var tagSystem = entManager.System<TagSystem>();
 
             var userToObjRaycastResults = physics.IntersectRayWithPredicate(entManager.GetComponent<TransformComponent>(user).MapID, rUserToObj, maxLength: length,
-                predicate: (e) => !_entManager.HasComponent<WallComponent>(e));
+                predicate: (e) => !tagSystem.HasTag(e, WallTag));
 
             var targetWall = userToObjRaycastResults.FirstOrNull();
 
@@ -57,7 +56,7 @@ namespace Content.Shared.Construction.Conditions
             // check that we didn't try to build wallmount that facing another adjacent wall
             var rAdjWall = new CollisionRay(objWorldPosition, directionWithOffset.Normalized(), (int) CollisionGroup.Impassable);
             var adjWallRaycastResults = physics.IntersectRayWithPredicate(entManager.GetComponent<TransformComponent>(user).MapID, rAdjWall, maxLength: 0.5f,
-               predicate: e => e == targetWall.Value.HitEntity || !_entManager.HasComponent<WallComponent>(e));
+               predicate: e => e == targetWall.Value.HitEntity || !tagSystem.HasTag(e, WallTag));
 
             return !adjWallRaycastResults.Any();
         }

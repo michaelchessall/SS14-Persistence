@@ -7,10 +7,9 @@
   - type: Action
     useDelay: 10
     itemIconStyle: BigAction
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: spell_default
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: spell_default
   - type: TargetAction
     range: 4
   - type: WorldTargetAction

@@ -13,8 +13,7 @@
         Sugar: 0.4
         Nutriment: 0.2
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -0.2 #its flour
 
 - type: reagent
@@ -30,8 +29,7 @@
       metabolites:
         Nutriment: 0.2
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -0.2 #its cornflour
 
 - type: reagent
@@ -99,6 +97,7 @@
       effects:
       - !type:Emote
         emote: Cough
+        showInChat: true
         showInGuidebook: true
         probability: 0.05
   reactiveEffects:
@@ -225,8 +224,7 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         conditions:
         - !type:ReagentCondition #Only satiates when eaten with nutriment
           reagent: Nutriment
@@ -269,8 +267,7 @@
       metabolites:
         Nutriment: 0.2
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -0.2
 
 - type: reagent

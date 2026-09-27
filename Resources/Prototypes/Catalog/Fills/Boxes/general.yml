@@ -39,22 +39,20 @@
     - BoxCardboard
 
 - type: entity
-  parent: BoxBaseHug
-  id: BoxHug
-  name: box of hugs
-  description: A special box for sensitive people.
+  name: mousetrap box
+  parent: BoxCardboard
+  id: BoxMousetrap
+  description: This box is filled with mousetraps. Try not to get your hand stuck in one.
   components:
-  - type: PhysicalComposition # Half of the "regular" cardboard box
-    materialComposition:
-      Cardboard: 50
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: Mousetrap
+        amount: 4
   - type: Sprite
     layers:
-    - state: box_hug
-    - state: heart
-  - type: Tag
-    tags:
-    - BoxCardboard
-    - BoxHug
+      - state: box
+      - state: mousetraps
 
 - type: entity
   name: lightbulb box
@@ -238,7 +236,7 @@
     containers:
       storagebase:
         id: Brutepack
-        amount: 2
+        amount: 3
 
 - type: entity
   name: inflatable wall box
@@ -309,7 +307,6 @@
     whitelist:
       tags:
         - TrashBag
-        - TrashBagHolding
   - type: Sprite
     layers:
       - state: box

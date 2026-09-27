@@ -2,6 +2,7 @@ using Content.Shared.DeviceLinking;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Cargo.Components;
 
@@ -17,27 +18,27 @@ public sealed partial class CargoTelepadComponent : Component
     /// <summary>
     /// The actual amount of time it takes to teleport from the telepad
     /// </summary>
-    [DataField]
+    [DataField("delay"), ViewVariables(VVAccess.ReadWrite)]
     public float Delay = 5f;
 
     /// <summary>
     /// How much time we've accumulated until next teleport.
     /// </summary>
-    [DataField]
+    [DataField("accumulator"), ViewVariables(VVAccess.ReadWrite)]
     public float Accumulator;
 
-    [DataField]
+    [DataField("currentState")]
     public CargoTelepadState CurrentState = CargoTelepadState.Unpowered;
 
-    [DataField]
+    [DataField("teleportSound")]
     public SoundSpecifier TeleportSound = new SoundPathSpecifier("/Audio/Machines/phasein.ogg");
 
     /// <summary>
     ///     The paper-type prototype to spawn with the order information.
     /// </summary>
-    [DataField]
-    public EntProtoId PrinterOutput = "PaperCargoInvoice";
+    [DataField("printerOutput", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>)), ViewVariables(VVAccess.ReadWrite)]
+    public string PrinterOutput = "PaperCargoInvoice";
 
-    [DataField]
-    public ProtoId<SinkPortPrototype> ReceiverPort = "OrderReceiver";
+    [DataField("receiverPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>)), ViewVariables(VVAccess.ReadWrite)]
+    public string ReceiverPort = "OrderReceiver";
 }

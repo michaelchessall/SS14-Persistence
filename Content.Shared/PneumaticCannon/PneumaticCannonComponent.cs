@@ -1,6 +1,6 @@
 using Content.Shared.Tools;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.PneumaticCannon;
 
@@ -15,25 +15,27 @@ public sealed partial class PneumaticCannonComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     public PneumaticCannonPower Power = PneumaticCannonPower.Medium;
 
-    [DataField]
-    public ProtoId<ToolQualityPrototype> ToolModifyPower = "Anchoring";
+    [DataField("toolModifyPower", customTypeSerializer: typeof(PrototypeIdSerializer<ToolQualityPrototype>))]
+    public string ToolModifyPower = "Anchoring";
 
     /// <summary>
     ///     How long to stun for if they shoot the pneumatic cannon at high power.
     /// </summary>
-    [DataField]
+    [DataField("highPowerStunTime")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float HighPowerStunTime = 3.0f;
 
     /// <summary>
     ///     Amount of moles to consume for each shot at any power.
     /// </summary>
-    [DataField]
+    [DataField("gasUsage")]
+    [ViewVariables(VVAccess.ReadWrite)]
     public float GasUsage = 0.142f;
 
     /// <summary>
     ///     Base projectile speed at default power.
     /// </summary>
-    [DataField]
+    [DataField("baseProjectileSpeed")]
     public float BaseProjectileSpeed = 20f;
 
     /// <summary>
@@ -45,7 +47,7 @@ public sealed partial class PneumaticCannonComponent : Component
     /// <summary>
     /// If true, will throw ammo rather than shoot it.
     /// </summary>
-    [DataField]
+    [DataField("throwItems"), ViewVariables(VVAccess.ReadWrite)]
     public bool ThrowItems = true;
 }
 

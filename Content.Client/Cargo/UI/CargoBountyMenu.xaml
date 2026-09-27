@@ -1,4 +1,5 @@
 <controls:FancyWindow xmlns="https://spacestation14.io"
+                      xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
                       xmlns:controls="clr-namespace:Content.Client.UserInterface.Controls"
                       Title="{Loc 'bounty-console-menu-title'}"
                       SetSize="600 600"
@@ -51,7 +52,10 @@
                        StyleClasses="LabelKeyText" />
                 <Label Text="Syndicate" Name="FactionText" />
             </BoxContainer>
-            <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10" StyleClasses="PanelDeep">
+            <PanelContainer VerticalExpand="True" HorizontalExpand="True" Margin="10">
+                <PanelContainer.PanelOverride>
+                    <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                </PanelContainer.PanelOverride>
                 <TabContainer Name="MasterTabContainer" VerticalExpand="True" HorizontalExpand="True">
                     <ScrollContainer HScrollEnabled="False"
                                      HorizontalExpand="True"

@@ -11,7 +11,10 @@
             <BoxContainer VerticalExpand="True" HorizontalExpand="True" Orientation="Vertical" MinWidth="225" Margin="20 15 20 20">
 
                 <!-- AI panel -->
-                <PanelContainer StyleClasses="PanelDeep">
+                <PanelContainer>
+                    <PanelContainer.PanelOverride>
+                        <gfx:StyleBoxFlat BackgroundColor="#1B1B1E" />
+                    </PanelContainer.PanelOverride>
 
                     <BoxContainer Orientation="Vertical">
                         <!-- AI name -->
@@ -111,7 +114,7 @@
 
                     <controls:StripeBack>
                         <PanelContainer>
-                            <Label Text="{Loc 'station-ai-fixer-console-window-controls'}"
+                            <Label Text="{Loc 'Controls'}"
                                    HorizontalExpand="True"
                                    HorizontalAlignment="Center"/>
                         </PanelContainer>

@@ -9,9 +9,9 @@ namespace Content.Server.Temperature.Systems;
 /// <summary>
 /// Handles the server-only parts of <see cref="SharedEntityHeaterSystem"/>
 /// </summary>
-public sealed partial class EntityHeaterSystem : SharedEntityHeaterSystem
+public sealed class EntityHeaterSystem : SharedEntityHeaterSystem
 {
-    [Dependency] private TemperatureSystem _temperature = default!;
+    [Dependency] private readonly TemperatureSystem _temperature = default!;
 
     public override void Initialize()
     {
@@ -35,13 +35,13 @@ public sealed partial class EntityHeaterSystem : SharedEntityHeaterSystem
             if (!power.Powered)
                 continue;
 
-            // divide by total entities to encourage the use of multiple grills
+            // don't divide by total entities since it's a big grill
             // excess would just be wasted in the air but that's not worth simulating
             // if you want a heater thermomachine just use that...
             var energy = power.PowerReceived * deltaTime;
             foreach (var ent in placer.PlacedEntities)
             {
-                _temperature.ChangeHeat(ent, energy / placer.PlacedEntities.Count);
+                _temperature.ChangeHeat(ent, energy);
             }
         }
     }

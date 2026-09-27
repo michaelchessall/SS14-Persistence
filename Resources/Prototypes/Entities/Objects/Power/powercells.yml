@@ -14,9 +14,10 @@
     intensitySlope: 1.5
   - type: Sprite
     sprite: Objects/Power/power_cells.rsi
-  - type: SolutionManager
+  - type: SolutionContainerManager
     solutions:
-    - SolutionRiggable
+      battery:
+        maxVol: 5
   - type: InjectableSolution
     solution: battery
   - type: DrawableSolution
@@ -24,8 +25,8 @@
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: Zinc
-        Quantity: 5
+        - ReagentId: Zinc
+          Quantity: 5
   - type: Tag
     tags:
       - PowerCell
@@ -39,16 +40,6 @@
           Full: {visible: true, state: o2}
           Neither: {visible: true, state: o1}
           Empty: {visible: false}
-
-- type: entity
-  parent: Solution
-  id: SolutionRiggable
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: battery
-    solution:
-      maxVol: 5
 
 - type: entity
   name: potato battery
@@ -120,11 +111,6 @@
   - type: BatterySelfRecharger
     autoRechargeRate: 36 # 10 seconds to recharge
     autoRechargePauseTime: 30
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Uranium
-        Quantity: 5
 
 - type: entity
   name: medium-capacity power cell
@@ -149,13 +135,8 @@
       Plastic: 100
   - type: Tag
     tags:
-    - PowerCellMedium
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Lithium
-        Quantity: 5
-
+      - PowerCellMedium
+      
 - type: entity
   id: PowerCellMediumPrinted
   suffix: Empty
@@ -197,13 +178,8 @@
       Gold: 25
   - type: Tag
     tags:
-    - PowerCellHigh
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Lithium
-        Quantity: 5
-
+      - PowerCellHigh
+      
 - type: entity
   id: PowerCellHighPrinted
   suffix: Empty
@@ -246,12 +222,8 @@
       Silver: 100
   - type: Tag
     tags:
-    - PowerCellHyper 
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Lithium
-        Quantity: 5
+      - PowerCellHyper
+      
 
 - type: entity
   id: PowerCellHyperPrinted
@@ -294,11 +266,6 @@
       Steel: 200
       Gold: 50
       Uranium: 100
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Uranium
-        Quantity: 5
 
 - type: entity
   parent: PowerCellMicroreactor
@@ -339,11 +306,6 @@
         Steel: 200
         Gold: 50
         Uranium: 100
-    - type: Extractable
-      juiceSolution:
-        reagents:
-        - ReagentId: Uranium
-          Quantity: 5
 
 # Power cage (big heavy power cell for big devices)
 
@@ -354,21 +316,16 @@
   components:
   - type: Item
     size: Ginormous
-    shape:
-    - 0,0,3,5
   - type: MultiHandedItem
-  - type: SolutionManager
+  - type: SolutionContainerManager
     solutions:
-    - SolutionRiggableLarge
-  - type: Riggable
-    reagent:
-      ReagentId: Plasma
-      Quantity: 15
+      battery:
+        maxVol: 15
   - type: Extractable
     juiceSolution:
       reagents:
-      - ReagentId: Zinc
-        Quantity: 15
+        - ReagentId: Zinc
+          Quantity: 15
   - type: Tag
     tags:
       - PowerCage
@@ -376,16 +333,6 @@
     walkModifier: 0.8
     sprintModifier: 0.8
   - type: HeldSpeedModifier
-
-- type: entity
-  parent: SolutionRiggable
-  id: SolutionRiggableLarge
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    id: battery
-    solution:
-      maxVol: 15
 
 - type: entity
   id: PowerCageSmall
@@ -432,11 +379,6 @@
       Glass: 100
       Plastic: 100
       Gold: 25
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Lithium
-        Quantity: 10
 
 - type: entity
   id: PowerCageHigh
@@ -461,11 +403,6 @@
       Glass: 200
       Plastic: 200
       Gold: 50
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: Lithium
-        Quantity: 15
 
 - type: entity
   id: PowerCageSmallEmpty

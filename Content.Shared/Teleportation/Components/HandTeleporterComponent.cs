@@ -3,6 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Teleportation.Components;
 
@@ -10,14 +11,14 @@ namespace Content.Shared.Teleportation.Components;
 ///     Creates portals. If two are created, both are linked together--otherwise the first teleports randomly.
 ///     Using it with both portals active deactivates both.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[RegisterComponent, NetworkedComponent]
 public sealed partial class HandTeleporterComponent : Component
 {
-    [DataField, AutoNetworkedField]
-    public EntityUid? FirstPortal;
+    [ViewVariables, DataField("firstPortal")]
+    public EntityUid? FirstPortal = null;
 
-    [DataField, AutoNetworkedField]
-    public EntityUid? SecondPortal;
+    [ViewVariables, DataField("secondPortal")]
+    public EntityUid? SecondPortal = null;
 
     /// <summary>
     ///     Should the portals be able to be placed across grids?
@@ -31,28 +32,30 @@ public sealed partial class HandTeleporterComponent : Component
     [DataField]
     public bool AllowPortalsOnDifferentMaps;
 
-    [DataField]
-    public EntProtoId FirstPortalPrototype = "PortalRed";
+    [DataField("firstPortalPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string FirstPortalPrototype = "PortalRed";
 
-    [DataField]
-    public EntProtoId SecondPortalPrototype = "PortalBlue";
+    [DataField("secondPortalPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string SecondPortalPrototype = "PortalBlue";
 
-    [DataField]
+    [DataField("newPortalSound")]
     public SoundSpecifier NewPortalSound =
         new SoundPathSpecifier("/Audio/Machines/high_tech_confirm.ogg")
         {
-            Params = AudioParams.Default.AddVolume(-2f)
+            Params = AudioParams.Default.WithVolume(-2f)
         };
 
-    [DataField]
+    [DataField("clearPortalsSound")]
     public SoundSpecifier ClearPortalsSound = new SoundPathSpecifier("/Audio/Machines/button.ogg");
 
     /// <summary>
     ///     Delay for creating the portals in seconds.
     /// </summary>
-    [DataField]
+    [DataField("portalCreationDelay")]
     public float PortalCreationDelay = 1.0f;
 }
 
 [Serializable, NetSerializable]
-public sealed partial class TeleporterDoAfterEvent : SimpleDoAfterEvent;
+public sealed partial class TeleporterDoAfterEvent : SimpleDoAfterEvent
+{
+}

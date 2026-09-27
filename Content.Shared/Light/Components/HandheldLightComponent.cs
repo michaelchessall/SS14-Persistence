@@ -2,6 +2,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Light.Components;
 
@@ -13,16 +14,17 @@ public sealed partial class HandheldLightComponent : Component
     [DataField]
     public bool Activated;
 
-    [DataField]
+    [ViewVariables(VVAccess.ReadWrite)]
+    [DataField("wattage")]
     public float Wattage { get; set; } = .8f;
 
-    [DataField]
+    [DataField("turnOnSound")]
     public SoundSpecifier TurnOnSound = new SoundPathSpecifier("/Audio/Items/flashlight_on.ogg");
 
-    [DataField]
+    [DataField("turnOnFailSound")]
     public SoundSpecifier TurnOnFailSound = new SoundPathSpecifier("/Audio/Machines/button.ogg");
 
-    [DataField]
+    [DataField("turnOffSound")]
     public SoundSpecifier TurnOffSound = new SoundPathSpecifier("/Audio/Items/flashlight_off.ogg");
 
     /// <summary>
@@ -32,20 +34,20 @@ public sealed partial class HandheldLightComponent : Component
     ///     Flashlights should probably be using explicit unshaded sprite, in-hand and clothing layers, this is
     ///     mostly here for backwards compatibility.
     /// </remarks>
-    [DataField]
+    [DataField("addPrefix")]
     public bool AddPrefix = false;
 
-    [DataField]
-    public EntProtoId ToggleAction = "ActionToggleLight";
+    [DataField("toggleAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string ToggleAction = "ActionToggleLight";
 
     /// <summary>
     /// Whether or not the light can be toggled via standard interactions
     /// (alt verbs, using in hand, etc)
     /// </summary>
-    [DataField]
+    [DataField("toggleOnInteract")]
     public bool ToggleOnInteract = true;
 
-    [DataField]
+    [DataField("toggleActionEntity")]
     public EntityUid? ToggleActionEntity;
 
     [DataField]
@@ -56,13 +58,13 @@ public sealed partial class HandheldLightComponent : Component
     /// <summary>
     /// Specify the ID of the light behaviour to use when the state of the light is Dying
     /// </summary>
-    [DataField]
+    [DataField("blinkingBehaviourId")]
     public string BlinkingBehaviourId { get; set; } = string.Empty;
 
     /// <summary>
     /// Specify the ID of the light behaviour to use when the state of the light is LowPower
     /// </summary>
-    [DataField]
+    [DataField("radiatingBehaviourId")]
     public string RadiatingBehaviourId { get; set; } = string.Empty;
 
     [Serializable, NetSerializable]

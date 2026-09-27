@@ -10,16 +10,18 @@ namespace Content.Shared.Nutrition.EntitySystems;
 
 public sealed partial class IngestionSystem
 {
-    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
-    [Dependency] private EntityQuery<UtensilComponent> _utensilsQuery = default!;
+    private EntityQuery<UtensilComponent> _utensilsQuery;
 
     public void InitializeUtensils()
     {
         SubscribeLocalEvent<UtensilComponent, AfterInteractEvent>(OnAfterInteract, after: new[] { typeof(ToolOpenableSystem) });
 
         SubscribeLocalEvent<EdibleComponent, GetUtensilsEvent>(OnGetEdibleUtensils);
+
+        _utensilsQuery = GetEntityQuery<UtensilComponent>();
     }
 
     /// <summary>
@@ -41,7 +43,7 @@ public sealed partial class IngestionSystem
         //Prevents food usage with a wrong utensil
         if (ev.Types != UtensilType.None && (ev.Types & utensil.Comp.Types) == 0)
         {
-            _popup.PopupEntity(Loc.GetString("ingestion-try-use-wrong-utensil", ("verb", GetEdibleVerb(target)), ("food", target), ("utensil", utensil.Owner)), user, user);
+            _popup.PopupClient(Loc.GetString("ingestion-try-use-wrong-utensil", ("verb", GetEdibleVerb(target)), ("food", target), ("utensil", utensil.Owner)), user, user);
             return true;
         }
 
@@ -118,7 +120,7 @@ public sealed partial class IngestionSystem
         if (!required || (usedTypes & requiredTypes) == requiredTypes)
             return true;
 
-        _popup.PopupEntity(Loc.GetString("ingestion-you-need-to-hold-utensil", ("utensil", requiredTypes ^ usedTypes)), entity, entity);
+        _popup.PopupClient(Loc.GetString("ingestion-you-need-to-hold-utensil", ("utensil", requiredTypes ^ usedTypes)), entity, entity);
         return false;
 
     }

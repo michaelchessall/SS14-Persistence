@@ -1,6 +1,6 @@
 - type: entity
-  parent: [ BaseStructure, StructureHealthDoorStrong ]
   id: HighSecDoor
+  parent: BaseStructure
   name: high security door
   description: Keeps the bad out and keeps the good in.
   placement:
@@ -114,23 +114,16 @@
   - type: Airtight
   - type: Occluder
   - type: Damageable
-    damageModifierSet: PlasteelMod
+    damageContainer: StructuralInorganic
+    damageModifierSet: StrongMetallic
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 350
+        damage: 1500
       behaviors:
-      - !type:SpawnEntitiesBehavior
-        spawn:
-          SheetPlasteel1:
-            min: 1
-            max: 2
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalSlam
-          params:
-            volume: -4
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Construction
     graph: Airlock
     node: highSecDoor
@@ -155,5 +148,3 @@
     node: complete_vault_door
       - DoorRemoteWhitelist
       # This tag is used by door remotes to allow or not a door remote to normally be able to interact with a door
-  - type: StructureAligner
-  - type: StructureAlignerPylon

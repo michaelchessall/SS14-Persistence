@@ -13,35 +13,21 @@
                 <BoxContainer Orientation="Vertical">
                     <ui:HighlightedContainer>
                         <BoxContainer Orientation="Vertical">
-                            <BoxContainer Orientation="Horizontal" VerticalExpand="True">
-                                <Label Text="{Loc 'humanoid-profile-editor-name-label'}" />
-                                <LineEdit Name="NameEdit" MinSize="270 0" VerticalAlignment="Center" Margin="5 0 0 0" />
-                            </BoxContainer>
-                            <RichTextLabel Name="WarningLabel" HorizontalExpand="False"
-                                            VerticalExpand="True" MaxWidth="425"
-                                            HorizontalAlignment="Left" />
-                        </BoxContainer>
-                    </ui:HighlightedContainer>
-                </BoxContainer>
-                <!-- Randomizer -->
-                <BoxContainer Orientation="Vertical" Name="RandomizerPanel">
-                    <ui:HighlightedContainer>
-                        <BoxContainer Orientation="Vertical">
-                            <Label Text="{Loc 'humanoid-profile-editor-randomize'}" HorizontalAlignment="Center"/>
-                            <PanelContainer StyleClasses="LowDivider" Margin="0 10"/>
-                            <GridContainer Columns="2" MinWidth="250" HorizontalExpand="True">
-                                <ui:RandomizeLockButton For="Name" LabelText="{Loc 'humanoid-profile-editor-randomize-name-button'}"/>
-                                <ui:RandomizeLockButton For="Species" LabelText="{Loc 'humanoid-profile-editor-randomize-species-button'}"/>
-                                <ui:RandomizeLockButton For="Age" LabelText="{Loc 'humanoid-profile-editor-randomize-age-button'}"/>
-                                <ui:RandomizeLockButton For="Sex" LabelText="{Loc 'humanoid-profile-editor-randomize-sex-button'}"/>
-                                <ui:RandomizeLockButton For="Skin" LabelText="{Loc 'humanoid-profile-editor-randomize-skin-button'}"/>
-                                <ui:RandomizeLockButton For="Eyes" LabelText="{Loc 'humanoid-profile-editor-randomize-eye-button'}"/>
-                                <ui:RandomizeLockButton For="Markings" LabelText="{Loc 'humanoid-profile-editor-randomize-markings-button'}"/>
-                            </GridContainer>
-                            <Button
-                                Name="RandomizeUnlockedButton"
-                                MaxWidth="256"
-                                Text="{Loc 'humanoid-profile-editor-randomize-unlocked-button'}"/>
+                            <ui:HighlightedContainer>
+                                <BoxContainer Orientation="Vertical">
+                                    <BoxContainer Orientation="Horizontal" VerticalExpand="True">
+                                        <Label Text="{Loc 'humanoid-profile-editor-name-label'}" />
+                                        <LineEdit Name="NameEdit" MinSize="270 0" VerticalAlignment="Center" Margin="5 0 0 0" />
+                                        <Button Name="NameRandomize" Text="{Loc 'humanoid-profile-editor-name-random-button'}" />
+                                    </BoxContainer>
+                                    <Button Name="RandomizeEverythingButton" HorizontalAlignment="Center"
+                                            HorizontalExpand="False" MaxWidth="256"
+                                            Text="{Loc 'humanoid-profile-editor-randomize-everything-button'}" />
+                                    <RichTextLabel Name="WarningLabel" HorizontalExpand="False"
+                                                   VerticalExpand="True" MaxWidth="425"
+                                                   HorizontalAlignment="Left" />
+                                </BoxContainer>
+                            </ui:HighlightedContainer>
                         </BoxContainer>
                     </ui:HighlightedContainer>
                 </BoxContainer>
@@ -56,7 +42,6 @@
                             <Button Name="ExportImageButton" Text="{Loc 'humanoid-profile-editor-export-image-button'}"/>
                             <Button Name="OpenImagesButton" Text="{Loc 'humanoid-profile-editor-open-image-button'}"/>
                             <Button Name="JoinGameButton" Text="Join Game"/>
-                            <RichTextLabel Name="RequirementsLbl" />
                         </BoxContainer>
                     </ui:HighlightedContainer>
                 </BoxContainer>
@@ -89,12 +74,6 @@
                                     <Label Text="{Loc 'humanoid-profile-editor-sex-label'}" />
                                     <Control HorizontalExpand="True"/>
                                     <OptionButton Name="SexButton" HorizontalAlignment="Right" />
-                                </BoxContainer>
-                                <!-- Voice -->
-                                <BoxContainer HorizontalExpand="True">
-                                    <Label Text="{Loc 'humanoid-profile-editor-voice-label'}" />
-                                    <Control HorizontalExpand="True" />
-                                    <OptionButton Name="VoiceButton" HorizontalAlignment="Right" />
                                 </BoxContainer>
                                 <!-- Pronouns -->
                                 <BoxContainer HorizontalExpand="True">
@@ -134,74 +113,56 @@
                     <humanoid:MarkingPicker Name="Markings" HorizontalExpand="True" VerticalExpand="True" />
                 </BoxContainer>
                 <BoxContainer Name="Background" Orientation="Vertical" Margin="10">
-                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False">
-                        <BoxContainer Orientation="Vertical" >
-                            <BoxContainer Orientation="Horizontal">
-                                <Label Text="This character has the moral alignment of " />
-                                <OptionButton Name="AlignmentButton" HorizontalAlignment="Right" />
-                            </BoxContainer>
-                            <BoxContainer Orientation="Vertical" >
-                                <Label Name="AlignTitleLabel" Text="" StyleClasses="LabelHeading" />
-                                <RichTextLabel Name="AlignDescLabel" HorizontalAlignment="Left"/>
-                                <RichTextLabel Name="AlignEffectsLabel" HorizontalAlignment="Left"/>
-                            </BoxContainer>
-                            <Control MinHeight="50" />
-                            <BoxContainer Orientation="Horizontal">
-                                <Label Text="This character comes from the " />
-                                <OptionButton Name="BGButton" HorizontalAlignment="Right" />
-                            </BoxContainer>
-                            <BoxContainer Orientation="Vertical" >
-                                <Label Name="BGTitleLabel" Text="" StyleClasses="LabelHeading" />
-                                <Control MinHeight="30" />
-                                <RichTextLabel Name="BGDescLabel" HorizontalAlignment="Left"/>
-                                <RichTextLabel Name="BGEffectsLabel" HorizontalAlignment="Left"/>
-                            </BoxContainer>
-                            <Control MinHeight="50" />
-                            <BoxContainer Orientation="Horizontal">
-                                <Label Text="This character came to the Threshold seeking  " />
-                                <OptionButton Name="MotiveButton" HorizontalAlignment="Right" />
-                            </BoxContainer>
-                            <BoxContainer Orientation="Vertical" >
-                                <Label Name="MotiveTitleLabel" Text="" StyleClasses="LabelHeading" />
-                                <Control MinHeight="30" />
-                                <RichTextLabel Name="MotiveDescLabel" HorizontalAlignment="Left"/>
-                                <RichTextLabel Name="MotiveEffectsLabel" HorizontalAlignment="Left"/>
-                            </BoxContainer>
-                        </BoxContainer>
-                    </ScrollContainer>
-              
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="This character has the moral alignment of " />
+                        <OptionButton Name="AlignmentButton" HorizontalAlignment="Right" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" >
+                        <Label Name="AlignTitleLabel" Text="True Neutral" StyleClasses="LabelHeading" />
+                        <RichTextLabel Name="AlignDescLabel" HorizontalAlignment="Left"/>
+                    </BoxContainer>
+                    <Control MinHeight="50" />
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="This character previously lived on a " />
+                        <OptionButton Name="BGButton" HorizontalAlignment="Right" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" >
+                        <Label Name="BGTitleLabel" Text="Corporate Space Station" StyleClasses="LabelHeading" />
+                        <Control MinHeight="30" />
+                        <RichTextLabel Name="BGDescLabel" HorizontalAlignment="Left"/>
+                    </BoxContainer>
+                    <Control MinHeight="50" />
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="This character came to the Threshold seeking  " />
+                        <OptionButton Name="MotiveButton" HorizontalAlignment="Right" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" >
+                        <Label Name="MotiveTitleLabel" Text="Corporate Space Station" StyleClasses="LabelHeading" />
+                        <Control MinHeight="30" />
+                        <RichTextLabel Name="MotiveDescLabel" HorizontalAlignment="Left"/>
+                    </BoxContainer>
                 </BoxContainer>
-                <BoxContainer Name="Journey" Orientation="Vertical" Margin="10">
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Orientation="Vertical" >
-                            <Label Text="The Threshold" StyleClasses="LabelHeading" />
-                            <Control MinHeight="30" />
-                            <RichTextLabel HorizontalAlignment="Left"
-                                           Name="ThresholdLoreLabel" />
-                            <Control MinHeight="50" />
-                            <BoxContainer Orientation="Horizontal">
-                                <Label Text="While traveling to the Threshold this character witnessed " />
-                                <OptionButton Name="SigilButton" HorizontalAlignment="Right" />
-                                <Label Text=" Sigil" />
-                            </BoxContainer>
-                            <Label Name="SigilTitle" Text="The Whale" StyleClasses="LabelHeading" />
-                            <Control MinHeight="30" />
-                            <RichTextLabel HorizontalAlignment="Left"
-                                           Name="SigilLabel" />
-                        </BoxContainer>
-                    </ScrollContainer>
+                <BoxContainer Name="Threshold" Orientation="Vertical" Margin="10">
+                    <Label Text="The Threshold" StyleClasses="LabelHeading" />
+                    <Control MinHeight="30" />
+                    <RichTextLabel HorizontalAlignment="Left"
+                                   Name="ThresholdLoreLabel" />
+                    <Control MinHeight="50" />
+                    <Label Text="Nanotrasen" StyleClasses="LabelHeading" />
+                    <Control MinHeight="30" />
+                    <RichTextLabel HorizontalAlignment="Left"
+                                   Name="NanotrasenLabel" />
+                    <Control MinHeight="50" />
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="While traveling to the Threshold this character witnessed " />
+                        <OptionButton Name="SigilButton" HorizontalAlignment="Right" />
+                        <Label Text=" Sigil" />
+                    </BoxContainer>
+                    <Label Name="SigilTitle" Text="The Whale" StyleClasses="LabelHeading" />
+                    <Control MinHeight="30" />
+                    <RichTextLabel HorizontalAlignment="Left"
+                                   Name="SigilLabel" />
                 </BoxContainer>
-                <BoxContainer Orientation="Vertical" Margin="10">
-                    <!-- Traits -->
-                    <ScrollContainer VerticalExpand="True">
-                        <BoxContainer Name="TraitsMainBC" Orientation="Vertical">
-                            <Label Text="Background Traits" StyleClasses="LabelHeading" />
-                            <BoxContainer Name="BackgroundTraits" Orientation="Vertical" />
-                            <BoxContainer Name="TraitsList" Orientation="Horizontal" />
-                        </BoxContainer>
-                    </ScrollContainer>
-                </BoxContainer>
-                
             </TabContainer>
         </BoxContainer>
         <!-- Right side -->

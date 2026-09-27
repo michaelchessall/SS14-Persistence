@@ -19,13 +19,14 @@ namespace Content.Client._Starfall.Particles;
 /// </summary>
 public sealed partial class ParticleSystem : EntitySystem
 {
-    [Dependency] private IOverlayManager _overlayManager = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private IConfigurationManager _cfg = default!;
-    [Dependency] private IEyeManager _eye = default!;
-    [Dependency] private IResourceCache _resourceCache = default!;
-    [Dependency] private SpriteSystem _spriteSystem = default!;
+    [Dependency] private readonly IOverlayManager _overlayManager = default!;
+    [Dependency] private readonly IPrototypeManager _protoManager = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IEyeManager _eye = default!;
+    [Dependency] private readonly IResourceCache _resourceCache = default!;
+    [Dependency] private readonly SpriteSystem _spriteSystem = default!;
 
     private readonly List<ActiveEmitter> _emitters = new();
     private readonly List<(ProtoId<ParticleEffectPrototype> Id, MapCoordinates Coords, int Depth)> _pendingSubEmitters = new();
@@ -137,7 +138,7 @@ public sealed partial class ParticleSystem : EntitySystem
             return null;
         }
 
-        if (!ProtoMan.TryIndex(effectId, out var proto))
+        if (!_protoManager.TryIndex(effectId, out var proto))
             return null;
 
         // Skip quality check if this is a gameplay-critical particle

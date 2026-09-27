@@ -39,7 +39,7 @@
       - id: NanoTaskCartridge
 
 - type: entity
-  parent: [ BaseStructureDynamic, BaseBagOpenClose, StructureHealthContainerWeak ]
+  parent: [ BaseStructureDynamic, BaseBagOpenClose ]
   id: BaseFilingCabinet
   description: A cabinet for all your filing needs.
   suffix: Empty
@@ -75,13 +75,25 @@
     containers:
       storagebase: !type:Container
   - type: Damageable
-    damageModifierSet: SteelMod
+    damageContainer: StructuralInorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
+    - trigger: # Excess damage, don't spawn entities
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
     - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 50
       behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak

@@ -15,9 +15,8 @@
     useDelay: 40
     raiseOnAction: true
     itemIconStyle: BigAction
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: repulse
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: repulse
   - type: InstantAction
     event: !type:RepulseAttractActionEvent

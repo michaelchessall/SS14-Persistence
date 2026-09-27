@@ -7,12 +7,20 @@ namespace Content.Shared.Xenoarchaeology.Artifact.XAT;
 /// Base type for xeno artifact trigger systems. Each system should work with 1 trigger mechanics.
 /// </summary>
 /// <typeparam name="T">Type of XAT component that system will work with.</typeparam>
-public abstract partial class BaseXATSystem<T> : EntitySystem where T : Component
+public abstract class BaseXATSystem<T> : EntitySystem where T : Component
 {
-    [Dependency] protected IGameTiming Timing = default!;
-    [Dependency] protected SharedXenoArtifactSystem XenoArtifact = default!;
+    [Dependency] protected readonly IGameTiming Timing = default!;
+    [Dependency] protected readonly SharedXenoArtifactSystem XenoArtifact = default!;
 
-    [Dependency] private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery = default!;
+    private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery;
+
+    /// <inheritdoc/>
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        _unlockingQuery = GetEntityQuery<XenoArtifactUnlockingComponent>();
+    }
 
     /// <summary>
     /// Subscribes to event occurring on artifact (and by relaying - on node).
@@ -58,6 +66,9 @@ public abstract partial class BaseXATSystem<T> : EntitySystem where T : Componen
     /// </summary>
     protected void Trigger(Entity<XenoArtifactComponent> artifact, Entity<T, XenoArtifactNodeComponent> node)
     {
+        if (!Timing.IsFirstTimePredicted)
+            return;
+
         Log.Debug($"Activated trigger {typeof(T).Name} on node {ToPrettyString(node)} for {ToPrettyString(artifact)}");
         XenoArtifact.TriggerXenoArtifact(artifact, (node.Owner, node.Comp2));
     }

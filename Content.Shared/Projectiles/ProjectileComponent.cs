@@ -3,11 +3,10 @@ using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Projectiles;
 
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState, AutoGenerateComponentPause]
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class ProjectileComponent : Component
 {
     /// <summary>
@@ -35,21 +34,10 @@ public sealed partial class ProjectileComponent : Component
     public EntityUid? Weapon;
 
     /// <summary>
-    /// How much time after being shot the projectile can collide with the shooter.
+    ///     The projectile spawns inside the shooter most of the time, this prevents entities from shooting themselves.
     /// </summary>
-    /// <remarks>
-    /// Since projectiles spawn inside the shooter,
-    /// they have to ignore the shooter for a little while while they fly away.
-    /// </remarks>
     [DataField, AutoNetworkedField]
-    public TimeSpan DelayToAcknowledgeShooter = TimeSpan.FromSeconds(1);
-
-    /// <summary>
-    /// Time from which after the projectile can hit the shooter.
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
-    public TimeSpan? WhenToStopIgnoringShooter;
+    public bool IgnoreShooter = true;
 
     /// <summary>
     ///     The amount of damage the projectile will do.

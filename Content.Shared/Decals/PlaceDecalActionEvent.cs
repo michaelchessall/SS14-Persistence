@@ -1,25 +1,25 @@
 using Content.Shared.Actions;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Decals;
 
 public sealed partial class PlaceDecalActionEvent : WorldTargetActionEvent
 {
-    [DataField(required: true)]
-    public ProtoId<DecalPrototype> DecalId;
+    [DataField("decalId", customTypeSerializer: typeof(PrototypeIdSerializer<DecalPrototype>), required: true)]
+    public string DecalId = string.Empty;
 
-    [DataField]
+    [DataField("color")]
     public Color Color;
 
-    [DataField]
+    [DataField("rotation")]
     public double Rotation;
 
-    [DataField]
+    [DataField("snap")]
     public bool Snap;
 
-    [DataField]
+    [DataField("zIndex")]
     public int ZIndex;
 
-    [DataField]
+    [DataField("cleanable")]
     public bool Cleanable;
 }

@@ -1,5 +1,6 @@
 using Content.Server.DeviceLinking.Systems;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.DeviceLinking.Components.Overload;
 
@@ -15,6 +16,6 @@ public sealed partial class SpawnOnOverloadComponent : Component
     /// <summary>
     /// The entity prototype to spawn when the device overloads
     /// </summary>
-    [DataField("spawnedPrototype")]
-    public EntProtoId Prototype = "PuddleSparkle";
+    [DataField("spawnedPrototype", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string Prototype = "PuddleSparkle";
 }

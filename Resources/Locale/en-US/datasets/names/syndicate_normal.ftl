@@ -22,5 +22,4 @@ names-syndicate-normal-dataset-21 = Uniform
 names-syndicate-normal-dataset-22 = Victor
 names-syndicate-normal-dataset-23 = Whiskey
 names-syndicate-normal-dataset-24 = X-Ray
-names-syndicate-normal-dataset-25 = Yankee
-names-syndicate-normal-dataset-26 = Zulu
+names-syndicate-normal-dataset-25 = Zulu

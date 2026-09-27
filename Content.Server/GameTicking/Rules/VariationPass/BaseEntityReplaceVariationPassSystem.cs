@@ -54,7 +54,8 @@ public abstract class BaseEntityReplaceVariationPassSystem<TEntComp, TGameRuleCo
         while (_queuedSpawns.TryDequeue(out var tup))
         {
             var (spawn, coords, rot) = tup;
-            SpawnAttachedTo(spawn, coords, rotation: rot);
+            var newEnt = Spawn(spawn, coords);
+            Transform(newEnt).LocalRotation = rot;
         }
 
         Log.Debug($"Entity replacement took {stopwatch.Elapsed} with {Stations.GetTileCount(args.Station.AsNullable())} tiles");

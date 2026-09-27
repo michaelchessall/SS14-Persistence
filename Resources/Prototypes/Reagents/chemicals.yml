@@ -186,8 +186,7 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -5 # This is basically industrial dessicant
       - !type:PopupMessage
         visualType: MediumCaution
@@ -218,6 +217,7 @@
       - !type:EvenHealthChange
         damage:
           Brute: -4
-      - !type:ModifyStatusEffect
-        effectProto: StatusEffectAdrenaline
+      - !type:GenericStatusEffect
+        key: Adrenaline
+        component: IgnoreSlowOnDamage
         time: 120

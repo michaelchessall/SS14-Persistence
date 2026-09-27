@@ -4,7 +4,6 @@ using Content.Shared.Random.Helpers;
 using Content.Shared.Whitelist;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Artifact.Prototypes;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Linq;
 
@@ -12,8 +11,8 @@ namespace Content.Server.Xenoarchaeology.Artifact;
 
 public sealed partial class XenoArtifactSystem
 {
-    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private RandomTableSystem _randomTable = default!;
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private readonly RandomTableSystem _randomTable = default!;
 
     private void GenerateArtifactStructure(Entity<XenoArtifactComponent> ent)
     {
@@ -153,7 +152,7 @@ public sealed partial class XenoArtifactSystem
         // Default to one node if we had shenanigans and ended up with weird layer counts.
         var nodeCount = 1;
         if (layerMax >= layerMin)
-            nodeCount = RobustRandom.Next((int)layerMin, (int)layerMax + 1); // account for non-inclusive max
+            nodeCount = RobustRandom.Next(layerMin, layerMax + 1); // account for non-inclusive max
 
         var nodes = new List<Entity<XenoArtifactNodeComponent>>();
         for (var i = 0; i < nodeCount; i++)
@@ -204,7 +203,7 @@ public sealed partial class XenoArtifactSystem
         var segmentMin = ent.Comp.SegmentSize.Min;
         var segmentMax = Math.Min(ent.Comp.SegmentSize.Max, Math.Max(nodeCount / 2, segmentMin));
 
-        var segmentSize = RobustRandom.Next((int)segmentMin, (int)segmentMax + 1); // account for non-inclusive max
+        var segmentSize = RobustRandom.Next(segmentMin, segmentMax + 1); // account for non-inclusive max
         var remainder = nodeCount - segmentSize;
 
         // If our next segment is going to be undersized, then we just absorb it into this segment.

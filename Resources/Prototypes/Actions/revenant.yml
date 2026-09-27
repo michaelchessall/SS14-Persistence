@@ -12,10 +12,7 @@
   components:
   - type: Action
     useDelay: 15
-    itemIconStyle: BigAction
-  - type: Sprite
-    layers:
-    - texture: Interface/Actions/defile.png
+    icon: Interface/Actions/defile.png
   - type: InstantAction
     event: !type:RevenantDefileActionEvent
 
@@ -26,11 +23,8 @@
   description: Costs 40 Essence.
   components:
   - type: Action
+    icon: Interface/Actions/overloadlight.png
     useDelay: 20
-    itemIconStyle: BigAction
-  - type: Sprite
-    layers:
-    - texture: Interface/Actions/overloadlight.png
   - type: InstantAction
     event: !type:RevenantOverloadLightsActionEvent
 
@@ -53,10 +47,7 @@
   description: Costs 60 Essence.
   components:
   - type: Action
+    icon: Interface/Actions/malfunction.png
     useDelay: 20
-    itemIconStyle: BigAction
-  - type: Sprite
-    layers:
-    - texture: Interface/Actions/malfunction.png
   - type: InstantAction
     event: !type:RevenantMalfunctionActionEvent

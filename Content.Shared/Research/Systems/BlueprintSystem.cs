@@ -11,11 +11,11 @@ using System.Linq;
 
 namespace Content.Shared.Research.Systems;
 
-public sealed partial class BlueprintSystem : EntitySystem
+public sealed class BlueprintSystem : EntitySystem
 {
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -60,7 +60,7 @@ public sealed partial class BlueprintSystem : EntitySystem
                 ("user", userId),
                 ("blueprint", bpId),
                 ("receiver", machineId));
-            _popup.PopupEntity(msg, ent);
+            _popup.PopupPredicted(msg, ent, user);
         }
 
         _container.Insert(blueprint.Owner, _container.GetContainer(ent, ent.Comp.ContainerId));
@@ -87,7 +87,7 @@ public sealed partial class BlueprintSystem : EntitySystem
         var currentRecipes = GetBlueprintRecipes(ent);
         if (currentRecipes.Count != 0 && currentRecipes.IsSupersetOf(blueprint.Comp.ProvidedRecipes))
         {
-            _popup.PopupEntity(Loc.GetString("blueprint-receiver-popup-recipe-exists"), ent, user);
+            _popup.PopupPredicted(Loc.GetString("blueprint-receiver-popup-recipe-exists"), ent, user);
             return false;
         }
 

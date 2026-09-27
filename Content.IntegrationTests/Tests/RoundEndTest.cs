@@ -1,4 +1,3 @@
-using Content.IntegrationTests.Fixtures;
 using Content.Server.GameTicking;
 using Content.Server.RoundEnd;
 using Content.Shared.CCVar;
@@ -8,9 +7,9 @@ using Robust.Shared.GameObjects;
 namespace Content.IntegrationTests.Tests
 {
     [TestFixture]
-    public sealed partial class RoundEndTest : GameTest
+    public sealed class RoundEndTest
     {
-        private sealed partial class RoundEndTestSystem : EntitySystem
+        private sealed class RoundEndTestSystem : EntitySystem
         {
             public int RoundCount;
 
@@ -26,18 +25,15 @@ namespace Content.IntegrationTests.Tests
             }
         }
 
-
-        public override PoolSettings PoolSettings => new PoolSettings
-        {
-            DummyTicker = false,
-            Connected = true,
-            Dirty = true
-        };
-
         [Test]
         public async Task Test()
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient(new PoolSettings
+            {
+                DummyTicker = false,
+                Connected = true,
+                Dirty = true
+            });
 
             var server = pair.Server;
 
@@ -155,6 +151,7 @@ namespace Content.IntegrationTests.Tests
                 roundEndSystem.DefaultCountdownDuration = TimeSpan.FromMinutes(4);
                 ticker.RestartRound();
             });
+            await pair.CleanReturnAsync();
         }
     }
 }

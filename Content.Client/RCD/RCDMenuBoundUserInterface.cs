@@ -2,7 +2,6 @@ using Content.Client.Popups;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.RCD;
 using Content.Shared.RCD.Components;
-using Content.Shared.RCD.Systems;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Collections;
@@ -13,17 +12,12 @@ using Robust.Shared.Utility;
 namespace Content.Client.RCD;
 
 [UsedImplicitly]
-public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
+public sealed class RCDMenuBoundUserInterface : BoundUserInterface
 {
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private ISharedPlayerManager _playerManager = default!;
-    [Dependency] private PopupSystem _popup = default!;
-    [Dependency] private RCDSystem _rcd = default!;
-
     private const string TopLevelActionCategory = "Main";
 
     private static readonly Dictionary<string, (string Tooltip, SpriteSpecifier Sprite)> PrototypesGroupingInfo
-        = new()
+        = new Dictionary<string, (string Tooltip, SpriteSpecifier Sprite)>
         {
             ["WallsAndFlooring"] = ("rcd-component-walls-and-flooring", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/walls_and_flooring.png"))),
             ["WindowsAndGrilles"] = ("rcd-component-windows-and-grilles", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/windows_and_grilles.png"))),
@@ -32,10 +26,14 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
             ["Lighting"] = ("rcd-component-lighting", new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/Radial/RCD/lighting.png"))),
         };
 
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+
     private SimpleRadialMenu? _menu;
 
     public RCDMenuBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
+        IoCManager.InjectDependencies(this);
     }
 
     protected override void Open()
@@ -55,8 +53,8 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
 
     private IEnumerable<RadialMenuOptionBase> ConvertToButtons(HashSet<ProtoId<RCDPrototype>> prototypes)
     {
-        Dictionary<string, List<RadialMenuOptionBase>> buttonsByCategory = new();
-        ValueList<RadialMenuOptionBase> topLevelActions = new();
+        Dictionary<string, List<RadialMenuActionOptionBase>> buttonsByCategory = new();
+        ValueList<RadialMenuActionOptionBase> topLevelActions = new();
         foreach (var protoId in prototypes)
         {
             var prototype = _prototypeManager.Index(protoId);
@@ -76,7 +74,7 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
 
             if (!buttonsByCategory.TryGetValue(prototype.Category, out var list))
             {
-                list = new List<RadialMenuOptionBase>();
+                list = new List<RadialMenuActionOptionBase>();
                 buttonsByCategory.Add(prototype.Category, list);
             }
 
@@ -120,20 +118,41 @@ public sealed partial class RCDMenuBoundUserInterface : BoundUserInterface
         if (_playerManager.LocalSession?.AttachedEntity == null)
             return;
 
-        var rcdName = _rcd.GetPrototypeName(proto);
-
-        var msg = Loc.GetString("rcd-component-change-mode", ("mode", rcdName));
+        var msg = Loc.GetString("rcd-component-change-mode", ("mode", Loc.GetString(proto.SetName)));
 
         if (proto.Mode is RcdMode.ConstructTile or RcdMode.ConstructObject)
-            msg = Loc.GetString("rcd-component-change-build-mode", ("name", rcdName));
+        {
+            var name = Loc.GetString(proto.SetName);
+
+            if (proto.Prototype != null &&
+                _prototypeManager.TryIndex(proto.Prototype, out var entProto)) // don't use Resolve because this can be a tile
+            {
+                name = entProto.Name;
+            }
+
+            msg = Loc.GetString("rcd-component-change-build-mode", ("name", name));
+        }
 
         // Popup message
-        _popup.PopupEntity(msg, Owner);
+        var popup = EntMan.System<PopupSystem>();
+        popup.PopupClient(msg, Owner, _playerManager.LocalSession.AttachedEntity);
     }
 
     private string GetTooltip(RCDPrototype proto)
     {
-        var tooltip = _rcd.GetPrototypeName(proto);
+        string tooltip;
+
+        if (proto.Mode is RcdMode.ConstructTile or RcdMode.ConstructObject
+            && proto.Prototype != null
+            && _prototypeManager.TryIndex(proto.Prototype, out var entProto)) // don't use Resolve because this can be a tile
+        {
+            tooltip = Loc.GetString(entProto.Name);
+        }
+        else
+        {
+            tooltip = Loc.GetString(proto.SetName);
+        }
+
         tooltip = OopsConcat(char.ToUpper(tooltip[0]).ToString(), tooltip.Remove(0, 1));
 
         return tooltip;

@@ -19,8 +19,7 @@
       metabolites:
         UncookedAnimalProteins: 0.2
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: 1.0
         conditions:
           - !type:MetabolizerTypeCondition
@@ -75,8 +74,7 @@
     Digestion:
       # Delicious!
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         factor: 1
         conditions:
         - !type:MetabolizerTypeCondition
@@ -108,11 +106,9 @@
     Digestion:
       # Sweet!
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         factor: 1
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: 1
   footstepSound:
     collection: FootstepSlime
@@ -164,8 +160,7 @@
     Digestion:
       # Disgusting!
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: -0.5
     Bloodstream:
       effects:
@@ -175,31 +170,6 @@
             Poison: 4
       - !type:Vomit
         probability: 0.25
-
-- type: reagent
-  id: Romerodone
-  name: reagent-name-romerodone
-  group: Biological
-  desc: reagent-desc-romerodone
-  physicalDesc: reagent-physical-desc-necrotic
-  flavor: metallic
-  color: "#e62600"
-  metabolisms:
-    Digestion:
-      # Disgusting!
-      effects:
-      - !type:Satiate
-        satiationType: Thirst
-        factor: -0.5
-    Bloodstream:
-      effects:
-      - !type:HealthChange
-        damage:
-          types:
-            Poison: 2
-      - !type:Vomit
-        probability: 0.5
-
 
 - type: reagent
   id: Ichor
@@ -214,8 +184,7 @@
     Bloodstream:
      metabolismRate: 0.1 #new to persistence 14
      effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: 1.5
     # Dragon doesn't require airloss healing, so omnizine is still best for humans. #new for persistence 14 reduced ichor metab by 5.
       - !type:ModifyBloodLevel
@@ -269,8 +238,7 @@
       metabolites:
         Nutriment: 0.1
       effects:
-      - !type:Satiate
-        satiationType: Thirst
+      - !type:SatiateThirst
         factor: 0.5
   footstepSound:
     collection: FootstepBlood
@@ -288,23 +256,9 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         factor: 1.5
       - !type:HealthChange
         damage:
           types:
             Cellular: 2
-
-- type: reagent
-  id: LivingTissue
-  name: reagent-name-living-tissue
-  group: Biological
-  desc: reagent-desc-living-tissue
-  flavor: metallic
-  color: "#800000"
-  physicalDesc: reagent-physical-desc-ferrous
-  footstepSound:
-    collection: FootstepBlood
-    params:
-      volume: 6

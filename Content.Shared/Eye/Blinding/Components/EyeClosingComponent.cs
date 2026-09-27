@@ -1,6 +1,7 @@
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Eye.Blinding.Components;
 
@@ -23,8 +24,8 @@ public sealed partial class EyeClosingComponent : Component
     /// <summary>
     /// The prototype to grant to enable eye-toggling action.
     /// </summary>
-    [DataField]
-    public EntProtoId EyeToggleAction = "ActionToggleEyes";
+    [DataField("eyeToggleAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string EyeToggleAction = "ActionToggleEyes";
 
     /// <summary>
     /// The actual eye toggling action entity itself.
@@ -35,30 +36,24 @@ public sealed partial class EyeClosingComponent : Component
     /// <summary>
     /// Sound to play when opening eyes.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public SoundSpecifier EyeOpenSound = new SoundCollectionSpecifier(DefaultEyeOpen);
 
     /// <summary>
     /// Sound to play when closing eyes.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public SoundSpecifier EyeCloseSound = new SoundCollectionSpecifier(DefaultEyeClose);
 
     /// <summary>
     /// Toggles whether the eyes are open or closed. This is really just exactly what it says on the tin. Honest.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), DataField, AutoNetworkedField]
     public bool EyesClosed;
 
-    /// <summary>
-    /// The previous state of eyes closed. Used to ensure relevant audio / visual effects are only emitted once per change.
-    /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public bool PreviousEyelidPosition;
 
-    /// <summary>
-    /// Whether the eye closing was naturally created or not.
-    /// </summary>
-    [DataField]
+    [ViewVariables(VVAccess.ReadOnly), DataField]
     public bool NaturallyCreated;
 }

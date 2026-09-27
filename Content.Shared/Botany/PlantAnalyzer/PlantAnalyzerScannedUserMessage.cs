@@ -1,5 +1,4 @@
 using Content.Shared.Atmos;
-using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -21,14 +20,14 @@ public sealed class PlantAnalyzerScannedUserMessage(NetEntity? targetEntity, boo
 /// Everything that is kept independed of a given plant/seed.
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class PlantAnalyzerTrayData(float waterLevel, float nutritionLevel, float toxins, float pestLevel, float weedLevel, List<ProtoId<ReagentPrototype>>? chemicals)
+public sealed class PlantAnalyzerTrayData(float waterLevel, float nutritionLevel, float toxins, float pestLevel, float weedLevel, List<string>? chemicals)
 {
     public float WaterLevel = waterLevel;
     public float NutritionLevel = nutritionLevel;
     public float Toxins = toxins;
     public float PestLevel = pestLevel;
     public float WeedLevel = weedLevel;
-    public List<ProtoId<ReagentPrototype>>? Chemicals = chemicals;
+    public List<string>? Chemicals = chemicals;
 }
 
 
@@ -74,11 +73,11 @@ public sealed class PlantAnalyzerPlantData(string seedDisplayName, float health,
 /// Information about the output of a plant (produce and gas).
 /// </summary>
 [Serializable, NetSerializable]
-public sealed class PlantAnalyzerProduceData(int yield, float potency, List<ProtoId<ReagentPrototype>> chemicals, List<EntProtoId> produce, List<Gas> exudeGasses, bool seedless)
+public sealed class PlantAnalyzerProduceData(int yield, float potency, List<string> chemicals, List<EntProtoId> produce, List<Gas> exudeGasses, bool seedless)
 {
     public int Yield = yield;
     public string Potency = ObscurePotency(potency);
-    public List<ProtoId<ReagentPrototype>> Chemicals = chemicals;
+    public List<string> Chemicals = chemicals;
     public List<EntProtoId> Produce = produce;
     public List<Gas> ExudeGasses = exudeGasses;
     public bool Seedless = seedless;

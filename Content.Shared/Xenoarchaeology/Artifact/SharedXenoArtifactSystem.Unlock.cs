@@ -10,10 +10,12 @@ namespace Content.Shared.Xenoarchaeology.Artifact;
 
 public abstract partial class SharedXenoArtifactSystem
 {
-    [Dependency] private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery = default!;
+    private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery;
 
     private void InitializeUnlock()
     {
+        _unlockingQuery = GetEntityQuery<XenoArtifactUnlockingComponent>();
+
         SubscribeLocalEvent<XenoArtifactUnlockingComponent, MapInitEvent>(OnUnlockingStarted);
     }
 
@@ -63,7 +65,7 @@ public abstract partial class SharedXenoArtifactSystem
     /// </summary>
     public void FinishUnlockingState(Entity<XenoArtifactUnlockingComponent, XenoArtifactComponent> ent)
     {
-        string? unlockAttemptResultMsg;
+        string unlockAttemptResultMsg;
         XenoArtifactComponent artifactComponent = ent;
         XenoArtifactUnlockingComponent unlockingComponent = ent;
 
@@ -74,22 +76,20 @@ public abstract partial class SharedXenoArtifactSystem
             node.Value.Comp.ArtifexiumUnlockFraction = artifexiumFraction;
             SetNodeUnlocked((ent, artifactComponent), node.Value);
             ActivateNode((ent, ent), (node.Value, node.Value), null, null, Transform(ent).Coordinates, false);
-            unlockAttemptResultMsg = artifactComponent.UnlockSuccessMsg;
+            unlockAttemptResultMsg = "artifact-unlock-state-end-success";
             UpdateNodeResearchValue(node.Value);
 
             soundEffect = unlockingComponent.UnlockActivationSuccessfulSound;
         }
         else
         {
-            unlockAttemptResultMsg = artifactComponent.UnlockFailureMsg;
+            unlockAttemptResultMsg = "artifact-unlock-state-end-failure";
             soundEffect = unlockingComponent.UnlockActivationFailedSound;
         }
 
         if (_net.IsServer)
         {
-            if (unlockAttemptResultMsg != null)
-                _popup.PopupEntity(Loc.GetString(unlockAttemptResultMsg), ent);
-
+            _popup.PopupEntity(Loc.GetString(unlockAttemptResultMsg), ent);
             _audio.PlayPvs(soundEffect, ent.Owner);
         }
 

@@ -9,10 +9,9 @@
     itemIconStyle: BigAction
     sound: !type:SoundPathSpecifier
       path: /Audio/Magic/knock.ogg
-  - type: Sprite
-    sprite: Objects/Magic/magicactions.rsi
-    layers:
-    - state: knock
+    icon:
+      sprite: Objects/Magic/magicactions.rsi
+      state: knock
   - type: InstantAction
     event: !type:KnockSpellEvent
   - type: SpeakOnAction

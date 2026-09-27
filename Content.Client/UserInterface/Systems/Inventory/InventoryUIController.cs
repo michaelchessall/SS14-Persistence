@@ -25,13 +25,14 @@ using static Content.Client.Inventory.ClientInventorySystem;
 
 namespace Content.Client.UserInterface.Systems.Inventory;
 
-public sealed partial class InventoryUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>,
+public sealed class InventoryUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>,
     IOnSystemChanged<ClientInventorySystem>, IOnSystemChanged<HandsSystem>
 {
-    [Dependency] private IEntityManager _entities = default!;
+    [Dependency] private readonly IEntityManager _entities = default!;
 
     [UISystemDependency] private readonly ClientInventorySystem _inventorySystem = default!;
     [UISystemDependency] private readonly HandsSystem _handsSystem = default!;
+    [UISystemDependency] private readonly ContainerSystem _container = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
 
     private EntityUid? _playerUid;
@@ -285,30 +286,25 @@ public sealed partial class InventoryUIController : UIController, IOnStateEntere
             return;
         }
 
-        switch (args.Function)
+        if (args.Function == ContentKeyFunctions.ExamineEntity)
         {
-            case var _ when args.Function == ContentKeyFunctions.ExamineEntity:
-                _inventorySystem.UIInventoryExamine(slot, _playerUid.Value);
-                break;
-
-            case var _ when args.Function == EngineKeyFunctions.UseSecondary:
-                _inventorySystem.UIInventoryOpenContextMenu(slot, _playerUid.Value);
-                break;
-
-            case var _ when args.Function == ContentKeyFunctions.ActivateItemInWorld:
-                _inventorySystem.UIInventoryActivateItem(slot, _playerUid.Value);
-                break;
-
-            case var _ when args.Function == ContentKeyFunctions.AltActivateItemInWorld:
-                _inventorySystem.UIInventoryAltActivateItem(slot, _playerUid.Value);
-                break;
-
-            case var _ when args.Function == ContentKeyFunctions.Point:
-                _inventorySystem.UIInventoryPointAt(slot, _playerUid.Value);
-                break;
-
-            default:
-                return;
+            _inventorySystem.UIInventoryExamine(slot, _playerUid.Value);
+        }
+        else if (args.Function == EngineKeyFunctions.UseSecondary)
+        {
+            _inventorySystem.UIInventoryOpenContextMenu(slot, _playerUid.Value);
+        }
+        else if (args.Function == ContentKeyFunctions.ActivateItemInWorld)
+        {
+            _inventorySystem.UIInventoryActivateItem(slot, _playerUid.Value);
+        }
+        else if (args.Function == ContentKeyFunctions.AltActivateItemInWorld)
+        {
+            _inventorySystem.UIInventoryAltActivateItem(slot, _playerUid.Value);
+        }
+        else
+        {
+            return;
         }
 
         args.Handle();
@@ -342,7 +338,8 @@ public sealed partial class InventoryUIController : UIController, IOnStateEntere
         // Set green / red overlay at 50% transparency
         var hoverEntity = _entities.SpawnEntity("hoverentity", MapCoordinates.Nullspace);
         var hoverSprite = _entities.GetComponent<SpriteComponent>(hoverEntity);
-        var fits = _inventorySystem.CanEquip(player.Value, held.Value, control.SlotName, out _, slotDef, containerSlot: container);
+        var fits = _inventorySystem.CanEquip(player.Value, held.Value, control.SlotName, out _, slotDef) &&
+                   _container.CanInsert(held.Value, container);
 
         if (!fits && _entities.TryGetComponent<StorageComponent>(container.ContainedEntity, out var storage))
         {
@@ -356,7 +353,7 @@ public sealed partial class InventoryUIController : UIController, IOnStateEntere
                 if (!slot.InsertOnInteract)
                     continue;
 
-                if (!itemSlotsSys.CanInsert(container.ContainedEntity.Value, slot, held.Value, null))
+                if (!itemSlotsSys.CanInsert(container.ContainedEntity.Value, held.Value, null, slot))
                     continue;
                 fits = true;
                 break;

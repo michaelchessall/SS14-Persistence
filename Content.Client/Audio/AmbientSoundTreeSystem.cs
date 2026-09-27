@@ -5,7 +5,7 @@ using System.Numerics;
 
 namespace Content.Client.Audio;
 
-public sealed partial class AmbientSoundTreeSystem : ComponentTreeSystem<AmbientSoundTreeComponent, AmbientSoundComponent>
+public sealed class AmbientSoundTreeSystem : ComponentTreeSystem<AmbientSoundTreeComponent, AmbientSoundComponent>
 {
     #region Component Tree Overrides
     protected override bool DoFrameUpdate => false;
@@ -23,7 +23,8 @@ public sealed partial class AmbientSoundTreeSystem : ComponentTreeSystem<Ambient
 
         var pos = XformSystem.GetRelativePosition(
             entry.Transform,
-            entry.Component.TreeUid.Value);
+            entry.Component.TreeUid.Value,
+            GetEntityQuery<TransformComponent>());
 
         return ExtractAabb(in entry, pos, default);
     }

@@ -12,8 +12,7 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
@@ -37,8 +36,7 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:Satiate
-        satiationType: Hunger
+      - !type:SatiateHunger
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Plant]
@@ -91,9 +89,6 @@
       amount: -20
     - !type:PlantAdjustMutationMod
       amount: 0.1
-    - !type:PlantChangeTraits
-      trait: PlantTraitKudzu
-      remove: true
   metabolisms:
     Bloodstream:
       effects:

@@ -1,30 +1,33 @@
 using Content.Shared.Damage.Systems;
 using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Content.Shared.Xenoarchaeology.Artifact.XAT.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Xenoarchaeology.Artifact.XAT;
 
 /// <summary>
 /// System for xeno artifact trigger that requires certain damage to be applied to artifact within a timeframe.
 /// </summary>
-public sealed partial class XATDamageThresholdReachedSystem : BaseXATSystem<XATDamageThresholdReachedComponent>
+public sealed class XATDamageThresholdReachedSystem : BaseXATSystem<XATDamageThresholdReachedComponent>
 {
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+
     /// <inheritdoc/>
     public override void Initialize()
     {
         base.Initialize();
 
-        XATSubscribeDirectEvent<DamageDealtEvent>(OnDamageChanged);
+        XATSubscribeDirectEvent<DamageChangedEvent>(OnDamageChanged);
     }
 
-    private void OnDamageChanged(Entity<XenoArtifactComponent> artifact, Entity<XATDamageThresholdReachedComponent, XenoArtifactNodeComponent> node, ref DamageDealtEvent args)
+    private void OnDamageChanged(Entity<XenoArtifactComponent> artifact, Entity<XATDamageThresholdReachedComponent, XenoArtifactNodeComponent> node, ref DamageChangedEvent args)
     {
-        if (args.Damage.Empty || args.Origin == artifact.Owner)
+        if (!args.DamageIncreased || args.DamageDelta == null || args.Origin == artifact.Owner)
             return;
 
         var damageTriggerComponent = node.Comp1;
         if (Timing.IsFirstTimePredicted)
-            damageTriggerComponent.AccumulatedDamage += args.Damage;
+            damageTriggerComponent.AccumulatedDamage += args.DamageDelta;
 
         foreach (var (type, needed) in damageTriggerComponent.TypesNeeded)
         {
@@ -37,7 +40,7 @@ public sealed partial class XATDamageThresholdReachedSystem : BaseXATSystem<XATD
 
         foreach (var (group, needed) in damageTriggerComponent.GroupsNeeded)
         {
-            var damageGroupPrototype = ProtoMan.Index(group);
+            var damageGroupPrototype = _prototype.Index(group);
             if (!damageTriggerComponent.AccumulatedDamage.TryGetDamageInGroup(damageGroupPrototype, out var damage))
                 continue;
 

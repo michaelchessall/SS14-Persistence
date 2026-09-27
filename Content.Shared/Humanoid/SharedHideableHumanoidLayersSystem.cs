@@ -4,13 +4,10 @@ using System.Numerics;
 
 namespace Content.Shared.Humanoid;
 
-/// <summary>
-/// A system to configurably hide layers on humanoid sprites (e.g. hiding your facial features when you put on a helmet)
-/// </summary>
 public abstract partial class SharedHideableHumanoidLayersSystem : EntitySystem
 {
     /// <summary>
-    /// Toggles a humanoid's sprite layer visibility.
+    ///     Toggles a humanoid's sprite layer visibility.
     /// </summary>
     /// <param name="ent">Humanoid entity</param>
     /// <param name="layer">Layer to toggle visibility for</param>
@@ -55,7 +52,7 @@ public abstract partial class SharedHideableHumanoidLayersSystem : EntitySystem
 
         Dirty(ent);
 
-        var evt = new HumanoidLayerVisibilityChangedEvent(layer, !ent.Comp.HiddenLayers.ContainsKey(layer));
+        var evt = new HumanoidLayerVisibilityChangedEvent(layer, ent.Comp.HiddenLayers.ContainsKey(layer));
         RaiseLocalEvent(ent, ref evt);
     }
 }

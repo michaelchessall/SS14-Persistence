@@ -2,13 +2,9 @@
   parent: Undergarments
   id: Human
   limits:
-    enum.HumanoidVisualLayers.HeadTop:
-      limit: 1
-      required: false
     enum.HumanoidVisualLayers.Hair:
       limit: 1
       required: false
-      weight: 1
     enum.HumanoidVisualLayers.FacialHair:
       limit: 1
       required: false
@@ -52,7 +48,6 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceHuman
-  categories: [ HideSpawnMenu ]
   name: human appearance
   components:
   - type: Inventory
@@ -100,7 +95,7 @@
       amount: 5
 
 - type: entity
-  parent: OrganBaseOrganic
+  parent: OrganBase
   id: OrganHuman
   abstract: true
   suffix: human
@@ -146,7 +141,6 @@
     hideableLayers:
     - enum.HumanoidVisualLayers.Hair
     - enum.HumanoidVisualLayers.Snout
-    - enum.HumanoidVisualLayers.FacialHair
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganHumanExternal ]

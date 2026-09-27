@@ -1,16 +1,13 @@
 using Content.Shared.Examine;
-using Content.Shared.Tools;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.Construction.Steps
 {
     [DataDefinition]
     public sealed partial class TemperatureConstructionGraphStep : ConstructionGraphStep
     {
-        [DataField]
+        [DataField("minTemperature")]
         public float? MinTemperature;
-
-        [DataField]
+        [DataField("maxTemperature")]
         public float? MaxTemperature;
 
         public override void DoExamine(ExaminedEvent examinedEvent)

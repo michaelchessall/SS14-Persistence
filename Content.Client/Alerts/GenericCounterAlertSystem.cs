@@ -8,9 +8,9 @@ namespace Content.Client.Alerts;
 /// <summary>
 /// This handles <see cref="GenericCounterAlertComponent"/>
 /// </summary>
-public sealed partial class GenericCounterAlertSystem : EntitySystem
+public sealed class GenericCounterAlertSystem : EntitySystem
 {
-    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -21,8 +21,8 @@ public sealed partial class GenericCounterAlertSystem : EntitySystem
     private void OnUpdateAlertSprite(Entity<GenericCounterAlertComponent> ent, ref UpdateAlertSpriteEvent args)
     {
         var sprite = args.SpriteViewEnt.Comp;
-        
-        var ev = new GetGenericAlertCounterAmountEvent(args.Alert, args.SpriteViewEnt);
+
+        var ev = new GetGenericAlertCounterAmountEvent(args.Alert);
         RaiseLocalEvent(args.ViewerEnt, ref ev);
 
         if (!ev.Handled)

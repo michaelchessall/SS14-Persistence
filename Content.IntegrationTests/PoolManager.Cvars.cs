@@ -12,7 +12,6 @@ public static partial class PoolManager
     {
         // @formatter:off
         (CCVars.DatabaseSynchronous.Name,     "true"),
-        (CCVars.DatabaseSnapshot.Name,        "true"),
         (CCVars.DatabaseSqliteDelay.Name,     "0"),
         (CCVars.HolidaysEnabled.Name,         "false"),
         (CCVars.GameMap.Name,                 TestMap),
@@ -36,6 +35,5 @@ public static partial class PoolManager
         (CCVars.InteractionRateLimitCount.Name, "9999999"),
         (CCVars.InteractionRateLimitPeriod.Name, "0.1"),
         (CCVars.MovementMobPushing.Name, "false"),
-        (CCVars.ResourceUploadingStoreDeletionDays.Name, "0"),
     };
 }

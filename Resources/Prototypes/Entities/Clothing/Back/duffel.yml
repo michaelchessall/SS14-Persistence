@@ -182,8 +182,7 @@
   abstract: true
   components:
   - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag
+    tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffel
@@ -191,8 +190,7 @@
   abstract: true
   components:
   - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag
+    tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -211,9 +209,8 @@
   id: ClothingBackpackDuffelSyndicateAmmoBundle
   abstract: true
   components:
-  - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag
+    - type: Tag
+      tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpackDuffelSyndicate
@@ -232,15 +229,14 @@
   id: ClothingBackpackDuffelSyndicateMedicalBundle
   abstract: true
   components:
-  - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag
+    - type: Tag
+      tags: [] # ignore "WhitelistChameleon" tag
 
 - type: entity
-  parent: ClothingBackpackHoldingBase #Standardized Bluespace Bags
+  parent: ClothingBackpackDuffel
   id: ClothingBackpackDuffelHolding
-  name: duffel bag of holding
-  description: A duffel bag that opens into a localized pocket of bluespace.
+  name: duffelbag of holding
+  description: A duffelbag that opens into a localized pocket of bluespace.
   components:
   - type: Sprite
     sprite: Clothing/Back/Duffels/holding.rsi
@@ -278,6 +274,3 @@
     walkModifier: 1
     sprintModifier: 0.9
   - type: HeldSpeedModifier
-  - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag. Maybe make a unique CBURN duffel sprite?

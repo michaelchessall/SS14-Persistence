@@ -26,7 +26,6 @@ namespace Content.Server.Atmos.Reactions
         public ReactionResult React(GasMixture mixture, IGasMixtureHolder? holder, AtmosphereSystem atmosphereSystem, float heatScale)
         {
             return ReactionResult.NoReaction;
-#pragma warning disable CS0162 // Unreachable code detected
             var energyReleased = 0f;
             var oldHeatCapacity = atmosphereSystem.GetHeatCapacity(mixture, true);
             var temperature = mixture.Temperature;
@@ -150,7 +149,6 @@ namespace Content.Server.Atmos.Reactions
                 return ReactionResult.Reacting | ReactionResult.StopReactions;
 
             return ReactionResult.Reacting;
-#pragma warning restore CS0162 // Unreachable code detected
         }
 
         /// <summary>

@@ -12,7 +12,6 @@
   - type: Rotatable
   - type: Physics
     canCollide: false
-  - type: Fixtures
   - type: Clickable
   - type: WallMount
   - type: InteractionOutline
@@ -25,28 +24,26 @@
     drawdepth: WallMountedItems
 
 - type: entity
-  abstract: true
   parent: BaseWallmount
   id: BaseWallmountGlass
+  abstract: true
   components:
   - type: MeleeSound
     soundGroups:
       Brute:
         collection: GlassSmash
   - type: Damageable
-    damageModifierSet: GlassMod
+    damageContainer: StructuralInorganic
+    damageModifierSet: Glass
 
 - type: entity
-  abstract: true
   parent: BaseWallmount
   id: BaseWallmountMetallic
+  abstract: true
   components:
-  - type: MeleeSound
-    soundGroups:
-      Brute:
-        collection: MetalThud
   - type: Damageable
-    damageModifierSet: SteelMod
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
 
 - type: entity
   parent: BaseWallmountMetallic

@@ -1,5 +1,5 @@
 ﻿- type: entity
-  parent: [ BaseStructure, StructureHealthBarrier ]
+  parent: BaseStructure
   id: BaseFenceMetal
   name: chain link fence
   description: A metal piece of fencing cordoning off something likely very important.
@@ -18,12 +18,19 @@
   - type: Transform
     anchored: true
   - type: Damageable
-    damageModifierSet: SteelMod
+    damageContainer: StructuralInorganic
+    damageModifierSet: FlimsyMetallic
   - type: Destructible
     thresholds:
-    - trigger: &DamageBarrierNormal
+    - trigger:
         !type:DamageTrigger
-        damage: 80
+        damage: 200
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
       behaviors:
       - !type:PlaySoundBehavior
         sound:
@@ -31,8 +38,10 @@
       - !type:SpawnEntitiesBehavior
         spawn:
           PartRodMetal1:
-            min: 1
-            max: 2
+            min: 3
+            max: 5
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Climbable
     delay: 5.0
     startClimbSound:
@@ -46,7 +55,6 @@
     noWindowInTile: true
     highVoltageNode: high
     mediumVoltageNode: medium
-    onActivateInWorld: true
     lowVoltageNode: low
   - type: NodeContainer
     nodes:
@@ -104,6 +112,28 @@
     messagePerceivedByOthers: fence-rattle-success
     interactSuccessSound:
       collection: FenceRattle
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Construction
     graph: FenceMetal
     node: broken
@@ -143,10 +173,28 @@
       collection: FenceRattle
   - type: Destructible
     thresholds:
-    - trigger: *DamageBarrierNormal
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
       behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          path: /Audio/Items/wirecutter.ogg
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          PartRodMetal1:
+            min: 2
+            max: 4
       - !type:ChangeConstructionNodeBehavior
         node: broken
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: Construction
     graph: FenceMetal
     node: straight

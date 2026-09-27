@@ -15,7 +15,8 @@ namespace Content.Shared.ParcelWrap.Systems;
 // This part handles Parcel Wrap.
 public sealed partial class ParcelWrappingSystem
 {
-    [Dependency] private INetManager _net = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     private static ProtoId<ItemSizePrototype> _fallbackParcelSize = "Ginormous";
 
@@ -38,7 +39,7 @@ public sealed partial class ParcelWrappingSystem
 
     private void SetFallbackParcelSize()
     {
-        if (ProtoMan.EnumeratePrototypes<ItemSizePrototype>().Max() is { } size)
+        if (_proto.EnumeratePrototypes<ItemSizePrototype>().Max() is { } size)
         {
             _fallbackParcelSize = size;
         }
@@ -96,7 +97,7 @@ public sealed partial class ParcelWrappingSystem
         if (target == user)
         {
             var selfMsg = Loc.GetString("parcel-wrap-popup-being-wrapped-self");
-            _popup.PopupEntity(selfMsg, user, user);
+            _popup.PopupClient(selfMsg, user, user);
         }
         else
         {
@@ -142,7 +143,7 @@ public sealed partial class ParcelWrappingSystem
 
         // Spawn the actual parcel entity.
         var targetTransform = Transform(target);
-        var spawned = SpawnAtPosition(GetParcelPrototype(wrapper, target), targetTransform.Coordinates);
+        var spawned = Spawn(GetParcelPrototype(wrapper, target), targetTransform.Coordinates);
         _transform.SetLocalRotation(spawned, targetTransform.LocalRotation);
 
         // If the target is in a container, try to put the parcel in its place in the container.

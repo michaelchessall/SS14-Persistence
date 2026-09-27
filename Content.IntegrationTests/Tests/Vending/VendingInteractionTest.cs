@@ -57,11 +57,10 @@ public sealed class VendingInteractionTest : InteractionTest
 
 - type: entity
   id: {VendingMachineProtoId}
-  parent: BaseVendingMachine
+  parent: VendingMachine
   components:
   - type: VendingMachine
     pack: InteractionTestVendingInventory
-  - type: VendingMachineEject
     ejectDelay: 0 # no delay to speed up tests
   - type: Sprite
     sprite: error.rsi

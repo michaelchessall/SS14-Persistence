@@ -55,6 +55,9 @@ public sealed partial class MimePowersComponent : Component
     public TimeSpan VowCooldown = TimeSpan.FromMinutes(5);
 
     [DataField]
+    public ProtoId<AlertPrototype> VowAlert = "VowOfSilence";
+
+    [DataField]
     public ProtoId<AlertPrototype> VowBrokenAlert = "VowBroken";
 
     /// <summary>

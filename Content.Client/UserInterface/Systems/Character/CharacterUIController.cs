@@ -25,11 +25,11 @@ using static Robust.Client.UserInterface.Controls.BaseButton;
 namespace Content.Client.UserInterface.Systems.Character;
 
 [UsedImplicitly]
-public sealed partial class CharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnSystemChanged<CharacterInfoSystem>
+public sealed class CharacterUIController : UIController, IOnStateEntered<GameplayState>, IOnStateExited<GameplayState>, IOnSystemChanged<CharacterInfoSystem>
 {
-    [Dependency] private IEntityManager _ent = default!;
-    [Dependency] private IPlayerManager _player = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly IEntityManager _ent = default!;
+    [Dependency] private readonly IPlayerManager _player = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
     [UISystemDependency] private readonly SpriteSystem _sprite = default!;
@@ -134,18 +134,12 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
             return;
         }
 
-        var entity = data.Entity;
-        var job = data.Job;
-        var faction = data.Faction;
-        var bankBal = data.BankBal;
-        var objectives = data.Objectives;
-        var briefing = data.Briefing;
-        var detailExaminable = data.DetailExaminable;
-        var entityName = data.EntityName;
+        var (entity, job, faction, bankBal, objectives, briefing, detailExaminable, entityName) = data;
 
         _window.SpriteView.SetEntity(entity);
 
         UpdateRoleType();
+
         _window.NameLabel.Text = entityName;
         _window.SubText.Text = (faction != null) ? job + " | " + faction : job; // If off-duty don't show faction
         _window.SubTextBankBal.Text = bankBal;

@@ -1,7 +1,7 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Taken from tgstation https://github.com/tgstation/tgstation/blob/master/icons/mob/clothing/head.dmi. Vox states taken from paradise at https://github.com/ParadiseSS13/Paradise/blob/765461f14aa4dd4f1edc33242c667843134678b5/icons/mob/clothing/species/vox/head.dmi, lights by TiniestShark (Github)",
+    "copyright": "Taken from tgstation https://github.com/tgstation/tgstation/blob/master/icons/mob/clothing/head.dmi. Vox states taken from paradise at https://github.com/ParadiseSS13/Paradise/blob/765461f14aa4dd4f1edc33242c667843134678b5/icons/mob/clothing/species/vox/head.dmi.",
     "size": {
         "x": 32,
         "y": 32
@@ -14,35 +14,35 @@
             "name": "icon-flash"
         },
         {
-            "name": "equipped-helmet",
+            "name": "off-equipped-HELMET",
             "directions": 4
         },
         {
-            "name": "equipped-helmet-light",
+            "name": "off-equipped-HELMET-vox",
             "directions": 4
         },
         {
-            "name": "equipped-helmet-vox",
+            "name": "off-inhand-left",
             "directions": 4
         },
         {
-            "name": "equipped-helmet-light-vox",
+            "name": "off-inhand-right",
             "directions": 4
         },
         {
-            "name": "inhand-left",
+            "name": "on-equipped-HELMET",
             "directions": 4
         },
         {
-            "name": "inhand-right",
+            "name": "on-equipped-HELMET-vox",
             "directions": 4
         },
         {
-            "name": "inhand-left-light",
+            "name": "on-inhand-left",
             "directions": 4
         },
         {
-            "name": "inhand-right-light",
+            "name": "on-inhand-right",
             "directions": 4
         }
     ]

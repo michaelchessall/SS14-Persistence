@@ -6,7 +6,7 @@ using Robust.Shared.Threading;
 
 namespace Content.Shared.Silicons.StationAi;
 
-public sealed partial class StationAiVisionSystem : EntitySystem
+public sealed class StationAiVisionSystem : EntitySystem
 {
     /*
      * This class handles 2 things:
@@ -14,13 +14,11 @@ public sealed partial class StationAiVisionSystem : EntitySystem
      * 2. It does single-tile lookups to tell if they're visible or not with support for a faster range-only path.
      */
 
-    [Dependency] private IParallelManager _parallel = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private SharedMapSystem _maps = default!;
-    [Dependency] private SharedTransformSystem _xforms = default!;
-    [Dependency] private SharedPowerReceiverSystem _power = default!;
-
-    [Dependency] private EntityQuery<OccluderComponent> _occluderQuery = default!;
+    [Dependency] private readonly IParallelManager _parallel = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedMapSystem _maps = default!;
+    [Dependency] private readonly SharedTransformSystem _xforms = default!;
+    [Dependency] private readonly SharedPowerReceiverSystem _power = default!;
 
     private SeedJob _seedJob;
     private ViewJob _job;
@@ -28,6 +26,8 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     private readonly HashSet<Entity<OccluderComponent>> _occluders = new();
     private readonly HashSet<Entity<StationAiVisionComponent>> _seeds = new();
     private readonly HashSet<Vector2i> _viewportTiles = new();
+
+    private EntityQuery<OccluderComponent> _occluderQuery;
 
     // Dummy set
     private readonly HashSet<Vector2i> _singleTiles = new();
@@ -44,6 +44,8 @@ public sealed partial class StationAiVisionSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
+
+        _occluderQuery = GetEntityQuery<OccluderComponent>();
 
         _seedJob = new()
         {
@@ -97,7 +99,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
         // Skip occluders step if we're just doing range checks.
         if (!fastPath)
         {
-            var tileEnumerator = _maps.GetLocalTilesIntersecting(grid, grid, expandedBounds, ignoreEmpty: false);
+            var tileEnumerator = _maps.GetLocalTilesEnumerator(grid, grid, expandedBounds, ignoreEmpty: false);
 
             // Get all other relevant tiles.
             while (tileEnumerator.MoveNext(out var tileRef))
@@ -182,7 +184,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
             return;
 
         // Get viewport tiles
-        var tileEnumerator = _maps.GetLocalTilesIntersecting(grid, grid, localAabb, ignoreEmpty: false);
+        var tileEnumerator = _maps.GetLocalTilesEnumerator(grid, grid, localAabb, ignoreEmpty: false);
 
         while (tileEnumerator.MoveNext(out var tileRef))
         {
@@ -194,7 +196,7 @@ public sealed partial class StationAiVisionSystem : EntitySystem
             _viewportTiles.Add(tileRef.GridIndices);
         }
 
-        tileEnumerator = _maps.GetLocalTilesIntersecting(grid, grid, enlargedLocalAabb, ignoreEmpty: false);
+        tileEnumerator = _maps.GetLocalTilesEnumerator(grid, grid, enlargedLocalAabb, ignoreEmpty: false);
 
         while (tileEnumerator.MoveNext(out var tileRef))
         {

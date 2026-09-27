@@ -3,7 +3,7 @@
   icon:
     sprite: Structures/Shuttles/thruster.rsi
     state: base
-  product: CrateSpaceThruster
+  product: CrateEngineeringThruster
   cost: 1000
   category: cargoproduct-category-name-shuttle
   group: explorermarket
@@ -13,7 +13,7 @@
   icon:
     sprite: Structures/Shuttles/gyroscope.rsi
     state: base
-  product: CrateSpaceGyroscope
+  product: CrateEngineeringGyroscope
   cost: 2500
   category: cargoproduct-category-name-shuttle
   group: explorermarket
@@ -344,7 +344,7 @@
   icon:
     sprite: Objects/Power/light_bulb.rsi
     state: normal
-  product: CrateJanitorialReplacementLights
+  product: CrateServiceReplacementLights
   cost: 750
   category: cargoproduct-category-name-service
   group: explorermarket

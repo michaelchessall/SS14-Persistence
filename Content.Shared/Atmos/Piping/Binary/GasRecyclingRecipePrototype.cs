@@ -1,5 +1,6 @@
 using Content.Shared.Chemistry.Reagent;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype.Dictionary;
 
 namespace Content.Shared.Atmos.Piping.Binary;
 
@@ -49,8 +50,8 @@ public sealed partial class GasRecyclingRecipePrototype : IPrototype
     /// Reagents that can be scrubbed from the gas into containers.
     /// Maps reagent IDs to their conversion ratios (how much reagent is produced per unit of input gas).
     /// </summary>
-    [DataField("scrubbedReagents")]
-    public Dictionary<ProtoId<ReagentPrototype>, float> ScrubbedReagents { get; private set; } = new();
+    [DataField("scrubbedReagents", customTypeSerializer: typeof(PrototypeIdDictionarySerializer<float, ReagentPrototype>))]
+    public Dictionary<string, float> ScrubbedReagents { get; private set; } = new();
 
     /// <summary>
     /// Whether this recipe is enabled by default.

@@ -1,7 +1,0 @@
-- type: metaFaction
-  id: Luminals
-  name: The Luminals
-  description: "The Luminals are beings of light and sound."
-  rumors:
-    - DiscoverSmallSalvage
-  color: Yellow

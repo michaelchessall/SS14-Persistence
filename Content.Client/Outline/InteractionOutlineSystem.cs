@@ -1,12 +1,9 @@
-using System.Collections.Generic;
 using Content.Client.ContextMenu.UI;
 using Content.Client.Gameplay;
-using Content.Client.Graphics;
 using Content.Client.Interactable.Components;
 using Content.Client.Viewport;
 using Content.Shared.CCVar;
 using Content.Shared.Interaction;
-using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
 using Robust.Client.Input;
 using Robust.Client.Player;
@@ -14,26 +11,18 @@ using Robust.Client.State;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Shared.Configuration;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.Outline;
 
-public sealed partial class InteractionOutlineSystem : EntitySystem
+public sealed class InteractionOutlineSystem : EntitySystem
 {
-    private static readonly ProtoId<ShaderPrototype> ShaderInRange = "SelectionOutlineInrange";
-    private static readonly ProtoId<ShaderPrototype> ShaderOutOfRange = "SelectionOutline";
-    private const float DefaultWidth = 1;
-    private readonly Dictionary<(bool InRange, int RenderScale), ShaderInstance> _shaderCache = new();
-
-    [Dependency] private IConfigurationManager _configManager = default!;
-    [Dependency] private IEyeManager _eyeManager = default!;
-    [Dependency] private IInputManager _inputManager = default!;
-    [Dependency] private IPlayerManager _playerManager = default!;
-    [Dependency] private IStateManager _stateManager = default!;
-    [Dependency] private IUserInterfaceManager _uiManager = default!;
-    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private SpriteSystem _sprite = default!;
+    [Dependency] private readonly IConfigurationManager _configManager = default!;
+    [Dependency] private readonly IEyeManager _eyeManager = default!;
+    [Dependency] private readonly IInputManager _inputManager = default!;
+    [Dependency] private readonly IPlayerManager _playerManager = default!;
+    [Dependency] private readonly IStateManager _stateManager = default!;
+    [Dependency] private readonly IUserInterfaceManager _uiManager = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
 
     /// <summary>
     ///     Whether to currently draw the outline. The outline may be temporarily disabled by other systems
@@ -47,32 +36,12 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
 
     private EntityUid? _lastHoveredEntity;
 
-    public override void Shutdown()
-    {
-        foreach (var shader in _shaderCache.Values)
-        {
-            shader.Dispose();
-        }
-
-        _shaderCache.Clear();
-        base.Shutdown();
-    }
-
     public override void Initialize()
     {
         base.Initialize();
 
         Subs.CVar(_configManager, CCVars.OutlineEnabled, SetCvarEnabled);
-        SubscribeLocalEvent<InteractionOutlineComponent, ComponentShutdown>(OnShutdown);
         UpdatesAfter.Add(typeof(SharedEyeSystem));
-    }
-
-    private void OnShutdown(Entity<InteractionOutlineComponent> ent, ref ComponentShutdown args)
-    {
-        RemoveOutline(ent);
-
-        if (_lastHoveredEntity == ent.Owner)
-            _lastHoveredEntity = null;
     }
 
     public void SetCvarEnabled(bool cvarEnabled)
@@ -88,7 +57,7 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
             return;
 
         if (TryComp(_lastHoveredEntity, out InteractionOutlineComponent? outline))
-            RemoveOutline((_lastHoveredEntity.Value, outline));
+            outline.OnMouseLeave(_lastHoveredEntity.Value);
     }
 
     public void SetEnabled(bool enabled)
@@ -107,7 +76,7 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
             return;
 
         if (TryComp(_lastHoveredEntity, out InteractionOutlineComponent? outline))
-            RemoveOutline((_lastHoveredEntity.Value, outline));
+            outline.OnMouseLeave(_lastHoveredEntity.Value);
     }
 
     public override void FrameUpdate(float frameTime)
@@ -164,7 +133,9 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
 
         var inRange = false;
         if (localSession.AttachedEntity != null && !Deleted(entityToClick))
+        {
             inRange = _interactionSystem.InRangeUnobstructed(localSession.AttachedEntity.Value, entityToClick.Value);
+        }
 
         InteractionOutlineComponent? outline;
 
@@ -172,7 +143,7 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
         {
             if (entityToClick != null && TryComp(entityToClick, out outline))
             {
-                UpdateOutline((entityToClick.Value, outline), inRange, renderScale);
+                outline.UpdateInRange(entityToClick.Value, inRange, renderScale);
             }
 
             return;
@@ -181,87 +152,14 @@ public sealed partial class InteractionOutlineSystem : EntitySystem
         if (_lastHoveredEntity != null && !Deleted(_lastHoveredEntity) &&
             TryComp(_lastHoveredEntity, out outline))
         {
-            RemoveOutline((_lastHoveredEntity.Value, outline));
+            outline.OnMouseLeave(_lastHoveredEntity.Value);
         }
 
         _lastHoveredEntity = entityToClick;
 
         if (_lastHoveredEntity != null && TryComp(_lastHoveredEntity, out outline))
         {
-            AddOutline((_lastHoveredEntity.Value, outline), inRange, renderScale);
+            outline.OnMouseEnter(_lastHoveredEntity.Value, inRange, renderScale);
         }
-    }
-
-    private void AddOutline(Entity<InteractionOutlineComponent> ent, bool inInteractionRange, int renderScale)
-    {
-        ent.Comp.LastRenderScale = renderScale;
-        ent.Comp.InRange = inInteractionRange;
-        ent.Comp.Active = true;
-
-        if (!TryComp(ent.Owner, out SpriteComponent? sprite))
-            return;
-
-        SetOutlinePostShader((ent.Owner, sprite), inInteractionRange, renderScale);
-    }
-
-    private void RemoveOutline(Entity<InteractionOutlineComponent> ent)
-    {
-        if (TryComp(ent.Owner, out SpriteComponent? sprite))
-        {
-            _sprite.RemovePostShader((ent.Owner, sprite), ContentPostShaderIds.InteractionOutline);
-            sprite.RenderOrder = 0;
-        }
-
-        ent.Comp.Active = false;
-    }
-
-    private void UpdateOutline(Entity<InteractionOutlineComponent> ent, bool inInteractionRange, int renderScale)
-    {
-        if (!TryComp(ent.Owner, out SpriteComponent? sprite)
-            || !_sprite.HasPostShader((ent.Owner, sprite), ContentPostShaderIds.InteractionOutline)
-            || inInteractionRange == ent.Comp.InRange && ent.Comp.LastRenderScale == renderScale)
-        {
-            return;
-        }
-
-        ent.Comp.InRange = inInteractionRange;
-        ent.Comp.LastRenderScale = renderScale;
-
-        SetOutlinePostShader((ent.Owner, sprite), ent.Comp.InRange, ent.Comp.LastRenderScale);
-    }
-
-    private void SetOutlinePostShader(Entity<SpriteComponent?> sprite, bool inRange, int renderScale)
-    {
-        var shader = GetShader(inRange, renderScale);
-        if (_sprite.TryGetPostShader(sprite, ContentPostShaderIds.InteractionOutline, out var entry) &&
-            entry.Shader == shader)
-        {
-            return;
-        }
-
-        _sprite.SetPostShader(sprite, new SpriteComponent.PostShaderArgs(ContentPostShaderIds.InteractionOutline, shader)
-        {
-            After = ContentPostShaderIds.AfterBaseEffects,
-        });
-    }
-
-    private ShaderInstance GetShader(bool inRange, int renderScale)
-    {
-        var key = (inRange, renderScale);
-        if (_shaderCache.TryGetValue(key, out var shader))
-            return shader;
-
-        shader = MakeNewShader(inRange, renderScale);
-        _shaderCache.Add(key, shader);
-        return shader;
-    }
-
-    private ShaderInstance MakeNewShader(bool inRange, int renderScale)
-    {
-        var shaderName = inRange ? ShaderInRange : ShaderOutOfRange;
-
-        var instance = _prototypeManager.Index(shaderName).InstanceUnique();
-        instance.SetParameter("outline_width", DefaultWidth * renderScale);
-        return instance;
     }
 }

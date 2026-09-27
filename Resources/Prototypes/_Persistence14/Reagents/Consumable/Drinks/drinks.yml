@@ -30,7 +30,6 @@
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Goblin]  # Goblins vomit when eating sugar
-      - !type:Satiate
+      - !type:SatiateThirst
         factor: 2
-        satiationType: Thirst
 

@@ -7,31 +7,28 @@ using Content.Shared.Maps;
 using Content.Shared.Paper;
 using Content.Shared.Physics;
 using Content.Shared.Popups;
-using Content.Shared.StatusEffectNew;
+using Content.Shared.Speech.Muting;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Abilities.Mime;
 
-public sealed partial class MimePowersSystem : EntitySystem
+public sealed class MimePowersSystem : EntitySystem
 {
-    public static readonly EntProtoId MutedEffect = "StatusEffectMimeMuted";
-
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
-    [Dependency] private SharedActionsSystem _actionsSystem = default!;
-    [Dependency] private AlertsSystem _alertsSystem = default!;
-    [Dependency] private StatusEffectsSystem _statusEffects = default!;
-    [Dependency] private TurfSystem _turf = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedActionsSystem _actionsSystem = default!;
+    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+    [Dependency] private readonly TurfSystem _turf = default!;
+    [Dependency] private readonly IMapManager _mapMan = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
-        SubscribeLocalEvent<MimePowersComponent, MapInitEvent>(OnMapInit);
+        SubscribeLocalEvent<MimePowersComponent, ComponentInit>(OnComponentInit);
         SubscribeLocalEvent<MimePowersComponent, ComponentShutdown>(OnComponentShutdown);
         SubscribeLocalEvent<MimePowersComponent, InvisibleWallActionEvent>(OnInvisibleWall);
 
@@ -55,14 +52,13 @@ public sealed partial class MimePowersSystem : EntitySystem
 
             mime.ReadyToRepent = true;
             Dirty(uid, mime);
-            _popupSystem.PopupEntity(Loc.GetString("mime-ready-to-repent"), uid, uid);
+            _popupSystem.PopupClient(Loc.GetString("mime-ready-to-repent"), uid, uid);
         }
     }
 
-    private void OnMapInit(Entity<MimePowersComponent> ent, ref MapInitEvent args)
+    private void OnComponentInit(Entity<MimePowersComponent> ent, ref ComponentInit args)
     {
-        if (!ent.Comp.VowBroken)
-            _statusEffects.TrySetStatusEffectDuration(ent, MutedEffect);
+        EnsureComp<MutedComponent>(ent);
 
         if (ent.Comp.PreventWriting)
         {
@@ -71,12 +67,12 @@ public sealed partial class MimePowersSystem : EntitySystem
             Dirty(ent, illiterateComponent);
         }
 
+        _alertsSystem.ShowAlert(ent.Owner, ent.Comp.VowAlert);
         _actionsSystem.AddAction(ent, ref ent.Comp.InvisibleWallActionEntity, ent.Comp.InvisibleWallAction);
     }
 
     private void OnComponentShutdown(Entity<MimePowersComponent> ent, ref ComponentShutdown args)
     {
-        _statusEffects.TryRemoveStatusEffect(ent, MutedEffect);
         _actionsSystem.RemoveAction(ent.Owner, ent.Comp.InvisibleWallActionEntity);
     }
 
@@ -94,7 +90,7 @@ public sealed partial class MimePowersSystem : EntitySystem
         var xform = Transform(ent);
         // Get the tile in front of the mime
         var offsetValue = xform.LocalRotation.ToWorldVec();
-        var coords = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager);
+        var coords = xform.Coordinates.Offset(offsetValue).SnapToGrid(EntityManager, _mapMan);
         var tile = _turf.GetTileRef(coords);
         if (tile == null)
             return;
@@ -102,13 +98,13 @@ public sealed partial class MimePowersSystem : EntitySystem
         // Check if the tile is blocked by a wall or mob, and don't create the wall if so
         if (_turf.IsTileBlocked(tile.Value, CollisionGroup.Impassable | CollisionGroup.Opaque))
         {
-            _popupSystem.PopupEntity(Loc.GetString("mime-invisible-wall-failed"), ent, ent);
+            _popupSystem.PopupClient(Loc.GetString("mime-invisible-wall-failed"), ent, ent);
             return;
         }
 
         var messageSelf = Loc.GetString("mime-invisible-wall-popup-self", ("mime", Identity.Entity(ent.Owner, EntityManager)));
         var messageOthers = Loc.GetString("mime-invisible-wall-popup-others", ("mime", Identity.Entity(ent.Owner, EntityManager)));
-        _popupSystem.PopupEntity(messageSelf, messageOthers, ent, ent);
+        _popupSystem.PopupPredicted(messageSelf, messageOthers, ent, ent);
 
         // Make sure we set the invisible wall to despawn properly
         PredictedSpawnAtPosition(ent.Comp.WallPrototype, _turf.GetTileCenter(tile.Value));
@@ -149,10 +145,11 @@ public sealed partial class MimePowersSystem : EntitySystem
         mimePowers.VowBroken = true;
         mimePowers.VowRepentTime = _timing.CurTime + mimePowers.VowCooldown;
         Dirty(uid, mimePowers);
-        _statusEffects.TryRemoveStatusEffect(uid, MutedEffect);
+        RemComp<MutedComponent>(uid);
         if (mimePowers.PreventWriting)
             RemComp<BlockWritingComponent>(uid);
 
+        _alertsSystem.ClearAlert(uid, mimePowers.VowAlert);
         _alertsSystem.ShowAlert(uid, mimePowers.VowBrokenAlert);
         _actionsSystem.RemoveAction(uid, mimePowers.InvisibleWallActionEntity);
     }
@@ -167,7 +164,7 @@ public sealed partial class MimePowersSystem : EntitySystem
 
         if (!mimePowers.ReadyToRepent)
         {
-            _popupSystem.PopupEntity(Loc.GetString("mime-not-ready-repent"), uid, uid);
+            _popupSystem.PopupClient(Loc.GetString("mime-not-ready-repent"), uid, uid);
             return;
         }
 
@@ -175,7 +172,7 @@ public sealed partial class MimePowersSystem : EntitySystem
         mimePowers.ReadyToRepent = false;
         mimePowers.VowBroken = false;
         Dirty(uid, mimePowers);
-        _statusEffects.TrySetStatusEffectDuration(uid, MutedEffect);
+        AddComp<MutedComponent>(uid);
         if (mimePowers.PreventWriting)
         {
             EnsureComp<BlockWritingComponent>(uid, out var illiterateComponent);
@@ -184,6 +181,7 @@ public sealed partial class MimePowersSystem : EntitySystem
         }
 
         _alertsSystem.ClearAlert(uid, mimePowers.VowBrokenAlert);
+        _alertsSystem.ShowAlert(uid, mimePowers.VowAlert);
         _actionsSystem.AddAction(uid, ref mimePowers.InvisibleWallActionEntity, mimePowers.InvisibleWallAction, uid);
     }
 }

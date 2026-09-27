@@ -101,8 +101,6 @@
           conditions:
             - !type:EntityAnchored
             - !type:WirePanel
-            - !type:Locked
-              locked: false
           steps:
             - tool: Prying
               doAfter: 2

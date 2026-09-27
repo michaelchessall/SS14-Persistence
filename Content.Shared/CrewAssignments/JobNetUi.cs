@@ -1,4 +1,3 @@
-using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
@@ -31,12 +30,21 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
     public bool SpendAuth;
     public int Spent;
     public int Spendable;
+    public int Precursor;
+    public List<ProtoId<PrecursorObjectivePrototype>> Objectives;
+    public TimeSpan PrecursorResetTime;
+    public ProtoId<RogueLevelPrototype> RogueLevel;
+    public int XP;
+    public RogueNetworkType NetworkType;
+    public string SecretPhrase;
+    public string? KillTarget;
+    public CargoBountyData? DealerObjective;
+    public string? DealerObjectiveStation;
+    public TimeSpan RogueObjectiveResetTime;
+    public int SectorChaos;
+    public int SectorDevelopment;
     public string SectorStatus;
-    public Dictionary<ProtoId<MetaFactionPrototype>, int> MetaFactionReputations = new();
-
-    public List<ActiveRumor> Rumors = new();
-
-    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, string sectorStatus, Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations, List<ActiveRumor> rumors)
+    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, int precursor, List<ProtoId<PrecursorObjectivePrototype>> objectives, TimeSpan precursorResetTime, ProtoId<RogueLevelPrototype> rogueLevel, int xP, RogueNetworkType networkType, string secretPhrase, string? killTarget, CargoBountyData? bountyData, string? stationName, TimeSpan rogueReset, int sectorChaos, int sectorDevelopment, string sectorStatus)
     {
         Stations = stations;
         AssignmentName = assignmentName;
@@ -51,9 +59,20 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
         SpendAuth = spendAuth;
         Spent = spent;
         Spendable = spendable;
+        Precursor = precursor;
+        Objectives = objectives;
+        PrecursorResetTime = precursorResetTime;
+        RogueLevel = rogueLevel;
+        XP = xP;
+        NetworkType = networkType;
+        SecretPhrase = secretPhrase;
+        KillTarget = killTarget;
+        DealerObjective = bountyData;
+        DealerObjectiveStation = stationName;
+        RogueObjectiveResetTime = rogueReset;
+        SectorChaos = sectorChaos;
+        SectorDevelopment = sectorDevelopment;
         SectorStatus = sectorStatus;
-        MetaFactionReputations = metaFactionReputations;
-        Rumors = rumors;
     }
 }
 

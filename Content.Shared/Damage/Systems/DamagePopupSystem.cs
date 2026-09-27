@@ -4,10 +4,10 @@ using Content.Shared.Popups;
 
 namespace Content.Shared.Damage.Systems;
 
-public sealed partial class DamagePopupSystem : EntitySystem
+public sealed class DamagePopupSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
-    [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageable = default!;
 
     public override void Initialize()
     {
@@ -32,7 +32,8 @@ public sealed partial class DamagePopupSystem : EntitySystem
                 _ => "Invalid type",
             };
 
-            _popupSystem.PopupEntity(msg, ent.Owner);
+            // Turn this back into (msg, ent.Owner, args.Origin) when shooting gets predicted.
+            _popupSystem.PopupPredicted(msg, ent.Owner, null);
         }
     }
 
@@ -43,7 +44,7 @@ public sealed partial class DamagePopupSystem : EntitySystem
             var next = (DamagePopupType)(((int)ent.Comp.Type + 1) % Enum.GetValues<DamagePopupType>().Length);
             ent.Comp.Type = next;
             Dirty(ent);
-            _popupSystem.PopupEntity(Loc.GetString("damage-popup-component-switched", ("setting", ent.Comp.Type)), ent.Owner);
+            _popupSystem.PopupPredicted(Loc.GetString("damage-popup-component-switched", ("setting", ent.Comp.Type)), ent.Owner, args.User);
         }
     }
 }

@@ -3,6 +3,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Weapons.Ranged.Components;
 
@@ -15,37 +16,36 @@ public sealed partial class RevolverAmmoProviderComponent : AmmoProviderComponen
      * for example 7 entities when revolver spawns (1 for the revolver and 6 cylinders) we can instead defer it.
      */
 
-    [DataField]
+    [DataField("whitelist")]
     public EntityWhitelist? Whitelist;
 
-    [ViewVariables]
     public Container AmmoContainer = default!;
 
     [DataField("currentSlot")]
     public int CurrentIndex;
 
-    [DataField]
+    [DataField("capacity")]
     public int Capacity = 6;
 
     // Like BallisticAmmoProvider we defer spawning until necessary
     // AmmoSlots is the instantiated ammo and Chambers is the unspawned ammo (that may or may not have been shot).
 
     // TODO: Using an array would be better but this throws!
-    [DataField]
+    [DataField("ammoSlots")]
     public List<EntityUid?> AmmoSlots = new();
 
-    [DataField]
+    [DataField("chambers")]
     public bool?[] Chambers = Array.Empty<bool?>();
 
-    [DataField("proto")]
-    public EntProtoId? FillPrototype = "CartridgeMagnum";
+    [DataField("proto", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string? FillPrototype = "CartridgeMagnum";
 
-    [DataField]
+    [DataField("soundEject")]
     public SoundSpecifier? SoundEject = new SoundPathSpecifier("/Audio/Weapons/Guns/MagOut/revolver_magout.ogg");
 
-    [DataField]
+    [DataField("soundInsert")]
     public SoundSpecifier? SoundInsert = new SoundPathSpecifier("/Audio/Weapons/Guns/MagIn/revolver_magin.ogg");
 
-    [DataField]
+    [DataField("soundSpin")]
     public SoundSpecifier? SoundSpin = new SoundPathSpecifier("/Audio/Weapons/Guns/Misc/revolver_spin.ogg");
 }

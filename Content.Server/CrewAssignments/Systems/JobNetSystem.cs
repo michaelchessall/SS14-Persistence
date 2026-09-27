@@ -51,20 +51,21 @@ namespace Content.Server.CrewAssignments.Systems;
 /// </summary>
 public sealed partial class JobNetSystem : SharedJobNetSystem
 {
-    [Dependency] private BankSystem _bank = default!;
-    [Dependency] private IChatManager _chatManager = default!;
-    [Dependency] private IPrototypeManager _proto = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private CargoSystem _cargo = default!;
-    [Dependency] private CrewManifestSystem _crewManifest = default!;
-    [Dependency] private IdCardSystem _card = default!;
-    [Dependency] private CodewordSystem _codeword = default!;
-    [Dependency] private TransformSystem _transform = default!;
-    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private SharedCuffableSystem _cuffable = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private NameIdentifierSystem _nameIdentifier = default!;
+    [Dependency] private readonly BankSystem _bank = default!;
+    [Dependency] private readonly IChatManager _chatManager = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly CargoSystem _cargo = default!;
+    [Dependency] private readonly CrewManifestSystem _crewManifest = default!;
+    [Dependency] private readonly IdCardSystem _card = default!;
+    [Dependency] private readonly CodewordSystem _codeword = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private readonly SharedCuffableSystem _cuffable = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly NameIdentifierSystem _nameIdentifier = default!;
+    [Dependency] private readonly IGameTiming _timing2 = default!;
     public override void ReagentObjectiveComplete(JobNetComponent component, ProtoId<PrecursorObjectivePrototype> objective)
     {
         if (_proto.TryIndex(objective, out PrecursorObjectivePrototype? proto) && proto != null)
@@ -102,9 +103,14 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
         SubscribeLocalEvent<JobNetComponent, OpenJobNetImplantEvent>(OnImplantActivate);
         SubscribeLocalEvent<JobNetComponent, JobNetSelectMessage>(OnSelect);
         SubscribeLocalEvent<JobNetComponent, JobNetPurchaseMessage>(OnPurchase);
+        SubscribeLocalEvent<JobNetComponent, JobNetSelectRogueNetMessage>(OnSelectRogueNet);
+        SubscribeLocalEvent<JobNetComponent, JobNetPurchasePrecursorMessage>(OnPurchasePrecursor);
+        SubscribeLocalEvent<JobNetComponent, JobNetSubmitHuntMessage>(OnSubmitHunt);
+        SubscribeLocalEvent<JobNetComponent, JobNetSubmitHuntedMessage>(OnSubmitHunted);
+        SubscribeLocalEvent<JobNetComponent, JobNetDealerLabelMessage>(OnDealerLabel);
         SubscribeLocalEvent<PrecursorExtractorComponent, AfterInteractEvent>(AfterInteractOn);
         SubscribeLocalEvent<PrecursorExtractorComponent, PrecursorExtractorDoAfterEvent>(OnDoAfter);
-
+        
 
         InitializeUi();
     }
@@ -148,6 +154,60 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
         return null;
     }
 
+    private void OnDealerLabel(Entity<JobNetComponent> ent, ref JobNetDealerLabelMessage args)
+    {
+        if (ent.Comp.DealerBounty == null) return;
+        if (ent.Comp.NextPrintTime > _timing2.CurTime) return;
+        EntityUid? player = null;
+        if (TryComp<TransformComponent>(ent.Owner, out var comp) && comp != null)
+        {
+            player = comp.ParentUid;
+        }
+        if (!TryComp<ActorComponent>(player, out var actor) || actor == null || actor.PlayerSession == null) return;
+        var query = EntityQueryEnumerator<CargoTelepadComponent>();
+        var found = false;
+        var userMapPos = _transform.GetMapCoordinates(player.Value);
+        var ts = _cargo.GetTradeStationByID(ent.Comp.DealerBounty.TradeStationUID);
+        if (ts == null) return;
+        while (query.MoveNext(out var telepad, out var telepadcomp))
+        {
+            var targetMapPos = _transform.GetMapCoordinates(telepad);
+            var calculatedDistance = targetMapPos.Position - userMapPos.Position;
+            var total = calculatedDistance.Length();
+            if (total <= 3)
+            {
+                var teleTransform = Transform(telepad);
+                var newEntity = Spawn("PaperCargoBountyManifest", teleTransform.Coordinates);
+                ent.Comp.NextPrintTime = _timing2.CurTime + TimeSpan.FromSeconds(10);
+                _cargo.SetupBountyLabel(newEntity, ts.Value, ent.Comp.DealerBounty);
+                if(TryComp<CargoBountyLabelComponent>(newEntity, out var cbl))
+                {
+                    if(cbl != null)
+                    {
+                        cbl.DealerName = Name(player.Value);
+                    }
+                }
+                found = true;
+
+                break;
+            }
+        }
+        if (!found)
+        {
+            _audio.PlayEntity(ent.Comp.ErrorSound, player.Value, player.Value);
+            var msg = $"You must be next to a telepad to teleport the label.";
+            if (msg != null)
+                _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Notifications,
+                    msg,
+                    msg,
+                    player.Value,
+                    false,
+                    actor.PlayerSession.Channel
+                    );
+            return;
+        }
+        UpdateUserInterface(args.Actor, ent.Owner, ent.Comp);
+    }
 
     private void AwardPrecursor(EntityUid uid, JobNetComponent component, int amount)
     {
@@ -183,6 +243,117 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
             }
         }
     }
+    private void OnSubmitHunted(Entity<JobNetComponent> ent, ref JobNetSubmitHuntedMessage args)
+    {
+        if (args.ID == "") return;
+        var query = EntityQueryEnumerator<JobNetComponent>();
+        var player = Transform(ent).ParentUid;
+        if (player == EntityUid.Invalid) return;
+        if (!TryComp<ActorComponent>(player, out var actor) || actor.PlayerSession == null) return;
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            if(comp.KillTarget == Name(player))
+            {
+                if(args.ID == comp.SecretPhrase)
+                {
+                    Compromise(uid, comp);
+                    HuntedCompleted(ent.Owner, ent.Comp);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void OnSubmitHunt(Entity<JobNetComponent> ent, ref JobNetSubmitHuntMessage args)
+    {
+        if (args.ID == "") return;
+        if (ent.Comp.KillTarget == null) return;
+        var query = EntityQueryEnumerator<JobNetComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            var tx = Transform(uid);
+            var parent = tx.ParentUid;
+            if (Name(parent) == ent.Comp.KillTarget)
+            {
+                if (args.ID == comp.SecretPhrase)
+                {
+                    HuntCompleted(ent.Owner, ent.Comp);
+                    Compromise(uid, comp);
+                    return;
+                }
+            }
+        }
+    }
+
+    private void HuntCompleted(EntityUid uid, JobNetComponent component)
+    {
+        EntityUid? player = null;
+        var comp = Transform(uid);
+        player = comp.ParentUid;
+        if (player == null) return;
+        if (TryComp<ActorComponent>(player, out var actor) && actor != null && actor.PlayerSession != null)
+        {
+            var msg = $"You have completed the hunt.";
+            _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Notifications,
+                msg,
+                msg,
+                player.Value,
+                false,
+                actor.PlayerSession.Channel
+                );
+        }
+        component.KillTarget = null;
+        AwardPrecursor(uid, component, 500);
+        UpdateUserInterface(player, uid, component);
+    }
+    private void HuntedCompleted(EntityUid uid, JobNetComponent component)
+    {
+        EntityUid? player = null;
+        var comp = Transform(uid);
+        player = comp.ParentUid;
+        if (player == null) return;
+        if (TryComp<ActorComponent>(player, out var actor) && actor != null && actor.PlayerSession != null)
+        {
+            var msg = $"You have compromised the person hunting you.";
+            _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Notifications,
+                msg,
+                msg,
+                player.Value,
+                false,
+                actor.PlayerSession.Channel
+                );
+        }
+        AwardPrecursor(uid, component, 500);
+        UpdateUserInterface(player, uid, component);
+    }
+
+    private void Compromise(EntityUid uid, JobNetComponent component)
+    {
+        EntityUid? player = null;
+        var comp = Transform(uid);
+        player = comp.ParentUid;
+        if (player != null)
+        {
+            if(TryComp<ActorComponent>(player, out var actor) && actor != null && actor.PlayerSession != null)
+            {
+                var msg = $"You have been compromised. You must protect your secret phrase!";
+                _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Notifications,
+                    msg,
+                    msg,
+                    player.Value,
+                    false,
+                    actor.PlayerSession.Channel
+                    );
+            }
+        }
+        component.KillTarget = null;
+        component.NetworkType = RogueNetworkType.None;
+        component.RogueLevel = "RogueLevel1";
+        component.XP = 0;
+        component.Precursor = Math.Max(0, component.Precursor-500);
+        UpdateUserInterface(player, uid, component);
+    }
+
 
 
     private void AfterInteractOn(EntityUid uid, PrecursorExtractorComponent component, AfterInteractEvent args)
@@ -207,21 +378,21 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
     {
         if (args.Handled || args.Cancelled)
             return;
-        if (!TryComp<ActorComponent>(args.User, out var actor) || actor.PlayerSession == null)
+        if(!TryComp<ActorComponent>(args.User, out var actor) || actor.PlayerSession == null)
             return;
 
         if (args.Args.Target != null)
         {
             var target = (EntityUid)args.Args.Target;
             bool vulnerable = false;
-            if (TryComp<CuffableComponent>(target, out var cuffable) && cuffable != null)
+            if(TryComp<CuffableComponent>(target, out var cuffable) && cuffable != null)
             {
-                if (_cuffable.IsCuffed((target, cuffable)))
+                if (_cuffable.IsCuffed((target,cuffable)))
                 {
                     vulnerable = true;
                 }
             }
-
+            
             if (TryComp<MobStateComponent>(target, out var mobState))
             {
                 if (mobState.CurrentState == MobState.Dead)
@@ -355,8 +526,7 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
     private void OnPurchasePrecursor(EntityUid uid, JobNetComponent component, JobNetPurchasePrecursorMessage args)
     {
         EntityUid? player = null;
-        var comp = Transform(uid);
-        if (comp != null)
+        if (TryComp<TransformComponent>(uid, out var comp) && comp != null)
         {
             player = comp.ParentUid;
         }
@@ -369,7 +539,7 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
         if (prod.Group == "syndicatemarket3") requiredLevel = 3;
         if (prod.Group == "syndicatemarket4") requiredLevel = 4;
         var level = _proto.Index(component.RogueLevel);
-        if (level.ItemLevel < requiredLevel)
+        if(level.ItemLevel < requiredLevel)
         {
             _audio.PlayEntity(component.ErrorSound, player.Value, player.Value);
             var msg = $"You do not have the rogue level required to purchase this.";
@@ -383,10 +553,10 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
                     );
             return;
         }
-        if (prod.Cost > component.Precursor)
+        if(prod.Cost > component.Precursor)
         {
             _audio.PlayEntity(component.ErrorSound, player.Value, player.Value);
-            var msg = $"You have insufficent stored precursor. You need {prod.Cost - component.Precursor} more precursor.";
+            var msg = $"You have insufficent stored precursor. You need {prod.Cost-component.Precursor} more precursor.";
             if (msg != null)
                 _chatManager.ChatMessageToOne(Shared.Chat.ChatChannel.Notifications,
                     msg,
@@ -405,7 +575,7 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
             var targetMapPos = _transform.GetMapCoordinates(telepad);
             var calculatedDistance = targetMapPos.Position - userMapPos.Position;
             var total = calculatedDistance.Length();
-            if (total <= 3)
+            if(total <= 3)
             {
                 var teleTransform = Transform(telepad);
                 var newEntity = Spawn(prod.Product, teleTransform.Coordinates);
@@ -415,7 +585,7 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
                 break;
             }
         }
-        if (!found)
+        if(!found)
         {
             _audio.PlayEntity(component.ErrorSound, player.Value, player.Value);
             var msg = $"You must be next to a telepad to make purchases.";
@@ -521,10 +691,11 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
         {
             List<CargoBountyPrototype> possible = new();
             var query = EntityQueryEnumerator<TradeStationComponent>();
+            int tradeStationUID = 0;
             List<TradeStationComponent> possibleTrade = new();
             while (query.MoveNext(out var uid, out var comp))
             {
-                if (TryComp<StationMemberComponent>(uid, out var sm))
+                if(TryComp<StationMemberComponent>(uid, out var sm))
                 {
                     possibleTrade.Add(comp);
                 }
@@ -533,14 +704,14 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
             var chosenUID = _random.Pick(possibleTrade).UID;
             foreach (var proto in _proto.EnumeratePrototypes<CargoBountyPrototype>())
             {
-                if (proto.Group == "PrecursorBounty")
+                if(proto.Group == "PrecursorBounty")
                 {
                     possible.Add(proto);
                 }
             }
             if (possible.Count < 1) return;
             var chosen = _random.Pick(possible);
-            _nameIdentifier.GenerateUniqueNameModifier("Bounty", out var randomVal);
+            _nameIdentifier.GenerateUniqueName(user, "Bounty", out var randomVal);
             var newBounty = new CargoBountyData(chosen, randomVal);
             newBounty.TradeStationUID = chosenUID;
             component.DealerBounty = newBounty;
@@ -599,8 +770,7 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
             return;
         }
         EntityUid? player = null;
-        var comp = Transform(user);
-        if (comp != null)
+        if (TryComp<TransformComponent>(user, out var comp) && comp != null)
         {
             player = comp.ParentUid;
         }

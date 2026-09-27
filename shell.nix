@@ -34,14 +34,14 @@ let
     libdrm
     expat
     libxkbcommon
-    libxcb
-    libX11
-    libXcomposite
-    libXdamage
-    libXext
-    libXfixes
-    libXrandr
-    libxshmfence
+    xorg.libxcb
+    xorg.libX11
+    xorg.libXcomposite
+    xorg.libXdamage
+    xorg.libXext
+    xorg.libXfixes
+    xorg.libXrandr
+    xorg.libxshmfence
     mesa
     alsa-lib
     pipewire

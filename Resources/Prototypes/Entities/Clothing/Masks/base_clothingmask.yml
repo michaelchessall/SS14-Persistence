@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: [ Clothing, SolutionStain ] # Persistence: Use SolutionStain for funky footprints and stains
+  parent: Clothing
   id: ClothingMaskBase
   components:
   - type: Sprite
@@ -12,6 +12,10 @@
   - type: StaticPrice
     price: 10
   - type: Appearance # Funky: Footprints & Stains
+  - type: SolutionContainerManager # Funky: Footprints & Stains
+    solutions:
+      stain:
+        maxVol: 5
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       mask:
@@ -35,24 +39,19 @@
   description: Handy, but prevents insertion of pie into your pie hole.
   components:
   - type: Action
-  - type: Sprite
-    sprite: Clothing/Mask/gas.rsi
-    layers:
-    - state: icon
-      map: ["enum.ActionVisuals.Icon"]
-    - texture: Interface/Default/blocked.png
-      map: ["enum.ActionVisuals.IconToggled"]
-      visible: false
+    icon: { sprite: Clothing/Mask/gas.rsi, state: icon }
+    iconOn: Interface/Default/blocked.png
   - type: InstantAction
     event: !type:ToggleMaskEvent
 
 - type: entity
-  abstract: true
-  parent: [SolutionFood, SolutionToolSmall, ClothingMaskBase, BaseSlicingRefinable]
   id: ClothingMaskBaseButcherable
+  parent: ClothingMaskBase
+  abstract: true
   components:
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    butcheringType: Knife
+    spawned:
     - id: MaterialCloth1
       amount: 1
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
@@ -60,14 +59,15 @@
       Cloth: 50
   - type: Edible
     requiresSpecialDigestion: true
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Fiber
-        Quantity: 15
-  - type: SolutionManager
+  - type: SolutionContainerManager
     solutions:
-    - SolutionStain
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Fiber
+          Quantity: 10
+      stain: # Funky: Footprints & Stains
+        maxVol: 5
   - type: Tag
     tags:
     - ClothMade

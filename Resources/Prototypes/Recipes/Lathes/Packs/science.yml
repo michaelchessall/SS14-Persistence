@@ -24,7 +24,6 @@
   - DeviceQuantumSpinInverter
   - DeviceDesynchronizer
   - ClothingBackpackHarmpack
-  - TeleporterChipBlank
 
 - type: latheRecipePack
   id: ScienceClothing
@@ -85,8 +84,6 @@
   - ArtifactAnalyzerMachineCircuitboard
   - ArtifactAnalyzerAdvancedMachineCircuitboard
   - ArtifactCrusherMachineCircuitboard
-  - StationTeleportersControlCircuitboard
-  - StationTeleporterMachineCircuitboard
   - RoboticsConsoleCircuitboard
   - ResearchComputerCircuitboard
   - ResearchAndDevelopmentServerMachineCircuitboard

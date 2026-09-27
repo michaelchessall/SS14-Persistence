@@ -7,8 +7,6 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/execspace.rsi
-    layers: 
-    - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/execspace.rsi
   - type: PressureProtection
@@ -93,8 +91,6 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/medical.rsi
-    layers: 
-    - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/medical.rsi
   - type: PointLight
@@ -116,8 +112,6 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/rd.rsi
-    layers: 
-    - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/rd.rsi
   - type: PointLight
@@ -160,8 +154,6 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/security-red.rsi
-    layers: 
-    - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/security-red.rsi
   - type: PointLight

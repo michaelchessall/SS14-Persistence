@@ -23,16 +23,16 @@ namespace Content.Shared.Storage.EntitySystems;
 /// <summary>
 ///     Secret Stash allows an item to be hidden within.
 /// </summary>
-public sealed partial class SecretStashSystem : EntitySystem
+public sealed class SecretStashSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
-    [Dependency] private SharedHandsSystem _handsSystem = default!;
-    [Dependency] private SharedContainerSystem _containerSystem = default!;
-    [Dependency] private SharedItemSystem _item = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private ToolOpenableSystem _toolOpenableSystem = default!;
-    [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
-    [Dependency] private DamageableSystem _damageableSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
+    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
+    [Dependency] private readonly SharedItemSystem _item = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly ToolOpenableSystem _toolOpenableSystem = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private readonly DamageableSystem _damageableSystem = default!;
 
     public override void Initialize()
     {
@@ -94,16 +94,14 @@ public sealed partial class SecretStashSystem : EntitySystem
         if (!TryComp<ItemComponent>(itemToHideUid, out var itemComp))
             return false;
 
-        var audioParams = entity.Comp.TryInsertItemSound?.Params ?? AudioParams.Default;
-        audioParams = audioParams.WithVariation(0.25f);
-        _audio.PlayPredicted(entity.Comp.TryInsertItemSound, entity, userUid, audioParams);
+        _audio.PlayPredicted(entity.Comp.TryInsertItemSound, entity, userUid, AudioParams.Default.WithVariation(0.25f));
 
         // check if secret stash is already occupied
         var container = entity.Comp.ItemContainer;
         if (HasItemInside(entity))
         {
             var popup = Loc.GetString("comp-secret-stash-action-hide-container-not-empty");
-            _popupSystem.PopupEntity(popup, entity, userUid);
+            _popupSystem.PopupClient(popup, entity, userUid);
             return false;
         }
 
@@ -113,7 +111,7 @@ public sealed partial class SecretStashSystem : EntitySystem
         {
             var msg = Loc.GetString("comp-secret-stash-action-hide-item-too-big",
                 ("item", itemToHideUid), ("stashname", GetStashName(entity)));
-            _popupSystem.PopupEntity(msg, entity, userUid);
+            _popupSystem.PopupClient(msg, entity, userUid);
             return false;
         }
 
@@ -124,7 +122,7 @@ public sealed partial class SecretStashSystem : EntitySystem
         // all done, show success message
         var successMsg = Loc.GetString("comp-secret-stash-action-hide-success",
             ("item", itemToHideUid), ("stashname", GetStashName(entity)));
-        _popupSystem.PopupEntity(successMsg, entity, userUid);
+        _popupSystem.PopupClient(successMsg, entity, userUid);
         return true;
     }
 
@@ -138,9 +136,7 @@ public sealed partial class SecretStashSystem : EntitySystem
         if (!TryComp<HandsComponent>(userUid, out var handsComp))
             return false;
 
-        var audioParams = entity.Comp.TryRemoveItemSound?.Params ?? AudioParams.Default;
-        audioParams = audioParams.WithVariation(0.25f);
-        _audio.PlayPredicted(entity.Comp.TryRemoveItemSound, entity, userUid, audioParams);
+        _audio.PlayPredicted(entity.Comp.TryRemoveItemSound, entity, userUid, AudioParams.Default.WithVariation(0.25f));
 
         // check if secret stash has something inside
         var itemInStash = entity.Comp.ItemContainer.ContainedEntity;
@@ -152,7 +148,7 @@ public sealed partial class SecretStashSystem : EntitySystem
         // show success message
         var successMsg = Loc.GetString("comp-secret-stash-action-get-item-found-something",
             ("stashname", GetStashName(entity)));
-        _popupSystem.PopupEntity(successMsg, entity, userUid);
+        _popupSystem.PopupClient(successMsg, entity, userUid);
 
         return true;
     }
@@ -238,7 +234,7 @@ public sealed partial class SecretStashSystem : EntitySystem
         if (storedInside != null && storedInside.Count >= 1)
         {
             var popup = Loc.GetString("comp-secret-stash-on-destroyed-popup", ("stashname", GetStashName(entity)));
-            _popupSystem.PopupEntity(popup, storedInside[0], PopupType.MediumCaution);
+            _popupSystem.PopupPredicted(popup, storedInside[0], null, PopupType.MediumCaution);
         }
     }
 

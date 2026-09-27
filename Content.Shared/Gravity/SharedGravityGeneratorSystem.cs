@@ -3,9 +3,9 @@ using Content.Shared.Popups;
 
 namespace Content.Shared.Gravity;
 
-public abstract partial class SharedGravityGeneratorSystem : EntitySystem
+public abstract class SharedGravityGeneratorSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
 
     public override void Initialize()
     {
@@ -22,7 +22,7 @@ public abstract partial class SharedGravityGeneratorSystem : EntitySystem
         if (!ent.Comp.GravityActive)
             return;
 
-        _popupSystem.PopupEntity(Loc.GetString("gravity-generator-unanchoring-failed"), ent.Owner, args.User, PopupType.Medium);
+        _popupSystem.PopupClient(Loc.GetString("gravity-generator-unanchoring-failed"), ent.Owner, args.User, PopupType.Medium);
 
         args.Cancel();
     }

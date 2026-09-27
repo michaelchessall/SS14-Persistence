@@ -2,8 +2,8 @@ using Content.Shared.Atmos;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.DeviceLinking;
 using Content.Shared.Guidebook;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom; // Persistence: TimeOffsetSerializer
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Atmos.Piping.Unary.Components
 {
@@ -139,11 +139,11 @@ namespace Content.Server.Atmos.Piping.Unary.Components
         [DataField]
         public bool CanLink = false;
 
-        [DataField]
-        public ProtoId<SinkPortPrototype> PressurizePort = "Pressurize";
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string PressurizePort = "Pressurize";
 
-        [DataField]
-        public ProtoId<SinkPortPrototype> DepressurizePort = "Depressurize";
+        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
+        public string DepressurizePort = "Depressurize";
 
         [DataField]
         public float PressurizePressure = Atmospherics.OneAtmosphere;

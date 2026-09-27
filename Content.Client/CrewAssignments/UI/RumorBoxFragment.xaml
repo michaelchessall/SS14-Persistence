@@ -1,7 +1,0 @@
-<PanelContainer xmlns="https://spacestation14.io" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0" Name="RumorBox">
-    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
-        <Label Name="TitleLabel" Text="Rumor title" StyleClasses="LabelKeyText" />
-        <RichTextLabel Name="ContentLabel" Text="Rumor content" />
-        <RichTextLabel Name="RewardLabel" Text="Rumor reward" />
-    </BoxContainer>
-</PanelContainer>

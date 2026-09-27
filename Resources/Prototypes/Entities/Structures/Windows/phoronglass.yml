@@ -9,9 +9,8 @@
   - type: Icon
     sprite: Structures/Windows/phoron_window.rsi
   - type: Damageable
-    damageModifierSet: Glass
-  - type: Injurable
     damageContainer: StructuralInorganic
+    damageModifierSet: Glass
   - type: Destructible
     thresholds:
     - trigger:
@@ -65,9 +64,8 @@
   - type: Icon
     sprite: Structures/Windows/reinforced_phoron_window.rsi
   - type: Damageable
-    damageModifierSet: RGlass
-  - type: Injurable
     damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
   - type: RadiationBlocker
     resistance: 4
   - type: Destructible
@@ -140,9 +138,8 @@
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
   - type: Damageable
-    damageModifierSet: Glass
-  - type: Injurable
     damageContainer: StructuralInorganic
+    damageModifierSet: Glass
   - type: Destructible
     thresholds:
     - trigger:
@@ -198,9 +195,8 @@
     damageOverlay:
       sprite: Structures/Windows/cracks_directional.rsi
   - type: Damageable
-    damageModifierSet: RGlass
-  - type: Injurable
     damageContainer: StructuralInorganic
+    damageModifierSet: RGlass
   - type: Destructible
     thresholds:
     - trigger:

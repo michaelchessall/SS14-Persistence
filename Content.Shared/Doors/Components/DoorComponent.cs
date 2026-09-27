@@ -141,20 +141,10 @@ public sealed partial class DoorComponent : Component
 
     #region Graphics
 
-
-    public const string OpenKey = "door_animation_open";
-
-    public const string CloseKey = "door_animation_close";
-
     /// <summary>
-    /// The key used when playing door deny animations.
+    /// The key used when playing door opening/closing/emagging/deny animations.
     /// </summary>
-    public const string DenyKey = "door_animation_deny";
-
-    /// <summary>
-    /// The key used when playing door emag animations.
-    /// </summary>
-    public const string EmagKey = "door_animation_emag";
+    public const string AnimationKey = "door_animation";
 
     /// <summary>
     /// The sprite state used for the door when it's open.
@@ -167,7 +157,7 @@ public sealed partial class DoorComponent : Component
     /// The sprite states used for the door while it's open.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public List<(Enum, string)> OpenSpriteStates = default!;
+    public List<(DoorVisualLayers, string)> OpenSpriteStates = default!;
 
     /// <summary>
     /// The sprite state used for the door when it's closed.
@@ -180,7 +170,7 @@ public sealed partial class DoorComponent : Component
     /// The sprite states used for the door while it's closed.
     /// </summary>
     [ViewVariables(VVAccess.ReadOnly)]
-    public List<(Enum, string)> ClosedSpriteStates = default!;
+    public List<(DoorVisualLayers, string)> ClosedSpriteStates = default!;
 
     /// <summary>
     /// The sprite state used for the door when it's opening.
@@ -304,20 +294,6 @@ public sealed partial class DoorComponent : Component
     [ViewVariables(VVAccess.ReadWrite)]
     [DataField]
     public bool ClickOpen = true;
-
-    /// <summary>
-    /// If true, the door closing check will try to match only entities intersecting the door's first fixture.
-    /// If false, the door will check the full tile the door is on.
-    /// </summary>
-    [DataField]
-    public bool CheckFixtureCollision;
-
-    /// <summary>
-    /// If true, the door will be able to close over entities with the MachineLayer fixture layer.
-    /// Useful for windoors or other thin doors.
-    /// </summary>
-    [DataField]
-    public bool AllowMachineLayer;
 
     [DataField(customTypeSerializer: typeof(ConstantSerializer<DrawDepthTag>))]
     public int OpenDrawDepth = (int)DrawDepth.DrawDepth.Doors;

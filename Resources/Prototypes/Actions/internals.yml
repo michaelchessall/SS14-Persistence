@@ -6,13 +6,11 @@
   components:
   - type: Action
     useDelay: 1
-  - type: Sprite
-    sprite: Interface/Alerts/internals.rsi
-    layers:
-    - state: internal2
-      map: ["enum.ActionVisuals.Icon"]
-    - state: internal1
-      map: ["enum.ActionVisuals.IconToggled"]
-      visible: false
+    icon:
+      sprite: Interface/Alerts/internals.rsi
+      state: internal2
+    iconOn:
+      sprite: Interface/Alerts/internals.rsi
+      state: internal1
   - type: InstantAction
     event: !type:ToggleActionEvent

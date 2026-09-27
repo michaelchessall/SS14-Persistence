@@ -135,11 +135,11 @@
       - WetFloorSign
       - HolosignProjector
       - Plunger
-      - TrashBagHolding
       - GoldenPlunger
       - WireBrush
+      components:
       - LightReplacer
-      - CleanerGrenade
+      - SmokeOnTrigger
   - type: ItemMapper
     sprite: *BeltOverlay
     mapLayers:
@@ -151,46 +151,10 @@
         whitelist:
           tags:
           - Spray
-      light_replacer:
+      wrench:
         whitelist:
           tags:
-          - LightReplacer
-      trashbag:
-        whitelist:
-          tags:
-          - TrashBag
-      trashbag_holding:
-        whitelist:
-          tags:
-          - TrashBagHolding
-      wetfloorsign:
-        whitelist:
-          tags:
-          - WetFloorSign
-      soap:
-        whitelist:
-          tags:
-          - Soap
-      wire_brush:
-        whitelist:
-          tags:
-          - WireBrush
-      holosign:
-        whitelist:
-          tags:
-          - HolosignProjector
-      plunger:
-        whitelist:
-          tags:
-          - Plunger
-      golden_plunger:
-        whitelist:
-          tags:
-          - GoldenPlunger
-      cleaner_grenade:
-        whitelist:
-          tags:
-          - CleanerGrenade
+          - Wrench
   - type: Appearance
 
 - type: entity
@@ -284,7 +248,9 @@
     whitelist:
       tags:
       - PlantAnalyzer
+      - PlantSampleTaker
       - BotanyShovel
+      - BotanyHoe
       - BotanyHatchet
       - PlantBGone
       - Bottle
@@ -292,8 +258,6 @@
       - CigPack
       - Dropper
       components:
-      - BotanySampleTaker
-      - BotanyHoe
       - Seed
       - Smokable
       - HandLabeler
@@ -310,7 +274,7 @@
           - PlantAnalyzer
       hoe:
         whitelist:
-          components:
+          tags:
           - BotanyHoe
       secateurs: # We don't have secateurs and this looks similar enough.
         whitelist:
@@ -428,8 +392,8 @@
       - CombatKnife
       - Truncheon
       - HandGrenade
-      - Stunbaton
       components:
+      - Stunbaton
       - FlashOnTrigger
       - SmokeOnTrigger
       - Flash
@@ -448,7 +412,7 @@
           - FlashOnTrigger
       stunbaton:
         whitelist:
-          tags:
+          components:
           - Stunbaton
       tear_gas_grenade:
         whitelist:

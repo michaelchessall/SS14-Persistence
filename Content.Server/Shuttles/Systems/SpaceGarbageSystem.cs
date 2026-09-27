@@ -7,11 +7,14 @@ namespace Content.Server.Shuttles.Systems;
 /// <summary>
 ///     Deletes anything with <see cref="SpaceGarbageComponent"/> that has a cross-grid collision with a static body.
 /// </summary>
-public sealed partial class SpaceGarbageSystem : EntitySystem
+public sealed class SpaceGarbageSystem : EntitySystem
 {
+    private EntityQuery<TransformComponent> _xformQuery;
+
     public override void Initialize()
     {
         base.Initialize();
+        _xformQuery = GetEntityQuery<TransformComponent>();
         SubscribeLocalEvent<SpaceGarbageComponent, StartCollideEvent>(OnCollide);
     }
 
@@ -20,8 +23,8 @@ public sealed partial class SpaceGarbageSystem : EntitySystem
         if (args.OtherBody.BodyType != BodyType.Static)
             return;
 
-        var ourXform = Transform(uid);
-        var otherXform = Transform(args.OtherEntity);
+        var ourXform = _xformQuery.GetComponent(uid);
+        var otherXform = _xformQuery.GetComponent(args.OtherEntity);
 
         if (ourXform.GridUid == otherXform.GridUid)
             return;

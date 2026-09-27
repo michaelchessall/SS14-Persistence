@@ -1,6 +1,6 @@
 - type: entity
   id: BaseTabletopChemicalMachine
-  parent: [ BaseMachinePowered, SmallConstructibleMachine, BaseSmallConstructibleMachineDestructible ]
+  parent: [ BaseMachinePowered, SmallConstructibleMachine ]
   abstract: true
   components:
   - type: Transform
@@ -36,14 +36,6 @@
       mixer: !type:ContainerSlot
       machine_board: !type:Container
       machine_parts: !type:Container
-  - type: Destructible
-    thresholds:
-    - trigger: !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalGlassBreak
 
 - type: entity
   id: MachineElectrolysisUnit
@@ -85,9 +77,9 @@
   - type: Machine
     board: ElectrolysisUnitMachineCircuitboard
   - type: ApcPowerReceiver
-    powerLoad: 5
+    powerLoad: 0
   - type: PowerState
-    idlePowerDraw: 5
+    idlePowerDraw: 0
     workingPowerDraw: 1000 # for a lab-grade machine
 
 # TODO centrifuge should spill the vial if the lid is off
@@ -165,7 +157,7 @@
   - type: Machine
     board: CentrifugeMachineCircuitboard
   - type: ApcPowerReceiver
-    powerLoad: 5
+    powerLoad: 0
   - type: PowerState
-    idlePowerDraw: 5
+    idlePowerDraw: 0
     workingPowerDraw: 500

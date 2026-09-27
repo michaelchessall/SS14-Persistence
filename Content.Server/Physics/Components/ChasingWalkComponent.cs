@@ -1,7 +1,6 @@
 
 using Content.Server.Administration.Systems;
 using Content.Server.Physics.Controllers;
-using Content.Server.Weapons.Ranged.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
@@ -10,7 +9,7 @@ namespace Content.Server.Physics.Components;
 /// <summary>
 /// A component which makes its entity chasing entity with selected component.
 /// </summary>
-[RegisterComponent, Access(typeof(ChasingWalkSystem), typeof(AdminVerbSystem), typeof(GunSystem)), AutoGenerateComponentPause]
+[RegisterComponent, Access(typeof(ChasingWalkSystem), typeof(AdminVerbSystem)), AutoGenerateComponentPause]
 public sealed partial class ChasingWalkComponent : Component
 {
     /// <summary>
@@ -25,12 +24,6 @@ public sealed partial class ChasingWalkComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float ImpulseInterval = 2f;
-
-    /// <summary>
-    /// The max angle the entity can turn each impulse
-    /// </summary>
-    [DataField]
-    public Angle MaxAngleVectorChangePerImpulse = Angle.FromDegrees(180);
 
     /// <summary>
     /// The minimum speed at which this entity will move.
@@ -49,12 +42,6 @@ public sealed partial class ChasingWalkComponent : Component
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public float Speed;
-
-    /// <summary>
-    /// If the entity should stop moving if they are already on top of the target
-    /// </summary>
-    [DataField]
-    public bool StopAtTarget = true;
 
     /// <summary>
     /// The minimum time interval in which an object can change its motion target.
@@ -76,9 +63,9 @@ public sealed partial class ChasingWalkComponent : Component
     public TimeSpan NextChangeVectorTime;
 
     /// <summary>
-    /// List of components used to select a target to chase.
+    /// The component that the entity is chasing
     /// </summary>
-    [DataField]
+    [DataField(required: true)]
     public ComponentRegistry ChasingComponent = [];
 
     /// <summary>
@@ -88,7 +75,7 @@ public sealed partial class ChasingWalkComponent : Component
     public float MaxChaseRadius = 25;
 
     /// <summary>
-    /// The entity uid that is being chased.
+    /// The entity uid, chasing by the component owner
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
     public EntityUid? ChasingEntity;

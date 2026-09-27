@@ -382,7 +382,7 @@
   parent: ModularHudModuleBase
   id: HudModuleShowHungerIcons
   name: hunger icons HUD module
-  description: An old-fashioned HUD module that no longer functions
+  description: A heads-up display module scans the humanoids in view and provides accurate data about their... hunger. Is this what Nanotrasen spends money on?
   components:
   - type: Sprite
     layers:
@@ -392,12 +392,18 @@
       color: "#D48060" # Sort of a bready/meaty orange-brown
     - state: contacts
     - state: service_label
+  - type: ModularHudModule
+    visuals:
+      lens:
+        color: Cornsilk
+        priority: 70
+  - type: ShowHungerIcons
 
 - type: entity
   parent: ModularHudModuleBase
   id: HudModuleShowThirstIcons
   name: thirst icons HUD module
-  description: An old-fashioned HUD module that no longer functions
+  description: A heads-up display module scans the humanoids in view and provides accurate data about their... thirst. Hydration check!
   components:
   - type: Sprite
     layers:
@@ -407,3 +413,9 @@
       color: *slateblue
     - state: contacts
     - state: service_label
+  - type: ModularHudModule
+    visuals:
+      lens:
+        color: "#FFBF00"
+        priority: 70
+  - type: ShowThirstIcons

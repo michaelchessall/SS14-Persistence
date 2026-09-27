@@ -1,5 +1,3 @@
-using Robust.Shared.Serialization;
-
 namespace Content.Shared.Security;
 
 /// <summary>
@@ -14,7 +12,6 @@ namespace Content.Shared.Security;
 /// Discharged - the person has been released from prison
 /// Eliminated - the person has been eliminated and should not be healed
 /// </summary>
-[Serializable, NetSerializable]
 public enum SecurityStatus : byte
 {
     None,

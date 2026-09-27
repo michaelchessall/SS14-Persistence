@@ -5,9 +5,8 @@
     - tasks:
         - !type:HTNPrimitiveTask
           preconditions:
-            - !type:SatiationPrecondition
-              satiationType: Hunger
-              below: Peckish
+            - !type:HungryPrecondition
+              minHungerState: Peckish  # See HungerThreshold enum
           operator: !type:UtilityOperator
             proto: NearbyFood
 
@@ -36,9 +35,8 @@
     - tasks:
         - !type:HTNPrimitiveTask
           preconditions:
-            - !type:SatiationPrecondition
-              satiationType: Thirst
-              below: Parched
+            - !type:ThirstyPrecondition
+              minThirstState: Parched  # See ThirstThreshold enum
           operator: !type:UtilityOperator
             proto: NearbyDrink
 

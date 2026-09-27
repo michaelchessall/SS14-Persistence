@@ -1,6 +1,4 @@
 #nullable enable
-using System.Collections.Generic;
-using Content.IntegrationTests.Fixtures;
 using Content.Shared.Coordinates;
 using Robust.Shared.GameObjects;
 using Robust.Shared.IoC;
@@ -13,6 +11,7 @@ using Robust.Shared.Serialization.Markdown.Mapping;
 using Robust.Shared.Serialization.Markdown.Validation;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Serialization.TypeSerializers.Interfaces;
+using System.Collections.Generic;
 
 namespace Content.IntegrationTests.Tests;
 
@@ -25,12 +24,12 @@ namespace Content.IntegrationTests.Tests;
 ///     spawn it into a new empty map and seeing what the map yml looks like.
 /// </remarks>
 [TestFixture]
-public sealed class PrototypeSaveTest : GameTest
+public sealed class PrototypeSaveTest
 {
     [Test]
     public async Task UninitializedSaveTest()
     {
-        var pair = Pair;
+        await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
         var entityMan = server.ResolveDependency<IEntityManager>();
@@ -71,7 +70,7 @@ public sealed class PrototypeSaveTest : GameTest
             prototypes.Add(prototype);
         }
 
-        var context = new TestEntityUidContext(seriMan);
+        var context = new TestEntityUidContext();
 
         await server.WaitAssertion(() =>
         {
@@ -154,6 +153,7 @@ public sealed class PrototypeSaveTest : GameTest
                 }
             });
         });
+        await pair.CleanReturnAsync();
     }
 
     public sealed class TestEntityUidContext : ISerializationContext,
@@ -165,9 +165,9 @@ public sealed class PrototypeSaveTest : GameTest
         public string WritingComponent = string.Empty;
         public EntityPrototype? Prototype;
 
-        public TestEntityUidContext(ISerializationManager ser)
+        public TestEntityUidContext()
         {
-            SerializerProvider = new(ser);
+            SerializerProvider = new();
             SerializerProvider.RegisterSerializer(this);
         }
 

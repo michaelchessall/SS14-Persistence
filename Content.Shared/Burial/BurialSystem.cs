@@ -11,13 +11,13 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Shared.Burial;
 
-public sealed partial class BurialSystem : EntitySystem
+public sealed class BurialSystem : EntitySystem
 {
-    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private SharedEntityStorageSystem _storageSystem = default!;
-    [Dependency] private SharedAudioSystem _audioSystem = default!;
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
-    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private readonly SharedEntityStorageSystem _storageSystem = default!;
+    [Dependency] private readonly SharedAudioSystem _audioSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
 
     public override void Initialize()
     {
@@ -64,7 +64,7 @@ public sealed partial class BurialSystem : EntitySystem
         }
         else
         {
-            _popupSystem.PopupEntity(Loc.GetString("grave-digging-requires-tool", ("grave", args.Target)), uid, args.User);
+            _popupSystem.PopupClient(Loc.GetString("grave-digging-requires-tool", ("grave", args.Target)), uid, args.User);
         }
 
         args.Handled = true;
@@ -85,7 +85,7 @@ public sealed partial class BurialSystem : EntitySystem
         if (args.Handled || !args.Complex)
             return;
 
-        _popupSystem.PopupEntity(Loc.GetString("grave-digging-requires-tool", ("grave", args.Target)), uid, args.User);
+        _popupSystem.PopupClient(Loc.GetString("grave-digging-requires-tool", ("grave", args.Target)), uid, args.User);
         args.Handled = true;
     }
 
@@ -118,13 +118,13 @@ public sealed partial class BurialSystem : EntitySystem
         {
             var selfMessage = Loc.GetString("grave-start-digging-user", ("grave", uid), ("tool", used));
             var othersMessage = Loc.GetString("grave-start-digging-others", ("user", user), ("grave", uid), ("tool", used));
-            _popupSystem.PopupEntity(selfMessage, othersMessage, user, user);
+            _popupSystem.PopupPredicted(selfMessage, othersMessage, user, user);
             component.ActiveShovelDigging = true;
             Dirty(uid, component);
         }
         else
         {
-            _popupSystem.PopupEntity(Loc.GetString("grave-start-digging-user-trapped", ("grave", uid)), user, user, PopupType.Medium);
+            _popupSystem.PopupClient(Loc.GetString("grave-start-digging-user-trapped", ("grave", uid)), user, user, PopupType.Medium);
         }
     }
 

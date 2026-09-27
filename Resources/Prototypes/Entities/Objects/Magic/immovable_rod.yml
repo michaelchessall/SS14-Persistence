@@ -12,9 +12,6 @@
     state: icon
     noRot: false
   - type: ImmovableRod
-    damage:
-      types:
-        Blunt: 190
   - type: GravityAffected
   - type: Physics
     bodyType: Dynamic
@@ -37,7 +34,10 @@
         - Opaque
   - type: WarpPoint
     follow: true
-    location: location-immovable-rod
+    location: immovable rod
+    blacklist:
+      tags:
+      - GhostOnlyWarp
 
 - type: entity
   parent: ImmovableRod
@@ -76,6 +76,9 @@
     destroyTiles: false
     randomizeVelocity: false
     shouldGib: false
+    damage:
+      types:
+        Blunt: 190
   - type: Physics
     bodyType: KinematicController
   - type: InputMover

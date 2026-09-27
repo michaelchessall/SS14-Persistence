@@ -1,9 +1,9 @@
+using Content.Server.AlertLevel;
 using Content.Server.Audio;
 using Content.Server.Light.Components;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Station.Systems;
-using Content.Shared.AlertLevel;
 using Content.Shared.Examine;
 using Content.Shared.Light;
 using Content.Shared.Light.Components;
@@ -15,14 +15,13 @@ using Color = Robust.Shared.Maths.Color;
 
 namespace Content.Server.Light.EntitySystems;
 
-public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
+public sealed class EmergencyLightSystem : SharedEmergencyLightSystem
 {
-    [Dependency] private AmbientSoundSystem _ambient = default!;
-    [Dependency] private AlertLevelSystem _alert = default!;
-    [Dependency] private BatterySystem _battery = default!;
-    [Dependency] private PointLightSystem _pointLight = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
-    [Dependency] private StationSystem _station = default!;
+    [Dependency] private readonly AmbientSoundSystem _ambient = default!;
+    [Dependency] private readonly BatterySystem _battery = default!;
+    [Dependency] private readonly PointLightSystem _pointLight = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly StationSystem _station = default!;
 
     public override void Initialize()
     {
@@ -58,17 +57,22 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
                         Loc.GetString(component.BatteryStateText[component.State]))));
 
             // Show alert level on the light itself.
-            if (_station.GetOwningStation(uid) is not { } station)
+            if (!TryComp<AlertLevelComponent>(_station.GetOwningStation(uid), out var alerts))
                 return;
 
-            if (!_alert.TryGetLevel(station, out var level)
-                || !ProtoMan.Resolve(level, out var proto))
+            if (alerts.AlertLevels == null)
                 return;
+
+            var name = alerts.CurrentLevel;
+
+            var color = Color.White;
+            if (alerts.AlertLevels.Levels.TryGetValue(alerts.CurrentLevel, out var details))
+                color = details.Color;
 
             args.PushMarkup(
                 Loc.GetString("emergency-light-component-on-examine-alert",
-                    ("color", proto.Color.ToHex()),
-                    ("level", proto.LocalizedName)));
+                    ("color", color.ToHex()),
+                    ("level", Loc.GetString($"alert-level-{name.ToString().ToLower()}"))));
         }
     }
 
@@ -89,9 +93,12 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
         }
     }
 
-    private void OnAlertLevelChanged(ref AlertLevelChangedEvent ev)
+    private void OnAlertLevelChanged(AlertLevelChangedEvent ev)
     {
-        if (!ProtoMan.Resolve(ev.AlertLevel, out var level))
+        if (!TryComp<AlertLevelComponent>(ev.Station, out var alert))
+            return;
+
+        if (alert.AlertLevels == null || !alert.AlertLevels.Levels.TryGetValue(ev.AlertLevel, out var details))
             return;
 
         var query = EntityQueryEnumerator<EmergencyLightComponent, PointLightComponent, AppearanceComponent, TransformComponent>();
@@ -100,15 +107,15 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
             if (CompOrNull<StationMemberComponent>(xform.GridUid)?.Station != ev.Station)
                 continue;
 
-            _pointLight.SetColor(uid, level.EmergencyLightColor, pointLight);
-            _appearance.SetData(uid, EmergencyLightVisuals.Color, level.EmergencyLightColor, appearance);
+            _pointLight.SetColor(uid, details.EmergencyLightColor, pointLight);
+            _appearance.SetData(uid, EmergencyLightVisuals.Color, details.EmergencyLightColor, appearance);
 
-            if (level.ForceEnableEmergencyLights && !light.ForciblyEnabled)
+            if (details.ForceEnableEmergencyLights && !light.ForciblyEnabled)
             {
                 light.ForciblyEnabled = true;
                 TurnOn((uid, light));
             }
-            else if (!level.ForceEnableEmergencyLights && light.ForciblyEnabled)
+            else if (!details.ForceEnableEmergencyLights && light.ForciblyEnabled)
             {
                 // Previously forcibly enabled, and we went down an alert level.
                 light.ForciblyEnabled = false;
@@ -167,10 +174,10 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
         if (!TryComp<ApcPowerReceiverComponent>(entity.Owner, out var receiver))
             return;
 
-        // Show alert level on the light itself.
-        if (_station.GetOwningStation(entity.Owner) is not { } station
-            || !_alert.TryGetLevel(station, out var level)
-            || !ProtoMan.Resolve(level, out var proto))
+        if (!TryComp<AlertLevelComponent>(_station.GetOwningStation(entity.Owner), out var alerts))
+            return;
+
+        if (alerts.AlertLevels == null || !alerts.AlertLevels.Levels.TryGetValue(alerts.CurrentLevel, out var details))
         {
             TurnOff(entity, Color.Red); // if no alert, default to off red state
             return;
@@ -179,7 +186,7 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
         if (receiver.Powered && !entity.Comp.ForciblyEnabled) // Green alert
         {
             receiver.Load = (int)Math.Abs(entity.Comp.Wattage);
-            TurnOff(entity, proto.EmergencyLightColor);
+            TurnOff(entity, details.Color);
             SetState(entity.Owner, entity.Comp, EmergencyLightState.Charging);
         }
         else if (!receiver.Powered) // If internal battery runs out it will end in off red state
@@ -189,7 +196,7 @@ public sealed partial class EmergencyLightSystem : SharedEmergencyLightSystem
         }
         else // Powered and enabled
         {
-            TurnOn(entity, proto.EmergencyLightColor);
+            TurnOn(entity, details.Color);
             SetState(entity.Owner, entity.Comp, EmergencyLightState.On);
         }
     }

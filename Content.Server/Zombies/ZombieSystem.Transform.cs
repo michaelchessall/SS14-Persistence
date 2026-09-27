@@ -4,11 +4,13 @@ using Content.Server.Body.Components;
 using Content.Server.Chat;
 using Content.Server.Chat.Managers;
 using Content.Server.Ghost;
+using Content.Server.Ghost.Roles.Components;
 using Content.Server.Inventory;
 using Content.Server.Mind;
 using Content.Server.NPC;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.Systems;
+using Content.Server.Speech.Components;
 using Content.Server.StationEvents.Components;
 using Content.Shared.Body;
 using Content.Shared.Body.Components;
@@ -32,7 +34,6 @@ using Content.Shared.Nutrition.Components;
 using Content.Shared.Popups;
 using Content.Shared.Prying.Components;
 using Content.Shared.Roles;
-using Content.Shared.Speech.EntitySystems;
 using Content.Shared.Tag;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Traits.Assorted;
@@ -54,23 +55,22 @@ namespace Content.Server.Zombies;
 /// </remarks>
 public sealed partial class ZombieSystem
 {
-    [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private IBanManager _ban = default!;
-    [Dependency] private IChatManager _chatMan = default!;
-    [Dependency] private SharedCombatModeSystem _combat = default!;
-    [Dependency] private NpcFactionSystem _faction = default!;
-    [Dependency] private GhostSystem _ghost = default!;
-    [Dependency] private SharedHandsSystem _hands = default!;
-    [Dependency] private SharedVisualBodySystem _visualBody = default!;
-    [Dependency] private IdentitySystem _identity = default!;
-    [Dependency] private ServerInventorySystem _inventory = default!;
-    [Dependency] private MindSystem _mind = default!;
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private NameModifierSystem _nameMod = default!;
-    [Dependency] private ReplacementAccentSystem _replacementAccent = default!;
-    [Dependency] private NPCSystem _npc = default!;
-    [Dependency] private TagSystem _tag = default!;
-    [Dependency] private ISharedPlayerManager _player = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly IBanManager _ban = default!;
+    [Dependency] private readonly IChatManager _chatMan = default!;
+    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
+    [Dependency] private readonly NpcFactionSystem _faction = default!;
+    [Dependency] private readonly GhostSystem _ghost = default!;
+    [Dependency] private readonly SharedHandsSystem _hands = default!;
+    [Dependency] private readonly SharedVisualBodySystem _visualBody = default!;
+    [Dependency] private readonly IdentitySystem _identity = default!;
+    [Dependency] private readonly ServerInventorySystem _inventory = default!;
+    [Dependency] private readonly MindSystem _mind = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly NameModifierSystem _nameMod = default!;
+    [Dependency] private readonly NPCSystem _npc = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly ISharedPlayerManager _player = default!;
 
     private static readonly ProtoId<TagPrototype> InvalidForGlobalSpawnSpellTag = "InvalidForGlobalSpawnSpell";
     private static readonly ProtoId<TagPrototype> CannotSuicideTag = "CannotSuicide";
@@ -137,7 +137,8 @@ public sealed partial class ZombieSystem
         //get diseases, breath, be thirst, be hungry, die in space, get double sentience, have offspring or be paraplegic.
         RemComp<RespiratorComponent>(target);
         RemComp<BarotraumaComponent>(target);
-        RemComp<SatiationComponent>(target);
+        RemComp<HungerComponent>(target);
+        RemComp<ThirstComponent>(target);
         RemComp<ReproductiveComponent>(target);
         RemComp<ReproductivePartnerComponent>(target);
         RemComp<LegsParalyzedComponent>(target);
@@ -149,7 +150,7 @@ public sealed partial class ZombieSystem
         if (TryComp<ZombieAccentOverrideComponent>(target, out var accent))
             accentType = accent.Accent;
 
-        _replacementAccent.ApplyAccent(target, accentType);
+        EnsureComp<ReplacementAccentComponent>(target).Accent = accentType;
 
         //This is needed for stupid entities that fuck up combat mode component
         //in an attempt to make an entity not attack. This is the easiest way to do it.
@@ -260,10 +261,7 @@ public sealed partial class ZombieSystem
         _inventory.TryUnequip(target, "ears", true, true);
 
         //popup
-        _popup.PopupEntity(
-            Loc.GetString("zombie-transform", ("target", Identity.Entity(target, EntityManager))),
-            target,
-            PopupType.LargeCaution);
+        _popup.PopupEntity(Loc.GetString("zombie-transform", ("target", target)), target, PopupType.LargeCaution);
 
         //Make it sentient if it's an animal or something
         _mind.MakeSentient(target);
@@ -309,7 +307,13 @@ public sealed partial class ZombieSystem
 
         if (!HasComp<GhostRoleMobSpawnerComponent>(target) && !hasMind) //this specific component gives build test trouble so pop off, ig
         {
-            MakeGhostRole(target);
+            //yet more hardcoding. Visit zombie.ftl for more information.
+            var ghostRole = EnsureComp<GhostRoleComponent>(target);
+            EnsureComp<GhostTakeoverAvailableComponent>(target);
+            ghostRole.RoleName = Loc.GetString("zombie-generic");
+            ghostRole.RoleDescription = Loc.GetString("zombie-role-desc");
+            ghostRole.RoleRules = Loc.GetString("zombie-role-rules");
+            ghostRole.MindRoles.Add(MindRoleZombie);
         }
 
         if (TryComp<HandsComponent>(target, out var handsComp))

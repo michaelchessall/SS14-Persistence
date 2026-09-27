@@ -31,21 +31,21 @@ namespace Content.Server.Shuttles.Systems;
 
 public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 {
-    [Dependency] private SharedMapSystem _mapSystem = default!;
-    [Dependency] private ActionBlockerSystem _blocker = default!;
-    [Dependency] private AlertsSystem _alertsSystem = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private ShuttleSystem _shuttle = default!;
-    [Dependency] private StationSystem _station = default!;
-    [Dependency] private TagSystem _tags = default!;
-    [Dependency] private UserInterfaceSystem _ui = default!;
-    [Dependency] private SharedContentEyeSystem _eyeSystem = default!;
-    [Dependency] private SectorWeatherSystem _sectorWeather = default!;
-    
-    [Dependency] private EntityQuery<PilotComponent> _pilotQuery = default!;
-    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly ActionBlockerSystem _blocker = default!;
+    [Dependency] private readonly AlertsSystem _alertsSystem = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ShuttleSystem _shuttle = default!;
+    [Dependency] private readonly StationSystem _station = default!;
+    [Dependency] private readonly TagSystem _tags = default!;
+    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedContentEyeSystem _eyeSystem = default!;
+    [Dependency] private readonly SectorWeatherSystem _sectorWeather = default!;
+
+    private EntityQuery<MetaDataComponent> _metaQuery;
+    private EntityQuery<TransformComponent> _xformQuery;
 
     private readonly HashSet<Entity<ShuttleConsoleComponent>> _consoles = new();
     private float _navRefreshTimer;
@@ -57,6 +57,9 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     public override void Initialize()
     {
         base.Initialize();
+
+        _metaQuery = GetEntityQuery<MetaDataComponent>();
+        _xformQuery = GetEntityQuery<TransformComponent>();
 
         SubscribeLocalEvent<ShuttleConsoleComponent, ComponentShutdown>(OnConsoleShutdown);
         SubscribeLocalEvent<ShuttleConsoleComponent, PowerChangedEvent>(OnConsolePowerChange);
@@ -122,18 +125,15 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// </summary>
     public void RefreshShuttleConsoles(EntityUid gridUid)
     {
-        var query = AllEntityQuery<ShuttleConsoleComponent, TransformComponent>();
+        var exclusions = new List<ShuttleExclusionObject>();
+        GetExclusions(ref exclusions);
+        _consoles.Clear();
+        _lookup.GetChildEntities(gridUid, _consoles);
         DockingInterfaceState? dockState = null;
 
-        while (query.MoveNext(out var uid, out _, out var xform))
+        foreach (var entity in _consoles)
         {
-            if (xform.ParentUid == gridUid
-                || TryComp<DroneConsoleComponent>(uid, out var drone)
-                && drone.Entity is { } puppetConsoleUid
-                && Transform(puppetConsoleUid).ParentUid == gridUid)
-            {
-                UpdateState(uid, ref dockState);
-            }
+            UpdateState(entity, ref dockState);
         }
     }
 
@@ -142,6 +142,8 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
     /// </summary>
     public void RefreshShuttleConsoles()
     {
+        var exclusions = new List<ShuttleExclusionObject>();
+        GetExclusions(ref exclusions);
         var query = AllEntityQuery<ShuttleConsoleComponent>();
         DockingInterfaceState? dockState = null;
 
@@ -252,12 +254,11 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
                 Angle = xform.LocalRotation,
                 Entity = GetNetEntity(uid),
                 GridDockedWith =
-                    TryComp(comp.DockedWith, out TransformComponent? otherDockXform) ?
+                    _xformQuery.TryGetComponent(comp.DockedWith, out var otherDockXform) ?
                     GetNetEntity(otherDockXform.GridUid) :
                     null,
                 Color = comp.RadarColor,
-                HighlightedColor = comp.HighlightedRadarColor,
-                Category = comp.DockLegendCategory
+                HighlightedColor = comp.HighlightedRadarColor
             };
 
             gridDocks.Add(state);
@@ -379,7 +380,7 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
         pilotComponent.Console = uid;
         ActionBlockerSystem.UpdateCanMove(entity);
-        pilotComponent.Position = Transform(entity).Coordinates;
+        pilotComponent.Position = Comp<TransformComponent>(entity).Coordinates;
         Dirty(entity, pilotComponent);
     }
 
@@ -415,9 +416,10 @@ public sealed partial class ShuttleConsoleSystem : SharedShuttleConsoleSystem
 
     public void ClearPilots(ShuttleConsoleComponent component)
     {
+        var query = GetEntityQuery<PilotComponent>();
         while (component.SubscribedPilots.TryGetValue(0, out var pilot))
         {
-            if (_pilotQuery.TryGetComponent(pilot, out var pilotComponent))
+            if (query.TryGetComponent(pilot, out var pilotComponent))
                 RemovePilot(pilot, pilotComponent);
         }
     }

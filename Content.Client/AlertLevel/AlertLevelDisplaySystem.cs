@@ -1,16 +1,20 @@
 using Content.Shared.AlertLevel;
 using Robust.Client.GameObjects;
 using System.Linq;
-using Robust.Shared.Prototypes;
 
 namespace Content.Client.AlertLevel;
 
-public sealed partial class AlertLevelDisplaySystem : EntitySystem
+public sealed class AlertLevelDisplaySystem : EntitySystem
 {
-    [Dependency] private SpriteSystem _sprite = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly SpriteSystem _sprite = default!;
 
-    [SubscribeLocalEvent]
+    public override void Initialize()
+    {
+        base.Initialize();
+
+        SubscribeLocalEvent<AlertLevelDisplayComponent, AppearanceChangeEvent>(OnAppearanceChange);
+    }
+
     private void OnAppearanceChange(EntityUid uid, AlertLevelDisplayComponent alertLevelDisplay, ref AppearanceChangeEvent args)
     {
         if (args.Sprite == null)
@@ -19,19 +23,24 @@ public sealed partial class AlertLevelDisplaySystem : EntitySystem
         }
         var layer = _sprite.LayerMapReserve((uid, args.Sprite), AlertLevelDisplay.Layer);
 
-        if (_appearance.TryGetData<bool>(uid, AlertLevelDisplay.Powered, out var powered, component: args.Component))
+        if (args.AppearanceData.TryGetValue(AlertLevelDisplay.Powered, out var poweredObject))
         {
-            _sprite.LayerSetVisible((uid, args.Sprite), layer, powered);
+            _sprite.LayerSetVisible((uid, args.Sprite), layer, poweredObject is true);
         }
 
-        if (!_appearance.TryGetData<ProtoId<AlertLevelPrototype>>(uid, AlertLevelDisplay.CurrentLevel, out var level, component: args.Component))
+        if (!args.AppearanceData.TryGetValue(AlertLevelDisplay.CurrentLevel, out var level))
         {
             _sprite.LayerSetRsiState((uid, args.Sprite), layer, alertLevelDisplay.AlertVisuals.Values.First());
             return;
         }
 
-        _sprite.LayerSetRsiState((uid, args.Sprite),
-            layer,
-            alertLevelDisplay.AlertVisuals.GetValueOrDefault(level) ?? alertLevelDisplay.AlertVisuals.Values.First());
+        if (alertLevelDisplay.AlertVisuals.TryGetValue((string)level, out var visual))
+        {
+            _sprite.LayerSetRsiState((uid, args.Sprite), layer, visual);
+        }
+        else
+        {
+            _sprite.LayerSetRsiState((uid, args.Sprite), layer, alertLevelDisplay.AlertVisuals.Values.First());
+        }
     }
 }

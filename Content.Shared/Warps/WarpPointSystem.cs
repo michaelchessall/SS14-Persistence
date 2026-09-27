@@ -1,9 +1,9 @@
 using Content.Shared.Examine;
-using Content.Shared.Ghost.Components;
+using Content.Shared.Ghost;
 
 namespace Content.Shared.Warps;
 
-public sealed partial class WarpPointSystem : EntitySystem
+public sealed class WarpPointSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -16,7 +16,7 @@ public sealed partial class WarpPointSystem : EntitySystem
         if (!HasComp<GhostComponent>(args.Examiner))
             return;
 
-        var loc = component.Location == null ? Name(uid) : Loc.GetString(component.Location);
+        var loc = component.Location == null ? "<null>" : $"'{component.Location}'";
         args.PushText(Loc.GetString("warp-point-component-on-examine-success", ("location", loc)));
     }
 }

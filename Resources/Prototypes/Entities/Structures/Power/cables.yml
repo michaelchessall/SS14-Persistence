@@ -23,7 +23,7 @@
 
 - type: entity
   abstract: true
-  parent: [ CablePhysBase, StructureHealthContainerWeak ] # contains electricity :o)
+  parent: CablePhysBase
   id: CableBase
   components:
   - type: Visibility
@@ -32,16 +32,16 @@
     drawdepth: ThinWire
     visible: false
   - type: Damageable
-    damageModifierSet: SteelMod
+    damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
-    - trigger: &DamageContainerWeak
+    - trigger:
         !type:DamageTrigger
-        damage: 60
+        damage: 50
       behaviors:
-      - !type:PlaySoundBehavior
-        sound:
-          path: /Audio/Effects/cig_snuff.ogg # Temporary but fits weirdly well
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: SubFloorHide
   - type: Electrified
     onHandInteract: false
@@ -81,13 +81,23 @@
     cableType: HighVoltage
   - type: Destructible
     thresholds:
-    - trigger: *DamageContainerWeak
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
           CableHVStack1:
             min: 1
             max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CableVisualizer
     statePrefix: hvcable_
   # TODO make this change on power
@@ -131,13 +141,23 @@
     cableType: MediumVoltage
   - type: Destructible
     thresholds:
-    - trigger: *DamageContainerWeak
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
           CableMVStack1:
             min: 1
             max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CableVisualizer
     statePrefix: mvcable_
     extraLayerPrefix: mvstripes_
@@ -176,13 +196,23 @@
     cableType: Apc
   - type: Destructible
     thresholds:
-    - trigger: *DamageContainerWeak
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors: #excess damage (nuke?). avoid computational cost of spawning entities.
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 50
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
           CableApcStack1:
             min: 1
             max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
   - type: CableVisualizer
     statePrefix: lvcable_
 
@@ -212,7 +242,6 @@
     sprite: Structures/Power/Cables/ex_cable.rsi
     state: excable_4
   - type: Damageable
-  - type: Injurable
     damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:

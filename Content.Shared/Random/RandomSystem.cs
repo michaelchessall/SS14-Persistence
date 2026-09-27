@@ -3,9 +3,9 @@ using Robust.Shared.Utility;
 
 namespace Content.Shared.Random;
 
-public sealed partial class RandomSystem : EntitySystem
+public sealed class RandomSystem : EntitySystem
 {
-    public IBudgetEntry? GetBudgetEntry(ref float budget, ref float probSum, IList<IBudgetEntry> entries, IRobustRandom random)
+    public IBudgetEntry? GetBudgetEntry(ref float budget, ref float probSum, IList<IBudgetEntry> entries, System.Random random)
     {
         DebugTools.Assert(budget > 0f);
 
@@ -39,7 +39,7 @@ public sealed partial class RandomSystem : EntitySystem
     /// <summary>
     /// Gets a random entry based on each entry having a different probability.
     /// </summary>
-    public IProbEntry GetProbEntry(IEnumerable<IProbEntry> entries, float probSum, IRobustRandom random)
+    public IProbEntry GetProbEntry(IEnumerable<IProbEntry> entries, float probSum, System.Random random)
     {
         var value = random.NextFloat() * probSum;
 

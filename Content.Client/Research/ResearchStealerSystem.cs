@@ -3,4 +3,6 @@ namespace Content.Client.Research;
 /// <summary>
 /// Does nothing special, only exists to provide a client implementation.
 /// </summary>
-public sealed partial class ResearchStealerSystem : EntitySystem;
+public sealed class ResearchStealerSystem : EntitySystem
+{
+}

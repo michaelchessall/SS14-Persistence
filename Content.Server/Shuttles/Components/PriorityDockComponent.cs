@@ -1,5 +1,5 @@
 using Content.Shared.Tag;
-using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Shuttles.Components;
 
@@ -12,6 +12,7 @@ public sealed partial class PriorityDockComponent : Component
     /// <summary>
     /// Tag to match on the docking request, if this dock is to be prioritised.
     /// </summary>
-    [DataField]
-    public ProtoId<TagPrototype>? Tag;
+    [ViewVariables(VVAccess.ReadWrite),
+     DataField("tag", customTypeSerializer: typeof(PrototypeIdSerializer<TagPrototype>))]
+    public string? Tag;
 }

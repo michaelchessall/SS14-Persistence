@@ -5,10 +5,10 @@ using Robust.Shared.Collections;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
-public sealed partial class ActivatableUIRequiresVisionSystem : EntitySystem
+public sealed class ActivatableUIRequiresVisionSystem : EntitySystem
 {
-    [Dependency] private SharedPopupSystem _popupSystem = default!;
-    [Dependency] private SharedUserInterfaceSystem _userInterfaceSystem = default!;
+    [Dependency] private readonly SharedPopupSystem _popupSystem = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _userInterfaceSystem = default!;
 
     public override void Initialize()
     {
@@ -25,7 +25,7 @@ public sealed partial class ActivatableUIRequiresVisionSystem : EntitySystem
         if (TryComp<BlindableComponent>(args.User, out var blindable) && blindable.IsBlind)
         {
             if (!args.Silent)
-                _popupSystem.PopupEntity(Loc.GetString("blindness-fail-attempt"), args.User, args.User, PopupType.MediumCaution);
+                _popupSystem.PopupClient(Loc.GetString("blindness-fail-attempt"), args.User, Shared.Popups.PopupType.MediumCaution);
             args.Cancel();
         }
     }

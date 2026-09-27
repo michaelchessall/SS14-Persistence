@@ -404120,7 +404120,7 @@ entities:
           Blunt: 0
           Slash: 0
           Piercing: 0
-- proto: IronRock
+- proto: IronRockBananium
   entities:
   - uid: 17386
     mapInit: true

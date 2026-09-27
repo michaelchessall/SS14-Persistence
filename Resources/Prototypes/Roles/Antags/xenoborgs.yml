@@ -4,20 +4,10 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-mothership-core-objective
-#  guides: [ Xenoborgs ]
-  tags:
-  - OffStation
-  - Roundstart
   requirements:
   - !type:RoleTimeRequirement
     role: JobBorg
     time: 18000  # 5 hrs
-
-- type: antagSpecifier
-  parent: RestrictedAntag
-  id: MothershipCore
-  prefRoles: [ MothershipCore ]
-  spawnerPrototype: SpawnPointGhostRoleMothershipCore
 
 - type: antag
   id: Xenoborg
@@ -25,23 +15,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-xenoborg-objective
-#  guides: [ Xenoborgs ]
-  tags:
-  - OffStation
-  - Roundstart
-  - Converted
   requirements:
   - !type:RoleTimeRequirement
     role: JobBorg
     time: 18000  # 5 hrs
-
-- type: antagSpecifier
-  abstract: true
-  parent: RestrictedAntag
-  id: BaseXenoborg
-  prefRoles: [ Xenoborg ]
-  spawnerPrototype: SpawnPointGhostRoleXenoborg
-
-- type: antagSpecifier
-  parent: BaseXenoborg
-  id: Xenoborg

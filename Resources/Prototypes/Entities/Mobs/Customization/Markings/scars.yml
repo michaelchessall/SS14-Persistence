@@ -5,11 +5,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_eye_right
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarEyeLeft
@@ -18,11 +13,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_eye_left
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarTopSurgeryShort
@@ -32,11 +22,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_top_surgery_short
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarTopSurgeryLong
@@ -46,11 +31,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_top_surgery_long
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarChest
@@ -59,11 +39,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_chest
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarNeck
@@ -72,11 +47,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_neck
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarChestBullets
@@ -85,11 +55,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_chest_bullets
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarStomachBullets
@@ -98,11 +63,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_stomach_bullets
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarFace1
@@ -111,11 +71,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_face_1
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarFace2
@@ -124,11 +79,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_face_2
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarEyeRightSmall
@@ -137,11 +87,6 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_eye_right_small
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"
 
 - type: marking
   id: ScarEyeLeftSmall
@@ -150,8 +95,3 @@
   sprites:
   - sprite: Mobs/Customization/scars.rsi
     state: scar_eye_left_small
-  coloring:
-    default:
-      type:
-        !type:TattooColoring
-      fallbackColor: "#666666"

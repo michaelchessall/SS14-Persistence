@@ -15,22 +15,21 @@ namespace Content.Shared.Chemistry.EntitySystems;
 /// Allows an entity to transfer solutions with a customizable amount -per click-.
 /// Also provides <see cref="Transfer"/>, <see cref="RefillTransfer"/> and <see cref="DrainTransfer"/> API for other systems.
 /// </summary>
-public sealed partial class SolutionTransferSystem : EntitySystem
+public sealed class SolutionTransferSystem : EntitySystem
 {
-    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedSolutionContainerSystem _solution = default!;
-    [Dependency] private SharedUserInterfaceSystem _ui = default!;
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
+    [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
 
-    [Dependency] private EntityQuery<RefillableSolutionComponent> _refillableQuery = default!;
-    [Dependency] private EntityQuery<DrainableSolutionComponent> _drainableQuery = default!;
+    private EntityQuery<RefillableSolutionComponent> _refillableQuery;
+    private EntityQuery<DrainableSolutionComponent> _drainableQuery;
 
     /// <summary>
     ///     Default transfer amounts for the set-transfer verb.
     /// </summary>
-    /// TODO: Turn this into a prototype just like with injectors.
-    public static readonly FixedPoint2[] DefaultTransferAmounts = new FixedPoint2[] { 1, 5, 10, 15, 30, 60, 120, 240, 480, 960 };
+    public static readonly FixedPoint2[] DefaultTransferAmounts = new FixedPoint2[] { 1, 5, 10, 25, 50, 100, 250, 500, 1000 };
 
     public override void Initialize()
     {
@@ -41,6 +40,9 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         SubscribeLocalEvent<SolutionTransferComponent, AfterInteractEvent>(OnAfterInteract);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionDrainTransferDoAfterEvent>(OnSolutionDrainTransferDoAfter);
         SubscribeLocalEvent<SolutionTransferComponent, SolutionRefillTransferDoAfterEvent>(OnSolutionFillTransferDoAfter);
+
+        _refillableQuery = GetEntityQuery<RefillableSolutionComponent>();
+        _drainableQuery = GetEntityQuery<DrainableSolutionComponent>();
     }
 
     private void AddSetTransferVerbs(Entity<SolutionTransferComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
@@ -92,7 +94,7 @@ public sealed partial class SolutionTransferSystem : EntitySystem
             {
                 ent.Comp.TransferAmount = amount;
 
-                _popup.PopupEntity(Loc.GetString("comp-solution-transfer-set-amount", ("amount", amount)), ent.Owner, user);
+                _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", amount)), ent.Owner, user);
 
                 Dirty(ent.Owner, ent.Comp);
             };
@@ -111,7 +113,7 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         ent.Comp.TransferAmount = newTransferAmount;
 
         if (message.Actor is { Valid: true } user)
-            _popup.PopupEntity(Loc.GetString("comp-solution-transfer-set-amount", ("amount", newTransferAmount)), ent.Owner, user);
+            _popup.PopupClient(Loc.GetString("comp-solution-transfer-set-amount", ("amount", newTransferAmount)), ent.Owner, user);
 
         Dirty(ent.Owner, ent.Comp);
     }
@@ -289,7 +291,7 @@ public sealed partial class SolutionTransferSystem : EntitySystem
             return;
 
         var message = Loc.GetString("comp-solution-transfer-transfer-solution", ("amount", transferred), ("target", data.TargetEntity));
-        _popup.PopupEntity(message, data.SourceEntity, data.User);
+        _popup.PopupClient(message, data.SourceEntity, data.User);
     }
 
     /// <summary>
@@ -310,7 +312,7 @@ public sealed partial class SolutionTransferSystem : EntitySystem
             ? "comp-solution-transfer-fill-fully"
             : "comp-solution-transfer-fill-normal";
 
-        _popup.PopupEntity(Loc.GetString(msg, ("owner", data.SourceEntity), ("amount", transferred), ("target", data.TargetEntity)), data.TargetEntity, data.User);
+        _popup.PopupClient(Loc.GetString(msg, ("owner", data.SourceEntity), ("amount", transferred), ("target", data.TargetEntity)), data.TargetEntity, data.User);
     }
 
     /// <summary>
@@ -352,14 +354,14 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         RaiseLocalEvent(data.SourceEntity, ref transferAttempt);
         if (transferAttempt.CancelReason is { } reason)
         {
-            _popup.PopupEntity(reason, data.SourceEntity, data.User);
+            _popup.PopupClient(reason, data.SourceEntity, data.User);
             return false;
         }
 
         var sourceSolution = data.Source.Comp.Solution;
         if (sourceSolution.Volume == 0)
         {
-            _popup.PopupEntity(Loc.GetString("comp-solution-transfer-is-empty", ("target", data.SourceEntity)), data.SourceEntity, data.User);
+            _popup.PopupClient(Loc.GetString("comp-solution-transfer-is-empty", ("target", data.SourceEntity)), data.SourceEntity, data.User);
             return false;
         }
 
@@ -367,14 +369,14 @@ public sealed partial class SolutionTransferSystem : EntitySystem
         RaiseLocalEvent(data.TargetEntity, ref transferAttempt);
         if (transferAttempt.CancelReason is { } targetReason)
         {
-            _popup.PopupEntity(targetReason, data.TargetEntity, data.User);
+            _popup.PopupClient(targetReason, data.TargetEntity, data.User);
             return false;
         }
 
         var targetSolution = data.Target.Comp.Solution;
         if (targetSolution.AvailableVolume == 0)
         {
-            _popup.PopupEntity(Loc.GetString("comp-solution-transfer-is-full", ("target", data.TargetEntity)), data.TargetEntity, data.User);
+            _popup.PopupClient(Loc.GetString("comp-solution-transfer-is-full", ("target", data.TargetEntity)), data.TargetEntity, data.User);
             return false;
         }
 

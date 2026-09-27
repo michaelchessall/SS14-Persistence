@@ -23,7 +23,7 @@ namespace Content.Shared.Fluids;
 public abstract partial class SharedPuddleSystem
 {
     private static readonly FixedPoint2 MeleeHitTransferProportion = 0.25;
-    [Dependency] private InjectorSystem _injectorSystem = default!;
+    [Dependency] private readonly InjectorSystem _injectorSystem = default!;
 
     protected virtual void InitializeSpillable()
     {
@@ -47,9 +47,6 @@ public abstract partial class SharedPuddleSystem
     private void AddSpillVerb(Entity<SpillableComponent> entity, ref GetVerbsEvent<Verb> args)
     {
         if (!args.CanAccess || !args.CanInteract || args.Hands == null)
-            return;
-
-        if (!entity.Comp.CanSpillFromHand)
             return;
 
         if (!_solutionContainerSystem.TryGetSolution(args.Target,
@@ -82,12 +79,12 @@ public abstract partial class SharedPuddleSystem
                 // TODO: Make this an event subscription once spilling puddles is predicted.
                 // Injectors should not be hardcoded here.
                 if (TryComp<InjectorComponent>(entity, out var injectorComp)
-                    && ProtoMan.Resolve(injectorComp.ActiveModeProtoId, out var activeMode)
+                    && _prototypeManager.Resolve(injectorComp.ActiveModeProtoId, out var activeMode)
                     && !activeMode.Behavior.HasAnyFlag(InjectorBehavior.Draw | InjectorBehavior.Dynamic))
                 {
                     foreach (var mode in injectorComp.AllowedModes)
                     {
-                        if (!ProtoMan.Resolve(mode, out var protoMode))
+                        if (!_prototypeManager.Resolve(mode, out var protoMode))
                             continue;
 
                         if (protoMode.Behavior.HasAnyFlag(InjectorBehavior.Draw | InjectorBehavior.Dynamic))
@@ -181,7 +178,7 @@ public abstract partial class SharedPuddleSystem
 
             Reactive.DoEntityReaction(hit, splitSolution, ReactionMethod.Touch);
 
-            Popups.PopupEntity(Loc.GetString("spill-melee-hit-attacker",
+            Popups.PopupClient(Loc.GetString("spill-melee-hit-attacker",
                     ("amount", totalSplit / hitCount),
                     ("spillable", entity.Owner),
                     ("target", Identity.Entity(hit, EntityManager, args.User))),

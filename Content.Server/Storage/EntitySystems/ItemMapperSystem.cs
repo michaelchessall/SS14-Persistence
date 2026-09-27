@@ -5,5 +5,5 @@ namespace Content.Server.Storage.EntitySystems
 {
     /// <inheritdoc/>
     [UsedImplicitly]
-    public sealed partial class ItemMapperSystem : SharedItemMapperSystem {}
+    public sealed class ItemMapperSystem : SharedItemMapperSystem { }
 }

@@ -24,7 +24,6 @@
       size: Large
     - type: Speech
       speechVerb: Robotic
-    - type: ItemToggleExaminableStatus
     - type: ItemToggle
       soundActivate:
         path: /Audio/Items/Defib/defib_safety_on.ogg

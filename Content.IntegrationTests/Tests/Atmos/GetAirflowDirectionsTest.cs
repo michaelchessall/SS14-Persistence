@@ -1,4 +1,3 @@
-using Content.IntegrationTests.Fixtures.Attributes;
 using Content.Shared.Atmos;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Maths;
@@ -23,23 +22,27 @@ public sealed class GetAirflowDirectionsTest : AtmosTest
     [TestCase(-1, 0, AtmosDirection.East)]
     [TestCase(1, 1, AtmosDirection.Invalid)]
     [TestCase(100, 100, AtmosDirection.Invalid)]
-    [RunOnSide(Side.Server)]
-    public void TestLookup(int x, int y, AtmosDirection expectedDirections)
+    public async Task TestLookup(int x, int y, AtmosDirection expectedDirections)
     {
-        // yea
-        var coords = new Vector2i(x, y);
-        var directions = SAtmos.GetAirflowDirections(RelevantAtmos, coords);
-        Assert.That(directions, Is.EqualTo(expectedDirections));
+        await Server.WaitPost(delegate
+        {
+            // yea
+            var coords = new Vector2i(x, y);
+            var directions = SAtmos.GetAirflowDirections(RelevantAtmos, coords);
+            Assert.That(directions, Is.EqualTo(expectedDirections));
+        });
     }
 
     /// <summary>
     /// Tests that a grident with no atmosphere will return <see cref="AtmosDirection.Invalid"/>.
     /// </summary>
     [Test]
-    [RunOnSide(Side.Server)]
-    public void TestLookup_BadEnt()
+    public async Task TestLookup_BadEnt()
     {
-        var directions = SAtmos.GetAirflowDirections(EntityUid.Invalid, Vector2i.Zero);
-        Assert.That(directions, Is.EqualTo(AtmosDirection.Invalid));
+        await Server.WaitPost(delegate
+        {
+            var directions = SAtmos.GetAirflowDirections(EntityUid.Invalid, Vector2i.Zero);
+            Assert.That(directions, Is.EqualTo(AtmosDirection.Invalid));
+        });
     }
 }

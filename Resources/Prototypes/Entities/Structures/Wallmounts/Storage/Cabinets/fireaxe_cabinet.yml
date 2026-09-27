@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseWallmountCabinetGlass, StructureHealthContainerStrong ]
+  parent: BaseWallmountCabinetGlass
   id: FireAxeCabinet
   name: fire axe cabinet
   description: There is a small label that reads "For Emergency use only" along with details for safe use of the axe. As if.
@@ -10,9 +10,17 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 140
+        damage: 300
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 200 #20ish crowbar hits
       behaviors:
       - !type:EmptyAllContainersBehaviour
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
@@ -25,9 +33,9 @@
       visible: true
     - state: glass
       map: ["enum.OpenableVisuals.Layer"]
-    - state: locked
-      shader: unshaded
-      map: ["enum.LockVisualLayers.Lock"]
+  - type: Icon
+    sprite: Structures/Wallmounts/fireaxe_cabinet.rsi
+    state: "cabinet"
   - type: ItemSlots
     slots:
       ItemCabinet:

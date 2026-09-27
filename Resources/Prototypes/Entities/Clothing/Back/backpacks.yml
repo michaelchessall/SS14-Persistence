@@ -8,7 +8,7 @@
     sprite: Clothing/Back/Backpacks/backpack.rsi
     state: icon
   - type: Item
-    size: Colossal
+    size: Huge
   - type: Clothing
     quickEquip: false
     slots:
@@ -17,10 +17,6 @@
     grid:
     - 0,0,6,3
     maxItemSize: Huge
-    blacklist:
-      tags:
-        - TrashBag
-        - TrashBagHolding
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -277,13 +273,11 @@
     sprite: Clothing/Back/Backpacks/ertchaplain.rsi
 
 - type: entity
-  parent: [ ClothingBackpackHoldingBase, ClothingBackpackERTSecurity ]
+  parent: ClothingBackpackERTSecurity
   id: ClothingBackpackDeathSquad
   name: operative backpack
   description: Holds the kit of CentComm's most feared agents.
-  components:
-  - type: Sprite
-    sprite: Clothing/Back/Backpacks/ertsec.rsi
+
 
 #Syndicate
 - type: entity
@@ -301,25 +295,11 @@
 
 #Special
 - type: entity
-  abstract: true
   parent: ClothingBackpack
-  id: ClothingBackpackHoldingBase
-  components:
-  - type: Item
-    size: Colossal
-  - type: Storage
-    maxItemSize: Ginormous
-    grid:
-    - 0,0,11,7 # Same with all bags of holding
-
-- type: entity
-  parent: ClothingBackpackHoldingBase
   id: ClothingBackpackHolding
-  name: backpack of holding
+  name: bag of holding
   description: A backpack that opens into a localized pocket of bluespace.
   components:
-  - type: Clothing
-    equippedPrefix: holding
   - type: Sprite
     sprite: Clothing/Back/Backpacks/holding.rsi
     state: holding
@@ -327,6 +307,8 @@
     - state: holding
     - state: holding-unlit
       shader: unshaded
+  - type: Clothing
+    equippedPrefix: holding
   - type: Item
     size: Ginormous
   - type: Storage
@@ -389,9 +371,6 @@
     - 6,4,7,5
     - 9,2,10,3
     - 9,5,9,5
-  - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpack
@@ -403,9 +382,6 @@
   - type: Storage
     grid:
     - 0,0,39,24
-  - type: Tag
-    tags:
-    - Backpack # ignore "WhitelistChameleon" tag
 
 - type: entity
   parent: ClothingBackpack

@@ -37,6 +37,8 @@ public sealed class NumberSelectorTypeSerializer :
         ISerializationContext? context = null,
         ISerializationManager.InstantiationDelegate<NumberSelector>? instanceProvider = null)
     {
+        var type = typeof(NumberSelector);
+
         if (int.TryParse(node.Value, out var result))
             return new ConstantNumberSelector(result);
 
@@ -47,6 +49,6 @@ public sealed class NumberSelectorTypeSerializer :
             return new RangeNumberSelector(new Vector2i(x, y));
         }
 
-        return serializationManager.Read<NumberSelector>(node, context, notNullableOverride: true);
+        return (NumberSelector)serializationManager.Read(type, node, context)!;
     }
 }

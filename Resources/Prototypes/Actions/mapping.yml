@@ -21,10 +21,7 @@
   id: BaseMappingSpawnAction # not abstract but the event has to be set in code
   components:
   - type: Action
-  - type: Sprite
-    layers:
-    - texture: Tiles/cropped_parallax.png
-      map: ["enum.ActionVisuals.Icon"]
+    icon: Tiles/cropped_parallax.png
   - type: InstantAction
     event: null # has to be set with SetEvent in MappingSystem
 
@@ -34,9 +31,7 @@
   name: Erase Entity
   components:
   - type: Action
-  - type: Sprite
-    layers:
-    - texture: Interface/VerbIcons/delete.svg.192dpi.png
+    icon: Interface/VerbIcons/delete.svg.192dpi.png
   - type: InstantAction
     event: !type:StartPlacementActionEvent
       eraser: true

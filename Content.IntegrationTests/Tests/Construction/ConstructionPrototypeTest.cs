@@ -1,5 +1,3 @@
-using Content.IntegrationTests.Fixtures;
-using Content.IntegrationTests.Fixtures.Attributes;
 using Content.IntegrationTests.Utility;
 using Content.Server.Construction.Components;
 using Content.Shared.Construction.Prototypes;
@@ -9,12 +7,13 @@ using Robust.Shared.Prototypes;
 namespace Content.IntegrationTests.Tests.Construction
 {
     [TestFixture]
-    public sealed class ConstructionPrototypeTest : GameTest
+    public sealed class ConstructionPrototypeTest
     {
         // discount linter for construction graphs
         // TODO: Create serialization validators for these?
         // Top test definitely can be but writing a serializer takes ages.
 
+        private static string[] _constructablePrototypes = GameDataScrounger.EntitiesWithComponent("Construction");
         private static string[] _constructions = GameDataScrounger.PrototypesOfKind<ConstructionPrototype>();
 
         /// <summary>
@@ -22,31 +21,36 @@ namespace Content.IntegrationTests.Tests.Construction
         /// </summary>
         [Test]
         [TestOf(typeof(ConstructionComponent))]
-        [RunOnSide(Side.Server)]
+        [TestCaseSource(nameof(_constructablePrototypes))]
         [Description("Tests that a given entity specifies a valid node for construction, and optionally a valid one for deconstruction.")]
-        public async Task ConstructionComponentValid()
+        public async Task ConstructionComponentValid(string protoKey)
         {
-            var constructablePrototypes = GameDataScrounger.EntitiesWithComponent("Construction");
+            await using var pair = await PoolManager.GetServerClient();
+            var server = pair.Server;
 
-            using (Assert.EnterMultipleScope())
+            var protoMan = server.ResolveDependency<IPrototypeManager>();
+
+            await server.WaitAssertion(() =>
             {
-                foreach (var protoKey in constructablePrototypes)
+                var proto = protoMan.Index(protoKey);
+                var construction = (ConstructionComponent)proto.Components["Construction"].Component;
+
+                var graph = protoMan.Index<ConstructionGraphPrototype>(construction.Graph);
+
+                using (Assert.EnterMultipleScope())
                 {
-                    var proto = SProtoMan.Index(protoKey);
-                    var construction = (ConstructionComponent)proto.Components["Construction"].Component;
-
-                    var graph = SProtoMan.Index(construction.Graph);
-
                     Assert.That(graph.Nodes.ContainsKey(construction.Node),
                         $"Found no node \"{construction.Node}\" on graph \"{graph.ID}\" for entity \"{proto.ID}\"!");
 
                     if (construction.DeconstructionNode is not { } target)
-                        continue;
+                        return;
 
                     Assert.That(graph.Nodes.ContainsKey(target),
                         $"Invalid deconstruction node \"{target}\" on graph \"{graph.ID}\" for construction entity \"{proto.ID}\"!");
                 }
-            }
+            });
+
+            await pair.CleanReturnAsync();
         }
 
         [Test]
@@ -55,7 +59,7 @@ namespace Content.IntegrationTests.Tests.Construction
         [Description("Tests that a given construction prototype has a valid starting and target node, and a valid path between them.")]
         public async Task ConstructionFormsValidGraph(string protoKey)
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
 
             var protoMan = server.ResolveDependency<IPrototypeManager>();
@@ -91,6 +95,7 @@ namespace Content.IntegrationTests.Tests.Construction
                     $"The next node ({next.Name}) in the path from the start node ({start}) to the target node ({target}) specified an entity prototype ({next.Entity}) without a ConstructionComponent.");
 #pragma warning restore NUnit2045
             });
+            await pair.CleanReturnAsync();
         }
     }
 }

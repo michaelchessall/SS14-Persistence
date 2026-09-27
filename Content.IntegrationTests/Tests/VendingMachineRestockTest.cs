@@ -1,6 +1,5 @@
 #nullable enable
 using System.Collections.Generic;
-using Content.IntegrationTests.Fixtures;
 using Content.Server.VendingMachines;
 using Content.Server.Wires;
 using Content.Shared.Cargo.Prototypes;
@@ -12,9 +11,9 @@ using Content.Shared.EntityTable;
 using Content.Shared.Prototypes;
 using Content.Shared.Storage.EntitySystems;
 using Content.Shared.VendingMachines;
-using Content.Shared.VendingMachines.Components;
 using Content.Shared.Wires;
 using Robust.Shared.GameObjects;
+using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 
 namespace Content.IntegrationTests.Tests
@@ -22,7 +21,7 @@ namespace Content.IntegrationTests.Tests
     [TestFixture]
     [TestOf(typeof(VendingMachineRestockComponent))]
     [TestOf(typeof(VendingMachineSystem))]
-    public sealed class VendingMachineRestockTest : GameTest
+    public sealed class VendingMachineRestockTest : EntitySystem
     {
         private static readonly ProtoId<DamageTypePrototype> TestDamageType = "Blunt";
 
@@ -81,9 +80,8 @@ namespace Content.IntegrationTests.Tests
   name: TestRestockExplode
   components:
   - type: Damageable
-    damageModifierSet: Metallic
-  - type: Injurable
     damageContainer: Inorganic
+    damageModifierSet: Metallic
   - type: Destructible
     thresholds:
     - trigger:
@@ -98,7 +96,7 @@ namespace Content.IntegrationTests.Tests
     - BigTestInventory
 
 - type: entity
-  parent: BaseVendingMachine
+  parent: VendingMachine
   id: VendingMachineTest
   name: Test Ramen
   components:
@@ -106,7 +104,6 @@ namespace Content.IntegrationTests.Tests
     layoutId: Vending
   - type: VendingMachine
     pack: TestInventory
-  - type: VendingMachineEject
   - type: Sprite
     sprite: error.rsi
 ";
@@ -114,7 +111,7 @@ namespace Content.IntegrationTests.Tests
         [Test]
         public async Task TestAllRestocksAreAvailableToBuy()
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
             await server.WaitIdleAsync();
 
@@ -142,7 +139,7 @@ namespace Content.IntegrationTests.Tests
                     List<EntProtoId<VendingMachineRestockComponent>>> entitiesWhichSpawnRestocks = new();
                 foreach (var proto in prototypeManager.EnumeratePrototypes<EntityPrototype>())
                 {
-                    if (!proto.TryComp<EntityTableContainerFillComponent>(out var fill, compFact))
+                    if (!proto.TryGetComponent<EntityTableContainerFillComponent>(out var fill, compFact))
                         continue;
 
                     var containers = fill.Containers;
@@ -197,12 +194,14 @@ namespace Content.IntegrationTests.Tests
                         $"Some entities with {restockCompName} are unavailable for purchase: \n - {string.Join("\n - ", restockEntities)}");
                 });
             });
+
+            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task TestCompleteRestockProcess()
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
             await server.WaitIdleAsync();
 
@@ -270,7 +269,7 @@ namespace Content.IntegrationTests.Tests
                 });
 
                 // Empty the inventory.
-                systemMachine.EjectRandom((machine, machineComponent), false, true);
+                systemMachine.EjectRandom(machine, false, true, machineComponent);
                 Assert.That(systemMachine.GetAvailableInventory(machine, machineComponent), Has.Count.EqualTo(0),
                     "Machine inventory is not empty after ejecting.");
 
@@ -281,12 +280,14 @@ namespace Content.IntegrationTests.Tests
 
                 mapSystem.DeleteMap(testMap.MapId);
             });
+
+            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task TestRestockBreaksOpen()
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
             await server.WaitIdleAsync();
 
@@ -341,15 +342,18 @@ namespace Content.IntegrationTests.Tests
 
                 mapSystem.DeleteMap(testMap.MapId);
             });
+
+            await pair.CleanReturnAsync();
         }
 
         [Test]
         public async Task TestRestockInventoryBounds()
         {
-            var pair = Pair;
+            await using var pair = await PoolManager.GetServerClient();
             var server = pair.Server;
             await server.WaitIdleAsync();
 
+            var mapManager = server.ResolveDependency<IMapManager>();
             var entityManager = server.ResolveDependency<IEntityManager>();
             var entitySystemManager = server.ResolveDependency<IEntitySystemManager>();
 
@@ -384,6 +388,10 @@ namespace Content.IntegrationTests.Tests
                 Assert.That(vendingMachineSystem.GetAvailableInventory(machine)[0].Amount, Is.EqualTo(3),
                     "Machine's available inventory did not stay the same after a third restock.");
             });
+
+            await pair.CleanReturnAsync();
         }
     }
 }
+
+#nullable disable

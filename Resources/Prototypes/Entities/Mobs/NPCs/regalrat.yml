@@ -1,7 +1,7 @@
 - type: entity
   name: rat king
   id: MobRatKing
-  parent: [ BaseMobRat, SimpleMobBase, MobCombat, BaseSlicingRefinable, MobNightVision, BaseMobDestructible, BaseThirstSlowdown ]
+  parent: [ BaseMobRat, SimpleMobBase, MobCombat ]
   description: He's da rat. He make da roolz.
   components:
   - type: CombatMode
@@ -33,8 +33,6 @@
     proto: regal
   - type: Physics
     bodyType: KinematicController
-  - type: Puller
-    needsHands: false
   - type: Fixtures
     fixtures:
       fix1:
@@ -61,12 +59,22 @@
       types:
         Slash: 12
         Piercing: 8
-  - type: Satiation
-    satiations:
-      Hunger:
-        prototype: RegalRatHunger
-      Thirst:
-        prototype: NormalSatiationThirst
+  - type: Hunger # probably should be prototyped
+    thresholds:
+      Overfed: 200
+      Okay: 150
+      Peckish: 100
+      Starving: 50
+      Dead: 0
+    baseDecayRate: 0.01666666666
+  - type: Thirst
+    thresholds:
+      OverHydrated: 600
+      Okay: 450
+      Thirsty: 300
+      Parched: 150
+      Dead: 0
+    baseDecayRate: 0.1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -100,8 +108,8 @@
   - type: MobsterAccent
   - type: Speech
     speechVerb: SmallMob
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: ClothingHeadHatFancyCrown #how did that get there?
       amount: 1
   - type: MobPrice
@@ -111,17 +119,10 @@
     - NamesRegalratKingdom
     - NamesRegalratTitle
     nameFormat: name-format-regal-rat
-  - type: NameIdentifier
-    group: null  # Strips the numeric identifier from the rat king's name, since they already have randomly-generated names anyway
   - type: Grammar
     attributes:
-      proper: true
       gender: male
-#  - type: GuideHelp
-#    guides:
-#    - MinorAntagonists
-  - type: Tool
-    qualities: [ Slicing ]
+  - type: Sharp
 
 - type: entity
   id: MobRatKingBuff
@@ -160,7 +161,7 @@
 - type: entity
   name: rat servant
   id: MobRatServant
-  parent: [ BaseMobRat, SimpleMobBase, MobCombat, BaseSlicingRefinable, BaseThirstSlowdown ]
+  parent: [ BaseMobRat, SimpleMobBase, MobCombat ]
   description: He's da mini rat. He don't make da roolz.
   categories: [ HideSpawnMenu ] #Must be configured to a King or the AI breaks.
   components:
@@ -196,6 +197,7 @@
     - map: [ "enum.DamageStateVisualLayers.BaseUnshaded"]
       state: eyes
       shader: unshaded
+
   - type: SpriteMovement
     movementLayers:
       movement:
@@ -242,12 +244,22 @@
       types:
         Slash: 5
         Piercing: 3
-  - type: Satiation
-    satiations:
-      Hunger:
-        prototype: RegalRatHunger
-      Thirst:
-        prototype: NormalSatiationThirst
+  - type: Hunger # probably should be prototyped
+    thresholds:
+      Overfed: 200
+      Okay: 150
+      Peckish: 100
+      Starving: 50
+      Dead: 0
+    baseDecayRate: 0.01666666666
+  - type: Thirst
+    thresholds:
+      OverHydrated: 600
+      Okay: 450
+      Thirsty: 300
+      Parched: 150
+      Dead: 0
+    baseDecayRate: 0.1
   - type: DamageStateVisuals
     states:
       Alive:
@@ -257,12 +269,15 @@
         Base: dead
       Dead:
         Base: splat
-  - type: ToolRefinable
-    refineResult:
+  - type: Butcherable
+    spawned:
     - id: FoodMeatRat
       amount: 1
   - type: Vocal
-    emoteSounds: Mouse
+    sounds:
+      Male: Mouse
+      Female: Mouse
+      Unsexed: Mouse
     wilhelmProbability: 0.001
   - type: Tag
     tags:
@@ -300,10 +315,9 @@
   components:
   - type: Action
     useDelay: 4
-  - type: Sprite
-    sprite: Interface/Actions/actions_rat_king.rsi
-    layers:
-    - state: ratKingArmy
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: ratKingArmy
   - type: InstantAction
     event: !type:RatKingRaiseArmyActionEvent
 
@@ -315,10 +329,9 @@
   components:
   - type: Action
     useDelay: 6
-  - type: Sprite
-    sprite: Interface/Actions/actions_rat_king.rsi
-    layers:
-    - state: ratKingDomain
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: ratKingDomain
   - type: InstantAction
     event: !type:RatKingDomainActionEvent
 
@@ -330,15 +343,13 @@
   components:
   - type: Action
     useDelay: 1
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: stayOff
+    iconOn:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: stay
     priority: 5
-  - type: Sprite
-    sprite: Interface/Actions/actions_rat_king.rsi
-    layers:
-    - state: stayOff
-      map: ["enum.ActionVisuals.Icon"]
-    - state: stay
-      map: ["enum.ActionVisuals.IconToggled"]
-      visible: false
   - type: InstantAction
     event: !type:RatKingOrderActionEvent
       type: Stay
@@ -351,15 +362,13 @@
   components:
   - type: Action
     useDelay: 1
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: followOff
+    iconOn:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: follow
     priority: 6
-  - type: Sprite
-    sprite: Interface/Actions/actions_rat_king.rsi
-    layers:
-    - state: followOff
-      map: ["enum.ActionVisuals.Icon"]
-    - state: follow
-      map: ["enum.ActionVisuals.IconToggled"]
-      visible: false
   - type: InstantAction
     event: !type:RatKingOrderActionEvent
       type: Follow
@@ -372,15 +381,13 @@
   components:
   - type: Action
     useDelay: 1
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: attackOff
+    iconOn:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: attack
     priority: 7
-  - type: Sprite
-    sprite: Interface/Actions/actions_rat_king.rsi
-    layers:
-    - state: attackOff
-      map: ["enum.ActionVisuals.Icon"]
-    - state: attack
-      map: ["enum.ActionVisuals.IconToggled"]
-      visible: false
   - type: InstantAction
     event: !type:RatKingOrderActionEvent
       type: CheeseEm
@@ -393,15 +400,13 @@
   components:
   - type: Action
     useDelay: 1
+    icon:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: looseOff
+    iconOn:
+      sprite: Interface/Actions/actions_rat_king.rsi
+      state: loose
     priority: 8
-  - type: Sprite
-    sprite: Interface/Actions/actions_rat_king.rsi
-    layers:
-    - state: looseOff
-      map: ["enum.ActionVisuals.Icon"]
-    - state: loose
-      map: ["enum.ActionVisuals.IconToggled"]
-      visible: false
   - type: InstantAction
     event:
       !type:RatKingOrderActionEvent

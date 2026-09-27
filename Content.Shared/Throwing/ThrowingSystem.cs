@@ -15,7 +15,7 @@ using System.Numerics;
 
 namespace Content.Shared.Throwing;
 
-public sealed partial class ThrowingSystem : EntitySystem
+public sealed class ThrowingSystem : EntitySystem
 {
     public const float ThrowAngularImpulse = 5f;
 
@@ -28,27 +28,27 @@ public sealed partial class ThrowingSystem : EntitySystem
     private float _frictionModifier;
     private float _airDamping;
 
-    [Dependency] private IGameTiming _gameTiming = default!;
-    [Dependency] private SharedPhysicsSystem _physics = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private ThrownItemSystem _thrownSystem = default!;
-    [Dependency] private SharedCameraRecoilSystem _recoil = default!;
-    [Dependency] private ISharedAdminLogManager _adminLogger = default!;
-    [Dependency] private IConfigurationManager _configManager = default!;
+    [Dependency] private readonly IGameTiming _gameTiming = default!;
+    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ThrownItemSystem _thrownSystem = default!;
+    [Dependency] private readonly SharedCameraRecoilSystem _recoil = default!;
+    [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly IConfigurationManager _configManager = default!;
 
-    [Dependency] private EntityQuery<AnchorableComponent> _anchorableQuery = default!;
-    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
-    [Dependency] private EntityQuery<ProjectileComponent> _projectileQuery = default!;
+    private EntityQuery<AnchorableComponent> _anchorableQuery;
 
     public override void Initialize()
     {
         base.Initialize();
 
+        _anchorableQuery = GetEntityQuery<AnchorableComponent>();
+
         Subs.CVar(_configManager, CCVars.TileFrictionModifier, value => _frictionModifier = value, true);
         Subs.CVar(_configManager, CCVars.AirFriction, value => _airDamping = value, true);
     }
 
-    public bool TryThrow(
+    public void TryThrow(
         EntityUid uid,
         EntityCoordinates coordinates,
         float baseThrowSpeed = 10.0f,
@@ -66,9 +66,9 @@ public sealed partial class ThrowingSystem : EntitySystem
         var mapPos = _transform.ToMapCoordinates(coordinates);
 
         if (mapPos.MapId != thrownPos.MapId)
-            return false;
+            return;
 
-        return TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor);
+        TryThrow(uid, mapPos.Position - thrownPos.Position, baseThrowSpeed, user, pushbackRatio, friction, compensateFriction: compensateFriction, recoil: recoil, animated: animated, playSound: playSound, doSpin: doSpin, unanchor: unanchor);
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// <param name="compensateFriction">True will adjust the throw so the item stops at the target coordinates. False means it will land at the target and keep sliding.</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
     /// <param name="unanchor">If set to Unanchorable, if the entity has <see cref="AnchorableComponent"/> and is unanchorable, it will unanchor the thrown entity. If set to All, it will unanchor the entity regardless.</param>
-    public bool TryThrow(EntityUid uid,
+    public void TryThrow(EntityUid uid,
         Vector2 direction,
         float baseThrowSpeed = 10.0f,
         EntityUid? user = null,
@@ -95,14 +95,18 @@ public sealed partial class ThrowingSystem : EntitySystem
         bool doSpin = true,
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
-        if (!_physicsQuery.TryComp(uid, out var physics))
-            return false;
+        var physicsQuery = GetEntityQuery<PhysicsComponent>();
+        if (!physicsQuery.TryGetComponent(uid, out var physics))
+            return;
 
-        return TryThrow(
+        var projectileQuery = GetEntityQuery<ProjectileComponent>();
+
+        TryThrow(
             uid,
             direction,
             physics,
             Transform(uid),
+            projectileQuery,
             baseThrowSpeed,
             user,
             pushbackRatio,
@@ -120,10 +124,11 @@ public sealed partial class ThrowingSystem : EntitySystem
     /// <param name="compensateFriction">True will adjust the throw so the item stops at the target coordinates. False means it will land at the target and keep sliding.</param>
     /// <param name="doSpin">Whether spin will be applied to the thrown entity.</param>
     /// <param name="unanchor">If set to Unanchorable, if the entity has <see cref="AnchorableComponent"/> and is unanchorable, it will unanchor the thrown entity. If set to All, it will unanchor the entity regardless.</param>
-    public bool TryThrow(EntityUid uid,
+    public void TryThrow(EntityUid uid,
         Vector2 direction,
         PhysicsComponent physics,
         TransformComponent transform,
+        EntityQuery<ProjectileComponent> projectileQuery,
         float baseThrowSpeed = 10.0f,
         EntityUid? user = null,
         float pushbackRatio = PushbackDefault,
@@ -136,7 +141,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         ThrowingUnanchorStrength unanchor = ThrowingUnanchorStrength.None)
     {
         if (baseThrowSpeed <= 0 || direction == Vector2Helpers.Infinity || direction == Vector2Helpers.NaN || direction == Vector2.Zero || friction < 0)
-            return false;
+            return;
 
         // Unanchor the entity if applicable
         if (unanchor == ThrowingUnanchorStrength.All ||
@@ -146,11 +151,11 @@ public sealed partial class ThrowingSystem : EntitySystem
             _transform.Unanchor(uid);
 
         if ((physics.BodyType & (BodyType.Dynamic | BodyType.KinematicController)) == 0x0)
-            return false;
+            return;
 
         // Allow throwing if this projectile only acts as a projectile when shot, otherwise disallow
-        if (_projectileQuery.TryComp(uid, out var proj) && !proj.OnlyCollideWhenShot)
-            return false;
+        if (projectileQuery.TryGetComponent(uid, out var proj) && !proj.OnlyCollideWhenShot)
+            return;
 
         var comp = new ThrownItemComponent
         {
@@ -223,7 +228,7 @@ public sealed partial class ThrowingSystem : EntitySystem
         }
 
         if (user == null)
-            return true;
+            return;
 
         if (recoil)
             _recoil.KickCamera(user.Value, -direction * 0.04f);
@@ -232,12 +237,12 @@ public sealed partial class ThrowingSystem : EntitySystem
         if (pushbackRatio == 0.0f ||
             physics.Mass == 0f ||
             !TryComp(user.Value, out PhysicsComponent? userPhysics))
-            return true;
+            return;
         var msg = new ThrowPushbackAttemptEvent();
         RaiseLocalEvent(uid, msg);
 
         if (msg.Cancelled)
-            return true;
+            return;
 
         var pushEv = new ThrowerImpulseEvent();
         RaiseLocalEvent(user.Value, ref pushEv);
@@ -245,8 +250,6 @@ public sealed partial class ThrowingSystem : EntitySystem
 
         if (pushEv.Push)
             _physics.ApplyLinearImpulse(user.Value, -impulseVector / physics.Mass * pushbackRatio * MathF.Min(massLimit, physics.Mass), body: userPhysics);
-
-        return true;
     }
 
 

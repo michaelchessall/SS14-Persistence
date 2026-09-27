@@ -9,10 +9,3 @@
   maleFirstNames: names_avali_first
   femaleFirstNames: names_avali_first
   lastNames: names_avali_packs
-  defaultSoundsBySex:
-  - MaleAvali
-  - FemaleAvali
-  - MaleAvali
-  voices:
-  - MaleAvali
-  - FemaleAvali

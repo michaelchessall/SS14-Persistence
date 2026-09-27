@@ -38,6 +38,7 @@
     priority: 1
   - type: ApcPowerReceiver
     powerLoad: 200
+  - type: Rotatable
   - type: Transform
     noRot: false
   - type: SubFloorHide
@@ -101,6 +102,7 @@
       priority: 1
     - type: ApcPowerReceiver
       powerLoad: 200
+    - type: Rotatable
     - type: Transform
       noRot: false
     - type: SubFloorHide
@@ -168,6 +170,7 @@
   placement:
     mode: AlignAtmosPipeLayers
   components:
+  - type: Rotatable
   - type: Transform
     noRot: false
   - type: SubFloorHide
@@ -452,7 +455,6 @@
         - sprite: Structures/Piping/Atmospherics/pipe.rsi
           state: pipeBinaryConnectors
           map: [ "enum.PipeVisualLayers.Pipe" ]
-        - state: vent_direction
         - state: vent_off
           map: [ "enabled", "enum.SubfloorLayers.FirstLayer" ]
     - type: AtmosPipeLayers
@@ -471,7 +473,16 @@
       pressureLockoutOverride: true
       inlet: inlet
       outlet: outlet
-      canLink: false
+      canLink: true
+    - type: DeviceNetwork
+      deviceNetId: Wireless
+      receiveFrequencyId: BasicDevice
+    - type: WirelessNetworkConnection
+      range: 200
+    - type: DeviceLinkSink
+      ports:
+        - Pressurize
+        - Depressurize
     - type: Construction
       graph: GasBinary
       node: dualportventpump
@@ -494,7 +505,7 @@
       - AirVent
 
 - type: entity
-  parent: [ BaseMachine, ConstructibleMachine, BaseConstructibleMachineDestructible ]
+  parent: [ BaseMachine, ConstructibleMachine ]
   id: GasRecycler
   name: gas recycler
   description: Recycles waste gases into useful gases. Can hold a beaker to collect reagents skimmed from the gas stream. Requires high temperature and pressure to operate.
@@ -527,6 +538,7 @@
           True: { state: running }
           False: { state: unlit }
   - type: PipeColorVisuals
+  - type: Rotatable
   - type: GasRecycler
   - type: ItemSlots
     slots:
@@ -562,11 +574,15 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 175
+        damage: 100
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+      - !type:ChangeConstructionNodeBehavior
+        node: machineFrame
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
   - type: Machine
     board: GasRecyclerMachineCircuitboard
   - type: AtmosMonitoringConsoleDevice
@@ -586,6 +602,7 @@
   placement:
     mode: SnapgridCenter
   components:
+  - type: Rotatable
   - type: Transform
     noRot: false
   - type: Sprite

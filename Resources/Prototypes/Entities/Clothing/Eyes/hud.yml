@@ -104,9 +104,7 @@
     sprite: Clothing/Eyes/Hud/beergoggles.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/beergoggles.rsi
-  - type: ShowSatiationIcons
-    shownTypes:
-    - Thirst
+  - type: ShowThirstIcons
   - type: SolutionScanner
   - type: Tag
     tags:
@@ -114,8 +112,8 @@
     - WhitelistChameleon
 
 - type: entity
-  parent: [SolutionFood, SolutionSmall, ClothingEyesHudBase]
-  id: ClothingEyesHudFriedOnion # It's been too long since I've had good onion rings...
+  parent: ClothingEyesHudBase
+  id: ClothingEyesHudFriedOnion
   name: fried onion goggles
   description: The new goggles from Donk Co. These fashionable shades will allow you to see how hungry your patrons are to optimally sell them overpriced food.
   components:
@@ -123,19 +121,19 @@
     sprite: Clothing/Eyes/Hud/friedonion.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/friedonion.rsi
-  - type: ShowSatiationIcons
-    shownTypes:
-    - Hunger
+  - type: ShowHungerIcons
   - type: Edible
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 30
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 3
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 3
   - type: FlavorProfile
     flavors:
       - onion
-      - oily
+      - greasey
 
 - type: entity
   parent: ClothingEyesHudBase
@@ -147,10 +145,8 @@
     sprite: Clothing/Eyes/Hud/onionbeer.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/onionbeer.rsi
-  - type: ShowSatiationIcons
-    shownTypes:
-    - Hunger
-    - Thirst
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
 
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]
@@ -162,9 +158,7 @@
     sprite: Clothing/Eyes/Hud/medonion.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medonion.rsi
-  - type: ShowSatiationIcons
-    shownTypes:
-    - Hunger
+  - type: ShowHungerIcons
 
 - type: entity
   parent: [ClothingEyesHudBase, ShowMedicalIcons]
@@ -176,10 +170,8 @@
     sprite: Clothing/Eyes/Hud/medonionbeer.rsi
   - type: Clothing
     sprite: Clothing/Eyes/Hud/medonionbeer.rsi
-  - type: ShowSatiationIcons
-    shownTypes:
-    - Hunger
-    - Thirst
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
 
 - type: entity
   parent: [ClothingEyesHudBase, ShowSecurityIcons, ShowMedicalIcons, BaseSecurityCommandContraband]
@@ -228,10 +220,8 @@
     damageContainers:
     - Biological
     - Inorganic
-  - type: ShowSatiationIcons
-    shownTypes:
-    - Hunger
-    - Thirst
+  - type: ShowHungerIcons
+  - type: ShowThirstIcons
   - type: ShowSyndicateIcons
 
 - type: entity

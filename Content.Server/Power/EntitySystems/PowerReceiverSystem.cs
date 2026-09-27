@@ -12,21 +12,38 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace Content.Server.Power.EntitySystems
 {
-    public sealed partial class PowerReceiverSystem : SharedPowerReceiverSystem
+    public sealed class PowerReceiverSystem : SharedPowerReceiverSystem
     {
-        [Dependency] private IAdminManager _adminManager = default!;
+        [Dependency] private readonly IAdminManager _adminManager = default!;
+        private EntityQuery<ApcPowerReceiverComponent> _recQuery;
+        private EntityQuery<ApcPowerProviderComponent> _provQuery;
 
-        [Dependency] private EntityQuery<ApcPowerReceiverComponent> _recQuery = default!;
-        [Dependency] private EntityQuery<ApcPowerProviderComponent> _provQuery = default!;
-        [Dependency] private EntityQuery<HandsComponent> _handsQuery = default!;
+        public override void Initialize()
+        {
+            base.Initialize();
+            SubscribeLocalEvent<ApcPowerReceiverComponent, ExaminedEvent>(OnExamined);
 
-        [SubscribeLocalEvent]
+            SubscribeLocalEvent<ApcPowerReceiverComponent, ExtensionCableSystem.ProviderConnectedEvent>(OnProviderConnected);
+            SubscribeLocalEvent<ApcPowerReceiverComponent, ExtensionCableSystem.ProviderDisconnectedEvent>(OnProviderDisconnected);
+
+            SubscribeLocalEvent<ApcPowerProviderComponent, ComponentShutdown>(OnProviderShutdown);
+            SubscribeLocalEvent<ApcPowerProviderComponent, ExtensionCableSystem.ReceiverConnectedEvent>(OnReceiverConnected);
+            SubscribeLocalEvent<ApcPowerProviderComponent, ExtensionCableSystem.ReceiverDisconnectedEvent>(OnReceiverDisconnected);
+
+            SubscribeLocalEvent<ApcPowerReceiverComponent, GetVerbsEvent<Verb>>(OnGetVerbs);
+            SubscribeLocalEvent<PowerSwitchComponent, GetVerbsEvent<AlternativeVerb>>(AddSwitchPowerVerb);
+
+            SubscribeLocalEvent<ApcPowerReceiverComponent, ComponentGetState>(OnGetState);
+
+            _recQuery = GetEntityQuery<ApcPowerReceiverComponent>();
+            _provQuery = GetEntityQuery<ApcPowerProviderComponent>();
+        }
+
         private void OnExamined(Entity<ApcPowerReceiverComponent> ent, ref ExaminedEvent args)
         {
             args.PushMarkup(GetExamineText(ent.Comp.Powered));
         }
 
-        [SubscribeLocalEvent]
         private void OnGetVerbs(EntityUid uid, ApcPowerReceiverComponent component, GetVerbsEvent<Verb> args)
         {
             if (!_adminManager.HasAdminFlag(args.User, AdminFlags.Admin))
@@ -45,7 +62,6 @@ namespace Content.Server.Power.EntitySystems
             });
         }
 
-        [SubscribeLocalEvent]
         private void OnProviderShutdown(EntityUid uid, ApcPowerProviderComponent component, ComponentShutdown args)
         {
             foreach (var receiver in component.LinkedReceivers)
@@ -57,7 +73,6 @@ namespace Content.Server.Power.EntitySystems
             component.LinkedReceivers.Clear();
         }
 
-        [SubscribeLocalEvent]
         private void OnProviderConnected(Entity<ApcPowerReceiverComponent> receiver, ref ExtensionCableSystem.ProviderConnectedEvent args)
         {
             var providerUid = args.Provider.Owner;
@@ -69,7 +84,6 @@ namespace Content.Server.Power.EntitySystems
             ProviderChanged(receiver);
         }
 
-        [SubscribeLocalEvent]
         private void OnProviderDisconnected(Entity<ApcPowerReceiverComponent> receiver, ref ExtensionCableSystem.ProviderDisconnectedEvent args)
         {
             receiver.Comp.Provider = null;
@@ -77,7 +91,6 @@ namespace Content.Server.Power.EntitySystems
             ProviderChanged(receiver);
         }
 
-        [SubscribeLocalEvent]
         private void OnReceiverConnected(Entity<ApcPowerProviderComponent> provider, ref ExtensionCableSystem.ReceiverConnectedEvent args)
         {
             if (_recQuery.TryGetComponent(args.Receiver, out var receiver))
@@ -86,7 +99,6 @@ namespace Content.Server.Power.EntitySystems
             }
         }
 
-        [SubscribeLocalEvent]
         private void OnReceiverDisconnected(EntityUid uid, ApcPowerProviderComponent provider, ExtensionCableSystem.ReceiverDisconnectedEvent args)
         {
             if (_recQuery.TryGetComponent(args.Receiver, out var receiver))
@@ -95,27 +107,25 @@ namespace Content.Server.Power.EntitySystems
             }
         }
 
-        [SubscribeLocalEvent]
-        private void AddSwitchPowerVerb(Entity<PowerSwitchComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+        private void AddSwitchPowerVerb(EntityUid uid, PowerSwitchComponent component, GetVerbsEvent<AlternativeVerb> args)
         {
             if (!args.CanAccess || !args.CanInteract)
                 return;
 
-            if (!_handsQuery.HasComp(args.User))
+            if (!HasComp<HandsComponent>(args.User))
                 return;
 
-            if (!_recQuery.TryGetComponent(ent, out var receiver))
+            if (!_recQuery.TryGetComponent(uid, out var receiver))
                 return;
 
             if (!receiver.NeedsPower)
                 return;
 
-            var user = args.User;
             AlternativeVerb verb = new()
             {
                 Act = () =>
                 {
-                    TogglePower(ent, user: user);
+                    TogglePower(uid, user: args.User);
                 },
                 Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/VerbIcons/Spare/poweronoff.svg.192dpi.png")),
                 Text = Loc.GetString("power-switch-component-toggle-verb"),
@@ -124,14 +134,13 @@ namespace Content.Server.Power.EntitySystems
             args.Verbs.Add(verb);
         }
 
-        [SubscribeLocalEvent]
-        private void OnGetState(Entity<ApcPowerReceiverComponent> ent, ref ComponentGetState args)
+        private void OnGetState(EntityUid uid, ApcPowerReceiverComponent component, ref ComponentGetState args)
         {
             args.State = new ApcPowerReceiverComponentState
             {
-                Powered = ent.Comp.Powered,
-                NeedsPower = ent.Comp.NeedsPower,
-                PowerDisabled = ent.Comp.PowerDisabled,
+                Powered = component.Powered,
+                NeedsPower = component.NeedsPower,
+                PowerDisabled = component.PowerDisabled,
             };
         }
 

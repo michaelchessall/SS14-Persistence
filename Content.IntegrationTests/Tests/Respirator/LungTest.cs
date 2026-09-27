@@ -7,15 +7,14 @@ using Robust.Shared.Configuration;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.GameObjects;
 using Robust.Shared.Map;
-using System.Numerics;
-using Content.IntegrationTests.Fixtures;
 using Robust.Shared.Utility;
+using System.Numerics;
 
 namespace Content.IntegrationTests.Tests.Respirator;
 
 [TestFixture]
 [TestOf(typeof(LungSystem))]
-public sealed class LungTest : GameTest
+public sealed class LungTest
 {
     [TestPrototypes]
     private const string Prototypes = @"
@@ -55,7 +54,7 @@ public sealed class LungTest : GameTest
     public async Task AirConsistencyTest()
     {
         // --- Setup
-        var pair = Pair;
+        await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
         await server.WaitIdleAsync();
@@ -124,14 +123,17 @@ public sealed class LungTest : GameTest
                 "Did not exhale as much gas as was inhaled"
             );
         }
+
+        await pair.CleanReturnAsync();
     }
 
     [Test]
     public async Task NoSuffocationTest()
     {
-        var pair = Pair;
+        await using var pair = await PoolManager.GetServerClient();
         var server = pair.Server;
 
+        var mapManager = server.ResolveDependency<IMapManager>();
         var entityManager = server.ResolveDependency<IEntityManager>();
         var cfg = server.ResolveDependency<IConfigurationManager>();
         var mapLoader = entityManager.System<MapLoaderSystem>();
@@ -181,5 +183,7 @@ public sealed class LungTest : GameTest
                     $"Entity {entityManager.GetComponent<MetaDataComponent>(human).EntityName} is suffocating on tick {tick}");
             });
         }
+
+        await pair.CleanReturnAsync();
     }
 }

@@ -10,9 +10,9 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Construction.Commands;
 
 [AdminCommand(AdminFlags.Mapping)]
-public sealed partial class FixRotationsCommand : IConsoleCommand
+public sealed class FixRotationsCommand : IConsoleCommand
 {
-    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
 
     private static readonly ProtoId<TagPrototype> ForceFixRotationsTag = "ForceFixRotations";
     private static readonly ProtoId<TagPrototype> ForceNoFixRotationsTag = "ForceNoFixRotations";
@@ -28,7 +28,6 @@ public sealed partial class FixRotationsCommand : IConsoleCommand
         var player = shell.Player;
         EntityUid? gridId;
         var xformQuery = _entManager.GetEntityQuery<TransformComponent>();
-        var xformSystem = _entManager.System<SharedTransformSystem>();
 
         switch (args.Length)
         {
@@ -105,7 +104,7 @@ public sealed partial class FixRotationsCommand : IConsoleCommand
 
             if (childXform.LocalRotation != Angle.Zero)
             {
-                xformSystem.SetLocalRotationNoLerp(child, Angle.Zero, childXform);
+                childXform.LocalRotation = Angle.Zero;
                 changed++;
             }
         }

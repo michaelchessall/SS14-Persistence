@@ -48,31 +48,31 @@ namespace Content.Server.Anomaly.Effects;
 /// behavior itself is still entirely generic (see anomaly_eye.yml's Anomaly component fields),
 /// unrelated to this.
 /// </summary>
-public sealed partial class EyeAnomalySystem : EntitySystem
+public sealed class EyeAnomalySystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private MobStateSystem _mobState = default!;
-    [Dependency] private SharedMindSystem _mind = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private ExamineSystem _examine = default!;
-    [Dependency] private TetherVisualSystem _tetherVisual = default!;
-    [Dependency] private SharedAppearanceSystem _appearance = default!;
-    [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private SharedEyeSystem _eye = default!;
-    [Dependency] private RadioSystem _radio = default!;
-    [Dependency] private IConfigurationManager _configurationManager = default!;
-    [Dependency] private SharedActionsSystem _actions = default!;
-    [Dependency] private InventorySystem _inventory = default!;
-    [Dependency] private HeadsetSystem _headsetSystem = default!;
-    [Dependency] private StationSystem _stationSystem = default!;
-    [Dependency] private IPrototypeManager _prototypeManager = default!;
-    [Dependency] private HTNSystem _htn = default!;
-    [Dependency] private NPCSystem _npcSystem = default!;
-    [Dependency] private NpcFactionSystem _npcFaction = default!;
-    [Dependency] private PersistentIdentifierSystem _pid = default!;
-    [Dependency] private CritMobActionsSystem _critMobActions = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly MobStateSystem _mobState = default!;
+    [Dependency] private readonly SharedMindSystem _mind = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ExamineSystem _examine = default!;
+    [Dependency] private readonly TetherVisualSystem _tetherVisual = default!;
+    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private readonly ChatSystem _chat = default!;
+    [Dependency] private readonly SharedEyeSystem _eye = default!;
+    [Dependency] private readonly RadioSystem _radio = default!;
+    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
+    [Dependency] private readonly SharedActionsSystem _actions = default!;
+    [Dependency] private readonly InventorySystem _inventory = default!;
+    [Dependency] private readonly HeadsetSystem _headsetSystem = default!;
+    [Dependency] private readonly StationSystem _stationSystem = default!;
+    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    [Dependency] private readonly HTNSystem _htn = default!;
+    [Dependency] private readonly NPCSystem _npcSystem = default!;
+    [Dependency] private readonly NpcFactionSystem _npcFaction = default!;
+    [Dependency] private readonly PersistentIdentifierSystem _pid = default!;
+    [Dependency] private readonly CritMobActionsSystem _critMobActions = default!;
 
     private readonly HashSet<Entity<MobStateComponent>> _pulseTargets = new();
     private readonly HashSet<EntityUid> _returning = new();
@@ -275,7 +275,7 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         tether.OldFactions.Clear();
         tether.OldFactions.UnionWith(npcFaction.Factions);
         _npcFaction.ClearFactions((victim, npcFaction), false);
-        _npcFaction.AddFaction((victim, npcFaction), tether.EyeFactionId);
+        _npcFaction.AddFaction((victim, npcFaction), "EyeThrall");
     }
 
     /// <summary>
@@ -365,7 +365,6 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         {
             EnsureComp<MobStateActionsComponent>(vessel);
             EntityUid? sosAction = null;
-#pragma warning disable RA0033 // Parameter forbids literal values
             if (_actions.AddAction(vessel, ref sosAction, "ActionAcceptDeath"))
             {
                 tether.SosActionEntity = sosAction;
@@ -375,7 +374,6 @@ public sealed partial class EyeAnomalySystem : EntitySystem
                 // immediately - clear that startup cooldown right away.
                 _actions.ClearCooldown(sosAction);
             }
-#pragma warning restore RA0033 // Parameter forbids literal values
         }
 
         RecomputeAggregatedRadioChannels(ent);
@@ -472,7 +470,7 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         var xform = Transform(victim);
         var message = string.Format(template, Name(victim), mapPos.X, mapPos.Y);
 
-        _radio.SendRadioMessage(_critMobActions.EnsureDeathNetworkSpeaker(xform.Coordinates), message, ProtoMan.Index(ent.Comp.BroadcastChannel), victim, true);
+        _radio.SendRadioMessage(_critMobActions.EnsureDeathNetworkSpeaker(xform.Coordinates), message, "Common", victim, true, false);
 
         actions.SOSCooldown = _timing.CurTime + TimeSpan.FromSeconds(_configurationManager.GetCVar(CCVars.AcceptDeathTime));
     }
@@ -574,7 +572,7 @@ public sealed partial class EyeAnomalySystem : EntitySystem
         // holder's grace window, before their mind is ever captured), so a holder who escapes
         // DURING grace also needs their faction restored here, even without an HTNComponent.
         var npcFaction = EnsureComp<NpcFactionMemberComponent>(victim);
-        _npcFaction.RemoveFaction((victim, npcFaction), tether.EyeFactionId, false);
+        _npcFaction.RemoveFaction((victim, npcFaction), "EyeThrall", false);
         _npcFaction.AddFactions((victim, npcFaction), tether.OldFactions);
         tether.OldFactions.Clear();
 

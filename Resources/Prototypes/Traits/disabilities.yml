@@ -45,7 +45,6 @@
   components:
     - type: Unrevivable
       cloneable: true
-  selectable: false
 
 - type: trait
   id: Monochromacy
@@ -63,10 +62,8 @@
   blacklist:
     components:
       - BorgChassis
-  specials:
-  - !type:ApplyStatusEffectSpecial
-    statusEffects:
-    - TraitStatusEffectMuted
+  components:
+    - type: Muted
 
 - type: trait
   id: Paracusia
@@ -89,7 +86,7 @@
   specials:
   - !type:ApplyStatusEffectSpecial
     statusEffects:
-    - TraitStatusEffectPainNumbness
+    - PainNumbnessTraitStatusEffect
 
 - type: trait
   id: Hemophilia
@@ -99,7 +96,7 @@
   specials:
   - !type:ApplyStatusEffectSpecial
     statusEffects:
-    - TraitStatusEffectHemophilia
+    - StatusEffectHemophiliaTrait
 
 - type: trait
   id: ImpairedMobility

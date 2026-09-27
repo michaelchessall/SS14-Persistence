@@ -25,7 +25,7 @@
     damage:
       types:
         Piercing: 10
-        Structural: 8
+        Structural: 30
   - type: Item
     size: Normal
     shape:
@@ -63,7 +63,7 @@
     damage:
       types:
         Piercing: 3
-        Structural: 6
+        Structural: 15
 
 - type: entity
   name: diamond tipped mining drill
@@ -75,10 +75,17 @@
     sprite: Objects/Tools/handdrilldiamond.rsi
     state: handdrill
   - type: MeleeWeapon
+    autoAttack: true
+    angle: 0
+    wideAnimationRotation: -90
+    soundHit:
+      path: "/Audio/Items/drill_hit.ogg"
+    attackRate: 4
     damage:
       types:
-        Piercing: 5
-        Structural: 8
+        Piercing: 6
+        Structural: 30
+
 
 - type: entity
   abstract: true
@@ -87,9 +94,7 @@
   name: crusher
   description: An early design of the proto-kinetic accelerator.
   components:
-  - type: Tool
-    qualities:
-    - Slicing
+  - type: Sharp
   - type: Execution
     doAfterDuration: 4.0
   - type: UnpoweredFlashlight
@@ -111,9 +116,6 @@
     state: icon
   - type: Item
     size: Ginormous
-    shape:
-    - 0,0,3,6
-    storedRotation: -45
     sprite: Objects/Weapons/Melee/crusher-inhands.rsi
   - type: Clothing
     sprite: Objects/Weapons/Melee/crusher.rsi
@@ -158,7 +160,7 @@
       types:
         Blunt: 6
         Slash: 2
-        Structural: 8
+        Structural: 30
   - type: GunRequiresWield
   - type: DisarmMalus
   - type: Prying
@@ -220,9 +222,6 @@
     state: icon
   - type: Item
     size: Ginormous
-    shape:
-    - 0,0,3,6
-    storedRotation: -45
     sprite: Objects/Weapons/Melee/crusher_glaive-inhands.rsi
   - type: Clothing
     sprite: Objects/Weapons/Melee/crusher_glaive.rsi
@@ -257,4 +256,4 @@
       types:
         Blunt: 2
         Slash: 6
-        Structural: 8
+        Structural: 20

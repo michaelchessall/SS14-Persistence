@@ -7,9 +7,10 @@ using Content.Shared.Popups;
 using Robust.Shared.Player;
 
 namespace Content.Server.Morgue;
-public sealed partial class CrematoriumSystem : SharedCrematoriumSystem
+
+public sealed class CrematoriumSystem : SharedCrematoriumSystem
 {
-    [Dependency] private GhostSystem _ghostSystem = default!;
+    [Dependency] private readonly GhostSystem _ghostSystem = default!;
 
     public override void Initialize()
     {
@@ -30,7 +31,7 @@ public sealed partial class CrematoriumSystem : SharedCrematoriumSystem
 
             if (mind.OwnedEntity is { Valid: true } entity)
             {
-                Popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message"), entity, entity);
+                Popup.PopupEntity(Loc.GetString("crematorium-entity-storage-component-suicide-message"), entity);
             }
         }
 

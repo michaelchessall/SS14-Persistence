@@ -1,52 +1,77 @@
-# region Base
 - type: construction
-  abstract: true
-  id: BaseWebObject
+  id: TileWeb
   graph: WebObjects
+  startNode: start
+  targetNode: tile
+  category: construction-category-tiles
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item
+
+- type: construction
+  id: ClothingOuterWinterWeb
+  graph: WebObjects
+  startNode: start
+  targetNode: coat
   category: construction-category-clothing
   entityWhitelist:
     tags:
     - SpiderCraft
   objectType: Item
-# endregion Base
-
-# region Web Objects
-- type: construction
-  parent: BaseWebObject
-  id: TileWeb
-  targetNode: tile
-  category: construction-category-tiles
 
 - type: construction
-  parent: BaseWebObject
-  id: ClothingOuterWinterWeb
-  targetNode: coat
-
-- type: construction
-  parent: BaseWebObject
   id: ClothingUniformJumpsuitWeb
+  graph: WebObjects
+  startNode: start
   targetNode: jumpsuit
+  category: construction-category-clothing
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item
 
 - type: construction
-  parent: BaseWebObject
   id: ClothingUniformJumpskirtWeb
+  graph: WebObjects
+  startNode: start
   targetNode: jumpskirt
+  category: construction-category-clothing
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item
 
 - type: construction
-  parent: BaseWebObject
   id: SilkWovenCloth
   name: construction-recipe-silk-woven-cloth
+  graph: WebObjects
+  startNode: start
   targetNode: cloth
   category: construction-category-materials
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item
 
 - type: construction
-  parent: BaseWebObject
   id: WebShield
+  graph: WebObjects
+  startNode: start
   targetNode: shield
-  category: construction-category-weapons
+  category: construction-category-clothing
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item
 
 - type: construction
-  parent: BaseWebObject
   id: ClothingShoesBootsWinterWeb
+  graph: WebObjects
+  startNode: start
   targetNode: boots
-# endregion Web Objects
+  category: construction-category-clothing
+  entityWhitelist:
+    tags:
+    - SpiderCraft
+  objectType: Item

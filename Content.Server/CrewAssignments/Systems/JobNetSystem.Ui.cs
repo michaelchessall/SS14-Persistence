@@ -3,8 +3,6 @@ using Content.Server.Administration.Logs;
 using Content.Server.CrewRecords.Systems;
 using Content.Server.Stack;
 using Content.Server.Station.Systems;
-using Content.Shared._Persistence14.Rumors.Components;
-using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Actions;
 using Content.Shared.CrewAssignments;
 using Content.Shared.CrewAssignments.Components;
@@ -175,13 +173,6 @@ public sealed partial class JobNetSystem
         List<WorldObjectivesEntry> completedObjectives;
         List<CodexEntry> codexEntries;
         ProtoId<NetworkLevelPrototype> currentLevel = "NetworkLevel1";
-        Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations = new();
-        List<ActiveRumor> rumors = new();
-        if(TryComp<RumorGetterComponent>(jobnet, out var rumorGetter))
-        {
-            rumors = rumorGetter.Rumors;
-        }
-
         if (_meta.MetaRecords != null)
         {
             completedObjectives = _meta.MetaRecords.CompletedObjectives;
@@ -190,8 +181,6 @@ public sealed partial class JobNetSystem
             if (_meta.MetaRecords.TryGetRecord(Name(user.Value), out var record) && record != null)
             {
                 currentLevel = record.Level;
-                metaFactionReputations = record.MetaFactionReputations;
-
             }
             sectorChaos = _meta.MetaRecords.SectorChaos;
             sectorStatus = _meta.MetaRecords.SectorStatus;
@@ -217,7 +206,7 @@ public sealed partial class JobNetSystem
             }
         }
 
-        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, sectorStatus, metaFactionReputations, rumors);
+        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, component.Precursor, component.PrecursorObjectives, component.PrecursorResetTime, component.RogueLevel, component.XP, component.NetworkType, component.SecretPhrase, component.KillTarget, component.DealerBounty, stationName, component.RogueNetResetTime, sectorChaos, _cargo.GetSectorDevelopment(), sectorStatus);
         _ui.SetUiState(jobnet, JobNetUiKey.Key, state);
     }
 

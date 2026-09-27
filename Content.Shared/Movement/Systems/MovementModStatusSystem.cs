@@ -17,7 +17,7 @@ namespace Content.Shared.Movement.Systems;
 /// could occupy same prototype, but be aware that this will make controlling duration of effect
 /// extra 'challenging', as it will be shared too.
 /// </remarks>
-public sealed partial class MovementModStatusSystem : EntitySystem
+public sealed class MovementModStatusSystem : EntitySystem
 {
     public static readonly EntProtoId ReagentSpeed = "ReagentSpeedStatusEffect";
     public static readonly EntProtoId VomitingSlowdown = "VomitingSlowdownStatusEffect";
@@ -25,33 +25,21 @@ public sealed partial class MovementModStatusSystem : EntitySystem
     public static readonly EntProtoId FlashSlowdown = "FlashSlowdownStatusEffect";
     public static readonly EntProtoId StatusEffectFriction = "StatusEffectFriction";
 
-    [Dependency] private MovementSpeedModifierSystem _movementSpeedModifier = default!;
-    [Dependency] private StatusEffectsSystem _status = default!;
+    [Dependency] private readonly MovementSpeedModifierSystem _movementSpeedModifier = default!;
+    [Dependency] private readonly StatusEffectsSystem _status = default!;
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<MovementModStatusEffectComponent, StatusEffectAppliedEvent>(OnMovementModApplied);
         SubscribeLocalEvent<MovementModStatusEffectComponent, StatusEffectRemovedEvent>(OnMovementModRemoved);
         SubscribeLocalEvent<MovementModStatusEffectComponent, StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent>>(OnRefreshRelay);
-        SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectAppliedEvent>(OnFrictionStatusEffectApplied);
         SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectRemovedEvent>(OnFrictionStatusEffectRemoved);
         SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectRelayedEvent<RefreshFrictionModifiersEvent>>(OnRefreshFrictionStatus);
         SubscribeLocalEvent<FrictionStatusEffectComponent, StatusEffectRelayedEvent<TileFrictionEvent>>(OnRefreshTileFrictionStatus);
     }
 
-    private void OnMovementModApplied(Entity<MovementModStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
-    {
-        _movementSpeedModifier.RefreshMovementSpeedModifiers(args.Target);
-    }
-
     private void OnMovementModRemoved(Entity<MovementModStatusEffectComponent> ent, ref StatusEffectRemovedEvent args)
     {
         TryUpdateMovementStatus(args.Target, (ent, ent), 1f);
-    }
-
-    private void OnFrictionStatusEffectApplied(Entity<FrictionStatusEffectComponent> ent, ref StatusEffectAppliedEvent args)
-    {
-        _movementSpeedModifier.RefreshFrictionModifiers(args.Target);
     }
 
     private void OnFrictionStatusEffectRemoved(Entity<FrictionStatusEffectComponent> entity, ref StatusEffectRemovedEvent args)
@@ -64,7 +52,7 @@ public sealed partial class MovementModStatusSystem : EntitySystem
         ref StatusEffectRelayedEvent<RefreshMovementSpeedModifiersEvent> args
     )
     {
-        args.Args.ModifySpeed(entity.Comp.WalkSpeedModifier, entity.Comp.SprintSpeedModifier);
+        args.Args.ModifySpeed(entity.Comp.WalkSpeedModifier, entity.Comp.WalkSpeedModifier);
     }
 
     private void OnRefreshFrictionStatus(Entity<FrictionStatusEffectComponent> ent, ref StatusEffectRelayedEvent<RefreshFrictionModifiersEvent> args)
@@ -170,7 +158,8 @@ public sealed partial class MovementModStatusSystem : EntitySystem
     /// <param name="status">Status effect entity whose modifiers we are updating</param>
     /// <param name="walkSpeedModifier">New walkSpeedModifer we're applying</param>
     /// <param name="sprintSpeedModifier">New sprintSpeedModifier we're applying</param>
-    public bool TryUpdateMovementStatus(EntityUid uid,
+    public bool TryUpdateMovementStatus(
+        EntityUid uid,
         Entity<MovementModStatusEffectComponent?> status,
         float walkSpeedModifier,
         float sprintSpeedModifier
@@ -181,7 +170,6 @@ public sealed partial class MovementModStatusSystem : EntitySystem
 
         status.Comp.SprintSpeedModifier = sprintSpeedModifier;
         status.Comp.WalkSpeedModifier = walkSpeedModifier;
-        Dirty(status);
 
         _movementSpeedModifier.RefreshMovementSpeedModifiers(uid);
 

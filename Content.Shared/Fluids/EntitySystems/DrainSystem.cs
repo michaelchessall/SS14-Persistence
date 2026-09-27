@@ -1,6 +1,8 @@
-using Content.Shared._Funkystation.Stains.Components; // Funky
-using Content.Shared._Funkystation.Stains.Systems; // Funky
+using Content.Shared._Funkystation.Stains.Components;
+using Content.Shared._Funkystation.Stains.Systems;
 using Content.Shared.Audio;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -24,23 +26,21 @@ namespace Content.Shared.Fluids.EntitySystems;
 
 /// <summary>
 /// Handles the draining of solutions from containers into drains.
-/// TODO: This system is very bad, and needs to be rewritten.
 /// </summary>
-public sealed partial class DrainSystem : EntitySystem
+public sealed class DrainSystem : EntitySystem
 {
-    [Dependency] private EntityLookupSystem _lookup = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
-    [Dependency] private SharedAudioSystem _audio = default!;
-    [Dependency] private SharedDoAfterSystem _doAfter = default!;
-    [Dependency] private SharedPopupSystem _popup = default!;
-    [Dependency] private SharedPuddleSystem _puddle = default!;
-    [Dependency] private SharedSolutionContainerSystem _solutionContainerSystem = default!;
-    [Dependency] private TagSystem _tag = default!;
-    [Dependency] private IGameTiming _timing = default!;
-
-
-    [Dependency] private readonly SharedStainSystem _stain = default!; // Funky
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedStainSystem _stain = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
 
     private readonly HashSet<Entity<PuddleComponent>> _puddles = [];
 
@@ -114,7 +114,7 @@ public sealed partial class DrainSystem : EntitySystem
         // Find the solution in the container that is emptied.
         if (!_solutionContainerSystem.TryGetDrainableSolution(container, out var containerSoln, out var containerSolution) || containerSolution.Volume == FixedPoint2.Zero)
         {
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("drain-component-empty-verb-using-is-empty-message", ("object", container)),
                 ent.Owner,
                 user);
@@ -143,7 +143,7 @@ public sealed partial class DrainSystem : EntitySystem
         {
             var solutionToSpill = _solutionContainerSystem.SplitSolution(containerSoln.Value, amountToSpillOnGround);
             _puddle.TrySpillAt(Transform(ent.Owner).Coordinates, solutionToSpill, out _);
-            _popup.PopupEntity(
+            _popup.PopupClient(
                 Loc.GetString("drain-component-empty-verb-target-is-full-message", ("object", ent.Owner)),
                 ent.Owner,
                 user);
@@ -154,9 +154,9 @@ public sealed partial class DrainSystem : EntitySystem
     {
         base.Update(frameTime);
 
-        var query = EntityQueryEnumerator<DrainComponent>();
+        var query = EntityQueryEnumerator<DrainComponent, SolutionContainerManagerComponent>();
         var curTime = _timing.CurTime;
-        while (query.MoveNext(out var uid, out var drain))
+        while (query.MoveNext(out var uid, out var drain, out var manager))
         {
             if (curTime < drain.NextUpdate)
                 continue;
@@ -165,7 +165,7 @@ public sealed partial class DrainSystem : EntitySystem
             Dirty(uid, drain);
 
             // Best to do this one every second rather than once every tick...
-            if (!_solutionContainerSystem.ResolveSolution(uid, DrainComponent.SolutionName, ref drain.Solution, out var drainSolution))
+            if (!_solutionContainerSystem.ResolveSolution((uid, manager), DrainComponent.SolutionName, ref drain.Solution, out var drainSolution))
                 continue;
 
             if (drainSolution.Volume <= 0 && !drain.AutoDrain)
@@ -212,7 +212,7 @@ public sealed partial class DrainSystem : EntitySystem
                     var transferSolution = _solutionContainerSystem.SplitSolution(puddle.Comp.Solution.Value,
                         FixedPoint2.Min(FixedPoint2.New(amount), puddleSolution.Volume, drainSolution.AvailableVolume));
 
-                    drainSolution.AddSolution(transferSolution, ProtoMan);
+                    drainSolution.AddSolution(transferSolution, _prototype);
 
                     if (puddleSolution.Volume <= 0)
                         PredictedQueueDel(puddle);
@@ -225,9 +225,12 @@ public sealed partial class DrainSystem : EntitySystem
 
     private void OnExamined(Entity<DrainComponent> ent, ref ExaminedEvent args)
     {
-        if (!args.IsInDetailsRange
-            || !_solutionContainerSystem.ResolveSolution(ent.Owner, DrainComponent.SolutionName, ref ent.Comp.Solution, out var drainSolution))
+        if (!args.IsInDetailsRange ||
+            !HasComp<SolutionContainerManagerComponent>(ent) ||
+            !_solutionContainerSystem.ResolveSolution(ent.Owner, DrainComponent.SolutionName, ref ent.Comp.Solution, out var drainSolution))
+        {
             return;
+        }
 
         var text = drainSolution.AvailableVolume != 0
             ? Loc.GetString("drain-component-examine-volume", ("volume", drainSolution.AvailableVolume))
@@ -246,7 +249,7 @@ public sealed partial class DrainSystem : EntitySystem
 
         if (drainSolution.AvailableVolume > 0)
         {
-            _popup.PopupEntity(Loc.GetString("drain-component-unclog-notapplicable", ("object", args.Target.Value)), args.Target.Value, args.User);
+            _popup.PopupPredicted(Loc.GetString("drain-component-unclog-notapplicable", ("object", args.Target.Value)), args.Target.Value, args.User);
             return;
         }
 
@@ -269,7 +272,7 @@ public sealed partial class DrainSystem : EntitySystem
 
         if (!SharedRandomExtensions.PredictedProb(_timing, ent.Comp.UnclogProbability, GetNetEntity(ent)))
         {
-            _popup.PopupEntity(Loc.GetString("drain-component-unclog-fail", ("object", args.Target.Value)), args.Target.Value, args.User);
+            _popup.PopupPredicted(Loc.GetString("drain-component-unclog-fail", ("object", args.Target.Value)), args.Target.Value, args.User);
             return;
         }
 
@@ -278,7 +281,7 @@ public sealed partial class DrainSystem : EntitySystem
 
         _solutionContainerSystem.RemoveAllSolution(ent.Comp.Solution.Value);
         _audio.PlayPredicted(ent.Comp.UnclogSound, args.Target.Value, args.User);
-        _popup.PopupEntity(Loc.GetString("drain-component-unclog-success", ("object", args.Target.Value)), args.Target.Value, args.User);
+        _popup.PopupPredicted(Loc.GetString("drain-component-unclog-success", ("object", args.Target.Value)), args.Target.Value, args.User);
     }
 
     // Prevent a debug assert.

@@ -1,5 +1,4 @@
 - type: entity
-  parent: StructureHealthMachineWeak
   id: Morgue
   name: morgue
   description: Used to store bodies until someone fetches them. Includes a high-tech alert system for false-positives!
@@ -34,7 +33,7 @@
         mask:
         - MachineMask
         layer:
-        - MachineLayer
+        - HalfWallLayer
   - type: EntityStorage
     isCollidableWhenOpen: true
     showContents: false
@@ -77,25 +76,6 @@
     graph: MorgueGraph
     node: morgue
   - type: Label
-  - type: RequireProjectileTarget
-  - type: Damageable
-    damageModifierSet: SteelMod
-  - type: Destructible
-    thresholds:
-    - trigger: &DamageMachineWeak
-        !type:DamageTrigger
-        damage: 100
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        offset: 0
-        spawn:
-          MachineFrameDestroyed:
-            min: 1
-            max: 1
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      # maybe also make things cold? Release freezon?
 
 - type: entity
   id: MorgueAssembly
@@ -136,7 +116,6 @@
     node: cables
 
 - type: entity
-  parent: StructureHealthMachineWeak
   id: Crematorium
   name: crematorium
   description: A human incinerator. Works well on barbecue nights.
@@ -208,23 +187,6 @@
   - type: Construction
     graph: CrematoriumGraph
     node: crematorium
-  - type: RequireProjectileTarget
-  - type: Damageable
-    damageModifierSet: SteelMod
-  - type: Destructible
-    thresholds:
-    - trigger: *DamageMachineWeak
-      behaviors:
-      - !type:SpawnEntitiesBehavior
-        offset: 0
-        spawn:
-          MachineFrameDestroyed:
-            min: 1
-            max: 1
-      - !type:PlaySoundBehavior
-        sound:
-          collection: MetalBreak
-      # maybe also start a fire? Release plasma?
 
 - type: entity
   id: CrematoriumAssembly

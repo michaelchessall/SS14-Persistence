@@ -105,6 +105,6 @@
     ZombieBlood:
       amount: 4
   products:
-    Romerodone: 2
+    Mold: 2
     Protein: 1
-    Mold: 1
+    Toxin: 1

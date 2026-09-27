@@ -1,6 +1,5 @@
 using Content.Server.Cargo.Systems;
 using Content.Shared.Cargo.BUI;
-using Content.Shared.Stacks;
 
 namespace Content.Server.Cargo.Components;
 

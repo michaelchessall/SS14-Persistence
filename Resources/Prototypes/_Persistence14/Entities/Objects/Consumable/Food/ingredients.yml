@@ -2,7 +2,7 @@
 # Pasta Dough
 
 - type: entity
-  parent: [FoodBakingBase, BaseSlicingRefinableFood]
+  parent: FoodBakingBase
   id: FoodDoughPasta
   name: pasta dough
   description: A big ball of dough, perfect for making pasta.
@@ -15,10 +15,9 @@
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
     state: pasta-dough
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodDoughPastaSlice
-      amount: 3
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughPastaSlice
   - type: Construction
     graph: Pasta
     node: start
@@ -77,7 +76,7 @@
           Quantity: 5
 
 - type: entity
-  parent: [FoodBakingBase, BaseSlicingRefinableFood]
+  parent: FoodBakingBase
   id: FoodDoughPastaFlat
   name: flat pasta dough
   description: Flattened pasta dough.
@@ -92,10 +91,9 @@
   - type: Construction
     graph: Pasta
     node: flat
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodDoughPastaStrip
-      amount: 3
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughPastaStrip
 
 - type: entity
   parent: FoodBakingBase
@@ -115,7 +113,7 @@
 # Cotton Pasta Dough
 
 - type: entity
-  parent: [FoodBakingBase, BaseSlicingRefinableFood]
+  parent: FoodBakingBase
   id: FoodDoughCottonPasta
   name: cotton pasta dough
   description: A big ball of fibrous dough, perfect for making cotton pasta.
@@ -129,16 +127,15 @@
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Food/ingredients.rsi
     state: cotton-pasta-dough
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodDoughCottonPastaSlice
-      amount: 3
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughCottonPastaSlice
   - type: Construction
     graph: CottonPasta
     node: start
   - type: Tag
     tags:
-    - ClothMade
+     - ClothMade
 
 - type: entity
   parent: FoodBakingBase
@@ -201,10 +198,10 @@
           Quantity: 3.5
   - type: Tag
     tags:
-    - ClothMade
+     - ClothMade
 
 - type: entity
-  parent: [FoodBakingBase, BaseSlicingRefinableFood]
+  parent: FoodBakingBase
   id: FoodDoughCottonPastaFlat
   name: flat cotton pasta dough
   description: Flattened cotton pasta dough.
@@ -219,13 +216,12 @@
   - type: Construction
     graph: CottonPasta
     node: flat
-  - type: ToolRefinable
-    refineResult:
-    - id: FoodDoughCottonPastaStrip
-      amount: 3
+  - type: SliceableFood
+    count: 3
+    slice: FoodDoughCottonPastaStrip
   - type: Tag
     tags:
-    - ClothMade
+     - ClothMade
 
 - type: entity
   parent: FoodBakingBase
@@ -244,4 +240,4 @@
     state: cotton-pasta-dough-strip
   - type: Tag
     tags:
-    - ClothMade
+     - ClothMade

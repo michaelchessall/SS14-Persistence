@@ -1,0 +1,39 @@
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineeringThruster
+  name: thruster crate
+  description: Contains a thruster flatpack.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: ThrusterFlatpack
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineeringGyroscope
+  name: gyroscope crate
+  description: Contains a gyroscope flatpack.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: GyroscopeFlatpack
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateEngineeringShuttleStarterKit
+  name: shuttle starter kit crate
+  description: contains 4 thrusters, a gyroscope, a generator, and a shuttle console board!
+  components:
+  - type: StorageFill
+    contents:
+      - id: ThrusterFlatpack
+      - id: ThrusterFlatpack
+      - id: ThrusterFlatpack
+      - id: ThrusterFlatpack
+      - id: GyroscopeFlatpack
+      - id: PortableGeneratorJrPacmanFlatpack
+      - id: ShuttleConsoleCircuitboard
+
+

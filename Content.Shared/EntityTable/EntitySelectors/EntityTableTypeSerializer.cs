@@ -28,9 +28,10 @@ public sealed class EntityTableTypeSerializer :
         ISerializationContext? context = null,
         ISerializationManager.InstantiationDelegate<EntityTableSelector>? instanceProvider = null)
     {
+        var type = typeof(EntityTableSelector);
         if (node.Has(EntSelector.IdDataFieldTag))
-            return serializationManager.Read<EntSelector>(node, context, notNullableOverride: true);
+            type = typeof(EntSelector);
 
-        return serializationManager.Read<EntityTableSelector>(node, context, notNullableOverride: true);
+        return (EntityTableSelector)serializationManager.Read(type, node, context)!;
     }
 }

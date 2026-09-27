@@ -4,7 +4,7 @@ using Content.Shared.Speech.Components;
 
 namespace Content.Shared.Speech.EntitySystems;
 
-public sealed partial class EmoteBlockerSystem : EntitySystem
+public sealed class EmoteBlockerSystem : EntitySystem
 {
     public override void Initialize()
     {
@@ -14,26 +14,26 @@ public sealed partial class EmoteBlockerSystem : EntitySystem
         SubscribeLocalEvent<EmoteBlockerComponent, InventoryRelayedEvent<BeforeEmoteEvent>>(OnRelayedEmoteEvent);
     }
 
-    private static void OnRelayedEmoteEvent(Entity<EmoteBlockerComponent> ent, ref InventoryRelayedEvent<BeforeEmoteEvent> args)
+    private static void OnRelayedEmoteEvent(Entity<EmoteBlockerComponent> entity, ref InventoryRelayedEvent<BeforeEmoteEvent> args)
     {
-        OnEmoteEvent(ent, ref args.Args);
+        OnEmoteEvent(entity, ref args.Args);
     }
 
-    private static void OnEmoteEvent(Entity<EmoteBlockerComponent> ent, ref BeforeEmoteEvent args)
+    private static void OnEmoteEvent(Entity<EmoteBlockerComponent> entity, ref BeforeEmoteEvent args)
     {
-        if (ent.Comp.BlocksEmotes.Contains(args.Emote))
+        if (entity.Comp.BlocksEmotes.Contains(args.Emote))
         {
             args.Cancel();
-            args.Blocker = ent;
+            args.Blocker = entity;
             return;
         }
 
-        foreach (var blockedCat in ent.Comp.BlocksCategories)
+        foreach (var blockedCat in entity.Comp.BlocksCategories)
         {
             if (blockedCat == args.Emote.Category)
             {
                 args.Cancel();
-                args.Blocker = ent;
+                args.Blocker = entity;
                 return;
             }
         }

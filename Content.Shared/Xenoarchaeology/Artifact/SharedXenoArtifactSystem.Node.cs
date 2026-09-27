@@ -17,12 +17,15 @@ public abstract partial class SharedXenoArtifactSystem
 {
     [Dependency] private readonly EntityTableSystem _entityTable = default!;
 
-    [Dependency] private EntityQuery<XenoArtifactComponent> _xenoArtifactQuery = default!;
-    [Dependency] private EntityQuery<XenoArtifactNodeComponent> _nodeQuery = default!;
+    private EntityQuery<XenoArtifactComponent> _xenoArtifactQuery;
+    private EntityQuery<XenoArtifactNodeComponent> _nodeQuery;
 
     private void InitializeNode()
     {
         SubscribeLocalEvent<XenoArtifactNodeComponent, MapInitEvent>(OnNodeMapInit);
+
+        _xenoArtifactQuery = GetEntityQuery<XenoArtifactComponent>();
+        _nodeQuery = GetEntityQuery<XenoArtifactNodeComponent>();
     }
 
     /// <summary>
@@ -89,7 +92,7 @@ public abstract partial class SharedXenoArtifactSystem
     /// </summary>
     public Entity<XenoArtifactNodeComponent> CreateNode(Entity<XenoArtifactComponent> ent, ProtoId<XenoArchTriggerPrototype> trigger, int depth = 0)
     {
-        var triggerProto = ProtoMan.Index(trigger);
+        var triggerProto = PrototypeManager.Index(trigger);
         return CreateNode(ent, triggerProto, depth);
     }
 
@@ -119,7 +122,7 @@ public abstract partial class SharedXenoArtifactSystem
         foreach (var table in otherTables) // Clear duplicate IDs from other tables.
             table.Remove(triggerId.Value);
 
-        var trigger = ProtoMan.Index(triggerId);
+        var trigger = PrototypeManager.Index(triggerId);
 
         foreach (var incompatible in trigger.IncompatibleTriggers)
         {

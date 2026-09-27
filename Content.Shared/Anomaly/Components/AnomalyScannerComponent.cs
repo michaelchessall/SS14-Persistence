@@ -35,7 +35,4 @@ public sealed partial class AnomalyScannerComponent : Component
     /// </summary>
     [DataField]
     public bool IgnoreSecret;
-
-    [DataField]
-    public LocId DoAfterExamineText = "anomaly-scanner-doafter-examine";
 }

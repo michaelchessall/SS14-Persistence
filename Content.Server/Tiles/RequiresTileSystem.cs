@@ -3,18 +3,20 @@ using Robust.Shared.Map.Components;
 
 namespace Content.Server.Tiles;
 
-public sealed partial class RequiresTileSystem : EntitySystem
+public sealed class RequiresTileSystem : EntitySystem
 {
     /*
      * Needs to be on server as client can't predict QueueDel.
      */
 
-    [Dependency] private SharedMapSystem _maps = default!;
-    [Dependency] private EntityQuery<RequiresTileComponent> _tilesQuery = default!;
+    [Dependency] private readonly SharedMapSystem _maps = default!;
+
+    private EntityQuery<RequiresTileComponent> _tilesQuery;
 
     public override void Initialize()
     {
         base.Initialize();
+        _tilesQuery = GetEntityQuery<RequiresTileComponent>();
         SubscribeLocalEvent<TileChangedEvent>(OnTileChange);
     }
 
@@ -25,7 +27,7 @@ public sealed partial class RequiresTileSystem : EntitySystem
 
         foreach (var change in ev.Changes)
         {
-            var anchored = _maps.GetAnchoredEntities(ev.Entity, grid, change.GridIndices);
+            var anchored = _maps.GetAnchoredEntitiesEnumerator(ev.Entity, grid, change.GridIndices);
 
             while (anchored.MoveNext(out var ent))
             {

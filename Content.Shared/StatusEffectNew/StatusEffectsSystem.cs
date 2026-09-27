@@ -17,13 +17,17 @@ namespace Content.Shared.StatusEffectNew;
 /// </summary>
 public sealed partial class StatusEffectsSystem : EntitySystem
 {
-    [Dependency] private IGameTiming _timing = default!;
-    [Dependency] private SharedContainerSystem _container = default!;
-    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly IComponentFactory _factory = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private readonly SharedJobNetSystem _jobNetSystem = default!;
 
-    [Dependency] private EntityQuery<StatusEffectContainerComponent> _containerQuery = default!;
-    [Dependency] private EntityQuery<StatusEffectComponent> _effectQuery = default!;
-    [Dependency] private SharedJobNetSystem _jobNetSystem = default!;
+    private EntityQuery<StatusEffectContainerComponent> _containerQuery;
+    private EntityQuery<StatusEffectComponent> _effectQuery;
+
+    public readonly HashSet<string> StatusEffectPrototypes = [];
 
     public override void Initialize()
     {
@@ -37,6 +41,13 @@ public sealed partial class StatusEffectsSystem : EntitySystem
         SubscribeLocalEvent<StatusEffectContainerComponent, EntRemovedFromContainerMessage>(OnEntityRemoved);
 
         SubscribeLocalEvent<RejuvenateRemovedStatusEffectComponent, StatusEffectRelayedEvent<RejuvenateEvent>>(OnRejuvenate);
+
+        SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypesReloaded);
+
+        _containerQuery = GetEntityQuery<StatusEffectContainerComponent>();
+        _effectQuery = GetEntityQuery<StatusEffectComponent>();
+
+        ReloadStatusEffectsCache();
     }
 
     public override void Update(float frameTime)
@@ -58,6 +69,25 @@ public sealed partial class StatusEffectsSystem : EntitySystem
                 continue;
 
             PredictedQueueDel(ent);
+        }
+    }
+
+    private void OnPrototypesReloaded(PrototypesReloadedEventArgs args)
+    {
+        if (!args.WasModified<EntityPrototype>())
+            return;
+
+        ReloadStatusEffectsCache();
+    }
+
+    private void ReloadStatusEffectsCache()
+    {
+        StatusEffectPrototypes.Clear();
+
+        foreach (var ent in _proto.EnumeratePrototypes<EntityPrototype>())
+        {
+            if (ent.TryGetComponent<StatusEffectComponent>(out _, _factory))
+                StatusEffectPrototypes.Add(ent.ID);
         }
     }
 
@@ -142,10 +172,10 @@ public sealed partial class StatusEffectsSystem : EntitySystem
 
     public bool CanAddStatusEffect(EntityUid uid, EntProtoId effectProto)
     {
-        if (!ProtoMan.Resolve(effectProto, out var effectProtoData))
+        if (!_proto.Resolve(effectProto, out var effectProtoData))
             return false;
 
-        if (!effectProtoData.TryComp<StatusEffectComponent>(out var effectProtoComp, Factory))
+        if (!effectProtoData.TryGetComponent<StatusEffectComponent>(out var effectProtoComp, Factory))
             return false;
 
         if (!_whitelist.CheckBoth(uid, effectProtoComp.Blacklist, effectProtoComp.Whitelist))

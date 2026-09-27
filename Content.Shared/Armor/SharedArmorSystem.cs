@@ -12,9 +12,9 @@ namespace Content.Shared.Armor;
 /// <summary>
 ///     This handles logic relating to <see cref="ArmorComponent" />
 /// </summary>
-public abstract partial class SharedArmorSystem : EntitySystem
+public abstract class SharedArmorSystem : EntitySystem
 {
-    [Dependency] private ExamineSystemShared _examine = default!;
+    [Dependency] private readonly ExamineSystemShared _examine = default!;
 
     /// <inheritdoc />
     public override void Initialize()
@@ -84,19 +84,18 @@ public abstract partial class SharedArmorSystem : EntitySystem
         {
             msg.PushNewline();
 
-            // TODO: probably make these prototype fields or have a test that they all exist
-            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.Id.ToLower());
+            var armorType = Loc.GetString("armor-damage-type-" + coefficientArmor.Key.ToLower());
             msg.AddMarkupOrThrow(Loc.GetString("armor-coefficient-value",
                 ("type", armorType),
                 ("value", MathF.Round((1f - coefficientArmor.Value) * 100, 1))
             ));
         }
 
-        foreach (var flatArmor in armorModifiers.FlatReductions)
+        foreach (var flatArmor in armorModifiers.FlatReduction)
         {
             msg.PushNewline();
 
-            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.Id.ToLower());
+            var armorType = Loc.GetString("armor-damage-type-" + flatArmor.Key.ToLower());
             msg.AddMarkupOrThrow(Loc.GetString("armor-reduction-value",
                 ("type", armorType),
                 ("value", flatArmor.Value)

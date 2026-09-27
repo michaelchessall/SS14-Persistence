@@ -6,6 +6,7 @@ using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Construction.Completions;
 
@@ -16,10 +17,10 @@ namespace Content.Server.Construction.Completions;
 [UsedImplicitly, DataDefinition]
 public sealed partial class BuildMech : IGraphAction
 {
-    [DataField(required: true)]
-    public EntProtoId MechPrototype;
+    [DataField("mechPrototype", required: true, customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
+    public string MechPrototype = string.Empty;
 
-    [DataField]
+    [DataField("container")]
     public string Container = "battery-container";
 
     // TODO use or generalize ConstructionSystem.ChangeEntity();
