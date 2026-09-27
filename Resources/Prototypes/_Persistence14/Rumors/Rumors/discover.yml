@@ -1,5 +1,5 @@
 - type: rumor
-  id: BasicRumor
+  id: DiscoverSmallSalvage
   name: Salvage Tip
   description: "We've lost track of a small bit of salvage.\nFind it and its yours!"
   eventGrids:
@@ -14,8 +14,17 @@
     - /Maps/Salvage/small-chef.yml
     - /Maps/Salvage/small-party.yml
     - /Maps/Salvage/small-a-1.yml
+  cashReward: 2500
+  reputationReward: 50
+
+- type: rumor
+  id: DiscoverMediumSalvage
+  name: Salvage Finder
+  description: "We want to survey a large bit of salvage. \nHelp us locate it!"
+  eventGrids:
     - /Maps/Salvage/medium-1.yml
     - /Maps/Salvage/medium-vault-1.yml
     - /Maps/Salvage/medium-silent-orchestra.yml
+    - /Maps/Salvage/medium-library.yml
   cashReward: 2500
   reputationReward: 50

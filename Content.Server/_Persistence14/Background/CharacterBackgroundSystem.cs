@@ -1,5 +1,7 @@
+using Content.Server.CrewRecords.Systems;
 using Content.Server.Traits;
 using Content.Shared._Persistence14.Background.Prototypes;
+using Content.Shared._Persistence14.Rumors.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -20,6 +22,8 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
 {
     [Dependency] private InventorySystem _inventorySystem = default!;
     [Dependency] private TraitSystem _traitSystem = default!;
+    [Dependency] private CrewMetaRecordsSystem _crewMetaRecords = default!;
+    [Dependency] private RumorsSystem _rumors = default!;
 
     public override void Initialize()
     {
@@ -31,6 +35,13 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
     
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
     {
+
+        if (_crewMetaRecords.MetaRecords == null) return;
+        
+        _crewMetaRecords.MetaRecords.TryGetRecord(Name(args.Mob), out var crewrecord);
+
+       
+
         var profile = args.Profile;
         var mob = args.Mob;
         List<ProtoId<BackgroundEffectPrototype>> effects = new();
@@ -73,6 +84,38 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
             {
                 var traitProto = ProtoMan.Index<TraitPrototype>(trait);
                 _traitSystem.AddTrait(mob, traitProto);
+            }
+            if(crewrecord != null)
+            {
+                foreach (var kv in effectProto.ReputationGains)
+                {
+                    var total = kv.Value;
+                    if(crewrecord.MetaFactionReputations.ContainsKey(kv.Key))
+                    {
+                        total += crewrecord.MetaFactionReputations[kv.Key];
+                    }
+                    crewrecord.MetaFactionReputations[kv.Key] = total;
+                }
+            }
+            var rumorEnt = _rumors.GetRumorComponent(args.Mob);
+            if (rumorEnt != null)
+            {
+                if (effectProto.ExtraRumors > 0)
+                {
+
+                    for (int i = 1; i <= effectProto.ExtraRumors; i++)
+                    {
+                        _rumors.AssignRumor(rumorEnt, args.Mob);
+                    }
+
+                }
+                foreach (var kv in effectProto.ExtraFactionRumors)
+                {
+                    for (int i = 1; i <= kv.Value; i++)
+                    {
+                        _rumors.AssignRumor(rumorEnt, args.Mob, kv.Key);
+                    }
+                }
             }
         }
     }

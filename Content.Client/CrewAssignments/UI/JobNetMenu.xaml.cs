@@ -37,7 +37,6 @@ public sealed partial class JobNetMenu : DefaultWindow
     public TimeSpan UntilNextRogue = TimeSpan.Zero;
     public SpriteSystem? _spriteSystem;
     public JobNetBoundUserInterface? Owner;
-    public event Action<CargoProductRow?>? OnItemSelected;
     public Action<string>? OnLabelButtonPressed;
     public JobNetMenu()
     {
@@ -169,20 +168,20 @@ public sealed partial class JobNetMenu : DefaultWindow
             NextBenefitsLabel.SetMarkup(nextLevelDesc);
         }
         var metaFactions = _prototypeManager.EnumeratePrototypes<MetaFactionPrototype>();
-        Current.RemoveAllChildren();
-        Reputations.RemoveAllChildren();
+        CurrentGrid.RemoveAllChildren();
+        ReputationsGrid.RemoveAllChildren();
         foreach(var faction in metaFactions)
         {
             int rep = 0;
             if (state.MetaFactionReputations.TryGetValue(faction.ID, out var repVal))
                 rep = repVal;
             ReputationBoxFragment repLabel = new(faction, rep);
-            Reputations.AddChild(repLabel);
+            ReputationsGrid.AddChild(repLabel);
         }
         foreach(var rumor in state.Rumors)
         {
             RumorBoxFragment rumorLabel = new(rumor);
-            Current.AddChild(rumorLabel);
+            CurrentGrid.AddChild(rumorLabel);
         }
 
     }

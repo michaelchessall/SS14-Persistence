@@ -24,6 +24,24 @@ public sealed partial class ReputationBoxFragment : PanelContainer
             BackgroundColor = Color.Black
         };
         TitleLabel.Text = factionProto.Name;
-        ContentLabel.Text = $"{reputation} Reputation";
+        int targetRep = 0;
+        string title = factionProto.BaseTitle;
+        foreach(var kv in factionProto.Levels)
+        {
+            if(kv.Value > reputation)
+            {
+                targetRep = kv.Value;
+                break;
+            }
+            else
+            {
+                var metaLevel = _protoManager.Index<MetaFactionLevelPrototype>(kv.Key);
+                title = metaLevel.Name;
+            }
+        }
+        RankTitle.Text = title;
+        LevelBar.MaxValue = targetRep;
+        LevelBar.Value = reputation;
+        ContentLabel.Text = $"{reputation} / {targetRep}";
     }
 }

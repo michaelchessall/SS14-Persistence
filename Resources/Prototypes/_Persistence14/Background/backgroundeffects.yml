@@ -59,6 +59,10 @@
     - OriginZenith
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
+  reputationGains:
+    Zenith: 200
+  extraFactionRumors:
+    Zenith: 1
 
 - type: backgroundEffect
   id: TraitOriginGreen
@@ -67,6 +71,10 @@
     - OriginGreen
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorGreen
+  reputationGains:
+    Green: 200
+  extraFactionRumors:
+    Green: 1
 
 - type: backgroundEffect
   id: TraitOriginMarine
@@ -75,6 +83,10 @@
     - OriginMarine
   equipment:
     jumpsuit: ClothingUniformJumpsuitBattleDressUniformWoodlandTShirt
+  reputationGains:
+    Marines: 200
+  extraFactionRumors:
+    Marines: 1
 
 
 - type: backgroundEffect
@@ -84,6 +96,10 @@
     - OriginPrecursor
   equipment:
     jumpsuit: ClothingUniformGenericTurtleNeckAndJeans
+  reputationGains:
+    Precursor: 200
+  extraFactionRumors:
+    Precursor: 1
 
 - type: backgroundEffect
   id: TraitOriginShadow
@@ -92,6 +108,10 @@
     - OriginShadow
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
+  reputationGains:
+    Shadow: 200
+  extraFactionRumors:
+    Shadow: 1
 
 
 

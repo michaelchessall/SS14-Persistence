@@ -3,5 +3,5 @@
   name: Nanotrasen
   description: "Nanotrasen controls the Green Universe."
   rumors:
-    - BasicRumor
-    color: Green
+    - DiscoverSmallSalvage
+  color: Green

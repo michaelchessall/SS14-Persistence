@@ -3,5 +3,5 @@
   name: Strange Signal
   description: "Unknown Entities control the Shadow Universe."
   rumors:
-    - BasicRumor
+    - DiscoverSmallSalvage
   color: DarkGray

@@ -140,11 +140,11 @@
             <ScrollContainer VerticalExpand="True" HorizontalExpand="True" HScrollEnabled="False">
                 <BoxContainer Orientation="Vertical">
                     <TabContainer VerticalExpand="True">
-                        <BoxContainer Name="CurrentHolder" Orientation="Vertical">
-                            <GridContainer Name="Current" Columns="2" />
+                        <BoxContainer Name="Current" Orientation="Vertical">
+                            <GridContainer Name="CurrentGrid" Columns="2" />
                         </BoxContainer>
                         <BoxContainer Name="Reputations" Orientation="Vertical">
-                            
+                            <GridContainer Name="ReputationsGrid" Columns="2" />
                         </BoxContainer>
                     </TabContainer>
                 </BoxContainer>

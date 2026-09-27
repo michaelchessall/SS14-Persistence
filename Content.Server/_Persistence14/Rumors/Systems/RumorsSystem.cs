@@ -101,7 +101,7 @@ public sealed partial class RumorsSystem : EntitySystem
         if (metaRecord == null) return;
         var reputation = 0;
         metaRecord.MetaFactionReputations.TryGetValue(rumor.Faction, out var rep);
-        if (rep != null) reputation += rep;
+        reputation += rep;
         metaRecord.MetaFactionReputations[rumor.Faction] = reputation + rumor.ReputationReward;
         var bank = _bank.GetMoneyAccountsComponent();
         if (bank == null) return;
@@ -141,17 +141,34 @@ public sealed partial class RumorsSystem : EntitySystem
             var timePassed = _timing.CurTime - comp.LastRumorTime;
             if(timePassed >= comp.NextRumor)
             {
-                // Time to give a new rumor
-                var newRumor = GenerateRumor(player.Value, comp);
-                if(newRumor != null)
-                {
-                    comp.Rumors.Add(newRumor);
-                    NotifyPlayer(player.Value, $"You have recieved a new rumor named {newRumor.Name}");
-                }
                 comp.LastRumorTime = _timing.CurTime;
+                AssignRumor(comp, player.Value);
             }
         }
         base.Update(frameTime);
+    }
+
+    public Entity<RumorGetterComponent>? GetRumorComponent(EntityUid player)
+    {
+        var query = EntityQueryEnumerator<RumorGetterComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            EntityUid? playerMaybe = null;
+            var implant = Transform(uid);
+            playerMaybe = implant.ParentUid;
+            if (playerMaybe == player) return (uid, comp);
+        }
+        return null;
+    }
+    public void AssignRumor(RumorGetterComponent comp, EntityUid player, ProtoId<MetaFactionPrototype>? factionId = null)
+    {
+        // Time to give a new rumor
+        var newRumor = GenerateRumor(player, comp, factionId);
+        if (newRumor != null)
+        {
+            comp.Rumors.Add(newRumor);
+            NotifyPlayer(player, $"Your job network reports you have recieved a new rumor: {newRumor.Name}");
+        }
     }
 
     public void NotifyPlayer(EntityUid player, string msg, SoundSpecifier? sound = null)
@@ -187,7 +204,7 @@ public sealed partial class RumorsSystem : EntitySystem
 
     private ActiveRumor? GenerateRumor(EntityUid uid, RumorGetterComponent comp, ProtoId<MetaFactionPrototype>? factionId = null)
     {
-        if (comp.Rumors.Count >= 6) return null;
+        if (comp.Rumors.Count >= 4) return null;
         var metaFactions = _protoMan.EnumeratePrototypes<MetaFactionPrototype>().ToList();
         if (_crewMeta.MetaRecords == null) return null;
         _crewMeta.MetaRecords.TryGetRecord(Name(uid), out var metaRecord);

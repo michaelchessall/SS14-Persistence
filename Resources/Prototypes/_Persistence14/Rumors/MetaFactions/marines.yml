@@ -3,5 +3,5 @@
   name: UNMC Marines
   description: "The UNMC controls the Marines Universe."
   rumors:
-    - BasicRumor
+    - DiscoverSmallSalvage
   color: Olive

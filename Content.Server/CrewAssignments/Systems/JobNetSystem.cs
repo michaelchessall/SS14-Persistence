@@ -65,7 +65,6 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
     [Dependency] private SharedCuffableSystem _cuffable = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private NameIdentifierSystem _nameIdentifier = default!;
-    [Dependency] private IGameTiming _timing2 = default!;
     public override void ReagentObjectiveComplete(JobNetComponent component, ProtoId<PrecursorObjectivePrototype> objective)
     {
         if (_proto.TryIndex(objective, out PrecursorObjectivePrototype? proto) && proto != null)

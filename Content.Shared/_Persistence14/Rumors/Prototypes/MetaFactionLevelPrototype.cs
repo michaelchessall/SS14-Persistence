@@ -14,7 +14,6 @@ public sealed partial class MetaFactionLevelPrototype : IPrototype
 
     [DataField]
     public string Name = string.Empty;
-
     [DataField]
     public List<ProtoId<RumorPrototype>> Rumors = new List<ProtoId<RumorPrototype>>();
 

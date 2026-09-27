@@ -13,7 +13,6 @@ public sealed class MapBoundsSystem : EntitySystem
 {
     [Dependency] private readonly SharedTransformSystem _xform = default!;
     [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private readonly TransformSystem _transform = default!;
     public override void Initialize()
     {

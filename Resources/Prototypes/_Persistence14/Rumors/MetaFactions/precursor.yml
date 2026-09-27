@@ -3,5 +3,5 @@
   name: Syndicate
   description: "The Syndicate controls the Precursor Universe."
   rumors:
-    - BasicRumor
+    - DiscoverSmallSalvage
   color: Purple

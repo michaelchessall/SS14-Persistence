@@ -26,4 +26,6 @@ public sealed partial class MetaFactionPrototype : IPrototype
 
     [DataField]
     public Color Color = Color.DarkRed;
+    [DataField]
+    public string BaseTitle = "Stranger";
 }

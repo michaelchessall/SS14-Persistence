@@ -3,5 +3,22 @@
   name: The Solar Legion
   description: "The Solar Legion controls the Zenith Universe."
   rumors:
-    - BasicRumor
+    - DiscoverSmallSalvage
   color: Red
+  levels:
+    Zenith2: 150
+    Zenith3: 500
+    Zenith4: 1000
+
+- type: metaFactionLevel
+  id: Zenith2
+  name: Associate
+
+- type: metaFactionLevel
+  id: Zenith3
+  name: Officer
+
+- type: metaFactionLevel
+  id: Zenith4
+  name: Knight
+
