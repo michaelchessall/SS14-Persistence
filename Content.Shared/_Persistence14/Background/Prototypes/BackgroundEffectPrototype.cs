@@ -31,8 +31,10 @@ public sealed partial class BackgroundEffectPrototype : IPrototype, IEquipmentLo
 
     [DataField]
     public Dictionary<ProtoId<MetaFactionPrototype>, int> ReputationGains { get; set; } = new();
+
     [DataField]
     public int ExtraRumors { get; set; } = 0;
+
     [DataField]
     public Dictionary<ProtoId<MetaFactionPrototype>, int> ExtraFactionRumors { get; set; } = new();
 

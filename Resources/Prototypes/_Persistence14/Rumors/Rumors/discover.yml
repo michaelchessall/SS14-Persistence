@@ -1,7 +1,7 @@
 - type: rumor
   id: DiscoverSmallSalvage
   name: Salvage Tip
-  description: "We've lost track of a small bit of salvage.\nFind it and its yours!"
+  description: "We've lost track of a small bit of salvage.\nFind it!"
   eventGrids:
     - /Maps/Salvage/small-1.yml
     - /Maps/Salvage/small-2.yml
@@ -14,6 +14,27 @@
     - /Maps/Salvage/small-chef.yml
     - /Maps/Salvage/small-party.yml
     - /Maps/Salvage/small-a-1.yml
+  cashReward: 2500
+  reputationReward: 50
+
+- type: rumor
+  id: DiscoverSmallSalvageSyndicate
+  name: Lost Vessel
+  description: "One of our ships has crashed!\nBoard it!"
+  eventGrids:
+    - /Maps/Salvage/small-ship-1.yml
+    - /Maps/Salvage/small-syndicate.yml
+  cashReward: 2500
+  reputationReward: 50
+
+
+- type: rumor
+  id: DiscoverSmallSalvageShadow
+  name: Vile Colony
+  description: "*BZZT*\nFind the installation*ZZkkt*"
+  eventGrids:
+    - /Maps/Salvage/tick-colony.yml
+    - /Maps/Salvage/meatball.yml
   cashReward: 2500
   reputationReward: 50
 

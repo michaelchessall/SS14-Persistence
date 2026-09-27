@@ -5,3 +5,20 @@
   rumors:
     - DiscoverSmallSalvage
   color: Yellow
+  levels:
+    Luminals2: 150
+    Luminals3: 500
+    Luminals4: 1000
+
+- type: metaFactionLevel
+  id: Luminals2
+  name: Associate
+
+- type: metaFactionLevel
+  id: Luminals3
+  name: Officer
+
+- type: metaFactionLevel
+  id: Luminals4
+  name: Prophet
+

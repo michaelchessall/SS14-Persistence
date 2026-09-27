@@ -37,17 +37,6 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
         _menu._spriteSystem = spriteSystem;
         _menu.PossibleJobs.OnItemSelected += OnJobPressed;
         _menu.LevelPurchaseButton.OnPressed += OnLevelPurchase;
-        _menu.OnItemSelected += (row) =>
-        {
-            if (row == null || row.Product == null)
-                return;
-
-            SendMessage(new JobNetPurchasePrecursorMessage(row.Product.ID));
-        };
-        _menu.OnLabelButtonPressed += id =>
-        {
-            SendMessage(new JobNetDealerLabelMessage(id));
-        };
         CodexMenu = new();
     }
 

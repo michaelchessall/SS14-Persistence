@@ -5,3 +5,20 @@
   rumors:
     - DiscoverSmallSalvage
   color: Green
+  levels:
+    Green2: 150
+    Green3: 500
+    Green4: 1000
+
+- type: metaFactionLevel
+  id: Green2
+  name: Associate
+
+- type: metaFactionLevel
+  id: Green3
+  name: Officer
+
+- type: metaFactionLevel
+  id: Green4
+  name: Executive
+
