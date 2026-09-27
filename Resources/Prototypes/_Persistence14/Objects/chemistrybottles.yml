@@ -18,6 +18,7 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
+<<<<<<< HEAD
     currentLabel: Algesiprol
   - type: Solution
     solution:
@@ -25,3 +26,29 @@
       reagents:
       - ReagentId: Algesiprol
         Quantity: 30
+=======
+    currentLabel: Acetaminophen
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Algesiprol
+          Quantity: 30
+
+- type: entity
+  id: ChemistryBottleAmoxla
+  suffix: Amoxla
+  parent: BaseChemistryBottleFilled
+  components:
+  - type: Label
+    currentLabel: Amoxla
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 30
+        reagents:
+        - ReagentId: Amoxla
+          Quantity: 30
+
+>>>>>>> origin/staging-stable

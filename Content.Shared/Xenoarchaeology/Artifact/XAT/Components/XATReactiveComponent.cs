@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.Chemistry;
 using Content.Shared.Chemistry;
 using Content.Shared.Chemistry.Reaction;
 using Content.Shared.Chemistry.Reagent;
@@ -16,19 +17,11 @@ public sealed partial class XATReactiveComponent : Component
     [DataField, AutoNetworkedField]
     public List<ReactionMethod> ReactionMethods = new() { ReactionMethod.Touch };
 
-    /// <summary>
-    /// Reagents that are required in quantity <see cref="MinQuantity"/> to activate trigger.
-    /// If any of them are present in required amount - activation will be triggered.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public HashSet<ProtoId<ReagentPrototype>> Reagents = new();
+    [DataField]
+    public ReagentWhitelist? Whitelist = null;
 
-    /// <summary>
-    /// ReagentGroups that are required in quantity <see cref="MinQuantity"/> to activate trigger.
-    /// If any of them are present in required amount - activation will be triggered.
-    /// </summary>
-    [DataField, AutoNetworkedField]
-    public HashSet<ProtoId<ReactiveGroupPrototype>> ReactiveGroups = new();
+    [DataField]
+    public ReagentWhitelist? Blacklist = null;
 
     /// <summary>
     /// Min amount of reagent to trigger.

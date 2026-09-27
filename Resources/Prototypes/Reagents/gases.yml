@@ -16,7 +16,11 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
+<<<<<<< HEAD
           type: [ Human, Animal, Rat, Plant, Arachnid, Goblin ]
+=======
+          type: [ Human, Animal, Rat, Plant, Goblin, Avali ]
+>>>>>>> origin/staging-stable
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -47,7 +51,7 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Goblin ]
+          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Goblin, Avali] # Persistance14 - Add Avali
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:

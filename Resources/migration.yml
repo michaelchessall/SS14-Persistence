@@ -815,6 +815,7 @@ CrateVendingMachineRestockChangFilled: VendingMachineRestockChang
 CrateVendingMachineRestockDiscountDansFilled: VendingMachineRestockDiscountDans
 CrateVendingMachineRestockDonutFilled: VendingMachineRestockDonut
 
+<<<<<<< HEAD
 # 2026-03-28
 # The great solutions YAML nuke
 FoodMeatSnail: MobSnail
@@ -1070,3 +1071,8 @@ MeteorRockUranium: AsteroidRockUranium
 
 #2026-08-18
 DrinkNeurotoxinGlass: null
+=======
+# Persistence 14 - 9/14/2026
+TelecomServer1k: AdvancedTelecomServer
+TelecomServer1kCircuitboard: TelecomServerAdvancedCircuitboard
+>>>>>>> origin/staging-stable

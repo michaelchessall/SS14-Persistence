@@ -1,9 +1,11 @@
 using System.Globalization;
 using System.IO;
+using Content.Shared._Persistence14.RandomTable.Selectors;
 using Content.Shared._Persistence14.RandomTable.ValueDefinition;
 using Robust.Shared.Serialization;
 using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Serialization.Markdown.Mapping;
+using Robust.Shared.Serialization.Markdown.Sequence;
 using Robust.Shared.Serialization.Markdown.Validation;
 using Robust.Shared.Serialization.Markdown.Value;
 using Robust.Shared.Serialization.TypeSerializers.Interfaces;
@@ -15,11 +17,11 @@ public sealed class RandomTableTypeSerializer :
     ITypeReader<RandomTableSelector, MappingDataNode>
 {
     public RandomTableSelector Read(
-        ISerializationManager serializationManager, 
-        MappingDataNode node, 
-        IDependencyCollection dependencies, 
-        SerializationHookContext hookCtx, 
-        ISerializationContext? context = null, 
+        ISerializationManager serializationManager,
+        MappingDataNode node,
+        IDependencyCollection dependencies,
+        SerializationHookContext hookCtx,
+        ISerializationContext? context = null,
         ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
     {
         if (node.Has("value")) return ReadAsValue(serializationManager, node, dependencies, hookCtx, context, instanceProvider);
@@ -104,14 +106,43 @@ public sealed class RandomTableTypeSerializer :
 }
 
 [TypeSerializer]
+public sealed class RandomTableListSerializer : ITypeReader<RandomTableSelector, SequenceDataNode>
+{
+    public RandomTableSelector Read(
+        ISerializationManager serializationManager,
+        SequenceDataNode node,
+        IDependencyCollection dependencies,
+        SerializationHookContext hookCtx,
+        ISerializationContext? context = null,
+        ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
+    {
+        var selectors = new List<RandomTableSelector>();
+
+        foreach (var child in node.Sequence)
+        {
+            selectors.Add(serializationManager.Read<RandomTableSelector>(child, hookCtx, context, notNullableOverride: true));
+        }
+
+        return new RandomTableGroupSelector
+        {
+            Children = selectors
+        };
+    }
+
+    public ValidationNode Validate(ISerializationManager serializationManager, SequenceDataNode node, IDependencyCollection dependencies, ISerializationContext? context = null)
+    {
+        return serializationManager.ValidateNode<List<RandomTableSelector>>(node, context);
+    }
+}
+[TypeSerializer]
 public sealed class RandomTableValueSerializer : ITypeReader<RandomTableSelector, ValueDataNode>
 {
     public RandomTableSelector Read(
-        ISerializationManager serializationManager, 
-        ValueDataNode node, 
-        IDependencyCollection dependencies, 
-        SerializationHookContext hookCtx, 
-        ISerializationContext? context = null, 
+        ISerializationManager serializationManager,
+        ValueDataNode node,
+        IDependencyCollection dependencies,
+        SerializationHookContext hookCtx,
+        ISerializationContext? context = null,
         ISerializationManager.InstantiationDelegate<RandomTableSelector>? instanceProvider = null)
     {
         if (int.TryParse(node.Value, NumberStyles.Integer, CultureInfo.InvariantCulture, out var intValue))

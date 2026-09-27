@@ -1,0 +1,699 @@
+## Tool Effects
+- type: entity
+  id: XenoArtifactToolJaws
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Obtains ability to cut and pry
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: ToolTileCompatible
+    - type: Tool
+      qualities:
+      - Prying
+      speedModifier: 2 # Very powerful to balance out the desire to sell or scrap for points
+      useSound: /Audio/Items/jaws_pry.ogg
+    - type: MultipleTool
+      statusShowBehavior: true
+      entries:
+      - behavior: Prying
+        useSound:
+          path: /Audio/Items/jaws_pry.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+      - behavior: Cutting
+        useSound:
+          path: /Audio/Items/jaws_cut.ogg
+        changeSound:
+          path: /Audio/Items/change_drill.ogg
+
+- type: entity
+  id: XenoArtifactToolPowerDrill
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Obtains ability to screw and tighten
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: ToolTileCompatible
+    - type: Tool
+      qualities:
+      - Screwing
+      speedModifier: 2 # Very powerful to balance out the desire to sell or scrap for points
+      useSound: /Audio/Items/drill_use.ogg
+    - type: MultipleTool
+      statusShowBehavior: true
+      entries:
+      - behavior: Screwing
+        useSound:
+          path: /Audio/Items/jaws_pry.ogg
+        changeSound:
+          path: /Audio/Items/drill_use.ogg
+      - behavior: Anchoring
+        useSound:
+          path: /Audio/Items/jaws_cut.ogg
+        changeSound:
+          path: /Audio/Items/ratchet.ogg
+
+- type: entity
+  id: XenoArtifactToolKnife
+  parent: BaseOneTimeXenoArtifactEffect
+  description: Gains a sharp edge
+  components:
+  - type: XAEApplyComponents
+    components:
+    - type: ToolTileCompatible
+    - type: Tool
+      qualities:
+      - Slicing
+      speedModifier: 2 # Very powerful to balance out the desire to sell or scrap for points
+      useSound: /Audio/Items/drill_use.ogg
+  - type: MeleeWeapon
+    wideAnimationRotation: -135
+    damage:
+      types:
+        Slash: 12 # A decently powerful knife
+    soundHit:
+      path: /Audio/Weapons/bladeslice.ogg
+
+## Emote Effects
+- type: entity
+  id: XenoArtifactEffectLaughingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable laughter in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedLaugh
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectSighingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable sighing in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedSigh
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectSneezingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable sneezing in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedSneeze
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectCoughingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable coughing in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedCough
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectWhistlingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable whistling in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedWhistle
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectCryingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable crying in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedCry
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectYawningFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable yawning in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedYawn
+    radius: 5
+    duration: 10
+
+- type: entity
+  id: XenoArtifactEffectScreamingFit
+  parent: BaseXenoArtifactEffect
+  description: Induces uncontrollable screaming in nearby minds
+  components:
+  - type: XAEForcedEmote
+    autoEmote: XenoArchForcedScream
+    radius: 5
+    duration: 10
+
+## Partial Battery Charge
+- type: entity
+  id: XenoArtifactChargeBatteryLow
+  parent: BaseXenoArtifactEffect
+  description: Partially charges nearby batteries
+  components:
+  - type: XAEChargeBattery
+    chargePercent: 30.0
+  - type: XAETelepathic
+    messages:
+    - charge-artifact-popup
+
+## Material Spawn, replaces upstream versions.
+- type: entity
+  id: XenoArtifactRawMaterialSpawn
+  abstract: true
+  parent: BaseXenoArtifactEffect
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 4
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 2
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnSilverFew
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a bit of raw silver
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: SilverOre1
+          rolls: !type:RangeNumberSelector
+            range: 1, 4
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnSilverMore
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create raw silver
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: SilverOre1
+          rolls: !type:RangeNumberSelector
+            range: 5, 11
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnSilverMany
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a lot of raw silver
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: SilverOre1
+          rolls: !type:RangeNumberSelector
+            range: 13, 25
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnBananiumFew
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a bit of raw bananium
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: BananiumOre1
+          rolls: !type:RangeNumberSelector
+            range: 1, 4
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnBananiumMore
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create raw bananium
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: BananiumOre1
+          rolls: !type:RangeNumberSelector
+            range: 5, 11
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnBananiumMany
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a lot of raw bananium
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: BananiumOre1
+          rolls: !type:RangeNumberSelector
+            range: 13, 25
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnPlasmaFew
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a bit of raw plasma
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: PlasmaOre1
+          rolls: !type:RangeNumberSelector
+            range: 1, 4
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnPlasmaMore
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create raw plasma
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: PlasmaOre1
+          rolls: !type:RangeNumberSelector
+            range: 5, 11
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnPlasmaMany
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a lot of raw plasma
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: PlasmaOre1
+          rolls: !type:RangeNumberSelector
+            range: 13, 25
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnGoldFew
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a bit of raw gold
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: GoldOre1
+          rolls: !type:RangeNumberSelector
+            range: 1, 4
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnGoldMore
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create raw gold
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: GoldOre1
+          rolls: !type:RangeNumberSelector
+            range: 5, 11
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnGoldMany
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a lot of raw gold
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: GoldOre1
+          rolls: !type:RangeNumberSelector
+            range: 13, 25
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnUraniumFew
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a bit of raw uranium
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: UraniumOre1
+          rolls: !type:RangeNumberSelector
+            range: 1, 4
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnUraniumMore
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create raw uranium
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: UraniumOre1
+          rolls: !type:RangeNumberSelector
+            range: 5, 11
+
+- type: entity
+  id: XenoArtifactRawMaterialSpawnUraniumMany
+  parent: XenoArtifactRawMaterialSpawn
+  description: Create a lot of raw uranium
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: UraniumOre1
+          rolls: !type:RangeNumberSelector
+            range: 13, 25
+
+- type: entity
+  id: XenoArtifactMaterialSpawnGlassFew
+  parent: BaseXenoArtifactEffect
+  description: Create a bit of glass
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 3, 8
+        children:
+        - id: SheetGlass1
+
+- type: entity
+  id: XenoArtifactMaterialSpawnGlassMany
+  parent: BaseXenoArtifactEffect
+  description: Create a lot of glass
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: SheetGlass10
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+        - id: SheetGlass1
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+
+- type: entity
+  id: XenoArtifactMaterialSpawnGlassStack
+  parent: BaseXenoArtifactEffect
+  description: Create a stack of glass
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        children:
+        - id: SheetGlass
+
+- type: entity
+  id: XenoArtifactMaterialSpawnSteelFew
+  parent: BaseXenoArtifactEffect
+  description: Create a bit of steel
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 3, 8
+        children:
+        - id: SheetSteel1
+
+- type: entity
+  id: XenoArtifactMaterialSpawnSteelMany
+  parent: BaseXenoArtifactEffect
+  description: Create a lot of steel
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: SheetSteel10
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+        - id: SheetSteel1
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+
+- type: entity
+  id: XenoArtifactMaterialSpawnSteelStack
+  parent: BaseXenoArtifactEffect
+  description: Create a stack of steel
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        children:
+        - id: SheetSteel
+
+- type: entity
+  id: XenoArtifactMaterialSpawnPlasticFew
+  parent: BaseXenoArtifactEffect
+  description: Create a bit of plastic
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 3, 8
+        children:
+        - id: SheetPlastic1
+
+- type: entity
+  id: XenoArtifactMaterialSpawnPlasticMany
+  parent: BaseXenoArtifactEffect
+  description: Create a lot of plastic
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:AllSelector
+        children:
+        - id: SheetPlastic10
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+        - id: SheetPlastic1
+          rolls: !type:RangeNumberSelector
+            range: 1, 3
+
+- type: entity
+  id: XenoArtifactMaterialSpawnPlasticStack
+  parent: BaseXenoArtifactEffect
+  description: Create a stack of plastic
+  components:
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        children:
+        - id: SheetPlastic
+
+## Create Fake Money
+- type: entity
+  id: XenoArtifactOldCashSpawn
+  parent: BaseXenoArtifactEffect
+  description: Create money
+  components:
+  - type: XenoArtifactNode
+    maxDurability: 2
+    maxDurabilityCanDecreaseBy:
+      min: 0
+      max: 1
+  - type: XAEApplyComponents
+    applyIfAlreadyHave: true
+    refreshOnReactivate: true
+    components:
+    - type: EntityTableSpawner
+      deleteSpawnerAfterSpawn: false
+      spawnDetached: true
+      table: !type:GroupSelector
+        rolls: !type:RangeNumberSelector
+          range: 2, 4
+        children:
+        - id: TreasureCoinIron
+          weight: 0.75
+        - id: TreasureCoinSilver
+          weight: 0.5
+        - id: TreasureCoinGold
+          weight: 0.25
+        - id: TreasureCoinDiamond
+          weight: 0.1
+
+## Specific Healing Effects
+- type: entity
+  id: XenoArtifactHealBrute
+  parent: BaseXenoArtifactEffect
+  description: Mends brute injuries
+  components:
+  - type: XAEDamageInArea
+    damageChance: 1
+    radius: 8
+    whitelist:
+      components:
+      - MobState
+    damage:
+      types:
+        Blunt: -50
+        Piercing: -50
+        Slash: -50
+
+- type: entity
+  id: XenoArtifactHealBurn
+  parent: BaseXenoArtifactEffect
+  description: Soothes burn injuries
+  components:
+  - type: XAEDamageInArea
+    damageChance: 1
+    radius: 8
+    whitelist:
+      components:
+      - MobState
+    damage:
+      types:
+        Heat: -50
+        Cold: -50
+        Shock: -50
+
+- type: entity
+  id: XenoArtifactHealRare
+  parent: BaseXenoArtifactEffect
+  description: Cures uncommon injuries
+  components:
+  - type: XAEDamageInArea
+    damageChance: 1
+    radius: 8
+    whitelist:
+      components:
+      - MobState
+    damage:
+      types:
+        Caustic: -50
+        Poison: -50
+        Radiation: -50
+        Cellular: -50
