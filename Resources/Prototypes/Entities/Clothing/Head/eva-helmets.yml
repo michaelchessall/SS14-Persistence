@@ -96,10 +96,18 @@
       head:
       - state: equipped-head-light
         shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
+      head-yinglet: # Scav
+      - state: equipped-head-light-yinglet
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
+      head-yinglet: # Scav
+      - state: equipped-head-yinglet
+  - type: TemperatureProtection
+    coefficient: 0.1
   - type: Armor
     modifiers:
       coefficients:
@@ -113,4 +121,4 @@
     tags:
     - HelmetEVA
     - WhitelistChameleon
-  
+

@@ -15,11 +15,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 60
+        Quantity: 30 # Scav: 60 < 30
       - ReagentId: Vitamin
         Quantity: 10
       - ReagentId: Sugar
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: Item
     size: Normal
   - type: Tag
@@ -53,11 +55,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 7.5
+        Quantity: 3.75 # Scav: 7.5 < 3.75
       - ReagentId: Vitamin
         Quantity: 1.25
       - ReagentId: Sugar
         Quantity: 1.25
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Item
     size: Tiny
   - type: Tag
@@ -527,7 +531,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 64
+        Quantity: 34 # Scav: 64 < 34
       - ReagentId: Vitamin
         Quantity: 20
       - ReagentId: Sugar
@@ -536,6 +540,8 @@
         Quantity: 10
       - ReagentId: JuiceBerry
         Quantity: 6
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: Tag
     tags:
     - Cake
@@ -559,7 +565,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 8
+        Quantity: 4.25 # Scav: 8 < 4.25
       - ReagentId: Vitamin
         Quantity: 2.5
       - ReagentId: Sugar
@@ -568,6 +574,8 @@
         Quantity: 1.25
       - ReagentId: JuiceBerry
         Quantity: 0.75
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Tag
     tags:
     - Cake
@@ -604,7 +612,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 60
+        Quantity: 30 # Scav: 60 < 30
       - ReagentId: Vitamin
         Quantity: 10
       - ReagentId: Sugar
@@ -613,6 +621,8 @@
         Quantity: 8
       - ReagentId: Theobromine
         Quantity: 8
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: Item
     inhandVisuals:
       left:
@@ -635,7 +645,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 7.5
+        Quantity: 3.75 # Scav: 7.5 < 3.75
       - ReagentId: Vitamin
         Quantity: 1.25
       - ReagentId: Sugar
@@ -644,6 +654,8 @@
         Quantity: 1
       - ReagentId: Theobromine
         Quantity: 1
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Item
     inhandVisuals:
       left:
@@ -785,11 +797,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 84
+        Quantity: 54 # Scav: 84 < 54
       - ReagentId: Vitamin
         Quantity: 16
       - ReagentId: Sugar
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: Tag
     tags:
     - Cake
@@ -817,11 +831,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 10.5
+        Quantity: 6.75 # Scav: 10.5 < 6.75
       - ReagentId: Vitamin
         Quantity: 2
       - ReagentId: Sugar
         Quantity: 1.25
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Tag
     tags:
     - Cake
@@ -989,13 +1005,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 60
+        Quantity: 30 # Scav: 60 < 30
       - ReagentId: Vitamin
         Quantity: 16
       - ReagentId: Sugar
         Quantity: 10
       - ReagentId: PolypyryliumOligomers
         Quantity: 12
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: Item
     heldPrefix: trumpet
 
@@ -1011,13 +1029,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 7.5
+        Quantity: 3.75 # Scav: 7.5 < 3.75
       - ReagentId: Vitamin
         Quantity: 2
       - ReagentId: Sugar
         Quantity: 1.25
       - ReagentId: PolypyryliumOligomers
         Quantity: 1.5
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Item
     heldPrefix: trumpet-slice
 # Tastes like sweetness, cake, jam.
@@ -1038,7 +1058,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 88
       - ReagentId: Vitamin
         Quantity: 16
@@ -1137,13 +1157,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 120
+        Quantity: 60 # Scav: 120 < 60
       - ReagentId: Vitamin
         Quantity: 20
       - ReagentId: Sugar
         Quantity: 50
       - ReagentId: Plasma
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 60
   - type: Edible
     transferAmount: 12
   - type: Item
@@ -1166,13 +1188,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 15
+        Quantity: 7.5 # Scav: 15 < 7.5
       - ReagentId: Vitamin
         Quantity: 2.5
       - ReagentId: Sugar
         Quantity: 6.25
       - ReagentId: Plasma
         Quantity: 1.25
+      - ReagentId: Grain # Scav
+        Quantity: 7.5
   - type: Edible
     transferAmount: 3
   - type: PointLight
@@ -1209,13 +1233,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 60
+        Quantity: 30 # Scav: 60 < 30
       - ReagentId: Vitamin
         Quantity: 10
       - ReagentId: Sugar
         Quantity: 10
       - ReagentId: Fiber
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: Item
     heldPrefix: cotton
 
@@ -1236,13 +1262,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 7.5
+        Quantity: 3.75 # Scav: 7.5 < 3.75
       - ReagentId: Vitamin
         Quantity: 1.25
       - ReagentId: Sugar
         Quantity: 1.25
       - ReagentId: Fiber
         Quantity: 1.25
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Item
     heldPrefix: cotton-slice
 
@@ -1265,7 +1293,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 70
+        Quantity: 40 # Scav: 70 < 40
       - ReagentId: Vitamin
         Quantity: 20
       - ReagentId: Sugar
@@ -1274,6 +1302,8 @@
         Quantity: 10
       - ReagentId: JuiceBerry
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 30
   - type: ToolRefinable
     refineResult:
     - id: FoodCakeBerryDelightSlice
@@ -1310,7 +1340,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 8.75
+        Quantity: 5.75 # Scav: 8.75 < 3.75
       - ReagentId: Vitamin
         Quantity: 2.5
       - ReagentId: Sugar
@@ -1319,6 +1349,8 @@
         Quantity: 1.25
       - ReagentId: JuiceBerry
         Quantity: 1.25
+      - ReagentId: Grain # Scav
+        Quantity: 3.75
   - type: Tag
     tags:
     - Cake

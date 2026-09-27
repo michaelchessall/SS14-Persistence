@@ -27,6 +27,7 @@ using SixLabors.ImageSharp;
 using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.PixelFormats;
 using SixLabors.ImageSharp.Processing;
+using Robust.Shared.ContentPack;
 using Robust.Shared.Maths;
 using Robust.Shared.Utility;
 using Content.Server.Administration.Logs;
@@ -45,6 +46,7 @@ public sealed class BookPublisherSystem : EntitySystem
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
     [Dependency] private readonly DiscordWebhook _discord = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private readonly IResourceManager _resManager = default!;
 
     private WebhookIdentifier? _webhookId;
     private Robust.Shared.Maths.Color _webhookEmbedColor;
@@ -58,64 +60,148 @@ public sealed class BookPublisherSystem : EntitySystem
     private const float SS14_DEFAULT_SIZE = 16f;
     private static readonly Regex SS14TagRegex = new Regex(@"\[([/]?)([a-zA-Z]+)(?:=([^\]]*))?\]", RegexOptions.Compiled);
 
+    private void LoadFonts()
+    {
+        try
+        {
+            var collection = new FontCollection();
+            var fontsLoaded = 0;
+
+            var fontPaths = new[]
+            {
+                ("/Fonts/NotoSans/NotoSans-Regular.ttf", "Regular"),
+                ("/Fonts/NotoSans/NotoSans-Bold.ttf", "Bold"),
+                ("/Fonts/NotoSans/NotoSans-Italic.ttf", "Italic"),
+                ("/Fonts/NotoSans/NotoSans-BoldItalic.ttf", "BoldItalic")
+            };
+
+            foreach (var (path, name) in fontPaths)
+            {
+                try
+                {
+                    if (_resManager.ContentFileExists(path))
+                    {
+                        using var stream = _resManager.ContentFileRead(path);
+                        collection.Add(stream);
+                        fontsLoaded++;
+                        Log.Info($"Loaded font {name} from VFS at {path}");
+                    }
+                    else
+                    {
+                        Log.Debug($"Font {name} not found in VFS at {path}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug($"Failed to load font {name} from {path}: {ex}");
+                }
+            }
+
+            if (fontsLoaded == 0)
+            {
+                Log.Info("No fonts found in VFS, trying filesystem fallback...");
+                try
+                {
+                    var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                    var resourcesDir = Path.Combine(baseDir, "..", "..", "Resources", "Fonts");
+                    resourcesDir = Path.GetFullPath(resourcesDir);
+
+                    if (Directory.Exists(resourcesDir))
+                    {
+                        var notoRegular = Path.Combine(resourcesDir, "NotoSans", "NotoSans-Regular.ttf");
+                        var notoBold = Path.Combine(resourcesDir, "NotoSans", "NotoSans-Bold.ttf");
+                        var notoItalic = Path.Combine(resourcesDir, "NotoSans", "NotoSans-Italic.ttf");
+                        var notoItalicBold = Path.Combine(resourcesDir, "NotoSans", "NotoSans-BoldItalic.ttf");
+
+                        Log.Debug($"Checking filesystem for fonts at {resourcesDir}");
+
+                        if (File.Exists(notoRegular))
+                        {
+                            collection.Add(notoRegular);
+                            fontsLoaded++;
+                            Log.Info($"Loaded Regular font from filesystem: {notoRegular}");
+                        }
+                        if (File.Exists(notoBold))
+                        {
+                            collection.Add(notoBold);
+                            fontsLoaded++;
+                            Log.Info($"Loaded Bold font from filesystem: {notoBold}");
+                        }
+                        if (File.Exists(notoItalic))
+                        {
+                            collection.Add(notoItalic);
+                            fontsLoaded++;
+                            Log.Info($"Loaded Italic font from filesystem: {notoItalic}");
+                        }
+                        if (File.Exists(notoItalicBold))
+                        {
+                            collection.Add(notoItalicBold);
+                            fontsLoaded++;
+                            Log.Info($"Loaded BoldItalic font from filesystem: {notoItalicBold}");
+                        }
+                    }
+                    else
+                    {
+                        Log.Debug($"Font directory does not exist: {resourcesDir}");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug($"Failed to load fonts from filesystem: {ex}");
+                }
+            }
+
+            foreach (var family in collection.Families)
+            {
+                Log.Info($"Available font family: {family.Name}");
+            }
+
+            foreach (var family in collection.Families)
+            {
+                if (family.Name.Contains("Noto Sans", StringComparison.OrdinalIgnoreCase))
+                {
+                    _fontFamily = family;
+                    Log.Info($"Found Noto Sans font family: {family.Name}");
+                    break;
+                }
+            }
+
+            if (_fontFamily == null)
+            {
+                var familyNames = new System.Text.StringBuilder();
+                bool first = true;
+                foreach (var family in collection.Families)
+                {
+                    if (!first)
+                    {
+                        familyNames.Append(", ");
+                    }
+                    familyNames.Append(family.Name);
+                    first = false;
+                }
+                Log.Warning($"Could not find Noto Sans font family. Available families: {familyNames}");
+                return;
+            }
+
+            _bodyFont = new Font(_fontFamily.Value, SS14_DEFAULT_SIZE, FontStyle.Regular);
+            _italicFont = new Font(_fontFamily.Value, SS14_DEFAULT_SIZE, FontStyle.Italic);
+            _titleFont = new Font(_fontFamily.Value, GetHeaderSize(1), FontStyle.Bold);
+            _titleFontItalic = new Font(_fontFamily.Value, GetHeaderSize(1), FontStyle.Bold | FontStyle.Italic);
+            _smallFont = new Font(_fontFamily.Value, 10f, FontStyle.Regular);
+
+            Log.Info("Successfully loaded and initialized all fonts");
+        }
+        catch (Exception ex)
+        {
+            Log.Error($"Error loading fonts: {ex}");
+        }
+    }
+
     public override void Initialize()
     {
         base.Initialize();
 
-        try
-        {
-            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
-            var resourcesDir = Path.Combine(baseDir, "..", "..", "Resources", "Fonts");
-            resourcesDir = Path.GetFullPath(resourcesDir);
-
-            if (Directory.Exists(resourcesDir))
-            {
-                var notoRegular = Path.Combine(resourcesDir, "NotoSans", "NotoSans-Regular.ttf");
-                var notoBold = Path.Combine(resourcesDir, "NotoSans", "NotoSans-Bold.ttf");
-                var notoItalic = Path.Combine(resourcesDir, "NotoSans", "NotoSans-Italic.ttf");
-                var notoItalicBold = Path.Combine(resourcesDir, "NotoSans", "NotoSans-BoldItalic.ttf");
-
-                var collection = new FontCollection();
-                if (File.Exists(notoRegular))
-                {
-                    collection.Add(notoRegular);
-                }
-                if (File.Exists(notoBold))
-                {
-                    collection.Add(notoBold);
-                }
-                if (File.Exists(notoItalic))
-                {
-                    collection.Add(notoItalic);
-                }
-                if (File.Exists(notoItalicBold))
-                {
-                    collection.Add(notoItalicBold);
-                }
-
-                foreach (var family in collection.Families)
-                {
-                    if (family.Name.Contains("Noto Sans", StringComparison.OrdinalIgnoreCase))
-                    {
-                        _fontFamily = family;
-                        break;
-                    }
-                }
-
-                if (_fontFamily != null)
-                {
-                    _bodyFont = new Font(_fontFamily.Value, SS14_DEFAULT_SIZE, FontStyle.Regular);
-                    _italicFont = new Font(_fontFamily.Value, SS14_DEFAULT_SIZE, FontStyle.Italic);
-                    _titleFont = new Font(_fontFamily.Value, GetHeaderSize(1), FontStyle.Bold);
-                    _titleFontItalic = new Font(_fontFamily.Value, GetHeaderSize(1), FontStyle.Bold | FontStyle.Italic);
-                    _smallFont = new Font(_fontFamily.Value, 10f, FontStyle.Regular);
-                }
-            }
-        }
-        catch (Exception ex)
-        {
-            Log.Warning($"Could not load fonts for book publisher: {ex}");
-        }
+        LoadFonts();
 
         _cfg.OnValueChanged(CCVars.DiscordNewsWebhook, value =>
         {
@@ -217,9 +303,18 @@ public sealed class BookPublisherSystem : EntitySystem
         var files = new List<WebhookFile>();
         if (!string.IsNullOrEmpty(content))
         {
-            var imageBytes = RenderSS14Markup(content);
-            files.Add(new WebhookFile("book.png", imageBytes));
-            Log.Info($"Rendered book, size: {imageBytes.Length} bytes");
+            try
+            {
+                Log.Info("Starting rendering...");
+                var imageBytes = RenderSS14Markup(content);
+                Log.Info($"Rendering success, size: {imageBytes.Length} bytes");
+                files.Add(new WebhookFile("book.png", imageBytes));
+            }
+            catch (Exception ex)
+            {
+                Log.Error($"Error rendering book: {ex}");
+                throw;
+            }
         }
 
         if (_webhookId != null && actor != null)
@@ -551,28 +646,36 @@ public sealed class BookPublisherSystem : EntitySystem
         {
             if (_fontFamily == null)
             {
+                Log.Error("GetFont called but no font family loaded");
+                Log.Error($"Fallback fonts - Body: {_bodyFont != null}, Italic: {_italicFont != null}, Title: {_titleFont != null}, TitleItalic: {_titleFontItalic != null}");
+                
                 if (bold && italic && _titleFontItalic != null)
                 {
+                    Log.Debug("Returning fallback _titleFontItalic");
                     return _titleFontItalic;
                 }
                 if (bold && !italic && _titleFont != null)
                 {
+                    Log.Debug("Returning fallback _titleFont");
                     return _titleFont;
                 }
                 if (italic && !bold && _italicFont != null)
                 {
+                    Log.Debug("Returning fallback _italicFont");
                     return _italicFont;
                 }
                 if (_bodyFont != null)
                 {
+                    Log.Debug("Returning fallback _bodyFont");
                     return _bodyFont;
                 }
                 key = (SS14_DEFAULT_SIZE, false, false);
                 if (_fontCache.ContainsKey(key))
                 {
+                    Log.Debug("Returning fallback from font cache");
                     return _fontCache[key];
                 }
-                throw new Exception("No fonts loaded");
+                throw new Exception("No fonts loaded and no fallback fonts available");
             }
 
             FontStyle style = FontStyle.Regular;

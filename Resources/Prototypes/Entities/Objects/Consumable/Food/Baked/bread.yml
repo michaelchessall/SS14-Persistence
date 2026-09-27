@@ -19,7 +19,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 80
 
 - type: entity
@@ -39,7 +39,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10 # 1/8 of a loaf of bread
 
 # Custom Bread Example
@@ -144,7 +144,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 40
       - ReagentId: Fiber
         Quantity: 40
@@ -172,7 +172,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 5
       - ReagentId: Fiber
         Quantity: 5
@@ -231,7 +231,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 100
       - ReagentId: Vitamin
         Quantity: 4
@@ -254,7 +254,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 12.5
       - ReagentId: Vitamin
         Quantity: 0.5
@@ -280,11 +280,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 104
+        Quantity: 34 # Scav: 104 < 34
       - ReagentId: Protein
         Quantity: 4
       - ReagentId: Vitamin
         Quantity: 4
+      - ReagentId: Grain # Scav
+        Quantity: 70
   - type: Tag
     tags:
     - Meat
@@ -308,11 +310,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 13
+        Quantity: 4.25 # Scav 13 < 4.25
       - ReagentId: Protein
         Quantity: 0.5
       - ReagentId: Vitamin
         Quantity: 0.5
+      - ReagentId: Grain # Scav
+        Quantity: 8.75
   - type: Tag
     tags:
     - Meat
@@ -339,7 +343,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 96
       - ReagentId: Vitamin
         Quantity: 4
@@ -363,7 +367,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 12
       - ReagentId: Vitamin
         Quantity: 0.5
@@ -414,7 +418,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 100
       - ReagentId: Protein
         Quantity: 10
@@ -439,7 +443,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 12.5
       - ReagentId: Protein
         Quantity: 1.25
@@ -470,11 +474,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 104
+        Quantity: 34 # Scav: 104 < 34
       - ReagentId: Protein
         Quantity: 4
       - ReagentId: Vitamin
         Quantity: 4
+      - ReagentId: Grain # Scav
+        Quantity: 70
   - type: Tag
     tags:
     - Meat
@@ -498,11 +504,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 13
+        Quantity: 4.25 # Scav: 13 < 4.25
       - ReagentId: Protein
         Quantity: 0.5
       - ReagentId: Vitamin
         Quantity: 0.5
+      - ReagentId: Grain # Scav
+        Quantity: 8.75
   - type: Tag
     tags:
     - Meat
@@ -530,9 +538,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 90
+        Quantity: 30 # Scav: 90 < 30
       - ReagentId: Protein
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 60
 # Tastes like bread, tofu.
 
 - type: entity
@@ -552,9 +562,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 11.25
+        Quantity: 3.75 # Scav: 11.25 < 3.75
       - ReagentId: Protein
         Quantity: 1.25
+      - ReagentId: Grain # Scav
+        Quantity: 7.5
 
 - type: entity
   name: xeno meat bread
@@ -577,11 +589,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 104
+        Quantity: 34 # Scav: 104 < 34
       - ReagentId: Protein
         Quantity: 4
       - ReagentId: Vitamin
         Quantity: 4
+      - ReagentId: Grain # Scav
+        Quantity: 70
   - type: Tag
     tags:
     - Meat
@@ -605,11 +619,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 13
+        Quantity: 4.25 # Scav: 13 < 4.25
       - ReagentId: Protein
         Quantity: 0.5
       - ReagentId: Vitamin
         Quantity: 0.5
+      - ReagentId: Grain # Scav
+        Quantity: 8.75
   - type: Tag
     tags:
     - Meat
@@ -633,7 +649,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 80
       - ReagentId: Vitamin
         Quantity: 4
@@ -693,7 +709,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 40
       - ReagentId: Fiber
         Quantity: 40
@@ -715,7 +731,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 8
       - ReagentId: Vitamin
         Quantity: 0.4
@@ -742,7 +758,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 4
       - ReagentId: Fiber
         Quantity: 4
@@ -768,7 +784,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Butter
         Quantity: 2.5
@@ -789,7 +805,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: EggCooked
         Quantity: 6
@@ -815,7 +831,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 16
       - ReagentId: Vitamin
         Quantity: 4
@@ -841,7 +857,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 15
       - ReagentId: Vitamin
         Quantity: 5
@@ -862,7 +878,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 2.5
       - ReagentId: Mold
         Quantity: 10
@@ -880,7 +896,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 20
       - ReagentId: Wine
         Quantity: 5
@@ -903,7 +919,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 105
       - ReagentId: Vitamin
         Quantity: 10

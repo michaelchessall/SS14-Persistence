@@ -6,9 +6,9 @@
   components:
   - type: Action
     useDelay: 1
-    icon:
-      sprite: Interface/Alerts/temperature.rsi
-      state: cold1
+  - type: Sprite
+    sprite: Interface/Alerts/temperature.rsi
+    state: cold1
   - type: InstantAction
     event: !type:ToggleActionEvent
 

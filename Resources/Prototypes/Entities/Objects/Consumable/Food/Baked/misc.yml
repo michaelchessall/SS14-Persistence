@@ -11,7 +11,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
   - type: Item
     size: Tiny
@@ -47,7 +47,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 1
@@ -68,7 +68,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 1
@@ -101,7 +101,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 1
@@ -119,7 +119,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 1
@@ -422,7 +422,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Theobromine
         Quantity: 1
@@ -502,7 +502,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Protein
         Quantity: 2
@@ -531,7 +531,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10.5
       - ReagentId: Vitamin
         Quantity: 1.05
@@ -563,7 +563,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 8
       - ReagentId: Fiber
         Quantity: 4
@@ -593,7 +593,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 48
       - ReagentId: Sugar
         Quantity: 32
@@ -621,7 +621,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Sugar
         Quantity: 4
@@ -651,7 +651,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 48
       - ReagentId: Sugar
         Quantity: 32
@@ -681,7 +681,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Sugar
         Quantity: 4
@@ -736,7 +736,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 20
       - ReagentId: Butter
         Quantity: 2.5
@@ -767,7 +767,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Fiber
         Quantity: 10
@@ -794,7 +794,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 37.5
       - ReagentId: Butter
         Quantity: 2.5
@@ -821,7 +821,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 25
       - ReagentId: Fiber
         Quantity: 12.5

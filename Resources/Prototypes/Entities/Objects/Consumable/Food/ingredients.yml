@@ -499,7 +499,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 20
       - ReagentId: Fiber
         Quantity: 40
@@ -526,7 +526,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 2.5
       - ReagentId: Fiber
         Quantity: 5
@@ -549,7 +549,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 2.5
       - ReagentId: Fiber
         Quantity: 5
@@ -963,7 +963,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 15
 
 - type: entity

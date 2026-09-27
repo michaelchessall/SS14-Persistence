@@ -162,10 +162,7 @@
   - type: ScaleVisuals
     scale: .75, .75
   - type: Vocal
-    sounds:
-      Male: MaleAvali
-      Female: FemaleAvali
-      Unsexed: MaleAvali
+    emoteSounds: MaleAvali
   - type: Damageable
     damageModifierSet: Avali
   - type: MeleeWeapon
@@ -178,7 +175,7 @@
         Slash: 3
   - type: Temperature
     specificHeat: 44
-    currentTemperature: 220
+    temperature: 220
   - type: ThermalRegulator
     # Ammonia boils at normal tempature
     implicitHeatRegulation: 100
@@ -208,8 +205,6 @@
       types:
         Heat: 2.5 # Per second, scales with temperature & other constants
   - type: TemperatureProtection
-    heatingCoefficient: 1.2
-    coolingCoefficient: 3
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

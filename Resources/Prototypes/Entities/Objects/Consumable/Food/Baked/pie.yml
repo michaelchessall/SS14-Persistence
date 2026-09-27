@@ -16,7 +16,7 @@
   - type: Solution
     solution:
       reagents: #Most of these are this with slight variations, not worth changing until we have the rest of the reagents
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 64
       - ReagentId: Vitamin
         Quantity: 8
@@ -45,7 +45,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 8
       - ReagentId: Vitamin
         Quantity: 1
@@ -613,7 +613,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 64
       - ReagentId: Vitamin
         Quantity: 8

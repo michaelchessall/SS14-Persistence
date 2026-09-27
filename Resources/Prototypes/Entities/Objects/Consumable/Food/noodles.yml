@@ -16,7 +16,9 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 30
+        Quantity: 10 # Scav: 30 < 10
+      - ReagentId: Grain # Scav
+        Quantity: 20
 
 # Noodles
 
@@ -53,9 +55,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 45
+        Quantity: 25 # Scav 45 < 25
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 20
   - type: Tag
     tags:
     - Fruit # ???
@@ -84,9 +88,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 90
+        Quantity: 70 # Scav: 90 < 70
       - ReagentId: Vitamin
         Quantity: 10
+      - ReagentId: Grain # Scav
+        Quantity: 20
 # Tastes like pasta, bad humor.
 
 - type: entity
@@ -107,9 +113,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 40
+        Quantity: 20 # Scav: 40 < 20
       - ReagentId: Protein
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 20
   - type: Tag
     tags:
     - Meat
@@ -149,9 +157,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 45
+        Quantity: 25 # Scav: 45 < 25
       - ReagentId: Vitamin
         Quantity: 12
+      - ReagentId: Grain # Scav
+        Quantity: 20
 # Tastes like pasta, tomato.
 
 - type: entity
@@ -172,7 +182,9 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 30
+        Quantity: 10 # Scav: 30 < 10
       - ReagentId: Butter
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 20
 # Tastes like pasta, butter.

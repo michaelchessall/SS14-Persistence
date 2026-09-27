@@ -18,7 +18,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
 
 - type: entity
@@ -43,7 +43,7 @@
       reagents:
       - ReagentId: Bicaridine
         Quantity: 5
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
 
 - type: entity
@@ -66,7 +66,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 5
       - ReagentId: Fiber
         Quantity: 5

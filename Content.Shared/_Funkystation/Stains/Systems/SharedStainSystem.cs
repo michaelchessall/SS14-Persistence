@@ -26,11 +26,9 @@ public enum StainVisuals : byte
 public abstract class SharedStainSystem : EntitySystem
 {
     [Dependency] private readonly SharedSolutionContainerSystem _solution = null!;
-    [Dependency] private readonly SharedHandsSystem _hands = null!;
     [Dependency] private readonly SharedItemSystem _item = null!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = null!;
     [Dependency] private readonly SharedContainerSystem _container = null!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = null!;
     [Dependency] private readonly InventorySystem _inventory = null!;
     [Dependency] private readonly SharedDoAfterSystem _doAfter = null!;
     [Dependency] private readonly SharedPuddleSystem _puddle = null!;

@@ -16,11 +16,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 45
+        Quantity: 20 # Scav: 45 < 20
       - ReagentId: Protein
         Quantity: 15
       - ReagentId: Vitamin
         Quantity: 15
+      - ReagentId: Grain # Scav
+        Quantity: 25
 
 # Breakfasts
 
