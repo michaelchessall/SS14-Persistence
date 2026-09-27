@@ -172,7 +172,7 @@ public sealed partial class JobNetMenu : DefaultWindow
         }
 
     }
-    
+
 
     private void OnSelectCodex(string title, string description)
     {

@@ -280,7 +280,6 @@ public sealed partial class RumorsSystem : EntitySystem
         final.ReputationReward = rumorProto.ReputationReward;
         final.Description = RealizeDescription(rumorProto, chosenFaction, final);
         return final;
-
     }
 
     private string RealizeDescription(RumorPrototype rumor, MetaFactionPrototype chosenFaction, ActiveRumor active)
