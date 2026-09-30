@@ -52,6 +52,9 @@
     <AdditionalFiles Update="MessageBoard\UI\EntryWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
+    <AdditionalFiles Update="MessageBoard\UI\ConversationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
   </ItemGroup>
   
   <ItemGroup>

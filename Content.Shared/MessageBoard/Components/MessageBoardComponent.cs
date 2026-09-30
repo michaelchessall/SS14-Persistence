@@ -1,6 +1,7 @@
 using Content.Shared.CrewAccesses.Components;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
+using Content.Shared.CrewMetaRecords;
 using Content.Shared.Radio;
 using Content.Shared.Station.Components;
 using Robust.Shared.GameStates;
@@ -70,16 +71,27 @@ public partial class MessageBoardComment
 
 }
 
+
+
 [NetSerializable, Serializable]
 public sealed class MessageBoardInterfaceState : BoundUserInterfaceState
 {
     public List<MessageBoardEntry> PublicEntries;
-
     public MessageBoardInterfaceState(List<MessageBoardEntry> publicEntries)
     {
         PublicEntries = publicEntries;
     }
 }
+[Serializable, NetSerializable]
+public sealed class MessageBoardUpdateDirectMessagesMessage : BoundUserInterfaceMessage
+{
+    public Dictionary<string, DirectMessageConversation> DirectMessages;
+    public MessageBoardUpdateDirectMessagesMessage(Dictionary<string, DirectMessageConversation> directMessages)
+    {
+        DirectMessages = directMessages;
+    }
+}
+
 
 [Serializable, NetSerializable]
 public sealed class MessageBoardCreateEntryPublicMessage : BoundUserInterfaceMessage
@@ -90,6 +102,19 @@ public sealed class MessageBoardCreateEntryPublicMessage : BoundUserInterfaceMes
     public MessageBoardCreateEntryPublicMessage(string title, string body)
     {
         Title = title;
+        Body = body;
+    }
+}
+
+
+[Serializable, NetSerializable]
+public sealed class MessageBoardSendDirectMessagePublicMessage : BoundUserInterfaceMessage
+{
+    public string Recipient;
+    public string Body;
+    public MessageBoardSendDirectMessagePublicMessage(string recipient, string body)
+    {
+        Recipient = recipient;
         Body = body;
     }
 }

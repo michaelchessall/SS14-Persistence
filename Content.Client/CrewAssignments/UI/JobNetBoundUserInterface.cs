@@ -1,4 +1,5 @@
 using Content.Client.CrewAssignments.UI;
+using Content.Client.MessageBoard.UI;
 using Content.Client.UserInterface.Systems.Guidebook;
 using Content.Shared.Cargo.Components;
 using Content.Shared.CrewAssignments;
@@ -23,6 +24,7 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
     [ViewVariables]
     public CodexEntryMenu? CodexMenu;
 
+    public ConversationWindow? ConversationWindow;
 
     public JobNetBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
