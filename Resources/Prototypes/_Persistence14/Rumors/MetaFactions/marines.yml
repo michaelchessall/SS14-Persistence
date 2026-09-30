@@ -1,0 +1,26 @@
+- type: metaFaction
+  id: Marines
+  name: UNMC Marines
+  description: "The UNMC controls the Marines Universe."
+  rumors:
+    - DrinkBasicFriendly
+    - EatBasicFriendly
+    - DrinkBasicEvil
+  color: Olive
+  levels:
+    Marines2: 150
+    Marines3: 500
+    Marines4: 1000
+
+- type: metaFactionLevel
+  id: Marines2
+  name: Associate
+
+- type: metaFactionLevel
+  id: Marines3
+  name: Officer
+
+- type: metaFactionLevel
+  id: Marines4
+  name: Commander
+

@@ -208,9 +208,9 @@ namespace Content.Server.Preferences.Managers
                 antags.ToHashSet(),
                 traits.ToHashSet(),
                 loadouts,
-                null,
-                null,
-                null
+                profile.Alignment,
+                profile.Origin,
+                profile.Motive
             );
         }
 

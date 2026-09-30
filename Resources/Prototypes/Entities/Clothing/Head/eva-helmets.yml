@@ -96,10 +96,14 @@
       head:
       - state: equipped-head-light
         shader: unshaded
+      head-vox:
+      - state: equipped-head-light-vox
   - type: Clothing
     clothingVisuals:
       head:
       - state: equipped-head
+  - type: TemperatureProtection
+    coefficient: 0.1
   - type: Armor
     modifiers:
       coefficients:
@@ -113,4 +117,3 @@
     tags:
     - HelmetEVA
     - WhitelistChameleon
-  

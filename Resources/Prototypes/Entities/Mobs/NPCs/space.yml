@@ -585,7 +585,7 @@
         Quantity: 8
       - ReagentId: Fat
         Quantity: 3
-      - ReagentId: Water
+      - ReagentId: Slime # Scav: Water < Slime
         Quantity: 4 #It makes saline if you add salt!
   - type: Satiation
     satiations:

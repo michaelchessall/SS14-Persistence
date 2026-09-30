@@ -1112,6 +1112,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("integer")
                         .HasColumnName("age");
 
+                    b.Property<string>("Alignment")
+                        .HasColumnType("text")
+                        .HasColumnName("alignment");
+
                     b.Property<string>("CharacterName")
                         .IsRequired()
                         .HasColumnType("text")
@@ -1156,9 +1160,17 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("jsonb")
                         .HasColumnName("markings");
 
+                    b.Property<string>("Motive")
+                        .HasColumnType("text")
+                        .HasColumnName("motive");
+
                     b.Property<JsonDocument>("OrganMarkings")
                         .HasColumnType("jsonb")
                         .HasColumnName("organ_markings");
+
+                    b.Property<string>("Origin")
+                        .HasColumnType("text")
+                        .HasColumnName("origin");
 
                     b.Property<int>("PreferenceId")
                         .HasColumnType("integer")

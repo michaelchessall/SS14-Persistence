@@ -1,0 +1,164 @@
+- type: rumor
+  id: BountyBasicGeneral
+  name: Personal Bounty
+  description: "Here's an export opportunity just for you!"
+  cashReward: 2500
+  reputationReward: 50
+  completionType: Bounty
+  possibleBounties:
+    - BountyToolbox
+    - BountyLabeler
+    - BountyWarmCloth
+    - BountyBedsheet
+    - BountyHiVizVest
+    - BountyTorch
+    - BountyCoins
+    - BountyRing
+    - BountySalvageScrap
+    - BountyOxygen
+    - BountyNitrogen
+    - BountyHydrogen
+    - BountyChlorine
+    - BountyFluorine
+    - BountyMethane
+    - BountyBear
+    - BountySpider
+    - BountySnake
+    - BountyXeno
+    - BountySteel
+    - BountyGold
+    - BountySilver
+    - BountyBrass
+    - BountyPlasteel
+    - BountyPlastic
+    - BountyWood
+    - BountyTitanium
+    - BountyBananium
+    - BountyPhoronAlloy
+    - BountyCoal
+    - BountyDiamonds
+    - BountyAmmonia
+    - BountyFrostOil
+    - BountyWeldingFuel
+    - BountyAcetone
+    - BountyPancake
+    - BountyFlour
+    - BountyBread
+    - BountySteak
+    - BountyCottonBoll
+    - BountyCarrot
+    - BountyCarrotFries
+    - BountyCorn
+    - BountyDonut
+    - BountyGalaxyThistle
+    - BountyFlower
+    - BountyFood
+    - BountyFruit
+    - BountyVegetable
+    - BountyChili
+    - BountyLemon
+    - BountyLime
+    - BountyPie
+    - BountySoup
+    - BountyBanana
+    - BountyWehPlushie
+    - BountyHandyFlag
+    - BountyClownCostume
+    - BountyCrayon
+    - BountyFigurine
+    - BountyInstrument
+    - BountyMouse
+    - BountyPen
+    - BountyPercussion
+    - BountyRadio
+    - BountyTrash
+    - BountyWine
+    - BountyBeer
+    - BountyCardboardBox
+    - BountyHandcuffs
+    - BountyPrisonUniform
+  rewardRumors: 1
+  possibleFollowups:
+    - ExterminateGeneral
+    - DiscoverSmallSalvage
+
+- type: rumor
+  id: BountyBasicScience
+  name: Profit Margins
+  description: "We need materials for the lab!"
+  cashReward: 4000
+  reputationReward: 50
+  completionType: Bounty
+  possibleBounties:
+    - BountyArtifactGlue
+    - BountyArtifactMany
+    - BountyAnomalyScience
+    - BountyRipley
+    - BountyAnomalyCore
+    - BountyBorgModule
+    - BountyArtifactFragment
+    - BountyTechDisk
+    - BountyCPU
+    - BountyOldComputer
+    - TreasureDataDisk
+    - TreasureSampleTube
+    - BountyUnstableMutagen
+    - BountyArithrazine
+    - BountyEpinephrine
+    - BountyOpporozidone
+    - BountySyringe
+    - BountyMonkeyCube
+    - BountyBattery
+    - BountyOrgans
+    - BountyBrain
+    - BountyLung
+    - BountyMedkitBox
+    - BountyPlasmaGas
+    - BountyTritium
+    - BountyFrezon
+    - BountyChlorineTrifluoride
+    - BountyPlasma
+    - BountyUranium
+  rewardRumors: 1
+  possibleFollowups:
+    - DiscoverSmallScience
+    - PowerBasic
+
+- type: rumor
+  id: BountyBasicCriminal
+  name: Dealer, Dealer
+  description: "Send this out for a tidy profit!"
+  cashReward: 5000
+  reputationReward: 50
+  completionType: Bounty
+  possibleBounties:
+    - BountyShiv
+    - BountyBandana
+    - BountyFlashes
+    - BountyPrecursorSpaceDrugs
+    - BountyPrecursorDesoxyephedrine
+  rewardRumors: 1
+  possibleFollowups:
+    - DiscoverSmallCriminal
+    - DiscoverSmallShadow
+
+- type: rumor
+  id: BountyBasicWeapon
+  name: Angry Bounty
+  description: "Complete this bounty."
+  cashReward: 3000
+  reputationReward: 50
+  completionType: Bounty
+  possibleBounties:
+    - BountyKnife
+    - BountySpear
+    - BountyLaserGun
+    - BountyCarp
+    - BountyCubanCarp
+    - BountyTeethSpaceCarp
+    - BountyTeethSharkminnow
+  rewardRumors: 1
+  possibleFollowups:
+    - ExterminateGeneral
+    - DiscoverSmallShadow
+    - ExterminateLuminal

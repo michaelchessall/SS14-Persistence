@@ -1,5 +1,5 @@
 ﻿prayer-verbs-subtle-message = Subtle Message
-prayer-verbs-pray = Pray
+prayer-verbs-pray = Pray/Reflect
 prayer-verbs-call = Call
 prayer-verbs-rub = Rub
 prayer-verbs-worship = Worship

@@ -20,7 +20,7 @@
     solution:
       canReact: false # Dont want cause reactions inside tacos after merging ingredients, TODO KILL
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
   - type: FoodSequenceStartPoint
     key: Taco
@@ -51,7 +51,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 29
       - ReagentId: Protein
         Quantity: 2
@@ -98,13 +98,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 42
+        Quantity: 16 # Scav: 42 < 16
       - ReagentId: Protein
         Quantity: 2
       - ReagentId: Allicin
         Quantity: 1
       - ReagentId: Vitamin
         Quantity: 9
+      - ReagentId: Grain # Scav
+        Quantity: 26
 
 - type: entity
   name: rat taco
@@ -127,13 +129,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 42
+        Quantity: 16 # Scav 42 < 16
       - ReagentId: Protein
         Quantity: 2
       - ReagentId: Allicin
         Quantity: 1
       - ReagentId: Vitamin
         Quantity: 9
+      - ReagentId: Grain # Scav
+        Quantity: 26
 
 - type: entity
   name: chicken taco supreme
@@ -147,13 +151,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 42
+        Quantity: 16 # Scav: 42 < 16
       - ReagentId: Protein
         Quantity: 2
       - ReagentId: Allicin
         Quantity: 1
       - ReagentId: Vitamin
         Quantity: 9
+      - ReagentId: Grain # Scav
+        Quantity: 26
 
 - type: entity
   parent: FoodTacoBase
@@ -173,7 +179,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 18
+        Quantity: 9 # Scav: 18 < 9
       - ReagentId: Protein
         Quantity: 6
       - ReagentId: Ichor
@@ -182,6 +188,8 @@
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 3
+      - ReagentId: Grain # Scav
+        Quantity: 9
 
 - type: entity
   name: soft taco

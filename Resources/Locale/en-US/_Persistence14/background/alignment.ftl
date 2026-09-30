@@ -1,0 +1,19 @@
+ps14-alignment-good = Good
+ps14-alignment-good-desc = You value helping others.
+ps14-alignment-lawful-good = Lawful Good
+ps14-alignment-lawful-good-desc = You value helping others and respecting the law.
+ps14-alignment-chaotic-good = Chaotic Good
+ps14-alignment-chaotic-good-desc = You value helping others and individual freedom.
+ps14-alignment-lawful = Lawful
+ps14-alignment-lawful-desc = You value the law.
+ps14-alignment-chaotic = Chaotic
+ps14-alignment-chaotic-desc = You value individual freedom.
+ps14-alignment-neutral = Neutral
+ps14-alignment-neutral-desc = You value balance
+ps14-alignment-evil = Evil
+ps14-alignment-evil-desc = You value yourself above all others.
+ps14-alignment-chaotic-evil = Chaotic Evil
+ps14-alignment-chaotic-evil-desc = You value yourself above all others and hate the law.
+ps14-alignment-lawful-evil = Lawful Evil
+ps14-alignment-lawful-evil-desc = You value yourself above all others. You seek to impose order.
+

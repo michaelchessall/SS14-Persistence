@@ -1,0 +1,3 @@
+# Hair
+
+marking-VulpkaninMane = Mane

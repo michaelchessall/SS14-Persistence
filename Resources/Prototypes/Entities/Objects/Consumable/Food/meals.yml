@@ -21,10 +21,23 @@
       - ReagentId: Nutriment
         Quantity: 40 # Bonus for complete meal
 
+# Scav: New base for grainy foods, for Yinglets
+- type: entity
+  abstract: true
+  parent: FoodMealBase
+  id: FoodMealGrainBase
+  description: A delicious meal, cooked with love, and grains.
+  components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 40 # Bonus for complete meal
+
 # Meals
 
 - type: entity
-  parent: FoodMealBase
+  parent: FoodMealGrainBase # Scav: FoodMealBase < FoodMealGrainBase
   id: FoodMealPotatoLoaded
   name: loaded baked potato
   description: Totally baked.
@@ -40,7 +53,7 @@
 # Tastes like potato.
 
 - type: entity
-  parent: FoodMealBase
+  parent: FoodMealGrainBase # Scav: FoodMealBase < FoodMealGrainBase
   id: FoodMealFries
   name: space fries
   description: AKA, French Fries, Freedom Fries, etc.
@@ -56,7 +69,7 @@
 # Tastes like fries, salt.
 
 - type: entity
-  parent: FoodMealBase
+  parent: FoodMealGrainBase # Scav: FoodMealBase < FoodMealGrainBase
   id: FoodMealFriesCheesy
   name: cheesy fries
   description: Fries. Covered in cheese. Duh.
@@ -117,7 +130,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: TableSalt
         Quantity: 2
@@ -144,9 +157,11 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 25
+        Quantity: 10 # Scav 25 < 10
       - ReagentId: TableSalt
         Quantity: 2
+      - ReagentId: Grain # Scav
+        Quantity: 15
 # Tastes like nachos, cheese.
 
 - type: entity
@@ -218,10 +233,12 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 15
+        Quantity: 10 # Scav: 15 < 10
       - ReagentId: CapsaicinOil
         Quantity: 10
       - ReagentId: Vitamin
+        Quantity: 5
+      - ReagentId: Grain # Scav
         Quantity: 5
 # Tastes like nachos, hot pepper.
 
@@ -270,7 +287,7 @@
 # Tastes like eggplant, cheese.
 
 - type: entity
-  parent: FoodMealBase
+  parent: FoodMealGrainBase # Scav: FoodMealBase < FoodMealGrainBase
   id: FoodMealPotatoYaki
   name: yaki imo
   description: Made with roasted sweet potatoes!
@@ -306,13 +323,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 100
+        Quantity: 75 # Scav: 100 < 75
       - ReagentId: CarpoToxin
         Quantity: 5
       - ReagentId: CapsaicinOil
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 25
   - type: Tag
     tags:
     - CubanCarp

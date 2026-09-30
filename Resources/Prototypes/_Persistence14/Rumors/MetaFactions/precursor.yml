@@ -1,0 +1,26 @@
+- type: metaFaction
+  id: Precursor
+  name: Syndicate
+  description: "The Syndicate controls the Precursor Universe."
+  rumors:
+    - DrinkBasicEvil
+    - EatBasicEvil
+    - PrayBasicEvil
+  color: Purple
+  levels:
+    Precursor2: 150
+    Precursor3: 500
+    Precursor4: 1000
+
+- type: metaFactionLevel
+  id: Precursor2
+  name: Associate
+
+- type: metaFactionLevel
+  id: Precursor3
+  name: Agent
+
+- type: metaFactionLevel
+  id: Precursor4
+  name: Master Agent
+

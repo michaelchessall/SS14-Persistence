@@ -171,7 +171,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     /// <param name="conditional">A conditional function applied to the search.</param>
     /// <param name="registry">An optional registry to register valid ids to when found. Improves speed of future searches.</param>
     /// <returns></returns>
-    private bool TryFetchId(
+    public bool TryFetchId(
         string id,
         out Entity<PersistentIdentifierComponent> ent,
         Func<Entity<PersistentIdentifierComponent>, bool>? conditional = null,

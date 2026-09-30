@@ -100,10 +100,12 @@ public sealed partial class PrayerSystem : EntitySystem
     {
         if (sender.AttachedEntity == null)
             return;
-
+        
         _popupSystem.PopupEntity(Loc.GetString(comp.SentMessage), sender.AttachedEntity.Value, sender, PopupType.Medium);
 
-        _chatManager.SendAdminAnnouncement($"{Loc.GetString(comp.NotificationPrefix)} <{sender.Name}>: {message}");
+        _chatManager.SendAdminAnnouncement($"{Loc.GetString(comp.NotificationPrefix)} <{Name(sender.AttachedEntity.Value)} ({sender.Name})>: {message}");
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(sender.AttachedEntity.Value):player} sent prayer ({Loc.GetString(comp.NotificationPrefix)}): {message}");
+        PrayedEvent ev = new(sender.AttachedEntity.Value, message);
+        RaiseLocalEvent(comp.Owner, ref ev);
     }
 }

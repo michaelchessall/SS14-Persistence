@@ -30,6 +30,7 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<PressureProtectionComponent, GotUnequippedEvent>(OnPressureProtectionUnequipped);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentStartup>(OnUpdateResistance);
             SubscribeLocalEvent<PressureProtectionComponent, ComponentRemove>(OnUpdateResistance);
+            SubscribeLocalEvent<BarotraumaComponent, ComponentStartup>(OnBaroComponentStartup);
         }
 
         [SubscribeLocalEvent]

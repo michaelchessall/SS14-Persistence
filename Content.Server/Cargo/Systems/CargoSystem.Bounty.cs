@@ -2,6 +2,7 @@ using Content.Server.Cargo.Components;
 using Content.Server.CrewAssignments.Systems;
 using Content.Server.NameIdentifier;
 using Content.Shared._Persistence14.Cargo;
+using Content.Shared._Persistence14.Rumors.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.Piping.Unary.Components;
@@ -41,6 +42,7 @@ public sealed partial class CargoSystem
 
     [Dependency] private EntityQuery<ContainerManagerComponent> _containerManagerQuery = default!;
     [Dependency] private EntityQuery<CargoBountyLabelComponent> _cargoBountyLabelQuery = default!;
+    [Dependency] private readonly RumorsSystem _rumors = default!;
 
     private static readonly ProtoId<NameIdentifierGroupPrototype> BountyNameIdentifierGroup = "Bounty";
 
@@ -48,11 +50,38 @@ public sealed partial class CargoSystem
     {
         SubscribeLocalEvent<CargoBountyConsoleComponent, BoundUIOpenedEvent>(OnBountyConsoleOpened);
         SubscribeLocalEvent<CargoBountyConsoleComponent, BountyPrintLabelMessage>(OnPrintLabelMessage);
+        SubscribeLocalEvent<CargoBountyConsoleComponent, BountyPrintRumorLabelMessage>(OnPrintRumorLabelMessage);
         SubscribeLocalEvent<CargoBountyConsoleComponent, BountySkipMessage>(OnSkipBountyMessage);
         SubscribeLocalEvent<CargoBountyConsoleComponent, CargoConsoleSelectTradeMessage>(OnSelectTrade);
         SubscribeLocalEvent<CargoBountyLabelComponent, PriceCalculationEvent>(OnGetBountyPrice);
         SubscribeLocalEvent<EntitySoldEvent>(OnSold);
         SubscribeLocalEvent<StationCargoBountyDatabaseComponent, MapInitEvent>(OnMapInit);
+    }
+
+    private void OnPrintRumorLabelMessage(Entity<CargoBountyConsoleComponent> ent, ref BountyPrintRumorLabelMessage args)
+    {
+        if (Timing.CurTime < ent.Comp.NextPrintTime)
+            return;
+
+        var station = GetTradeStationByID(ent.Comp.SelectedTradeGrid);
+        if (station == null) return;
+        var rumorGetter = _rumors.GetRumorComponent(args.Actor);
+        if (rumorGetter == null) return;
+        CargoBountyData? data = null;
+        foreach(var rumor in rumorGetter.Value.Comp.Rumors)
+        {
+            if (rumor.Bounty == null) continue;
+            if(rumor.Bounty.Id == args.BountyId)
+            {
+                data = rumor.Bounty;
+                break;
+            }
+        }
+        if (data == null) return;
+        var label = Spawn("PaperCargoBountyManifest", Transform(ent).Coordinates);
+        ent.Comp.NextPrintTime = Timing.CurTime + ent.Comp.PrintDelay;
+        SetupBountyLabel(label, station.Value, data, null, null, Name(args.Actor));
+        _audio.PlayPvs(ent.Comp.PrintSound, ent);
     }
 
     public int GetSectorDevelopment()
@@ -81,11 +110,6 @@ public sealed partial class CargoSystem
             }
         }
         return foundLevel;
-    }
-
-    private void CompleteDealerObjective(EntityUid ui)
-    {
-
     }
     private void UiUpdate(EntityUid uid, CargoBountyConsoleComponent component)
     {
@@ -176,6 +200,26 @@ public sealed partial class CargoSystem
     private void OnBountyConsoleOpened(EntityUid uid, CargoBountyConsoleComponent component, BoundUIOpenedEvent args)
     {
         UiUpdate(uid, component);
+        SendRumorBounties(uid, component, args.Actor);
+    }
+
+    private void SendRumorBounties(EntityUid uid, CargoBountyConsoleComponent component, EntityUid actor)
+    {
+        List<CargoBountyData> final = new();
+        var rumorGetter = _rumors.GetRumorComponent(actor);
+        if (rumorGetter == null) return;
+        foreach(var rumor in rumorGetter.Value.Comp.Rumors)
+        {
+            if(rumor.Bounty != null)
+            {
+                final.Add(rumor.Bounty);
+            }
+        }
+        if(final.Count > 0)
+        {
+            BountyRumorBountiesMessage msg = new(final);
+            _uiSystem.ServerSendUiMessage(uid, CargoConsoleUiKey.Bounty, msg, actor);
+        }
     }
 
     private void OnPrintLabelMessage(EntityUid uid, CargoBountyConsoleComponent component, BountyPrintLabelMessage args)
@@ -227,11 +271,15 @@ public sealed partial class CargoSystem
         _audio.PlayPvs(component.SkipSound, uid);
     }
 
-    public void SetupBountyLabel(EntityUid uid, EntityUid stationId, CargoBountyData bounty, PaperComponent? paper = null, CargoBountyLabelComponent? label = null)
+    public void SetupBountyLabel(EntityUid uid, EntityUid stationId, CargoBountyData bounty, PaperComponent? paper = null, CargoBountyLabelComponent? label = null, string? dealerName = null)
     {
         if (!Resolve(uid, ref paper, ref label) || !ProtoMan.Resolve<CargoBountyPrototype>(bounty.Bounty, out var prototype))
             return;
 
+        if(dealerName != null)
+        {
+            label.DealerName = dealerName;
+        }
         label.Id = bounty.Id;
         label.AssociatedStationId = stationId;
         var msg = new FormattedMessage();
@@ -277,15 +325,21 @@ public sealed partial class CargoSystem
         }
         if (database.CheckedBounties.Contains(component.Id))
             return;
-        CargoBountyData? bounty;
+        CargoBountyData? bounty = null;
         if (component.DealerName != null)
         {
-            var jobNet = _jobNet.GetJobNetByName(component.DealerName);
+            var jobNet = _rumors.GetRumorGetterByName(component.DealerName);
             if (jobNet == null)
             {
                 return;
             }
-            bounty = jobNet.DealerBounty;
+            foreach(var rumor in jobNet.Rumors)
+            {
+                if(rumor.Bounty != null && rumor.Bounty.Id == component.Id)
+                {
+                    bounty = rumor.Bounty;
+                }
+            }
         }
 
         else if (!TryGetBountyFromId(station, component.Id, out bounty, database))
@@ -326,14 +380,14 @@ public sealed partial class CargoSystem
         if (dealerName != null)
         {
 
-            var jobNet = _jobNet.GetJobNetByName(dealerName);
-            if (jobNet == null)
+            var rumorGetter = _rumors.GetRumorGetterByName(dealerName);
+            if (rumorGetter == null)
             {
                 return;
             }
 
             // TODO: Get rid of this component.Owner call... somehow...
-            _jobNet.CompleteDealerBounty(jobNet.Owner, jobNet);
+            _rumors.CompleteBounty(rumorGetter, bounty);
         }
 
         if (TryComp<TradeStationComponent>(station, out var tradeStation))
@@ -474,7 +528,7 @@ public sealed partial class CargoSystem
         }
         // todo: consider making the cargo bounties weighted.
         var allBounties = ProtoMan.EnumeratePrototypes<CargoBountyPrototype>()
-            .Where(p => p.Group == component.Group)
+            .Where(p => p.Group == group)
             .ToList();
         var filteredBounties = new List<CargoBountyPrototype>();
         foreach (var proto in allBounties)
@@ -568,7 +622,7 @@ public sealed partial class CargoSystem
     public bool TryGetBounty(EntityUid uid, CargoBountyLabelComponent label, out CargoBountyData bounty)
     {
         bounty = default!;
-        if (TryGetBountyFromJobNet(uid, label, out bounty))
+        if (TryGetBountyFromRumor(uid, label, out bounty))
             return true;
 
         if (label.AssociatedStationId is not { } station)
@@ -582,18 +636,23 @@ public sealed partial class CargoSystem
         return false;
     }
 
-    public bool TryGetBountyFromJobNet(EntityUid uid, CargoBountyLabelComponent label, out CargoBountyData bounty)
+    public bool TryGetBountyFromRumor(EntityUid uid, CargoBountyLabelComponent label, out CargoBountyData bounty)
     {
         bounty = default!;
         if (label.DealerName is not { } dealerName)
             return false;
 
-        var jobNet = _jobNet.GetJobNetByName(dealerName);
-        if (jobNet == null || jobNet.DealerBounty is not { } dealerBounty)
-            return false;
-
-        bounty = dealerBounty;
-        return true;
+        var rumorGetter = _rumors.GetRumorGetterByName(dealerName);
+        if (rumorGetter == null) return false;
+        foreach(var rumor in rumorGetter.Rumors)
+        {
+            if(rumor.Bounty != null && rumor.Bounty.Id == label.Id)
+            {
+                bounty = rumor.Bounty;
+                return true;
+            }
+        }
+        return false;
     }
 
     public bool TryGetBountyFromId(

@@ -46,7 +46,7 @@
       maxVol: 7.5
       canReact: false # Dont want cause reactions inside burgers after merging ingredients, TODO Remove
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 5 # 1/2 of a bun
 
 - type: entity
@@ -64,7 +64,7 @@
       maxVol: 7.5
       canReact: false # Dont want cause reactions inside burgers after merging ingredients, TODO Remove
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 5 # 1/2 of a bun
   - type: FoodSequenceElement
     entries:
@@ -87,10 +87,12 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 30
+        Quantity: 20 # Scav: 30 < 20
       - ReagentId: Protein
         Quantity: 10
       - ReagentId: Vitamin
+        Quantity: 10
+      - ReagentId: Grain # Scav
         Quantity: 10
   - type: Item
     sprite: Objects/Consumable/Food/burger.rsi
@@ -179,11 +181,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 35
+        Quantity: 25 # Scav: 35 < 25
       - ReagentId: Protein
         Quantity: 5
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -218,7 +222,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Cellulose
         Quantity: 30
@@ -285,13 +289,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 75
+        Quantity: 65 # Scav: 75 < 65
       - ReagentId: Protein
         Quantity: 20
       - ReagentId: Vitamin
         Quantity: 5
       - ReagentId: Allicin
         Quantity: 2
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Sprite
     state: bigbite
   - type: Tag
@@ -325,13 +331,15 @@
       maxVol: 55
       reagents:
       - ReagentId: Nutriment
-        Quantity: 18
+        Quantity: 8 # Scav: 18 < 8
       - ReagentId: Protein
         Quantity: 18
       - ReagentId: Vitamin
         Quantity: 6
       - ReagentId: Ketchup
         Quantity: 6
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Sprite
     state: bloodredburger
   - type: Tag
@@ -386,7 +394,7 @@
     solution:
       maxVol: 20
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Protein
         Quantity: 6
@@ -419,7 +427,7 @@
     solution:
       maxVol: 20
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Protein
         Quantity: 6
@@ -452,7 +460,7 @@
     solution:
       maxVol: 20
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Protein
         Quantity: 6
@@ -485,7 +493,7 @@
     solution:
       maxVol: 20
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Protein
         Quantity: 6
@@ -518,7 +526,7 @@
     solution:
       maxVol: 20
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Protein
         Quantity: 6
@@ -572,8 +580,10 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 45
+        Quantity: 35 # Scav: 45 < 35
       - ReagentId: Protein
+        Quantity: 10
+      - ReagentId: Grain # Scav
         Quantity: 10
   - type: Tag
     tags:
@@ -610,13 +620,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 30
+        Quantity: 20 # Scav: 30 < 20
       - ReagentId: Protein
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 10
       - ReagentId: Mayo
         Quantity: 2
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -749,7 +761,7 @@
       maxVol: 180
       reagents:
       - ReagentId: Nutriment # Adds up to 180, completely filled to the brim.
-        Quantity: 100
+        Quantity: 80 # Scav: 100 < 80
       - ReagentId: Protein
         Quantity: 20
       - ReagentId: CapsaicinOil
@@ -771,6 +783,8 @@
         Quantity: 4
       - ReagentId: Sulfur
         Quantity: 4
+      - ReagentId: Grain # Scav
+        Quantity: 20
   - type: Tag
     tags:
     - Meat
@@ -829,7 +843,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Plasma
         Quantity: 20
@@ -894,7 +908,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 45
+        Quantity: 35 # Scav: 45 < 35
       - ReagentId: Protein
         Quantity: 10
       - ReagentId: CapsaicinOil
@@ -903,6 +917,8 @@
         Quantity: 3
       - ReagentId: Vitamin
         Quantity: 12
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -943,7 +959,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 10
@@ -1008,13 +1024,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 25
+        Quantity: 15 # Scav: 25 < 15
       - ReagentId: EggCooked
         Quantity: 6
       - ReagentId: Protein
         Quantity: 5
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -1038,7 +1056,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 70
+        Quantity: 60 # Scav: 70 < 60
       - ReagentId: Protein
         Quantity: 30
       - ReagentId: BbqSauce
@@ -1047,6 +1065,8 @@
         Quantity: 5
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -1083,7 +1103,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 5
@@ -1135,13 +1155,15 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 15
+        Quantity: 5 # Scav: 15 < 5
       - ReagentId: Protein
         Quantity: 5
       - ReagentId: Vitamin
         Quantity: 5
       - ReagentId: Fat
         Quantity: 1
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Tag
     tags:
     - Meat
@@ -1238,11 +1260,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 37
+        Quantity: 27 # Scav: 37 < 27
       - ReagentId: Protein
         Quantity: 8
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 10
 # Tastes like bun, redditors.
 
 - type: entity
@@ -1293,7 +1317,7 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 79
+        Quantity: 69 # Scav: 79 < 69 (nice)
       - ReagentId: Protein
         Quantity: 20
       - ReagentId: Vitamin
@@ -1302,6 +1326,8 @@
         Quantity: 1
       - ReagentId: Blackpepper
         Quantity: 1
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Sprite
     state: superbite
   - type: Tag
@@ -1325,11 +1351,13 @@
     solution:
       reagents:
       - ReagentId: Nutriment
-        Quantity: 16
+        Quantity: 6 # Scav: 16 < 6
       - ReagentId: Protein
         Quantity: 9
       - ReagentId: Vitamin
         Quantity: 5
+      - ReagentId: Grain # Scav
+        Quantity: 10
   - type: Item
     inhandVisuals:
       left:

@@ -211,7 +211,7 @@
 - type: cargoProduct
   id: BartenderLocker
   icon:
-    sprite: Clothing/Uniforms/Jumpsuit/bartender.rsi
+    sprite: Clothing/Uniforms/Jumpsuits/Service/bartender.rsi
     state: icon
   product: LockerBoozeFilled
   cost: 2500

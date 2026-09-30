@@ -39,7 +39,7 @@ public sealed partial class ActionComponent : Component
     /// <summary>
     ///     The current cooldown on the action.
     /// </summary>
-    [DataField, AutoNetworkedField]
+    [AutoNetworkedField] // Persistence: Remove DataField. There is some issue where TimeOffsetSerializer is not being applied to the fields inside of ActionCooldown, for now just don't serialize this field.
     public ActionCooldown? Cooldown;
 
     /// <summary>

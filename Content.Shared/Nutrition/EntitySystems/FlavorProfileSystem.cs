@@ -18,6 +18,20 @@ public sealed partial class FlavorProfileSystem : EntitySystem
 
     private int FlavorLimit => _configManager.GetCVar(CCVars.FlavorLimit);
 
+    public HashSet<ProtoId<FlavorPrototype>> GetAllFlavors(Entity<FlavorProfileComponent?> entity, Solution? solution)
+    {
+        HashSet<ProtoId<FlavorPrototype>> flavors = new();
+
+        if (Resolve(entity, ref entity.Comp, false))
+        {
+            flavors = entity.Comp.Flavors;
+        }
+        if (solution != null)
+            flavors.UnionWith(GetFlavorsFromReagents(solution, FlavorLimit - flavors.Count));
+
+        return flavors;
+    }
+
     public string GetLocalizedFlavorsMessage(Entity<FlavorProfileComponent?> entity, EntityUid user, Solution? solution)
     {
         HashSet<ProtoId<FlavorPrototype>> flavors = new();
@@ -79,7 +93,7 @@ public sealed partial class FlavorProfileSystem : EntitySystem
         return Loc.GetString(BackupFlavorMessage);
     }
 
-    private HashSet<ProtoId<FlavorPrototype>> GetFlavorsFromReagents(Solution solution, int desiredAmount, HashSet<string>? toIgnore = null)
+    public HashSet<ProtoId<FlavorPrototype>> GetFlavorsFromReagents(Solution solution, int desiredAmount, HashSet<string>? toIgnore = null)
     {
         var flavors = new HashSet<ProtoId<FlavorPrototype>>();
         foreach (var (reagent, quantity) in solution.GetReagentPrototypes(ProtoMan))
@@ -106,6 +120,8 @@ public sealed partial class FlavorProfileSystem : EntitySystem
 
         return flavors;
     }
+
+
 }
 
 public sealed class FlavorProfileModificationEvent : EntityEventArgs

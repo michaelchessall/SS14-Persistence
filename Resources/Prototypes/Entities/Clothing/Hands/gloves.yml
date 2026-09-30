@@ -488,9 +488,9 @@
   - type: Clothing
     sprite: Clothing/Hands/Gloves/forensic.rsi
   - type: FingerprintMask
-  - type: GuideHelp
-    guides:
-    - Forensics
+#  - type: GuideHelp
+#    guides:
+#    - Forensics
 
 # TODO Make lubed items not slip in hands
 - type: entity
@@ -683,7 +683,7 @@
   - type: GuideHelp
     guides:
     - Security
-    - Antagonists
+#    - Antagonists
   - type: Tag
     tags:
     - WhitelistChameleon

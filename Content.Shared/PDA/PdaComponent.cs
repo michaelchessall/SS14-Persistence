@@ -27,8 +27,8 @@ namespace Content.Shared.PDA
         public EntProtoId? IdCard;
 
         // TODO: Fix persistence
-        [ViewVariables] public EntityUid? ContainedId;
-        [ViewVariables] public bool FlashlightOn;
+        [DataField] public EntityUid? ContainedId;
+        [DataField] public bool FlashlightOn;
 
         [DataField] public string? OwnerName;
         // The Entity that "owns" the PDA, usually a player's character.

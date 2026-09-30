@@ -1,0 +1,65 @@
+- type: rumor
+  id: DiscoverSmallSalvage
+  name: Salvage Tip
+  description: "We've lost track of a small bit of salvage. Find it!"
+  eventGrids:
+    - /Maps/Rumors/Salvage/Small/small-1-hallways.yml
+    - /Maps/Rumors/Salvage/Small/small-4-tinybarfragment.yml
+    - /Maps/Rumors/Salvage/Small/small-ship-1.yml
+    - /Maps/Rumors/Salvage/Small/small-cargo-2e.yml
+    - /Maps/Rumors/Salvage/Small/small-chef-kitchenmesshall.yml
+    - /Maps/Rumors/Salvage/Small/small-dock.yml
+    - /Maps/Rumors/Salvage/Small/small-hauling-shuttle-2e.yml
+    - /Maps/Rumors/Salvage/Small/small-party-thrustercrate.yml
+    - /Maps/Rumors/Salvage/Small/cargo-1-1e1art.yml
+    - /Maps/Rumors/Salvage/Medium/hydro_outpost-mining4t1g.yml
+    - /Maps/Rumors/Salvage/Medium/medium-ruined-emergency-shuttle-2t1g.yml
+    - /Maps/Rumors/Salvage/Medium/security-chunk.yml
+  cashReward: 2500
+  reputationReward: 50
+  descriptionAddon: "Board the grid!"
+
+- type: rumor
+  id: DiscoverSmallScience
+  name: For Science!
+  description: "We left behind an artifact and science equipment! Find it and its yours!"
+  eventGrids:
+    - /Maps/Rumors/Salvage/Small/chunked_tcomms-sci.yml
+    - /Maps/Rumors/Salvage/Small/small-ai-survey-drone-2e1g.yml
+    - /Maps/Rumors/Salvage/Medium/displaced_telescience-1anom1art.yml
+    - /Maps/Rumors/Salvage/Medium/medium-1-sci.yml
+    - /Maps/Rumors/Salvage/Medium/medium-library-tech1g1art.yml
+    - /Maps/Rumors/Salvage/Medium/outpost-arm-1art1anom.yml
+    - /Maps/Rumors/Salvage/Medium/medium-1-sci.yml
+  cashReward: 2500
+  reputationReward: 50
+  descriptionAddon: "Board the grid!"
+
+- type: rumor
+  id: DiscoverSmallShadow
+  name: Strange Places
+  description: "*BZZT*Find the installation*ZZkkt*"
+  eventGrids:
+    - /Maps/Rumors/Salvage/Small/small-chapel-greengrave.yml
+    - /Maps/Rumors/Salvage/Small/small-a-1-asteroidtreescrystals.yml
+    - /Maps/Rumors/Salvage/Medium/medium-crashed-shuttle-cult.yml
+    - /Maps/Rumors/Salvage/Medium/medium-pet-hosptial-floral.yml
+    - /Maps/Rumors/Salvage/Medium/wrecklaimer-1anomcult2t1g.yml
+  cashReward: 2500
+  reputationReward: 50
+  descriptionAddon: "Board the grid!"
+
+- type: rumor
+  id: DiscoverSmallCriminal
+  name: Lucky Find
+  description: "Here's a lucky set of coordinates."
+  eventGrids:
+    - /Maps/Rumors/Salvage/Small/small-2-barcasino.yml
+    - /Maps/Rumors/Salvage/Small/small-ai-survey-drone-2e1g.yml
+    - /Maps/Rumors/Salvage/Small/small-syndicate-1e1g.yml
+    - /Maps/Rumors/Salvage/Medium/medium-pirate-3t1g.yml
+    - /Maps/Rumors/Salvage/Medium/medium-vault-1-syndicate.yml
+    - /Maps/Rumors/Salvage/Medium/rigged_outpost-multi1anom.yml
+  cashReward: 2500
+  reputationReward: 50
+  descriptionAddon: "Board the grid!"

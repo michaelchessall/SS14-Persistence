@@ -1,0 +1,37 @@
+- type: rumor
+  id: EatBasicFriendly
+  name: "Chow Down"
+  description: "Rumors are hiding just beneath the surface."
+  cashReward: 0
+  reputationReward: 10
+  completionType: Eat
+  possibleFlavors:
+    - sweet
+    - salty
+    - sour
+    - oily
+    - cheesy
+  rewardRumors: 1
+  possibleFollowups:
+    - ExterminateGeneral
+    - DiscoverSmallScience
+    - DiscoverSmallSalvage
+
+- type: rumor
+  id: EatBasicEvil
+  name: Fridge Raid
+  description: "Opportunites await for the strong and well-fed."
+  cashReward: 0
+  reputationReward: 10
+  completionType: Eat
+  possibleFlavors:
+    - sweet
+    - salty
+    - sour
+    - oily
+    - cheesy
+  rewardRumors: 1
+  possibleFollowups:
+    - ExterminateGeneral
+    - DiscoverSmallScience
+    - DiscoverSmallSalvage

@@ -39,6 +39,7 @@
     size: Large
   - type: Solution
     solution:
+      temperature: 268 # Persistence: Ice is cold
       reagents:
       - ReagentId: Ice
         Quantity: 240

@@ -220,6 +220,9 @@ namespace Content.Server.Database
             profile.SkinColor = appearance.SkinColor.ToHex();
             profile.SpawnPriority = (int)humanoid.SpawnPriority;
             profile.OrganMarkings = JsonSerializer.SerializeToDocument(dataNode.ToJsonNode());
+            if(humanoid.Alignment != null) profile.Alignment = humanoid.Alignment.ToString();
+            if(humanoid.UniverseOrigin != null) profile.Origin = humanoid.UniverseOrigin.ToString();
+            if(humanoid.Motive != null) profile.Motive = humanoid.Motive.ToString();
 
             // support for downgrades - at some point this should be removed
             var legacyMarkings = appearance.Markings

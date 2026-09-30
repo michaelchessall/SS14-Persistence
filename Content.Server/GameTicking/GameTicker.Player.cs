@@ -58,15 +58,6 @@ namespace Content.Server.GameTicking
                 PlayersJoinedRoundNormally++;
                 HumanoidCharacterProfile? character = GetPlayerProfile(session);
                 if (character == null) character = new HumanoidCharacterProfile();
-                var aev = new PlayerSpawnCompleteEvent(body.Value,
-                    session,
-                    "Passenger",
-                    true,
-                    false,
-                    PlayersJoinedRoundNormally,
-                    station,
-                    character);
-                RaiseLocalEvent(body.Value, aev, true);
                 return true;
             }
             return false;

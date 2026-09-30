@@ -14,7 +14,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Sugar
         Quantity: 3
@@ -183,7 +183,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Sugar
         Quantity: 3
@@ -308,7 +308,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 6
       - ReagentId: Sugar
         Quantity: 3

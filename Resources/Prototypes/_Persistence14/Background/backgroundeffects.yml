@@ -54,27 +54,39 @@
 
 - type: backgroundEffect
   id: TraitOriginZenith
-  description: "[color=green]You will gain the 'Oath to Queen Valeria' trait."
+  description: "[color=green]You will gain the 'Worked with Solar Legion' trait."
   traits:
     - OriginZenith
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorRed
+  reputationGains:
+    Zenith: 200
+  extraFactionRumors:
+    Zenith: 1
 
 - type: backgroundEffect
   id: TraitOriginGreen
-  description: "[color=green]You will gain the 'Nanotrasen Contract' trait."
+  description: "[color=green]You will gain the 'Known to Nanotrasen' trait."
   traits:
     - OriginGreen
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorGreen
+  reputationGains:
+    Green: 200
+  extraFactionRumors:
+    Green: 1
 
 - type: backgroundEffect
   id: TraitOriginMarine
-  description: "[color=green]You will gain the 'Enlisted in Xeno Wars' trait."
+  description: "[color=green]You will gain the 'Familiar with the UNMC' trait."
   traits:
     - OriginMarine
   equipment:
     jumpsuit: ClothingUniformJumpsuitBattleDressUniformWoodlandTShirt
+  reputationGains:
+    Marines: 200
+  extraFactionRumors:
+    Marines: 1
 
 
 - type: backgroundEffect
@@ -84,6 +96,10 @@
     - OriginPrecursor
   equipment:
     jumpsuit: ClothingUniformGenericTurtleNeckAndJeans
+  reputationGains:
+    Precursor: 200
+  extraFactionRumors:
+    Precursor: 1
 
 - type: backgroundEffect
   id: TraitOriginShadow
@@ -92,6 +108,10 @@
     - OriginShadow
   equipment:
     jumpsuit: ClothingUniformJumpsuitColorBlack
+  reputationGains:
+    Shadow: 200
+  extraFactionRumors:
+    Shadow: 1
 
 
 

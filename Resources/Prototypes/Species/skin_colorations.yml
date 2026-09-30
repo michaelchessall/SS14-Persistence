@@ -66,3 +66,9 @@
       saturation: [ 0, 0.75 ]
       value: [ 0.2, 0.9 ]
   squashEyeHairColors: true
+
+# Persistance14 Edit
+- type: skinColoration
+  id: AvaliColors
+  strategy: !type:ClampedHslColoration
+     saturation: [0, 0.60]

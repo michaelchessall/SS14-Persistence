@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Roles;
 using Content.Shared.Traits;
 using Robust.Shared.Prototypes;
@@ -27,5 +28,14 @@ public sealed partial class BackgroundEffectPrototype : IPrototype, IEquipmentLo
 
     [DataField]
     public List<ProtoId<TraitPrototype>> Traits { get; set; } = new();
+
+    [DataField]
+    public Dictionary<ProtoId<MetaFactionPrototype>, int> ReputationGains { get; set; } = new();
+
+    [DataField]
+    public int ExtraRumors { get; set; } = 0;
+
+    [DataField]
+    public Dictionary<ProtoId<MetaFactionPrototype>, int> ExtraFactionRumors { get; set; } = new();
 
 }

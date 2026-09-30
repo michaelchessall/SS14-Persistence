@@ -163,6 +163,7 @@
       enum.JobNetUiKey.Key:
         type: JobNetBoundUserInterface
   - type: JobNet
+  - type: RumorGetter
 
 - type: entity
   parent: [ BaseSubdermalImplant, StorePresetUplink ]

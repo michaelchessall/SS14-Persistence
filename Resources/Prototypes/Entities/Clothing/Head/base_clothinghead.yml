@@ -29,10 +29,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       head:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: helmetblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: helmetbloodicon
 
 - type: entity
@@ -216,10 +216,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       head:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: helmetblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: helmetbloodicon
   - type: StainBlocker # Funky: Footprints & Stains
     slots: [MASK]
@@ -324,8 +324,8 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       head:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: helmetblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: helmetbloodicon

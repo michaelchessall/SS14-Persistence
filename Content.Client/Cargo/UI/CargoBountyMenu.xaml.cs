@@ -15,8 +15,11 @@ namespace Content.Client.Cargo.UI;
 public sealed partial class CargoBountyMenu : FancyWindow
 {
     public Action<string>? OnLabelButtonPressed;
+    public Action<string>? OnRumorLabelButtonPressed;
     public Action<string>? OnSkipButtonPressed;
     public TimeSpan UntilNextSkip = TimeSpan.Zero;
+    private BountyRumorBountiesMessage? _lastBountyMsg;
+    public int? _selectedTrade = 0;
 
     [Dependency] private readonly IPrototypeManager _protoManager = default!;
     public CargoBountyMenu()
@@ -30,6 +33,7 @@ public sealed partial class CargoBountyMenu : FancyWindow
     {
         PossibleTrades.Clear();
         PossibleTrades.AddItem("None", 0);
+        _selectedTrade = state.SelectedTrade;
         foreach (var kv in state.PossibleTrades)
         {
 
@@ -66,6 +70,10 @@ public sealed partial class CargoBountyMenu : FancyWindow
                 bc.AddChild(entry);
             }
         }
+        if(_lastBountyMsg != null)
+        {
+            UpdateRumorBounties(untilNextSkip);
+        }
         BountyHistoryContainer.Children.Clear();
         if (history.Count == 0)
         {
@@ -95,6 +103,31 @@ public sealed partial class CargoBountyMenu : FancyWindow
         }
     }
 
+    private void UpdateRumorBounties(TimeSpan untilNextSkip)
+    {
+        if (_lastBountyMsg == null) return;
+        ScrollContainer sc = new();
+        sc.HScrollEnabled = false;
+        sc.VerticalExpand = true;
+        sc.HorizontalExpand = true;
+        BoxContainer bc = new();
+        bc.Orientation = BoxContainer.LayoutOrientation.Vertical;
+        bc.VerticalExpand = true;
+        bc.HorizontalExpand = true;
+        sc.AddChild(bc);
+        MasterTabContainer.AddChild(sc);
+        MasterTabContainer.SetTabTitle(MasterTabContainer.ChildCount - 1, "Rumors");
+        foreach (var b in _lastBountyMsg.RumorBounties)
+        {
+            if(b.TradeStationUID != _selectedTrade)
+            {
+                continue;
+            }
+            var entry = new BountyEntry(b, untilNextSkip);
+            entry.OnLabelButtonPressed += () => OnRumorLabelButtonPressed?.Invoke(b.Id);
+            bc.AddChild(entry);
+        }
+    }
 
     private void UpdateSkipButton(float deltaSeconds)
     {
@@ -110,5 +143,11 @@ public sealed partial class CargoBountyMenu : FancyWindow
     {
         base.FrameUpdate(args);
         UpdateSkipButton(args.DeltaSeconds);
+    }
+
+    internal void UpdateRumor(BountyRumorBountiesMessage rumormsg)
+    {
+        _lastBountyMsg = rumormsg;
+        UpdateRumorBounties(TimeSpan.Zero);
     }
 }

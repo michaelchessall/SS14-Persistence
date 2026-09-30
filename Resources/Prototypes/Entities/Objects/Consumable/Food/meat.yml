@@ -830,6 +830,47 @@
       - state: slime-inhand-left
       right:
       - state: slime-inhand-right
+  - type: Solution # Scav: Override parent to add slime
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 20
+      - ReagentId: Fat
+        Quantity: 5
+      - ReagentId: Slime
+        Quantity: 10
+
+
+- type: entity
+  parent: FoodMeatRawBase
+  id: FoodMeatSnail
+  name: raw snail meat
+  description: Improved with salt.
+  components:
+  - type: Sprite
+    state: snail
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: UncookedAnimalProteins
+        Quantity: 3
+      - ReagentId: Fat
+        Quantity: 3
+      - ReagentId: Water
+        Quantity: 4 #It makes saline if you add salt!
+      - ReagentId: Slime # Scav
+        Quantity: 5
+  - type: Item
+    storedOffset: -1,-3
+    inhandVisuals:
+      left:
+      - state: generic-pink-inhand-left
+        color: "#E2AE7C"
+      right:
+      - state: generic-pink-inhand-right
+        color: "#E2AE7C"
 
 - type: entity
   parent: [SolutionHuge, FoodMeatRawBase, BaseSlicingRefinableFood]
@@ -1378,6 +1419,8 @@
         Quantity: 5
       - ReagentId: Water
         Quantity: 4 # makes saline if you add salt!
+      - ReagentId: Slime # Scav
+        Quantity: 5
   - type: FoodSequenceElement
     entries:
       Burger: MeatSnail

@@ -350,6 +350,10 @@ namespace Content.Server.Database
 
         public List<ProfileRoleLoadout> Loadouts { get; } = new();
 
+        public string? Alignment { get; set; } = null!;
+        public string? Origin { get; set; } = null!;
+        public string? Motive { get; set; } = null!;
+
         [Column("pref_unavailable")] public DbPreferenceUnavailableMode PreferenceUnavailable { get; set; }
 
         public int PreferenceId { get; set; }

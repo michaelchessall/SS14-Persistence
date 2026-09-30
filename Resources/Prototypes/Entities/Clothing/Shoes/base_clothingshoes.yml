@@ -33,10 +33,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       shoes:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: shoeblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: shoebloodicon
 
 - type: entity

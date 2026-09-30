@@ -30,6 +30,7 @@ using Robust.Shared.Utility;
 using System.Globalization;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Humanoid; // Scav
 
 
 namespace Content.Server.GameTicking
@@ -203,7 +204,6 @@ namespace Content.Server.GameTicking
                     if (character.Motive != null) createdRecord.Motive = character.Motive.Value;
                 }
             }
-            
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station.Value, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
@@ -377,32 +377,11 @@ namespace Content.Server.GameTicking
                 }
             }
 
-
-
-
-
-
-
             if (!silent && TryComp(station, out MetaDataComponent? metaData))
             {
                 _chatManager.DispatchServerMessage(player,
                     Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)));
             }
-
-
-
-
-            // We raise this event directed to the mob, but also broadcast it so game rules can do something now.
-            PlayersJoinedRoundNormally++;
-            var aev = new PlayerSpawnCompleteEvent(mob,
-                player,
-                jobId,
-                lateJoin,
-                silent,
-                PlayersJoinedRoundNormally,
-                station,
-                character);
-            RaiseLocalEvent(mob, aev, true);
         }
 
 
@@ -484,7 +463,7 @@ namespace Content.Server.GameTicking
                 // The random profile must retain the job priorities set by the player
                 var jobs = character.JobPriorities;
                 character = HumanoidCharacterProfile.RandomWithSpecies(speciesId).WithJobPriorities(jobs);
-
+                character.Appearance = HumanoidCharacterAppearance.EnsureValid(character.Appearance, character.Species, character.Sex, false); // Scav: Add false
                 // This does not utilize overflow job slots, so if the character profile
                 // had no available job priorities (ie Captain on Dev) set, then the player will spawn as a ghost
             }

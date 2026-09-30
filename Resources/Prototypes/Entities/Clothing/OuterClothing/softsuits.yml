@@ -123,6 +123,9 @@
     stealGroup: ClothingOuterHardsuitVoidParamed
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHelmetVoidParamed
+    slot: head
+    verbText: toggle-clothing-verb-helmet
+    action: ActionToggleSuitPiece
   - type: ItemToggleExaminableStatus
   - type: ItemToggle
     onUse: false

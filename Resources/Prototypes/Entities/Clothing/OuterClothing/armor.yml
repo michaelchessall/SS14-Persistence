@@ -26,10 +26,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: armorblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: armorbloodicon
 
 #Standard armor vest, allowed for security only

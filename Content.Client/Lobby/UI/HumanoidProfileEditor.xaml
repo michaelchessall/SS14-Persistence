@@ -24,7 +24,7 @@
                     </ui:HighlightedContainer>
                 </BoxContainer>
                 <!-- Randomizer -->
-                <BoxContainer Orientation="Vertical">
+                <BoxContainer Orientation="Vertical" Name="RandomizerPanel">
                     <ui:HighlightedContainer>
                         <BoxContainer Orientation="Vertical">
                             <Label Text="{Loc 'humanoid-profile-editor-randomize'}" HorizontalAlignment="Center"/>

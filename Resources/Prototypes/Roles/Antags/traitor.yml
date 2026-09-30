@@ -4,7 +4,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-syndicate-agent-objective
-  guides: [ Traitors ]
+#  guides: [ Traitors ]
   tags:
   - OnStation
   - Roundstart
@@ -34,7 +34,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-syndicate-agent-sleeper-objective
-  guides: [ Traitors ]
+#  guides: [ Traitors ]
   tags:
   - OnStation
   - Midround

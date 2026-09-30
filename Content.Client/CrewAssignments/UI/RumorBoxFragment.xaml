@@ -1,0 +1,16 @@
+<PanelContainer xmlns="https://spacestation14.io" HorizontalExpand="True" MinHeight="30" Margin="10 10 10 0" Name="RumorBox">
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Label Name="TitleLabel" Text="Rumor title" StyleClasses="LabelKeyText" />
+            <Control HorizontalExpand="True" />
+            <Button Name="CancelBtn" Text="Abandon" Access="Public" />
+        </BoxContainer>
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <Control HorizontalExpand="True" />
+            <LineEdit MinWidth="200" Name="TransferLE" Access="Public" PlaceHolder="Transfer to..(Full Name)" />
+            <Button Name="TransferBtn" Text="Transfer" Access="Public" />
+        </BoxContainer>
+        <RichTextLabel Name="ContentLabel" Text="Rumor content" />
+        <RichTextLabel Name="RewardLabel" Text="Rumor reward" />
+    </BoxContainer>
+</PanelContainer>

@@ -364,9 +364,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool skipChildren = false)
     {
-        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(uid, uid, slot, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, skipChildren);
     }
 
     public bool TryUnequip(
@@ -380,9 +381,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool skipChildren = false)
     {
-        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(actor, target, slot, out _, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, skipChildren);
     }
 
     public bool TryUnequip(
@@ -396,9 +398,10 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool skipChildren = false)
     {
-        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact);
+        return TryUnequip(uid, uid, slot, out removedItem, silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, skipChildren);
     }
 
     public bool TryUnequip(
@@ -413,11 +416,12 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool skipChildren = false)
     {
         var itemsDropped = 0;
         return TryUnequip(actor, target, slot, out removedItem, ref itemsDropped,
-            silent, force, predicted, inventory, clothing, reparent, checkDoafter);
+            silent, force, predicted, inventory, clothing, reparent, checkDoafter, triggerHandContact, skipChildren);
     }
 
     private bool TryUnequip(
@@ -433,7 +437,8 @@ public abstract partial class InventorySystem
         ClothingComponent? clothing = null,
         bool reparent = true,
         bool checkDoafter = false,
-        bool triggerHandContact = false)
+        bool triggerHandContact = false,
+        bool skipChildren = false)
     {
         removedItem = null;
 
@@ -509,12 +514,16 @@ public abstract partial class InventorySystem
 
         // TODO: This is not being checked at the moment if we remove clothing by any other means than TryUnequip, for example when deleting the item or teleporting it away.
         // But checking this in a EntGotRemovedFromContainerMessage subscription is fundamentally incompatible with the current prediction API for popups and audio since we don't have a user.
-        foreach (var slotDef in inventory.Slots)
+        if(!skipChildren)
         {
-            if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
+            // we need to unequip any items that depend on this slot, since they are no longer valid.
+            foreach (var slotDef in inventory.Slots)
             {
-                //this recursive call might be risky
-                TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
+                if (slotDef != slotDefinition && slotDef.DependsOn == slotDefinition.Name)
+                {
+                    //this recursive call might be risky
+                    TryUnequip(actor, target, slotDef.Name, out _, ref itemsDropped, true, true, predicted, inventory, reparent: reparent);
+                }
             }
         }
 

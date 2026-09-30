@@ -1,0 +1,8 @@
+- type: polymorph
+  id: AdminYingSmite
+  configuration:
+    entity: MobYinglet
+    forced: true
+    transferName: true
+    inventory: Transfer
+    ignoreAllowRepeatedMorphs: true

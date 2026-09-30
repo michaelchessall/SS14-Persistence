@@ -15,7 +15,7 @@
   - type: Solution
     solution:
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 5
       - ReagentId: Fiber
         Quantity: 5
@@ -64,7 +64,7 @@
     solution:
       maxVol: 7.5
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 2.5
       - ReagentId: Fiber
         Quantity: 2.5
@@ -90,7 +90,7 @@
     solution:
       maxVol: 7.5
       reagents:
-      - ReagentId: Nutriment
+      - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 2.5
       - ReagentId: Fiber
         Quantity: 2.5

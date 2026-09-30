@@ -416,9 +416,9 @@
     size: Normal
   - type: Flatpack
     entity: XenoborgExtractor
-  - type: GuideHelp
-    guides:
-    - Xenoborgs
+#  - type: GuideHelp
+#    guides:
+#    - Xenoborgs
 
 - type: entity
   parent: BaseFlatpack

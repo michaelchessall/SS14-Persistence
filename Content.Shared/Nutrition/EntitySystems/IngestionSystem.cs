@@ -375,8 +375,9 @@ public sealed partial class IngestionSystem : EntitySystem
 
         // Everything is good to go item has been successfuly eaten
         var afterEv = new IngestedEvent(args.User, entity, split, forceFed, beforeEv.Transfer >= beforeEv.Max);
+        var rumorEv = new IngestedRumorEvent(args.User, entity, split, forceFed, beforeEv.Transfer >= beforeEv.Max);
         RaiseLocalEvent(food, ref afterEv);
-
+        RaiseLocalEvent(food, ref rumorEv);
         _stomach.TryTransferSolution((stomachToUse.Value, stomachToUse.Value.Comp), split);
 
         if (!afterEv.Destroy)

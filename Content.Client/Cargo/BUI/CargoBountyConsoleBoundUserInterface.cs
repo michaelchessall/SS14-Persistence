@@ -27,6 +27,11 @@ public sealed class CargoBountyConsoleBoundUserInterface : BoundUserInterface
             SendMessage(new BountyPrintLabelMessage(id));
         };
 
+        _menu.OnRumorLabelButtonPressed += id =>
+        {
+            SendMessage(new BountyPrintRumorLabelMessage(id));
+        };
+
         _menu.OnSkipButtonPressed += id =>
         {
             SendMessage(new BountySkipMessage(id));
@@ -48,5 +53,12 @@ public sealed class CargoBountyConsoleBoundUserInterface : BoundUserInterface
             return;
 
         _menu?.UpdateEntries(state.Bounties, state.History, state.UntilNextSkip, state);
+    }
+    protected override void ReceiveMessage(BoundUserInterfaceMessage message)
+    {
+        base.ReceiveMessage(message);
+        if (_menu == null) return;
+        if (message is not BountyRumorBountiesMessage rumormsg) return;
+        _menu.UpdateRumor(rumormsg);
     }
 }

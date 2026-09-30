@@ -12,10 +12,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: outerclothing
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: outerclothing
   - type: SolutionManager
     solutions:
@@ -45,10 +45,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: suitblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: suitbloodicon
   - type: StainBlocker # Funky: Footprints & Stains
     slots: [INNERCLOTHING, FEET, GLOVES]
@@ -61,10 +61,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: suitblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: suitbloodicon
   - type: StainBlocker # Funky: Footprints & Stains
     slots: [INNERCLOTHING, FEET, GLOVES]
@@ -79,10 +79,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: suitblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: suitbloodicon
   - type: StainBlocker # Funky: Footprints & Stains
     slots: [INNERCLOTHING, FEET, GLOVES]
@@ -113,10 +113,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: coatblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: coatbloodicon
 
 - type: entity
@@ -159,10 +159,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: outerclothing
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: outerclothing
 
 - type: entity

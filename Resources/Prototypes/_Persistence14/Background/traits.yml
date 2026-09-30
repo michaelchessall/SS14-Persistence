@@ -1,7 +1,7 @@
 - type: trait
   id: Good
-  name: Good
-  description: "You value helping others."
+  name: ps14-alignment-good
+  description: ps14-alignment-good-desc
   components:
     - type: Alignment
       goodness: Good
@@ -9,8 +9,8 @@
 
 - type: trait
   id: LawfulGood
-  name: Lawful Good
-  description: "You value helping others and respecting the law."
+  name: ps14-alignment-lawful-good
+  description: ps14-alignment-lawful-good-desc
   components:
     - type: Alignment
       goodness: Good
@@ -19,8 +19,8 @@
 
 - type: trait
   id: ChaoticGood
-  name: Chaotic Good
-  description: "You value helping others and individual freedom."
+  name: ps14-alignment-chaotic-good
+  description: ps14-alignment-chaotic-good-desc
   components:
     - type: Alignment
       goodness: Good
@@ -29,8 +29,8 @@
 
 - type: trait
   id: Lawful
-  name: Lawful
-  description: "You value the law."
+  name: ps14-alignment-lawful
+  description: ps14-alignment-lawful-desc
   components:
     - type: Alignment
       lawfulness: Lawful
@@ -38,8 +38,8 @@
 
 - type: trait
   id: Chaotic
-  name: Chaotic
-  description: "You value individual freedom."
+  name: ps14-alignment-chaotic
+  description: ps14-alignment-chaotic-desc
   components:
     - type: Alignment
       lawfulness: Chaotic
@@ -48,16 +48,16 @@
 
 - type: trait
   id: Neutral
-  name: Neutral
-  description: "You value balance."
+  name: ps14-alignment-neutral
+  description: ps14-alignment-neutral-desc
   components:
     - type: Alignment
   selectable: false
 
 - type: trait
   id: Evil
-  name: Evil
-  description: "You value yourself above all others."
+  name: ps14-alignment-evil
+  description: ps14-alignment-evil-desc
   components:
     - type: Alignment
       goodness: Evil
@@ -65,8 +65,8 @@
 
 - type: trait
   id: ChaoticEvil
-  name: Chaotic Evil
-  description: "You value yourself above all others and hate the law."
+  name: ps14-alignment-chaotic-evil
+  description: ps14-alignment-chaotic-evil-desc
   components:
     - type: Alignment
       goodness: Evil
@@ -75,8 +75,8 @@
 
 - type: trait
   id: LawfulEvil
-  name: Lawful Evil
-  description: "You value yourself above all others. You seek to impose order."
+  name: ps14-alignment-lawful-evil
+  description: ps14-alignment-lawful-evil-desc
   components:
     - type: Alignment
       goodness: Evil
@@ -85,31 +85,31 @@
 
 - type: trait
   id: OriginZenith
-  name: Oath to Queen Valeria
-  description: "You pledged an oath of loyalty to Queen Valeria and the Solar Legion."
+  name: ps14-background-origin-zenith
+  description: ps14-background-origin-zenith-desc
   selectable: false
 
 - type: trait
   id: OriginGreen
-  name: Nanotrasen Contract
-  description: "You signed a contract to work for Nanotrasen in the Threshold."
+  name: ps14-background-origin-green
+  description: ps14-background-origin-green-desc
   selectable: false
 
 - type: trait
   id: OriginMarine
-  name: Enlisted in Xeno Wars
-  description: "You provided service to a military fighting a war against Xenos."
+  name: ps14-background-origin-marine
+  description: ps14-background-origin-marine-desc
   selectable: false
 
 - type: trait
   id: OriginPrecursor
-  name: Syndicate Associate
-  description: "You associated with syndicate operatives while traveling through the Threshold."
+  name: ps14-background-origin-precursor
+  description: ps14-background-origin-precursor-desc
   selectable: false
 
 - type: trait
   id: OriginShadow
-  name: Seen too much
-  description: "You came into contact with mind-breaking entities of pure shadow and evil whhile traveling through the Threshold."
+  name: ps14-background-origin-shadow
+  description: ps14-background-origin-shadow-desc
   selectable: false
 

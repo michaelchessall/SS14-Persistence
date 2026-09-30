@@ -1,0 +1,7 @@
+- type: marking
+  id: VulpkaninMane
+  bodyPart: FacialHair
+  groupWhitelist: [Vulpkanin]
+  sprites:
+   - sprite: _Persistence14/Mobs/Customization/Vulpkanin/mane.rsi
+     state: mane

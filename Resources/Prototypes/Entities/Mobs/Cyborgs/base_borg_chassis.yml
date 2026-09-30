@@ -510,7 +510,7 @@
     guides:
     - Cyborgs
     - Robotics
-    - Xenoborgs
+#    - Xenoborgs
   - type: Access
     tags:
     - Xenoborg

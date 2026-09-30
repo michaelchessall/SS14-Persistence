@@ -7,7 +7,7 @@
   requirements:
   - !type:OverallPlaytimeRequirement
     time: 5h
-  guides: [ NuclearOperatives ]
+#  guides: [ NuclearOperatives ]
   tags:
   - OffStation
   - Roundstart
@@ -24,7 +24,7 @@
   - !type:RoleTimeRequirement
     role: JobChemist
     time: 3h
-  guides: [ NuclearOperatives ]
+#  guides: [ NuclearOperatives ]
   tags:
   - OffStation
   - Roundstart
@@ -42,7 +42,7 @@
     department: Security
     time: 5h
   # should be changed to nukie playtime when thats tracked (wyci)
-  guides: [ NuclearOperatives ]
+#  guides: [ NuclearOperatives ]
   tags:
   - OffStation
   - Roundstart

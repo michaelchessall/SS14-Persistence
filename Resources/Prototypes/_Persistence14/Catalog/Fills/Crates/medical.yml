@@ -1,0 +1,10 @@
+- type: entity
+  parent: CrateMedical
+  id: CrateChemistryVials
+  name: vial supply crate
+  description: Crate filled with a box of vials.
+  components:
+      - type: EntityTableContainerFill
+        containers:
+            entity_storage:
+                id: BoxVial

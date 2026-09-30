@@ -94,11 +94,11 @@
         ejectOnInteract: true
         name: power-cell-slot-component-slot-name-default
         whitelist:
-          tags:
+          components: # Persistence: tags < components - allow all cell sizes in basic chargers
           - PowerCell
-          - PowerCellSmall
         blacklist:
           tags:
+          - PowerCage # Persistence: Prevent power cage in normal chargers
           - PotatoBattery
   - type: Item
     size: Ginormous
@@ -169,6 +169,7 @@
           - PowerCell
         blacklist:
           tags:
+          - PowerCage # Persistence: Prevent power cage in normal chargers
           - PotatoBattery
   - type: Item
     size: Ginormous
@@ -198,6 +199,7 @@
           - PowerCell
         blacklist:
           tags:
+          - PowerCage # Persistence: Prevent power cage in normal chargers
           - PotatoBattery
   - type: Item
     size: Ginormous

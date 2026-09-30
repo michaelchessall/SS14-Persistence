@@ -117,9 +117,9 @@
     attributes:
       proper: true
       gender: male
-  - type: GuideHelp
-    guides:
-    - MinorAntagonists
+#  - type: GuideHelp
+#    guides:
+#    - MinorAntagonists
   - type: Tool
     qualities: [ Slicing ]
 

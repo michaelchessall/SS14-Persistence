@@ -1,4 +1,5 @@
 using Content.Shared._Persistence14.Background.Prototypes;
+using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewAssignments.Systems;
 using Content.Shared.MessageBoard.Components;
@@ -34,6 +35,7 @@ public sealed partial class CrewMetaRecordsComponent : Component
     public Dictionary<string, CrewMetaRecord> CrewMetaRecords { get; set; } = new();
     [DataField]
     public Dictionary<int, EntityUid> Stations { get; set; } = new();
+
     public bool TryGetRecord(string name, out CrewMetaRecord? record)
     {
         if (CrewMetaRecords.TryGetValue(name, out var currRecord))
@@ -89,8 +91,49 @@ public partial class CrewMetaRecord
     [DataField]
     public ProtoId<MotivePrototype> Motive = "Wealth";
 
+    public ProtoId<AlignmentPrototype> Alignment = "TrueNeutral";
+    [DataField]
+    public ProtoId<UniverseOriginPrototype> Origin = "Zenith";
+    [DataField]
+    public ProtoId<MotivePrototype> Motive = "Wealth";
+    [DataField]
+    public Dictionary<ProtoId<MetaFactionPrototype>, int> MetaFactionReputations = new();
+    [DataField]
+    public Dictionary<string, DirectMessageConversation> DirectMessageConversations { get; set; } = new();
     public CrewMetaRecord(string name)
     {
         Name = name;
     }
+
+}
+
+[DataDefinition]
+[Serializable]
+[Virtual]
+public partial class DirectMessage
+{
+    [DataField]
+    public string Sender = "";
+    [DataField]
+    public string Body = "";
+    [DataField]
+    public DateTime SendTime = DateTime.MinValue;
+
+    public DirectMessage(string sender, string body, DateTime sendTime)
+    {
+        Sender = sender;
+        Body = body;
+        SendTime = sendTime;
+    }
+}
+
+[DataDefinition]
+[Serializable]
+[Virtual]
+public partial class DirectMessageConversation
+{
+    [DataField]
+    public List<DirectMessage> Messages { get; set; } = new();
+    [DataField]
+    public bool IsRead = true;
 }

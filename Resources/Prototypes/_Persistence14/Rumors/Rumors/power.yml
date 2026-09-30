@@ -1,0 +1,10 @@
+- type: rumor
+  id: PowerBasic
+  name: Power Export
+  description: "Power all the SMES on board the grid!"
+  eventGrids:
+    - /Maps/Rumors/PowerBasic.yml
+  cashReward: 2500
+  reputationReward: 50
+  completionType: Power
+  descriptionAddon: "Power all SMES on board the grid."

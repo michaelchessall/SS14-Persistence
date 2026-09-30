@@ -19,9 +19,9 @@
                       StyleClasses="LabelKeyText" />
                     <Control MinWidth="20"/>
                     <LineEdit Name="StationNameField"
-                    PlaceHolder="{Loc 'cargo-console-menu-search-bar-placeholder'}"
-                    Access="Public"
-                    HorizontalExpand="True" />
+                        PlaceHolder="{Loc 'cargo-console-menu-search-bar-placeholder'}"
+                        Access="Public"
+                        HorizontalExpand="True" />
                     <Button Name="StationNameConfirm"
                     Access="Public"
                     Text="Save"/>
@@ -138,7 +138,7 @@
                     </BoxContainer>
                     <Control MinHeight="15"/>
                     <BoxContainer Orientation="Horizontal">
-                        <Label Text="Sales Tax:"
+                        <Label Text="Rumor Tax:"
                             StyleClasses="LabelKeyText" />
                         <Control HorizontalExpand="True"/>
                         <SpinBox Name="STaxSpinBox" Access="Public" MinWidth="100" Value="0"/>

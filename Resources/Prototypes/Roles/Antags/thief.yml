@@ -4,7 +4,7 @@
   antagonist: true
   setPreference: true
   objective: roles-antag-thief-objective
-  guides: [ Thieves ]
+#  guides: [ Thieves ]
   tags:
   - OnStation
   - Roundstart

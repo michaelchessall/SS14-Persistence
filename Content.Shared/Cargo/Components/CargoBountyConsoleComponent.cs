@@ -90,6 +90,17 @@ public sealed class CargoBountyConsoleState : BoundUserInterfaceState
         TaxRate = tax;
     }
 }
+[Serializable, NetSerializable]
+public sealed class BountyRumorBountiesMessage : BoundUserInterfaceMessage
+{
+    public List<CargoBountyData> RumorBounties;
+
+    public BountyRumorBountiesMessage(List<CargoBountyData> rumorBounties)
+    {
+        RumorBounties = rumorBounties;
+    }
+}
+
 
 [Serializable, NetSerializable]
 public sealed class BountyPrintLabelMessage : BoundUserInterfaceMessage
@@ -101,6 +112,18 @@ public sealed class BountyPrintLabelMessage : BoundUserInterfaceMessage
         BountyId = bountyId;
     }
 }
+
+[Serializable, NetSerializable]
+public sealed class BountyPrintRumorLabelMessage : BoundUserInterfaceMessage
+{
+    public string BountyId;
+
+    public BountyPrintRumorLabelMessage(string bountyId)
+    {
+        BountyId = bountyId;
+    }
+}
+
 
 [Serializable, NetSerializable]
 public sealed class BountySkipMessage : BoundUserInterfaceMessage
