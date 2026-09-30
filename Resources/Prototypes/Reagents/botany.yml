@@ -252,10 +252,11 @@
           min: 0.25
         - !type:MetabolizerTypeCondition
           type: [Rat, Vox, Avali]
+          inverted: true
       - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Rat, Vox, Avali ]
+          type: [ Rat ]
         - !type:ReagentCondition
           reagent: Ammonia
           min: 1
