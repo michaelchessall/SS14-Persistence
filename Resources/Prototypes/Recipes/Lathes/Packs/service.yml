@@ -68,16 +68,6 @@
   - BibleEmbrace
 
 
-- type: latheRecipePack
-  id: HydroponicsStatic
-  recipes:
-  - HydroponicsToolMiniHoe
-  - HydroponicsToolScythe
-  - HydroponicsToolHatchet
-  - HydroponicsToolSpade
-  - HydroponicsToolClippers
-  - PlantAnalyzer
-
 ## Dynamic
 
 - type: latheRecipePack
