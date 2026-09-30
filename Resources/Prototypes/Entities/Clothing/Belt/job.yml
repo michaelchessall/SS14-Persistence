@@ -283,7 +283,6 @@
   - type: Storage
     whitelist:
       tags:
-      - PlantAnalyzer
       - BotanyShovel
       - BotanyHatchet
       - PlantBGone
@@ -304,10 +303,10 @@
         whitelist:
           tags:
           - BotanyHatchet
-      hydro:
-        whitelist:
-          tags:
-          - PlantAnalyzer
+#      hydro:
+#        whitelist:
+#          tags:
+#          - PlantAnalyzer
       hoe:
         whitelist:
           components:
