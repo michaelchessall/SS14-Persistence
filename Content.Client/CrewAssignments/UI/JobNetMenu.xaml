@@ -158,6 +158,13 @@
                     </TabContainer>
                 </BoxContainer>
             </ScrollContainer>
+            <BoxContainer Orientation="Vertical" Name="DirectMessages" Margin="10 10 10 10">
+                <RichTextLabel Text="[color=yellow][bold]Use a Message Board to send direct messages." />
+                <Label Text="Conversations:" StyleClasses="LabelKeyText"/>
+                <BoxContainer Access="Public" Orientation="Vertical" Name="ActiveConversations">
+
+                </BoxContainer>
+            </BoxContainer>
         </TabContainer>
     </BoxContainer>
     

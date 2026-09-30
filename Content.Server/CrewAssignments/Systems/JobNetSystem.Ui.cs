@@ -10,6 +10,7 @@ using Content.Shared.CrewAssignments;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewAssignments.Systems;
+using Content.Shared.CrewMetaRecords;
 using Content.Shared.CrewRecords.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Implants.Components;
@@ -178,7 +179,8 @@ public sealed partial class JobNetSystem
         Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations = new();
         List<ActiveRumor> rumors = new();
         TimeSpan? rumorCooldown = null;
-        if(TryComp<RumorGetterComponent>(jobnet, out var rumorGetter))
+        Dictionary<string, DirectMessageConversation>? directMessages = null;
+        if (TryComp<RumorGetterComponent>(jobnet, out var rumorGetter))
         {
             rumors = rumorGetter.Rumors;
             rumorCooldown = rumorGetter.NextRumor;
@@ -193,6 +195,7 @@ public sealed partial class JobNetSystem
             {
                 currentLevel = record.Level;
                 metaFactionReputations = record.MetaFactionReputations;
+                directMessages = record.DirectMessageConversations;
 
             }
             sectorChaos = _meta.MetaRecords.SectorChaos;
@@ -208,7 +211,7 @@ public sealed partial class JobNetSystem
         var balance = 0;
         _bank.TryGetBalance(user.Value, out balance);
 
-        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, sectorStatus, metaFactionReputations, rumors, rumorCooldown, rumorTax);
+        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, sectorStatus, metaFactionReputations, rumors, rumorCooldown, rumorTax, directMessages);
         _ui.SetUiState(jobnet, JobNetUiKey.Key, state);
     }
 

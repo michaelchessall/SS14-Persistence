@@ -204,7 +204,6 @@ namespace Content.Server.GameTicking
                     if (character.Motive != null) createdRecord.Motive = character.Motive.Value;
                 }
             }
-
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station.Value, jobId, character);
             DebugTools.AssertNotNull(mobMaybe);
             var mob = mobMaybe!.Value;
@@ -265,7 +264,6 @@ namespace Content.Server.GameTicking
                 return;
             if (TryRejoin(player)) return;
             var silent = true;
-            var lateJoin = true;
             HumanoidCharacterProfile? character = GetPlayerProfile(player);
             if (character == null) return;
             EntityUid station;

@@ -34,6 +34,7 @@
     - DiscoverSmallSalvage
     - BountyBasicGeneral
     - BountyBasicScience
+  consumptionTarget: 30
 
 - type: rumor
   id: DrinkBasicEvil
@@ -60,3 +61,4 @@
     - DiscoverSmallShadow
     - ExterminateCult
     - BountyBasicWeapon
+  consumptionTarget: 30

@@ -122,6 +122,9 @@ public partial class ActiveRumor
     [DataField]
     public ProtoId<RumorPrototype> OriginalPrototype;
 
+    [DataField]
+    public bool DebugComplete = false;
+
     public ActiveRumor(ProtoId<RumorPrototype> originalPrototype)
     {
         OriginalPrototype = originalPrototype;

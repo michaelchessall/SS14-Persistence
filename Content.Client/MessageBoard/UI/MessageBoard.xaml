@@ -26,13 +26,17 @@
                         </ScrollContainer>
                     </PanelContainer>
                 </BoxContainer>
-                <!--<BoxContainer Orientation="Vertical" Name="DirectMessages">
+                <BoxContainer Orientation="Vertical" Name="DirectMessages">
                     <Label Text="Send Message: " StyleClasses="LabelKeyText"/>
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                        <LineEdit Name="SendMessageLE" PlaceHolder="Recipient Name" HorizontalExpand="True"/>
+                        <LineEdit Name="SendMessageLE" PlaceHolder="Recipient Name" HorizontalExpand="True" Access="Public"/>
                         <Button Text="Compose Message" Name="SendMessageButton" Access="Public" />
                     </BoxContainer>
-                </BoxContainer>-->
+                    <Label Text="Conversations:" StyleClasses="LabelKeyText"/>
+                    <BoxContainer Access="Public" Orientation="Vertical" Name="ActiveConversations">
+                        
+                    </BoxContainer>
+                </BoxContainer>
             </TabContainer>
         </ScrollContainer> 
     </BoxContainer>

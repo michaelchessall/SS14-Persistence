@@ -32,15 +32,15 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
         SubscribeLocalEvent<PlayerSpawnCompleteEvent>(OnPlayerSpawnComplete);
     }
 
-    
+
     private void OnPlayerSpawnComplete(PlayerSpawnCompleteEvent args)
     {
 
         if (_crewMetaRecords.MetaRecords == null) return;
-        
+
         _crewMetaRecords.MetaRecords.TryGetRecord(Name(args.Mob), out var crewrecord);
 
-       
+
 
         var profile = args.Profile;
         var mob = args.Mob;

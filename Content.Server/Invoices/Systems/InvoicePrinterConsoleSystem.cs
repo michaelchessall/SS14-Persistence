@@ -72,8 +72,8 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
         if (!(args.InvoiceCost > 0)) return;
         var privilegedIdName = string.Empty;
         var privilegedName = string.Empty;
-        int taxRate = 0;
-        int owningStation = 0;
+        //int taxRate = 0;
+        //int owningStation = 0;
         if (args.Actor is not { Valid: true } player)
             return;
         int? targetStation = null;

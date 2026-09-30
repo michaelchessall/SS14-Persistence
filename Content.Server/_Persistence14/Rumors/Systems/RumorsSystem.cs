@@ -404,9 +404,13 @@ public sealed partial class RumorsSystem : EntitySystem
             var implant = Transform(uid);
             player = implant.ParentUid;
             if (player == null) return;
-
-            foreach (var rumor in comp.Rumors)
+            foreach (var rumor in comp.Rumors.ShallowClone())
             {
+                if(rumor.DebugComplete)
+                {
+                    CompleteRumor((uid, comp), player.Value, rumor);
+                    continue;
+                }
 
                 if (rumor.ShouldSpawn)
                 {
@@ -646,7 +650,7 @@ public sealed partial class RumorsSystem : EntitySystem
             }
             else if (rumor.CompletionType == CompletionType.Drink)
             {
-                addon += $"\nDrink something that tastes:";
+                addon += $"\nDrink something that tastes";
             }
 
             bool first = true;
@@ -659,13 +663,13 @@ public sealed partial class RumorsSystem : EntitySystem
                     addon += ",";
                 }
             }
-            if (!_pid.TryResolveId(active.Targets[0], out var targetStation) || targetStation == null) return rumor.Description; 
+            if (!_pid.TryResolveId(active.Targets[0], out var targetStation)) return rumor.Description; 
             addon += $" while onboard {Name(targetStation)}";
         }
         if(rumor.CompletionType == CompletionType.Pray)
         {
             addon += $"\nPray or reflect at an altar ";
-            if (!_pid.TryResolveId(active.Targets[0], out var targetStation) || targetStation == null) return rumor.Description;
+            if (!_pid.TryResolveId(active.Targets[0], out var targetStation)) return rumor.Description;
             addon += $"while onboard {Name(targetStation)}";
         }
         if(rumor.CompletionType == CompletionType.Bounty)
@@ -855,7 +859,7 @@ public sealed partial class RumorsSystem : EntitySystem
         {
             var targetImplant = Transform(targetGetter.Owner);
             var targetPlayer = targetImplant.ParentUid;
-            if (targetPlayer == null)
+            if (!targetPlayer.IsValid())
             {
                 NotifyPlayer(player, $"You cannot transfer the rumor to {target} at this time.");
                 return;
