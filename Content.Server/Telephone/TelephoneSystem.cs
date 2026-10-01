@@ -38,6 +38,7 @@ public sealed partial class TelephoneSystem : SharedTelephoneSystem
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private IReplayRecordingManager _replay = default!;
     [Dependency] private IChatManager _chatManager = default!; // Persistence: Chat stacking from RMC14 - pull/7587
+    [Dependency] private TransformSystem _transform = default!; // Persistence: Grid name in caller ID
 
     // Has set used to prevent telephone feedback loops
     private HashSet<(EntityUid, string, Entity<TelephoneComponent>)> _recentChatMessages = new();
@@ -246,10 +247,12 @@ public sealed partial class TelephoneSystem : SharedTelephoneSystem
         }
 
         // Persistence: Grid name in holopad caller ID
+#pragma warning disable RA0030 // Consider using the non-generic variant of this method
         if (TryComp<TransformComponent>(source, out var transform) &&
             transform.GridUid is { } grid &&
             TryName(grid, out var gridName))
             callerInfo.GridOrigin = gridName;
+#pragma warning restore RA0030 // Consider using the non-generic variant of this method
 
         receiver.Comp.LastCallerId = callerInfo; // This will be networked when the state changes
         receiver.Comp.LinkedTelephones.Add(source);
