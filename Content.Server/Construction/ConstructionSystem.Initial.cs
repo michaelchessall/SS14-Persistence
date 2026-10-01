@@ -526,7 +526,7 @@ namespace Content.Server.Construction
             var edge = startNode.GetEdge(pathFind[0].Name);
 
             if (edge == null)
-                throw new InvalidDataException($"Can't find edge from starting node to the next node in pathfinding! Recipe: {ev.PrototypeName}");
+                throw new InvalidDataException($"Can't find edge from starting node to the next node in pathfinding! Recipe: {constructionPrototype.ID}");
 
             if (_handsSystem.GetActiveItem((user, hands)) is not {Valid: true} holding)
                 return null;
