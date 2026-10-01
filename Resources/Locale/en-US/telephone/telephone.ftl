@@ -9,5 +9,9 @@ chat-telephone-caller-id-without-job = [color={$color}][font={$fontType} size={$
 chat-telephone-unknown-device = [color={$color}][font={$fontType} size={$fontSize}][bolditalic]Unknown source[/bolditalic][/font][/color]
 chat-telephone-device-id = [color={$color}][font={$fontType} size={$fontSize}][bold]{CAPITALIZE($deviceName)}[/bold][/font][/color]
 
+# Persistence Caller ID
+chat-telephone-unknown-grid = [color={$color}][font={$fontType} size={$fontSize}][bolditalic]Unknown Grid[/bolditalic][/font][/color]
+chat-telephone-grid-name = [color={$color}][font={$fontType} size={$fontSize}][bold]{CAPITALIZE($gridName)}[/bold][/font][/color]
+
 # Chat text
 chat-telephone-name-relay = {$originalName} ({$speaker})

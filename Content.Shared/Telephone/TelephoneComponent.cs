@@ -145,8 +145,22 @@ public sealed partial class TelephoneComponent : Component
 /// <param name="CallerId">The name of the person who placed the call.</param>
 /// <param name="CallerJob">The job of the person who placed the call.</param>
 /// <param name="DeviceId">The name of the device used to make the call.</param>
+[DataDefinition] // Persistence
 [Serializable, NetSerializable]
-public record struct TelephoneCallRecord(string? CallerId, string? CallerJob, string? DeviceId);
+public partial record struct TelephoneCallRecord
+{
+    [DataField] // Persistence
+    public string? CallerId;
+
+    [DataField] // Persistence
+    public string? CallerJob;
+
+    [DataField] // Persistence
+    public string? DeviceId;
+
+    [DataField] // Persistence: Grid name in holopad caller ID
+    public string? GridOrigin;
+}
 
 #region: Telephone events
 

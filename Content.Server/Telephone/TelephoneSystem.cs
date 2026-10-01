@@ -245,6 +245,12 @@ public sealed partial class TelephoneSystem : SharedTelephoneSystem
             callerInfo.DeviceId = label.CurrentLabel;
         }
 
+        // Persistence: Grid name in holopad caller ID
+        if (TryComp<TransformComponent>(source, out var transform) &&
+            transform.GridUid is { } grid &&
+            TryName(grid, out var gridName))
+            callerInfo.GridOrigin = gridName;
+
         receiver.Comp.LastCallerId = callerInfo; // This will be networked when the state changes
         receiver.Comp.LinkedTelephones.Add(source);
         receiver.Comp.Muted = options?.MuteReceiver == true;

@@ -167,6 +167,9 @@ public sealed partial class HolopadWindow : FancyWindow
         var callerId = _telephoneSystem.GetFormattedCallerIdForEntity(telephone.LastCallerId?.CallerId, telephone.LastCallerId?.CallerJob, Color.LightGray, "Default", 11);
         var holopadId = _telephoneSystem.GetFormattedDeviceIdForEntity(telephone.LastCallerId?.DeviceId, Color.LightGray, "Default", 11);
 
+        // Persistence: Grid name in holopad caller ID
+        var originGridName = _telephoneSystem.GetFormattedGridNameForEntity(telephone.LastCallerId?.GridOrigin, Color.LightGray, "Default", 11);
+
         if (!FormattedMessage.TryFromMarkup(callerId, out var callerIdMsg))
         {
             callerIdMsg = FormattedMessage.FromMarkupPermissive(callerId);
@@ -179,9 +182,18 @@ public sealed partial class HolopadWindow : FancyWindow
             _sawmill.Error($"HolopadId markup text was incorrectly formatted: {holopadIdMsg}");
         }
 
+        // Persistence: Grid name in holopad caller ID
+        if (!FormattedMessage.TryFromMarkup(originGridName, out var originGridMsg))
+        {
+            originGridMsg = FormattedMessage.FromMarkupPermissive(originGridName);
+            _sawmill.Error($"Holopad originating grid markup text was incorrectly formatted: {holopadIdMsg}");
+        }
+
         CallerIdText.SetMessage(callerIdMsg);
         LockOutIdText.SetMessage(callerIdMsg);
         HolopadIdText.SetMessage(holopadIdMsg);
+
+        OriginGridText.SetMessage(originGridMsg); // Persistence: Grid name in holopad caller ID
 
         // Sort holopads alphabetically
         var holopadArray = holopads.ToArray();

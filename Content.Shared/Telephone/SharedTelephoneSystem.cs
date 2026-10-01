@@ -54,4 +54,22 @@ public abstract class SharedTelephoneSystem : EntitySystem
             ("fontType", fontType),
             ("fontSize", fontSize));
     }
+
+    // Persistence: Grid name in holopad caller ID
+    public string GetFormattedGridNameForEntity(string? gridName, Color fontColor, string fontType = "Default", int fontSize = 12)
+    {
+        if (gridName == null)
+        {
+            return Loc.GetString("chat-telephone-unknown-grid",
+                ("color", fontColor),
+                ("fontType", fontType),
+                ("fontSize", fontSize));
+        }
+
+        return Loc.GetString("chat-telephone-grid-name",
+            ("gridName", FormattedMessage.RemoveMarkupPermissive(gridName)),
+            ("color", fontColor),
+            ("fontType", fontType),
+            ("fontSize", fontSize));
+    }
 }

@@ -12,14 +12,14 @@
                     <RichTextLabel Text="{Loc 'holopad-window-emergency-broadcast-in-progress'}" VerticalAlignment="Center" HorizontalAlignment="Center" Margin="10 10 10 10" ReservesSpace="False"/>
                 </PanelContainer>
             </controls:StripeBack>
-            
+
             <Label Text="{Loc 'holopad-window-controls-locked-out'}" HorizontalAlignment="Center" Margin="10 5 10 0" ReservesSpace="False"/>
             <RichTextLabel Name="LockOutIdText" HorizontalAlignment="Center" Margin="10 5 10 0" ReservesSpace="False"/>
             <Label Name="LockOutCountDownText" Text="{Loc 'holopad-window-controls-unlock-countdown'}" HorizontalAlignment="Center" Margin="10 15 10 10" ReservesSpace="False"/>
         </BoxContainer>
 
         <BoxContainer Name="ControlsContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" ReservesSpace="False">
-        
+
             <!-- Active call controls (either this or the call placement controls will be active) -->
             <BoxContainer Name="ActiveCallControlsContainer" Orientation="Vertical" VerticalExpand="True" HorizontalExpand="True" ReservesSpace="False">
 
@@ -29,7 +29,9 @@
                     <BoxContainer Name="CallerIdContainer" Orientation="Vertical" ReservesSpace="False">
                         <RichTextLabel Name="CallerIdText" HorizontalAlignment="Center" Margin="0 0 0 0"/>
                         <Label Text="{Loc 'holopad-window-relay-label'}" Margin="10 10 10 0" ReservesSpace="False"/>
-                        <RichTextLabel Name="HolopadIdText" HorizontalAlignment="Center" Margin="0 0 0 10"/>
+                        <RichTextLabel Name="HolopadIdText" HorizontalAlignment="Center" Margin="0 0 0 5"/>
+                        <!-- Persistence: Grid name in holopad caller ID (OriginGridText) -->
+                        <RichTextLabel Name="OriginGridText" HorizontalAlignment="Center" Margin="0 0 0 10"/>
                     </BoxContainer>
                 </BoxContainer>
 
