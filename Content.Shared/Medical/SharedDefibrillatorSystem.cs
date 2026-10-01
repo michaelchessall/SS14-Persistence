@@ -118,7 +118,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
         if (!TryComp<UseDelayComponent>(ent, out var useDelay) || _useDelay.IsDelayed((ent.Owner, useDelay), ent.Comp.DelayId))
             return false;
 
-        if (!TryComp<MobStateComponent>(ent.Owner, out var mobState))
+        if (!TryComp<MobStateComponent>(target, out var mobState))
             return false;
 
         if (!_powerCell.HasActivatableCharge(ent.Owner, user: user, predicted: true))
