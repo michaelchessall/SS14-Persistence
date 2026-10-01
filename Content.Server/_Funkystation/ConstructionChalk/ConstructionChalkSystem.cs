@@ -4,6 +4,7 @@ using Content.Shared._Funkystation.ConstructionChalk;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Interaction;
 using Content.Shared.Interaction.Events;
+using Content.Shared.PowerCell; // Persistence
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Physics;
@@ -21,6 +22,8 @@ public sealed partial class ConstructionChalkSystem : SharedConstructionChalkSys
     [Dependency] private SharedAudioSystem _audio = null!;
     [Dependency] private SharedPhysicsSystem _physics = null!;
     [Dependency] private EntityLookupSystem _lookup = null!;
+
+    [Dependency] private PowerCellSystem _powerCell = default!; // Persistence
 
     private const string ChalkMarkPrototype = "ConstructionChalkMark";
 
@@ -46,8 +49,18 @@ public sealed partial class ConstructionChalkSystem : SharedConstructionChalkSys
         if (args.SenderSession.AttachedEntity is not { Valid: true } user)
             return;
 
-        if (!TryComp<ConstructionChalkComponent>(GetEntity(ev.Chalk), out var chalkComp))
+        // Start Persistence
+        var ent = GetEntity(ev.Chalk);
+
+        if (!TryComp<ConstructionChalkComponent>(ent, out var chalkComp))
             return;
+
+        if (chalkComp.PowerUsage is { } usage &&
+            !_powerCell.TryUseCharge(ent, usage))
+        {
+            return;
+        }
+        // End Persistence
 
         var coords = GetCoordinates(ev.Coordinates);
         var mapPos = _transform.ToMapCoordinates(coords);

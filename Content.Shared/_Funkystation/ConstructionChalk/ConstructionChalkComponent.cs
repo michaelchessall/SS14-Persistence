@@ -16,4 +16,8 @@ public sealed partial class ConstructionChalkComponent : Component
 
     [ViewVariables]
     public bool IsStatusControlUpdateRequired;
+
+    // Persistence
+    [DataField]
+    public float? PowerUsage = null;
 }

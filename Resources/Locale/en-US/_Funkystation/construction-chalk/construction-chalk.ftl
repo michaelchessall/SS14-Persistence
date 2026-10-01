@@ -1,5 +1,6 @@
 ﻿chalk-verb-switch-mode = Switch mode
-chalk-mode-construction = construction
+# Persistence: construction < structure
+chalk-mode-construction = structure
 chalk-mode-piping = piping
 chalk-mode-switched = Chalk set to { $mode } mode.
 chalk-mark-erase-verb = Erase mark
@@ -62,3 +63,6 @@ chalk-category-sensors-monitors = Sensors & Monitors
 chalk-entry-alarm = Air alarm
 chalk-entry-sensor = Air sensor
 chalk-entry-sensor-pipe = Pipe sensor
+
+# Persistence:
+chalk-entry-heat-pump = Heat pump
