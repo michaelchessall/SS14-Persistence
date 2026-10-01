@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Client._Funkystation.Placement; // funky
 using Content.Shared.Construction.Prototypes;
 using Robust.Client.GameObjects;
