@@ -174,6 +174,6 @@ public sealed partial class ConstructionChalkSystem : SharedConstructionChalkSys
             return;
         }
 
-        _sprite.SetColor((ent.Owner, sprite), new Color(200, 200, 200, 140));
+        _sprite.SetColor((ent.Owner, sprite), new Color(65, 200, 50, 140)); // Persistence: 200 < 65 & 200 < 50
     }
 }

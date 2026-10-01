@@ -1,0 +1,49 @@
+- type: entity
+  id: HCD
+  parent: [ BaseItem, BaseEngineeringContraband ]
+  name: HCD
+  description: The hardlight construction device can be used to depoy long lasting holograms, used to assist in construction.
+  components:
+  - type: ConstructionChalk
+    powerUsage: 1
+    placeSound: /Audio/_Persistence/Items/hcd.ogg
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: Sprite
+    sprite: Objects/Tools/hcd.rsi
+    state: icon
+  - type: Item
+    size: Normal
+  - type: Clothing
+    sprite: Objects/Tools/hcd.rsi
+    quickEquip: false
+    slots:
+    - Belt
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 600
+      Plastic: 100
+  - type: StaticPrice
+    price: 110
+
+- type: entity
+  id: BorgHCD
+  parent: HCD
+  name: integrated HCD
+  description: The hardlight construction device can be used to depoy long lasting holograms, used to assist in construction. This one has been modified for use by borgs.
+  components:
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMicroreactor
+        disableEject: true
+        swap: false
