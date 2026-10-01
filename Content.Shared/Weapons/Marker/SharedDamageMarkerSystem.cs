@@ -1,5 +1,7 @@
 using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
+using Content.Shared.Mobs;
+using Content.Shared.Mobs.Components;
 using Content.Shared.Projectiles;
 using Content.Shared.Weapons.Melee.Events;
 using Content.Shared.Whitelist;
@@ -34,7 +36,10 @@ public abstract partial class SharedDamageMarkerSystem : EntitySystem
         RemCompDeferred<DamageMarkerComponent>(uid);
         _audio.PlayPredicted(component.Sound, uid, args.User);
 
-        if (TryComp<LeechOnMarkerComponent>(args.Used, out var leech))
+        if (TryComp<LeechOnMarkerComponent>(args.Used, out var leech) &&
+            TryComp<MobStateComponent>(uid, out var mobState) && // Persistence, add extra checks to prevent healing from dead bodies
+            mobState.CurrentState != MobState.Dead &&
+            mobState.CurrentState != MobState.Invalid)
         {
             _damageable.TryChangeDamage(args.User, leech.Leech, true, false, origin: args.Used);
         }
