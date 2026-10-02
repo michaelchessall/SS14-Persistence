@@ -1,0 +1,106 @@
+- type: entity
+  id: BaseUpgradeModule
+  parent: BaseItem
+  name: upgrade module
+  description: A piece of tech that can upgrade items and machines.
+  abstract: true
+  components:
+  - type: Item
+    storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#8FCBCB"
+      - state: base-module-inhand-left
+        color: "#A1A1A1"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7D7D7D"
+      right:
+      - state: base-icon-inhand-right
+        color: "#8FCBCB"
+      - state: base-module-inhand-right
+        color: "#A1A1A1"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7D7D7D"
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+  - type: StaticPrice
+    price: 100
+  - type: UpgradeModule
+    targetModule: Zenith
+
+- type: entity
+  id: ZenithUpgradeModule
+  parent: BaseUpgradeModule
+  name: upgrade module (Zenith-Pattern)
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-grappling-gun
+  - type: UpgradeModule
+    targetModule: Zenith
+
+- type: entity
+  id: GreenUpgradeModule
+  parent: BaseUpgradeModule
+  name: upgrade module (Nanotrasen-Pattern)
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-grappling-gun
+  - type: UpgradeModule
+    targetModule: Green
+
+- type: entity
+  id: MarineUpgradeModule
+  parent: BaseUpgradeModule
+  name: upgrade module (Marine-Pattern)
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-grappling-gun
+  - type: UpgradeModule
+    targetModule: Marine
+
+- type: entity
+  id: ShadowUpgradeModule
+  parent: BaseUpgradeModule
+  name: upgrade module (Elder-Pattern)
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-grappling-gun
+  - type: UpgradeModule
+    targetModule: Shadow
+
+
+- type: entity
+  id: PrecursorUpgradeModule
+  parent: BaseUpgradeModule
+  name: upgrade module (Cybersun-Pattern)
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-grappling-gun
+  - type: UpgradeModule
+    targetModule: Precursor
+
+
+- type: entity
+  id: LuminalUpgradeModule
+  parent: BaseUpgradeModule
+  name: upgrade module (Lumina-Pattern)
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - state: icon-grappling-gun
+  - type: UpgradeModule
+    targetModule: Luminal

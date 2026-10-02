@@ -41,6 +41,15 @@
   - type: PhysicalComposition
     materialComposition:
       Cloth: 300
+  - type: Upgradeable
+    upgrades:
+      BasicZenith : 0
+      BasicGreen : 0
+      BasicShadow : 0
+      BasicMarine : 0
+      BasicPrecursor : 0
+
+
 
 - type: entity
   parent: ClothingBackpack

@@ -153,6 +153,10 @@
     guides:
     - VoltageNetworks
     - Power
+  - type: Upgradeable
+    upgrades:
+      ApcMaxLoadGreen : 0
+
 
 # APC under construction
 - type: entity

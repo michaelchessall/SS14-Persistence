@@ -1,0 +1,63 @@
+- type: upgrade
+  id: StorageBasic
+  name: Small Storage
+  description: "Adds a row to the storage space."
+  targetModule: Zenith
+  maxApplications: 2
+  upgradeValues:
+    - 1
+    - 0
+
+- type: upgrade
+  parent: StorageBasic
+  id: BasicZenith
+  name: Small Storage
+  description: "Adds a row to the storage space."
+  targetModule: Zenith
+  maxApplications: 2
+  upgradeValues:
+    - 1
+    - 0
+- type: upgrade
+  parent: StorageBasic
+  id: BasicGreen
+  name: Small Storage
+  description: "Adds a row to the storage space."
+  targetModule: Green
+  maxApplications: 2
+  upgradeValues:
+    - 1
+    - 0
+
+- type: upgrade
+  parent: StorageBasic
+  id: BasicShadow
+  name: Small Storage
+  description: "Adds a row to the storage space."
+  targetModule: Shadow
+  maxApplications: 2
+  upgradeValues:
+    - 1
+    - 0
+
+- type: upgrade
+  parent: StorageBasic
+  id: BasicMarine
+  name: Small Storage
+  description: "Adds a row to the storage space."
+  targetModule: Marine
+  maxApplications: 2
+  upgradeValues:
+    - 1
+    - 0
+
+- type: upgrade
+  parent: StorageBasic
+  id: BasicPrecursor
+  name: Small Storage
+  description: "Adds a row to the storage space."
+  targetModule: Precursor
+  maxApplications: 2
+  upgradeValues:
+    - 1
+    - 0

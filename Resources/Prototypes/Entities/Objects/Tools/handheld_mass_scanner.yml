@@ -40,6 +40,9 @@
         type: RadarConsoleBoundUserInterface
   - type: StaticPrice
     price: 150
+  - type: Upgradeable
+    upgrades:
+      RangeLuminal : 0
 
 - type: entity
   id: HandHeldMassScannerDEBUG5K

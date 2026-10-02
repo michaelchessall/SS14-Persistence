@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: ApcMaxLoadGreen
+  name: Max Load Increase
+  description: "Adds 10000 to the max load."
+  targetModule: Green
+  maxApplications: 2
+  upgradeValues:
+    - 10000
+  upgradeType: ApcMaxLoad

@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: RangeLuminal
+  name: Radar Range Upgrade
+  description: "Adds 1000 range to the radar."
+  targetModule: Luminal
+  maxApplications: 2
+  upgradeValues:
+    - 1000
+  upgradeType: RadarRange
