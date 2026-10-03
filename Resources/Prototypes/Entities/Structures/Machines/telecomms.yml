@@ -185,10 +185,10 @@
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
-    - type: Upgradeable
-      upgrades:
-        TelecomServerRangeLuminal : 0
-        TelecomServerRangeShadow : 0
+  - type: Upgradeable
+    upgrades:
+      TelecomServerRangeLuminal : 0
+      TelecomServerRangeShadow : 0
 
 - type: entity
   parent: TelecomServer
