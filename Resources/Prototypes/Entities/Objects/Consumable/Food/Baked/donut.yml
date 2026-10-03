@@ -16,7 +16,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 3
   - type: Item
     sprite: Objects/Consumable/Food/Baked/donut.rsi
@@ -68,7 +68,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -185,7 +185,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Theobromine
           Quantity: 1
@@ -259,7 +259,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -279,7 +279,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -297,7 +297,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -316,7 +316,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -336,7 +336,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -355,7 +355,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Theobromine
           Quantity: 1
@@ -380,7 +380,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -399,7 +399,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -418,7 +418,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -437,7 +437,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1
@@ -456,7 +456,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 3
         - ReagentId: Vitamin
           Quantity: 1

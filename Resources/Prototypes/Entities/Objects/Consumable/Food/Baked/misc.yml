@@ -13,7 +13,7 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 5
   - type: Item
     size: Tiny
@@ -37,7 +37,7 @@
       food:
         maxVol: 10
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -60,7 +60,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -83,7 +83,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -118,7 +118,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -138,7 +138,7 @@
       food:
         maxVol: 12
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 6
         - ReagentId: Vitamin
           Quantity: 2
@@ -182,8 +182,10 @@
         maxVol: 10
         reagents:
         - ReagentId: Nutriment
-          Quantity: 6
+          Quantity: 4 # Scav 6 < 4
         - ReagentId: Vitamin
+          Quantity: 2
+        - ReagentId: Grain # Scav
           Quantity: 2
 
 # Cookies
@@ -210,7 +212,7 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
@@ -228,7 +230,7 @@
       food:
         maxVol: 8
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
@@ -481,7 +483,7 @@
       food:
         maxVol: 6
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 5
         - ReagentId: Theobromine
           Quantity: 1
@@ -501,7 +503,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 1
@@ -522,9 +524,11 @@
         maxVol: 20
         reagents:
         - ReagentId: Nutriment
-          Quantity: 10
+          Quantity: 5 # Scav: 10 < 5
         - ReagentId: Vitamin
           Quantity: 1
+        - ReagentId: Grain # Scav
+          Quantity: 5
 
 - type: entity
   name: soylent waffles
@@ -561,7 +565,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 8
         - ReagentId: Vitamin
           Quantity: 2
@@ -590,7 +594,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 5
         - ReagentId: Vitamin
           Quantity: 1
@@ -608,7 +612,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 8
         - ReagentId: Protein
           Quantity: 2
@@ -639,7 +643,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 2
         - ReagentId: Vitamin
           Quantity: 0.5
@@ -669,7 +673,7 @@
       food:
         maxVol: 5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 1
         - ReagentId: Fiber
           Quantity: 1
@@ -697,7 +701,7 @@
       food:
         maxVol: 78
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 30
         - ReagentId: Theobromine
           Quantity: 18
@@ -724,7 +728,7 @@
       food:
         maxVol: 13
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 5
         - ReagentId: Theobromine
           Quantity: 3
@@ -754,7 +758,7 @@
       food:
         maxVol: 228
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 30
         - ReagentId: Theobromine
           Quantity: 18
@@ -783,7 +787,7 @@
       food:
         maxVol: 38
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 5
         - ReagentId: Theobromine
           Quantity: 3
@@ -840,7 +844,7 @@
       food:
         maxVol: 7
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 3
         - ReagentId: Butter
           Quantity: 2
@@ -875,7 +879,7 @@
       food:
         maxVol: 7
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 1.5
         - ReagentId: Fiber
           Quantity: 1.5
@@ -906,7 +910,7 @@
       food:
         maxVol: 21
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 11
         - ReagentId: Butter
           Quantity: 2
@@ -937,7 +941,7 @@
       food:
         maxVol: 21
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav Nutriment < Grain
           Quantity: 6
         - ReagentId: Fiber
           Quantity: 5
