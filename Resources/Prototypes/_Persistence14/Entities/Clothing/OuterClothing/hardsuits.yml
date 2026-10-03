@@ -240,3 +240,46 @@
     - WhitelistChameleon
     - HighRiskItem
     - Hardsuit
+
+#Donk Microwave Suit
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseGrandTheftContraband]
+  id: ClothingOuterHardsuitDonkMicrowave
+  name: donk co mining hardsuit
+  description: A special suit developed by Donk co that protects against hazardous, low pressure environments. Has reinforced plating for wildlife encounters.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/donkmicrowave.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/donkmicrowave.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.5
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.7
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.7
+        Slash: 0.6
+        Piercing: 0.7
+        Heat: 0.7
+        Radiation: 0.25
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.75
+    sprintModifier: 0.75
+  - type: HeldSpeedModifier
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,4,4 #5X5, can fit in a duffel bag but nothing smaller.
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - HighRiskItem
+    - Hardsuit
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitDonkMicrowave
+  - type: StaticPrice
+    price: 750
