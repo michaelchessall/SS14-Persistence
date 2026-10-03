@@ -7,7 +7,7 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/execspace.rsi
-    layers: 
+    layers:
     - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/execspace.rsi
@@ -100,7 +100,7 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/medical.rsi
-    layers: 
+    layers:
     - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/medical.rsi
@@ -123,7 +123,7 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/rd.rsi
-    layers: 
+    layers:
     - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/rd.rsi
@@ -146,11 +146,13 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/donksuit.rsi
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
   - type: Clothing
-    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/donksuit.rsi
   - type: PointLight
     radius: 6
-    color: "#ffc065"
+    color: "#e2450f"
   - type: PressureProtection
     highPressureMultiplier: 0.72
     lowPressureMultiplier: 1000
@@ -167,7 +169,7 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/security-red.rsi
-    layers: 
+    layers:
     - state: icon
   - type: Clothing
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/security-red.rsi

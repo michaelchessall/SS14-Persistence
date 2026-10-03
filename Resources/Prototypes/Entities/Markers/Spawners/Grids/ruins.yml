@@ -641,3 +641,63 @@
       state: metal-1
   - type: GridSpawner
     gridPath: /Maps/Salvage/wh-salvage.yml
+
+#Persistence 14
+- type: entity
+  parent: MarkerBase
+  id: SyndiShipVaultSmallSpawner
+  name: Ruins Spawner
+  suffix: syndi ship vault small
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: GridSpawner
+    gridPath: /Maps/Rumors/Salvage/Small/syndi-ship-vault-small.yml
+
+#Persistence 14
+- type: entity
+  parent: MarkerBase
+  id: TickCavesSpawner
+  name: Ruins Spawner
+  suffix: tick caves
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: GridSpawner
+    gridPath: /Maps/Rumors/Exterminate/Medium/tick-caves.yml
+
+#Persistence 14
+- type: entity
+  parent: MarkerBase
+  id: SyndiChargeSpawner
+  name: Ruins Spawner
+  suffix: syndi charge
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: GridSpawner
+    gridPath: /Maps/Rumors/Charge/syndi-charge.yml
+
+#Persistence 14
+- type: entity
+  parent: MarkerBase
+  id: LumiiChargeSpawner
+  name: Ruins Spawner
+  suffix: lumi charge
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: GridSpawner
+    gridPath: /Maps/Rumors/Charge/lumi-charge.yml

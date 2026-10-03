@@ -177,3 +177,27 @@
   id: OutpostArm
   mapPath: /Maps/Salvage/outpost-arm.yml
   sizeString: salvage-map-wreck-size-large
+
+#Persistence 14
+- type: salvageMap
+  id: SyndiShipVaultSmall
+  mapPath: /Maps/Rumors/Salvage/Small/syndi-ship-vault-small.yml
+  sizeString: salvage-map-wreck-size-small
+
+#Persistence 14
+- type: salvageMap
+  id: TickCaves
+  mapPath: /Maps/Rumors/Exterminate/Medium/tick-caves.yml
+  sizeString: salvage-map-wreck-size-small
+
+#Persistence 14
+- type: salvageMap
+  id: SyndiCharge
+  mapPath: /Maps/Rumors/Charge/syndi-charge.yml
+  sizeString: salvage-map-wreck-size-small
+
+#Persistence 14
+- type: salvageMap
+  id: LumiCharge
+  mapPath: /Maps/Rumors/Charge/lumi-charge.yml
+  sizeString: salvage-map-wreck-size-small

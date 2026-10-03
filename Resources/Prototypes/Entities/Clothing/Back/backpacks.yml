@@ -47,8 +47,6 @@
       BasicGreen : 0
       BasicShadow : 0
 
-
-
 - type: entity
   parent: ClothingBackpack
   id: ClothingBackpackClown
