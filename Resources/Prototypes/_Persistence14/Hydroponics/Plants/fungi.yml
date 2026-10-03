@@ -1,0 +1,124 @@
+- type: entity
+  parent: BasePlant
+  id: TowercapPlants
+  name: tower cap
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/towercap.rsi
+  - type: PlantData
+    noun: seeds-noun-spores
+    name: seeds-towercap-name
+    packetPrototype: TowercapSeeds
+    productPrototypes: [ Log ]
+    mutationPrototypes: [ SteelcapPlants ]
+  - type: Plant
+    lifespan: 80
+    maturation: 15
+    production: 3
+    yield: 5
+    growthStages: 3
+  - type: PlantGrowth # TODO: requirements
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantTraitLigneous
+
+- type: entity
+  parent: BasePlant
+  id: SteelcapPlants
+  name: steel cap
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/steelcap.rsi
+  - type: PlantData
+    noun: seeds-noun-spores
+    name: seeds-steelcap-name
+    packetPrototype: SteelcapSeeds
+    productPrototypes: [ SteelLog ]
+  - type: Plant
+    lifespan: 80
+    maturation: 15
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantGrowth # TODO: Requirements
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantTraitLigneous
+
+- type: entity
+  parent: BasePlant
+  id: ChanterellePlants
+  name: chanterelle mushroom
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/chanterelle.rsi
+  - type: PlantData
+    noun: seeds-noun-spores
+    name: seeds-chanterelle-name
+    packetPrototype: ChanterelleSeeds
+    productPrototypes: [ FoodMushroom ]
+  - type: Plant
+    lifespan: 35
+    maturation: 10
+    production: 7
+    yield: 5
+    growthStages: 3
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment5
+
+- type: entity
+  parent: BasePlant
+  id: LingzhiPlants
+  name: lingzhi
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/lingzhi.rsi
+  - type: PlantData
+    noun: seeds-noun-spores
+    name: seeds-lingzhi-name
+    packetPrototype: LingzhiSeeds
+    productPrototypes: [ FoodLingzhi ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Ultravasculine:
+        id: Ultravasculine
+      Epinephrine:
+        id: Epinephrine
+
+- type: entity
+  parent: BasePlant
+  id: FlyAmanitaPlants
+  name: fly amanita
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/fly_amanita.rsi
+  - type: PlantData
+    noun: seeds-noun-spores
+    name: seeds-flyamanita-name
+    packetPrototype: FlyAmanitaSeeds
+    productPrototypes: [ FoodFlyAmanita ]
+  - type: Plant
+    lifespan: 25
+    maturation: 12
+    production: 3
+    yield: 3
+    growthStages: 2
+  - type: PlantChemicals
+    chemicals:
+      Amatoxin:
+        id: Amatoxin
+      Nutriment: ## yumby :)
+        id: BaseNutriment5

@@ -1,5 +1,8 @@
 using Content.Shared.Botany.Systems;
+using Content.Shared._Persistence14.Botany; // Persistence 14
+using Content.Shared.FixedPoint; // Persistence 14
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes; // Persistence 14
 
 namespace Content.Shared.Botany.Components;
 
@@ -21,4 +24,10 @@ public sealed partial class PlantGrowthComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float NutrientConsumption = 0.75f;
+
+    /// <summary>
+    /// Persistence: Base amount of nutrients required for and consumed at harvest.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    public Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> BaseRequirements = new();
 }

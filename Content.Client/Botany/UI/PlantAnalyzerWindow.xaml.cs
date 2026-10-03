@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Botany;
 using Content.Shared.Botany.Components;
@@ -23,6 +24,7 @@ namespace Content.Client.Botany.UI;
 public sealed partial class PlantAnalyzerWindow : FancyWindow
 {
     [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
     private readonly BotanySystem _botanySystem;
     private readonly PlantSystem _plantSystem;
 
@@ -244,13 +246,15 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
         foreach (var (reagent, quantity) in plantChemicals.Chemicals)
         {
-            var amount = quantity.Min;
+            var quantityProto = _prototypeManager.Index(quantity.Id); // Persistence 14: Plant nutrient rework
 
-            if (quantity.PotencyDivisor > 0f && plant.Potency > 0f)
-                amount += plant.Potency / quantity.PotencyDivisor;
+            var amount = quantityProto.BaseAmount;
 
-            if (quantity.Max > 0)
-                amount = Math.Min((float)amount, (float)quantity.Max);
+            // if (quantity.PotencyDivisor > 0f && plant.Potency > 0f)
+            //     amount += plant.Potency / quantity.PotencyDivisor;
+
+            // if (quantity.Max > 0)
+            //     amount = Math.Min((float)amount, (float)quantity.Max);
 
             if (amount > 0f)
                 Chemicals.AddReagent(new ReagentId(reagent, null), amount);

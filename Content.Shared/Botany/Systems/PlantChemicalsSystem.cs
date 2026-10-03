@@ -35,7 +35,7 @@ public sealed partial class PlantChemicalsSystem : EntitySystem
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
-
+/*
         var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent));
         var (chemicalId, quantity) = randomChems.Pick(random);
         var amount = FixedPoint2.Max(random.NextFloat(0f, 1f) * quantity, FixedPoint2.Epsilon);
@@ -56,6 +56,6 @@ public sealed partial class PlantChemicalsSystem : EntitySystem
         var potencyDivisor = 100f / seedChemQuantity.Max;
         seedChemQuantity.PotencyDivisor = (float)potencyDivisor;
         ent.Comp.Chemicals[chemicalId] = seedChemQuantity;
-        Dirty(ent);
+        Dirty(ent);*/ // TODO: Re-implement this
     }
 }

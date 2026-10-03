@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityEffects;
@@ -8,6 +9,7 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Botany.Systems;
@@ -30,6 +32,7 @@ public sealed partial class PlantTraySystem : EntitySystem
     [Dependency] private EntityQuery<PlantDataComponent> _dataQuery = default!;
     [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery = default!;
     [Dependency] private EntityQuery<PlantWeedPestComponent> _weedPestQuery = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
 
     [SubscribeLocalEvent]
     private void OnExamine(Entity<PlantTrayComponent> ent, ref ExaminedEvent args)
@@ -49,10 +52,11 @@ public sealed partial class PlantTraySystem : EntitySystem
                 args.PushMarkup(Loc.GetString("plant-component-something-already-growing-message", ("seedName", name)));
             }
 
-            args.PushMarkup(Loc.GetString("tray-component-water-level-message",
+            /*args.PushMarkup(Loc.GetString("tray-component-water-level-message",
                 ("waterLevel", (int)ent.Comp.WaterLevel)));
             args.PushMarkup(Loc.GetString("tray-component-nutrient-level-message",
-                ("nutritionLevel", (int)ent.Comp.NutritionLevel)));
+                ("nutritionLevel", (int)ent.Comp.NutritionLevel)));*/
+            args.PushMarkup(GetTrayNutrientsMarkup(ent.AsNullable())); // Persistence 14
 
             args.PushMarkup(GetTrayWarningsMarkup(ent.AsNullable()));
         }
@@ -183,17 +187,19 @@ public sealed partial class PlantTraySystem : EntitySystem
     }
 
     /// <summary>
-    /// Adjusts the nutrient level of the tray.
+    /// Persistence: Adjusts the tray's level of a specified nutrient.
     /// </summary>
     [PublicAPI]
-    public void AdjustNutrient(Entity<PlantTrayComponent?> ent, float amount)
+    public void AdjustNutrient(Entity<PlantTrayComponent?> ent, FixedPoint2 amount, ProtoId<PlantNutrientPrototype>  nutrient)
     {
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        ent.Comp.NutritionLevel += amount;
-        ent.Comp.NutritionLevel = MathHelper.Clamp(ent.Comp.NutritionLevel, 0f, ent.Comp.MaxNutritionLevel);
-        DirtyField(ent, nameof(ent.Comp.NutritionLevel));
+        if (!ent.Comp.Nutrients.TryAdd(nutrient, amount))
+            ent.Comp.Nutrients[nutrient] += amount;
+
+        //ent.Comp.Nutrients[nutrient] = MathHelper.Clamp(ent.Comp.Nutrients[nutrient], FixedPoint2.Zero);
+        DirtyField(ent, nameof(ent.Comp.Nutrients));
     }
 
     /// <summary>
@@ -356,6 +362,29 @@ public sealed partial class PlantTraySystem : EntitySystem
 
             if (_plantHolder.GetHealthThreshold(plantUid.Value))
                 markup.Add(Loc.GetString("tray-component-plant-health-warning"));
+        }
+
+        return string.Join("\n", markup);
+    }
+
+    /// <summary>
+    /// Persistence: Gets the nutrients markup of the tray.
+    /// </summary>
+    [PublicAPI]
+    public string GetTrayNutrientsMarkup(Entity<PlantTrayComponent?> ent)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
+            return string.Empty;
+
+        var markup = new List<string>();
+
+        foreach (var (nutrientId, amount) in ent.Comp.Nutrients)
+        {
+            var nutrient = _prototypeManager.Index(nutrientId);
+            markup.Add(Loc.GetString("tray-component-nutrient-message",
+                ("name", nutrient.LocalizedName),
+                ("color", nutrient.SubstanceColor),
+                ("nutrientLevel", amount)));
         }
 
         return string.Join("\n", markup);

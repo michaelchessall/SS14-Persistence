@@ -1,0 +1,283 @@
+- type: entity
+  parent: BasePlant
+  id: TeaPlantPlants
+  name: tea plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/tea_plant.rsi
+  - type: PlantData
+    name: seeds-teaplant-name
+    packetPrototype: TeaPlantSeeds
+    productPrototypes: [ LeavesTea ]
+  - type: Plant
+    lifespan: 75
+    maturation: 5
+    production: 3
+    yield: 2
+    potency: 20
+    growthStages: 5
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Vitamin:
+        id: BasicVitamin5
+
+- type: entity
+  parent: BasePlant
+  id: CabbagePlants
+  name: cabbage
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cabbage.rsi
+  - type: PlantData
+    name: seeds-cabbage-name
+    packetPrototype: CabbageSeeds
+    productPrototypes: [ FoodCabbage ]
+  - type: Plant
+    lifespan: 50
+    maturation: 7
+    production: 5
+    yield: 3
+    growthStages: 1
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment10
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: CannabisPlants
+  name: cannabis
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cannabis.rsi
+  - type: PlantData
+    name: seeds-cannabis-name
+    packetPrototype: CannabisSeeds
+    productPrototypes: [ LeavesCannabis ]
+    mutationPrototypes: [ RainbowCannabisPlants ]
+  - type: Plant
+    lifespan: 75
+    maturation: 8
+    production: 12
+    yield: 2
+    growthStages: 3
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      THC:
+        id: BasicSmokable
+
+- type: entity
+  parent: BasePlant
+  id: RainbowCannabisPlants
+  name: rainbow cannabis
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/rainbow_cannabis.rsi
+  - type: PlantData
+    name: seeds-rainbow-cannabis-name
+    packetPrototype: RainbowCannabisSeeds
+    productPrototypes: [ LeavesCannabisRainbow ]
+  - type: Plant
+    lifespan: 75
+    maturation: 8
+    production: 12
+    yield: 2
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      SpaceDrugs:
+        id: RainbowCannabisSpaceMirage
+      Lipolicide:
+        id: RainbowCannabisLipolicide
+      MindbreakerToxin:
+        id: RainbowCannabisMindbreaker
+      Happiness:
+        id: RainbowCannabisHappiness
+      Psicodine:
+        id: RainbowCannabisPsicodine
+
+- type: entity
+  parent: BasePlant
+  id: TobaccoPlants
+  name: tobacco plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/tobacco.rsi
+  - type: PlantData
+    name: seeds-tobacco-name
+    packetPrototype: TobaccoSeeds
+    productPrototypes: [ LeavesTobacco ]
+  - type: Plant
+    lifespan: 75
+    maturation: 5
+    production: 5
+    yield: 2
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nicotine:
+        id: BasicSmokable
+
+- type: entity
+  parent: BasePlant
+  id: NettlePlants
+  name: nettle
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/nettle.rsi
+  - type: PlantData
+    name: seeds-nettle-name
+    packetPrototype: NettleSeeds
+    productPrototypes: [ Nettle ]
+    mutationPrototypes: [ DeathNettlePlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 6
+    yield: 2
+    growthStages: 5
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Histamine:
+        id: NettleHistamine
+
+- type: entity
+  parent: BasePlant
+  id: DeathNettlePlants
+  name: death nettle
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/death_nettle.rsi
+  - type: PlantData
+    name: seeds-deathnettle-name
+    packetPrototype: DeathNettleSeeds
+    productPrototypes: [ DeathNettle ]
+    plantLogImpact: High
+    harvestLogImpact: High
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 6
+    yield: 2
+    growthStages: 5
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      SulfuricAcid:
+        id: DeathNettleSulfuricAcid
+      FluorosulfuricAcid:
+        id: DeathNettleFluorosulfuricAcid
+
+- type: entity
+  parent: BasePlant
+  id: AloePlants
+  name: aloe
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/aloe.rsi
+  - type: PlantData
+    name: seeds-aloe-name
+    packetPrototype: AloeSeeds
+    productPrototypes: [ FoodAloe ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 5
+  - type: PlantChemicals
+    chemicals:
+      Aloe:
+        id: Aloe
+      Dermaline:
+        id: AloeDermaline
+
+- type: entity
+  parent: BasePlant
+  id: AmbrosiaVulgarisPlants
+  name: ambrosia vulgaris
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/ambrosia_vulgaris.rsi
+  - type: PlantData
+    name: seeds-ambrosiavulgaris-name
+    packetPrototype: AmbrosiaVulgarisSeeds
+    productPrototypes: [ FoodAmbrosiaVulgaris ]
+    mutationPrototypes: [ AmbrosiaDeusPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    potency: 10
+    growthStages: 6
+  - type: PlantGrowth
+    waterConsumption: 0.6
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment2
+      Bicaridine:
+        id: Bicaridine5
+      Kelotane:
+        id: AmbrosiaVulgarisKelotane
+      Vitamin:
+        id: BasicVitamin2
+
+- type: entity
+  parent: BasePlant
+  id: AmbrosiaDeusPlants
+  name: ambrosia deus
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/ambrosia_deus.rsi
+  - type: PlantData
+    name: seeds-ambrosiadeus-name
+    packetPrototype: AmbrosiaDeusSeeds
+    productPrototypes: [ FoodAmbrosiaDeus ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 6
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment2
+      Nectar:
+        id: AmbrosiaDuesNectar
+        baseAmount: 1
+        requirements:
+          Water:
+            requirement: 2
+          Nutrient:
+            requirement: 1
+          Radiation:
+            requirement: 1
+            bonusRequirement: 9
+            bonusAmount: 2
+      SpaceDrugs:
+        id: AmbrosiaDuesSpaceMirage
