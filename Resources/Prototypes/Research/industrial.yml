@@ -232,7 +232,9 @@
   cost: 62500
   recipeUnlocks:
   - Engineeringsuit
+  - WaffleCoEngisuit
   - Atmossuit
+  - WaffleCoAtmossuit
   - AtmosFireSuit
   - AtmosFireHelmet
   - Miningsuit
@@ -287,6 +289,7 @@
   - Researchdirectorsuit
   - Chiefmedicalsuit
   - Chiefengineersuit
+  - WaffleCoElitesuit
   - Captainsuit
   - ClothingHandsGlovesCaptain
   technologyPrerequisites:

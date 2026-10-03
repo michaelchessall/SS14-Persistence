@@ -83,6 +83,22 @@
     Gold: 300
   completetime: 20
 
+#Persistence 14
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: WaffleCoEngisuit
+  result: ClothingOuterHardsuitWaffleCoEngi
+  materials:
+    Plasteel: 2000
+    Durathread: 1500
+    Glass: 500
+    Uranium: 500
+    Silver: 300
+    Gold: 300
+    Bananium: 150
+  completetime: 20
+
+
 - type: latheRecipe
   parent: BaseHardsuitRecipe
   id: Atmossuit
@@ -95,6 +111,22 @@
     Silver: 300
     Gold: 300
     Diamond: 100
+  completetime: 20
+
+#Persistence 14
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: WaffleCoAtmossuit
+  result: ClothingOuterHardsuitWaffleCoAtmos
+  materials:
+    Plasteel: 2000
+    Durathread: 1500
+    Glass: 500
+    Uranium: 250
+    Silver: 300
+    Gold: 300
+    Diamond: 100
+    Bananium: 300
   completetime: 20
 
 - type: latheRecipe
@@ -201,6 +233,22 @@
     Durathread: 1500
     Uranium: 1500
     Plasma: 1500
+    Glass: 500
+  unlockUses: 1
+  completetime: 30
+
+#Persistence 14
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: WaffleCoElitesuit
+  result: ClothingOuterHardsuitWaffleCoElite
+  materials:
+    Plasteel: 2000
+    Durathread: 1500
+    Uranium: 1500
+    Plasma: 1500
+    Bananium: 450
     Glass: 500
   unlockUses: 1
   completetime: 30
