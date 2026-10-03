@@ -40,6 +40,10 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: Upgradeable
+    upgrades:
+      BasicMarine : 0
+      BasicPrecursor : 0
 
 - type: entity
   abstract: true

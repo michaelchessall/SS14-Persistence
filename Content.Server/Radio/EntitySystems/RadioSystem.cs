@@ -50,6 +50,7 @@ public sealed partial class RadioSystem : SharedRadioSystem
         base.Initialize();
         SubscribeLocalEvent<IntrinsicRadioReceiverComponent, RadioReceiveEvent>(OnIntrinsicReceive);
         SubscribeLocalEvent<IntrinsicRadioTransmitterComponent, EntitySpokeEvent>(OnIntrinsicSpeak);
+        SubscribeLocalEvent<TelecomServerComponent, ExaminedEvent>(OnServerExamined);
     }
 
     private void OnServerExamined(Entity<TelecomServerComponent> ent, ref ExaminedEvent args)

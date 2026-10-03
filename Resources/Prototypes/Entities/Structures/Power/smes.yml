@@ -120,6 +120,9 @@
           type: BatteryBoundUserInterface
     - type: ActivatableUI
       key: enum.BatteryUiKey.Key
+    - type: Upgradeable
+      upgrades:
+        BatteryCapacityZenith : 0
 
 # SMES' in use
 

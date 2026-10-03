@@ -28,5 +28,8 @@ public enum UpgradeType
 {
     Storage,
     RadarRange,
-    ApcMaxLoad
+    ApcMaxLoad,
+    EnttiyStorageCapacity,
+    BatteryCapacity,
+    TelecomServerRange
 }

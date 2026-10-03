@@ -89,3 +89,6 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
+  - type: Upgradeable
+    upgrades:
+      EntityStorageCapacityMarine : 0

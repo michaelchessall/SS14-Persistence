@@ -36,6 +36,9 @@
   - type: StaticPrice
     price: 75
   - type: RequireProjectileTarget
+  - type: Upgradeable
+    upgrades:
+      EntityStorageCapacityMarine : 0
 
 - type: entity
   parent: [ BaseCrate, StructureHealthContainerWeak ]

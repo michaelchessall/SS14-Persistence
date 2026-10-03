@@ -1,6 +1,7 @@
 using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
+using Content.Server.Power.EntitySystems;
 using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Systems;
 using Content.Shared._Persistence14.Upgrades.Components;
@@ -9,9 +10,12 @@ using Content.Shared._Persistence14.Upgrades.Systems;
 using Content.Shared.Database;
 using Content.Shared.Examine;
 using Content.Shared.Popups;
+using Content.Shared.Power.Components;
 using Content.Shared.Prayer;
+using Content.Shared.Radio.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
+using Content.Shared.Storage.Components;
 using Content.Shared.Verbs;
 using NetCord;
 using Robust.Shared.Audio;
@@ -31,9 +35,13 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     [Dependency] private EntityQuery<StorageComponent> _storageQuery = default!;
     [Dependency] private EntityQuery<RadarConsoleComponent> _radarQuery = default!;
     [Dependency] private EntityQuery<ApcComponent> _apcQuery = default!;
+    [Dependency] private EntityQuery<EntityStorageComponent> _entityStorageQuery = default!;
+    [Dependency] private EntityQuery<BatteryComponent> _batteryQuery = default!;
+    [Dependency] private EntityQuery<TelecomServerComponent> _telecomServerQuery = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private RadarConsoleSystem _radar = default!;
+    [Dependency] private BatterySystem _battery = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -134,12 +142,42 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                 {
                     ApplyApcMaxLoadUpgrade(uid, upgradeProto);
                 }
+                if(upgradeProto.UpgradeType == UpgradeType.EnttiyStorageCapacity)
+                {
+                    ApplyEntityStorageCapacityUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.BatteryCapacity)
+                {
+                    ApplyBatteryCapacityUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.TelecomServerRange)
+                {
+                    ApplyTelecomServerRangeUpgrade(uid, upgradeProto);
+                }
                 comp.Upgrades[upgrade] = appliedTimes + 1;
                 QueueDel(moduleUid);
                 _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Weapons/Guns/MagIn/revolver_magin.ogg"), uid, null);
                 return;
             }
         }
+    }
+
+    private void ApplyTelecomServerRangeUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if(!_telecomServerQuery.TryComp(uid, out var telecomServerComp)) return;
+        telecomServerComp.MaxRange += upgradeProto.UpgradeValues[0];
+    }
+
+    private void ApplyBatteryCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if(!_batteryQuery.TryComp(uid, out var batteryComp)) return;
+        _battery.SetMaxCharge((uid, batteryComp), batteryComp.MaxCharge + upgradeProto.UpgradeValues[0]);
+    }
+
+    private void ApplyEntityStorageCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_entityStorageQuery.TryComp(uid, out var entityStorageComp)) return;
+        entityStorageComp.Capacity += upgradeProto.UpgradeValues[0];
     }
 
     private void ApplyApcMaxLoadUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
@@ -153,7 +191,6 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     {
         if (!_radarQuery.TryComp(uid, out var radarComp)) return;
         _radar.SetRange(uid, radarComp.MaxRange + upgradeProto.UpgradeValues[0], radarComp);
-        Dirty(uid, radarComp);
     }
 
     private void ApplyStorageUpgrade(EntityUid uid, UpgradePrototype upgradeProto)

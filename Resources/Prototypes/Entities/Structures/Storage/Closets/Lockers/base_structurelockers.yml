@@ -52,6 +52,9 @@
             max: 2
   - type: StaticPrice
     price: 300
+  - type: Upgradeable
+    upgrades:
+      EntityStorageCapacityMarine : 0
 
 - type: entity
   id: LockerBaseSecure

@@ -96,7 +96,7 @@
     color: "#39b8ee"
   - type: LitOnPowered
   - type: ApcPowerReceiver
-    powerLoad: 5000 
+    powerLoad: 5000
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -185,6 +185,10 @@
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+    - type: Upgradeable
+      upgrades:
+        TelecomServerRangeLuminal : 0
+        TelecomServerRangeShadow : 0
 
 - type: entity
   parent: TelecomServer
@@ -301,6 +305,6 @@
   - type: TelecomServer
     maxRange: 2048 # Increased from 1024
   - type: ApcPowerReceiver
-    powerLoad: 15000 
+    powerLoad: 15000
   - type: Machine
     board: TelecomServerAdvancedCircuitboard
