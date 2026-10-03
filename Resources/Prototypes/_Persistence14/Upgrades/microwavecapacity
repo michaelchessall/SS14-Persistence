@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: MicrowaveCapacityMarine
+  name: Capacity Increase
+  description: "Increases capacity by 5"
+  targetModule: Marine
+  maxApplications: 2
+  upgradeValues:
+    - 5
+  upgradeType: MicrowaveCapacity

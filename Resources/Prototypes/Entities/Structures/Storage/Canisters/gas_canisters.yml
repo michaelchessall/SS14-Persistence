@@ -136,6 +136,9 @@
     - GasCanisters
   - type: Paintable
     group: Canisters
+  - type: Upgradeable
+    upgrades:
+      GasCanisterCapacityGreen : 0
 
 - type: entity
   parent: GasCanister

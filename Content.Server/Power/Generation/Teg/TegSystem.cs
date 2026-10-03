@@ -85,6 +85,10 @@ public sealed partial class TegSystem : EntitySystem
         SubscribeLocalEvent<TegGeneratorComponent, ExaminedEvent>(GeneratorExamined);
     }
 
+    public void SetPowerFactor(EntityUid uid, TegGeneratorComponent component, float factor)
+    {
+        component.PowerFactor = factor;
+    }
     private void GeneratorExamined(EntityUid uid, TegGeneratorComponent component, ExaminedEvent args)
     {
         if (GetNodeGroup(uid) is not { IsFullyBuilt: true })

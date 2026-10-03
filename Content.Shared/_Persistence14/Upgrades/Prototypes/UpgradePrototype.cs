@@ -20,7 +20,7 @@ public sealed partial class UpgradePrototype : IPrototype
     [DataField]
     public UpgradeType UpgradeType { get; set; } = UpgradeType.Storage;
     [DataField]
-    public List<int> UpgradeValues { get; set; } = new List<int>();
+    public List<float> UpgradeValues { get; set; } = new List<float>();
 
 }
 
@@ -31,5 +31,14 @@ public enum UpgradeType
     ApcMaxLoad,
     EnttiyStorageCapacity,
     BatteryCapacity,
-    TelecomServerRange
+    TelecomServerRange,
+    LatheSpeed,
+    MicrowaveCapacity,
+    MicrowaveSpeed,
+    AirTankCapacity,
+    GasCanisterCapacity,
+    ReagentGrinderSpeed,
+    TegGeneratorPower,
+    ToolSpeed,
+    RadiationCollectorPower
 }

@@ -151,6 +151,11 @@
     walkModifier: 0.7
     sprintModifier: 0.7
   - type: DamageExaminable
+  - type: Upgradeable
+    upgrades:
+      MicrowaveCapacityMarine : 0
+      MicrowaveSpeedPrecursor : 0
+
 
 - type: entity
   id: SyndicateMicrowave

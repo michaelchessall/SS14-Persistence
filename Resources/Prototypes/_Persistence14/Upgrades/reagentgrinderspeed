@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: ReagentGrinderSpeedPrecursor
+  name: Speed Increase
+  description: "Increases grinding speed by 10%"
+  targetModule: Precursor
+  maxApplications: 2
+  upgradeValues:
+    - 0.1
+  upgradeType: ReagentGrinderSpeed

@@ -1,0 +1,11 @@
+
+- type: upgrade
+  id: AirTankCapacityZenith
+  name: Capacity Increase
+  description: "Adds 2L of capcity to the gas tank."
+  targetModule: Zenith
+  maxApplications: 2
+  upgradeValues:
+    - 2
+  upgradeType: AirTankCapacity
+

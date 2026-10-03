@@ -23,6 +23,18 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using System.ComponentModel;
+using Content.Shared.Lathe;
+using Content.Server.Kitchen.Components;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Kitchen.Components;
+using Content.Server.Kitchen.EntitySystems;
+using Content.Shared.Atmos.Piping.Unary.Components;
+using Content.Server.Power.Generation.Teg;
+using Content.Shared.Tools.Components;
+using Content.Server.Lathe;
+using Content.Server.Tools;
+using Content.Server.Singularity.Components;
+using Content.Server.Singularity.EntitySystems;
 
 namespace Content.Server._Persistence14.Upgrades.Systems;
 
@@ -38,10 +50,23 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     [Dependency] private EntityQuery<EntityStorageComponent> _entityStorageQuery = default!;
     [Dependency] private EntityQuery<BatteryComponent> _batteryQuery = default!;
     [Dependency] private EntityQuery<TelecomServerComponent> _telecomServerQuery = default!;
+    [Dependency] private EntityQuery<LatheComponent> _latheQuery = default!;
+    [Dependency] private EntityQuery<MicrowaveComponent> _microwaveQuery = default!;
+    [Dependency] private EntityQuery<GasTankComponent> _gasTankQuery = default!;
+    [Dependency] private EntityQuery<ReagentGrinderComponent> _reagentGrinderQuery = default!;
+    [Dependency] private EntityQuery<GasCanisterComponent> _gasCanisterQuery = default!;
+    [Dependency] private EntityQuery<TegGeneratorComponent> _tegGeneratorQuery = default!;
+    [Dependency] private EntityQuery<RadiationCollectorComponent> _radiationCollectorQuery = default!;
+    [Dependency] private EntityQuery<ToolComponent> _toolQuery = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private RadarConsoleSystem _radar = default!;
     [Dependency] private BatterySystem _battery = default!;
+    [Dependency] private ReagentGrinderSystem _reagentGrinder = default!;
+    [Dependency] private TegSystem _teg = default!;
+    [Dependency] private ToolSystem _tool = default!;
+    [Dependency] private RadiationCollectorSystem _radiationCollector = default!;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -154,12 +179,102 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                 {
                     ApplyTelecomServerRangeUpgrade(uid, upgradeProto);
                 }
+                if (upgradeProto.UpgradeType == UpgradeType.LatheSpeed)
+                {
+                    ApplyLatheSpeedUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.MicrowaveCapacity)
+                {
+                    ApplyMicrowaveCapacityUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.MicrowaveSpeed)
+                {
+                    ApplyMicrowaveSpeedUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.AirTankCapacity)
+                {
+                    ApplyAirTankCapacityUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.ReagentGrinderSpeed)
+                {
+                    ApplyReagentGrinderSpeedUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.GasCanisterCapacity)
+                {
+                    ApplyGasCanisterCapacityUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.TegGeneratorPower)
+                {
+                    ApplyTegGeneratorPowerUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.ToolSpeed)
+                {
+                    ApplyToolSpeedUpgrade(uid, upgradeProto);
+                }
+                if (upgradeProto.UpgradeType == UpgradeType.RadiationCollectorPower)
+                {
+                    ApplyRadiationCollectorPowerUpgrade(uid, upgradeProto);
+                }
                 comp.Upgrades[upgrade] = appliedTimes + 1;
                 QueueDel(moduleUid);
                 _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Weapons/Guns/MagIn/revolver_magin.ogg"), uid, null);
                 return;
             }
         }
+    }
+
+    private void ApplyRadiationCollectorPowerUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if(!_radiationCollectorQuery.TryComp(uid, out var radiationCollectorComp)) return;
+        _radiationCollector.SetChargeModifier(uid, radiationCollectorComp.ChargeModifier + upgradeProto.UpgradeValues[0], radiationCollectorComp);
+    }
+
+    private void ApplyToolSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_toolQuery.TryComp(uid, out var toolComp)) return;
+        _tool.SetToolSpeedModifier(uid, toolComp, toolComp.SpeedModifier + upgradeProto.UpgradeValues[0]);
+    }
+
+    private void ApplyTegGeneratorPowerUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_tegGeneratorQuery.TryComp(uid, out var tegGeneratorComp)) return;
+        _teg.SetPowerFactor(uid, tegGeneratorComp, tegGeneratorComp.PowerFactor + upgradeProto.UpgradeValues[0]);
+    }
+
+    private void ApplyGasCanisterCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_gasCanisterQuery.TryComp(uid, out var gasCanisterComp)) return;
+        gasCanisterComp.Air.Volume += upgradeProto.UpgradeValues[0];
+    }
+
+    private void ApplyReagentGrinderSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_reagentGrinderQuery.TryComp(uid, out var reagentGrinderComp)) return;
+        _reagentGrinder.SetSpeedMultiplier((uid, reagentGrinderComp), reagentGrinderComp.WorkTimeMultiplier - upgradeProto.UpgradeValues[0]);
+    }
+
+    private void ApplyAirTankCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_gasTankQuery.TryComp(uid, out var gasTankComp)) return;
+        gasTankComp.Air.Volume += upgradeProto.UpgradeValues[0];
+    }
+
+    private void ApplyMicrowaveSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if(!_microwaveQuery.TryComp(uid, out var microwaveComp)) return;
+        microwaveComp.CookTimeMultiplier -= upgradeProto.UpgradeValues[0];
+    }
+
+    private void ApplyMicrowaveCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_microwaveQuery.TryComp(uid, out var microwaveComp)) return;
+        microwaveComp.Capacity += (int)upgradeProto.UpgradeValues[0];
+    }
+
+    private void ApplyLatheSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if(!_latheQuery.TryComp(uid, out var latheComp)) return;
+        latheComp.TimeMultiplier -= upgradeProto.UpgradeValues[0];
     }
 
     private void ApplyTelecomServerRangeUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
@@ -177,7 +292,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     private void ApplyEntityStorageCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
         if (!_entityStorageQuery.TryComp(uid, out var entityStorageComp)) return;
-        entityStorageComp.Capacity += upgradeProto.UpgradeValues[0];
+        entityStorageComp.Capacity += (int)upgradeProto.UpgradeValues[0];
     }
 
     private void ApplyApcMaxLoadUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
@@ -200,7 +315,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
             var x = upgradeProto.UpgradeValues[0];
             var y = upgradeProto.UpgradeValues[1];
             var box = storageComp.Grid[0];
-            storageComp.Grid[0] = new Box2i(box.Left, box.Bottom, box.Right + x, box.Top + y);
+            storageComp.Grid[0] = new Box2i(box.Left, box.Bottom, box.Right + (int)x, box.Top + (int)y);
             Dirty(uid, storageComp);
         }
     }

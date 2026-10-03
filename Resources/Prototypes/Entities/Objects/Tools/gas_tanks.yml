@@ -60,6 +60,10 @@
       Steel: 185
   - type: StaticPrice
     price: 30
+  - type: Upgradeable
+    upgrades:
+      AirTankCapacityZenith : 0
+
 
 - type: entity
   abstract: true

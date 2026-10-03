@@ -96,6 +96,9 @@
       - !type:PlaySoundBehavior
         sound:
           collection: MetalGlassBreak
+  - type: Upgradeable
+    upgrades:
+      RadiationCollectorPowerShadow : 0
 
 - type: entity
   id: RadiationCollectorNoTank

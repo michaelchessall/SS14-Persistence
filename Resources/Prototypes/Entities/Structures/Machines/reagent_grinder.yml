@@ -74,6 +74,9 @@
       inputContainer: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: Upgradeable
+    upgrades:
+      ReagentGrinderSpeedPrecursor : 0
 
 - type: entity
   id: KitchenReagentGrinderBeaker

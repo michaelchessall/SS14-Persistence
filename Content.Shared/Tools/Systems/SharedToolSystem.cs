@@ -47,6 +47,11 @@ public abstract partial class SharedToolSystem : EntitySystem
         SubscribeLocalEvent<ToolComponent, ExaminedEvent>(OnExamine);
     }
 
+    public void SetToolSpeedModifier(EntityUid uid, ToolComponent tool, float speedModifier)
+    {
+        tool.SpeedModifier = speedModifier;
+    }
+
     private void OnDoAfter(EntityUid uid, ToolComponent tool, ToolDoAfterEvent args)
     {
         if (!args.Cancelled)

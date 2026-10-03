@@ -1,0 +1,11 @@
+
+- type: upgrade
+  id: GasCanisterCapacityGreen
+  name: Capacity Increase
+  description: "Adds 500L of capcity to the canister."
+  targetModule: Green
+  maxApplications: 2
+  upgradeValues:
+    - 500
+  upgradeType: GasCanisterCapacity
+

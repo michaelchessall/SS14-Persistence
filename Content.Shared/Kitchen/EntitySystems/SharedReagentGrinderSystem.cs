@@ -68,6 +68,12 @@ public abstract partial class SharedReagentGrinderSystem : EntitySystem
         UpdateUi(Transform(ent).ParentUid);
     }
 
+    public void SetSpeedMultiplier(Entity<ReagentGrinderComponent> ent, float multiplier)
+    {
+        ent.Comp.WorkTimeMultiplier = multiplier;
+        Dirty(ent);
+    }
+
     private void OnGrinderStartup(Entity<ReagentGrinderComponent> ent, ref ComponentStartup args)
     {
         ent.Comp.InputContainer = _containerSystem.EnsureContainer<Container>(ent.Owner, ReagentGrinderComponent.InputContainerId);

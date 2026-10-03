@@ -41,6 +41,13 @@ public sealed partial class RadiationCollectorSystem : EntitySystem
         SubscribeLocalEvent<NetworkBatteryPostSync>(PostSync);
     }
 
+    public void SetChargeModifier(EntityUid uid, float modifier, RadiationCollectorComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        component.ChargeModifier = modifier;
+    }
+
     private bool TryGetLoadedGasTank(EntityUid uid, [NotNullWhen(true)] out GasTankComponent? gasTankComponent)
     {
         gasTankComponent = null;
