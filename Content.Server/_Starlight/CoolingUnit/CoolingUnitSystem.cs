@@ -54,12 +54,21 @@ public sealed partial class CoolingUnitSystem : SharedCoolingUnitSystem
                     !_pid.TryResolveId(coolingUnit.CoolingTarget, out var target) ||
                     !TryComp<TemperatureComponent>(target, out var temperatureComponent) ||
                     !TryComp<ThermalRegulatorComponent>(target, out var thermalRegulatorComponent) ||
+<<<<<<< HEAD
                     temperatureComponent.Temperature <= thermalRegulatorComponent.NormalBodyTemperature)
                     continue;
 
 
                 var coolingAmount = Math.Min(coolingUnit.MaxCooling * (float)timeSince.TotalSeconds, temperatureComponent.Temperature - thermalRegulatorComponent.NormalBodyTemperature);
                 _tempSys.ConductHeat((target, temperatureComponent), temperatureComponent.Temperature - coolingAmount, timeSince.Milliseconds * 1000f);
+=======
+                    temperatureComponent.CurrentTemperature <= thermalRegulatorComponent.NormalBodyTemperature)
+                    continue;
+
+
+                var coolingAmount = Math.Min(coolingUnit.MaxCooling * (float)timeSince.TotalSeconds, temperatureComponent.CurrentTemperature - thermalRegulatorComponent.NormalBodyTemperature);
+                _tempSys.ForceChangeTemperature(target, temperatureComponent.CurrentTemperature - coolingAmount, temperatureComponent);
+>>>>>>> origin/staging-stable
             }
         }
     }
@@ -88,7 +97,11 @@ public sealed partial class CoolingUnitSystem : SharedCoolingUnitSystem
 
     private void OnEquipped(EntityUid uid, CoolingUnitComponent component, ref GotEquippedEvent args)
     {
+<<<<<<< HEAD
         component.CoolingTarget = _pid.EnsureId(args.EquipTarget);
+=======
+        component.CoolingTarget = _pid.EnsureId(args.Equipee);
+>>>>>>> origin/staging-stable
         Dirty(uid, component);
     }
 

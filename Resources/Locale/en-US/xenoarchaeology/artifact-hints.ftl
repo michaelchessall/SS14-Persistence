@@ -49,12 +49,15 @@ xenoarch-trigger-tip-no-oxygen = Oxygen-free environment
 xenoarch-trigger-tip-water = Water
 xenoarch-trigger-tip-co2 = Carbon dioxide
 xenoarch-trigger-tip-plasma = Non-solid plasma
-xenoarch-trigger-tip-tritium = Tritium
 xenoarch-trigger-tip-ammonia = Ammonia
+<<<<<<< HEAD
 xenoarch-trigger-tip-n2o = Nitrous oxide
 xenoarch-trigger-tip-frezon = Frezon
 xenoarch-trigger-tip-radiation = Heavy-ion radiation
 xenoarch-trigger-tip-microwave = Microwave radiation
+=======
+xenoarch-trigger-tip-radiation = Radiation
+>>>>>>> origin/staging-stable
 xenoarch-trigger-tip-brute-damage = Physical damage
 xenoarch-trigger-tip-interaction = Physical interaction
 xenoarch-trigger-tip-wrenching = Tightening
@@ -70,6 +73,7 @@ xenoarch-trigger-tip-throw = Being thrown
 xenoarch-trigger-tip-death = Death
 xenoarch-trigger-tip-magnet = Magnetic waves
 
+<<<<<<< HEAD
 # the triggers should be more obvious than the effects
 # gives people an idea of what to do: don't be too specific (i.e. no "welders")
 
@@ -85,6 +89,8 @@ xenoarch-trigger-tip-anomparticle = Anomaly-Effecting Particles
 xenoarch-trigger-tip-stamina-damage = Organic Exhaustion
 xenoarch-trigger-tip-laser = High-Intensity photon impacts
 
+=======
+>>>>>>> origin/staging-stable
 
 ### Description hints
 xenoarch-trigger-examine-wrenching = There's a loose bit spinning around.

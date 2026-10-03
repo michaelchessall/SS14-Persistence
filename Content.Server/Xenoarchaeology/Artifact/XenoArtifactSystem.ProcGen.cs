@@ -12,8 +12,13 @@ namespace Content.Server.Xenoarchaeology.Artifact;
 
 public sealed partial class XenoArtifactSystem
 {
+<<<<<<< HEAD
     [Dependency] private EntityWhitelistSystem _entityWhitelist = default!;
     [Dependency] private RandomTableSystem _randomTable = default!;
+=======
+    [Dependency] private readonly EntityWhitelistSystem _entityWhitelist = default!;
+    [Dependency] private readonly RandomTableSystem _randomTable = default!;
+>>>>>>> origin/staging-stable
 
     private void GenerateArtifactStructure(Entity<XenoArtifactComponent> ent)
     {

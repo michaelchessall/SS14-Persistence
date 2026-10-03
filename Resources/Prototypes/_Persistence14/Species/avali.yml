@@ -9,6 +9,7 @@
   maleFirstNames: names_avali_first
   femaleFirstNames: names_avali_first
   lastNames: names_avali_packs
+<<<<<<< HEAD
   defaultSoundsBySex:
   - MaleAvali
   - FemaleAvali
@@ -16,3 +17,5 @@
   voices:
   - MaleAvali
   - FemaleAvali
+=======
+>>>>>>> origin/staging-stable

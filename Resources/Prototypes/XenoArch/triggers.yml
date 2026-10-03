@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 - type: weightedRandomXenoArchTrigger
   id: DefaultTriggers
   weights:
@@ -64,6 +65,8 @@
     TriggerChemSticky: .5
     TriggerChemSlippery: .5
 
+=======
+>>>>>>> origin/staging-stable
 - type: xenoArchTrigger
   id: TriggerMusic
   tip: xenoarch-trigger-tip-music
@@ -139,6 +142,7 @@
   - type: XATGas
     gases:
     - Plasma
+<<<<<<< HEAD
   - type: XATReactive
     whitelist:
       reagents:
@@ -155,6 +159,12 @@
     whitelist:
       reagents:
       - Tritium
+=======
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Plasma
+>>>>>>> origin/staging-stable
 
 - type: xenoArchTrigger
   id: TriggerAmmonia
@@ -167,6 +177,7 @@
     whitelist:
       reagents:
       - Ammonia
+<<<<<<< HEAD
 
 - type: xenoArchTrigger
   id: TriggerN2O
@@ -191,6 +202,8 @@
     whitelist:
       reagents:
       - Frezon
+=======
+>>>>>>> origin/staging-stable
 
 - type: xenoArchTrigger
   id: TriggerRadiation
@@ -295,6 +308,7 @@
   - type: XATExaminableText
     examineText: xenoarch-trigger-examine-cutting
 
+<<<<<<< HEAD
 #- type: xenoArchTrigger
 #  id: TriggerRolling
 #  tip: xenoarch-trigger-tip-rolling
@@ -313,6 +327,8 @@
 #  - type: XATExaminableText
 #    examineText: xenoarch-trigger-examine-brushing
 
+=======
+>>>>>>> origin/staging-stable
 - type: xenoArchTrigger
   id: TriggerTimer
   tip: xenoarch-trigger-tip-timer
@@ -363,6 +379,7 @@
   id: TriggerMagnet
   tip: xenoarch-trigger-tip-magnet
   components:
+<<<<<<< HEAD
   - type: XATMagnet
 
 - type: xenoArchTrigger
@@ -642,3 +659,6 @@
 #    reagents:
 #    - SpaceLube
 #    - SoapReagent
+=======
+  - type: XATMagnet
+>>>>>>> origin/staging-stable

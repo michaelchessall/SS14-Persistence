@@ -19,7 +19,10 @@
     <PackageReference Include="NetCord" />
     <PackageReference Include="prometheus-net" />
     <PackageReference Include="Microsoft.Extensions.ObjectPool" />
+<<<<<<< HEAD
     <PackageReference Include="Serilog" />
+=======
+>>>>>>> origin/staging-stable
     <PackageReference Include="SixLabors.Fonts" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" />
   </ItemGroup>

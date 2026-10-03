@@ -19,8 +19,12 @@
     - Moth
     - Reptilian
     - Vulpkanin
+<<<<<<< HEAD
     - Avali # Persistence
     - Yinglet # Scav
+=======
+    - Avali
+>>>>>>> origin/staging-stable
 
 - type: loadoutEffectGroup # Persistance14 Edit
   id: EffectSpeciesAvali
