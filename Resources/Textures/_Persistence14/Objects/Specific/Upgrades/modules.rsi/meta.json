@@ -1,0 +1,80 @@
+{
+    "version": 1,
+    "license": "CC0-1.0",
+    "copyright": "Created by Cluckers1 (github), inhands and Syndicate.png Created by EmoGarbage404 (github)",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "luminals"
+        },
+        {
+            "name": "nanotrasen"
+        },
+        {
+            "name": "shadow"
+        },
+        {
+            "name": "solar-legion"
+        },
+        {
+            "name": "syndicate"
+        },
+        {
+            "name": "UNMC"
+        },
+        {
+            "name": "icon-lumi"
+        },
+        {
+            "name": "icon-NT"
+        },
+        {
+            "name": "icon-shadow"
+        },
+        {
+            "name": "icon-SL"
+        },
+        {
+            "name": "icon-syndi"
+        },
+        {
+            "name": "icon-UNMC"
+        },
+        {
+            "name": "base-icon-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-icon-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-module-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-part-inhand-right",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-left",
+            "directions": 4
+        },
+        {
+            "name": "base-stripes-inhand-right",
+            "directions": 4
+        }
+    ]
+
+}

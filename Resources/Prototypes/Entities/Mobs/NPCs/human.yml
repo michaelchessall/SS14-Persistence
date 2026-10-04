@@ -107,3 +107,22 @@
   - type: Cluwne
   - type: Speech
     speechVerb: Cluwne
+
+- type: entity
+  parent: MobHuman
+  suffix: Dead
+  id: SalvageZombieHuman
+  name: unidentified corpse
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: NonSpreaderZombie
+  - type: ZombifyOnDeath
+  - type: Damageable
+    damage:
+      types:
+        Slash: 100
+        Blunt: 99
+  - type: Inventory
+    templateId: corpse
+

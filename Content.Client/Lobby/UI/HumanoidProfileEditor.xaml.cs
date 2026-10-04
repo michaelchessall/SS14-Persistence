@@ -23,6 +23,7 @@ using Robust.Shared.Console.Commands;
 using Robust.Shared.ContentPack;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Random;
 using System.Linq;
 using Direction = Robust.Shared.Maths.Direction;
 
@@ -546,21 +547,54 @@ namespace Content.Client.Lobby.UI
         }
         private void CheckReady()
         {
+#if DEBUG
+            var random = IoCManager.Resolve<IRobustRandom>();
+#endif
             bool alignmentSelected = false;
             if(Profile?.Alignment != null)
             {
                 alignmentSelected = true;
             }
+#if DEBUG
+            else
+            {
+                if(_prototypeManager.TryGetRandom<AlignmentPrototype>(random, out var alignment) && alignment != null)
+                {
+                    Profile?.Alignment =  alignment.ID;
+                    alignmentSelected = true;
+                }
+            }
+#endif
             bool originSelected = false;
             if (Profile?.UniverseOrigin != null)
             {
                 originSelected = true;
             }
+#if DEBUG
+            else
+            {
+                if (_prototypeManager.TryGetRandom<UniverseOriginPrototype>(random, out var origin) && origin != null)
+                {
+                    Profile?.UniverseOrigin = origin.ID;
+                    originSelected = true;
+                }
+            }
+#endif
             bool motiveSelected = false;
             if (Profile?.Motive != null)
             {
                 motiveSelected = true;
             }
+#if DEBUG
+            else
+            {
+                if (_prototypeManager.TryGetRandom<MotivePrototype>(random, out var motive) && motive != null)
+                {
+                    Profile?.Motive = motive.ID;
+                    motiveSelected = true;
+                }
+            }
+#endif
             if (alignmentSelected && originSelected && motiveSelected)
             {
                 SaveButton.Disabled = false;

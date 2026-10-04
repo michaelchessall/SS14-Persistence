@@ -25,7 +25,7 @@
       - state: base-stripes-inhand-right
         color: "#7D7D7D"
   - type: Sprite
-    sprite: Objects/Specific/Robotics/borgmodule.rsi
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
   - type: StaticPrice
     price: 100
   - type: UpgradeModule
@@ -38,8 +38,8 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - state: solar-legion
+    - state: icon-SL
   - type: UpgradeModule
     targetModule: Zenith
 
@@ -50,8 +50,8 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - state: nanotrasen
+    - state: icon-NT
   - type: UpgradeModule
     targetModule: Green
 
@@ -62,8 +62,8 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - state: UNMC
+    - state: icon-UNMC
   - type: UpgradeModule
     targetModule: Marine
 
@@ -74,8 +74,8 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - state: shadow
+    - state: icon-shadow
   - type: UpgradeModule
     targetModule: Shadow
 
@@ -87,8 +87,8 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - state: syndicate
+    - state: icon-syndi
   - type: UpgradeModule
     targetModule: Precursor
 
@@ -100,7 +100,7 @@
   components:
   - type: Sprite
     layers:
-    - state: cargo
-    - state: icon-grappling-gun
+    - state: luminals
+    - state: icon-lumi
   - type: UpgradeModule
     targetModule: Luminal
