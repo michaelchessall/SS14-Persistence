@@ -88,7 +88,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
         if (!TryComp(args.User, out ActorComponent? actor))
             return;
         FormattedMessage msg = new();
-        msg.AddMarkup(GetUpgradeableExamineText(ent));
+        msg.TryAddMarkup(GetUpgradeableExamineText(ent), out _);
         _examine.AddDetailedExamineVerb(args, ent.Comp, msg, "Upgrades", hoverMessage: "Examine the upgrades.");
     }
 
@@ -101,11 +101,11 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
             var appliedTimes = kv.Value;
             var upgradeProto = _protoMan.Index(upgrade);
             var moduleTypeProto = _protoMan.Index(upgradeProto.TargetModule);
-            msg += $"\n\n{upgradeProto.Name} ({moduleTypeProto.Name}):\n{upgradeProto.Description} ({appliedTimes}/{upgradeProto.MaxApplications})";
+            msg += $"\n\n[bold]{upgradeProto.Name} ({moduleTypeProto.Name})[/bold]:\n[color=yellow]{upgradeProto.Description}[/color] ({appliedTimes}/{upgradeProto.MaxApplications})";
         }
         if (!ent.Comp.Chosen && ent.Comp.ChooseOneUpgrades.Count > 0)
         {
-            msg += $"\nChoose one of:";
+            msg += $"\nChoose one:";
         }
         foreach (var kv in ent.Comp.ChooseOneUpgrades)
         {
@@ -117,8 +117,8 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
             var appliedTimes = kv.Value;
             var upgradeProto = _protoMan.Index(upgrade);
             var moduleTypeProto = _protoMan.Index(upgradeProto.TargetModule);
-            msg += $"\n\n{upgradeProto.Name} ({moduleTypeProto.Name}):\n{upgradeProto.Description} ({appliedTimes}/{upgradeProto.MaxApplications})";
-
+            msg += $"\n\n[bold]{upgradeProto.Name} ({moduleTypeProto.Name})[/bold]:\n[color=yellow]{upgradeProto.Description}[/color] ({appliedTimes}/{upgradeProto.MaxApplications})";
+                
         }
 
         return msg;
