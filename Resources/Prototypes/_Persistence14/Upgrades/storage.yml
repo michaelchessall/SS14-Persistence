@@ -9,7 +9,6 @@
     - 0
 
 - type: upgrade
-  parent: StorageBasic
   id: BasicZenith
   name: Small Storage
   description: "Adds a row to the storage space."
@@ -19,7 +18,6 @@
     - 1
     - 0
 - type: upgrade
-  parent: StorageBasic
   id: BasicGreen
   name: Small Storage
   description: "Adds a row to the storage space."
@@ -30,7 +28,6 @@
     - 0
 
 - type: upgrade
-  parent: StorageBasic
   id: BasicShadow
   name: Small Storage
   description: "Adds a row to the storage space."
@@ -41,7 +38,6 @@
     - 0
 
 - type: upgrade
-  parent: StorageBasic
   id: BasicMarine
   name: Small Storage
   description: "Adds a row to the storage space."
@@ -52,7 +48,6 @@
     - 0
 
 - type: upgrade
-  parent: StorageBasic
   id: BasicPrecursor
   name: Small Storage
   description: "Adds a row to the storage space."
