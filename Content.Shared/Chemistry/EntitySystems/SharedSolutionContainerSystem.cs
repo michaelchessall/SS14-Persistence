@@ -859,8 +859,13 @@ public abstract partial class SharedSolutionContainerSystem : EntitySystem
         if (thermalEnergy == 0.0f)
             return;
 
+<<<<<<< HEAD
         var heatCap = solution.GetHeatCapacity(ProtoMan);
         var deltaT = thermalEnergy / heatCap;
+=======
+        var heatCap = solution.GetHeatCapacity(PrototypeManager);
+        var deltaT = heatCap == 0 ? 0 : thermalEnergy / heatCap; // Persistence: prevent infinite temperature solutions by adding heatCap == 0 ? 0 :
+>>>>>>> origin/staging-stable
         solution.Temperature = Math.Clamp(solution.Temperature + deltaT, min, max);
         UpdateChemicals(soln);
     }

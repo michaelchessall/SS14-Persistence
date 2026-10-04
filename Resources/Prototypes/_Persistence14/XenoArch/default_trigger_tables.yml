@@ -12,6 +12,7 @@
     weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersReagentsBasic
+    weight: 0.5
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersDamage
     weight: 0.5
@@ -32,14 +33,10 @@
   - !type:RandomTableNestedSelector
     tableId: XenoArchTriggersDamage
   - !type:RandomTableNestedSelector
-    tableId: XenoArchTriggersTrivial
-    weight: 0.5
-  - !type:RandomTableGroupSelector
-    children:
-    - !type:RandomTableNestedSelector
-      tableId: XenoArchTriggersDrinks
-    - !type:RandomTableNestedSelector
-      tableId: XenoArchTriggersFood
+    tableId: XenoArchTriggersDrinks
+  - !type:RandomTableNestedSelector
+    tableId: XenoArchTriggersFood
+    weight: .1
   - prototype: TriggerMedicine
   - prototype: TriggerChemBotany
   - prototype: TriggerDeath
