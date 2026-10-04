@@ -32,6 +32,11 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 200
+  - type: Upgradeable
+    chooseOneUpgrades:
+      ArmorMarine : 0
+      ArmorPrecursor : 0
+      ArmorShadow : 0
 
 #Security Helmet
 - type: entity

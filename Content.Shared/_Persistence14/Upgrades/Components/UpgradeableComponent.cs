@@ -10,6 +10,10 @@ public sealed partial class UpgradeableComponent : Component
     [DataField]
     public Dictionary<ProtoId<UpgradePrototype>, int> Upgrades = new();
     [DataField]
+    public Dictionary<ProtoId<UpgradePrototype>, int> ChooseOneUpgrades = new();
+    [DataField]
+    public bool Chosen = false;
+    [DataField]
     public string Verb = "Upgrade";
 
     [DataField("verbImage")]

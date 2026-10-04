@@ -1,0 +1,66 @@
+
+- type: upgrade
+  id: ArmorMarine
+  name: Piercing Armor
+  description: "Increases piercing armor"
+  targetModule: Marine
+  maxApplications: 2
+  upgradeType: Armor
+  armorModifiers:
+    coefficients:
+      Piercing: 0.1
+
+- type: upgrade
+  id: ArmorPrecursor
+  name: Slashing Armor
+  description: "Increases slashing armor"
+  targetModule: Precursor
+  maxApplications: 2
+  upgradeType: Armor
+  armorModifiers:
+    coefficients:
+      Slashing: 0.1
+
+- type: upgrade
+  id: ArmorShadow
+  name: Blunt Armor
+  description: "Increases blunt armor"
+  targetModule: Shadow
+  maxApplications: 2
+  upgradeType: Armor
+  armorModifiers:
+    coefficients:
+      Blunt: 0.1
+
+- type: upgrade
+  id: ArmorZenith
+  name: Heat Armor
+  description: "Increases heat armor"
+  targetModule: Zenith
+  maxApplications: 2
+  upgradeType: Armor
+  armorModifiers:
+    coefficients:
+      Heat: 0.1
+
+- type: upgrade
+  id: ArmorGreen
+  name: Caustic Armor
+  description: "Increases caustic armor"
+  targetModule: Green
+  maxApplications: 2
+  upgradeType: Armor
+  armorModifiers:
+    coefficients:
+      Caustic: 0.1
+
+- type: upgrade
+  id: ArmorLuminal
+  name: Radiation Armor
+  description: "Increases radiation armor"
+  targetModule: Luminal
+  maxApplications: 2
+  upgradeType: Armor
+  armorModifiers:
+    coefficients:
+      Radiation: 0.1

@@ -1,14 +1,28 @@
+using Content.Server.Examine;
 using Content.Server.Hands.Systems;
+using Content.Server.Kitchen.Components;
+using Content.Server.Kitchen.EntitySystems;
+using Content.Server.Lathe;
 using Content.Server.Popups;
 using Content.Server.Power.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Server.Power.Generation.Teg;
 using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Systems;
+using Content.Server.Singularity.Components;
+using Content.Server.Singularity.EntitySystems;
+using Content.Server.Tools;
 using Content.Shared._Persistence14.Upgrades.Components;
 using Content.Shared._Persistence14.Upgrades.Prototypes;
 using Content.Shared._Persistence14.Upgrades.Systems;
+using Content.Shared.Armor;
+using Content.Shared.Atmos.Components;
+using Content.Shared.Atmos.Piping.Unary.Components;
+using Content.Shared.Damage;
 using Content.Shared.Database;
 using Content.Shared.Examine;
+using Content.Shared.Kitchen.Components;
+using Content.Shared.Lathe;
 using Content.Shared.Popups;
 using Content.Shared.Power.Components;
 using Content.Shared.Prayer;
@@ -16,25 +30,16 @@ using Content.Shared.Radio.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
+using Content.Shared.Tools.Components;
 using Content.Shared.Verbs;
 using NetCord;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using System.ComponentModel;
-using Content.Shared.Lathe;
-using Content.Server.Kitchen.Components;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Kitchen.Components;
-using Content.Server.Kitchen.EntitySystems;
-using Content.Shared.Atmos.Piping.Unary.Components;
-using Content.Server.Power.Generation.Teg;
-using Content.Shared.Tools.Components;
-using Content.Server.Lathe;
-using Content.Server.Tools;
-using Content.Server.Singularity.Components;
-using Content.Server.Singularity.EntitySystems;
+using System.Linq;
 
 namespace Content.Server._Persistence14.Upgrades.Systems;
 
@@ -66,37 +71,63 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     [Dependency] private TegSystem _teg = default!;
     [Dependency] private ToolSystem _tool = default!;
     [Dependency] private RadiationCollectorSystem _radiationCollector = default!;
+    [Dependency] private ExamineSystem _examine = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<UpgradeableComponent, GetVerbsEvent<ActivationVerb>>(AddUpgradeVerb);
-        SubscribeLocalEvent<UpgradeableComponent, ExaminedEvent>(AddUpgradeableExamined);
+        SubscribeLocalEvent<UpgradeableComponent, GetVerbsEvent<ExamineVerb>>(AddExamineVerb);
     }
 
-    private void AddUpgradeableExamined(Entity<UpgradeableComponent> ent, ref ExaminedEvent args)
+    private void AddExamineVerb(Entity<UpgradeableComponent> ent, ref GetVerbsEvent<ExamineVerb> args)
     {
-        if (!args.IsInDetailsRange)
+        if (!args.CanAccess)
             return;
-        string msg = "\nUpgrades:";
+        if (!TryComp(args.User, out ActorComponent? actor))
+            return;
+        FormattedMessage msg = new();
+        msg.AddMarkup(GetUpgradeableExamineText(ent));
+        _examine.AddDetailedExamineVerb(args, ent.Comp, msg, "Upgrades", hoverMessage: "Examine the upgrades.");
+    }
+
+    private string GetUpgradeableExamineText(Entity<UpgradeableComponent> ent)
+    {
+        string msg = "";
         foreach(var kv in ent.Comp.Upgrades)
         {
             var upgrade = kv.Key;
             var appliedTimes = kv.Value;
             var upgradeProto = _protoMan.Index(upgrade);
             var moduleTypeProto = _protoMan.Index(upgradeProto.TargetModule);
-            msg += $"\n\n{upgradeProto.Name} ({moduleTypeProto.Name}):\n{upgradeProto.Description} ({appliedTimes}/{upgradeProto.MaxApplications})\n";
+            msg += $"\n\n{upgradeProto.Name} ({moduleTypeProto.Name}):\n{upgradeProto.Description} ({appliedTimes}/{upgradeProto.MaxApplications})";
+        }
+        if (!ent.Comp.Chosen && ent.Comp.ChooseOneUpgrades.Count > 0)
+        {
+            msg += $"\nChoose one of:";
+        }
+        foreach (var kv in ent.Comp.ChooseOneUpgrades)
+        {
+            if(ent.Comp.Chosen)
+            {
+                if (kv.Value == 0) continue;
+            }
+            var upgrade = kv.Key;
+            var appliedTimes = kv.Value;
+            var upgradeProto = _protoMan.Index(upgrade);
+            var moduleTypeProto = _protoMan.Index(upgradeProto.TargetModule);
+            msg += $"\n\n{upgradeProto.Name} ({moduleTypeProto.Name}):\n{upgradeProto.Description} ({appliedTimes}/{upgradeProto.MaxApplications})";
+
         }
 
-        args.PushText(msg);
+        return msg;
     }
 
     private void AddUpgradeVerb(EntityUid uid, UpgradeableComponent comp, GetVerbsEvent<ActivationVerb> args)
     {
         if (!args.CanAccess)
             return;
-        // if it doesn't have an actor and we can't reach it then don't add the verb
         if (!TryComp(args.User, out ActorComponent? actor))
             return;
         var upgradeVerb = new ActivationVerb
@@ -142,12 +173,27 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                 return true;
             }
         }
+        foreach (var kv in comp.ChooseOneUpgrades)
+        {
+            if (comp.Chosen && kv.Value == 0) continue;
+            var upgrade = kv.Key;
+            var appliedTimes = kv.Value;
+            var upgradeProto = _protoMan.Index(upgrade);
+            if (upgradeProto == null) continue;
+            if (upgradeProto.TargetModule == upgradeModuleComp.TargetModule && appliedTimes < upgradeProto.MaxApplications)
+            {
+                ApplyUpgrade(uid, comp, value, upgradeModuleComp, user);
+                comp.Chosen = true;
+                return true;
+            }
+        }
         return false;
     }
 
     private void ApplyUpgrade(EntityUid uid, UpgradeableComponent comp, EntityUid moduleUid, UpgradeModuleComponent upgradeModuleComp, EntityUid user)
     {
-        foreach (var kv in comp.Upgrades)
+        Dictionary<ProtoId<UpgradePrototype>, int> full_upgrades = comp.Upgrades.Concat(comp.ChooseOneUpgrades).ToDictionary(pair => pair.Key, pair => pair.Value);
+        foreach (var kv in full_upgrades)
         {
             var upgrade = kv.Key;
             var appliedTimes = kv.Value;
@@ -215,12 +261,56 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                 {
                     ApplyRadiationCollectorPowerUpgrade(uid, upgradeProto);
                 }
-                comp.Upgrades[upgrade] = appliedTimes + 1;
+                if(upgradeProto.UpgradeType == UpgradeType.Armor)
+                {
+                    ApplyArmorUpgrade(uid, upgradeProto);
+                }
+                if(comp.Upgrades.ContainsKey(upgrade))
+                {
+                    comp.Upgrades[upgrade] = appliedTimes + 1;
+                }
+                else if(comp.ChooseOneUpgrades.ContainsKey(upgrade))
+                {
+                    comp.ChooseOneUpgrades[upgrade] = appliedTimes + 1;
+                }
                 QueueDel(moduleUid);
                 _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Weapons/Guns/MagIn/revolver_magin.ogg"), uid, null);
                 return;
             }
         }
+    }
+
+    private void ApplyArmorUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if(upgradeProto.ArmorModifiers == null) return;
+        EnsureComp<ArmorComponent>(uid, out var armorComp);
+        if(armorComp.Modifiers == null)
+        {
+            armorComp.Modifiers = new DamageModifierSet();
+        }
+        foreach (var damageCo in upgradeProto.ArmorModifiers.Coefficients)
+        {
+            if(armorComp.Modifiers.Coefficients.ContainsKey(damageCo.Key))
+            {
+                armorComp.Modifiers.Coefficients[damageCo.Key] -= damageCo.Value;
+            }
+            else
+            {
+                armorComp.Modifiers.Coefficients[damageCo.Key] = 1 - damageCo.Value;
+            }
+        }
+        foreach (var damageFlat in upgradeProto.ArmorModifiers.FlatReductions)
+        {
+            if (armorComp.Modifiers.FlatReductions.ContainsKey(damageFlat.Key))
+            {
+                armorComp.Modifiers.FlatReductions[damageFlat.Key] += damageFlat.Value;
+            }
+            else
+            {
+                armorComp.Modifiers.FlatReductions[damageFlat.Key] = damageFlat.Value;
+            }
+        }
+        Dirty(uid, armorComp);
     }
 
     private void ApplyRadiationCollectorPowerUpgrade(EntityUid uid, UpgradePrototype upgradeProto)

@@ -1,3 +1,4 @@
+using Content.Shared.Damage;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared._Persistence14.Upgrades.Prototypes;
@@ -21,6 +22,8 @@ public sealed partial class UpgradePrototype : IPrototype
     public UpgradeType UpgradeType { get; set; } = UpgradeType.Storage;
     [DataField]
     public List<float> UpgradeValues { get; set; } = new List<float>();
+    [DataField]
+    public DamageModifierSet? ArmorModifiers = null;
 
 }
 
@@ -40,5 +43,6 @@ public enum UpgradeType
     ReagentGrinderSpeed,
     TegGeneratorPower,
     ToolSpeed,
-    RadiationCollectorPower
+    RadiationCollectorPower,
+    Armor
 }

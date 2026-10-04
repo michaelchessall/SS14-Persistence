@@ -32,6 +32,12 @@
     - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: armorbloodicon
 
+  - type: Upgradeable
+    chooseOneUpgrades:
+      ArmorMarine : 0
+      ArmorPrecursor : 0
+      ArmorShadow : 0
+
 #Standard armor vest, allowed for security only
 - type: entity
   parent: [ BaseSecurityContraband, ClothingOuterArmorBase ]

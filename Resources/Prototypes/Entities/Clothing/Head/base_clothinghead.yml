@@ -34,6 +34,12 @@
     iconVisuals:
     - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: helmetbloodicon
+  - type: Upgradeable
+    chooseOneUpgrades:
+      ArmorGreen : 0
+      ArmorZenith : 0
+      ArmorLuminal : 0
+
 
 - type: entity
   abstract: true
