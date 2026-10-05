@@ -432,35 +432,50 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
         return true;
     }
 
-    private bool TryGetUnparkPlacementLocation(MapId mapId, Vector2 origin, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle, float spawnDistance = 20f, int maxIterations = 20)
+    private bool TryGetUnparkPlacementLocation(MapId mapId, Vector2 origin, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle, float spawnDistance = 0, int maxIterations = 1000)
     {
         var finalCoords = new MapCoordinates(origin, mapId);
         angle = worldAngle;
-
+        var angleCount = 0;
         for (var i = 0; i < maxIterations; i++)
         {
-            var box2 = Box2.CenteredAround(finalCoords.Position, bounds.Size);
-            var box2Rot = new Box2Rotated(box2, angle, finalCoords.Position).Enlarged(-0.5f);
+            // i should probabmy making it take a semi random approach by making it use a radius where it randomly spawns inside that gets bigger as spawndistance does (while kinda nudgin git further with a minimum spawndistance) but eh, this works fine for now, maybe later
+            var randomPos = origin + (angle + Math.PI / 2).ToVec() * spawnDistance;
+            finalCoords = new MapCoordinates(randomPos, mapId);
 
-            // This doesn't stop it from spawning on top of random things in space
-            if (_mapManager.FindGridsIntersecting(finalCoords.MapId, box2Rot).Any())
+            var radius = 5000; //dont like it being hardcoded in case its dynamic but itll have to do for now untill i find where i can get it
+            var xMapBound = Math.Abs(Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(finalCoords.Y, 2)));
+            var yMapBound = Math.Abs(Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(finalCoords.X, 2)));
+            // make it start from zero spawndistance but take a 90 degrees direction turn if border reached or it reaches a quarter of its max distance
+            if (Math.Abs(finalCoords.X) >= xMapBound || Math.Abs(finalCoords.Y) >= yMapBound || i >= 250)
             {
-                // Bump it further and further just in case.
-                var fraction = (float)(i + 1) / maxIterations;
-                var randomPos = origin +
-                    (worldAngle + Math.PI / 2).ToVec() * (DockingSystem.DockRange + (spawnDistance * fraction));
-                finalCoords = new MapCoordinates(randomPos, mapId);
+                if (angleCount >= 3)
+                {
+                    angle = Angle.Zero;
+                    coords = MapCoordinates.Nullspace;
+                    return false;
+                }
+                angle += Angle.FromDegrees(90);
+                spawnDistance = 0;
+                angleCount++;
+                maxIterations -= i;
+                i = 0;
                 continue;
             }
-            else if (i == 0)
+
+            var box2 = Box2.CenteredAround(finalCoords.Position + bounds.Center, bounds.Size);
+            var box2Rot = new Box2Rotated(box2, angle, finalCoords.Position);
+
+            if (_mapManager.FindGridsIntersecting(finalCoords.MapId, box2Rot).Any())
             {
-                var pos = origin + (worldAngle + Math.PI / 2).ToVec() * DockingSystem.DockRange;
-                finalCoords = new MapCoordinates(pos, mapId);
+                // Bump it further and further if something is in the way
+                spawnDistance += 10;
+                continue;
             }
+            angle = worldAngle;
             coords = finalCoords;
             return true;
         }
-
         angle = Angle.Zero;
         coords = MapCoordinates.Nullspace;
         return false;
