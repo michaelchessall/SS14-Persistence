@@ -19,7 +19,8 @@
     - Moth
     - Reptilian
     - Vulpkanin
-    - Avali
+    - Avali # Persistence
+    - Yinglet # Scav
 
 - type: loadoutEffectGroup # Persistance14 Edit
   id: EffectSpeciesAvali

@@ -237,7 +237,9 @@
         maxVol: 50
         reagents:
         - ReagentId: Nutriment
-          Quantity: 15
+          Quantity: 12 # Scav: 15 < 12
+        - ReagentId: Grain # Scav: Nutriment < Grain
+          Quantity: 3
         - ReagentId: Vitamin
           Quantity: 30
 
@@ -379,23 +381,36 @@
 
 # Rice
 
+# Scav: New rice base with grain for yinglets
 - type: entity
-  name: boiled rice
+  abstract: true
   parent: FoodBowlBase
-  id: FoodRiceBoiled
-  description: A warm bowl of rice.
+  id: FoodBowlRiceBase
   components:
   - type: FlavorProfile
     flavors:
       - rice
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 20
+        reagents:
+        - ReagentId: Grain
+          Quantity: 20
   - type: Sprite
     layers:
     - state: bowl
     - state: rice
 
 - type: entity
+  name: boiled rice
+  parent: FoodBowlRiceBase # Scav: FoodBowlBase < FoodBowlRiceBase
+  id: FoodRiceBoiled
+  description: A warm bowl of rice.
+
+- type: entity
   name: egg-fried rice
-  parent: FoodBowlBase
+  parent: FoodBowlRiceBase # Scav: FoodBowlBase < FoodBowlRiceBase
   id: FoodRiceEgg
   description: A bowl of rice with a fried egg.
   components:
@@ -413,7 +428,9 @@
         maxVol: 35
         reagents:
         - ReagentId: Nutriment
-          Quantity: 25
+          Quantity: 5 # Scav: 25 < 5
+        - ReagentId: Grain # Scav
+          Quantity: 20
         - ReagentId: Vitamin
           Quantity: 4
         - ReagentId: Protein
@@ -425,7 +442,7 @@
 
 - type: entity
   name: rice and pork
-  parent: FoodBowlBase
+  parent: FoodBowlRiceBase # Scav: FoodBowlBase < FoodBowlRiceBase
   id: FoodRicePork
   description: Well, it looks like pork...
   components:
@@ -442,7 +459,7 @@
       food:
         maxVol: 40.5
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 18
         - ReagentId: Vitamin
           Quantity: 7
@@ -457,7 +474,7 @@
 
 - type: entity
   name: rice pudding
-  parent: FoodBowlBase
+  parent: FoodBowlRiceBase # Scav: FoodBowlBase < FoodBowlRiceBase
   id: FoodRicePudding
   description: Everybody loves rice pudding!
   components:
@@ -474,7 +491,7 @@
       food:
         maxVol: 25
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 9
         - ReagentId: Vitamin
           Quantity: 3
@@ -485,7 +502,7 @@
 
 - type: entity
   name: black-eyed gumbo
-  parent: FoodBowlBase
+  parent: FoodBowlRiceBase # Scav: FoodBowlBase < FoodBowlRiceBase
   id: FoodRiceGumbo
   description: A spicy and savory meat and rice dish.
   components:
@@ -504,7 +521,7 @@
       food:
         maxVol: 30
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 10
         - ReagentId: Vitamin
           Quantity: 15
@@ -536,7 +553,7 @@
       food:
         maxVol: 20
         reagents:
-        - ReagentId: Nutriment
+        - ReagentId: Grain # Scav: Nutriment < Grain
           Quantity: 7
         - ReagentId: Vitamin
           Quantity: 2
@@ -637,7 +654,7 @@
           Quantity: 1
         - ReagentId: Vitamin
           Quantity: 5
-        - ReagentId: Water
+        - ReagentId: Slime # Scav: Water < Slime
           Quantity: 10
 
 - type: entity
@@ -1263,7 +1280,7 @@
   - type: SolutionContainerManager
     solutions:
       food:
-        maxVol: 40
+        maxVol: 50
         reagents:
           - ReagentId: Nutriment
             Quantity: 15
@@ -1271,6 +1288,8 @@
             Quantity: 15
           - ReagentId: Allicin
             Quantity: 3
+          - ReagentId: Slime
+            Quantity: 10
   - type: Tag
     tags:
     - Meat

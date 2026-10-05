@@ -1,0 +1,19 @@
+<Document>
+  # Yinglets
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceYinglet" Caption=""/>
+  </Box>
+
+  Yinglets cannot eat bread or other grainy foods, like potato or rice, without almost certainly throwing up. They can, however, douse food in Universal Enzyme to make it soggy and gross to other species, but safe to consume.
+  They thrive on slimy meat, primarily that of molluscs and snails, which produces a euphoric effect upon the fortunate Yinglet that consumes it.
+
+  Their bodies are practically immune to most poisons, processing them harmlessly. Excessive consumption can cause symptoms similar to intoxication, but not long-term damage, and will cause them to start 'sweating' them out.
+
+  They are significantly smaller than average, approximately 1/7th the mass, and have 1/3rd the blood volume when compared to most species.
+
+  They have far less durability in general, entering a [color=#ffa500]critical state at 75 total damage[/color], and [color=#ffa500]dying at 125 total damage[/color].
+
+  They take [color=#ffa500]50% more blunt damage[/color], but [color=#1e90ff]40% less poison damage,[/color] and [color=#1e90ff]20% less cellular damage[/color].
+
+</Document>

@@ -113,7 +113,7 @@ public sealed class MarkingManagerTests
             var markingManager = server.ResolveDependency<MarkingManager>();
             var dict = new Dictionary<HumanoidVisualLayers, List<Marking>>();
 
-            markingManager.EnsureValidLimits(dict, "TestingRequiredEyes", new() { HumanoidVisualLayers.Eyes }, null, null);
+            markingManager.EnsureValidLimits(dict, "TestingRequiredEyes", new() { HumanoidVisualLayers.Eyes }, null, null, new()); // Scav: Add new()
             Assert.That(dict, Does.ContainKey(HumanoidVisualLayers.Eyes));
             Assert.That(dict[HumanoidVisualLayers.Eyes], Has.Count.EqualTo(1));
             Assert.That(dict[HumanoidVisualLayers.Eyes][0].MarkingId, Is.EqualTo("EyesMarking"));
@@ -142,7 +142,7 @@ public sealed class MarkingManagerTests
                 },
             };
 
-            markingManager.EnsureValidLimits(dict, "TestingOptionalEyes", new() { HumanoidVisualLayers.Eyes }, null, null);
+            markingManager.EnsureValidLimits(dict, "TestingOptionalEyes", new() { HumanoidVisualLayers.Eyes }, null, null, new()); // Scav: Add new()
             Assert.That(dict[HumanoidVisualLayers.Eyes], Has.Count.EqualTo(1));
             Assert.That(dict[HumanoidVisualLayers.Eyes][0].MarkingId, Is.EqualTo("MenOnlyMarking"));
         });
