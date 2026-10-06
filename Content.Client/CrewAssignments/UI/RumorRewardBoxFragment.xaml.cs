@@ -19,7 +19,7 @@ public sealed partial class RumorRewardBoxFragment : PanelContainer
     private ProtoId<MetaFactionLevelPrototype> _levelID;
     private ProtoId<MetaFactionPrototype> _factionID;
     private ProtoId<RumorRewardPrototype> _rewardID;
-    public RumorRewardBoxFragment(ActiveRumorReward activeRumor, bool unlocked, JobNetMenu owner, MetaFactionPrototype factionProto, MetaFactionLevelPrototype levelProto)
+    public RumorRewardBoxFragment(ActiveRumorReward activeRumor, bool unlocked, JobNetMenu owner, MetaFactionPrototype factionProto, MetaFactionLevelPrototype levelProto, int balance)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -44,8 +44,15 @@ public sealed partial class RumorRewardBoxFragment : PanelContainer
         }
         else if(unlocked)
         {
+            if(balance < rewardProto.Price)
+            {
+                PurchaseBtn.Disabled = true;
+            }
+            else
+            {
+                PurchaseBtn.Disabled = false;
+            }
             PurchaseBtn.Text = $"${rewardProto.Price}";
-            PurchaseBtn.Disabled = false;
             PurchaseBtn.OnPressed += PurchaseBtn_OnPressed;
         }
         else

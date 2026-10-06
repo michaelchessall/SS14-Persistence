@@ -244,7 +244,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                 box.FactionId = faction;
                 box.Name = factionProto.Name;
                 RumorRewardsTC.AddChild(box);
-                box.UpdateState(rewards, rep, factionProto);
+                box.UpdateState(rewards, rep, factionProto, state.Balance);
             }
         }
         else
@@ -259,7 +259,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                 {
                     if (box is RumorRewardPageFragment page && page.FactionId == faction)
                     {
-                        page.UpdateState(rewards, rep, factionProto);
+                        page.UpdateState(rewards, rep, factionProto, state.Balance);
                     }
                 }
             }
