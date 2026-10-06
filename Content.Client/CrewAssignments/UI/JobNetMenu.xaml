@@ -2,8 +2,8 @@
     xmlns="https://spacestation14.io"
     xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client"
     Title="Job Network"
-    MinSize="700 470"
-    SetSize="700 470">
+    MinSize="750 470"
+    SetSize="750 470">
     <BoxContainer Orientation="Vertical" Access="Public" VerticalExpand="True">
         <BoxContainer Orientation="Horizontal">
             <Label Text="Account Balance:"
@@ -154,6 +154,11 @@
                         </BoxContainer>
                         <BoxContainer Name="Reputations" Orientation="Vertical">
                             <GridContainer Name="ReputationsGrid" Columns="2" />
+                        </BoxContainer>
+                        <BoxContainer Name="Rewards" Orientation="Vertical">
+                            <TabContainer VerticalExpand="True" Name="RumorRewardsTC">
+                                
+                            </TabContainer>
                         </BoxContainer>
                     </TabContainer>
                 </BoxContainer>

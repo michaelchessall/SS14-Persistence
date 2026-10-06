@@ -31,7 +31,6 @@
     iconVisuals:
     - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: armorbloodicon
-
   - type: Upgradeable
     chooseOneUpgrades:
       ArmorMarine : 0

@@ -38,9 +38,9 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
     public TimeSpan? RumorCooldown;
     public int RumorTax;
     public Dictionary<string, DirectMessageConversation>? DirectMessages;
+    public Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> RumorRewards;
 
-
-    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, string sectorStatus, Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations, List<ActiveRumor> rumors, TimeSpan? rumorCooldown, int rumorTax, Dictionary<string, DirectMessageConversation>? directMessages)
+    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, string sectorStatus, Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations, List<ActiveRumor> rumors, TimeSpan? rumorCooldown, int rumorTax, Dictionary<string, DirectMessageConversation>? directMessages, Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> rumorRewards)
     {
         Stations = stations;
         AssignmentName = assignmentName;
@@ -61,6 +61,7 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
         RumorCooldown = rumorCooldown;
         RumorTax = rumorTax;
         DirectMessages = directMessages;
+        RumorRewards = rumorRewards;
     }
 }
 

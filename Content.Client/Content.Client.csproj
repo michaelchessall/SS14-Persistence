@@ -37,6 +37,12 @@
     <AdditionalFiles Update="CrewAssignments\UI\RumorBoxFragment.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
+    <AdditionalFiles Update="CrewAssignments\UI\RumorRewardBoxFragment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="CrewAssignments\UI\RumorRewardPageFragment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
     <AdditionalFiles Update="GridControl\UI\StationTaggerWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>

@@ -1,0 +1,25 @@
+<PanelContainer xmlns="https://spacestation14.io" HorizontalExpand="True" MinHeight="16" Margin="5 5 5 0" Name="RumorRewardBox">
+    <BoxContainer HorizontalExpand="True" Orientation="Vertical">
+        <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+            <TextureRect Name="Icon"
+                         Access="Public"
+                         MinSize="64 64"
+                         Stretch="KeepAspectCentered" />
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+                <Label Name="TitleLabel" Text="Rumor title" StyleClasses="LabelKeyText" />
+                <RichTextLabel Name="AvailableAtLbl" Text="(At Trade Station Looooong)" />
+                <RichTextLabel Name="ContentLabel" Text="Rumor content" />
+            </BoxContainer>
+            <BoxContainer Orientation="Vertical">
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Control HorizontalExpand="True" />
+                    <Button Name="PurchaseBtn" Text="Purchase" MinWidth="150"/>
+                </BoxContainer>
+                <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                    <Control HorizontalExpand="True" />
+                    
+                </BoxContainer>
+            </BoxContainer>
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>

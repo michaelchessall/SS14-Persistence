@@ -12,9 +12,14 @@
     Green3: 500
     Green4: 1000
 
+
 - type: metaFactionLevel
   id: Green2
   name: Associate
+  rumorRewards:
+    - GreenUpgradeModule
+  rewardsToOffer: 1
+
 
 - type: metaFactionLevel
   id: Green3

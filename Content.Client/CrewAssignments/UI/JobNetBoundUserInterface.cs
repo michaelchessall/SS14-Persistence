@@ -58,8 +58,6 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
         if (state is not JobNetUpdateState cState)
             return;
         _menu.UpdateState(cState);
-
-
     }
 
     public void CancelRumor(int ind)

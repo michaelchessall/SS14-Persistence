@@ -2,6 +2,7 @@ using Content.Client.Message;
 using Content.Client.MessageBoard.UI;
 using Content.Client.Store.Ui;
 using Content.Shared._Persistence14.Rumors.Prototypes;
+using Content.Shared.Cargo.Components;
 using Content.Shared.CrewAssignments;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewMetaRecords;
@@ -22,6 +23,7 @@ public sealed partial class JobNetMenu : DefaultWindow
 {
     [Dependency] private readonly IEntityManager _entityManager = default!;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
+    private bool _rumorRewardsBuilt = false;
     public TimeSpan UntilNextPay = TimeSpan.Zero;
     public TimeSpan UntilNextPrec = TimeSpan.Zero;
     public TimeSpan UntilNextRumor = TimeSpan.Zero;
@@ -42,6 +44,13 @@ public sealed partial class JobNetMenu : DefaultWindow
 
     public void UpdateState(JobNetUpdateState state)
     {
+        List<TradeStationComponent> stations = new();
+        var query = _entityManager.EntityQueryEnumerator<TradeStationComponent>();
+        while (query.MoveNext(out var uid, out var station))
+        {
+            stations.Add(station);
+        }
+
         if (state.SpendAuth)
         {
             SLDetails.Visible = true;
@@ -162,23 +171,25 @@ public sealed partial class JobNetMenu : DefaultWindow
         var metaFactions = _prototypeManager.EnumeratePrototypes<MetaFactionPrototype>();
         CurrentGrid.RemoveAllChildren();
         ReputationsGrid.RemoveAllChildren();
-        foreach(var faction in metaFactions)
+        Dictionary<ProtoId<MetaFactionPrototype>, int> reputations = new();
+        foreach (var faction in metaFactions)
         {
             int rep = 0;
             if (state.MetaFactionReputations.TryGetValue(faction.ID, out var repVal))
                 rep = repVal;
+            reputations[faction.ID] = rep;
             ReputationBoxFragment repLabel = new(faction, rep);
             ReputationsGrid.AddChild(repLabel);
         }
         int rind = 0;
-        foreach(var rumor in state.Rumors)
+        foreach (var rumor in state.Rumors)
         {
             RumorBoxFragment rumorLabel = new(rumor);
             rumorLabel.RumorIndex = rind;
             rind++;
             rumorLabel.CancelBtn.OnPressed += args =>
             {
-                if(Owner != null) Owner.CancelRumor(rumorLabel.RumorIndex);
+                if (Owner != null) Owner.CancelRumor(rumorLabel.RumorIndex);
             };
             rumorLabel.TransferBtn.OnPressed += args =>
             {
@@ -186,7 +197,7 @@ public sealed partial class JobNetMenu : DefaultWindow
             };
             CurrentGrid.AddChild(rumorLabel);
         }
-        if(state.RumorCooldown != null)
+        if (state.RumorCooldown != null)
         {
             RumorCooldownLbl.Text = $"Next rumor in:{state.RumorCooldown.Value.ToString("mm\\:ss")}";
             UntilNextRumor = state.RumorCooldown.Value;
@@ -220,7 +231,39 @@ public sealed partial class JobNetMenu : DefaultWindow
                 ActiveConversations.AddChild(convoButton);
             }
         }
-
+        if (_rumorRewardsBuilt == false)
+        {
+            _rumorRewardsBuilt = true;
+            foreach (var kv in state.RumorRewards)
+            {
+                var faction = kv.Key;
+                var factionProto = _prototypeManager.Index(faction);
+                var rewards = kv.Value;
+                var rep = reputations[faction];
+                RumorRewardPageFragment box = new();
+                box.FactionId = faction;
+                box.Name = factionProto.Name;
+                RumorRewardsTC.AddChild(box);
+                box.UpdateState(rewards, rep, factionProto);
+            }
+        }
+        else
+        {
+            foreach (var kv in state.RumorRewards)
+            {
+                var faction = kv.Key;
+                var factionProto = _prototypeManager.Index(faction);
+                var rewards = kv.Value;
+                var rep = reputations[faction];
+                foreach (var box in RumorRewardsTC.Children)
+                {
+                    if (box is RumorRewardPageFragment page && page.FactionId == faction)
+                    {
+                        page.UpdateState(rewards, rep, factionProto);
+                    }
+                }
+            }
+        }
     }
 
 

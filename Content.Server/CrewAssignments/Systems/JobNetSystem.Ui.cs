@@ -180,10 +180,12 @@ public sealed partial class JobNetSystem
         List<ActiveRumor> rumors = new();
         TimeSpan? rumorCooldown = null;
         Dictionary<string, DirectMessageConversation>? directMessages = null;
+        Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> rumorRewards = new();
         if (TryComp<RumorGetterComponent>(jobnet, out var rumorGetter))
         {
             rumors = rumorGetter.Rumors;
             rumorCooldown = rumorGetter.NextRumor;
+            rumorRewards = rumorGetter.RumorRewards;
         }
 
         if (_meta.MetaRecords != null)
@@ -211,7 +213,7 @@ public sealed partial class JobNetSystem
         var balance = 0;
         _bank.TryGetBalance(user.Value, out balance);
 
-        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, sectorStatus, metaFactionReputations, rumors, rumorCooldown, rumorTax, directMessages);
+        var state = new JobNetUpdateState(possibleStations, assignmentName, wage, selectedstation, remainingTime, currentObjectives, completedObjectives, codexEntries, currentLevel, balance, spendAuth, spent, spendable, sectorStatus, metaFactionReputations, rumors, rumorCooldown, rumorTax, directMessages, rumorRewards);
         _ui.SetUiState(jobnet, JobNetUiKey.Key, state);
     }
 

@@ -1,0 +1,9 @@
+- type: rumorReward
+  id: GreenUpgradeModule
+  name: Upgrade Module (Nanotrasen Pattern)
+  description: "Can be applied to a variety of items and machines."
+  price: 2500
+  product: GreenUpgradeModule
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: nanotrasen
