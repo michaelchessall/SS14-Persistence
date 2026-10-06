@@ -15,14 +15,22 @@
     - type: MultipleTool
       statusShowBehavior: true
       entries:
+<<<<<<< HEAD
       - behavior:
         - Prying
+=======
+      - behavior: Prying
+>>>>>>> origin/staging-stable
         useSound:
           path: /Audio/Items/jaws_pry.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
+<<<<<<< HEAD
       - behavior:
         - Cutting
+=======
+      - behavior: Cutting
+>>>>>>> origin/staging-stable
         useSound:
           path: /Audio/Items/jaws_cut.ogg
         changeSound:
@@ -44,14 +52,22 @@
     - type: MultipleTool
       statusShowBehavior: true
       entries:
+<<<<<<< HEAD
       - behavior:
         - Screwing
+=======
+      - behavior: Screwing
+>>>>>>> origin/staging-stable
         useSound:
           path: /Audio/Items/jaws_pry.ogg
         changeSound:
           path: /Audio/Items/drill_use.ogg
+<<<<<<< HEAD
       - behavior:
         - Anchoring
+=======
+      - behavior: Anchoring
+>>>>>>> origin/staging-stable
         useSound:
           path: /Audio/Items/jaws_cut.ogg
         changeSound:
@@ -700,4 +716,8 @@
         Caustic: -50
         Poison: -50
         Radiation: -50
+<<<<<<< HEAD
         Cellular: -50
+=======
+        Cellular: -50
+>>>>>>> origin/staging-stable

@@ -303,6 +303,7 @@
       speedModifier: 2 # Very powerful to balance out the desire to sell or scrap for points
       useSound: /Audio/Items/ratchet.ogg
 
+<<<<<<< HEAD
 #- type: entity
 #  id: XenoArtifactToolJaws
 #  parent: BaseOneTimeXenoArtifactEffect
@@ -384,6 +385,9 @@
 
 - type: entity
   parent: BaseOneTimeXenoArtifactEffect
+=======
+- type: entity
+>>>>>>> origin/staging-stable
   id: XenoArtifactOmnitool
   description: Obtains ability of omnitool
   components:
@@ -430,7 +434,10 @@
           path: /Audio/Items/change_drill.ogg
 
 - type: entity
+<<<<<<< HEAD
   parent: BaseXenoArtifactEffect
+=======
+>>>>>>> origin/staging-stable
   id: XenoArtifactEffectBadFeeling
   description: Broadcasts sublime message
   components:
@@ -700,7 +707,10 @@
         maxIntensity: 6.0
 
 - type: entity
+<<<<<<< HEAD
   parent: BaseXenoArtifactEffect
+=======
+>>>>>>> origin/staging-stable
   id: XenoArtifactChargeBattery
   description: Charges up batteries
   components:
@@ -759,7 +769,10 @@
       movementVisibilityRate: 0.10
 
 - type: entity
+<<<<<<< HEAD
   parent: BaseXenoArtifactEffect
+=======
+>>>>>>> origin/staging-stable
   id: XenoArtifactAngryCarpSpawn
   description: Create hostile fish
   components:
@@ -859,7 +872,10 @@
         - id: MobKangarooSpace
 
 - type: entity
+<<<<<<< HEAD
   parent: BaseXenoArtifactEffect
+=======
+>>>>>>> origin/staging-stable
   id: XenoArtifactCashSpawn
   description: Create money
   components:
@@ -1063,7 +1079,10 @@
         maxIntensity: 12
 
 - type: entity
+<<<<<<< HEAD
   parent: BaseXenoArtifactEffect
+=======
+>>>>>>> origin/staging-stable
   id: XenoArtifactPortal
   description: Create short-living bluespace portal
   components:
@@ -1102,7 +1121,10 @@
     - shuffle-artifact-popup
 
 - type: entity
+<<<<<<< HEAD
   parent: BaseXenoArtifactEffect
+=======
+>>>>>>> origin/staging-stable
   id: XenoArtifactHealAll
   description: Miraculous healing
   components:

@@ -257,6 +257,10 @@
           min: 0.25
         - !type:MetabolizerTypeCondition
           type: [Rat, Vox, Avali]
+<<<<<<< HEAD
+=======
+          inverted: true
+>>>>>>> origin/staging-stable
       - !type:EvenHealthChange
         conditions:
         - !type:MetabolizerTypeCondition

@@ -1,6 +1,14 @@
+<<<<<<< HEAD
 using Content.Shared._Funkystation.Stains.Components; // Funky
 using Content.Shared._Funkystation.Stains.Systems; // Funky
 using Content.Shared.Audio;
+=======
+using Content.Shared._Funkystation.Stains.Components;
+using Content.Shared._Funkystation.Stains.Systems;
+using Content.Shared.Audio;
+using Content.Shared.Chemistry.Components;
+using Content.Shared.Chemistry.Components.SolutionManager;
+>>>>>>> origin/staging-stable
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Database;
 using Content.Shared.DoAfter;
@@ -28,6 +36,7 @@ namespace Content.Shared.Fluids.EntitySystems;
 /// </summary>
 public sealed partial class DrainSystem : EntitySystem
 {
+<<<<<<< HEAD
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private SharedAmbientSoundSystem _ambientSound = default!;
@@ -41,6 +50,20 @@ public sealed partial class DrainSystem : EntitySystem
 
 
     [Dependency] private readonly SharedStainSystem _stain = default!; // Funky
+=======
+    [Dependency] private readonly EntityLookupSystem _lookup = default!;
+    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private readonly SharedAmbientSoundSystem _ambientSound = default!;
+    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private readonly SharedDoAfterSystem _doAfter = default!;
+    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private readonly SharedPuddleSystem _puddle = default!;
+    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainerSystem = default!;
+    [Dependency] private readonly SharedStainSystem _stain = default!;
+    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private readonly IGameTiming _timing = default!;
+>>>>>>> origin/staging-stable
 
     private readonly HashSet<Entity<PuddleComponent>> _puddles = [];
 

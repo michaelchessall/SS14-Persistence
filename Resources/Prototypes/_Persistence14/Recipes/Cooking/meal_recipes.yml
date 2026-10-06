@@ -199,3 +199,330 @@
     Egg: 12
   solids:
     FoodBreadCottonSlice: 1
+
+#Pastry dough
+
+- type: microwaveMealRecipe
+  id: RecipePastryDough
+  name: pastry_recipe
+  result: FoodDoughPastryBase
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBaseRaw: 1
+
+#Donuts
+
+#plain
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPlain
+  name: plain_donut_recipe
+  result: FoodDonutPlain
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPlainJelly
+  name: plain_jelly_donut_recipe
+  result: FoodDonutJellyPlain
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+
+#apple
+
+- type: microwaveMealRecipe
+  id: RecipeDonutApple
+  name: apple_donut_recipe
+  result: FoodDonutApple
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodApple: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutAppleJelly
+  name: apple_jelly_donut_recipe
+  result: FoodDonutJellyApple
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodApple: 1
+
+#blue pumkin
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBluePumkin
+  name: blue_pumkin_donut_recipe
+  result: FoodDonutBluePumpkin
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodBluePumpkin: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBluePumkinJelly
+  name: blue_pumkin_jelly_donut_recipe
+  result: FoodDonutJellyBluePumpkin
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodBluePumpkin: 1
+
+#bungo
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBungo
+  name: bungo_donut_recipe
+  result: FoodDonutBungo
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodBungo: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutBungoJelly
+  name: bungo_jelly_donut_recipe
+  result: FoodDonutJellyBungo
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodBungo: 1
+
+#caramel
+
+- type: microwaveMealRecipe
+  id: RecipeDonutCaramel
+  name: caramel_donut_recipe
+  result: FoodDonutCaramel
+  time: 5
+  group: Breads
+  reagents:
+    Syrup: 5
+  solids:
+    FoodDoughPastryBase: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutCaramelJelly
+  name: caramel_jelly_donut_recipe
+  result: FoodDonutJellyCaramel
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+    Syrup: 5
+  solids:
+    FoodDoughPastryBase: 1
+
+#chaos
+
+- type: microwaveMealRecipe
+  id: RecipeDonutChaos
+  name: chaos_donut_recipe
+  result: FoodDonutChaos
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    ClothingHeadHatJester: 1
+
+#chocolate
+
+- type: microwaveMealRecipe
+  id: RecipeDonutChocolate
+  name: chocolate_donut_recipe
+  result: FoodDonutChocolate
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodSnackChocolateBar: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutChocolateJelly
+  name: chocolate_jelly_donut_recipe
+  result: FoodDonutJellyChocolate
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodSnackChocolateBar: 1
+
+#homer
+
+- type: microwaveMealRecipe
+  id: RecipeDonutHomer
+  name: homer_donut_recipe
+  result: FoodDonutHomer
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodEgg: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutHomerJelly
+  name: homer_jelly_donut_recipe
+  result: FoodDonutJellyHomer
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodEgg: 1
+
+#pink
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPink
+  name: pink_donut_recipe
+  result: FoodDonutPink
+  time: 5
+  group: Breads
+  reagents:
+    Sugar: 5
+  solids:
+    FoodDoughPastryBase: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPoison
+  name: pink_poison_donut_recipe
+  result: FoodDonutPoison
+  time: 5
+  group: Breads
+  reagents:
+    Amatoxin: 10
+  solids:
+    FoodDoughPastryBase: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutPinkJelly
+  name: pink_jelly_donut_recipe
+  result: FoodDonutJellyPink
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+    Sugar: 5
+  solids:
+    FoodDoughPastryBase: 1
+
+#matcha
+
+- type: microwaveMealRecipe
+  id: RecipeDonutMatcha
+  name: matcha_donut_recipe
+  result: FoodDonut
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    LeavesTea: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutMatchaelly
+  name: matcha_jelly_donut_recipe
+  result: FoodDonutJelly
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    LeavesTea: 1
+
+#meat
+
+- type: microwaveMealRecipe
+  id: RecipeDonutMeat
+  name: meat_donut_recipe
+  result: FoodDonutMeat
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodMeat: 1
+
+#apple
+
+- type: microwaveMealRecipe
+  id: RecipeDonutScurret
+  name: wawa_donut_recipe
+  result: FoodDonutJellyScurret
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodCorn: 1
+    FoodBerries: 1
+
+#spacemans
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSpacemans
+  name: spacemans_donut_recipe
+  result: FoodDonutSpaceman
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodSpacemansTrumpet: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSpacemansJelly
+  name: spacemans_jelly_donut_recipe
+  result: FoodDonutJellySpaceman
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodSpacemansTrumpet: 1
+
+#sweetpea
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSweetpea
+  name: sweet_pea_donut_recipe
+  result: FoodDonutSweetpea
+  time: 5
+  group: Breads
+  solids:
+    FoodDoughPastryBase: 1
+    FoodLaughinPeaPod: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonutSweetpeaJelly
+  name: sweet_pea_jelly_donut_recipe
+  result: FoodDonutJellySweetpea
+  time: 5
+  group: Breads
+  reagents:
+    JuiceBerry: 5
+  solids:
+    FoodDoughPastryBase: 1
+    FoodLaughinPeaPod: 1

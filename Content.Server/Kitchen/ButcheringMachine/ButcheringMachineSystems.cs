@@ -218,7 +218,10 @@ namespace Content.Server.Kitchen.ButcheringMachine
                 _solution.ResolveSolution(toProcess, stream.BloodSolutionName, ref stream.BloodSolution, out var solution))
             {
                 component.BloodReagents = solution.Clone();
-                component.BloodReagents.ScaleSolution(50 / component.BloodReagents.Volume);
+                if (component.BloodReagents.Volume != 0)
+                {
+                    component.BloodReagents.ScaleSolution(50 / component.BloodReagents.Volume);
+                }
             }
             if (TryComp<ButcherableComponent>(toProcess, out var butcherableComponent))
             {

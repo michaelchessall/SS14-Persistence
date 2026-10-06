@@ -213,12 +213,23 @@
   name: ice jug
   description: Stubborn water. Pretty cool.
   components:
+<<<<<<< HEAD
   - type: Solution
     solution:
       temperature: 268 # Persistence: Ice is cold
       reagents:
       - ReagentId: Ice
         Quantity: 240
+=======
+  - type: SolutionContainerManager
+    solutions:
+      drink:
+        maxVol: 300
+        temperature: 268 # Persistence: Ice is cold
+        reagents:
+        - ReagentId: Ice
+          Quantity: 300
+>>>>>>> origin/staging-stable
   - type: Label
     localizedLabel: reagent-name-ice
   # TODO new sprite

@@ -24,8 +24,14 @@
 
 # Donkpocket
 
+<<<<<<< HEAD
 # Scav: Warm gives +5 reagent
 # Warm ones contain a small amount of Omnizine.
+=======
+# Warm gives +5 nutriment.
+#Persistence 14
+#Warm ones contain a small amount of Ichor.
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: donk-pocket
@@ -67,6 +73,18 @@
       - bread
       - meaty
       - cheap
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: dank-pocket
@@ -91,6 +109,17 @@
     flavors:
       - leafy
       - cheap
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 4
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: spicy-pocket
@@ -117,6 +146,17 @@
       - spicy
       - meaty
       - cheap
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
   - type: Sprite
     state: spicy
 
@@ -145,6 +185,17 @@
       - meaty
       - sweet
       - cheap
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: pizza-pocket
@@ -173,6 +224,17 @@
       - cheesy
       - tomato
       - cheap
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: honk-pocket
@@ -206,6 +268,7 @@
     flavors:
       - funny
       - cheap
+<<<<<<< HEAD
   - type: Solution
     solution:
       reagents:
@@ -217,6 +280,18 @@
         Quantity: 3
       - ReagentId: Grain # Scav
         Quantity: 5
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Honk
+          Quantity: 1
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: berry-pocket
@@ -241,6 +316,7 @@
     flavors:
       - sweet
       - cheap
+<<<<<<< HEAD
   - type: Solution
     solution:
       reagents:
@@ -252,6 +328,18 @@
         Quantity: 2
       - ReagentId: Grain # Scav
         Quantity: 5
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: stonk-pocket
@@ -275,6 +363,17 @@
     flavors:
       - profits
       - cheap
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: carp-pocket
@@ -298,6 +397,17 @@
     flavors:
     - cheap
     - fishops
+<<<<<<< HEAD
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable
 
 - type: entity
   name: dink-pocket
@@ -356,6 +466,7 @@
   parent: [SolutionFoodDonkpocketWarm, FoodDonkpocketMoth]
   id: FoodDonkpocketMothWarm
   components:
+<<<<<<< HEAD
   - type: Solution
     solution:
       reagents:
@@ -365,3 +476,15 @@
         Quantity: 2
       - ReagentId: Omnizine
         Quantity: 3
+=======
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Fiber
+          Quantity: 5
+        - ReagentId: Ichor
+          Quantity: 2
+>>>>>>> origin/staging-stable

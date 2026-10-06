@@ -162,7 +162,14 @@
   - type: ScaleVisuals
     scale: .75, .75
   - type: Vocal
+<<<<<<< HEAD
     emoteSounds: MaleAvali
+=======
+    sounds:
+      Male: MaleAvali
+      Female: FemaleAvali
+      Unsexed: MaleAvali
+>>>>>>> origin/staging-stable
   - type: Damageable
     damageModifierSet: Avali
   - type: MeleeWeapon
@@ -175,7 +182,11 @@
         Slash: 3
   - type: Temperature
     specificHeat: 44
+<<<<<<< HEAD
     temperature: 220
+=======
+    currentTemperature: 220
+>>>>>>> origin/staging-stable
   - type: ThermalRegulator
     # Ammonia boils at normal tempature
     implicitHeatRegulation: 100
@@ -205,6 +216,11 @@
       types:
         Heat: 2.5 # Per second, scales with temperature & other constants
   - type: TemperatureProtection
+<<<<<<< HEAD
+=======
+    heatingCoefficient: 1.2
+    coolingCoefficient: 3
+>>>>>>> origin/staging-stable
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:

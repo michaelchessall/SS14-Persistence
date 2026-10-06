@@ -35,7 +35,10 @@ namespace Content.Shared.Preferences
     public sealed partial class HumanoidCharacterProfile
     {
         public static readonly ProtoId<SpeciesPrototype> DefaultSpecies = "Human";
+<<<<<<< HEAD
         public static readonly ProtoId<EmoteSoundsPrototype> DefaultVoice = "MaleHuman";
+=======
+>>>>>>> origin/staging-stable
         private static readonly Regex RestrictedNameRegex = new(@"[^A-Za-z0-9, '\-]");
         private static readonly Regex ICNameCaseRegex = new(@"^(?<word>\w)|\b(?<word>\w)(?=\w*$)");
 
