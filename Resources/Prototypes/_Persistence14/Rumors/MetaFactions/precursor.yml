@@ -15,6 +15,9 @@
 - type: metaFactionLevel
   id: Precursor2
   name: Associate
+  rumorRewards:
+    - PrecursorUpgradeModule
+  rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Precursor3

@@ -103,6 +103,20 @@ public sealed class JobNetTransferRumorMessage : BoundUserInterfaceMessage
     }
 }
 
+[Serializable, NetSerializable]
+public sealed class JobNetRumorRewardPurchaseMessage : BoundUserInterfaceMessage
+{
+    public JobNetRumorRewardPurchaseMessage(ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID)
+    {
+        RewardID = rewardID;
+        LevelID = levelID;
+        FactionID = factionID;
+    }
+
+    public ProtoId<RumorRewardPrototype> RewardID { get; }
+    public ProtoId<MetaFactionLevelPrototype> LevelID { get; }
+    public ProtoId<MetaFactionPrototype> FactionID { get; }
+}
 
 [Serializable, NetSerializable]
 public sealed class JobNetPurchaseMessage : BoundUserInterfaceMessage

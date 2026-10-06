@@ -1038,6 +1038,58 @@ public sealed partial class RumorsSystem : EntitySystem
             getter.Rumors.Remove(rumor);
         }
     }
+
+    public void PurchaseRumorReward(RumorGetterComponent getter, ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID, EntityUid actor)
+    {
+        foreach (var kv in getter.RumorRewards)
+        {
+            var faction = _protoMan.Index<MetaFactionPrototype>(kv.Key);
+            if (faction == null || faction.ID != factionID) continue;
+            foreach (var level in kv.Value)
+            {
+                var levelProto = _protoMan.Index<MetaFactionLevelPrototype>(level.Key);
+                if (levelProto == null || levelProto.ID != levelID) continue;
+                foreach (var reward in level.Value)
+                {
+                    if (reward.Reward != rewardID) continue;
+                    if (reward.Purchased)
+                    {
+                        return;
+                    }
+                    var rewardProto = _protoMan.Index<RumorRewardPrototype>(reward.Reward);
+                    if (_crewMeta.MetaRecords == null) return;
+                    if (!_crewMeta.MetaRecords.TryGetRecord(Name(actor), out var metaRecord) || metaRecord == null)
+                    {
+                        return;
+                    }
+                    if (!metaRecord.MetaFactionReputations.TryGetValue(faction.ID, out var rep))
+                    {
+                        NotifyPlayer(actor, $"You do not have any reputation with the {faction.Name} network.");
+                        return;
+                    }
+                    var repReq = faction.Levels[levelID];
+                    if (rep < repReq)
+                    {
+                        NotifyPlayer(actor, $"You do not have enough reputation with the {faction.Name} network to purchase this reward.");
+                        return;
+                    }
+
+                    var bank = _bank.GetMoneyAccountsComponent();
+                    if (bank == null) return;
+                    if (!bank.TryGetAccount(Name(actor), out var account) || account == null) return;
+                    if(account.Balance < rewardProto.Price)
+                    {
+                        NotifyPlayer(actor, $"You do not have enough money to purchase the {rewardProto.Name} reward from the {faction.Name} network.");
+                        return;
+                    }
+                    account.Balance -= rewardProto.Price;
+                    reward.Purchased = true;
+                    _cargo.TryFulfillOrderRumor(reward, "Paper", Name(actor));
+                    NotifyPlayer(actor, $"The {rewardProto.Name} has been delivered to {reward.TradeStationName}.");
+                }
+            }
+        }
+    }
 }
 
 

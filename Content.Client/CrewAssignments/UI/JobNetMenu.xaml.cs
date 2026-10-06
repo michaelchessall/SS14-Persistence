@@ -240,7 +240,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                 var factionProto = _prototypeManager.Index(faction);
                 var rewards = kv.Value;
                 var rep = reputations[faction];
-                RumorRewardPageFragment box = new();
+                RumorRewardPageFragment box = new(this);
                 box.FactionId = faction;
                 box.Name = factionProto.Name;
                 RumorRewardsTC.AddChild(box);
@@ -294,6 +294,11 @@ public sealed partial class JobNetMenu : DefaultWindow
         UpdateSkipButton(args.DeltaSeconds);
     }
 
+    public void RumorRewardPurchase(ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID)
+    {
+        if(Owner == null) return;
+        Owner.RumorRewardPurchase(rewardID, levelID, factionID);
+    }
 }
 public sealed class JobButton : Button
 {

@@ -15,7 +15,11 @@ public sealed partial class RumorRewardBoxFragment : PanelContainer
     [Dependency] private IPrototypeManager _protoManager = default!;
     [Dependency] private IEntityManager _entMan = default!;
     public int RumorIndex = 0;
-    public RumorRewardBoxFragment(ActiveRumorReward activeRumor, bool unlocked)
+    private JobNetMenu _owner;
+    private ProtoId<MetaFactionLevelPrototype> _levelID;
+    private ProtoId<MetaFactionPrototype> _factionID;
+    private ProtoId<RumorRewardPrototype> _rewardID;
+    public RumorRewardBoxFragment(ActiveRumorReward activeRumor, bool unlocked, JobNetMenu owner, MetaFactionPrototype factionProto, MetaFactionLevelPrototype levelProto)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -23,21 +27,37 @@ public sealed partial class RumorRewardBoxFragment : PanelContainer
         {
             BackgroundColor = Color.Black
         };
+        _levelID = levelProto.ID;
+        _factionID = factionProto.ID;
+        _rewardID = activeRumor.Reward;
+        _owner = owner;
         var spriteSystem = _entMan.System<SpriteSystem>();
         var rewardProto = _protoManager.Index<RumorRewardPrototype>(activeRumor.Reward);
         Icon.Texture = spriteSystem.Frame0(rewardProto.Icon);
         TitleLabel.Text = rewardProto.Name;
         ContentLabel.Text = rewardProto.Description;
         AvailableAtLbl.Text = $"[italic][color=gray]Import to {activeRumor.TradeStationName}";
-        if(unlocked)
+        if(activeRumor.Purchased)
+        {
+            PurchaseBtn.Text = $"Purchased";
+            PurchaseBtn.Pressed = true;
+        }
+        else if(unlocked)
         {
             PurchaseBtn.Text = $"${rewardProto.Price}";
             PurchaseBtn.Disabled = false;
+            PurchaseBtn.OnPressed += PurchaseBtn_OnPressed;
         }
         else
         {
             PurchaseBtn.Text = "Locked";
             PurchaseBtn.Disabled = true;
         }
+
+    }
+
+    private void PurchaseBtn_OnPressed(BaseButton.ButtonEventArgs obj)
+    {
+        _owner.RumorRewardPurchase(_rewardID, _levelID, _factionID);
     }
 }

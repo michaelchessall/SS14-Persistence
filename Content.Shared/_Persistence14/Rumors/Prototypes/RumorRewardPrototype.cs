@@ -30,6 +30,10 @@ public sealed partial class RumorRewardPrototype : IPrototype
     public EntProtoId Product { get; private set; } = string.Empty;
 
     [DataField]
+    public EntProtoId Container { get; private set; } = "CrateSecure";
+    [DataField]
+    public string ContainerId { get; private set; } = "entity_storage";
+    [DataField]
     public string Name { get; set; } = string.Empty;
     [DataField]
     public string Description { get; set; } = string.Empty;
@@ -49,4 +53,6 @@ public partial class ActiveRumorReward
     public int TradeStationUID = 0;
     [DataField]
     public string TradeStationName = "";
+    [DataField]
+    public bool Purchased = false;
 }

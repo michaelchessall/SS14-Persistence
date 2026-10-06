@@ -106,12 +106,20 @@ public sealed partial class JobNetSystem : SharedJobNetSystem
         SubscribeLocalEvent<JobNetComponent, JobNetPurchaseMessage>(OnPurchase);
         SubscribeLocalEvent<JobNetComponent, JobNetCancelRumorMessage>(OnCancelRumor);
         SubscribeLocalEvent<JobNetComponent, JobNetTransferRumorMessage>(OnTransferRumor);
+        SubscribeLocalEvent<JobNetComponent, JobNetRumorRewardPurchaseMessage>(OnRumorRewardPurchase);
         SubscribeLocalEvent<PrecursorExtractorComponent, AfterInteractEvent>(AfterInteractOn);
         SubscribeLocalEvent<PrecursorExtractorComponent, PrecursorExtractorDoAfterEvent>(OnDoAfter);
 
 
 
         InitializeUi();
+    }
+
+    private void OnRumorRewardPurchase(Entity<JobNetComponent> ent, ref JobNetRumorRewardPurchaseMessage args)
+    {
+        if (!TryComp<RumorGetterComponent>(ent, out var getter) || getter == null) return;
+        _rumors.PurchaseRumorReward(getter, args.RewardID, args.LevelID, args.FactionID, args.Actor);
+        UpdateUserInterface(args.Actor, ent);
     }
 
     private void OnTransferRumor(Entity<JobNetComponent> ent, ref JobNetTransferRumorMessage args)

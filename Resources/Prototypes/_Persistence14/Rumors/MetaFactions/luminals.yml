@@ -14,6 +14,9 @@
 - type: metaFactionLevel
   id: Luminals2
   name: Associate
+  rumorRewards:
+    - LuminalUpgradeModule
+  rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Luminals3

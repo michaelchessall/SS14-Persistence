@@ -1,0 +1,9 @@
+- type: rumorReward
+  id: ShadowUpgradeModule
+  name: Upgrade Module (Elder Pattern)
+  description: "Can be applied to a variety of items and machines."
+  price: 2500
+  product: ShadowUpgradeModule
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: shadow

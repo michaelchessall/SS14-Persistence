@@ -15,6 +15,9 @@
 - type: metaFactionLevel
   id: Shadow2
   name: Pawn
+  rumorRewards:
+    - ShadowUpgradeModule
+  rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Shadow3

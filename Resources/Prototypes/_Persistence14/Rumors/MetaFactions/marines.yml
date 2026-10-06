@@ -15,6 +15,9 @@
 - type: metaFactionLevel
   id: Marines2
   name: Associate
+  rumorRewards:
+    - MarineUpgradeModule
+  rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Marines3

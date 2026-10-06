@@ -1,0 +1,9 @@
+- type: rumorReward
+  id: PrecursorUpgradeModule
+  name: Upgrade Module (Cybersun Pattern)
+  description: "Can be applied to a variety of items and machines."
+  price: 2500
+  product: PrecursorUpgradeModule
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: syndicate

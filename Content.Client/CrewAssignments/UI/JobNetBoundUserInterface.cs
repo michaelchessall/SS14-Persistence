@@ -1,6 +1,7 @@
 using Content.Client.CrewAssignments.UI;
 using Content.Client.MessageBoard.UI;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Cargo.Components;
 using Content.Shared.CrewAssignments;
 using Content.Shared.CrewAssignments.Components;
@@ -68,5 +69,10 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
     internal void TransferRumor(int rumorIndex, string text)
     {
         SendMessage(new JobNetTransferRumorMessage(rumorIndex, text));
+    }
+
+    internal void RumorRewardPurchase(ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID)
+    {
+        SendMessage(new JobNetRumorRewardPurchaseMessage(rewardID, levelID, factionID));
     }
 }

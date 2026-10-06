@@ -16,10 +16,12 @@ public sealed partial class RumorRewardPageFragment : BoxContainer
     public string FactionId { get; set; } = string.Empty;
     [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
 
-    public RumorRewardPageFragment()
+    private JobNetMenu _owner;
+    public RumorRewardPageFragment(JobNetMenu jobNetMenu)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
+        _owner = jobNetMenu;
     }
 
     public void UpdateState(Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>> rewards, int reputation, MetaFactionPrototype factionProto)
@@ -48,7 +50,7 @@ public sealed partial class RumorRewardPageFragment : BoxContainer
             foreach (var reward in rewardList)
             {
                 var rewardProto = _prototypeManager.Index<RumorRewardPrototype>(reward.Reward);
-                RumorRewardBoxFragment rewardBox = new(reward, unlocked);
+                RumorRewardBoxFragment rewardBox = new(reward, unlocked, _owner, factionProto, levelProto);
                 AddChild(rewardBox);
             }
 
