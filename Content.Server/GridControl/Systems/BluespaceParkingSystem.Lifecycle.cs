@@ -9,6 +9,7 @@ using Content.Shared.Database;
 using Content.Shared.GridControl.Components;
 using Content.Shared.GridControl.Systems;
 using Content.Shared.Station.Components;
+using Content.Shared.Movement.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
@@ -444,7 +445,7 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
 
         var radius = 0f;
         var mapUid = _mapSystem.GetMap(mapId);
-        if (TryComp<MapBoundsComponent>(mapUid, out MapBoundsComponent? mapBoundaryComponent))
+        if (TryComp(mapUid, out MapBoundsComponent? mapBoundaryComponent))
         {
             radius = mapBoundaryComponent.Radius;
         } else
