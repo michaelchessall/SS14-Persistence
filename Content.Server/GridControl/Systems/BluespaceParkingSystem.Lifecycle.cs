@@ -432,50 +432,69 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
         return true;
     }
 
-    private bool TryGetUnparkPlacementLocation(MapId mapId, Vector2 origin, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle, float spawnDistance = 0, int maxIterations = 1000)
+    private bool TryGetUnparkPlacementLocation(MapId mapId, Vector2 origin, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle, float spawnDistance = 10, int maxIterations = 40)
     {
         var finalCoords = new MapCoordinates(origin, mapId);
         angle = worldAngle;
-        var angleCount = 0;
+        var angleCount = 8;
+        float[] angles = new float[angleCount];
+        var rampUprate = 1.1f;
+        var incrementRate = 10f;
+        var angleHalfRange = (360f / angles.Length) / 2f;
+
+        var radius = 0f;
+        var mapUid = _mapSystem.GetMap(mapId);
+        if (TryComp<MapBoundsComponent>(mapUid, out MapBoundsComponent? mapBoundaryComponent))
+        {
+            radius = mapBoundaryComponent.Radius;
+        } else
+        {
+            angle = Angle.Zero;
+            coords = MapCoordinates.Nullspace;
+            return false;
+        }
+
+        for (var i = 1; i < angles.Length; i++)
+        {
+            angles[i] = angles[i-1] + 360 / angles.Length;
+        }
+
         for (var i = 0; i < maxIterations; i++)
         {
-            // i should probabmy making it take a semi random approach by making it use a radius where it randomly spawns inside that gets bigger as spawndistance does (while kinda nudgin git further with a minimum spawndistance) but eh, this works fine for now, maybe later
-            var randomPos = origin + (angle + Math.PI / 2).ToVec() * spawnDistance;
-            finalCoords = new MapCoordinates(randomPos, mapId);
-
-            var radius = 5000; //dont like it being hardcoded in case its dynamic but itll have to do for now untill i find where i can get it
-            var xMapBound = Math.Abs(Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(finalCoords.Y, 2)));
-            var yMapBound = Math.Abs(Math.Sqrt(Math.Pow(radius, 2) - Math.Pow(finalCoords.X, 2)));
-            // make it start from zero spawndistance but take a 90 degrees direction turn if border reached or it reaches a quarter of its max distance
-            if (Math.Abs(finalCoords.X) >= xMapBound || Math.Abs(finalCoords.Y) >= yMapBound || i >= 250)
+            for (var j = 0; j < angles.Length; j++)
             {
-                if (angleCount >= 3)
+                //setting to int is going to make it a bit innacurate but should be fine for now aslong as some really larger anglecount isnt used, wich is very unlikely
+                var randomAngle = Random.Shared.Next((int)(angles[j] - angleHalfRange), (int)(angles[j] + angleHalfRange));
+                angle = Angle.FromDegrees(randomAngle);
+                var randomPos = origin + (angle + Math.PI / 2).ToVec() * spawnDistance;
+                finalCoords = new MapCoordinates(randomPos, mapId);
+
+                var distance = Math.Sqrt((finalCoords.X * finalCoords.X) + (finalCoords.Y * finalCoords.Y));
+
+                if (distance >= radius)
                 {
-                    angle = Angle.Zero;
-                    coords = MapCoordinates.Nullspace;
-                    return false;
+                    //give opposite angle double the checks if one reaches border
+                    var oppositeAngleIndex = (j + 4) % 8;
+                    angles[j] = angles[oppositeAngleIndex];
+                    continue;
                 }
-                angle += Angle.FromDegrees(90);
-                spawnDistance = 0;
-                angleCount++;
-                maxIterations -= i;
-                i = 0;
-                continue;
-            }
 
-            var box2 = Box2.CenteredAround(finalCoords.Position + bounds.Center, bounds.Size);
-            var box2Rot = new Box2Rotated(box2, angle, finalCoords.Position);
+                var box2 = Box2.CenteredAround(finalCoords.Position + bounds.Center, bounds.Size);
+                var box2Rot = new Box2Rotated(box2, worldAngle, finalCoords.Position);
+                if (_mapManager.FindGridsIntersecting(finalCoords.MapId, box2Rot).Any())
+                {
+                    continue;
+                }
+                angle = worldAngle;
+                coords = finalCoords;
+                return true;
 
-            if (_mapManager.FindGridsIntersecting(finalCoords.MapId, box2Rot).Any())
-            {
-                // Bump it further and further if something is in the way
-                spawnDistance += 10;
-                continue;
             }
-            angle = worldAngle;
-            coords = finalCoords;
-            return true;
+            // Bump it further and further if all dorection checks are exhausted
+            spawnDistance += incrementRate;
+            incrementRate *= rampUprate;
         }
+
         angle = Angle.Zero;
         coords = MapCoordinates.Nullspace;
         return false;
