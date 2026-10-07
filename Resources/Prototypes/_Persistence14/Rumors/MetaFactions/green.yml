@@ -18,12 +18,17 @@
   name: Associate
   rumorRewards:
     - GreenUpgradeModule
+    - TradeGood
   rewardsToOffer: 1
 
 
 - type: metaFactionLevel
   id: Green3
   name: Officer
+  rumorRewards:
+    - GreenUpgradeModule
+    - TradeGood
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Green4

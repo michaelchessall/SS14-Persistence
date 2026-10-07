@@ -17,11 +17,16 @@
   name: Associate
   rumorRewards:
     - MarineUpgradeModule
+    - TradeGood
   rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Marines3
   name: Officer
+  rumorRewards:
+    - MarineUpgradeModule
+    - TradeGood
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Marines4

@@ -388,12 +388,12 @@ public sealed partial class CargoSystem
             _rumors.CompleteBounty(rumorGetter, bounty);
         }
 
-        if (TryComp<TradeStationComponent>(station, out var tradeStation))
-        {
-            tradeStation.ExperiencePoints += proto.SuccessXP;
-            if (tradeStation.ExperiencePoints < 0)
-                tradeStation.ExperiencePoints = 0;
-        }
+        //if (TryComp<TradeStationComponent>(station, out var tradeStation))
+        //{
+        //    tradeStation.ExperiencePoints += proto.SuccessXP;
+        //    if (tradeStation.ExperiencePoints < 0)
+        //        tradeStation.ExperiencePoints = 0;
+        //}
 
         TryRemoveBounty(station, bounty, false, actor);
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Bounty \"{bounty.Bounty}\" (id:{bounty.Id}) was completed");
@@ -705,12 +705,12 @@ public sealed partial class CargoSystem
             TryComp<TradeStationComponent>(uid, out var tradeStation);
             if (tradeStation != null)
             {
-                foreach (var bounty in comp.Bounties)
-                {
-                    ProtoMan.Resolve(bounty.Bounty, out var bountyProto);
-                    if (bountyProto == null) continue;
-                    tradeStation.ExperiencePoints = Math.Max(tradeStation.ExperiencePoints - bountyProto.FailureXP, 0);
-                }
+                //foreach (var bounty in comp.Bounties)
+                //{
+                //    ProtoMan.Resolve(bounty.Bounty, out var bountyProto);
+                //    if (bountyProto == null) continue;
+                //    tradeStation.ExperiencePoints = Math.Max(tradeStation.ExperiencePoints - bountyProto.FailureXP, 0);
+                //}
                 InfrastructureLevelPrototype? levelPrototype = GetTradeStationLevel(uid, tradeStation);
                 if (levelPrototype != null)
                 {

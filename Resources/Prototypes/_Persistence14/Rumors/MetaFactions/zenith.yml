@@ -15,11 +15,16 @@
   name: Associate
   rumorRewards:
     - ZenithUpgradeModule
+    - TradeGood
   rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Zenith3
   name: Officer
+  rumorRewards:
+    - ZenithUpgradeModule
+    - TradeGood
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Zenith4

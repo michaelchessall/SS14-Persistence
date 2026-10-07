@@ -1,4 +1,9 @@
 - type: rumorReward
-  id: Test1
-  name: Testing Reward
-  description: "Testing Reeeward."
+  id: TradeGood
+  name: Trade Node
+  description: "A highly valuable device which generates resonance when stored on a trade station. Always exports for $10000."
+  price: 2500
+  product: TradeGood
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: solar-legion

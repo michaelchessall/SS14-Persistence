@@ -17,11 +17,16 @@
   name: Associate
   rumorRewards:
     - PrecursorUpgradeModule
+    - TradeGood
   rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Precursor3
   name: Agent
+  rumorRewards:
+    - PrecursorUpgradeModule
+    - TradeGood
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Precursor4

@@ -17,11 +17,16 @@
   name: Pawn
   rumorRewards:
     - ShadowUpgradeModule
+    - TradeGood
   rewardsToOffer: 1
 
 - type: metaFactionLevel
   id: Shadow3
   name: Cultist
+  rumorRewards:
+    - ShadowUpgradeModule
+    - TradeGood
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Shadow4

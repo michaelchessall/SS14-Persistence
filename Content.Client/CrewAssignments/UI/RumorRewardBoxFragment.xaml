@@ -5,7 +5,7 @@
                          Access="Public"
                          MinSize="64 64"
                          Stretch="KeepAspectCentered" />
-            <BoxContainer Orientation="Vertical" HorizontalExpand="True">
+            <BoxContainer Orientation="Vertical" HorizontalExpand="True" MaxWidth="400">
                 <Label Name="TitleLabel" Text="Rumor title" StyleClasses="LabelKeyText" />
                 <RichTextLabel Name="AvailableAtLbl" Text="(At Trade Station Looooong)" />
                 <RichTextLabel Name="ContentLabel" Text="Rumor content" />
@@ -17,7 +17,6 @@
                 </BoxContainer>
                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
                     <Control HorizontalExpand="True" />
-                    
                 </BoxContainer>
             </BoxContainer>
         </BoxContainer>

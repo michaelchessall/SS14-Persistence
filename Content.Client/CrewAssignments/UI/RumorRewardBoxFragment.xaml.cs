@@ -48,7 +48,6 @@ public sealed partial class RumorRewardBoxFragment : PanelContainer
             {
                 PurchaseBtn.Disabled = true;
             }
-            else
             {
                 PurchaseBtn.Disabled = false;
             }
