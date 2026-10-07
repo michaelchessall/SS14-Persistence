@@ -494,7 +494,6 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
             spawnDistance += incrementRate;
             incrementRate *= rampUprate;
         }
-
         angle = Angle.Zero;
         coords = MapCoordinates.Nullspace;
         return false;
