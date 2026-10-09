@@ -93,16 +93,8 @@ namespace Content.Client.Lobby.UI
 
         private ISawmill _sawmill;
 
-        public string ThresholdLore = "Travel into the Threshold is strictly one way and so you left everything behind the moment you passed through the true-space barrier.";
-
-        public Dictionary<string, string> Sigils = new Dictionary<string, string>
-        {
-            { "The Whale", "[bold]Dreaming is impossible in the perfect void of cryosleep.[/bold]\n\nBut as you enter the Threshold you dream of a whale. When it opens its mouth it reveals a giant blue crystal protruding up from its throat.\n\nYour shipmates haul it aboard and start butchering it. The fumes make your eyes and mouth burn viciously." },
-            { "The Lock", "[bold]Dreaming is impossible in the perfect void of cryosleep.[/bold]\n\nBut as you enter the Threshold you dream of a lock. It holds the doors of your cage shut until the day of your execution.\n\nAfter you die you still aren't free, as they put your soul into a vault. All you can see is the lock." },
-            { "The Show", "[bold]Dreaming is impossible in the perfect void of cryosleep.[/bold]\n\nBut as you enter the Threshold you dream of a show. It's the story of your life as a show. In the show you are rejected from joining the crew into the Threshold.\n\nThe show continues on but you cant keep watching it. The signal cant reach." },
-            { "The Thought", "[bold]Dreaming is impossible in the perfect void of cryosleep.[/bold]\n\nBut as you enter the Threshold you dream of a thought. It exists in two places at once and what else could?\n\nIt clamors upwards and happily takes its place along with the others. They are building a gate." },
-            { "The Void", "[bold]Dreaming is impossible in the perfect void of cryosleep.[/bold]\n\nBut as you enter the Threshold the void grows even darker than pitch. You hit the surface of nothingness and go beneath the waters\n\nIt's so cold and when you look up you see yourself looking down at a reflection." }
-        };
+        public string ThresholdLore = "Travel into the Threshold is strictly one way and so you left everything behind the moment you passed through the true-space barrier.\nThe Threshold is divided into sectors; each sector has an abundance of rare materials and xeno-artifacts.\nYou settled within one of these sectors and intended to stay until..";
+        public string NexusLore = "At the center of each Threshold is the [bold]Nexus Space[/bold].\nThis space is shared and accessible through the Thresholds of over a dozen universes.\nThis sector is colonized as neutral territory to prevent the outbreak of [bold][color=red]Universal War[/bold][/color].\nThe major powers from the connected universes send colonists into the Nexus Space as 'independents'.";
 
         private MarkingsViewModel _markingsModel = new();
 
@@ -164,22 +156,16 @@ namespace Content.Client.Lobby.UI
             MotiveButton.OnItemSelected += SelectMotive();
 
             ThresholdLoreLabel.Text = ThresholdLore;
-            foreach (var kv in Sigils)
+            NexusLoreLabel.Text = NexusLore;
+            TurningPointButton.AddItem("*UNSELECTED*");
+            foreach (var tp in _prototypeManager.EnumeratePrototypes<TurningPointPrototype>())
             {
-                SigilButton.AddItem(kv.Key);
+                TurningPointButton.AddItem(tp.Name);
             }
-            SigilButton.OnItemSelected += args =>
+            TurningPointButton.OnItemSelected += args =>
             {
-                var e = Sigils.ElementAt(args.Id);
-                SigilTitle.Text = e.Key;
-                SigilLabel.Text = e.Value;
-                SigilButton.SelectId(args.Id);
+                SelectTurningPoint(args);
             };
-            SigilButton.Select(0);
-            var e = Sigils.ElementAt(0);
-            SigilTitle.Text = e.Key;
-            SigilLabel.Text = e.Value;
-
             Markings.SetModel(_markingsModel);
 
             ImportButton.OnPressed += args =>
@@ -391,6 +377,38 @@ namespace Content.Client.Lobby.UI
             CheckReady();
         }
 
+        private void SelectTurningPoint(OptionButton.ItemSelectedEventArgs args)
+        {
+            TurningPointButton.SelectId(args.Id);
+            if (args.Id == 0)
+            {
+                TurningPointTitleLabel.Text = string.Empty;
+                TurningPointLabel.Text = string.Empty;
+                TurningPointEffectsLabel.Text = string.Empty;
+                Profile?.TurningPoint = null;
+                CheckReady();
+                RefreshBackgroundTraits();
+                return;
+            }
+            var backgroundslist = _prototypeManager.EnumeratePrototypes<TurningPointPrototype>().ToList();
+            var ind = args.Id - 1;
+            if (ind < 0 || ind >= backgroundslist.Count)
+                return;
+            var e = backgroundslist.ElementAt(ind);
+            TurningPointTitleLabel.Text = e.Name;
+            TurningPointLabel.Text = e.Description;
+            TurningPointEffectsLabel.Text = "";
+            foreach (var effect in e.Effects)
+            {
+                var effectProto = _prototypeManager.Index<BackgroundEffectPrototype>(effect);
+                TurningPointEffectsLabel.Text += $"\n{effectProto.Description}";
+            }
+            Profile?.TurningPoint = e.ID;
+            CheckReady();
+            RefreshBackgroundTraits();
+            return;
+        }
+
         private Action<OptionButton.ItemSelectedEventArgs> SelectMotive()
         {
             return args =>
@@ -497,15 +515,15 @@ namespace Content.Client.Lobby.UI
                 foreach (var effect in alignment.Effects)
                 {
                     var effectProto = _prototypeManager.Index<BackgroundEffectPrototype>(effect);
-                    if(effectProto.Traits.Count > 0)
+                    if (effectProto.Traits.Count > 0)
                     {
-                        foreach(var trait in effectProto.Traits)
+                        foreach (var trait in effectProto.Traits)
                         {
                             AddBackgroundTrait(trait);
                         }
                     }
                 }
-                if(Profile.UniverseOrigin != null)
+                if (Profile.UniverseOrigin != null)
                 {
                     var background = _prototypeManager.Index<UniverseOriginPrototype>(Profile.UniverseOrigin);
                     foreach (var effect in background.Effects)
@@ -520,10 +538,25 @@ namespace Content.Client.Lobby.UI
                         }
                     }
                 }
-                if(Profile.Motive != null)
+                if (Profile.Motive != null)
                 {
                     var motive = _prototypeManager.Index<MotivePrototype>(Profile.Motive);
                     foreach (var effect in motive.Effects)
+                    {
+                        var effectProto = _prototypeManager.Index<BackgroundEffectPrototype>(effect);
+                        if (effectProto.Traits.Count > 0)
+                        {
+                            foreach (var trait in effectProto.Traits)
+                            {
+                                AddBackgroundTrait(trait);
+                            }
+                        }
+                    }
+                }
+                if (Profile.TurningPoint != null)
+                {
+                    var turningPoint = _prototypeManager.Index<TurningPointPrototype>(Profile.TurningPoint);
+                    foreach (var effect in turningPoint.Effects)
                     {
                         var effectProto = _prototypeManager.Index<BackgroundEffectPrototype>(effect);
                         if (effectProto.Traits.Count > 0)
@@ -595,15 +628,68 @@ namespace Content.Client.Lobby.UI
                 }
             }
 #endif
-            if (alignmentSelected && originSelected && motiveSelected)
+            bool turningPointSelected = false;
+            if (Profile?.TurningPoint != null)
+            {
+                turningPointSelected = true;
+            }
+#if DEBUG
+            else
+            {
+                if (_prototypeManager.TryGetRandom<TurningPointPrototype>(random, out var turningPoint) && turningPoint != null)
+                {
+                    Profile?.TurningPoint = turningPoint.ID;
+                    turningPointSelected = true;
+                }
+            }
+#endif
+            bool nameSelected = false;
+            if (Profile?.Name != "")
+            {
+                nameSelected = true;
+            }
+#if DEBUG
+            else
+            {
+                Profile?.Name = HumanoidCharacterProfile.RandomName(_prototypeManager.Index(Profile.Species), Profile.Gender);
+                nameSelected = true;
+            }
+#endif
+
+            if (alignmentSelected && originSelected && motiveSelected && turningPointSelected && nameSelected)
             {
                 SaveButton.Disabled = false;
-                RequirementsLbl.Text = "";
             }
             else
             {
                 SaveButton.Disabled = true;
+            }
+            if (!alignmentSelected && !originSelected && !motiveSelected)
+            {
+                RequirementsLbl.Visible = true;
                 RequirementsLbl.Text = "[color=red]Complete the Background Page.";
+            }
+            else
+            {
+                RequirementsLbl.Visible = false;
+            }
+            if(!turningPointSelected)
+            {
+                RequirementsJourneyLbl.Text = "[color=red]Complete the Journey Page.";
+                RequirementsJourneyLbl.Visible = true;
+            }
+            else
+            {
+                RequirementsJourneyLbl.Visible = false;
+            }
+            if(!nameSelected)
+            {
+                RequirementsNameLbl.Text = "[color=red]Set Character Name.";
+                RequirementsNameLbl.Visible = true;
+            }
+            else
+            {
+                RequirementsNameLbl.Visible = false;
             }
             ReloadPreview();
         }
@@ -779,6 +865,7 @@ namespace Content.Client.Lobby.UI
         /// </summary>
         public void SetProfile(HumanoidCharacterProfile? profile, int? slot)
         {
+
             Profile = profile?.Clone();
             CharacterSlot = slot;
             SetDirty();

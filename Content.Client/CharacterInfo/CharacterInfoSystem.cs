@@ -1,6 +1,7 @@
 using Content.Shared.CharacterInfo;
 using Content.Shared.Objectives;
 using Content.Shared.Roles;
+using Content.Shared.Traits;
 using Robust.Client.Player;
 using Robust.Client.UserInterface;
 using Robust.Shared.Prototypes;
@@ -47,7 +48,8 @@ public sealed partial class CharacterInfoSystem : EntitySystem
             BankBal = msg.BankBal,
             Objectives = msg.Objectives,
             Briefing = msg.Briefing,
-            EntityName = Name(entity)
+            EntityName = Name(entity),
+            Traits = msg.Traits
         };
 
         OnCharacterUpdate?.Invoke(data);
@@ -68,7 +70,8 @@ public sealed partial class CharacterInfoSystem : EntitySystem
         Dictionary<string, List<ObjectiveInfo>> Objectives,
         string? Briefing,
         string? DetailExaminable,
-        string EntityName
+        string EntityName,
+        List<ProtoId<TraitPrototype>> Traits
     )
     {
         public static CharacterData JohnDoe => new CharacterData(
@@ -79,7 +82,8 @@ public sealed partial class CharacterInfoSystem : EntitySystem
             EntityName: "John Doe",
             Faction: null,
             BankBal: "$0",
-            DetailExaminable: null
+            DetailExaminable: null,
+            Traits: new()
         );
     };
 

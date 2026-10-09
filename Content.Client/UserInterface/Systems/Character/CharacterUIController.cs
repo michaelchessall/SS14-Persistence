@@ -1,5 +1,6 @@
 using Content.Client.CharacterInfo;
 using Content.Client.Gameplay;
+using Content.Client.Lobby.UI.Roles;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Client.UserInterface.Systems.Character.Controls;
@@ -144,75 +145,24 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
         var entityName = data.EntityName;
 
         _window.SpriteView.SetEntity(entity);
-
+        _window.TraitsBox.RemoveAllChildren();
+        foreach (var trait in data.Traits)
+        {
+            var traitProto = _prototypeManager.Index(trait);
+            TraitPreferenceSelector traitBar = new(traitProto);
+            traitBar.Checkbox.Disabled = true;
+            traitBar.Checkbox.Pressed = true;
+            _window.TraitsBox.AddChild(traitBar);
+        }
         UpdateRoleType();
         _window.NameLabel.Text = entityName;
         _window.SubText.Text = (faction != null) ? job + " | " + faction : job; // If off-duty don't show faction
         _window.SubTextBankBal.Text = bankBal;
-        _window.Objectives.RemoveAllChildren();
-        _window.ObjectivesLabel.Visible = objectives.Any();
-
         if (detailExaminable != null)
         {
             _window.DetailExaminableTextEdit.TextRope = new Rope.Leaf(detailExaminable);
         }
 
-        foreach (var (groupId, conditions) in objectives)
-        {
-            var objectiveControl = new CharacterObjectiveControl
-            {
-                Orientation = BoxContainer.LayoutOrientation.Vertical,
-                Modulate = Color.Gray
-            };
-
-
-            var objectiveText = new FormattedMessage();
-            objectiveText.TryAddMarkup(groupId, out _);
-
-            var objectiveLabel = new RichTextLabel
-            {
-                StyleClasses = { StyleClass.TooltipTitle }
-            };
-            objectiveLabel.SetMessage(objectiveText);
-
-            objectiveControl.AddChild(objectiveLabel);
-
-            foreach (var condition in conditions)
-            {
-                var conditionControl = new ObjectiveConditionsControl();
-                conditionControl.ProgressTexture.Texture = _sprite.Frame0(condition.Icon);
-                conditionControl.ProgressTexture.Progress = condition.Progress;
-                var titleMessage = new FormattedMessage();
-                var descriptionMessage = new FormattedMessage();
-                titleMessage.AddText(condition.Title);
-                descriptionMessage.AddText(condition.Description);
-
-                conditionControl.Title.SetMessage(titleMessage);
-                conditionControl.Description.SetMessage(descriptionMessage);
-
-                objectiveControl.AddChild(conditionControl);
-            }
-
-            _window.Objectives.AddChild(objectiveControl);
-        }
-
-        if (briefing != null)
-        {
-            var briefingControl = new ObjectiveBriefingControl();
-            var text = new FormattedMessage();
-            text.PushColor(Color.Yellow);
-            text.AddText(briefing);
-            briefingControl.Label.SetMessage(text);
-            _window.Objectives.AddChild(briefingControl);
-        }
-
-        var controls = _characterInfo.GetCharacterInfoControls(entity);
-        foreach (var control in controls)
-        {
-            _window.Objectives.AddChild(control);
-        }
-
-        _window.RolePlaceholder.Visible = false;  // Persistence: briefing == null && !controls.Any() && !objectives.Any(); < false;
     }
 
     private void OnRoleTypeChanged(MindRoleTypeChangedEvent ev, EntitySessionEventArgs _)

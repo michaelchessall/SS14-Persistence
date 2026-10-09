@@ -223,6 +223,7 @@ namespace Content.Server.Database
             if(humanoid.Alignment != null) profile.Alignment = humanoid.Alignment.ToString();
             if(humanoid.UniverseOrigin != null) profile.Origin = humanoid.UniverseOrigin.ToString();
             if(humanoid.Motive != null) profile.Motive = humanoid.Motive.ToString();
+            if(humanoid.TurningPoint != null) profile.TurningPoint = humanoid.TurningPoint.ToString();
 
             // support for downgrades - at some point this should be removed
             var legacyMarkings = appearance.Markings

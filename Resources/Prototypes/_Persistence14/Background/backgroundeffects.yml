@@ -114,4 +114,11 @@
     Shadow: 1
 
 
+- type: backgroundEffect
+  id: TraitPledge
+  description: "[color=green]You will gain the 'Freelancer Pledge' trait."
+  traits:
+    - NexusPledge
+
+
 

@@ -13,6 +13,8 @@ using Content.Shared.Roles;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Configuration;
 using Robust.Shared.Utility;
+using Content.Shared.Traits;
+using Content.Server.CrewRecords.Systems;
 
 namespace Content.Server.CharacterInfo;
 
@@ -25,6 +27,7 @@ public sealed partial class CharacterInfoSystem : EntitySystem
     [Dependency] private BankSystem _bank = default!;
     [Dependency] private JobNetSystem _jobNet = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
 
     public override void Initialize()
     {
@@ -82,7 +85,15 @@ public sealed partial class CharacterInfoSystem : EntitySystem
         }
 
         var detailExaminable = EnsureComp<DetailExaminableComponent>(entity, out var detail) ? detail.Content : Loc.GetString("flavor-text-placeholder");
+        List<ProtoId<TraitPrototype>> traits = new();
+        if(_crewMeta.MetaRecords != null)
+        {
+            if(_crewMeta.MetaRecords.TryGetRecord(Name(entity), out var record) && record != null)
+            {
+                traits = record.Traits;
+            }
 
+        }
         RaiseNetworkEvent(new CharacterInfoEvent(
             netEntity: GetNetEntity(entity),
             job: jobTitle,
@@ -90,7 +101,8 @@ public sealed partial class CharacterInfoSystem : EntitySystem
             bankBal: "$" + bankBal.ToString(),
             objectives: objectives,
             briefing: briefing,
-            detailExaminable: detailExaminable),
+            detailExaminable: detailExaminable,
+            traits: traits),
             args.SenderSession
         );
 

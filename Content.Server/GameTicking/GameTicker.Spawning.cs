@@ -202,6 +202,8 @@ namespace Content.Server.GameTicking
                     if (character.Alignment != null) createdRecord.Alignment = character.Alignment.Value;
                     if (character.UniverseOrigin != null) createdRecord.Origin = character.UniverseOrigin.Value;
                     if (character.Motive != null) createdRecord.Motive = character.Motive.Value;
+                    if (character.TurningPoint != null) createdRecord.TurningPoint = character.TurningPoint.Value;
+
                 }
             }
             var mobMaybe = _stationSpawning.SpawnPlayerCharacterOnStation(station.Value, jobId, character);
