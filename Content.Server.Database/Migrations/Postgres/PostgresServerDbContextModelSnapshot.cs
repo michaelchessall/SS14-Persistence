@@ -1203,6 +1203,10 @@ namespace Content.Server.Database.Migrations.Postgres
                         .HasColumnType("text")
                         .HasColumnName("species");
 
+                    b.Property<string>("TurningPoint")
+                        .HasColumnType("text")
+                        .HasColumnName("turning_point");
+
                     b.Property<string>("Voice")
                         .HasColumnType("text")
                         .HasColumnName("voice");

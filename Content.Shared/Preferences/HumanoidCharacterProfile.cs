@@ -138,6 +138,8 @@ namespace Content.Shared.Preferences
         public ProtoId<UniverseOriginPrototype>? UniverseOrigin = null;
         [DataField]
         public ProtoId<MotivePrototype>? Motive = null;
+        [DataField]
+        public ProtoId<TurningPointPrototype>? TurningPoint = null;
 
         public HumanoidCharacterProfile(
             string name,
@@ -156,7 +158,8 @@ namespace Content.Shared.Preferences
             Dictionary<string, RoleLoadout> loadouts,
             ProtoId<AlignmentPrototype>? alignment = null,
             ProtoId<UniverseOriginPrototype>? universeOrigin = null,
-            ProtoId<MotivePrototype>? motive = null)
+            ProtoId<MotivePrototype>? motive = null,
+            ProtoId<TurningPointPrototype>? turningPoint = null)
         {
             Name = name;
             FlavorText = flavortext;
@@ -175,6 +178,7 @@ namespace Content.Shared.Preferences
             Alignment = alignment;
             UniverseOrigin = universeOrigin;
             Motive = motive;
+            TurningPoint = turningPoint;
 
             var hasHighPrority = false;
             foreach (var (key, value) in _jobPriorities)
@@ -209,7 +213,8 @@ namespace Content.Shared.Preferences
                 new Dictionary<string, RoleLoadout>(other.Loadouts),
                 other.Alignment,
                 other.UniverseOrigin,
-                other.Motive)
+                other.Motive,
+                other.TurningPoint)
         {
         }
 
@@ -265,7 +270,7 @@ namespace Content.Shared.Preferences
         /// </summary>
         public const RandomizeCfg RandomizeConfigAll =
             RandomizeCfg.Name
-            | RandomizeCfg.Species
+            //| RandomizeCfg.Species
             | RandomizeCfg.Age
             | RandomizeCfg.Sex
             | RandomizeCfg.Gender

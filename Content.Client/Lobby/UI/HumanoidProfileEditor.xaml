@@ -56,7 +56,9 @@
                             <Button Name="ExportImageButton" Text="{Loc 'humanoid-profile-editor-export-image-button'}"/>
                             <Button Name="OpenImagesButton" Text="{Loc 'humanoid-profile-editor-open-image-button'}"/>
                             <Button Name="JoinGameButton" Text="Join Game"/>
+                            <RichTextLabel Name="RequirementsNameLbl" />
                             <RichTextLabel Name="RequirementsLbl" />
+                            <RichTextLabel Name="RequirementsJourneyLbl" />
                         </BoxContainer>
                     </ui:HighlightedContainer>
                 </BoxContainer>
@@ -172,22 +174,27 @@
               
                 </BoxContainer>
                 <BoxContainer Name="Journey" Orientation="Vertical" Margin="10">
-                    <ScrollContainer VerticalExpand="True">
+                    <ScrollContainer VerticalExpand="True" HScrollEnabled="False" >
                         <BoxContainer Orientation="Vertical" >
                             <Label Text="The Threshold" StyleClasses="LabelHeading" />
                             <Control MinHeight="30" />
                             <RichTextLabel HorizontalAlignment="Left"
                                            Name="ThresholdLoreLabel" />
-                            <Control MinHeight="50" />
+                            <Control MinHeight="30" />
                             <BoxContainer Orientation="Horizontal">
-                                <Label Text="While traveling to the Threshold this character witnessed " />
-                                <OptionButton Name="SigilButton" HorizontalAlignment="Right" />
-                                <Label Text=" Sigil" />
+                                <Label Text="Everything changed for you when you were " />
+                                <OptionButton Name="TurningPointButton" HorizontalAlignment="Right" />
                             </BoxContainer>
-                            <Label Name="SigilTitle" Text="The Whale" StyleClasses="LabelHeading" />
+                            <Label Name="TurningPointTitleLabel" StyleClasses="LabelHeading" />
                             <Control MinHeight="30" />
                             <RichTextLabel HorizontalAlignment="Left"
-                                           Name="SigilLabel" />
+                                           Name="TurningPointLabel" />
+                            <RichTextLabel Name="TurningPointEffectsLabel" HorizontalAlignment="Left"/>
+                            <Control MinHeight="30" />
+                            <Label Text="Nexus Space" StyleClasses="LabelHeading" />
+                            <Control MinHeight="30" />
+                            <RichTextLabel HorizontalAlignment="Left"
+                                           Name="NexusLoreLabel" />
                         </BoxContainer>
                     </ScrollContainer>
                 </BoxContainer>

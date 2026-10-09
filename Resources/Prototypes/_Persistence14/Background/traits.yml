@@ -113,3 +113,9 @@
   description: ps14-background-origin-shadow-desc
   selectable: false
 
+- type: trait
+  id: NexusPledge
+  name: Freelancer Pledge
+  description: "Everyone who enters Nexus Space must renounce all formal ties to any outside organization."
+  selectable: false
+

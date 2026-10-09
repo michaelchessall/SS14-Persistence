@@ -1,3 +1,4 @@
+using Content.Server.CrewRecords.Systems;
 using Content.Shared.GameTicking;
 using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
@@ -12,6 +13,7 @@ public sealed partial class TraitSystem : EntitySystem
 {
     [Dependency] private SharedHandsSystem _sharedHandsSystem = default!;
     [Dependency] private EntityWhitelistSystem _whitelistSystem = default!;
+    [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
 
     public override void Initialize()
     {
@@ -30,6 +32,10 @@ public sealed partial class TraitSystem : EntitySystem
         {
             special.AfterEquip(mob);
         }
+        if (_crewMeta.MetaRecords != null && _crewMeta.MetaRecords.TryGetRecord(Name(mob), out var record) && record != null)
+        {
+            record.Traits.Add(traitPrototype.ID);
+        }
         // Add item required by the trait
         if (traitPrototype.TraitGear == null)
             return;
@@ -41,6 +47,7 @@ public sealed partial class TraitSystem : EntitySystem
             inhandEntity,
             checkActionBlocker: false,
             handsComp: handsComponent);
+
     }
 
     // When the player is spawned in, add all trait components selected during character creation

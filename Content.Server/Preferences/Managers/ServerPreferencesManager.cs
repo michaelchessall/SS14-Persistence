@@ -210,7 +210,8 @@ namespace Content.Server.Preferences.Managers
                 loadouts,
                 profile.Alignment,
                 profile.Origin,
-                profile.Motive
+                profile.Motive,
+                profile.TurningPoint
             );
         }
 

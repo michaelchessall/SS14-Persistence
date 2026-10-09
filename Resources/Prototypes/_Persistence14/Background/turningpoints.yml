@@ -1,0 +1,13 @@
+- type: turningPoint
+  id: ChosenByAuthority
+  name: Chosen for the Nexus
+  description: "The ruling authority in your sector selected you to send into the [bold]Nexus Space[/bold].\nYou must cut formal ties as the [bold]NCC[/bold] requires that everyone who enters [bold]Nexus Space[/bold] does so as an independent."
+  effects:
+    - TraitPledge
+
+- type: turningPoint
+  id: FellFromGrace
+  name: Suddenly Disgraced
+  description: "As your reputation with the local authorities soured you were to flee into the [bold]Nexus Space[/bold].\nBecause of the [bold]NCC[/bold] and the [italic]Independents Truce[/italic] you know your pursuers cannot follow you into the [bold]Nexus Space[/bold]."
+  effects:
+    - TraitPledge

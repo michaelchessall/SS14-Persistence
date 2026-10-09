@@ -60,6 +60,11 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
             var alignment = ProtoMan.Index<MotivePrototype>(profile.Motive);
             effects.AddRange(alignment.Effects);
         }
+        if (profile.TurningPoint != null)
+        {
+            var alignment = ProtoMan.Index<TurningPointPrototype>(profile.TurningPoint);
+            effects.AddRange(alignment.Effects);
+        }
         foreach (var effect in effects)
         {
             if (!ProtoMan.Resolve(effect, out var effectProto))

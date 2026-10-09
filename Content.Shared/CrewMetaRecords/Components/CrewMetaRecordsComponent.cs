@@ -3,6 +3,7 @@ using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewAssignments.Systems;
 using Content.Shared.MessageBoard.Components;
+using Content.Shared.Traits;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
@@ -91,9 +92,14 @@ public partial class CrewMetaRecord
     [DataField]
     public ProtoId<MotivePrototype> Motive = "Wealth";
     [DataField]
+    public ProtoId<TurningPointPrototype> TurningPoint = "ChosenByAuthority";
+    [DataField]
     public Dictionary<ProtoId<MetaFactionPrototype>, int> MetaFactionReputations = new();
     [DataField]
     public Dictionary<string, DirectMessageConversation> DirectMessageConversations { get; set; } = new();
+
+    [DataField]
+    public List<ProtoId<TraitPrototype>> Traits = new();
     public CrewMetaRecord(string name)
     {
         Name = name;
