@@ -240,3 +240,119 @@
     - WhitelistChameleon
     - HighRiskItem
     - Hardsuit
+
+#waffle co engi
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitWaffleCoEngi
+  name: Waffle co engineering hardsuit
+  description: A special suit designed by Waffle co that protects against hazardous, low pressure environments. Has radiation shielding. The helmet comes with 3 hud module slots.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/wafflecoengi.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/wafflecoengi.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.04
+    lowPressureMultiplier: 1000
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Shock: 0.8
+        Caustic: 0.5
+        Radiation: 0.2
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWaffleCoEngi
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+
+#waffle co Atmos
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseEngineeringContraband]
+  id: ClothingOuterHardsuitWaffleCoAtmos
+  name: Waffle co atmos hardsuit
+  description: A special suit that protects against hazardous, low pressure environments. Has thermal shielding. Made to survive almost any toaster. The helmet comes with 4 hud module slots.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/wafflecoatmos.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/wafflecoatmos.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.001
+    coolingCoefficient: 0.001
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.5
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.8
+        Radiation: 0.5
+  - type: ClothingSpeedModifier
+    walkModifier: 0.7
+    sprintModifier: 0.7
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWaffleCoAtmos
+  - type: Tag
+    tags:
+    - Hardsuit
+    - WhitelistChameleon
+
+#Waffle co Elite hardsuit
+
+- type: entity
+  parent: [ClothingOuterHardsuitBase, BaseCommandContraband]
+  id: ClothingOuterHardsuitWaffleCoElite
+  name: elite Waffle co hardsuit
+  description: A special hardsuit that protects against hazardous, low pressure environments, made by Waffle co for their most expiernced engineers. The helmet comes with 5 hud module slots.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/wafflecoelite.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/wafflecoelite.rsi
+  - type: PressureProtection
+    highPressureMultiplier: 0.02
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.8
+  - type: ExplosionResistance
+    damageCoefficient: 0.2
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.8
+        Slash: 0.8
+        Piercing: 0.8
+        Heat: 0.4
+        Radiation: 0.0
+        Caustic: 0.7
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: HeldSpeedModifier
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitWaffleCoElite
+  - type: Tag
+    tags:
+    - Hardsuit
+    - HighRiskItem
+    - WhitelistChameleon

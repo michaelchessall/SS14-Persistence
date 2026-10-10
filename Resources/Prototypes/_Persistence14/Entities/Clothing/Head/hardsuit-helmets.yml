@@ -169,3 +169,94 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+#waffle co engi
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitWaffleCoEngi
+  name: Waffle co engineering hardsuit helmet
+  description: An engineering hardsuit helmet designed by Waffle co for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoengi.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoengi.rsi
+  - type: PointLight
+    color: "#e8e8ba"
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: ModularHud
+    moduleContainerId: modular-hud-modules
+    maximumContainedModules: 3
+    moduleExtractionToolQuality: Screwing
+    moduleRemovalDelay: 1s
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullEyeCovering
+
+#waffle co atmos hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitWaffleCoAtmos
+  name: Waffle co atmos hardsuit helmet
+  description: A special hardsuit helmet designed by Waffle co for working in low-pressure, high thermal environments.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoatmos.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoatmos.rsi
+  - type: PointLight
+    color: "#e8e8ba"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: TemperatureProtection
+    heatingCoefficient: 0.005
+    coolingCoefficient: 0.005
+  - type: FireProtection
+    reduction: 0.2
+  - type: ModularHud
+    moduleContainerId: modular-hud-modules
+    maximumContainedModules: 4
+    moduleExtractionToolQuality: Screwing
+    moduleRemovalDelay: 1s
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullEyeCovering
+
+
+#Waffle co Elite hardsuit
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitWaffleCoElite
+  name: elite Waffle co hardsuit helmet
+  description: Lightweight hardsuit helmet that doesn't restrict your head movements. Designed for the best of the best of waffle co.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoelite.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoelite.rsi
+  - type: PointLight
+    radius: 6
+    color: "#e8e8ba"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: ModularHud
+    moduleContainerId: modular-hud-modules
+    maximumContainedModules: 5
+    moduleExtractionToolQuality: Screwing
+    moduleRemovalDelay: 1s
+  - type: ContainerContainer
+    containers:
+      modular-hud-modules: !type:Container
+  - type: Tag
+    tags:
+    - FullEyeCovering
+    - WhitelistChameleon
