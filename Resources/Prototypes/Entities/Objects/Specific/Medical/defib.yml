@@ -91,7 +91,7 @@
     zapHeal:
       types:
         Asphyxiation: -40
-    doAfterDuration: 6
+    doAfterDuration: 2
   - type: DoAfter
   - type: UseDelay
 
