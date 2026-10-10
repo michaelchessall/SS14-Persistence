@@ -1,0 +1,18 @@
+- type: resonanceProduct
+  id: WorldBoundary1
+  name: Grow Sector Boundary
+  description: "Grow the boundary radius by 1000m"
+  price: 2500
+  shared: true
+  productType: MainWorldBoundary
+  radiusExpansion: 1000
+
+- type: resonanceProduct
+  id: WorldBoundary2
+  name: Grow Sector Boundary
+  description: "Grow the boundary radius by 1000m"
+  price: 2500
+  shared: true
+  productType: MainWorldBoundary
+  radiusExpansion: 1000
+  requires: WorldBoundary1

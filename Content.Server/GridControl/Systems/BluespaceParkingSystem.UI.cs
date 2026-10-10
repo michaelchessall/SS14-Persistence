@@ -157,6 +157,9 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
         if (HasComp<TradeStationComponent>(grid))
             errMsg = "Trade stations cannot be parked.";
 
+        if (HasComp<TradeStationComponent>(grid))
+            errMsg = "Temporary grids cannot be parked.";
+
         return new BSPAnchorKeyBoundUserInterfaceState(
             component.State,
             isAuth, controlled,

@@ -114,7 +114,16 @@
                         Text="Disabled"/>
                 </BoxContainer>
                 <Control MinHeight="50"/>
-                <Label Text="-Claim Trade Station To Enable Tax Settings-"
+                <BoxContainer Orientation="Horizontal">
+                    <Label Text="Rumor Tax:"
+                        StyleClasses="LabelKeyText" />
+                    <Control HorizontalExpand="True"/>
+                    <SpinBox Name="STaxSpinBox" Access="Public" MinWidth="100" Value="0"/>
+                    <Button Name="STaxConfirm" Access="Public"
+                        Text="Save"/>
+                </BoxContainer>
+                <Control MinHeight="15"/>
+                <Label Text="-Claim Trade Station To Enable More Tax Settings-"
                         Name ="ClaimTradeStationLabel"
                         StyleClasses="LabelKeyText"
                         Access="Public" />
@@ -134,15 +143,6 @@
                         <Control HorizontalExpand="True"/>
                         <SpinBox Name="ETaxSpinBox" Access="Public" MinWidth="100" Value="0"/>
                         <Button Name="ETaxConfirm" Access="Public"
-                            Text="Save"/>
-                    </BoxContainer>
-                    <Control MinHeight="15"/>
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="Rumor Tax:"
-                            StyleClasses="LabelKeyText" />
-                        <Control HorizontalExpand="True"/>
-                        <SpinBox Name="STaxSpinBox" Access="Public" MinWidth="100" Value="0"/>
-                        <Button Name="STaxConfirm" Access="Public"
                             Text="Save"/>
                     </BoxContainer>
                 </BoxContainer>
@@ -343,7 +343,22 @@
                     <Button Name="LevelPurchaseButton" Access="Public" />
                 </BoxContainer>
             </BoxContainer>
+            <!-- Resonance Market -->
+            <BoxContainer Orientation="Vertical" Margin="15">
+                <Label Text="Resonance Market" StyleClasses="LabelHeading" />
+                <BoxContainer Orientation="Vertical" Name="MarketClosedBox" Visible="False">
+                    <RichTextLabel Text="[color=red][bold]You must control a Trade Station to gain and spend Resonance." />
+                </BoxContainer>
+                <BoxContainer Orientation="Vertical" Name="MarketBox" >
+                    <BoxContainer Orientation="Horizontal">
+                        <Label Text="Resonance Balance: " StyleClasses="LabelKeyText" />
+                        <RichTextLabel Name="ResonanceBalance" />
+                    </BoxContainer>
+                    <BoxContainer Orientation="Vertical" Name="MarketInnerBox" >
 
+                    </BoxContainer>
+                </BoxContainer>
+            </BoxContainer>
         </TabContainer>
     </BoxContainer>
 </controls:FancyWindow>

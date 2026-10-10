@@ -34,6 +34,9 @@
     <AdditionalFiles Update="CrewAssignments\UI\ReputationBoxFragment.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
+    <AdditionalFiles Update="CrewAssignments\UI\ResonanceProductBox.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
     <AdditionalFiles Update="CrewAssignments\UI\RumorBoxFragment.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>

@@ -1,3 +1,6 @@
+using Content.Server._Persistence14.Resonance.Systems;
+using Content.Server.CrewRecords.Systems;
+using Content.Shared._Persistence14.Resonance.Prototypes;
 using Content.Shared.Access;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -7,12 +10,15 @@ using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Events;
 using Content.Shared.CrewAssignments.Systems;
 using Content.Shared.Station.Components;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.CrewAssignments.Systems;
 
 public sealed partial class CrewAssignmentSystem
 {
 
+    [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
+    [Dependency] private ResonanceSystem _resonance = default!;
     private void InitializeConsole()
     {
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationPurchaseUpgrade>(OnPurchaseUpgrade);
@@ -41,10 +47,17 @@ public sealed partial class CrewAssignmentSystem
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationDefaultAccess>(OnDefaultAccess);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationJobNetOn>(OnJobNetOn);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationJobNetOff>(OnJobNetOff);
+        SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationResonancePurchase>(OnResonancePurchase);
         SubscribeLocalEvent<StationModificationConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
         SubscribeLocalEvent<StationModificationConsoleComponent, ComponentInit>(OnInit);
     }
 
+    private void OnResonancePurchase(Entity<StationModificationConsoleComponent> ent, ref StationModificationResonancePurchase args)
+    {
+        _resonance.OnResonancePurchase(ent, args);
+        var station = _station.GetOwningStation(ent);
+        UpdateOrderState(ent.Owner, station);
+    }
 
     private void OnInit(EntityUid uid, StationModificationConsoleComponent orderConsole, ComponentInit args)
     {
@@ -802,6 +815,14 @@ public sealed partial class CrewAssignmentSystem
             {
                 hasTrade = true;
             }
+            List<ProtoId<ResonanceProductPrototype>> resonanceMarket = new();
+            Dictionary<ProtoId<ResonanceProductPrototype>, int> partialPurchases = new();
+            if (hasTrade && _crewMeta.MetaRecords != null)
+            {
+                resonanceMarket = BuildResonanceMarket();
+                partialPurchases = _crewMeta.MetaRecords.PartialPurchases;
+            }
+
             _uiSystem.SetUiState(consoleUid,
                 StationModUiKey.StationMod,
                 new StationModificationInterfaceState(
@@ -818,9 +839,28 @@ public sealed partial class CrewAssignmentSystem
                 _cargo.GetBalanceFromAccount((station.Value, bank), "Cargo"),
                 data.RadioData,
                 data.JobNetEnabled,
-                hasTrade
+                hasTrade,
+                resonanceMarket,
+                data.StoredResonance,
+                partialPurchases
             ));
         }
+    }
+
+    private List<ProtoId<ResonanceProductPrototype>> BuildResonanceMarket()
+    {
+        if (_crewMeta.MetaRecords == null) return new();
+        var meta = _crewMeta.MetaRecords;
+
+        List<ProtoId<ResonanceProductPrototype>> final = new();
+        var protos = _protoMan.EnumeratePrototypes<ResonanceProductPrototype>();
+        foreach (var product in protos)
+        {
+            if (product.Unique && meta.ResonancePurchases.Contains(product.ID)) continue;
+            if (product.Requires != null && !meta.ResonancePurchases.Contains(product.Requires.Value)) continue;
+            final.Add(product.ID);
+        }
+        return final;
     }
 
     private void ConsolePopup(EntityUid actor, string text)

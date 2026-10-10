@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.Resonance.Prototypes;
 using Content.Shared.CrewAccesses.Components;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
@@ -25,8 +26,11 @@ public sealed class StationModificationInterfaceState : BoundUserInterfaceState
     public Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> RadioData;
     public bool JobNetEnabled;
     public bool TradeStationClaimed;
+    public List<ProtoId<ResonanceProductPrototype>> ResonanceMarket;
+    public int Resonance;
+    public Dictionary<ProtoId<ResonanceProductPrototype>, int> PartialPurchases;
 
-    public StationModificationInterfaceState(string name, string factionTag, NetEntity station, List<string> owners, Dictionary<string, CrewAccess> crewAccess, Dictionary<int, CrewAssignment> crewAssignments, int importTax, int exportTax, int salesTax, ProtoId<FactionLevelPrototype> level, int accountBalance, Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> radioData, bool jobNetEnabled, bool tradeStationClaimed)
+    public StationModificationInterfaceState(string name, string factionTag, NetEntity station, List<string> owners, Dictionary<string, CrewAccess> crewAccess, Dictionary<int, CrewAssignment> crewAssignments, int importTax, int exportTax, int salesTax, ProtoId<FactionLevelPrototype> level, int accountBalance, Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> radioData, bool jobNetEnabled, bool tradeStationClaimed, List<ProtoId<ResonanceProductPrototype>> resonanceMarket, int resonance, Dictionary<ProtoId<ResonanceProductPrototype>, int> partialPurchases)
     {
         Name = name;
         FactionTag = factionTag;
@@ -42,5 +46,8 @@ public sealed class StationModificationInterfaceState : BoundUserInterfaceState
         RadioData = radioData;
         JobNetEnabled = jobNetEnabled;
         TradeStationClaimed = tradeStationClaimed;
+        ResonanceMarket = resonanceMarket;
+        Resonance = resonance;
+        PartialPurchases = partialPurchases;
     }
 }

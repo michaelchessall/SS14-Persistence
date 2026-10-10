@@ -1,4 +1,5 @@
 using Content.Shared._Persistence14.Background.Prototypes;
+using Content.Shared._Persistence14.Resonance.Prototypes;
 using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewAssignments.Systems;
@@ -36,6 +37,10 @@ public sealed partial class CrewMetaRecordsComponent : Component
     public Dictionary<string, CrewMetaRecord> CrewMetaRecords { get; set; } = new();
     [DataField]
     public Dictionary<int, EntityUid> Stations { get; set; } = new();
+    [DataField]
+    public List<ProtoId<ResonanceProductPrototype>> ResonancePurchases = new();
+    [DataField]
+    public Dictionary<ProtoId<ResonanceProductPrototype>, int> PartialPurchases = new();
 
     public bool TryGetRecord(string name, out CrewMetaRecord? record)
     {

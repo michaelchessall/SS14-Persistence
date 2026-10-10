@@ -27,6 +27,7 @@ public sealed partial class JobNetMenu : DefaultWindow
     public TimeSpan UntilNextPay = TimeSpan.Zero;
     public TimeSpan UntilNextPrec = TimeSpan.Zero;
     public TimeSpan UntilNextRumor = TimeSpan.Zero;
+    public TimeSpan UntilNextReward = TimeSpan.Zero;
     public SpriteSystem? _spriteSystem;
     public JobNetBoundUserInterface? Owner;
     public Action<string>? OnLabelButtonPressed;
@@ -199,8 +200,13 @@ public sealed partial class JobNetMenu : DefaultWindow
         }
         if (state.RumorCooldown != null)
         {
-            RumorCooldownLbl.Text = $"Next rumor in:{state.RumorCooldown.Value.ToString("mm\\:ss")}";
+            RumorCooldownLbl.Text = $"{state.RumorCooldown.Value.ToString("mm\\:ss")}";
             UntilNextRumor = state.RumorCooldown.Value;
+        }
+        if (state.RewardCooldown != null)
+        {
+            RewardCooldownLbl.Text = $"{state.RewardCooldown.Value.ToString("mm\\:ss")}";
+            UntilNextReward = state.RewardCooldown.Value;
         }
         RumorLimitLbl.Text = $"{state.Rumors.Count.ToString()}/4 Available";
 
@@ -264,6 +270,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                 }
             }
         }
+        
     }
 
 
@@ -285,6 +292,11 @@ public sealed partial class JobNetMenu : DefaultWindow
         if (UntilNextRumor > TimeSpan.Zero)
         {
             RumorCooldownLbl.Text = UntilNextRumor.ToString("mm\\:ss");
+        }
+        UntilNextReward -= TimeSpan.FromSeconds(deltaSeconds);
+        if (UntilNextReward > TimeSpan.Zero)
+        {
+            RewardCooldownLbl.Text = UntilNextReward.ToString("mm\\:ss");
         }
     }
 

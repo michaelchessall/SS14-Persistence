@@ -1,4 +1,5 @@
 using Content.Server._NF.Bank;
+using Content.Server.Afk;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Managers;
 using Content.Server.CrewAssignments.Systems;
@@ -26,6 +27,7 @@ using Content.Shared.Power;
 using Content.Shared.Power.Components;
 using Content.Shared.Prayer;
 using Content.Shared.Station.Components;
+using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.EntitySerialization.Systems;
@@ -66,6 +68,8 @@ public sealed partial class RumorsSystem : EntitySystem
     [Dependency] private JobNetSystem _jobnet = default!;
     [Dependency] private StationSystem _station = default!;
     [Dependency] private DamageableSystem _damageable = default!;
+    [Dependency] private IAfkManager _afkManager = default!;
+    [Dependency] private IPlayerManager _playerManager = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -544,7 +548,7 @@ public sealed partial class RumorsSystem : EntitySystem
             EntityUid? player = null;
             var implant = Transform(uid);
             player = implant.ParentUid;
-            if (player == null) return;
+            if (player == null) continue;
             foreach (var rumor in comp.Rumors.ShallowClone())
             {
                 if(rumor.DebugComplete)
@@ -558,11 +562,18 @@ public sealed partial class RumorsSystem : EntitySystem
                     TrySpawnRumor(player.Value, rumor);
                 }
             }
+            if (!_playerManager.TryGetSessionByEntity(player.Value, out var session)) continue;
+            if (_afkManager.IsAfk(session)) continue;
             comp.NextRumor -= TimeSpan.FromSeconds(frameTime);
             if (comp.NextRumor <= TimeSpan.Zero)
             {
                 comp.NextRumor = comp.RumorCooldownLength;
                 AssignRumor(comp, player.Value);
+            }
+            comp.NextReward -= TimeSpan.FromSeconds(frameTime);
+            if (comp.NextReward <= TimeSpan.Zero)
+            {
+                comp.NextReward = comp.RewardCooldownLength;
                 GenerateRumorRewards((uid, comp));
             }
         }

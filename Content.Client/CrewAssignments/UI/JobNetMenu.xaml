@@ -155,7 +155,11 @@
                         <BoxContainer Name="Reputations" Orientation="Vertical">
                             <GridContainer Name="ReputationsGrid" Columns="2" />
                         </BoxContainer>
-                        <BoxContainer Name="Rewards" Orientation="Vertical">
+                        <BoxContainer Name="Imports" Orientation="Vertical">
+                            <BoxContainer Orientation="Horizontal">
+                                <Label Text="Refresh In:" StyleClasses="LabelKeyText" />
+                                <RichTextLabel Name="RewardCooldownLbl" />
+                            </BoxContainer>
                             <TabContainer VerticalExpand="True" Name="RumorRewardsTC">
                                 
                             </TabContainer>

@@ -734,6 +734,10 @@ public sealed partial class GridConfigSystem : SharedGridConfigSystem
             {
                 errMsg = "Trade stations cannot be claimed by individuals";
             }
+            if(tradeStation.ExperiencePoints < 5)
+            {
+                errMsg = "A minimum of five trade nodes must be on board to claim the trade station.";
+            }
         }
         newState = new GridConfigBoundUserInterfaceState(
             idPresent, isOwner, isAuth, component.PersonalMode, controlled, possibleStations,

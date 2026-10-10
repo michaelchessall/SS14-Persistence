@@ -50,18 +50,16 @@ public sealed partial class StationDataComponent : Component
 
     [DataField, AutoNetworkedField]
     public int ImportTax = 0;
-
     [DataField, AutoNetworkedField]
     public int ExportTax = 0;
-
     [DataField, AutoNetworkedField]
     public int SalesTax = 0;
-
     [DataField]
     public bool JobNetEnabled = true;
-
     [DataField]
     public ProtoId<FactionLevelPrototype> Level = "FactionLevel1";
+    [DataField]
+    public int StoredResonance = 0;
 
     [DataField]
     public Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> RadioData = new()

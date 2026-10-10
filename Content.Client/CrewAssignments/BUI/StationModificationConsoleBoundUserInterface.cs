@@ -1,5 +1,6 @@
 using Content.Client.Cargo.UI;
 using Content.Client.CrewAssignments.UI;
+using Content.Shared._Persistence14.Resonance.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -46,7 +47,7 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
 
         var spriteSystem = EntMan.System<SpriteSystem>();
         var dependencies = IoCManager.Instance!;
-        _menu = new StationModificationMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
+        _menu = new StationModificationMenu(this, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
         var localPlayer = dependencies.Resolve<IPlayerManager>().LocalEntity;
         var description = new FormattedMessage();
 
@@ -107,8 +108,9 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
         _menu?.UpdateAssignments(Assignments);
         _menu?.UpdateUpgrades(cState.Level, cState.AccountBalance);
         _menu?.UpdateChannels(cState.RadioData);
+        _menu?.UpdateResonance(cState);
         if (_menu != null)
-        {
+        { 
             _menu.ETaxSpinBox.Value = cState.ExportTax;
             _menu.ITaxSpinBox.Value = cState.ImportTax;
             _menu.STaxSpinBox.Value = cState.SalesTax;
@@ -340,5 +342,10 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
     private void DefaultAccessCreate(ButtonEventArgs args)
     {
         SendMessage(new StationModificationDefaultAccess());
+    }
+
+    public void OnResonancePurchase(ProtoId<ResonanceProductPrototype> product)
+    {
+        SendMessage(new StationModificationResonancePurchase(product));
     }
 }

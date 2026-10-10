@@ -1,8 +1,10 @@
 using Content.Client.Cargo.Systems;
 using Content.Client.Cargo.UI;
+using Content.Client.CrewAssignments.BUI;
 using Content.Client.Message;
 using Content.Client.UserInterface.Controls;
 using Content.Shared.Cargo;
+using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
 using Content.Shared.CrewAccesses.Components;
@@ -28,7 +30,7 @@ namespace Content.Client.CrewAssignments.UI
         private readonly IPrototypeManager _protoManager;
         private readonly CargoSystem _cargoSystem;
         private readonly SpriteSystem _spriteSystem;
-        private EntityUid _owner;
+        private StationModificationConsoleBoundUserInterface _owner;
         private EntityUid? _station;
         private int? _lastAssignmentSelected;
         private int? _lastChannelSelected;
@@ -42,7 +44,7 @@ namespace Content.Client.CrewAssignments.UI
         public event Action<ButtonToggledEventArgs>? OnAssignmentAccessPressed;
         public event Action<ButtonToggledEventArgs>? OnChannelAccessPressed;
 
-        public StationModificationMenu(EntityUid owner, IEntityManager entMan, IPrototypeManager protoManager, SpriteSystem spriteSystem)
+        public StationModificationMenu(StationModificationConsoleBoundUserInterface owner, IEntityManager entMan, IPrototypeManager protoManager, SpriteSystem spriteSystem)
         {
             RobustXamlLoader.Load(this);
             IoCManager.InjectDependencies(this);
@@ -51,7 +53,7 @@ namespace Content.Client.CrewAssignments.UI
             _spriteSystem = spriteSystem;
             _owner = owner;
 
-            Title = entMan.GetComponent<MetaDataComponent>(owner).EntityName;
+            Title = "Faction Modification";
             TabContainer.SetTabTitle(0, "General");
             TabContainer.SetTabTitle(1, "Assignments");
             TabContainer.SetTabTitle(2, "Radio");
@@ -285,6 +287,25 @@ namespace Content.Client.CrewAssignments.UI
                 {
                     button.Pressed = false;
                 }
+            }
+        }
+
+        public void UpdateResonance(StationModificationInterfaceState cState)
+        {
+            if(cState.TradeStationClaimed)
+            {
+                MarketInnerBox.RemoveAllChildren();
+                foreach(var product in cState.ResonanceMarket)
+                {
+                    ResonanceProductBox box = new(product, cState.Resonance, cState.PartialPurchases, _owner);
+                    MarketInnerBox.AddChild(box);
+                }
+                MarketClosedBox.Visible = false;
+                ResonanceBalance.Text = $"$${cState.Resonance}";
+            }
+            else
+            {
+                MarketClosedBox.Visible = true;
             }
         }
     }
