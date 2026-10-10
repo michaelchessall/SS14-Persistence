@@ -18,7 +18,7 @@ public abstract partial class SharedSalvageSystem
     {
         { new AsteroidOffering(), 4.5f },
         { new DebrisOffering(), 3.5f },
-        { new SalvageOffering(), 2.0f },
+        // { new SalvageOffering(), 2.0f }, Persistence14: Only roids and Debris available (for now).
     };
 
     private readonly List<ProtoId<DungeonConfigPrototype>> _asteroidConfigs = new()

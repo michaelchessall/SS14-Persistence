@@ -1,3 +1,4 @@
+using Content.Server._Persistence14.Shuttles;
 using Content.Server.Cargo.Components;
 using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
@@ -82,14 +83,23 @@ public sealed partial class StationAnchorSystem : EntitySystem
         if (!grid.HasValue || !transform.Anchored && enabled || !Resolve(grid.Value, ref shuttleComponent))
             return;
 
+        var args = new StationAnchorAttemptEvent
+        {
+            Anchor = ent.Owner,
+            Grid = grid.Value,
+            State = enabled ? StationAnchorState.Anchored : StationAnchorState.Unanchored
+        };
+        RaiseLocalEvent(ref args);
+        if (args.Cancelled)
+            return;
+
         if (enabled)
         {
             _shuttleSystem.Disable(grid.Value);
         }
         else
         {
-            if(!TryComp<TradeStationComponent>(grid, out _))
-                _shuttleSystem.Enable(grid.Value);
+            _shuttleSystem.Enable(grid.Value);
         }
 
         shuttleComponent.Enabled = !enabled;
