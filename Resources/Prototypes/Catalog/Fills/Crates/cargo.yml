@@ -254,10 +254,14 @@
 
 - type: entity
   id: BusinessStartingKit
-  parent: CrateGenericSteel
+  parent: CrateBaseSecure
   name: faction starter crate
   description: Contains the goods relevant to creating a faction.
   components:
+  - type: Icon
+    sprite: Structures/Storage/Crates/command.rsi
+  - type: Sprite
+    sprite: Structures/Storage/Crates/command.rsi
   - type: EntityTableContainerFill
     containers:
       entity_storage: !type:AllSelector
@@ -271,3 +275,6 @@
           - id: CargoBountyComputerFlatpack
           - id: BookFactionHandbook
           - id: ComputerGridControlFlatpack
+          - id: ComputerInvoicePrinterFlatpack
+          - id: HolopadLongRangeFlatpack
+          - id: DrinkChampagneBottleFull
