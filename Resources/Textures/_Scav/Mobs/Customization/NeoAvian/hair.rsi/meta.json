@@ -1,0 +1,103 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites originally by MistakeNot at https://github.com/ScavStation/ScavStation/commit/3eee5491c56aa0b0b763d3021ba08724e5911048, modified by https://github.com/NuclearCreeperIII",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "upright_alt",
+      "directions": 4
+    },
+    {
+      "name": "upright",
+      "directions": 4
+    },
+    {
+      "name": "unpruned",
+      "directions": 4
+    },
+    {
+      "name": "twies",
+      "directions": 4
+    },
+    {
+      "name": "sunburst",
+      "directions": 4
+    },
+    {
+      "name": "spiky_alt",
+      "directions": 4
+    },
+    {
+      "name": "spiky",
+      "directions": 4
+    },
+    {
+      "name": "pointy",
+      "directions": 4
+    },
+    {
+      "name": "plumage_alt",
+      "directions": 4
+    },
+    {
+      "name": "plumage",
+      "directions": 4
+    },
+    {
+      "name": "neon",
+      "directions": 4
+    },
+    {
+      "name": "mohawk_alt",
+      "directions": 4
+    },
+    {
+      "name": "mohawk",
+      "directions": 4
+    },
+    {
+      "name": "mane",
+      "directions": 4
+    },
+    {
+      "name": "long_way",
+      "directions": 4
+    },
+    {
+      "name": "large_ears",
+      "directions": 4
+    },
+    {
+      "name": "hedgehog",
+      "directions": 4
+    },
+    {
+      "name": "fluffy_mohawk",
+      "directions": 4
+    },
+    {
+      "name": "ears_alt",
+      "directions": 4
+    },
+    {
+      "name": "ears",
+      "directions": 4
+    },
+    {
+      "name": "droopy",
+      "directions": 4
+    },
+    {
+      "name": "crest",
+      "directions": 4
+    },
+    {
+      "name": "backstrafe",
+      "directions": 4
+    }
+  ]
+}

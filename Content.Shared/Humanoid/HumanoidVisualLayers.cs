@@ -24,6 +24,8 @@ namespace Content.Shared.Humanoid
         LArm,
         RHand,
         LHand,
+        RHandOverlay, // Things that go on top of hands
+        LHandOverlay,
         RLeg,
         LLeg,
         RFoot,

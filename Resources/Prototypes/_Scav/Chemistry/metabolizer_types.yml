@@ -1,3 +1,7 @@
 - type: metabolizerType
   id: Yinglet
   name: metabolizer-type-yinglet
+
+- type: metabolizerType
+  id: NeoAvian
+  name: metabolizer-type-neoavian

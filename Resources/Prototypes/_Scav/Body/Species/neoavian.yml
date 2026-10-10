@@ -1,0 +1,454 @@
+- type: markingsGroup
+  parent: Undergarments
+  id: NeoAvian
+  onlyGroupWhitelisted: true
+  limits:
+    enum.HumanoidVisualLayers.Hair:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.FacialHair:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.Tail:
+      limit: 1
+      required: true
+      default: [ NeoAvianTail ]
+    enum.HumanoidVisualLayers.Snout:
+      limit: 1
+      required: true
+      default: [ NeoAvianBeak ]
+    enum.HumanoidVisualLayers.HeadTop:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.LArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RArm:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LHand:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.RHand:
+      limit: 0
+      required: false
+    enum.HumanoidVisualLayers.LHandOverlay:
+      limit: 1
+      required: false
+      default: [ NeoAvianLWing ]
+    enum.HumanoidVisualLayers.RHandOverlay:
+      limit: 1
+      required: false
+      default: [ NeoAvianRWing ]
+    enum.HumanoidVisualLayers.LLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.RLeg:
+      limit: 1
+      required: false
+    enum.HumanoidVisualLayers.LFoot:
+      limit: 1
+      required: true
+      default: [ NeoAvianLFoot ]
+    enum.HumanoidVisualLayers.RFoot:
+      limit: 1
+      required: true
+      default: [ NeoAvianRFoot ]
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceNeoAvian
+  name: neoavian appearance
+  components:
+  - type: InitialBody
+    organs:
+      Torso: OrganNeoAvianTorso
+      Head: OrganNeoAvianHead
+      ArmLeft: OrganNeoAvianArmLeft
+      ArmRight: OrganNeoAvianArmRight
+      HandRight: OrganNeoAvianHandRight
+      HandLeft: OrganNeoAvianHandLeft
+      LegLeft: OrganNeoAvianLegLeft
+      LegRight: OrganNeoAvianLegRight
+      FootLeft: OrganNeoAvianFootLeft
+      FootRight: OrganNeoAvianFootRight
+      Brain: OrganNeoAvianBrain
+      Eyes: OrganNeoAvianEyes
+      Tongue: OrganNeoAvianTongue
+      Ears: OrganNeoAvianEars
+      Lungs: OrganNeoAvianLungs
+      Heart: OrganNeoAvianHeart
+      Stomach: OrganNeoAvianStomach
+      Liver: OrganNeoAvianLiver
+      Kidneys: OrganNeoAvianKidneys
+  - type: Sprite
+    layers:
+    # Torso
+    - map: [ "enum.HumanoidVisualLayers.Chest" ]
+
+    # Head
+    - map: [ "enum.HumanoidVisualLayers.Head" ]
+    - map: [ "enum.HumanoidVisualLayers.Snout" ]
+    - map: [ "enum.HumanoidVisualLayers.Eyes" ]
+
+    # Limbs
+    - map: [ "enum.HumanoidVisualLayers.RArm" ]
+    - map: [ "enum.HumanoidVisualLayers.LArm" ]
+    - map: [ "enum.HumanoidVisualLayers.RLeg" ]
+    - map: [ "enum.HumanoidVisualLayers.LLeg" ]
+
+    # Underwear & clothing
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentBottom" ]
+    - map: [ "enum.HumanoidVisualLayers.UndergarmentTop" ]
+    - map: ["jumpsuit"]
+
+    # Extremities
+    - map: ["enum.HumanoidVisualLayers.LFoot"]
+    - map: ["enum.HumanoidVisualLayers.RFoot"]
+    - map: ["enum.HumanoidVisualLayers.LHand"]
+    - map: ["enum.HumanoidVisualLayers.RHand"]
+
+    # Stuff that goes over the body but below equipment
+    - map: ["enum.HumanoidVisualLayers.Overlay"]
+
+    # More equipment
+    - map: [ "gloves" ]
+    - map: [ "shoes" ]
+    - map: [ "ears" ]
+    - map: [ "eyes" ]
+    - map: [ "belt" ]
+    - map: [ "id" ]
+    - map: [ "outerClothing" ]
+    - map: [ "back" ]
+    - map: [ "neck" ]
+    - map: [ "suitstorage" ]
+
+    # Stuff that goes in front of equipment
+    - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
+    - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
+    - map: [ "enum.HumanoidVisualLayers.Hair" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
+    - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
+
+    # Stuff that goes in front of stuff that goes in front of equipment
+    - map: [ "mask" ]
+    - map: [ "head" ]
+    - map: [ "pocket1" ]
+    - map: [ "pocket2" ]
+
+    # Non-default: wings and tail should render in front of basically everything else
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
+    - map: [ "enum.HumanoidVisualLayers.LHandOverlay" ]
+    - map: [ "enum.HumanoidVisualLayers.RHandOverlay" ]
+
+    # Extra stuff
+    - map: ["enum.HumanoidVisualLayers.Handcuffs"]
+      color: "#ffffff"
+      sprite: Objects/Misc/handcuffs.rsi
+      state: body-overlay-2
+      visible: false
+  - type: Inventory
+    speciesId: neoavian
+    displacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: jumpsuit
+      outerClothing:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: outerClothing
+      eyes:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: eyes
+      neck:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: neck
+      mask:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: mask
+      gloves:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: hand
+      back:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: back
+      ears:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: ears
+      shoes:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: shoes
+      head:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: head
+      belt:
+        sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: belt
+  - type: Hands
+    leftHandDisplacement:
+      sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: hand_l
+    rightHandDisplacement:
+      sizeMaps:
+          32:
+            sprite: _Scav/Mobs/Species/NeoAvian/displacement.rsi
+            state: hand_r
+  - type: HumanoidProfile
+    species: NeoAvian
+
+- type: entity
+  parent:
+  - AppearanceNeoAvian
+  - BaseSpeciesMobOrganic
+  id: MobNeoAvian
+  name: Urist McChicken
+  components:
+  - type: Damageable
+    displacement: Dwarfism
+  - type: Speech
+    speechSounds: Alto
+    allowedEmotes: ['Chirp', 'Squawk', 'Flap']
+  - type: Vocal
+    sounds:
+      Male: MaleHuman # TODO: Add UnisexNeoAvian
+      Female: FemaleHuman # TODO: Add UnisexNeoAvian
+      Unsexed: MaleHuman # TODO: Add UnisexNeoAvian
+  - type: TypingIndicator
+    proto: default
+  - type: Butcherable
+    butcheringType: Spike
+    spawned:
+    - id: FoodMeatChicken
+      amount: 4
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.25
+        density: 55
+        restitution: 0.0
+        mask:
+        - MobMask
+        layer:
+        - MobLayer
+  - type: MobThresholds #Same HP as yinglets, but no brute damage debuff
+    thresholds:
+      0: Alive
+      75: SoftCritical
+      100: HardCritical
+      125: Dead
+  - type: Destructible #they also gib faster
+    thresholds:
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Blunt
+        damage: 300
+      behaviors:
+      - !type:GibBehavior { }
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Heat
+        damage: 1200
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawnInContainer: true
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:BurnBodyBehavior
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MeatLaserImpact
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 15
+      behaviors:
+      - !type:PopupBehavior
+        popup: mouth-taste-metal
+        popupType: LargeCaution
+        targetOnly: true
+    - trigger:
+        !type:DamageTypeTrigger
+        damageType: Radiation
+        damage: 40
+      behaviors:
+      - !type:VomitBehavior
+  - type: Bloodstream
+    bloodReferenceSolution:
+      reagents:
+      - ReagentId: Blood
+        Quantity: 100
+  - type: MeleeWeapon
+    soundHit:
+      path: /Audio/Weapons/pierce.ogg
+    animation: WeaponArcClaw
+    damage:
+      types:
+        Piercing: 2
+        Slash: 3
+  - type: MovementSpeedModifier
+    baseWalkSpeed: 4
+    baseSprintSpeed: 5
+    baseWeightlessAcceleration: 1.2 #Better space movement, but not as good as moths
+    baseWeightlessModifier: 1
+  - type: CreamPied
+    displacement: Dwarfism
+  - type: Flammable
+    displacement: Dwarfism
+  - type: InnerBodyAnomalyVisuals
+    displacement: Dwarfism
+
+- type: entity
+  parent: OrganBase
+  id: OrganNeoAvian
+  abstract: true
+  suffix: neoavian
+
+- type: entity
+  id: OrganNeoAvianMetabolizer
+  abstract: true
+  components:
+  - type: Metabolizer
+    metabolizerTypes: [ NeoAvian ]
+
+- type: entity
+  parent: OrganNeoAvian
+  id: OrganNeoAvianInternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Mobs/Species/Human/organs.rsi
+
+- type: entity
+  id: OrganNeoAvianVisual
+  abstract: true
+  components:
+  - type: VisualOrgan
+    data:
+      sprite: _Scav/Mobs/Species/NeoAvian/parts.rsi
+  - type: VisualOrganMarkings
+    markingData:
+      group: NeoAvian
+
+- type: entity
+  parent: [ OrganNeoAvian, OrganNeoAvianVisual ]
+  id: OrganNeoAvianExternal
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: _Scav/Mobs/Species/NeoAvian/parts.rsi
+
+- type: entity
+  parent: [ OrganBaseTorso, OrganNeoAvianExternal ]
+  id: OrganNeoAvianTorso
+
+- type: entity
+  parent: [ OrganBaseHead, OrganNeoAvianExternal ]
+  id: OrganNeoAvianHead
+  components:
+  - type: VisualOrganMarkings
+    hideableLayers:
+    - enum.HumanoidVisualLayers.Snout
+    - enum.HumanoidVisualLayers.Hair
+    dependentHidingLayers:
+      enum.HumanoidVisualLayers.Snout:
+      - enum.HumanoidVisualLayers.SnoutCover
+
+- type: entity
+  parent: [ OrganBaseArmLeft, OrganNeoAvianExternal ]
+  id: OrganNeoAvianArmLeft
+
+- type: entity
+  parent: [ OrganBaseArmRight, OrganNeoAvianExternal ]
+  id: OrganNeoAvianArmRight
+
+- type: entity
+  parent: [ OrganBaseHandLeft, OrganNeoAvianExternal ]
+  id: OrganNeoAvianHandLeft
+
+- type: entity
+  parent: [ OrganBaseHandRight, OrganNeoAvianExternal ]
+  id: OrganNeoAvianHandRight
+
+- type: entity
+  parent: [ OrganBaseLegLeft, OrganNeoAvianExternal ]
+  id: OrganNeoAvianLegLeft
+
+- type: entity
+  parent: [ OrganBaseLegRight, OrganNeoAvianExternal ]
+  id: OrganNeoAvianLegRight
+
+- type: entity
+  parent: [ OrganBaseFootLeft, OrganNeoAvianExternal ]
+  id: OrganNeoAvianFootLeft
+
+- type: entity
+  parent: [ OrganBaseFootRight, OrganNeoAvianExternal ]
+  id: OrganNeoAvianFootRight
+
+- type: entity
+  parent: [ OrganBaseBrain, OrganSpriteHumanInternal, OrganNeoAvianInternal ]
+  id: OrganNeoAvianBrain
+
+- type: entity
+  parent: [ OrganNeoAvianVisual, OrganBaseEyes, OrganNeoAvianInternal ]
+  id: OrganNeoAvianEyes
+
+- type: entity
+  parent: [ OrganBaseTongue, OrganNeoAvianInternal ]
+  id: OrganNeoAvianTongue
+
+- type: entity
+  parent: [ OrganBaseAppendix, OrganNeoAvianInternal ]
+  id: OrganNeoAvianAppendix
+
+- type: entity
+  parent: [ OrganBaseEars, OrganNeoAvianInternal ]
+  id: OrganNeoAvianEars
+
+- type: entity
+  parent: [ OrganBaseLungs, OrganNeoAvianInternal, OrganNeoAvianMetabolizer ]
+  id: OrganNeoAvianLungs
+
+- type: entity
+  parent: [ OrganBaseHeart, OrganNeoAvianInternal, OrganNeoAvianMetabolizer ]
+  id: OrganNeoAvianHeart
+
+- type: entity
+  parent: [ OrganBaseStomach, OrganNeoAvianInternal, OrganNeoAvianMetabolizer ]
+  id: OrganNeoAvianStomach
+
+- type: entity
+  parent: [ OrganBaseLiver, OrganNeoAvianInternal, OrganNeoAvianMetabolizer ]
+  id: OrganNeoAvianLiver
+
+- type: entity
+  parent: [ OrganBaseKidneys, OrganNeoAvianInternal, OrganNeoAvianMetabolizer ]
+  id: OrganNeoAvianKidneys

@@ -1,0 +1,9 @@
+names-neoavian-male-dataset-1 = Albus
+names-neoavian-male-dataset-2 = Corax
+names-neoavian-male-dataset-3 = Corintheus
+names-neoavian-male-dataset-4 = Cornelius
+names-neoavian-male-dataset-5 = Meeki
+names-neoavian-male-dataset-6 = Insularis
+names-neoavian-male-dataset-7 = Orru
+names-neoavian-male-dataset-8 = Kubaryi
+names-neoavian-male-dataset-9 = Julian

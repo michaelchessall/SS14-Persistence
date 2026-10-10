@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites originally by MistakeNot at https://github.com/ScavStation/ScavStation/commit/3eee5491c56aa0b0b763d3021ba08724e5911048, modified by https://github.com/NuclearCreeperIII",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "tail",
+      "directions": 4
+    },
+    {
+      "name": "long",
+      "directions": 4
+    },
+    {
+      "name": "long_tip",
+      "directions": 4
+    }
+  ]
+}

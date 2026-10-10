@@ -199,9 +199,16 @@
         Nutriment: 1.5
       effects:
       - !type:AdjustTemperature
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ NeoAvian ]
+          inverted: true
         amount: 250 # thermal energy, not temp
       - !type:HealthChange
         conditions:
+          - !type:MetabolizerTypeCondition
+            type: [ NeoAvian ]
+            inverted: true
           - !type:ReagentCondition
             reagent: CapsaicinOil
             min: 5
@@ -209,6 +216,10 @@
           types:
             Caustic: 1
       - !type:PopupMessage
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ NeoAvian ]
+          inverted: true
         type: Local
         messages: [ "capsaicin-effect-light-burn" ]
         probability: 0.2
