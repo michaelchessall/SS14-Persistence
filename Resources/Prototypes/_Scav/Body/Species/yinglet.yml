@@ -118,13 +118,13 @@
     - map: [ "suitstorage" ]
 
     # Stuff that goes in front of equipment
+    - map: [ "enum.HumanoidVisualLayers.Tail" ]
+    - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
     - map: [ "enum.HumanoidVisualLayers.SnoutCover" ]
     - map: [ "enum.HumanoidVisualLayers.FacialHair" ]
     - map: [ "enum.HumanoidVisualLayers.Hair" ]
     - map: [ "enum.HumanoidVisualLayers.HeadSide" ]
     - map: [ "enum.HumanoidVisualLayers.HeadTop" ]
-    - map: [ "enum.HumanoidVisualLayers.Tail" ]
-    - map: [ "enum.HumanoidVisualLayers.TailOverlay" ]
 
     # Stuff that goes in front of stuff that goes in front of equipment
     - map: [ "ears" ] # Non-Default, headphones need to render over ears
@@ -368,14 +368,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 4
     baseSprintSpeed: 6
-  - type: ThermalRegulator #Yinglets have about 1/7 the mass of humans, these need to be changed otherwise they cant use cryotubes
-    metabolismHeat: 400
-    radiatedHeat: 50
-    implicitHeatRegulation: 150
-    sweatHeatRegulation: 250
-    shiveringHeatRegulation: 250
-    normalBodyTemperature: 310.15
-    thermalRegulationTemperatureThreshold: 2
   - type: CreamPied
     displacement: Dwarfism
   - type: Flammable
