@@ -31,6 +31,10 @@
   color: '#4e4e4e'
   reagent: CarbonDioxide
   pricePerMole: 0.1
+  nutrient: CarbonDioxide # Persistence: Plant nutrient rework
+  nutrientAmount: 1.0
+  maxNutrient: 100
+  plantAbsorptionRate: 10.0
 
 - type: gas
   id: Plasma
@@ -47,6 +51,10 @@
   pricePerMole: 0
   isFuel: true
   burnColor: "#FF4500"
+  nutrient: Plasma # Persistence: Plant nutrient rework
+  nutrientAmount: 0.21 # As effective as condensing and adding to a tray.
+  maxNutrient: 100
+  plantAbsorptionRate: 25
 
 - type: gas
   id: Tritium
@@ -63,6 +71,10 @@
   pricePerMole: 0.8
   isFuel: true
   burnColor: "#33FF88"
+  nutrient: Radiation # Persistence: Plant nutrient rework
+  nutrientAmount: 0.4
+  maxNutrient: 20 # Should be less effective than directly absorbing radiation
+  plantAbsorptionRate: 2.0
 
 - type: gas
   id: WaterVapor
@@ -104,6 +116,10 @@
   color: '#8F00FF'
   reagent: NitrousOxide
   pricePerMole: 0.25
+  nutrient: NitrousOxide # Persistence: Plant nutrient rework
+  nutrientAmount: 1
+  maxNutrient: 100
+  plantAbsorptionRate: 5
 
 - type: gas
   id: Frezon
@@ -119,6 +135,10 @@
   color: '#3a758c'
   reagent: Frezon
   pricePerMole: 1
+  nutrient: Frezon # Persistence: Plant nutrient rework
+  nutrientAmount: 1.0 # ~5x as effective as pouring condensed frezon into a tray.
+  maxNutrient: 100
+  plantAbsorptionRate: 2.5
 
 - type: gas
   id: Hydrogen
@@ -132,6 +152,10 @@
   pricePerMole: 0.5
   isFuel: true
   burnColor: "#D4F1FF18"
+  nutrient: Hydrogen # Persistence: Plant nutrient rework
+  nutrientAmount: 1
+  maxNutrient: 100
+  plantAbsorptionRate: 10
 
 - type: gas
   id: Chlorine
@@ -140,7 +164,7 @@
   molarHeatCapacity: 33
   heatCapacityRatio: 1.35
   molarMass: 71
-  gasOverlaySprite: 
+  gasOverlaySprite:
     sprite: /Textures/Effects/atmospherics.rsi
     state: chlorine
   gasMolesVisible: 1.5
@@ -155,7 +179,7 @@
   molarHeatCapacity: 32
   heatCapacityRatio: 1.35
   molarMass: 38
-  gasOverlaySprite: 
+  gasOverlaySprite:
     sprite: /Textures/Effects/atmospherics.rsi
     state: fluorine
   gasMolesVisible: 1.3
@@ -170,7 +194,7 @@
   molarHeatCapacity: 35
   heatCapacityRatio: 1.31
   molarMass: 16
-  gasOverlaySprite: 
+  gasOverlaySprite:
     sprite: /Textures/Effects/atmospherics.rsi
     state: methane
   color: "#8B7D6B"
@@ -186,7 +210,7 @@
   molarHeatCapacity: 50
   heatCapacityRatio: 1.32
   molarMass: 93
-  gasOverlaySprite: 
+  gasOverlaySprite:
     sprite: /Textures/Effects/atmospherics.rsi
     state: clf3
   gasMolesVisible: 0.8

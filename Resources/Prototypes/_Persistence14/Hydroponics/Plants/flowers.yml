@@ -1,0 +1,123 @@
+- type: entity
+  parent: BasePlant
+  id: PoppyPlants
+  name: poppy
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/poppy.rsi
+  - type: PlantData
+    name: seeds-poppy-name
+    packetPrototype: PoppySeeds
+    productPrototypes: [ FoodPoppy ]
+    mutationPrototypes: [ LilyPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment2
+      Bicaridine:
+        id: Bicaridine20
+
+- type: entity
+  parent: BasePlant
+  id: LilyPlants
+  name: lily
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/lily.rsi
+  - type: PlantData
+    name: seeds-lily-name
+    packetPrototype: LilySeeds
+    productPrototypes: [ FoodLily ]
+    mutationPrototypes: [ SpacemansTrumpetPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment2
+      Bicaridine:
+        id: Bicaridine20
+
+- type: entity
+  parent: BasePlant
+  id: SpacemansTrumpetPlants
+  name: spaceman's trumpet plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/spacemans_trumpet.rsi
+  - type: PlantData
+    name: seeds-spacemans-trumpet-name
+    packetPrototype: SpacemansTrumpetSeeds
+    productPrototypes: [ FoodSpacemansTrumpet ]
+  - type: Plant
+    lifespan: 20
+    maturation: 14
+    production: 3
+    yield: 2
+    growthStages: 4
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment3
+      PolypyryliumOligomers:
+        id: PolypyryliumOligomers
+
+- type: entity
+  parent: BasePlant
+  id: GalaxythistlePlants
+  name: galaxythistle
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/galaxythistle.rsi
+  - type: PlantData
+    name: seeds-galaxythistle-name
+    packetPrototype: GalaxythistleSeeds
+    productPrototypes: [ FoodGalaxythistle ]
+    mutationPrototypes: [ GlasstlePlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Stellibinin:
+        id: Stellibinin
+
+- type: entity
+  parent: BasePlant
+  id: GlasstlePlants
+  name: glasstle
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/glasstle.rsi
+  - type: PlantData
+    name: seeds-glasstle-name
+    packetPrototype: GlasstleSeeds
+    productPrototypes: [ FoodGlasstle ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Razorium:
+        id: Razorium
+      Desoxyephedrine: # meff!!
+        id: GlassthleDesoxyephedrine
+  - type: PlantBaseRequirements
+    baseRequirements:
+      Carbon: 5

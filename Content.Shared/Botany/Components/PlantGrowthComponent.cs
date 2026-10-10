@@ -21,4 +21,5 @@ public sealed partial class PlantGrowthComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float NutrientConsumption = 0.75f;
+
 }

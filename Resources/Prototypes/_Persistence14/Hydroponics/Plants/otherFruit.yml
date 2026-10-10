@@ -1,0 +1,385 @@
+- type: entity
+  parent: BasePlant
+  id: TomatoPlants
+  name: tomato plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/tomato.rsi
+  - type: PlantData
+    name: seeds-tomato-name
+    packetPrototype: TomatoSeeds
+    productPrototypes: [ FoodTomato ]
+    mutationPrototypes: [ BlueTomatoPlants, BloodTomatoPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 6
+    yield: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantGrowth
+    waterConsumption: 0.6
+    nutrientConsumption: 0.4
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment7
+      Vitamin:
+        id: BaseVitamin3
+      Water:
+        id: BaseWater4
+
+- type: entity
+  parent: BasePlant
+  id: BlueTomatoPlants
+  name: blue tomato plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/blue_tomato.rsi
+  - type: PlantData
+    name: seeds-bluetomato-name
+    packetPrototype: BlueTomatoSeeds
+    productPrototypes: [ FoodBlueTomato ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 6
+    yield: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantGrowth
+    waterConsumption: 0.6
+    nutrientConsumption: 0.7
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment5
+      SpaceLube:
+        id: BlueTomatoLube
+      Vitamin:
+        id: BaseVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: BloodTomatoPlants
+  name: blood tomato plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/blood_tomato.rsi
+  - type: PlantData
+    name: seeds-bloodtomato-name
+    packetPrototype: BloodTomatoSeeds
+    productPrototypes: [ FoodBloodTomato ]
+    mutationPrototypes: [ KillerTomatoPlants ]
+  - type: Plant
+    lifespan: 60
+    maturation: 8
+    production: 6
+    yield: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantGrowth
+    waterConsumption: 0.6
+    nutrientConsumption: 0.7
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Blood:
+        id: TomatoBlood
+      Vitamin:
+        id: BaseVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: KillerTomatoPlants
+  name: tomato killer plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/tomatokiller.rsi
+  - type: PlantData
+    name: seeds-killertomato-name
+    plantLogImpact: High
+    harvestLogImpact: High
+    packetPrototype: KillerTomatoSeeds
+    productPrototypes: [ MobTomatoKiller ]
+  - type: Plant
+    lifespan: 25
+    maturation: 15
+    production: 6
+    yield: 2
+    growthStages: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantGrowth # TODO: Requirements? Are these obtainable here?
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Blood:
+        id: TomatoBlood
+      JuiceTomato:
+        id: KillerTomatoJuice
+
+- type: entity
+  parent: BasePlant
+  id: EggplantPlants
+  name: eggplant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/eggplant.rsi
+  - type: PlantData
+    name: seeds-eggplant-name
+    packetPrototype: EggplantSeeds
+    productPrototypes: [ FoodEggplant ]
+    mutationPrototypes: [ EggyPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 6
+    yield: 2
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment10
+      Vitamin:
+        id: BaseVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: ChiliPlants
+  name: chili pepper
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/chili.rsi
+  - type: PlantData
+    name: seeds-chili-name
+    packetPrototype: ChiliSeeds
+    productPrototypes: [ FoodChiliPepper ]
+    mutationPrototypes: [ ChillyPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 6
+    yield: 2
+    potency: 20
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      CapsaicinOil:
+        id: CapsaicinOil
+      Nutriment:
+        id: BasicNutriment4
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: ChillyPlants
+  name: chilly pepper
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/chilly.rsi
+  - type: PlantData
+    name: seeds-chilly-name
+    packetPrototype: ChillySeeds
+    productPrototypes: [ FoodChillyPepper ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 6
+    yield: 2
+    potency: 20
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      FrostOil:
+        id: FrostOil
+      Nutriment:
+        id: BasicNutriment4
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: WatermelonPlants
+  name: watermelon vine
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/watermelon.rsi
+  - type: PlantData
+    name: seeds-watermelon-name
+    packetPrototype: WatermelonSeeds
+    productPrototypes: [ FoodWatermelon ]
+    mutationPrototypes: [ HolymelonPlants ]
+  - type: Plant
+    lifespan: 55
+    maturation: 12
+    production: 3
+    yield: 1
+  - type: PlantChemicals
+    Nutriment:
+      id: BaseNutriment10
+    Water:
+      id: MelonWater
+    Vitamin:
+      id: BaseVitamin5
+
+- type: entity
+  parent: BasePlant
+  id: HolymelonPlants
+  name: holymelon vine
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/holymelon.rsi
+  - type: PlantData
+    name: seeds-holymelon-name
+    packetPrototype: HolymelonSeeds
+    productPrototypes: [ FoodHolymelon ]
+  - type: Plant
+    lifespan: 55
+    maturation: 12
+    production: 3
+    yield: 1
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment10
+      Holywater:
+        id: HolyMelonWater
+      Vitamin:
+        id: BaseVitamin5
+
+- type: entity
+  parent: BasePlant
+  id: BerryPlants
+  name: berry bush
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/berries.rsi
+  - type: PlantData
+    name: seeds-berries-name
+    packetPrototype: BerrySeeds
+    productPrototypes: [ FoodBerries ]
+  - type: Plant
+    lifespan: 50
+    maturation: 6
+    production: 6
+    yield: 4
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment5
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: PumpkinPlants
+  name: pumpkin
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/pumpkin.rsi
+  - type: PlantData
+    name: seeds-pumpkin-name
+    packetPrototype: PumpkinSeeds
+    productPrototypes: [ FoodPumpkin ]
+    mutationPrototypes: [ BluePumpkinPlants ]
+  - type: Plant
+    lifespan: 55
+    maturation: 10
+    production: 4
+    yield: 2
+    growthStages: 3
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      PumpkinFlesh:
+        id: PumpkinFlesh
+      Vitamin:
+        id: BaseVitamin5
+
+- type: entity
+  parent: BasePlant
+  id: BluePumpkinPlants
+  name: blue pumpkin
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/blue_pumpkin.rsi
+  - type: PlantData
+    name: seeds-blue-pumpkin-name
+    packetPrototype: BluePumpkinSeeds
+    productPrototypes: [ FoodBluePumpkin ]
+  - type: Plant
+    lifespan: 55
+    maturation: 10
+    production: 4
+    yield: 2
+    growthStages: 3
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Ammonia: # TODO
+        min: 1
+        max: 15
+        potencyDivisor: 3
+      Chlorine: # TODO
+        min: 1
+        max: 5
+        potencyDivisor: 5
+      Vitamin:
+        id: BluePumpkinVitamin
+
+- type: entity
+  parent: BasePlant
+  id: AnomalyBerryPlants
+  name: anomaly berry
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/anomaly_berry.rsi
+  - type: PlantData
+    name: seeds-anomaly-berry-name
+    packetPrototype: AnomalyBerrySeeds
+    productPrototypes: [ FoodAnomalyBerry ]
+  - type: Plant
+    lifespan: 25
+    maturation: 12
+    production: 3
+    yield: 3
+    growthStages: 2
+  - type: PlantChemicals
+    chemicals:
+      Artifexium:
+        id: Artifexium
+      Nutriment:
+        id: BaseNutriment2
+      Vitamin:
+        id: BaseVitamin2

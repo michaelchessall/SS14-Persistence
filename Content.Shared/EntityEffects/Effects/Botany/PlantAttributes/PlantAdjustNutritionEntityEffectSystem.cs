@@ -13,7 +13,7 @@ public sealed partial class PlantAdjustNutritionEntityEffectSystem : EntityEffec
 
     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustNutrition> args)
     {
-        _plantTray.AdjustNutrient(entity.AsNullable(), args.Effect.Amount);
+        //_plantTray.AdjustNutrient(entity.AsNullable(), args.Effect.Amount); Persistence TODO: Fully remove or comment out this file
     }
 }
 

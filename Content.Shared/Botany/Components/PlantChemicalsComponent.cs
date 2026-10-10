@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Systems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.FixedPoint;
@@ -25,6 +26,7 @@ public sealed partial class PlantChemicalsComponent : Component
 [Serializable, NetSerializable]
 public partial struct PlantChemQuantity
 {
+    /* Persistence 14
     /// <summary>
     /// Minimum amount of chemical that is added to produce, regardless of the potency
     /// </summary>
@@ -42,7 +44,13 @@ public partial struct PlantChemQuantity
     /// Example: PotencyDivisor of 20 with seed potency of 55 results in 2.75, 55/20 = 2.75. If minimum is 1 then final result will be 3.75 of that chemical, 55/20+1 = 3.75.
     /// </summary>
     [DataField]
-    public float PotencyDivisor;
+    public float PotencyDivisor;*/
+
+    /// <summary>
+    /// Persistence: Prototype containing base amount, nutrient requirements, and tolerance modifiers of the chemical.
+    /// </summary>
+    [DataField]
+    public ProtoId<PlantChemQuantityPrototype> Id;
 
     /// <summary>
     /// Inherent chemical is one that is NOT result of mutation or crossbreeding. These chemicals are removed if species mutation is executed.

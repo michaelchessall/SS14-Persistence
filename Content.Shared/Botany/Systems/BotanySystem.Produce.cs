@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Items.Components;
 using Content.Shared.EntityEffects;
@@ -7,12 +8,14 @@ using Content.Shared.FixedPoint;
 using Content.Shared.Random.Helpers;
 using Robust.Shared.Map;
 using Robust.Shared.Random;
+using Robust.Shared.Prototypes; // Persistence 14
 
 namespace Content.Shared.Botany.Systems;
 
 public sealed partial class BotanySystem
 {
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
 
     [SubscribeLocalEvent]
     private void OnProduceExamined(Entity<ProduceComponent> ent, ref ExaminedEvent args)
@@ -51,10 +54,8 @@ public sealed partial class BotanySystem
 
         foreach (var (chem, quantity) in chems.Chemicals)
         {
-            var amount = quantity.Min;
-            if (quantity.PotencyDivisor > 0 && plant.Potency > 0)
-                amount += plant.Potency / quantity.PotencyDivisor;
-            amount = FixedPoint2.Clamp(amount, quantity.Min, quantity.Max);
+            var quantityProto = _prototypeManager.Index(quantity.Id);
+            var amount = quantityProto.BaseAmount; // TODO: Properly implement this
             solution.Comp.Solution.MaxVolume += amount;
             solution.Comp.Solution.AddReagent(chem, amount);
         }

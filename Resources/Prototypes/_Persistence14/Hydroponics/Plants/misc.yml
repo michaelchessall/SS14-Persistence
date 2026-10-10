@@ -1,0 +1,257 @@
+- type: entity
+  parent: BasePlant
+  id: PeaPlants
+  name: pea vine
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/pea.rsi
+  - type: PlantData
+    name: seeds-pea-name
+    packetPrototype: PeaSeeds
+    productPrototypes: [ FoodPeaPod ]
+    mutationPrototypes: [ LaughinPeaPlants ]
+  - type: Plant
+    lifespan: 25
+    growthStages: 3
+    maturation: 8
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment3
+      Vitamin:
+        id: BasicVitamin2
+
+- type: entity
+  parent: BasePlant
+  id: LaughinPeaPlants
+  name: laughin' pea
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/laughin_pea.rsi
+  - type: PlantData
+    name: seeds-laughin-pea-name
+    packetPrototype: LaughinPeaSeeds
+    productPrototypes: [ FoodLaughinPeaPod ]
+    mutationPrototypes: [ WorldPeaPlants ]
+  - type: Plant
+    lifespan: 25
+    growthStages: 3
+    maturation: 7
+    production: 5
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment3
+      Sugar:
+        id: LaughinPeaSugar
+      Laughter:
+        id: Laughter
+
+- type: entity
+  parent: BasePlant
+  id: WorldPeaPlants
+  name: world pea vine
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/world_pea.rsi
+  - type: PlantData
+    name: seeds-worldpea-name
+    packetPrototype: PeaSeeds
+    productPrototypes: [ FoodWorldPeas ]
+  - type: Plant
+    lifespan: 25
+    growthStages: 3
+    maturation: 20
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Happiness:
+        id: WorldPeaHappiness
+      Nutriment:
+        id: BasicNutriment3
+      Pax:
+        id: WorldPeaPax
+
+- type: entity
+  parent: BasePlant
+  id: SugarcanePlants
+  name: sugarcane
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/sugarcane.rsi
+  - type: PlantData
+    name: seeds-sugarcane-name
+    packetPrototype: SugarcaneSeeds
+    productPrototypes: [ Sugarcane ]
+    mutationPrototypes: [ PapercanePlants ]
+  - type: Plant
+    lifespan: 60
+    maturation: 6
+    production: 6
+    yield: 3
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Sugar:
+        id: CaneSugar
+
+- type: entity
+  parent: BasePlant
+  id: PapercanePlants
+  name: papercane
+  components: # TODO: Add requirements
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/papercane.rsi
+  - type: PlantData
+    name: seeds-papercane-name
+    packetPrototype: PapercaneSeeds
+    productPrototypes: [ Papercane ]
+  - type: Plant
+    lifespan: 60
+    maturation: 6
+    production: 6
+    yield: 3
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+
+- type: entity
+  parent: BasePlant
+  id: EggyPlants
+  name: egg-plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/eggy.rsi
+  - type: PlantData
+    name: seeds-eggy-name
+    packetPrototype: EggySeeds
+    productPrototypes: [ FoodEgg ]
+  - type: Plant
+    lifespan: 75
+    maturation: 6
+    production: 12
+    yield: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Egg:
+        id: Egg
+
+- type: entity
+  parent: BasePlant
+  id: SoybeanPlants
+  name: soy plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/soybeans.rsi
+  - type: PlantData
+    name: seeds-soybeans-name
+    packetPrototype: SoybeanSeeds
+    productPrototypes: [ FoodSoybeans ]
+    mutationPrototypes: [ KoibeanPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 6
+    yield: 3
+    growthStages: 4
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment2
+
+- type: entity
+  parent: BasePlant
+  id: KoibeanPlants
+  name: koibean plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/koibean.rsi
+  - type: PlantData
+    name: seeds-koibean-name
+    packetPrototype: KoibeanSeeds
+    productPrototypes: [ FoodKoibean ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 6
+    yield: 3
+    potency: 5
+    growthStages: 4
+  - type: PlantGrowth
+    nutrientConsumption: 0.4
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment5
+      CarpoToxin:
+        id: Carpotoxin
+
+- type: entity
+  parent: BasePlant
+  id: CottonPlants
+  name: cotton plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cotton.rsi
+  - type: PlantData
+    name: seeds-cotton-name
+    packetPrototype: CottonSeeds
+    productPrototypes: [ CottonBol ]
+    mutationPrototypes: [ PyrottonPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Fiber:
+        id: CottonFiber
+
+- type: entity
+  parent: BasePlant
+  id: PyrottonPlants
+  name: pyrotton plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/pyrotton.rsi
+  - type: PlantData
+    name: seeds-pyrotton-name
+    packetPrototype: PyrottonSeeds
+    productPrototypes: [ PyrottonBol ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 3
+    yield: 2
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Fiber:
+        id: CottonFiber
+      Phlogiston:
+        id: PyrottonPhlogiston

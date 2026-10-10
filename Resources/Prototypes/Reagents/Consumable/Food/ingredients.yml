@@ -70,6 +70,10 @@
     Digestion:
       metabolites:
         UncookedAnimalProteins: 1
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Protein
 
 - type: reagent
   id: EggCooked
@@ -84,6 +88,10 @@
     Digestion:
       metabolites:
         Protein: 2
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Protein
 
 - type: reagent
   id: Blackpepper
@@ -233,12 +241,14 @@
           min: 0.1
         factor: 1
   plantMetabolism:
-  - !type:PlantAdjustNutrition
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 0.1
+    nutrient: Nutrient
   - !type:PlantAdjustWeeds
     amount: 2
-  - !type:PlantAdjustPests
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 2
+    nutrient: Pest
 
 - type: reagent
   id: Butter

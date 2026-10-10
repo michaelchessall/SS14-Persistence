@@ -5,7 +5,7 @@ entity-effect-guidebook-revert-polymorph = Reverts the target to its original fo
 entity-effect-guidebook-random-polymorph = Polymorphs the target into a random creature
 
 # Conditions #
-entity-condition-has-component = 
+entity-condition-has-component =
 { $inverted ->
     [true] the target does not have the { $component } component
     *[false] the target has the { $component } component
@@ -43,3 +43,7 @@ guide-entry-threshold-resuscitation = Resuscitation
 # Writing #
 
 guide-entry-text-colors = Text Colors
+
+# Botany #
+
+guide-entry-plant-nutrients = Plant nutrients

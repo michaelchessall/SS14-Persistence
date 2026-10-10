@@ -47,6 +47,13 @@
       - !type:CleanBloodstream
         excluded: Charcoal
         cleanseRate: 3
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: -0.5
+    nutrient: Toxin
+  - !type:PlantAdjustNutrient
+    amount: 0.5
+    nutrient: Carbon
 
 - type: reagent
   id: Ash

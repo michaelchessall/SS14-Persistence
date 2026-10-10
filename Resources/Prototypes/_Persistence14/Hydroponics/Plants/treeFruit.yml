@@ -1,0 +1,453 @@
+- type: entity
+  parent: BasePlant
+  id: BananaPlants
+  name: banana plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/banana.rsi
+  - type: PlantData
+    name: seeds-banana-name
+    packetPrototype: BananaSeeds
+    productPrototypes: [ FoodBanana ]
+    mutationPrototypes: [ MimanaPlants ]
+  - type: Plant
+    lifespan: 50
+    maturation: 6
+    production: 6
+    yield: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantGrowth
+    waterConsumption: 0.6
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Vitamin:
+        id: BasicVitamin4
+      Nutriment:
+        id: BasicNutriment2
+
+- type: entity
+  parent: BasePlant
+  id: MimanaPlants
+  name: mimana plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/mimana.rsi
+  - type: PlantData
+    name: seeds-mimana-name
+    packetPrototype: MimanaSeeds
+    productPrototypes: [ FoodMimana ]
+  - type: Plant
+    lifespan: 50
+    maturation: 6
+    production: 6
+    yield: 2
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      MuteToxin:
+        id: MimanaMuteToxin
+      Nutriment:
+        id: BasicNutriment2
+
+- type: entity
+  parent: BasePlant
+  id: LemonPlants
+  name: lemon tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/lemon.rsi
+  - type: PlantData
+    name: seeds-lemon-name
+    packetPrototype: LemonSeeds
+    productPrototypes: [ FoodLemon ]
+    mutationPrototypes: [ LemoonPlants, LimePlants, OrangePlants ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment5
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: LemoonPlants
+  name: lemoon tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/lemoon.rsi
+  - type: PlantData
+    name: seeds-lemoon-name
+    packetPrototype: LemoonSeeds
+    productPrototypes: [ FoodLemoon ]
+  - type: Plant
+    lifespan: 90
+    maturation: 8
+    production: 6
+    yield: 4
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Vitamin:
+        id: BasicVitamin4
+      Milk:
+        id: LemoonMilk
+
+- type: entity
+  parent: BasePlant
+  id: LimePlants
+  name: lime tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/lime.rsi
+  - type: PlantData
+    name: seeds-lime-name
+    packetPrototype: LimeSeeds
+    productPrototypes: [ FoodLime ]
+    mutationPrototypes: [ OrangePlants, LemonPlants ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment5
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: OrangePlants
+  name: orange tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/orange.rsi
+  - type: PlantData
+    name: seeds-orange-name
+    packetPrototype: OrangeSeeds
+    productPrototypes: [ FoodOrange ]
+    mutationPrototypes: [ ExtradimensionalOrangePlants, LemonPlants, LimePlants ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment5
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: ExtradimensionalOrangePlants
+  name: extradimensional orange tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/extradimensional_orange.rsi
+  - type: PlantData
+    name: seeds-extradimensionalorange-name
+    packetPrototype: ExtradimensionalOrangeSeeds
+    productPrototypes: [ FoodExtradimensionalOrange ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Haloperidol:
+        id: Haloperidol
+      Nutriment:
+        id: BasicNutriment5
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: PineapplePlants
+  name: pineapple plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/pineapple.rsi
+  - type: PlantData
+    name: seeds-pineapple-name
+    packetPrototype: PineappleSeeds
+    productPrototypes: [ FoodPineapple ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment6
+      Water:
+        id: BaseWater4
+      Vitamin:
+        id: BasicVitamin2
+
+- type: entity
+  parent: BasePlant
+  id: ApplePlants
+  name: apple tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/apple.rsi
+  - type: PlantData
+    name: seeds-apple-name
+    packetPrototype: AppleSeeds
+    productPrototypes: [ FoodApple ]
+    mutationPrototypes: [ GoldenApplePlants ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment10
+      Vitamin:
+        id: BaseVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: GoldenApplePlants
+  name: golden apple tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/golden_apple.rsi
+  - type: PlantData
+    name: seeds-goldenapple-name
+    packetPrototype: GoldenAppleSeeds
+    productPrototypes: [ FoodGoldenApple ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 3
+    potency: 10
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment10
+      Vitamin:
+        id: BaseVitamin4
+      Gold:
+        id: AlchemyGold
+
+- type: entity
+  parent: BasePlant
+  id: GatfruitPlants
+  name: gatfruit tree
+  components: # TODO: Add base nutrient requirements before someone obtains this
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/gatfruit.rsi
+  - type: PlantData
+    name: seeds-gatfruit-name
+    packetPrototype: GatfruitSeeds
+    productPrototypes: [ FoodGatfruit ]
+    mutationPrototypes: [ FakeCapfruitPlants, RealCapfruitPlants ]
+  - type: Plant
+    lifespan: 65
+    maturation: 25
+    production: 25
+    yield: 1
+    growthStages: 2
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment5
+      Sulfur:
+        id: Sulfur
+
+- type: entity
+  parent: BasePlant
+  id: FakeCapfruitPlants
+  name: capfruit tree
+  components: # TODO: Add base nutrient requirements before someone obtains this
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/capfruit.rsi
+  - type: PlantData
+    name: seeds-capfruit-name
+    packetPrototype: FakeCapfruitSeeds
+    productPrototypes: [ FoodFakeCapfruit ]
+  - type: Plant
+    lifespan: 65
+    maturation: 25
+    production: 25
+    yield: 1
+    growthStages: 2
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment5
+      Sulfur:
+        id: Sulfur
+
+- type: entity
+  parent: BasePlant
+  id: RealCapfruitPlants
+  name: capfruit tree
+  components: # TODO: Add base nutrient requirements before someone obtains this
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/capfruit.rsi
+  - type: PlantData
+    name: seeds-capfruit-name
+    packetPrototype: RealCapfruitSeeds
+    productPrototypes: [ FoodRealCapfruit ]
+  - type: Plant
+    lifespan: 65
+    maturation: 25
+    production: 25
+    yield: 1
+    growthStages: 2
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment5
+      Sulfur:
+        id: Sulfur
+
+- type: entity
+  parent: BasePlant
+  id: GrapePlants
+  name: grape plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/grape.rsi
+  - type: PlantData
+    name: seeds-grape-name
+    packetPrototype: GrapeSeeds
+    productPrototypes: [ FoodGrape ]
+  - type: Plant
+    lifespan: 50
+    maturation: 6
+    production: 5
+    yield: 3
+    growthStages: 2
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment5
+      Vitamin:
+        id: BaseVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: CocoaPlants
+  name: cocoa plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cocoa.rsi
+  - type: PlantData
+    name: seeds-cocoa-name
+    packetPrototype: CocoaSeeds
+    productPrototypes: [ FoodCocoaPod ]
+  - type: Plant
+    lifespan: 50
+    maturation: 6
+    production: 6
+    yield: 6
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Vitamin:
+        id: BaseVitamin4
+      Nutriment:
+        id: BaseNutriment2
+
+- type: entity
+  parent: BasePlant
+  id: BungoPlants
+  name: bungo plant
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/bungo.rsi
+  - type: PlantData
+    name: seeds-bungo-name
+    packetPrototype: BungoSeeds
+    productPrototypes: [ FoodBungo ]
+  - type: Plant
+    lifespan: 50
+    maturation: 8
+    production: 6
+    yield: 3
+    potency: 10
+    growthStages: 4
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantGrowth
+    waterConsumption: 0.6
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BungoNutriment
+      Enzyme:
+        id: BungoEnzyme
+
+- type: entity
+  parent: BasePlant
+  id: CherryPlants
+  name: cherry tree
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/cherry.rsi
+  - type: PlantData
+    name: seeds-cherry-name
+    packetPrototype: CherrySeeds
+    productPrototypes: [ FoodCherry ]
+  - type: Plant
+    lifespan: 55
+    maturation: 6
+    production: 6
+    yield: 5
+    potency: 10
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BaseNutriment3
+      Vitamin:
+        id: BaseVitamin3

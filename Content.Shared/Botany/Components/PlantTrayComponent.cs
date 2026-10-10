@@ -1,7 +1,10 @@
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Systems;
 using Content.Shared.Chemistry.Components;
+using Content.Shared.FixedPoint;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Botany.Components;
@@ -30,6 +33,9 @@ public sealed partial class PlantTrayComponent : Component
 
     [DataField, AutoNetworkedField]
     public float MaxNutritionLevel = 100f;
+
+    [DataField, AutoNetworkedField]
+    public Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> Nutrients = new();
 
     /// <summary>
     /// Amount of weeds growing in the tray.
