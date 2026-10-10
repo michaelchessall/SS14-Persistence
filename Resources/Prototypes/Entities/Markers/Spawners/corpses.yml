@@ -11,20 +11,6 @@
     prototypes:
       - SalvageHumanCorpse
 
-
-- type: entity
-  name: Zed Human Corpse Spawner
-  id: SalvageZombieHumanCorpseSpawner
-  parent: MarkerBase
-  components:
-  - type: Sprite
-    sprite: Markers/jobs.rsi
-    layers:
-      - state: green
-  - type: ConditionalSpawner
-    prototypes:
-      - SalvageZombieHuman
-
 - type: entity
   name: Random Service Corpse Spawner
   id: RandomServiceCorpseSpawner
@@ -115,3 +101,58 @@
   - type: ConditionalSpawner
     prototypes:
       - MobRandomCommandCorpse
+
+#Persistence 14
+- type: entity
+  name: Zed Human Corpse Spawner
+  id: SalvageZombieHumanCorpseSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - SalvageZombieHuman
+
+
+- type: entity
+  name: UNMC Corpse Spawner
+  id: UNMCCorpseSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobUNMCDead
+
+
+- type: entity
+  name: Cultist Leader Corpse Spawner
+  id: CultistLeaderCorpseSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCultistLeaderDead
+
+- type: entity
+  name: Cultist Corpse Spawner
+  id: CultistCorpseSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobCultistDead

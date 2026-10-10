@@ -108,6 +108,7 @@
   - type: Speech
     speechVerb: Cluwne
 
+#Persistence 14
 - type: entity
   parent: MobHuman
   suffix: Dead
@@ -126,3 +127,42 @@
   - type: Inventory
     templateId: corpse
 
+#Persistence 14
+- type: entity
+  name: syndicate civilian
+  parent: SalvageHumanCorpse
+  id: MobSyndicateDeadCivilian
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateOperativeGearCivilian
+
+#Persistence 14
+- type: entity
+  name: cultist
+  parent: SalvageHumanCorpse
+  id: MobCultistDead
+  components:
+    - type: Loadout
+      prototypes:
+        - CultistGear
+
+#Persistence 14
+- type: entity
+  name: cultist leader
+  parent: SalvageHumanCorpse
+  id: MobCultistLeaderDead
+  components:
+    - type: Loadout
+      prototypes:
+        - CultLeaderGear
+
+#Persistence 14
+- type: entity
+  name: UNMC footsoldier
+  parent: SalvageHumanCorpse
+  id: MobUNMCDead
+  components:
+    - type: Loadout
+      prototypes:
+        - UNMCFootSoldierGear

@@ -675,6 +675,21 @@
 #Persistence 14
 - type: entity
   parent: MarkerBase
+  id: XenoMediumSpawner
+  name: Ruins Spawner
+  suffix: xeno medium
+  components:
+  - type: Sprite
+    layers:
+    - state: pink
+    - sprite: Objects/Materials/Scrap/generic.rsi
+      state: metal-1
+  - type: GridSpawner
+    gridPath: /Maps/Rumors/Exterminate/Medium/xeno-medium.yml
+
+#Persistence 14
+- type: entity
+  parent: MarkerBase
   id: SyndiChargeSpawner
   name: Ruins Spawner
   suffix: syndi charge
