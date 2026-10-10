@@ -292,16 +292,17 @@ namespace Content.Client.CrewAssignments.UI
 
         public void UpdateResonance(StationModificationInterfaceState cState)
         {
-            if(cState.TradeStationClaimed)
+            MarketInnerBox.RemoveAllChildren();
+            foreach (var product in cState.ResonanceMarket)
             {
-                MarketInnerBox.RemoveAllChildren();
-                foreach(var product in cState.ResonanceMarket)
-                {
-                    ResonanceProductBox box = new(product, cState.Resonance, cState.PartialPurchases, _owner);
-                    MarketInnerBox.AddChild(box);
-                }
+                ResonanceProductBox box = new(product, cState.Resonance, cState.PartialPurchases, _owner, cState.TradeStationClaimed);
+                MarketInnerBox.AddChild(box);
+            }
+            ResonanceBalance.Text = $"$${cState.Resonance}";
+
+            if (cState.TradeStationClaimed)
+            {
                 MarketClosedBox.Visible = false;
-                ResonanceBalance.Text = $"$${cState.Resonance}";
             }
             else
             {
