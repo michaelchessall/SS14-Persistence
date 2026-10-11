@@ -198,6 +198,11 @@
       SoftCritical: HumanCrit
       HardCritical: HumanCrit
       Dead: HumanDead
+  - type: TemperatureSpeed
+    thresholds:
+      210: 0.9
+      180: 0.8
+      150: 0.7
   - type: TemperatureDamage
     heatDamageThreshold: 280
     coldDamageThreshold: 200
