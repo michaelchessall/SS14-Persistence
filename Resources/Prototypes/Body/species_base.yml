@@ -280,3 +280,4 @@
     alternateState: Standing
   - type: StunVisuals
   - type: FootprintOwner # Funky: Footprints & Stains
+  - type: Scent # Starlight - smell system
