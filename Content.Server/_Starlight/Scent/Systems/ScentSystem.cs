@@ -1,13 +1,15 @@
+using Content.Server._Starlight.Scent.Components;
 using Content.Server.Atmos.Components;
 using Content.Server.Atmos.EntitySystems;
+using Content.Server.Disposal.Unit;
 using Content.Server.DoAfter;
 using Content.Server.Forensics;
 using Content.Server.Popups;
-using Content.Server._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent;
 using Content.Shared._Starlight.Scent.Components;
 using Content.Shared._Starlight.Scent.Systems;
 using Content.Shared.Atmos;
+using Content.Shared.Disposal.Unit; // Persistence 14: not importing vent crawler pick due to lack of such features
 using Content.Shared.DoAfter;
 using Content.Shared.Doors;
 using Content.Shared.Doors.Components;
@@ -437,17 +439,20 @@ public sealed class ScentSystem : SharedScentSystem
         if (IsSealed(uid))
             return;
 
+        if (HasComp<BeingDisposedComponent>(uid))
+            return;
+
         if (TryMergeIntoExisting(ent))
             return;
 
-        var marker = Spawn(ScentMarkerPrototype, xform.Coordinates);
+        var marker = SpawnAtPosition(ScentMarkerPrototype, xform.Coordinates);
         var decayTime = GetDecayTime(scent, uid);
 
         var markerComp = Comp<ScentMarkerComponent>(marker);
         markerComp.ScentId = scentId;
         markerComp.ExpiresAt = _timing.CurTime + decayTime;
         markerComp.TotalDuration = decayTime;
-        markerComp.WasContained = IsContained(xform);
+        markerComp.ContainedIn = GetAirtightContainer(xform);
         Dirty(marker, markerComp);
 
         var despawn = Comp<TimedDespawnComponent>(marker);
@@ -468,10 +473,24 @@ public sealed class ScentSystem : SharedScentSystem
         return headSealed && outerSealed;
     }
 
-    // Is this entity's immediate parent an airtight container (locker, crate)?
-    private bool IsContained(TransformComponent xform)
+    // Checks all parents of the entity, so nested containment (e.g. a bag inside a crate)
+    // is still detected.
+    private EntityUid? GetAirtightContainer(TransformComponent xform)
     {
-        return TryComp<EntityStorageComponent>(xform.ParentUid, out var storage) && storage.Airtight;
+        var parent = xform.ParentUid;
+
+        while (parent.IsValid())
+        {
+            if (TryComp<EntityStorageComponent>(parent, out var storage) && storage.Airtight)
+                return parent;
+
+            if (!TryComp<TransformComponent>(parent, out var parentXform))
+                break;
+
+            parent = parentXform.ParentUid;
+        }
+
+        return null;
     }
 
     // Only merges into our own chain tail, never any other nearby marker. Revisiting an old spot
@@ -495,7 +514,7 @@ public sealed class ScentSystem : SharedScentSystem
         marker.Strength = Math.Min(1f, marker.Strength + scent.MergeStrengthStep);
         marker.ExpiresAt = _timing.CurTime + decayTime;
         marker.TotalDuration = decayTime;
-        marker.WasContained = IsContained(xform);
+        marker.ContainedIn = GetAirtightContainer(xform);
         Dirty(tail, marker);
 
         if (TryComp<TimedDespawnComponent>(tail, out var despawn))

@@ -80,7 +80,14 @@ public sealed class ScentTrackingSystem : EntitySystem
     private void ApplyFilterForLocalPlayer(Entity<ScentMarkerComponent> ent)
     {
         if (!TryGetLocalSmeller(out var smeller))
+        {
+            // No SmellerComponent: hide, since replay bypasses PVS and would otherwise leave
+            // every recorded marker visible to a plain observer.
+            if (TryComp<SpriteComponent>(ent.Owner, out var sprite))
+                _sprite.SetVisible((ent.Owner, sprite), false);
+
             return;
+        }
 
         var enclosure = TryGetOwnEnclosure(out var own) ? own : (EntityUid?)null;
         ApplyFilter(ent, smeller, enclosure);
@@ -115,7 +122,7 @@ public sealed class ScentTrackingSystem : EntitySystem
             return;
 
         var visible = !IsPerceptionBlocked(smeller) &&
-                      !(smeller.Perception == ScentPerception.Partial && ent.Comp.WasContained) &&
+                      !(smeller.Perception == ScentPerception.Partial && ent.Comp.ContainedIn != null) &&
                       !(smeller.Perception == ScentPerception.Partial && IsOutsideOwnEnclosure(ent, enclosure)) &&
                       (smeller.TrackedScentId == null || ent.Comp.ScentId == smeller.TrackedScentId);
         _sprite.SetVisible((ent.Owner, sprite), visible);
@@ -128,8 +135,7 @@ public sealed class ScentTrackingSystem : EntitySystem
         if (enclosure is not { } own)
             return false;
 
-        return !TryComp<TransformComponent>(ent.Owner, out var markerXform) ||
-               markerXform.ParentUid != own;
+        return ent.Comp.ContainedIn != own;
     }
 
     // Resolves the airtight container the local player is currently inside, if any.
@@ -218,7 +224,7 @@ public sealed class ScentTrackingSystem : EntitySystem
     // Affects the visual scale of an emission.
     private float GetPerceivedSizeStrength(Entity<ScentMarkerComponent> ent, float strength)
     {
-        if (!ent.Comp.WasContained)
+        if (ent.Comp.ContainedIn == null)
             return strength;
 
         return strength * ContainedSizeFraction;
