@@ -2969,10 +2969,10 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
- # Starlight's scent sytem Start
+ # Starlight Begin
   - type: Scent
   - type: Smeller
- # Starlight's scent sytem Start
+ # Starlight End
 - type: entity
   parent: MobCorgiBase
   id: MobCorgi
