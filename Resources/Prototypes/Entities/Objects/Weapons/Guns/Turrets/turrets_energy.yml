@@ -150,9 +150,6 @@
     access: [["StationAi"], ["ResearchDirector"]]
   - type: StationAiTurret
   - type: TurretTargetSettings
-    exemptAccessLevels:
-    - Borg
-    - BasicSilicon
   - type: Machine
     board: WeaponEnergyTurretAIMachineCircuitboard
   - type: DeviceNetwork
@@ -167,10 +164,6 @@
   - type: AccessReader
     access: [["StationAi"], ["Security"]]
   - type: TurretTargetSettings
-    exemptAccessLevels:
-    - Security
-    - Borg
-    - BasicSilicon
   - type: Machine
     board: WeaponEnergyTurretSecurityMachineCircuitboard
   - type: DeviceNetwork
@@ -185,10 +178,6 @@
   - type: AccessReader
     access: [["StationAi"], ["Command"]]
   - type: TurretTargetSettings
-    exemptAccessLevels:
-    - Command
-    - Borg
-    - BasicSilicon
   - type: Machine
     board: WeaponEnergyTurretCommandMachineCircuitboard
   - type: DeviceNetwork
