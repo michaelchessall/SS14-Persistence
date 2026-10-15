@@ -92,7 +92,6 @@ public sealed partial class TurretControllerWindow : BaseWindow
             //AccessConfiguration.SetAccessGroups(turretController.AccessGroups);
             AccessConfiguration.SetAccessAssignmentstoId(turretController.AssignmentIdtoString);
             AccessConfiguration.SetAccessAssignments(turretController.AccessAssignments);
-            Log.Info($"to be clear, windowafterchnage gave {AccessConfiguration._accessAssignments.Count} and {turretController.AssignmentIdtoString.Capacity}");
             UpdateTheme((TurretArmamentSetting)turretController.ArmamentState);
         }
 
