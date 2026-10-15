@@ -29,6 +29,7 @@ using Content.Shared.Storage.Components;
 using Content.Shared.Tag;
 using Content.Shared.Verbs;
 using Content.Shared.Zombies;
+using Content.Shared.Body.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -53,6 +54,7 @@ public sealed class ScentSystem : SharedScentSystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private TagSystem _tags = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
+    [Dependency] private SharedInternalsSystem _internals = default!;
 
     private const string ScentMarkerPrototype = "ScentMarker";
     private const int ScentIdByteLength = 8;
@@ -502,8 +504,9 @@ public sealed class ScentSystem : SharedScentSystem
                           HasComp<PressureProtectionComponent>(head!.Value);
         var outerSealed = _inventory.TryGetSlotEntity(uid, "outerClothing", out var outer) &&
                            HasComp<PressureProtectionComponent>(outer!.Value);
+        var internalsWorking = _internals.AreInternalsWorking(uid); // Persistence 14: Internals are required along with a hardsuit to hide scent. Anonymity costs oxygen.
 
-        return headSealed && outerSealed;
+        return headSealed && outerSealed && internalsWorking;
     }
 
     // Checks all parents of the entity, so nested containment (e.g. a bag inside a crate)

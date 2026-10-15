@@ -31,7 +31,7 @@ public sealed partial class SmellerComponent : Component
     /// How long SetTrackedScent lasts before ClearTrackedScent fires automatically.
     /// </summary>
     [DataField]
-    public TimeSpan TrackDuration = TimeSpan.FromMinutes(5);
+    public TimeSpan TrackDuration = TimeSpan.FromMinutes(45); //Persistence 14: increased to 45 minutes.
 
     [DataField("toggleAction", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
     public string ToggleAction = "ActionToggleSniff";
