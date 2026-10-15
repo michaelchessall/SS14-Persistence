@@ -3,7 +3,6 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Ranged;
 using Content.Server.TurretController;
-using Content.Shared.Access;
 using Content.Shared.Destructible;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
@@ -16,7 +15,6 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Turrets;
@@ -91,7 +89,7 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
 
         // Received a command to change access exemptions
         if (command == DeployableTurretControllerSystem.CmdSetAccessExemptions &&
-            args.Data.TryGetValue(command, out HashSet<ProtoId<AccessLevelPrototype>>? accessExemptions) &&
+            args.Data.TryGetValue(command, out HashSet<int>? accessExemptions) &&
             TryComp<TurretTargetSettingsComponent>(ent, out var turretTargetSettings))
         {
             _turretTargetingSettings.SyncAccessLevelExemptions((ent, turretTargetSettings), accessExemptions);

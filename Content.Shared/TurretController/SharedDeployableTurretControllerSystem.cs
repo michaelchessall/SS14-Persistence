@@ -3,7 +3,6 @@ using Content.Shared.Access.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Turrets;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 
 namespace Content.Shared.TurretController;
 
@@ -41,7 +40,7 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
     private void OnExemptAccessLevelsChanged(Entity<DeployableTurretControllerComponent> ent, ref DeployableTurretExemptAccessLevelChangedMessage args)
     {
         if (IsUserAllowedAccess(ent, args.Actor))
-            ChangeExemptAccessLevels(ent, args.AccessLevels, args.Enabled, args.Actor);
+            ChangeExemptAccessAssignments(ent, args.AccessAssignments, args.Enabled, args.Actor);
 
         if (_userInterfaceSystem.TryGetOpenUi(ent.Owner, DeployableTurretControllerUiKey.Key, out var bui))
             bui.Update<DeployableTurretControllerBoundInterfaceState>();
@@ -57,9 +56,9 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
         // Linked turrets are updated on the server side
     }
 
-    protected virtual void ChangeExemptAccessLevels(
+    protected virtual void ChangeExemptAccessAssignments(
         Entity<DeployableTurretControllerComponent> ent,
-        HashSet<ProtoId<AccessLevelPrototype>> exemptions,
+        HashSet<int> exemptions,
         bool enabled,
         EntityUid? user = null
     )
@@ -70,12 +69,12 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
 
         var controller = new Entity<TurretTargetSettingsComponent>(ent, targetSettings);
 
-        foreach (var accessLevel in exemptions)
+        foreach (var accessAssignment in exemptions)
         {
-            if (!ent.Comp.AccessLevels.Contains(accessLevel))
+            if (!ent.Comp.AccessAssignments.Contains(accessAssignment))
                 continue;
 
-            _turretTargetingSettings.SetAccessLevelExemption(controller, accessLevel, enabled);
+            _turretTargetingSettings.SetAccessLevelExemption(controller, accessAssignment, enabled);
         }
 
         Dirty(controller);
@@ -92,5 +91,14 @@ public abstract partial class SharedDeployableTurretControllerSystem : EntitySys
         _audio.PlayPredicted(ent.Comp.AccessDeniedSound, ent, user);
 
         return false;
+    }
+
+    protected virtual void ClearExemptAccessAssignments(Entity<DeployableTurretControllerComponent> ent)
+    {
+         if (!TryComp<TurretTargetSettingsComponent>(ent, out var targetSettings))
+            return;
+
+        var controller = new Entity<TurretTargetSettingsComponent>(ent, targetSettings);
+        _turretTargetingSettings.SetAccessLevelExemptions(controller, targetSettings.ExemptAccessAssignments, false);
     }
 }

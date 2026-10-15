@@ -19,7 +19,7 @@
 
     <!-- Access levels -->
     <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="10 0 0 0">
-        <BoxContainer Name="AccessLevelChecklist" Access="Public" Orientation="Vertical" HorizontalAlignment="Left">
+        <BoxContainer Name="AccessEntryChecklist" Access="Public" Orientation="Vertical" HorizontalAlignment="Left">
             <!-- Populated with C# code -->
         </BoxContainer>
     </ScrollContainer>

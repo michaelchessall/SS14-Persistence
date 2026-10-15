@@ -1,6 +1,5 @@
 using Content.Server.Administration.Logs;
 using Content.Server.DeviceNetwork.Systems;
-using Content.Shared.Access;
 using Content.Shared.Database;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
@@ -9,8 +8,14 @@ using Content.Shared.DeviceNetwork.Systems;
 using Content.Shared.TurretController;
 using Content.Shared.Turrets;
 using Robust.Server.GameObjects;
-using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared.Station;
+using Content.Shared.CrewAssignments.Components;
+using Content.Server.Station.Systems;
+using Content.Server.CrewAssignments.Systems;
+using Content.Shared.Station.Components;
+using System.Diagnostics;
+using Content.Shared.Cargo.Events;
 
 namespace Content.Server.TurretController;
 
@@ -20,6 +25,8 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
     [Dependency] private readonly UserInterfaceSystem _userInterfaceSystem = default!;
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private readonly IEntityManager _entManager = default!;
 
     /// Keys for the device network. See <see cref="DeviceNetworkConstants"/> for further examples.
     public const string CmdSetArmamemtState = "set_armament_state";
@@ -28,15 +35,46 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
     public override void Initialize()
     {
         base.Initialize();
-
         SubscribeLocalEvent<DeployableTurretControllerComponent, BoundUIOpenedEvent>(OnBUIOpened);
         SubscribeLocalEvent<DeployableTurretControllerComponent, DeviceListUpdateEvent>(OnDeviceListUpdate);
         SubscribeLocalEvent<DeployableTurretControllerComponent, DeviceNetworkPacketEvent>(OnPacketReceived);
-    }
+        SubscribeLocalEvent<DeployableTurretControllerComponent, ComponentStartup>(TurretControllerStartup);
+        SubscribeLocalEvent<StationGridAddedEvent>(OnStationGridAdded);
+        SubscribeLocalEvent<StationGridRemovedEvent>(OnStationGridRemoved);
+        SubscribeLocalEvent<StationCreateAssignment>(OnAssignmentCreate);
+        SubscribeLocalEvent<StationDeleteAssignment>(OnAssignmentDelete);
+        SubscribeLocalEvent<StationRenameAssignment>(OnAssignmentRename);
 
+
+
+    }
+    private void TurretControllerStartup(Entity<DeployableTurretControllerComponent> ent, ref ComponentStartup args) => UpdateNewStationAcces(ent);
+    private void OnStationGridAdded(StationGridAddedEvent args) => CheckStationClaimChange(args.GridId);
+    private void OnStationGridRemoved(StationGridRemovedEvent args) => CheckStationClaimChange(args.GridId);
+    private void OnAssignmentCreate(StationCreateAssignment args) => CheckStationAssignmentChange(args.StationId);
+    private void OnAssignmentDelete(StationDeleteAssignment args) => CheckStationAssignmentChange(args.StationId);
+    private void OnAssignmentRename(StationRenameAssignment args) => CheckStationAssignmentChange(args.StationId);
+
+    private void UpdateNewStationAcces(Entity<DeployableTurretControllerComponent> ent)
+    {
+        ent.Comp.AccessAssignments.Clear();
+        var stationUID = _station.GetOwningStation(ent).GetValueOrDefault();
+        if (TryComp<CrewAssignmentsComponent>(stationUID, out var crewAssignments) && crewAssignments != null)
+        {
+            foreach (var crewAssignment in crewAssignments.CrewAssignments)
+            {
+                ent.Comp.AccessAssignments.Add(crewAssignment.Value.ID);
+                ent.Comp.AssignmentIdtoString[crewAssignment.Value.ID] = crewAssignment.Value.Name;
+            }
+        }
+        Dirty(ent);
+
+    }
     private void OnBUIOpened(Entity<DeployableTurretControllerComponent> ent, ref BoundUIOpenedEvent args)
     {
+        UpdateNewStationAcces(ent);
         UpdateUIState(ent);
+
     }
 
     private void OnDeviceListUpdate(Entity<DeployableTurretControllerComponent> ent, ref DeviceListUpdateEvent args)
@@ -117,14 +155,14 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         _deviceNetwork.QueuePacket(ent, null, payload, device: device);
     }
 
-    protected override void ChangeExemptAccessLevels(
+    protected override void ChangeExemptAccessAssignments(
         Entity<DeployableTurretControllerComponent> ent,
-        HashSet<ProtoId<AccessLevelPrototype>> exemptions,
+        HashSet<int> exemptions,
         bool enabled,
         EntityUid? user = null
     )
     {
-        base.ChangeExemptAccessLevels(ent, exemptions, enabled, user);
+        base.ChangeExemptAccessAssignments(ent, exemptions, enabled, user);
 
         if (!TryComp<DeviceNetworkComponent>(ent, out var device) ||
             !TryComp<TurretTargetSettingsComponent>(ent, out var turretTargetingSettings))
@@ -134,7 +172,7 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
         var payload = new NetworkPayload
         {
             [DeviceNetworkConstants.Command] = CmdSetAccessExemptions,
-            [CmdSetAccessExemptions] = turretTargetingSettings.ExemptAccessLevels,
+            [CmdSetAccessExemptions] = turretTargetingSettings.ExemptAccessAssignments,
         };
 
         foreach (var exemption in exemptions)
@@ -142,6 +180,23 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
             _adminLogger.Add(LogType.ItemConfigure, LogImpact.Medium, $"{ToPrettyString(user)} set {ToPrettyString(ent)} authorization of {exemption} to {enabled}");
         }
 
+        _deviceNetwork.QueuePacket(ent, null, payload, device: device);
+    }
+
+    protected override void ClearExemptAccessAssignments(Entity<DeployableTurretControllerComponent> ent)
+    {
+        base.ClearExemptAccessAssignments(ent);
+
+        if (!TryComp<DeviceNetworkComponent>(ent, out var device) ||
+            !TryComp<TurretTargetSettingsComponent>(ent, out var turretTargetingSettings))
+            return;
+
+         // Update linked turrets' cleared target selection exemptions
+        var payload = new NetworkPayload
+        {
+            [DeviceNetworkConstants.Command] = CmdSetAccessExemptions,
+            [CmdSetAccessExemptions] = turretTargetingSettings.ExemptAccessAssignments,
+        };
         _deviceNetwork.QueuePacket(ent, null, payload, device: device);
     }
 
@@ -158,5 +213,37 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
 
         var uiState = new DeployableTurretControllerBoundInterfaceState(turretStates);
         _userInterfaceSystem.SetUiState(ent.Owner, DeployableTurretControllerUiKey.Key, uiState);
+    }
+
+    private void CheckStationClaimChange(EntityUid grid)
+    {
+        var queries = EntityQueryEnumerator<DeployableTurretControllerComponent>();
+        while (queries.MoveNext(out var turretControllerUid, out var turretControllerComponent))
+        {
+            var turretControllerGrid = Transform(turretControllerUid).ParentUid;
+            if (turretControllerGrid  == grid)
+            {
+                turretControllerComponent.AccessAssignments.Clear();
+                var turretControllerEntity = new Entity<DeployableTurretControllerComponent>(turretControllerUid, turretControllerComponent);
+                ClearExemptAccessAssignments(turretControllerEntity);
+                UpdateNewStationAcces(turretControllerEntity);
+            }
+        }
+    }
+
+    private void CheckStationAssignmentChange(EntityUid station)
+    {
+        var queries = EntityQueryEnumerator<DeployableTurretControllerComponent>();
+        while (queries.MoveNext(out var turretControllerUid, out var turretControllerComponent))
+        {
+            var turretControllerStationUID = _station.GetOwningStation(turretControllerUid);
+            if (turretControllerStationUID == station)
+            {
+                turretControllerComponent.AccessAssignments.Clear();
+                var turretControllerEntity = new Entity<DeployableTurretControllerComponent>(turretControllerUid, turretControllerComponent);
+                ClearExemptAccessAssignments(turretControllerEntity);
+                UpdateNewStationAcces(turretControllerEntity);
+            }
+        }
     }
 }

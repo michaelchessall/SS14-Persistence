@@ -7,6 +7,7 @@ using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Events;
 using Content.Shared.CrewAssignments.Systems;
 using Content.Shared.Station.Components;
+using JetBrains.Annotations;
 
 namespace Content.Server.CrewAssignments.Systems;
 
@@ -167,6 +168,7 @@ public sealed partial class CrewAssignmentSystem
         crewAssignment.Name = args.Owner;
         Dirty((EntityUid)station, crewAssignments);
         UpdateOrders(station.Value);
+        RaiseLocalEvent(new StationRenameAssignment(station.Value));
 
     }
     private void OnCreateAssignment(EntityUid uid, StationModificationConsoleComponent component, StationModificationCreateAssignment args)
@@ -200,6 +202,7 @@ public sealed partial class CrewAssignmentSystem
         crewAssignments.CreateAssignment(args.Owner);
         Dirty((EntityUid)station, crewAssignments);
         UpdateOrders(station.Value);
+        RaiseLocalEvent(new StationCreateAssignment(station.Value));
     }
 
     private void OnPurchaseUpgrade(EntityUid uid, StationModificationConsoleComponent component, StationModificationPurchaseUpgrade args)
@@ -374,6 +377,7 @@ public sealed partial class CrewAssignmentSystem
         crewAssignments.CrewAssignments.Remove(args.AccessID);
         Dirty((EntityUid)station, crewAssignments);
         UpdateOrders(station.Value);
+        RaiseLocalEvent(new StationDeleteAssignment(station.Value));
 
     }
     private void OnChangeWage(EntityUid uid, StationModificationConsoleComponent component, StationModificationChangeAssignmentWage args)
@@ -843,6 +847,54 @@ public sealed partial class CrewAssignmentSystem
             UpdateOrderState(uid, station);
         }
     }
+}
+/// <summary>
+/// Directed event fired on a station when an assignment is made.
+/// </summary>
+[PublicAPI]
+public sealed class StationCreateAssignment : EntityEventArgs
+{
+    /// <summary>
+    /// ID of the station the assignment was added to.
+    /// </summary>
+    public EntityUid StationId;
 
+    public StationCreateAssignment(EntityUid stationId)
+    {
+        StationId = stationId;
+    }
+}
 
+/// <summary>
+/// Directed event fired on a station when an assignment is removed.
+/// </summary>
+[PublicAPI]
+public sealed class StationDeleteAssignment : EntityEventArgs
+{
+    /// <summary>
+    /// ID of the station the assignment was removed from.
+    /// </summary>
+    public EntityUid StationId;
+
+    public StationDeleteAssignment(EntityUid stationId)
+    {
+        StationId = stationId;
+    }
+}
+
+/// <summary>
+/// Directed event fired on a station when an assignment is renamed.
+/// </summary>
+[PublicAPI]
+public sealed class StationRenameAssignment : EntityEventArgs
+{
+    /// <summary>
+    /// ID of the stations renamed assignment.
+    /// </summary>
+    public EntityUid StationId;
+
+    public StationRenameAssignment(EntityUid stationId)
+    {
+        StationId = stationId;
+    }
 }
