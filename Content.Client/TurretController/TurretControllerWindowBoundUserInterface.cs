@@ -11,8 +11,6 @@ public sealed class TurretControllerWindowBoundUserInterface(EntityUid owner, En
 
     protected override void Open()
     {
-        ISawmill Sawmill = Logger.GetSawmill("bounduserinterface");
-        Sawmill.Info("open?");
         base.Open();
 
         _window = this.CreateWindow<TurretControllerWindow>();
