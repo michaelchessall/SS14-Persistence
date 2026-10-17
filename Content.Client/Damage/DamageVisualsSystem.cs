@@ -331,6 +331,8 @@ public sealed partial class DamageVisualsSystem : VisualizerSystem<DamageVisuals
     {
         if (!Resolve(spriteEnt, ref spriteEnt.Comp))
             return;
+        //Persi change: the intent is that damage visuals always shows on the top layer of walls.
+        index ??= spriteEnt.Comp.AllLayers.Count();
 
         var newLayer = SpriteSystem.AddLayer(
             spriteEnt,
@@ -489,7 +491,11 @@ public sealed partial class DamageVisualsSystem : VisualizerSystem<DamageVisuals
             new SpriteSpecifier.Rsi(
                 new(sprite.Sprite),
                 $"{statePrefix}_{threshold}"
-            ));
+            ),
+            // Fix for persi!
+            // This used to add the sprite on the first layer index, then Iconsmooth would append OVER it
+            // now it moves the layer to the last index if new layers are added
+            spriteEnt.Comp.AllLayers.Count());
         SpriteSystem.LayerMapSet(spriteEnt.AsNullable(), key, spriteLayer);
         SpriteSystem.LayerSetVisible(spriteEnt.AsNullable(), spriteLayer, visibility);
         // this is somewhat iffy since it constantly reallocates
