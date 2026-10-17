@@ -41,3 +41,7 @@ guide-entry-threshold-resuscitation = Resuscitation
 # Writing #
 
 guide-entry-text-colors = Text Colors
+
+# Botany #
+
+guide-entry-plant-nutrients = Plant nutrients

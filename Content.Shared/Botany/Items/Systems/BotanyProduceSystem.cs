@@ -79,8 +79,8 @@ public sealed partial class BotanyProduceSystem : EntitySystem
 
         if (_botany.TryGetPlantComponent<PlantComponent>(args.Produce.Comp.PlantData, args.Produce.Comp.PlantProtoId, out var compostPlant))
         {
-            var nutrientBonus = compostPlant.Potency / args.Produce.Comp.NutrientDivider;
-            _plantTray.AdjustNutrient(ent.AsNullable(), nutrientBonus);
+            var nutrientBonus = 50 / args.Produce.Comp.NutrientDivider;  // Persistence: Replace potency with placeholder value of 50
+            _plantTray.AdjustNutrient(ent.AsNullable(), nutrientBonus, "Nutrient"); // Persistence TODO: Maybe make this not hardcoded
         }
 
         PredictedQueueDel(args.Produce.Owner);

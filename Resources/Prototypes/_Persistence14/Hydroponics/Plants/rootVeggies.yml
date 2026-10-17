@@ -1,0 +1,143 @@
+- type: entity
+  parent: BasePlant
+  id: CarrotPlants
+  name: carrot
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/carrot.rsi
+  - type: PlantData
+    name: seeds-carrots-name
+    packetPrototype: CarrotSeeds
+    productPrototypes: [ FoodCarrot ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 3
+  - type: PlantGrowth
+    waterConsumption: 0.6
+  - type: PlantChemicals
+    chemicals:
+      JuiceCarrot:
+        id: CarrotJuice
+      Oculine:
+        id: CarrotOculine
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: PotatoPlants
+  name: potato
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/potato.rsi
+  - type: PlantData
+    name: seeds-potato-name
+    packetPrototype: PotatoSeeds
+    productPrototypes: [ FoodPotato ]
+  - type: Plant
+    lifespan: 30
+    maturation: 10
+    production: 3
+    yield: 3
+    growthStages: 4
+  - type: PlantGrowth
+    waterConsumption: 0.6
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment10
+      Vitamin:
+        id: BasicVitamin4
+
+- type: entity
+  parent: BasePlant
+  id: GarlicPlants
+  name: garlic head
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/garlic.rsi
+  - type: PlantData
+    name: seeds-garlic-name
+    packetPrototype: GarlicSeeds
+    productPrototypes: [ FoodGarlic ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 5
+    yield: 3
+    potency: 25
+    growthStages: 3
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment10
+      Vitamin:
+        id: BasicVitamin4
+      Allicin:
+        id: BasicAllicin
+
+- type: entity
+  parent: BasePlant
+  id: OnionPlants
+  name: onion
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/onion.rsi
+  - type: PlantData
+    name: seeds-onion-name
+    packetPrototype: OnionSeeds
+    productPrototypes: [ FoodOnion ]
+    mutationPrototypes: [ OnionRedPlants, BloonionPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 10
+    production: 7
+    yield: 3
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment10
+      Vitamin:
+        id: BasicVitamin4
+      Allicin:
+        id: BasicAllicin
+
+- type: entity
+  parent: BasePlant
+  id: OnionRedPlants
+  name: red onion
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/onion_red.rsi
+  - type: PlantData
+    name: seeds-onionred-name
+    packetPrototype: OnionRedSeeds
+    productPrototypes: [ FoodOnionRed ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 6
+    yield: 2
+    growthStages: 3
+  - type: PlantHarvest
+    harvestRepeat: Repeat
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment10
+      Vitamin:
+        id: BasicVitamin4
+      Allicin:
+        id: BasicAllicin

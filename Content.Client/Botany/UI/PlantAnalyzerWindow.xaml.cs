@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Botany;
 using Content.Shared.Botany.Components;
@@ -23,6 +24,7 @@ namespace Content.Client.Botany.UI;
 public sealed partial class PlantAnalyzerWindow : FancyWindow
 {
     [Dependency] private IEntityManager _entityManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
     private readonly BotanySystem _botanySystem;
     private readonly PlantSystem _plantSystem;
 
@@ -84,7 +86,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         Lifespan.Text = $"{plant.Lifespan:0.#}";
         Maturation.Text = $"{plant.Maturation:0.#}";
         Production.Text = $"{plant.Production:0.#}";
-        Potency.Text = $"{plant.Potency:0.#}";
+        //Potency.Text = $"{plant.Potency:0.#}"; // Persistence: Remove potency
         Mutation.Text = $"{holder.MutationLevel:0.#} / {holder.MaxMutationLevel:0.#}";
         MutationMod.Text = $"{holder.MutationMod:0.#} / {holder.MaxMutationMod:0.#}";
         Age.Text = $"{holder.Age}";
@@ -102,7 +104,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         UpdateDelta(LifespanDelta, plant.Lifespan, prototypePlant.Lifespan);
         UpdateDelta(MaturationDelta, plant.Maturation, prototypePlant.Maturation, invert: true);
         UpdateDelta(ProductionDelta, plant.Production, prototypePlant.Production);
-        UpdateDelta(PotencyDelta, plant.Potency, prototypePlant.Potency);
+        //UpdateDelta(PotencyDelta, plant.Potency, prototypePlant.Potency); // Persistence: Remove potency
     }
 
     private void UpdateDelta(Label label, float value, float prototypeValue, bool invert = false)
@@ -195,6 +197,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
             return;
 
         Consumed.ClearDisplay();
+        /* Persistence: Remove gas consumption
         var consumed = gases.ConsumeGasses
             .Where(x => x.Value > 0f)
             .Select(x => new GasEntry(x.Key, x.Value))
@@ -206,11 +209,12 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
         if (consumed.Length == 0)
             Consumed.ShowEmptyMessage();
+            */
 
         Exuded.ClearDisplay();
         var exuded = gases.ExudeGasses
-            .Where(x => x.Value > 0f)
-            .Select(x => new GasEntry(x.Key, x.Value))
+            //.Where(x => x.Value > 0f) Persistence: Comment this out
+            .Select(x => new GasEntry(x.Key, _prototypeManager.Index(x.Value).BaseAmount))
             .ToArray();
         foreach (var gas in exuded)
         {
@@ -244,13 +248,15 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
         foreach (var (reagent, quantity) in plantChemicals.Chemicals)
         {
-            var amount = quantity.Min;
+            var quantityProto = _prototypeManager.Index(quantity.Id); // Persistence 14: Plant nutrient rework
 
-            if (quantity.PotencyDivisor > 0f && plant.Potency > 0f)
-                amount += plant.Potency / quantity.PotencyDivisor;
+            var amount = quantityProto.BaseAmount;
 
-            if (quantity.Max > 0)
-                amount = Math.Min((float)amount, (float)quantity.Max);
+            // if (quantity.PotencyDivisor > 0f && plant.Potency > 0f)
+            //     amount += plant.Potency / quantity.PotencyDivisor;
+
+            // if (quantity.Max > 0)
+            //     amount = Math.Min((float)amount, (float)quantity.Max);
 
             if (amount > 0f)
                 Chemicals.AddReagent(new ReagentId(reagent, null), amount);

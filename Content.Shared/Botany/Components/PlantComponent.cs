@@ -62,6 +62,6 @@ public sealed partial class PlantComponent : Component
     /// <summary>
     /// A scalar for sprite size and chemical solution volume in the produce. Caps at 100.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Potency = 1f;
+    // [DataField, AutoNetworkedField] // Persistence: Remove potency
+    // public float Potency = 1f;
 }

@@ -1,3 +1,4 @@
+/* Persistence: Replaced with PlantAdjustNutrientEntityEffect in _Persistence14 content folder
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 
@@ -26,3 +27,4 @@ public sealed partial class PlantAdjustPests : BasePlantAdjustAttribute<PlantAdj
     public override string GuidebookAttributeName { get; set; } = "plant-attribute-pests";
     public override bool GuidebookIsAttributePositive { get; protected set; } = false;
 }
+*/

@@ -1,0 +1,78 @@
+- type: plantChemQuantity
+  id: RandomChlorine
+  baseAmount: 10
+  requirements: # Placeholder-ish requirement?
+    Toxin:
+      requirement: 10
+
+- type: plantChemQuantity
+  id: RandomMercury
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomLithium
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomPotassium
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomFluorine
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomCarbon
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomPhosphorus
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3

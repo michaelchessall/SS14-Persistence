@@ -1,4 +1,5 @@
 using JetBrains.Annotations;
+using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
@@ -17,12 +18,15 @@ public sealed partial class PlantHarvestSystem : EntitySystem
     [Dependency] private BotanySystem _botany = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private PlantSystem _plant = default!;
+    [Dependency] private PlantTraySystem _tray = default!; // Persistence
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PlantHolderSystem _plantHolder = default!;
+    [Dependency] private PlantRequirementsSystem _requirements = default!; // Persistence
 
     [Dependency] private EntityQuery<PlantHarvestComponent> _harvestQuery = default!;
     [Dependency] private EntityQuery<PlantComponent> _plantQuery = default!;
     [Dependency] private EntityQuery<PlantDataComponent> _dataQuery = default!;
+    [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery = default!; // Persistence
 
     [SubscribeLocalEvent]
     private void OnPlantGrow(Entity<PlantHolderComponent> ent, ref PlantGrowEvent args)
@@ -41,8 +45,14 @@ public sealed partial class PlantHarvestSystem : EntitySystem
         var timeLastHarvest = ent.Comp.Age - ent.Comp.LastHarvest;
         if (timeLastHarvest > plant.Production && !ent.Comp.ReadyForHarvest)
         {
-            ent.Comp.ReadyForHarvest = true;
-            ent.Comp.LastHarvest = ent.Comp.Age;
+            var fulfilled = _requirements.AllRequirementsFulfilled(ent.Owner);
+            ent.Comp.ReadyForHarvest = fulfilled;
+            if (fulfilled)
+                ent.Comp.LastHarvest = ent.Comp.Age;
+            else
+            {
+                _plantHolder.AdjustsHealth(ent.AsNullable(), 2); // Magic number based off of low nutrient damage in upstream botany, which is a random int between 1 and 3. TODO: Maybe not use magic number?
+            }
         }
 
         Dirty(ent);
@@ -115,6 +125,9 @@ public sealed partial class PlantHarvestSystem : EntitySystem
             || !_harvestQuery.TryComp(ent.Owner, out var harvest))
             return;
 
+        if (!_plant.TryGetTray((ent.Owner, plant), out var tray)) // Persistence
+            return;
+
         if (!ent.Comp.ReadyForHarvest || plantData.ProductPrototypes.Count == 0 || plant.Yield == 0)
             return;
 
@@ -129,7 +142,12 @@ public sealed partial class PlantHarvestSystem : EntitySystem
         }
 
         var position = Transform(user).Coordinates;
-        _botany.SpawnProduce(ent.Owner, position, totalYield);
+        _botany.SpawnProduce(ent.Owner, position, totalYield, tray.Comp.Nutrients); // Persistence: Provide tray nutrients
+
+        foreach (var (nutrientId, requirement) in _requirements.GetAllRequirements(ent.Owner))
+        {
+            _tray.AdjustNutrient(tray.AsNullable(), -(requirement.Requirement + requirement.BonusRequirement), nutrientId);
+        }
 
         ent.Comp.ReadyForHarvest = false;
         ent.Comp.LastHarvest = ent.Comp.Age;

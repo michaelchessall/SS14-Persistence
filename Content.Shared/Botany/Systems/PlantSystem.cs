@@ -1,9 +1,12 @@
 using System.Linq;
 using JetBrains.Annotations;
+using Content.Shared._Persistence14.Botany;
+using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
 using Content.Shared.Botany.Traits.Components;
 using Content.Shared.Examine;
+using Robust.Shared.Prototypes; // Persistence
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Botany.Systems;
@@ -17,9 +20,11 @@ public sealed partial class PlantSystem : EntitySystem
     [Dependency] private IGameTiming _gameTiming = default!;
     [Dependency] private PlantMutationSystem _mutation = default!;
     [Dependency] private PlantHolderSystem _plantHolder = default!;
+    [Dependency] private PlantRequirementsSystem _plantRequirements = default!; // Persistence
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence
 
     [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery = default!;
-    [Dependency] private EntityQuery<PlantToxinsComponent> _toxinsQuery = default!;
+    //[Dependency] private EntityQuery<PlantToxinsComponent> _toxinsQuery = default!; Persistence 14: Replaced toxins as part of the plant nutrient rework.
     [Dependency] private EntityQuery<PlantWeedPestComponent> _weedPestQuery = default!;
     [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery = default!;
 
@@ -72,7 +77,7 @@ public sealed partial class PlantSystem : EntitySystem
         _mutation.CrossFloat(ref ent.Comp.Lifespan, pollenData.Lifespan);
         _mutation.CrossFloat(ref ent.Comp.Maturation, pollenData.Maturation);
         _mutation.CrossFloat(ref ent.Comp.Production, pollenData.Production);
-        _mutation.CrossFloat(ref ent.Comp.Potency, pollenData.Potency);
+        //_mutation.CrossFloat(ref ent.Comp.Potency, pollenData.Potency); // Persistence: Remove potency
         _mutation.CrossTrait(ent.Owner, args.PollenData);
         Dirty(ent);
     }
@@ -103,6 +108,37 @@ public sealed partial class PlantSystem : EntitySystem
             foreach (var mutation in GetPlantMutationDescriptions(ent.Owner))
             {
                 args.PushMarkup(Loc.GetString(mutation));
+            }
+
+            var requirements = _plantRequirements.GetAllRequirements(ent.Owner); // Persistence: Everything in this function below this point
+
+            if (requirements.Count == 0)
+                return;
+
+            if (!_plantRequirements.TryGetFulfilledRequirements(ent.Owner, out var fulfilledRequirements))
+                return;
+
+            args.PushMarkup(Loc.GetString("plant-component-has-requirements-message"));
+
+            foreach (var (nutrientId, requirement) in requirements)
+            {
+                var nutrient = _prototypeManager.Index(nutrientId);
+
+                var (fulfilled, bonusFulfilled) = fulfilledRequirements.GetValueOrDefault(nutrientId, (false, false));
+
+
+                var markup = Loc.GetString("plant-component-nutrient-requirement-message",
+                    ("name", nutrient.LocalizedName),
+                    ("color", nutrient.SubstanceColor),
+                    ("requiredNutrients", requirement.Requirement),
+                    ("fulfilled", fulfilled));
+                if (requirement.BonusAmount != 0)
+                {
+                    markup += Loc.GetString("plant-component-nutrient-bonus-message",
+                        ("bonusNutrients", requirement.Requirement + requirement.BonusRequirement),
+                        ("fulfilled", bonusFulfilled));
+                }
+                args.PushMarkup(markup);
             }
         }
     }
@@ -173,18 +209,18 @@ public sealed partial class PlantSystem : EntitySystem
         return true;
     }
 
-    /// <summary>
-    /// Adjusts the potency of a plant component.
-    /// </summary>
-    [PublicAPI]
-    public void AdjustPotency(Entity<PlantComponent?> ent, float amount)
-    {
-        if (!Resolve(ent.Owner, ref ent.Comp, false))
-            return;
-
-        ent.Comp.Potency = Math.Max(0, ent.Comp.Potency + amount);
-        DirtyField(ent, nameof(ent.Comp.Potency));
-    }
+    // <summary> // Persistence: Remove potency
+    // Adjusts the potency of a plant component.
+    // </summary>
+    // [PublicAPI]
+    // public void AdjustPotency(Entity<PlantComponent?> ent, float amount)
+    // {
+    //     if (!Resolve(ent.Owner, ref ent.Comp, false))
+    //         return;
+    //
+    //     ent.Comp.Potency = Math.Max(0, ent.Comp.Potency + amount);
+    //     DirtyField(ent, nameof(ent.Comp.Potency));
+    // }
 
     /// <summary>
     /// Adjusts the lifespan of a plant component.
@@ -351,19 +387,19 @@ public sealed partial class PlantSystem : EntitySystem
 
         if (TryGetTray(ent.Owner, out var tray))
         {
-            if (_toxinsQuery.TryComp(ent.Owner, out var toxins)
+            /*if (_toxinsQuery.TryComp(ent.Owner, out var toxins) Persistence 14: Replaced toxins as part of the plant nutrient rework.
                 && tray.Comp.ToxinLevel > toxins.ToxinsTolerance)
             {
                 markup.Add(Loc.GetString("plant-component-toxins-high-warning"));
-            }
+            }*/
 
             if (_weedPestQuery.TryComp(ent.Owner, out var weedPest))
             {
                 if (tray.Comp.WeedLevel > weedPest.WeedTolerance)
                     markup.Add(Loc.GetString("plant-component-weeds-high-warning"));
 
-                if (tray.Comp.PestLevel > weedPest.PestTolerance)
-                    markup.Add(Loc.GetString("plant-component-pests-high-warning"));
+                /*if (tray.Comp.PestLevel > weedPest.PestTolerance)  // Persistence: Replace pests as part of nutrient system rework
+                    markup.Add(Loc.GetString("plant-component-pests-high-warning"));*/
             }
         }
 
@@ -419,7 +455,7 @@ public sealed partial class PlantSystem : EntitySystem
 
         var markup = new List<string>();
         markup.Add(Loc.GetString("seed-component-plant-yield-text", ("seedYield", component.Yield)));
-        markup.Add(Loc.GetString("seed-component-plant-potency-text", ("seedPotency", component.Potency)));
+        //markup.Add(Loc.GetString("seed-component-plant-potency-text", ("seedPotency", component.Potency))); // Persistence: Remove potency
 
         return string.Join("\n", markup);
     }

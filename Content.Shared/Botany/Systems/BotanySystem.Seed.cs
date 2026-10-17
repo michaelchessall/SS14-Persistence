@@ -1,5 +1,7 @@
 using JetBrains.Annotations;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Persistence14.Botany;
+using Content.Shared._Persistence14.Botany.Components;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Items.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -88,6 +90,54 @@ public sealed partial class BotanySystem : EntitySystem
             return false;
 
         return proto.TryComp(out plant, _componentFactory);
+    }
+
+    /// <summary>
+    /// Persistence: Tries to get a plant's nutrient requirements from a snapshot or prototype.
+    /// </summary>
+    /// <typeparam name="T">The type of component to get.</typeparam>
+    /// <param name="snapshot">The snapshot to get the requirements from.</param>
+    /// <param name="plantProtoId">The prototype ID to get the requirements from.</param>
+    /// <param name="totalRequirements">The nutrient requirements if found.</param>
+    [PublicAPI]
+    public bool TryGetPlantRequirements(EntityUid? snapshot, EntProtoId? plantProtoId, [NotNullWhen(true)] out Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> totalRequirements)
+    {
+        totalRequirements = new();
+        var gotRequirements = false;
+
+        if (TryGetPlantComponent(snapshot, plantProtoId, out PlantBaseRequirementsComponent? baseRequirementComp))
+        {
+            foreach (var (nutrient, baseRequirement) in baseRequirementComp.BaseRequirements)
+            {
+                NutrientRequirement requirement = new()
+                {
+                    Requirement = baseRequirement,
+                };
+                totalRequirements.Add(nutrient, requirement);
+            }
+            gotRequirements = true;
+        }
+
+        if (TryGetPlantComponent(snapshot, plantProtoId, out PlantChemicalsComponent? chemicalsComp))
+        {
+            foreach (var chemQuantity in chemicalsComp.Chemicals.Values)
+            {
+                var quantityProto = _prototypeManager.Index(chemQuantity.Id);
+                foreach (var (nutrient, requirement) in quantityProto.Requirements)
+                {
+                    if (!totalRequirements.TryAdd(nutrient, requirement))
+                    {
+                        var newRequirement = totalRequirements[nutrient];
+                        newRequirement.Requirement += requirement.Requirement;
+                        newRequirement.BonusRequirement += requirement.BonusRequirement;
+                        newRequirement.BonusAmount += requirement.BonusAmount;
+                        totalRequirements[nutrient] = newRequirement;
+                    }
+                }
+            }
+        }
+
+        return gotRequirements;
     }
 
     /// <summary>

@@ -1,3 +1,4 @@
+/* Persistence 14: Replaced toxins as part of the plant nutrient rework.
 using Content.Shared.Botany.Systems;
 using Robust.Shared.GameStates;
 
@@ -22,3 +23,4 @@ public sealed partial class PlantToxinsComponent : Component
     [DataField, AutoNetworkedField]
     public float ToxinUptakeDivisor = 10f;
 }
+*/

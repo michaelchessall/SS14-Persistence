@@ -26,7 +26,7 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
             return;
 
         _mutation.CrossFloat(ref ent.Comp.WeedTolerance, pollenData.WeedTolerance);
-        _mutation.CrossFloat(ref ent.Comp.PestTolerance, pollenData.PestTolerance);
+        //_mutation.CrossFloat(ref ent.Comp.PestTolerance, pollenData.PestTolerance); // Persistence: Replace pests as part of nutrient system rework
         Dirty(ent);
     }
 
@@ -37,11 +37,11 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
         if (!_trayQuery.TryComp(trayUid, out var tray))
             return;
 
-        if (_random.Prob(ent.Comp.PestGrowthChance))
-            _plantTray.AdjustPest((trayUid, tray), ent.Comp.PestGrowthAmount);
-
-        if (tray.PestLevel > ent.Comp.PestTolerance)
-            _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.PestDamageAmount);
+        // if (_random.Prob(ent.Comp.PestGrowthChance))  // Persistence: Replace pests as part of nutrient system rework
+        //     _plantTray.AdjustPest((trayUid, tray), ent.Comp.PestGrowthAmount);
+        //
+        // if (tray.PestLevel > ent.Comp.PestTolerance)
+        //     _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.PestDamageAmount);
     }
 
     /// <summary>
@@ -66,7 +66,7 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        ent.Comp.PestTolerance = MathF.Max(0f, ent.Comp.PestTolerance + amount);
-        DirtyField(ent, nameof(ent.Comp.PestTolerance));
+        // ent.Comp.PestTolerance = MathF.Max(0f, ent.Comp.PestTolerance + amount); // Persistence: Replace pests as part of nutrient system rework
+        // DirtyField(ent, nameof(ent.Comp.PestTolerance));
     }
 }

@@ -1,0 +1,125 @@
+- type: entity
+  parent: BasePlant
+  id: WheatPlants
+  name: wheat stalk
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/wheat.rsi
+  - type: PlantData
+    name: seeds-wheat-name
+    packetPrototype: WheatSeeds
+    productPrototypes: [ WheatBushel ]
+    mutationPrototypes: [ MeatWheatPlants ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 3
+    yield: 3
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment6
+      Flour:
+        id: BasicGrain15
+
+- type: entity
+  parent: BasePlant
+  id: MeatWheatPlants
+  name: meatwheat stalk
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/meatwheat.rsi
+  - type: PlantData
+    name: seeds-meatwheat-name
+    packetPrototype: MeatwheatSeeds
+    productPrototypes: [ MeatwheatBushel ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 3
+    yield: 3
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment6
+      UncookedAnimalProteins:
+        id: MeatwheatProtein
+
+- type: entity
+  parent: BasePlant
+  id: OatPlants
+  name: oat stalk
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/oat.rsi
+  - type: PlantData
+    name: seeds-oat-name
+    packetPrototype: OatSeeds
+    productPrototypes: [ OatBushel ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 3
+    yield: 3
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment6
+      Oats:
+        id: BasicGrain15
+
+- type: entity
+  parent: BasePlant
+  id: CornPlants
+  name: ear of corn
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/corn.rsi
+  - type: PlantData
+    name: seeds-corn-name
+    packetPrototype: CornSeeds
+    productPrototypes: [ FoodCorn ]
+  - type: Plant
+    lifespan: 25
+    maturation: 8
+    production: 6
+    yield: 2
+    potency: 20
+    growthStages: 3
+  - type: PlantAtmospheric
+    lowHeatTolerance: 288 # 15°C
+    highHeatTolerance: 308 # 35°C
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment6
+      Oats:
+        id: BasicGrain15
+
+- type: entity
+  parent: BasePlant
+  id: RicePlants
+  name: rice stalk
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/rice.rsi
+  - type: PlantData
+    name: seeds-rice-name
+    packetPrototype: RiceSeeds
+    productPrototypes: [ RiceBushel ]
+  - type: Plant
+    lifespan: 25
+    maturation: 6
+    production: 3
+    yield: 3
+    potency: 5
+    growthStages: 4
+  - type: PlantGrowth
+    waterConsumption: 0.6
+    nutrientConsumption: 0.4
+  - type: PlantChemicals
+    chemicals:
+      Nutriment:
+        id: BasicNutriment6
+      Rice:
+        id: Rice

@@ -55,14 +55,14 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         else if (random.Prob(0.8f))
             _plantHolder.AdjustsAge((plantUid, holder), 1);
 
-        if (plantComp.WaterConsumption > 0 && trayComp.WaterLevel > 0 && random.Prob(0.75f))
-            _plantTray.AdjustWater((trayUid, trayComp), -MathF.Max(0f, plantComp.WaterConsumption * trayComp.TrayConsumptionMultiplier));
+        // if (plantComp.WaterConsumption > 0 && trayComp.WaterLevel > 0 && random.Prob(0.75f))
+        //     _plantTray.AdjustWater((trayUid, trayComp), -MathF.Max(0f, plantComp.WaterConsumption * trayComp.TrayConsumptionMultiplier));
 
-        if (plantComp.NutrientConsumption > 0 && trayComp.NutritionLevel > 0 && random.Prob(0.75f))
-            _plantTray.AdjustNutrient((trayUid, trayComp), -MathF.Max(0f, plantComp.NutrientConsumption * trayComp.TrayConsumptionMultiplier));
+        // if (plantComp.NutrientConsumption > 0 && trayComp.NutritionLevel > 0 && random.Prob(0.75f))
+        //     _plantTray.AdjustNutrient((trayUid, trayComp), -MathF.Max(0f, plantComp.NutrientConsumption * trayComp.TrayConsumptionMultiplier));
 
         var healthMod = random.Next(1, 3);
-        if (holder.SkipAging < 10)
+        /*if (holder.SkipAging < 10) Persistence: Plant nutrient rework
         {
             // Make sure the plant is not thirsty.
             if (trayComp.WaterLevel > 10)
@@ -82,7 +82,7 @@ public sealed partial class PlantGrowthSystem : EntitySystem
                 _plantHarvest.AffectGrowth(plantUid, -1);
                 _plantHolder.AdjustsHealth((plantUid, holder), -healthMod);
             }
-        }
+        }*/
     }
 
     /// <summary>

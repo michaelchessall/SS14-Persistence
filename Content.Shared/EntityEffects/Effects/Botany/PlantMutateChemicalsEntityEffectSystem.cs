@@ -1,7 +1,7 @@
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 using Content.Shared.Localizations;
-using Content.Shared.Random;
+using Content.Shared._Persistence14.Random; // Persistence: Replace using Content.Shared.Random
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.EntityEffects.Effects.Botany;
@@ -25,10 +25,10 @@ public sealed partial class PlantMutateChemicalsEntityEffectSystem : EntityEffec
 public sealed partial class PlantMutateChemicals : EntityEffectBase<PlantMutateChemicals>
 {
     /// <summary>
-    /// The Reagent list this mutation draws from.
+    /// The Reagent list this mutation draws from. Persistence: Use plant chemical list instead
     /// </summary>
     [DataField]
-    public ProtoId<WeightedRandomFillSolutionPrototype> RandomPickBotanyReagent = "RandomPickBotanyReagent";
+    public ProtoId<WeightedRandomFillPlantChemicalPrototype> RandomPickBotanyReagent = "RandomPickChemicalMutagen";
 
     /// <inheritdoc/>
     public override string EntityEffectGuidebookText(IPrototypeManager prototype, IEntitySystemManager entSys)

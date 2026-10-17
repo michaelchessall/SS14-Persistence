@@ -1,5 +1,6 @@
 using JetBrains.Annotations;
 using System.Linq;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Atmos;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Traits.Components;
@@ -196,7 +197,7 @@ public sealed partial class PlantMutationSystem : EntitySystem
     /// Combines gas properties from the pollen and target plants.
     /// </summary>
     [PublicAPI]
-    public void CrossGasses(EntityUid uid, ref Dictionary<Gas, float> val, Dictionary<Gas, float> other)
+    public void CrossGasses(EntityUid uid, ref Dictionary<Gas, ProtoId<PlantGasQuantityPrototype>> val, Dictionary<Gas, ProtoId<PlantGasQuantityPrototype>> other) // Persistence: Make gas use prototype quantities
     {
         // Go through gasses from the pollen in swab
         foreach (var otherGas in other)

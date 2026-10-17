@@ -1,0 +1,97 @@
+- type: plantGasQuantity
+  id: GasOxygen
+  baseAmount: 5 # 5 mols of gas per 15 seconds. Should be a similar amount to what a 50 potency gas generating plant made before.
+  requirements:
+    Nutrient: # Nutrients requirements for gasses don't actually do anything yet.
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasNitrogen
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasCarbonDioxide
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasPlasma
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasTritium
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasWaterVapor
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasAmmonia
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasNitrousOxide
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasFrezon
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasHydrogen
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasChlorine
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasFluorine
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasMethane
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5
+
+- type: plantGasQuantity
+  id: GasChlorineTrifluoride
+  baseAmount: 5
+  requirements:
+    Nutrient:
+      requirement: 5

@@ -1,3 +1,4 @@
+/* Persistence 14: Replaced toxins as part of the plant nutrient rework.
 using JetBrains.Annotations;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
@@ -68,3 +69,4 @@ public sealed partial class PlantToxinsSystem : EntitySystem
         DirtyField(ent, nameof(ent.Comp.ToxinsTolerance));
     }
 }
+*/

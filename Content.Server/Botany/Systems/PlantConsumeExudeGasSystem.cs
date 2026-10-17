@@ -1,8 +1,10 @@
 using Content.Server.Atmos.EntitySystems;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Atmos;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
 using Content.Shared.Botany.Systems;
+using Robust.Shared.Prototypes; // Persistence
 
 namespace Content.Server.Botany.Systems;
 
@@ -10,6 +12,7 @@ public sealed partial class PlantConsumeExudeGasSystem : SharedPlantConsumeExude
 {
     [Dependency] private AtmosphereSystem _atmosphere = default!;
     [Dependency] private PlantHolderSystem _plantHolder = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence
 
     [SubscribeLocalEvent]
     private void OnPlantGrow(Entity<PlantConsumeExudeGasComponent> ent, ref PlantGrowEvent args)
@@ -20,6 +23,7 @@ public sealed partial class PlantConsumeExudeGasSystem : SharedPlantConsumeExude
 
         var environment = _atmosphere.GetContainingMixture(ent.Owner, true, true) ?? GasMixture.SpaceGas;
 
+        /* Persistence: Remove gas consumption. TODO: Allow plants to absorb nutrients from gasses.
         // Consume Gasses.
         plantHolder.MissingGas = false;
         var missingGas = 0;
@@ -42,7 +46,7 @@ public sealed partial class PlantConsumeExudeGasSystem : SharedPlantConsumeExude
                 plantHolder.MissingGas = true;
             }
         }
-
+        */
         // Exude Gasses.
         var exudeCount = ent.Comp.ExudeGasses.Count;
         if (exudeCount > 0)
@@ -50,7 +54,7 @@ public sealed partial class PlantConsumeExudeGasSystem : SharedPlantConsumeExude
             foreach (var (gas, amount) in ent.Comp.ExudeGasses)
             {
                 environment.AdjustMoles(gas,
-                    MathF.Max(1f, MathF.Round(amount * MathF.Round(plant.Potency) / exudeCount)));
+                    MathF.Max(1f, MathF.Round(_prototypeManager.Index(amount).BaseAmount / exudeCount))); // Persistence: Remove potency  TODO: Make gasses use nutrient requirements.
             }
         }
 

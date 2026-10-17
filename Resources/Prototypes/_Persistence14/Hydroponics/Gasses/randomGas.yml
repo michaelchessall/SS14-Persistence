@@ -1,0 +1,61 @@
+# Changing the quantityId of these may leave behind legacy plants with the old requirements.
+
+- type: weightedRandomFillPlantGas
+  id: RandomPickGasMutagen
+  fills:
+  - quantityId: GasOxygen
+    weight: 1
+    gasses:
+    - Oxygen
+  - quantityId: GasNitrogen
+    weight: 1
+    gasses:
+    - Nitrogen
+  - quantityId: GasCarbonDioxide
+    weight: 1
+    gasses:
+    - CarbonDioxide
+  - quantityId: GasPlasma
+    weight: 1
+    gasses:
+    - Plasma
+  - quantityId: GasTritium
+    weight: 1
+    gasses:
+    - Tritium
+  - quantityId: GasWaterVapor
+    weight: 1
+    gasses:
+    - WaterVapor
+  - quantityId: GasAmmonia
+    weight: 1
+    gasses:
+    - Ammonia
+  - quantityId: GasNitrousOxide
+    weight: 1
+    gasses:
+    - NitrousOxide
+  - quantityId: GasFrezon
+    weight: 1
+    gasses:
+    - Frezon
+  - quantityId: GasHydrogen
+    weight: 1
+    gasses:
+    - Hydrogen
+  - quantityId: GasChlorine
+    weight: 1
+    gasses:
+    - Chlorine
+  - quantityId: GasFluorine
+    weight: 1
+    gasses:
+    - Fluorine
+  - quantityId: GasMethane
+    weight: 1
+    gasses:
+    - Methane
+  - quantityId: GasChlorineTrifluoride
+    weight: 1
+    gasses:
+    - ChlorineTrifluoride

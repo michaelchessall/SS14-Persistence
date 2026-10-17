@@ -22,110 +22,110 @@
       persists: false
       effect: !type:PlantChangeTraits
         trait: PlantTraitUnviable
-    - name: ChangeWaterConsumption
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantGrowth
-        targetDataField: WaterConsumption
-        applyRange:
-          min: 0.3
-          max: 0.9
-        up: !type:PlantAdjustWaterConsumption
-          amount: 0.1
-        down: !type:PlantAdjustWaterConsumption
-          amount: -0.1
-    - name: ChangeNutrientConsumption
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantGrowth
-        targetDataField: NutrientConsumption
-        applyRange:
-          min: 0.05
-          max: 1.2
-        up: !type:PlantAdjustNutrientConsumption
-          amount: 0.25
-        down: !type:PlantAdjustNutrientConsumption
-          amount: -0.25
-    - name: ChangeToxinsTolerance
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantToxins
-        targetDataField: ToxinsTolerance
-        applyRange:
-          min: 1
-          max: 10
-        up: !type:PlantAdjustToxinsTolerance
-          amount: 2
-        down: !type:PlantAdjustToxinsTolerance
-          amount: -2
-    - name: ChangeLowPressureTolerance
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantAtmospheric
-        targetDataField: LowPressureTolerance
-        applyRange:
-          min: 60
-          max: 100
-        up: !type:PlantAdjustLowPressureTolerance
-          amount: 10
-        down: !type:PlantAdjustLowPressureTolerance
-          amount: -10
-    - name: ChangeHighPressureTolerance
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantAtmospheric
-        targetDataField: HighPressureTolerance
-        applyRange:
-          min: 100
-          max: 140
-        up: !type:PlantAdjustHighPressureTolerance
-          amount: 10
-        down: !type:PlantAdjustHighPressureTolerance
-          amount: -10
-    - name: ChangeLowHeatTolerance
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantAtmospheric
-        targetDataField: LowHeatTolerance
-        applyRange:
-          min: 2
-          max: 25
-        up: !type:PlantAdjustLowHeatTolerance
-          amount: 5
-        down: !type:PlantAdjustLowHeatTolerance
-          amount: -5
-    - name: ChangeHighHeatTolerance
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantAtmospheric
-        targetDataField: HighHeatTolerance
-        applyRange:
-          min: 2
-          max: 25
-        up: !type:PlantAdjustHighHeatTolerance
-          amount: 5
-        down: !type:PlantAdjustHighHeatTolerance
-          amount: -5
-    - name: ChangePestTolerance
-      baseOdds: 0.018
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: PlantWeedPest
-        targetDataField: PestTolerance
-        applyRange:
-          min: 0
-          max: 15
-        up: !type:PlantAdjustPestTolerance
-          amount: 3
-        down: !type:PlantAdjustPestTolerance
-          amount: -3
+#    - name: ChangeWaterConsumption # Persistence: Plant nutrient rework
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantGrowth
+#        targetDataField: WaterConsumption
+#        applyRange:
+#          min: 0.3
+#          max: 0.9
+#        up: !type:PlantAdjustWaterConsumption
+#          amount: 0.1
+#        down: !type:PlantAdjustWaterConsumption
+#          amount: -0.1
+#    - name: ChangeNutrientConsumption
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantGrowth
+#        targetDataField: NutrientConsumption
+#        applyRange:
+#          min: 0.05
+#          max: 1.2
+#        up: !type:PlantAdjustNutrientConsumption
+#          amount: 0.25
+#        down: !type:PlantAdjustNutrientConsumption
+#          amount: -0.25
+#    - name: ChangeToxinsTolerance
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantToxins
+#        targetDataField: ToxinsTolerance
+#        applyRange:
+#          min: 1
+#          max: 10
+#        up: !type:PlantAdjustToxinsTolerance
+#          amount: 2
+#        down: !type:PlantAdjustToxinsTolerance
+#          amount: -2
+#    - name: ChangeLowPressureTolerance # Persistence: Remove heat and pressure mutations, due to them locking the tolerances to an incredibly small range.
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantAtmospheric
+#        targetDataField: LowPressureTolerance
+#        applyRange:
+#          min: 60
+#          max: 100
+#        up: !type:PlantAdjustLowPressureTolerance
+#          amount: 10
+#        down: !type:PlantAdjustLowPressureTolerance
+#          amount: -10
+#    - name: ChangeHighPressureTolerance
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantAtmospheric
+#        targetDataField: HighPressureTolerance
+#        applyRange:
+#          min: 100
+#          max: 140
+#        up: !type:PlantAdjustHighPressureTolerance
+#          amount: 10
+#        down: !type:PlantAdjustHighPressureTolerance
+#          amount: -10
+#    - name: ChangeLowHeatTolerance
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantAtmospheric
+#        targetDataField: LowHeatTolerance
+#        applyRange:
+#          min: 2
+#          max: 25
+#        up: !type:PlantAdjustLowHeatTolerance
+#          amount: 5
+#        down: !type:PlantAdjustLowHeatTolerance
+#          amount: -5
+#    - name: ChangeHighHeatTolerance
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantAtmospheric
+#        targetDataField: HighHeatTolerance
+#        applyRange:
+#          min: 2
+#          max: 25
+#        up: !type:PlantAdjustHighHeatTolerance
+#          amount: 5
+#        down: !type:PlantAdjustHighHeatTolerance
+#          amount: -5
+#    - name: ChangePestTolerance # Persistence: Plant nutrient rework
+#      baseOdds: 0.018
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: PlantWeedPest
+#        targetDataField: PestTolerance
+#        applyRange:
+#          min: 0
+#          max: 15
+#        up: !type:PlantAdjustPestTolerance
+#          amount: 3
+#        down: !type:PlantAdjustPestTolerance
+#          amount: -3
     - name: ChangeWeedTolerance
       baseOdds: 0.018
       persists: false
@@ -204,19 +204,19 @@
           amount: 2
         down: !type:PlantAdjustProduction
           amount: -2
-    - name: ChangePotency
-      baseOdds: 0.036
-      persists: false
-      effect: !type:PlantChangeStat
-        targetComponent: Plant
-        targetDataField: Potency
-        applyRange:
-          min: 30
-          max: 100
-        up: !type:PlantAdjustPotency
-          amount: 15
-        down: !type:PlantAdjustPotency
-          amount: -15
+#    - name: ChangePotency # Persistence: Plant nutrient rework
+#      baseOdds: 0.036
+#      persists: false
+#      effect: !type:PlantChangeStat
+#        targetComponent: Plant
+#        targetDataField: Potency
+#        applyRange:
+#          min: 30
+#          max: 100
+#        up: !type:PlantAdjustPotency
+#          amount: 15
+#        down: !type:PlantAdjustPotency
+#          amount: -15
     - name: ChangeSeedless
       baseOdds: 0.036
       persists: false
@@ -245,10 +245,10 @@
       baseOdds: 0.0145
       persists: false
       effect: !type:PlantMutateExudeGases
-    - name: ChangeConsumeGasses
-      baseOdds: 0.0036
-      persists: false
-      effect: !type:PlantMutateConsumeGases
+#    - name: ChangeConsumeGasses # Persistence: Plant nutrient rework
+#      baseOdds: 0.0036
+#      persists: false
+#      effect: !type:PlantMutateConsumeGases
     - name: ChangeHarvest
       baseOdds: 0.036
       persists: false

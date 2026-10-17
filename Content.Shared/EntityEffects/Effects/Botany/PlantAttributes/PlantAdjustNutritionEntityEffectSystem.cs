@@ -1,3 +1,4 @@
+/* Persistence: Replaced with PlantAdjustNutrientEntityEffect in _Persistence14 content folder
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 
@@ -22,3 +23,4 @@ public sealed partial class PlantAdjustNutrition : BasePlantAdjustAttribute<Plan
 {
     public override string GuidebookAttributeName { get; set; } = "plant-attribute-nutrition";
 }
+*/
