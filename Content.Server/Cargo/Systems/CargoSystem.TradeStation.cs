@@ -13,6 +13,7 @@ using Content.Shared.HijackBeacon;
 using Robust.Shared.Audio;
 using System.Linq;
 using Content.Shared.Cargo.Components;
+using Content.Server._Persistence14.Shuttles;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -24,9 +25,9 @@ public sealed partial class CargoSystem
     * Handles cargo shuttle / trade mechanics.
     */
 
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
     private bool _lockboxCutEnabled;
 
@@ -420,6 +421,17 @@ public sealed partial class CargoSystem
     }
 
     #endregion
+
+    /// <summary>
+    /// Trade stations cannot be unanchored.
+    /// </summary>
+    [SubscribeLocalEvent]
+    private void OnStationAnchorAttempt(ref StationAnchorAttemptEvent args)
+    {
+        if (args.State == StationAnchorState.Unanchored &&
+            HasComp<TradeStationComponent>(args.Grid))
+            args.Cancel();
+    }
 }
 
 /// <summary>
