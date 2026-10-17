@@ -134,9 +134,9 @@ public sealed partial class TurretControllerWindow : BaseWindow
         {
             UpdateTheme((TurretArmamentSetting)turretController.ArmamentState);
 
-            AccessConfiguration.SetAccessGroups(turretController.AccessGroups);
-            AccessConfiguration.SetAccessAssignments(turretController.AccessAssignments);
+            //AccessConfiguration.SetAccessGroups(turretController.AccessGroups);
             AccessConfiguration.SetAccessAssignmentstoId(turretController.AssignmentIdtoString);
+            AccessConfiguration.SetAccessAssignments(turretController.AccessAssignments);
         }
 
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
