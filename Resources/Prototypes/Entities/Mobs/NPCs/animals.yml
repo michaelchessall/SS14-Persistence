@@ -1375,6 +1375,7 @@
         layer:
         - MobLayer
   - type: Stripping
+  - type: Scent # Starlight
   - type: Sprite
     drawdepth: Mobs
     layers:
@@ -2907,6 +2908,14 @@
     rootTask:
       task: RuminantHostileCompound
   - type: MessyDrinker
+  # Starlight Begin
+  - type: Smeller
+  - type: Scent
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  # Starlight End
   - type: Tag
     tags:
     - VimPilot
@@ -2928,6 +2937,12 @@
   - type: Speech
     speechVerb: Canine
     speechSounds: Dog
+  # Starlight's scent system start
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+  # Starlight End
   - type: Fixtures
     fixtures:
       fix1:
@@ -2954,7 +2969,10 @@
   - type: MobPrice
     price: 200
   - type: MessyDrinker
-
+ # Starlight Begin
+  - type: Scent
+  - type: Smeller
+ # Starlight End
 - type: entity
   parent: MobCorgiBase
   id: MobCorgi

@@ -485,4 +485,7 @@ public enum LogType
     /// Events related to players connecting/disconnecting.
     /// </summary>
     Connection = 104,
+    #region Starlight log flags
+    Scent = 1004,
+    #endregion
 }
