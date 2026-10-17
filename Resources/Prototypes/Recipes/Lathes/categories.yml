@@ -133,6 +133,14 @@
   id: Precious
   name: lathe-category-precious-tile
 
+- type: latheCategory #Persistence
+  id: Brass
+  name: lathe-category-plastic-tile
+
+- type: latheCategory #Persistence
+  id: Meat
+  name: lathe-category-plastic-tile
+
 - type: latheCategory
   id: Industrial
   name: lathe-category-industrial-tile

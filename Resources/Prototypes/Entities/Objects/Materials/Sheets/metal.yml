@@ -28,6 +28,9 @@
   - type: GuideHelp
     guides:
     - ExpandingRepairingStation
+  - type: FloorTile # Persistence
+    outputs:
+    - Plating
 
 - type: entity
   parent: SheetMetalBase
