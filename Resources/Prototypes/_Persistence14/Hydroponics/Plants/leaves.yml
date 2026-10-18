@@ -14,7 +14,6 @@
     maturation: 5
     production: 3
     yield: 2
-    potency: 20
     growthStages: 5
   - type: PlantHarvest
     harvestRepeat: Repeat
@@ -231,10 +230,7 @@
     maturation: 10
     production: 3
     yield: 3
-    potency: 10
     growthStages: 6
-  - type: PlantGrowth
-    waterConsumption: 0.6
   - type: PlantChemicals
     chemicals:
       Nutriment:
@@ -269,15 +265,5 @@
         id: BasicNutriment2
       Nectar:
         id: AmbrosiaDuesNectar
-        baseAmount: 1
-        requirements:
-          Water:
-            requirement: 2
-          Nutrient:
-            requirement: 1
-          Radiation:
-            requirement: 1
-            bonusRequirement: 9
-            bonusAmount: 2
       SpaceDrugs:
         id: AmbrosiaDuesSpaceMirage

@@ -17,9 +17,6 @@
     yield: 2
   - type: PlantHarvest
     harvestRepeat: Repeat
-  - type: PlantGrowth
-    waterConsumption: 0.6
-    nutrientConsumption: 0.4
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
     highHeatTolerance: 308 # 35°C
@@ -50,9 +47,6 @@
     yield: 2
   - type: PlantHarvest
     harvestRepeat: Repeat
-  - type: PlantGrowth
-    waterConsumption: 0.6
-    nutrientConsumption: 0.7
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
     highHeatTolerance: 308 # 35°C
@@ -84,9 +78,6 @@
     yield: 2
   - type: PlantHarvest
     harvestRepeat: Repeat
-  - type: PlantGrowth
-    waterConsumption: 0.6
-    nutrientConsumption: 0.7
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
     highHeatTolerance: 308 # 35°C
@@ -180,7 +171,6 @@
     maturation: 6
     production: 6
     yield: 2
-    potency: 20
   - type: PlantHarvest
     harvestRepeat: Repeat
   - type: PlantAtmospheric
@@ -211,7 +201,6 @@
     maturation: 6
     production: 6
     yield: 2
-    potency: 20
   - type: PlantHarvest
     harvestRepeat: Repeat
   - type: PlantAtmospheric
@@ -244,12 +233,13 @@
     production: 3
     yield: 1
   - type: PlantChemicals
-    Nutriment:
-      id: BasicNutriment10
-    Water:
-      id: MelonWater
-    Vitamin:
-      id: BasicVitamin5
+    chemicals:
+      Nutriment:
+        id: BasicNutriment10
+      Water:
+        id: MelonWater
+      Vitamin:
+        id: BasicVitamin5
 
 - type: entity
   parent: BasePlant

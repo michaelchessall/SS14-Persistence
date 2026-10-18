@@ -68,7 +68,6 @@
     maturation: 8
     production: 5
     yield: 3
-    potency: 25
     growthStages: 3
   - type: PlantChemicals
     chemicals:
@@ -158,7 +157,6 @@
     maturation: 15
     production: 3
     yield: 3
-    potency: 10
     growthStages: 4
   - type: PlantGrowth
     waterConsumption: 0.6

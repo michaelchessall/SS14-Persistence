@@ -183,7 +183,7 @@
   - type: PlantChemicals
     chemicals:
       Nutriment:
-        id: BaseNutriment2
+        id: BasicNutriment2
 
 - type: entity
   parent: BasePlant
@@ -201,14 +201,11 @@
     maturation: 6
     production: 6
     yield: 3
-    potency: 5
     growthStages: 4
-  - type: PlantGrowth
-    nutrientConsumption: 0.4
   - type: PlantChemicals
     chemicals:
       Nutriment:
-        id: BaseNutriment5
+        id: BasicNutriment5
       CarpoToxin:
         id: Carpotoxin
 

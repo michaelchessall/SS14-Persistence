@@ -84,7 +84,6 @@
     maturation: 8
     production: 6
     yield: 2
-    potency: 20
     growthStages: 3
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
@@ -112,11 +111,7 @@
     maturation: 6
     production: 3
     yield: 3
-    potency: 5
     growthStages: 4
-  - type: PlantGrowth
-    waterConsumption: 0.6
-    nutrientConsumption: 0.4
   - type: PlantChemicals
     chemicals:
       Nutriment:

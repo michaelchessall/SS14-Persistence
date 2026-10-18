@@ -291,7 +291,7 @@
     baseRequirements: # Not sure if these requirements are enough, also not sure if gatfruit are obtainable here.
       Titanium: 10
       Iron: 10
-      Fertiliser: 5
+      Fertilizer: 5
       Carbon: 5
   - type: PlantChemicals
     chemicals:
@@ -321,7 +321,7 @@
     baseRequirements: # Not sure if these requirements are enough, also not sure if gatfruit are obtainable here.
       Titanium: 10
       Nutrient: 10
-      Fertiliser: 5
+      Fertilizer: 5
       Carbon: 5
   - type: PlantChemicals
     chemicals:
@@ -351,7 +351,7 @@
     baseRequirements: # Not sure if these requirements are enough, also not sure if gatfruit are obtainable here.
       Titanium: 10
       Nutrient: 10
-      Fertiliser: 5
+      Fertilizer: 5
       Carbon: 5
   - type: PlantChemicals
     chemicals:
@@ -428,7 +428,6 @@
     maturation: 8
     production: 6
     yield: 3
-    potency: 10
     growthStages: 4
   - type: PlantHarvest
     harvestRepeat: Repeat
