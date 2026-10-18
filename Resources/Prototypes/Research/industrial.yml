@@ -118,6 +118,7 @@
   recipeUnlocks:
   - ThermomachineFreezerMachineCircuitBoard
   - GasRecyclerMachineCircuitboard
+  - EmergencyCoolingUnitRecipe
 
 - type: technology
   id: RipleyAPLU
@@ -186,6 +187,7 @@
   - HellfireFreezerMachineCircuitBoard
   - PortableScrubberMachineCircuitBoard
   - HolofanProjector
+  - CoolingUnitRecipe
   technologyPrerequisites:
   - AtmosphericTech
 

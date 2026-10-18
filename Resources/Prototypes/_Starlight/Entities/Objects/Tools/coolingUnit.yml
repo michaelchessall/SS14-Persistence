@@ -45,9 +45,15 @@
         cell_slot:
           name: power-cell-slot-component-slot-name-default
           startingItem: PowerCellMedium
+          blacklist:
+            components: # No, you do not get to stay cool forever without some kind of debuff -- Nullnominal
+            - BatterySelfRecharger
     - type: PhysicalComposition
       materialComposition:
-        Steel: 185
+        Steel: 780
+        Glass: 220
+        Plastic: 100
+        Plasma: 50
     - type: StaticPrice
       price: 30
 
@@ -81,4 +87,7 @@
               - PowerCellSmall
     - type: PhysicalComposition
       materialComposition:
-        Steel: 100
+        Steel: 350
+        Glass: 130
+        Plastic: 20
+        Plasma: 10
