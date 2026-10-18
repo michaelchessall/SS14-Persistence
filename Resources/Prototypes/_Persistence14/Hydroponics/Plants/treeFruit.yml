@@ -255,7 +255,6 @@
     maturation: 6
     production: 6
     yield: 3
-    potency: 10
   - type: PlantHarvest
     harvestRepeat: Repeat
   - type: PlantChemicals
