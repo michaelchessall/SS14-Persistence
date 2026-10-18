@@ -273,7 +273,7 @@
   parent: BasePlant
   id: GatfruitPlants
   name: gatfruit tree
-  components: # TODO: Add base nutrient requirements before someone obtains this
+  components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/gatfruit.rsi
   - type: PlantData
@@ -287,6 +287,12 @@
     production: 25
     yield: 1
     growthStages: 2
+  - type: PlantBaseRequirements
+    baseRequirements: # Not sure if these requirements are enough, also not sure if gatfruit are obtainable here.
+      Titanium: 10
+      Iron: 10
+      Fertiliser: 5
+      Carbon: 5
   - type: PlantChemicals
     chemicals:
       Nutriment:
@@ -298,7 +304,7 @@
   parent: BasePlant
   id: FakeCapfruitPlants
   name: capfruit tree
-  components: # TODO: Add base nutrient requirements before someone obtains this
+  components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/capfruit.rsi
   - type: PlantData
@@ -311,6 +317,12 @@
     production: 25
     yield: 1
     growthStages: 2
+  - type: PlantBaseRequirements
+    baseRequirements: # Not sure if these requirements are enough, also not sure if gatfruit are obtainable here.
+      Titanium: 10
+      Nutrient: 10
+      Fertiliser: 5
+      Carbon: 5
   - type: PlantChemicals
     chemicals:
       Nutriment:
@@ -322,7 +334,7 @@
   parent: BasePlant
   id: RealCapfruitPlants
   name: capfruit tree
-  components: # TODO: Add base nutrient requirements before someone obtains this
+  components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/capfruit.rsi
   - type: PlantData
@@ -335,6 +347,12 @@
     production: 25
     yield: 1
     growthStages: 2
+  - type: PlantBaseRequirements
+    baseRequirements: # Not sure if these requirements are enough, also not sure if gatfruit are obtainable here.
+      Titanium: 10
+      Nutrient: 10
+      Fertiliser: 5
+      Carbon: 5
   - type: PlantChemicals
     chemicals:
       Nutriment:

@@ -114,7 +114,7 @@
   parent: BasePlant
   id: PapercanePlants
   name: papercane
-  components: # TODO: Add requirements
+  components:
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/papercane.rsi
   - type: PlantData
@@ -132,6 +132,9 @@
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
     highHeatTolerance: 308 # 35°C
+  - type: PlantBaseRequirements
+    baseRequirements:
+      Nutrient: 5 # This might actually be too much, but i'm not sure if papercane paper has a sell value. High change nobody will end up growing this anyway.
 
 - type: entity
   parent: BasePlant
