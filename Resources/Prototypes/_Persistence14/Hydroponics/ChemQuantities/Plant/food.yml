@@ -360,6 +360,18 @@
       bonusAmount: 5
 
 - type: plantChemQuantity
+  id: BloonionSugar
+  baseAmount: 1
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 2
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+
+- type: plantChemQuantity
   id: Egg
   baseAmount: 6
   requirements:

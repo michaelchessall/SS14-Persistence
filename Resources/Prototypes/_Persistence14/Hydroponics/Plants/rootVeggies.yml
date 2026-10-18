@@ -141,3 +141,35 @@
         id: BasicVitamin4
       Allicin:
         id: BasicAllicin
+
+- type: entity
+  parent: BasePlant
+  id: BloonionPlants
+  name: bloonion bulb
+  components:
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/bloonion.rsi
+  - type: PlantData
+    name: seeds-bloonion-name
+    packetPrototype: BloonionSeeds
+    productPrototypes: [ FoodBloonion ]
+  - type: Plant
+    lifespan: 25
+    maturation: 15
+    production: 3
+    yield: 3
+    potency: 10
+    growthStages: 4
+  - type: PlantGrowth
+    waterConsumption: 0.6
+    nutrientConsumption: 0.5
+  - type: PlantChemicals
+    chemicals:
+      Potassium:
+        id: BloonionPotassium
+      Phosphorus:
+        id: BloonionPhosphorus
+      Sugar:
+        id: BloonionSugar
+      Allicin:
+        id: BloonionAllicin

@@ -74,3 +74,27 @@
     NitrousOxide:
       bonusRequirement: 0.25
       bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: BloonionPhosphorus
+  baseAmount: 1
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 2
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: BloonionPotassium
+  baseAmount: 1
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 1
+      bonusRequirement: 2
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
