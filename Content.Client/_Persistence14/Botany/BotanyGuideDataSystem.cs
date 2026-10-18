@@ -18,7 +18,7 @@ namespace Content.Client._Persistence14.Botany;
 /// <inheritdoc/>
 public sealed class BotanyGuideDataSystem : SharedBotanyGuideDataSystem
 {
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    // [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
 
     private static readonly ProtoId<MixingCategoryPrototype> DefaultMixingCategory = "DummyPlantOsmosis";
     private static readonly ProtoId<MixingCategoryPrototype> DefaultCondenseCategory = "DummyPlantRespiration";

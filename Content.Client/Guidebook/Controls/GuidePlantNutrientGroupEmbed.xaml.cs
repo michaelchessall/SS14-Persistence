@@ -18,7 +18,7 @@ namespace Content.Client.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuidePlantNutrientGroupEmbed : BoxContainer, IDocumentTag
 {
-    [Dependency] private readonly ILogManager _logManager = default!;
+    //[Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
 
 

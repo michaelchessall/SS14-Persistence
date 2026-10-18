@@ -33,7 +33,7 @@ public sealed partial class GuidePlantNutrientEmbed : BoxContainer, IDocumentTag
     [Dependency] private readonly IEntitySystemManager _systemManager = default!;
     [Dependency] private readonly ILogManager _logManager = default!;
     [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly IConfigurationManager _config = default!;
+    //[Dependency] private readonly IConfigurationManager _config = default!;
 
     private readonly BotanyGuideDataSystem _botanyGuideData;
     private readonly ISawmill _sawmill;
