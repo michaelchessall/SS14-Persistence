@@ -37,7 +37,7 @@ public sealed partial class PlantTrayWindow : FancyWindow
         TraySprite.SetEntity(owner);
         TrayName.Text = Identity.Name(owner, _entityManager);
         UpdateStatus((owner, tray));
-        UpdateResources(tray);
+        //UpdateResources(tray); // Persistence: Plant nutrient rework
         UpdateReagents((owner, tray));
         UpdateWarnings((owner, tray));
     }
@@ -54,6 +54,7 @@ public sealed partial class PlantTrayWindow : FancyWindow
         Status.SetMessage(FormattedMessage.FromMarkupPermissive(status));
     }
 
+    /* Persistence: Plant nutrient rework
     private void UpdateResources(PlantTrayComponent tray)
     {
         UpdateResource(Water, "botany-ui-water", tray.WaterLevel, tray.MaxWaterLevel, "units-u");
@@ -62,6 +63,7 @@ public sealed partial class PlantTrayWindow : FancyWindow
         UpdateResource(Pests, "botany-ui-pests", tray.PestLevel, tray.MaxPestLevel);
         UpdateResource(Toxins, "botany-ui-toxins", tray.ToxinLevel, tray.MaxToxinLevel);
     }
+    */
 
     private void UpdateReagents(Entity<PlantTrayComponent> tray)
     {

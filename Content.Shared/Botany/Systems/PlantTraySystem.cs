@@ -152,8 +152,8 @@ public sealed partial class PlantTraySystem : EntitySystem
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        if (ent.Comp is not { WaterLevel: > 10, NutritionLevel: > 5 })
-            return;
+        /*if (ent.Comp is not { WaterLevel: > 10, NutritionLevel: > 5 }) // Persistence: Plant nutrient rework
+            return;*/
 
         if (TryGetPlant(ent, out var plantUid))
         {
@@ -204,6 +204,7 @@ public sealed partial class PlantTraySystem : EntitySystem
         DirtyField(ent, nameof(ent.Comp.Nutrients));
     }
 
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Adjusts the water level of the tray.
     /// </summary>
@@ -247,6 +248,7 @@ public sealed partial class PlantTraySystem : EntitySystem
         ent.Comp.ToxinLevel = MathHelper.Clamp(ent.Comp.ToxinLevel + amount, 0f, ent.Comp.MaxToxinLevel);
         DirtyField(ent, nameof(ent.Comp.ToxinLevel));
     }
+    */
 
     /// <summary>
     /// Adjusts the weed level of the tray.
@@ -268,10 +270,12 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetToxinThreshold(Entity<PlantTrayComponent?> ent)
     {
+        return false; /* Persistence: Plant nutrient rework
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         return ent.Comp.ToxinLevel >= ent.Comp.MaxToxinLevel * 0.5f;
+        */
     }
 
     /// <summary>
@@ -410,10 +414,12 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetPestThreshold(Entity<PlantTrayComponent?> ent)
     {
+        return false; /* Persistence: Plant nutrient rework
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         return ent.Comp.PestLevel >= ent.Comp.MaxPestLevel * 0.5f;
+        */
     }
 
     /// <summary>
@@ -435,10 +441,12 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetNutrientThreshold(Entity<PlantTrayComponent?> ent)
     {
+        return false; /* Persistence: Plant nutrient rework
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         return ent.Comp.NutritionLevel <= ent.Comp.MaxNutritionLevel * 0.1f;
+        */
     }
 }
 

@@ -21,8 +21,10 @@ public sealed partial class PlantTraitKudzuSystem : EntitySystem
         if (!_trayQuery.TryComp(trayUid, out var trayComp))
             return;
 
+        /* Persistence: Plant nutrient rework
         if (trayComp is { WaterLevel: > 10, NutritionLevel: > 5 })
             _plantTray.AdjustWeed(trayUid, ent.Comp.WeedGrowthAmount);
+            */
 
         // Handle kudzu transformation.
         if (trayComp.WeedLevel >= ent.Comp.WeedLevelThreshold)

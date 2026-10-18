@@ -16,6 +16,7 @@ namespace Content.Shared.Botany.Components;
 [Access(typeof(PlantTraySystem))]
 public sealed partial class PlantTrayComponent : Component
 {
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Amount of water available to the plant.
     /// </summary>
@@ -33,7 +34,7 @@ public sealed partial class PlantTrayComponent : Component
 
     [DataField, AutoNetworkedField]
     public float MaxNutritionLevel = 100f;
-
+*/
     /// <summary>
     /// Persistence: Types and amounts of nutrients available to the plant.
     /// </summary>
@@ -49,6 +50,7 @@ public sealed partial class PlantTrayComponent : Component
     [DataField, AutoNetworkedField]
     public float MaxWeedLevel = 10f;
 
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Amount of pests in the tray
     /// </summary>
@@ -66,7 +68,7 @@ public sealed partial class PlantTrayComponent : Component
 
     [DataField, AutoNetworkedField]
     public float MaxToxinLevel = 100f;
-
+*/
     /// <summary>
     /// Chance per tick for weeds to grow around this tray.
     /// </summary>
@@ -85,12 +87,13 @@ public sealed partial class PlantTrayComponent : Component
     [DataField, AutoNetworkedField]
     public float WeedCoefficient = 1f;
 
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Multiplier for resource consumption (water, nutrients) in the tray.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float TrayConsumptionMultiplier = 2f;
-
+*/
     /// <summary>
     /// Currently planted plant entity (parented to this tray).
     /// </summary>
