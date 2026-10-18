@@ -67,7 +67,7 @@
     Protein:
       requirement: 0.5
     Iron:
-      bonusrequirement: 0.1
+      bonusRequirement: 0.1
       bonusAmount: 2.5
 
 - type: plantChemQuantity

@@ -16,14 +16,14 @@
   requirements:
     Water:
       requirement: 1
-      bonusrequirement: 2
+      bonusRequirement: 2
       bonusAmount: 2
     Protein:
       requirement: 0.25
-      bonusrequirement: 0.5
+      bonusRequirement: 0.5
       bonusAmount: 2
     Iron:
-      bonusrequirement: 0.2
+      bonusRequirement: 0.2
       bonusAmount: 5
 
 - type: plantChemQuantity

@@ -17,8 +17,6 @@
     yield: 2
   - type: PlantHarvest
     harvestRepeat: Repeat
-  - type: PlantGrowth
-    waterConsumption: 0.6
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
     highHeatTolerance: 308 # 35°C
@@ -431,8 +429,6 @@
     growthStages: 4
   - type: PlantHarvest
     harvestRepeat: Repeat
-  - type: PlantGrowth
-    waterConsumption: 0.6
   - type: PlantAtmospheric
     lowHeatTolerance: 288 # 15°C
     highHeatTolerance: 308 # 35°C
@@ -459,7 +455,6 @@
     maturation: 6
     production: 6
     yield: 5
-    potency: 10
   - type: PlantHarvest
     harvestRepeat: Repeat
   - type: PlantChemicals
