@@ -1,0 +1,135 @@
+
+- type: emoteSounds
+  id: MaleYinglet
+  voiceSelectorName: humanoid-profile-editor-voice-masculine
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: YingletMaleScreams
+    Laugh:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_male_laugh.ogg
+    Sneeze:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_male_sneeze_1.ogg
+    Cough:
+      collection: YingletMaleCoughs
+    Yawn:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_male_yawn_1.ogg
+    Snore:
+      collection: YingletSnores
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_male_sigh.ogg
+      pitch: 1.2
+    Crying:
+      collection: YingletMaleCry
+      pitch: 1.2
+    Whistle:
+      collection: YingletWhistles
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
+      params:
+        pitch: 1.2
+
+- type: emoteSounds
+  id: FemaleYinglet
+  voiceSelectorName: humanoid-profile-editor-voice-feminine
+  params:
+    variation: 0.125
+  sounds:
+    Scream:
+      collection: YingletFemaleScreams
+    Laugh:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_female_laugh.ogg
+    Sneeze:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_female_sneeze_1.ogg
+    Cough:
+      collection: YingletFemaleCoughs
+    Yawn:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_female_yawn_1.ogg
+    Snore:
+      collection: YingletSnores
+    Honk:
+      collection: CluwneHorn
+    Sigh:
+      path: /Audio/_Scav/Voice/Yinglet/yinglet_female_sigh.ogg
+    Crying:
+      collection: YingletFemaleCry
+    Whistle:
+      collection: YingletWhistles
+    Squeak:
+      path: /Audio/Animals/mouse_squeak.ogg
+    Weh:
+      collection: Weh
+    Hew:
+      collection: Hew
+    Gasp:
+      collection: FemaleGasp
+    DefaultDeathgasp:
+      collection: DeathGasp
+      params:
+        pitch: 1.2
+
+
+- type: soundCollection
+  id: YingletMaleScreams
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_scream_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_scream_2.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_scream_3.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_scream_4.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_scream_5.ogg
+
+- type: soundCollection
+  id: YingletFemaleScreams
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_scream_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_scream_2.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_scream_3.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_scream_4.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_scream_5.ogg
+
+- type: soundCollection
+  id: YingletMaleCoughs
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_cough_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_cough_2.ogg
+
+- type: soundCollection
+  id: YingletFemaleCoughs
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_cough_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_cough_2.ogg
+
+- type: soundCollection
+  id: YingletMaleCry
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_cry_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_cry_2.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_cry_3.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_male_cry_4.ogg
+
+- type: soundCollection
+  id: YingletFemaleCry
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_cry_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_cry_2.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_cry_3.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_female_cry_4.ogg
+
+- type: soundCollection
+  id: YingletWhistles
+  files:
+    - /Audio/_Scav/Voice/Yinglet/yinglet_whistle_1.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_whistle_2.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_whistle_3.ogg
+    - /Audio/_Scav/Voice/Yinglet/yinglet_whistle_4.ogg

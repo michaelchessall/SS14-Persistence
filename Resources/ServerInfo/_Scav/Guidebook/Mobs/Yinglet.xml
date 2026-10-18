@@ -5,15 +5,23 @@
     <GuideEntityEmbed Entity="AppearanceYinglet" Caption=""/>
   </Box>
 
+  A species of small, frail rat-birds with a fondness for clams, hailing from the swamps of a distant planet.
+  Yinglets traditionally live in matriarchal "enclaves", although many choose to integrate into the societies of humans and other species as well. Due to their frail stature and odd mannerisms, they have historically been looked down upon, but are generally well-accepted nowadays.
+
+  Only one in six yinglets are female, with males being noticeably divided further into masculine and feminine individuals, in a manner similar to side-blotched lizards.
+  Historically, females were an isolated but priviledged class, with reproduction being strictly controlled by enclave leadership. This practice is generally considered antiquated, though enclaves continue to maintain extremely detailed geneaologies of their members.
+  Yinglets hatch from eggs, and it is common for younglets to be raised communally in dedicated nurseries, rather than a nuclear family structure.
+
   Yinglets cannot eat bread or other grainy foods, like potato or rice, without almost certainly throwing up. They can, however, douse food in Universal Enzyme to make it soggy and gross to other species, but safe to consume.
   They thrive on slimy meat, primarily that of molluscs and snails, which produces a euphoric effect upon the fortunate Yinglet that consumes it.
+  Due to their biome of origin and diet, their bodies are practically immune to most organic poisons, processing them harmlessly. Excessive consumption can cause symptoms similar to intoxication, but not long-term damage, and will cause them to start 'sweating' them out.
 
-  Their bodies are practically immune to most poisons, processing them harmlessly. Excessive consumption can cause symptoms similar to intoxication, but not long-term damage, and will cause them to start 'sweating' them out.
-
-  They are significantly smaller than average, approximately 1/7th the mass, and have 1/3rd the blood volume when compared to most species.
-
-  They have far less durability in general, entering a [color=#ffa500]critical state at 75 total damage[/color], and [color=#ffa500]dying at 125 total damage[/color].
-
-  They take [color=#ffa500]50% more blunt damage[/color], but [color=#1e90ff]40% less poison damage,[/color] and [color=#1e90ff]20% less cellular damage[/color].
+  Mechanically, yinglets have the following effects:
+  - They are significantly smaller than average, and have approximately 1/7th the mass, meaning they struggle to carry heavy objects.
+  - They have far less durability in general, entering a [color=#ffa500]critical state at 75 total damage[/color], and [color=#ffa500]dying at 125 total damage[/color]. Furthermore, they have 1/3rd the blood volume when compared to most species.
+  - They take [color=#ffa500]50% more blunt damage[/color], but [color=#1e90ff]40% less poison damage,[/color] and [color=#1e90ff]20% less cellular damage[/color].
+  - They are completely immune to the negative effects of [color=#e2a38c]Carpotoxin[/color], [color=#D6CE7B]Amatoxin[/color], [color=#EBFF8E]Bungotoxin[/color], and [color=#acc91a]Gastrotoxin[/color], with the first two causing drunkenness instead.
+  - Food containing [color=#D7BF84]Grain[/color] will cause them to vomit
+  - [color=#2cf274]Slime[/color] provides them with the health benefits of [color=#D3D3D3]Vitamin[/color], with the intoxication effects of Space Drugs
 
 </Document>
