@@ -29,8 +29,8 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         if (!_botany.TryGetPlantComponent<PlantGrowthComponent>(args.PollenData, args.PollenProtoId, out var pollenData))
             return;
 
-        _mutation.CrossFloat(ref ent.Comp.WaterConsumption, pollenData.WaterConsumption);
-        _mutation.CrossFloat(ref ent.Comp.NutrientConsumption, pollenData.NutrientConsumption);
+        // _mutation.CrossFloat(ref ent.Comp.WaterConsumption, pollenData.WaterConsumption); Persistence: Plant nutrient rework
+        // _mutation.CrossFloat(ref ent.Comp.NutrientConsumption, pollenData.NutrientConsumption); Persistence: Plant nutrient rework
         Dirty(ent);
     }
 
@@ -85,6 +85,7 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         }*/
     }
 
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Adjusts the water consumption of a plant.
     /// </summary>
@@ -110,4 +111,5 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         ent.Comp.NutrientConsumption = MathF.Max(0f, ent.Comp.NutrientConsumption + amount);
         DirtyField(ent, nameof(ent.Comp.NutrientConsumption));
     }
+    */
 }

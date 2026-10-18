@@ -15,8 +15,6 @@
     production: 3
     yield: 3
     growthStages: 3
-  - type: PlantGrowth
-    waterConsumption: 0.6
   - type: PlantChemicals
     chemicals:
       JuiceCarrot:
@@ -43,8 +41,6 @@
     production: 3
     yield: 3
     growthStages: 4
-  - type: PlantGrowth
-    waterConsumption: 0.6
   - type: PlantChemicals
     chemicals:
       Nutriment:
@@ -158,9 +154,6 @@
     production: 3
     yield: 3
     growthStages: 4
-  - type: PlantGrowth
-    waterConsumption: 0.6
-    nutrientConsumption: 0.5
   - type: PlantChemicals
     chemicals:
       Potassium:

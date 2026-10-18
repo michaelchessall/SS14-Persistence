@@ -6,10 +6,11 @@ namespace Content.Shared.Botany.Components;
 /// <summary>
 /// Component for basic parameters for plant growth.
 /// </summary>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)]
+[RegisterComponent, NetworkedComponent/*, AutoGenerateComponentState(fieldDeltas: true, raiseAfterAutoHandleState: true)*/]
 [Access(typeof(PlantGrowthSystem))]
 public sealed partial class PlantGrowthComponent : Component
 {
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Amount of water consumed per growth tick.
     /// </summary>
@@ -21,5 +22,6 @@ public sealed partial class PlantGrowthComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float NutrientConsumption = 0.75f;
+    */
 
 }

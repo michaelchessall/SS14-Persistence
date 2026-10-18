@@ -139,6 +139,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         if (!_botanySystem.TryGetPlantComponent<PlantGrowthComponent>(plantEntity, prototypeId, out var growth))
             return;
 
+        /* Persistence: Plant nutrient rework
         var waterConsumption = growth.WaterConsumption;
         var nutrientConsumption = growth.NutrientConsumption;
         if (plantEntity is { } plantUid && _plantSystem.TryGetTray((plantUid, plant), out var tray))
@@ -157,6 +158,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
             nutrientConsumption,
             null,
             "units-u");
+            */
     }
 
     private static void UpdateCondition(
