@@ -183,7 +183,7 @@
   - PlantHarvest
   - PlantChemicals
   - PlantGrowth
-  - PlantAtmospheric
+  # - PlantAtmospheric # Persistence: Plant nutrient rework
   - PlantConsumeExudeGas
   - PlantWeedPest
   - PlantToxins
