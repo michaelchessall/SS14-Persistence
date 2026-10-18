@@ -1,0 +1,70 @@
+<Document>
+  #Threshold Botany
+  Growing and harvesting plants is very different in the threshold. This somewhat unfinished guide may help you figure out how to do it!
+
+  ## Disclaimer
+
+  As of writing this page, the persistence 14 botany rework has not been fully completed.
+
+  There will be several "PLANNED:" sections on this page, which indicate mechanics that have not yet been fully implemented.
+  All of these planned mechanics should be implemented within ~1-3 weeks of the first eclipse session.
+
+  The code of this rework is structured in a way that allows many traits of existing plants to be modified, without leaving behind unchanged "legacy plants".
+
+  ## Nutrients
+
+  Instead of just containing "Nutrition" and "Water", hydroponics trays in the threshold can contain dozens of different types of nutrients.
+
+  [textlink="Click here to see a complete list of plant nutrients, and their sources." link="PlantNutrients"]
+
+  These nutrients can be added to a tray by pouring reagents into it.
+  (NOTE: As of writing this, there is a glitch caused by the most recent upstream merge that prevents trays without plants in them from absorbing reagents.)
+
+  PLANNED: Nutrients will also be able to be absorbed from gasses in the atmosphere, and even other environmental sources, such as radiaton.
+
+  PLANNED: Some of these nutrients will be toxic in excess amounts, and deal damage, mutate, or cause other negative effects to your plants.
+
+  The types and amounts of nutrients in a tray can be viewed by examining it.
+
+  ## Nutrient Requirements
+
+  When you examine a plant, you may notice text saying "This plant requires the following nutrients:", followed by a bunch of nutrient names and numbers.
+  These are the plant's nutrient requirements.
+
+  Most of a plant's nutrient requirements come from the chemicals contained within its produce.
+  Adding more chemicals to a plant will give it more requirements, removing chemicals will remove requirements.
+
+  Increasing or decreasing the yield of a plant will also increase or decrease requirements.
+
+  For a plant to grow produce, all of its mandatory nutrient requirements must be fulfilled by nutrients in its tray.
+  The numbers in these requirements indicate how much of the specified nutrient is needed, and turn green when they are fulfilled.
+
+  If a plant is old enough to grow produce, but doesn't have the required nutrients, it slowly takes damage.
+
+  You may also notice some of these requirements have two numbers, seperated by a dash.
+  The first of these numbers is the mandatory nutrient requirement, described previously. Failing to fulfill this will prevent the plant from growing produce.
+
+  The second of these, which does not always appear, is the bonus requirement.
+
+  Failing to fulfill a bonus requirement does not prevent a plant from growing produce, or cause it to take any damage.
+  Instead, fulfilling bonus requirements causes the plant's produce to contain extra chemicals.
+
+  If your produce is lacking in chemicals, simply just fulfill more bonus requirements.
+
+  Bonus requirements are a replacement for the potency system. Plants no longer have a potency value, and adding robust harvest to them just gives them the "Fertilizer" nutrient.
+
+  Note that if a plant has both a mandatory and bonus requirement, getting the maximum amount of chemicals just requires nutrients equal to the bonus requirement, not both of them added together.
+
+  Once a plant is harvested, it will consume nutrients for each of its requirements (including bonus requirements).
+
+  ## Environmental tolerances
+
+  Just like plants outside the threshold, most plants die quickly when exposed unusual temperatures and pressures.
+
+  However, some plants in the threshold, such as glassthle, prefer more extreme temperatures and pressures.
+
+  Botanists are no longer able to directly change the conditions a plant survives by crossbreeding, this prevents the extreme requirements of glassthle from immediately being nullified by a single cotton swab.
+
+  PLANNED: Some chemicals will be able to modify the environmental tolerances of the plant that contains them. Crossbreeding these chemicals to other plants will also transfer the unusual tolerance that come with them.
+
+</Document>

@@ -20,6 +20,7 @@
     - GridControl
     - AccessControl
     - ThresholdMedical
+    - ThresholdBotany
 
 - type: guideEntry
   id: Rumors
@@ -100,6 +101,11 @@
     - ThresholdMedicineMetabolism
     - ThresholdTopicals
     - ThresholdResuscitation
+
+- type: guideEntry
+  id: ThresholdBotany
+  name: guide-entry-threshold-botany
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/ThresholdBotany.xml"
 
 - type: guideEntry
   id: ThresholdMedicineMetabolism
