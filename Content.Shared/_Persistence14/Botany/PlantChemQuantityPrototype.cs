@@ -38,7 +38,7 @@ public sealed partial class PlantGasQuantityPrototype : IPrototype
 
     [DataField] public float BaseAmount;
 
-    [DataField] public Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> Requirements; // TODO: Make gasses actually use these requirements
+    [DataField] public Dictionary<ProtoId<PlantNutrientPrototype>, FixedPoint2> Requirements; // TODO: Make gasses actually use these requirements
 
     [DataField] public ToleranceModifier? HeatToleranceModifier;
     [DataField] public ToleranceModifier? PressureToleranceModifier;
