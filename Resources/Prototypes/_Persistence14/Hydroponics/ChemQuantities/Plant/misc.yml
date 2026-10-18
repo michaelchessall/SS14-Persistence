@@ -7,7 +7,7 @@
     Nutrient:
       requirement: 1.5
     Iron:
-      bonusrequirement: 1.5
+      bonusRequirement: 1.5
       bonusAmount: 9
 
 - type: plantChemQuantity
