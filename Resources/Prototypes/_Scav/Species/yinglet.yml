@@ -13,10 +13,10 @@
   youngAge: 6
   oldAge: 12
   maxAge: 30
-  defaultSoundsBySex: # TODO: add yinglet sounds
-  - MaleHuman
-  - FemaleHuman
-  - MaleHuman
-  voices: # TODO: add yinglet voices
-  - MaleHuman
-  - FemaleHuman
+  defaultSoundsBySex:
+  - MaleYinglet
+  - FemaleYinglet
+  - MaleYinglet
+  voices:
+  - MaleYinglet
+  - FemaleYinglet
