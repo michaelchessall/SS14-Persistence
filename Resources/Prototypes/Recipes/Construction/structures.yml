@@ -458,6 +458,7 @@
     - !type:NoWindowsInTile
   objectType: Structure
   placementMode: SnapgridCenter
+  canRotate: true
 
 #- type: construction
 #  id: WindowDirectionalCorner
