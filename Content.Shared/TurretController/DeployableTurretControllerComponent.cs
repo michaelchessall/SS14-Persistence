@@ -38,10 +38,10 @@ public sealed partial class DeployableTurretControllerComponent : Component
     [DataField]
     public HashSet<int> AccessGroups = new();
 
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public HashSet<int> AccessAssignments = new();
 
-    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    [DataField, AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public Dictionary<int, string> AssignmentIdtoString = new();
 
     /// <summary>
