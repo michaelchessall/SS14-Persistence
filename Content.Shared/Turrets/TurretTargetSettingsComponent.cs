@@ -16,6 +16,6 @@ public sealed partial class TurretTargetSettingsComponent : Component
     public HashSet<int> ExemptAccessAssignments = new();
 
     // placeholder for now untill personal acces stuff is added
-    [AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public HashSet<string> ExemptAccessNames = new();
 }
