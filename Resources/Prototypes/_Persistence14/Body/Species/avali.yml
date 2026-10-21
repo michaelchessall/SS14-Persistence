@@ -176,6 +176,8 @@
       types:
         Piercing: 2
         Slash: 3
+  - type: Wagging
+    action: "ActionToggleWaggingAvali"
   - type: Temperature
     specificHeat: 44
     currentTemperature: 220
