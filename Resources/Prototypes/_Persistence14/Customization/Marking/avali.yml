@@ -1,0 +1,8 @@
+
+- type: marking
+  id: AvaliTailBaseAnimated
+  bodyPart: Tail
+  groupWhitelist: [ Avali ] # FH + Starlight
+  sprites:
+  - sprite: _RMC14/Mobs/Avali/avali_parts.rsi
+    state: avali_tail_wag
