@@ -615,16 +615,16 @@ public sealed class AccessReaderSystem : EntitySystem
 
         return (ICollection<ProtoId<AccessLevelPrototype>>?)tags ?? Array.Empty<ProtoId<AccessLevelPrototype>>();
     }
-    public ICollection<int> FindAccessTagsPersistent(EntityUid targetUID, EntityUid owningStationUID)
+    public ICollection<int> FindAccessTagsAssignments(EntityUid targetUID, EntityUid owningStationUID)
     {
         HashSet<EntityUid>? items = null;
-        HashSet<int>? tags = null;
+        HashSet<int>? ids = null;
         var owned = false;
 
         //owning person redundant for now but couldnt find an altentive function and maybe it could possible be used with personalacces
         _station.GetOwning(owningStationUID, out var station, out var owningPerson);
-        if (!TryComp<CrewAssignmentsComponent>(owningStationUID, out var crewAssignments)) return (ICollection<int>?)tags ?? Array.Empty<int>();
-        if (!TryComp<CrewRecordsComponent>(owningStationUID, out var crewRecords)) return (ICollection<int>?)tags ?? Array.Empty<int>();
+        if (!TryComp<CrewAssignmentsComponent>(owningStationUID, out var crewAssignments)) return (ICollection<int>?)ids ?? Array.Empty<int>();
+        if (!TryComp<CrewRecordsComponent>(owningStationUID, out var crewRecords)) return (ICollection<int>?)ids ?? Array.Empty<int>();
 
         items ??= FindPotentialAccessItems(targetUID);
 
@@ -634,10 +634,10 @@ public sealed class AccessReaderSystem : EntitySystem
             {
                 if (!crewRecords.TryGetRecord(idComp.FullName ?? "", out var record) || record == null) continue;
                 if (crewAssignments.TryGetAssignment(record.AssignmentID, out var assignment) && assignment != null)
-                    {
-                        if(tags == null) tags = new HashSet<int>();
-                        tags.Add(record.AssignmentID);
-                    }
+                {
+                    if (ids == null) ids = new HashSet<int>();
+                    ids.Add(record.AssignmentID);
+                }
             }
             else if (TryComp<PdaComponent>(ent, out var pdaComp))
             {
@@ -646,18 +646,17 @@ public sealed class AccessReaderSystem : EntitySystem
                     if (TryComp<IdCardComponent>(pdaComp.ContainedId, out var idComp2))
                     {
                         if (!crewRecords.TryGetRecord(idComp2.FullName ?? "", out var record) || record == null) continue;
-                if (crewAssignments.TryGetAssignment(record.AssignmentID, out var assignment) && assignment != null)
-                    {
-                        if(tags == null) tags = new HashSet<int>();
-                        tags.Add(record.AssignmentID);
-                    }
+                        if (crewAssignments.TryGetAssignment(record.AssignmentID, out var assignment) && assignment != null)
+                        {
+                            if (ids == null) ids = new HashSet<int>();
+                            ids.Add(record.AssignmentID);
+                        }
                     }
                 }
             }
-            //FindAccessTagsItem(ent, ref tags, ref owned);
         }
 
-        return (ICollection<int>?)tags ?? Array.Empty<int>();
+        return (ICollection<int>?)ids ?? Array.Empty<int>();
     }
 
     public string GetAssignmentNameFromId(EntityUid entityUID, int assignmentId)
@@ -668,10 +667,46 @@ public sealed class AccessReaderSystem : EntitySystem
 
 
         crewAssignments.TryGetAssignment(assignmentId, out var assignment);
-         if (assignment == null) return assignmentName;
+        if (assignment == null) return assignmentName;
         assignmentName = assignment.Name;
 
         return assignmentName;
+    }
+
+    public ICollection<string> FindAccessTagsNames(EntityUid targetUID)
+    {
+        HashSet<EntityUid>? items = null;
+        HashSet<string>? names = null;
+
+        items ??= FindPotentialAccessItems(targetUID);
+
+        foreach (var ent in items)
+        {
+            if (TryComp<IdCardComponent>(ent, out var idComp))
+            {
+                if (idComp.FullName != null)
+                {
+                    if (names == null) names = new HashSet<string>();
+                    names.Add(idComp.FullName);
+                }
+            }
+            else if (TryComp<PdaComponent>(ent, out var pdaComp))
+            {
+                if (pdaComp != null && pdaComp.ContainedId != null)
+                {
+                    if (TryComp<IdCardComponent>(pdaComp.ContainedId, out var idComp2))
+                    {
+                        if (idComp2.FullName != null)
+                        {
+                            if (names == null) names = new HashSet<string>();
+                            names.Add(idComp2.FullName);
+                        }
+                    }
+                }
+            }
+        }
+
+        return (ICollection<string>?)names ?? Array.Empty<string>();
     }
 
     /// <summary>

@@ -526,6 +526,7 @@ public sealed partial class StationSystem : SharedStationSystem
         stationMember.OwnerName = owner;
 
         OnGridClaimed(mapGrid);
+        RaiseLocalEvent(mapGrid, new StationGridAddedEvent(mapGrid, new(), false), true);
     }
 
     private void OnGridClaimed(EntityUid mapGrid)
@@ -563,6 +564,7 @@ public sealed partial class StationSystem : SharedStationSystem
             throw new ArgumentException("Tried to initialize a station on a non-grid entity!", nameof(mapGrid));
 
         RemComp<PersonalMemberComponent>(mapGrid);
+        RaiseLocalEvent(mapGrid, new StationGridRemovedEvent(mapGrid, new()), true);
     }
 
     /// <summary>

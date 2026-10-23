@@ -31,13 +31,6 @@ public sealed partial class DeployableTurretControllerComponent : Component
     [DataField, AutoNetworkedField]
     public int ArmamentState = -1;
 
-    /// <summary>
-    /// Access group prototypes that are known to the entity.
-    /// Determines how access permissions are organized on the controller UI.
-    /// </summary>
-    [DataField]
-    public HashSet<int> AccessGroups = new();
-
     [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
     public HashSet<int> AccessAssignments = new();
 
@@ -74,15 +67,28 @@ public sealed class DeployableTurretArmamentSettingChangedMessage : BoundUserInt
 }
 
 [Serializable, NetSerializable]
-public sealed class DeployableTurretExemptAccessLevelChangedMessage : BoundUserInterfaceMessage
+public sealed class DeployableTurretExemptAccessAssignmentChangedMessage : BoundUserInterfaceMessage
 {
     public HashSet<int> AccessAssignments;
     public bool Enabled;
 
-    public DeployableTurretExemptAccessLevelChangedMessage(HashSet<int> accessAssignments, bool enabled)
+    public DeployableTurretExemptAccessAssignmentChangedMessage(HashSet<int> accessAssignments, bool enabled)
     {
         AccessAssignments = accessAssignments;
         Enabled = enabled;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class DeployableTurretExemptAccessNameChangedMessage : BoundUserInterfaceMessage
+{
+    public HashSet<string> AccessNames;
+    public bool Delete;
+
+    public DeployableTurretExemptAccessNameChangedMessage(HashSet<string> accessNames, bool delete)
+    {
+        AccessNames = accessNames;
+        Delete = delete;
     }
 }
 
