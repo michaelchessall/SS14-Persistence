@@ -58,3 +58,27 @@
           probability: 0.1
       metabolites:
         Ethanol: 0.6
+        
+- type: reagent
+  id: helldiver
+  parent: BaseAlcohol
+  name: reagent-name-helldiver
+  group: Drinks
+  desc: reagent-desc-helldiver
+  physicalDesc: reagent-physical-desc-exhilarating
+  flavor: helldiver
+  color: "#595951"
+  metamorphicSprite:
+    sprite: _Persistence14/Objects/Consumable/Drinks/Helldiver.rsi
+    state: icon_empty
+  metamorphicMaxFillLevels: 4
+  metamorphicFillBaseName: fill-
+  metamorphicChangeColor: false
+  metabolisms:
+    Digestion:
+      effects:
+      - !type:Satiate
+        factor: 2
+        satiationType: Thirst
+      metabolites:
+        Ethanol: 0.10

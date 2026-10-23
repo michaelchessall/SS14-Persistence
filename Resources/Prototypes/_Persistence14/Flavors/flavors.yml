@@ -14,3 +14,8 @@
   id: cherrylimeade
   flavorType: Complex
   description: flavor-complex-cherry-limeade
+  
+- type: flavor
+  id: helldiver
+  flavorType: Complex
+  description: flavor-complex-helldiver
