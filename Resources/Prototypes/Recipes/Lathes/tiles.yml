@@ -143,6 +143,16 @@
   - Tiles
   - Precious
 
+- type: latheRecipe
+  abstract: true
+  parent: BaseTileRecipe
+  id: BaseBrassTileRecipe
+  categories:
+  - Tiles
+  - Brass
+  materials:
+    Brass: 25
+
 ## Recipes
 
 # Steel tiles
@@ -700,3 +710,25 @@
 #  parent: BasePlasticTileRecipe
 #  id: FloorTileItemWhitePlastic
 #  result: FloorTileItemWhitePlastic
+
+# Brass
+- type: latheRecipe
+  parent: BaseBrassTileRecipe
+  id: FloorTileItemBrassFilled
+  result: FloorTileItemBrassFilled
+
+- type: latheRecipe
+  parent: BaseBrassTileRecipe
+  id: FloorTileItemBrassReebe
+  result: FloorTileItemBrassReebe
+
+# Misc
+- type: latheRecipe
+  parent: BaseTileRecipe
+  id: FloorTileItemFlesh
+  categories:
+  - Tiles
+  - Meat
+  materials:
+    Meaterial: 25
+  result: FloorTileItemFlesh

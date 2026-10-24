@@ -146,6 +146,16 @@
   - FloorTileItemGold
   - FloorTileItemSilver
 
+- type: latheRecipePack
+  id: BrassTilesStatic
+  recipes:
+  - FloorTileItemBrassFilled
+  - FloorTileItemBrassReebe
+
+- type: latheRecipePack
+  id: MiscTilesStatic
+  recipes:
+  - FloorTileItemFlesh
 ## Dynamic
 
 - type: latheRecipePack
