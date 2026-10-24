@@ -119,13 +119,27 @@
     randomizeName: true
   - type: NonSpreaderZombie
   - type: ZombifyOnDeath
+  - type: MobState
+    currentState: Alive
   - type: Damageable
     damage:
       types:
         Slash: 100
         Blunt: 99
-  - type: Inventory
-    templateId: corpse
+  - type: Loadout
+    prototypes:
+        - ZombieCivilian
+
+#persistence 14
+
+- type: entity
+  parent: SalvageZombieHuman
+  suffix: Dead
+  id: SalvageZombieBio
+  components:
+  - type: Loadout
+    prototypes:
+        - ZombieBio
 
 #Persistence 14
 - type: entity
