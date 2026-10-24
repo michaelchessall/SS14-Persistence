@@ -20,11 +20,11 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// Adds or removes access assignments from a <see cref="TurretTargetSettingsComponent.ExemptAccessAssignments"/> list.
     /// </summary>
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
-    /// <param name="exemption">The assignment ID or personal name for acces</param>
+    /// <param name="exemption">The assignment ID for acces</param>
     /// <param name="enabled">Set 'true' to add the exemption, or 'false' to remove it</param>
     /// <param name="dirty">Set 'true' to dirty the component</param>
     [PublicAPI]
-    public void SetAccessLevelExemption(Entity<TurretTargetSettingsComponent> ent, int exemption, bool enabled, bool dirty = true)
+    public void SetAccessAssignment(Entity<TurretTargetSettingsComponent> ent, int exemption, bool enabled, bool dirty = true)
     {
         if (enabled)
             ent.Comp.ExemptAccessAssignments.Add(exemption);
@@ -36,16 +36,50 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     }
 
     /// <summary>
-    /// Adds or removes a collection of access levels from a <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list.
+    /// Adds or removes a collection of access assignments from a <see cref="TurretTargetSettingsComponent.ExemptAccessAssignments"/> list.
     /// </summary>
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
-    /// <param name="exemption">The collection of access level proto IDs to add or remove</param>
+    /// <param name="exemption">The collection of access assignment IDs to add or remove</param>
     /// <param name="enabled">Set 'true' to add the collection as exemptions, or 'false' to remove them</param>
     [PublicAPI]
-    public void SetAccessLevelExemptions(Entity<TurretTargetSettingsComponent> ent, ICollection<int> exemptions, bool enabled)
+    public void SetAccessAssignments(Entity<TurretTargetSettingsComponent> ent, ICollection<int> exemptions, bool enabled)
     {
         foreach (var exemption in exemptions)
-            SetAccessLevelExemption(ent, exemption, enabled, false);
+            SetAccessAssignment(ent, exemption, enabled, false);
+
+        Dirty(ent);
+    }
+
+/// <summary>
+    /// Adds or removes access assignments from a <see cref="TurretTargetSettingsComponent.ExemptAccessNames"/> list.
+    /// </summary>
+    /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
+    /// <param name="exemption">The  personal name for acces</param>
+    /// <param name="enabled">Set 'true' to add the exemption, or 'false' to remove it</param>
+    /// <param name="dirty">Set 'true' to dirty the component</param>
+    /// <summary>
+    [PublicAPI]
+    public void SetAccessName(Entity<TurretTargetSettingsComponent> ent, string exemption, bool delete, bool dirty = true)
+    {
+        if (delete)
+            ent.Comp.ExemptAccessNames.Add(exemption);
+        else
+            ent.Comp.ExemptAccessNames.Remove(exemption);
+
+        if (dirty)
+            Dirty(ent);
+    }
+
+    /// <summary>
+    /// Adds or removes a collection of access names from a <see cref="TurretTargetSettingsComponent.ExemptAccessNames"/> list.
+    /// </summary>
+    /// <param name="ent">The entity and its <see personal names to add or remove</param>
+    /// <param name="enabled">Set 'true' to add the collection as exemptions, or 'false' to remove them</param>
+    [PublicAPI]
+    public void SetAccessNames(Entity<TurretTargetSettingsComponent> ent, ICollection<string> exemptions, bool enabled)
+    {
+        foreach (var exemption in exemptions)
+            SetAccessName(ent, exemption, enabled, false);
 
         Dirty(ent);
     }
@@ -56,10 +90,16 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
     /// <param name="exemptions">The supplied collection of access level proto IDs</param>
     [PublicAPI]
-    public void SyncAccessLevelExemptions(Entity<TurretTargetSettingsComponent> ent, ICollection<int> exemptions)
+    public void SyncAccessAssignmentExemptions(Entity<TurretTargetSettingsComponent> ent, ICollection<int> exemptionAssignments)
     {
         ent.Comp.ExemptAccessAssignments.Clear();
-        SetAccessLevelExemptions(ent, exemptions, true);
+        SetAccessAssignments(ent, exemptionAssignments, true);
+    }
+    [PublicAPI]
+    public void SyncAccessNameExemptions(Entity<TurretTargetSettingsComponent> ent, ICollection<string> exemptionNames)
+    {
+        ent.Comp.ExemptAccessNames.Clear();
+        SetAccessNames(ent, exemptionNames, true);
     }
 
     /// <summary>
@@ -68,9 +108,15 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// <param name="target">The entity this is having its exemption list updated <see cref="TurretTargetSettingsComponent"/></param>
     /// <param name="source">The entity that is being used as a template for the target</param>
     [PublicAPI]
-    public void SyncAccessLevelExemptions(Entity<TurretTargetSettingsComponent> target, Entity<TurretTargetSettingsComponent> source)
+    public void SyncAccessAssignmentExemptions(Entity<TurretTargetSettingsComponent> target, Entity<TurretTargetSettingsComponent> source)
     {
-        SyncAccessLevelExemptions(target, source.Comp.ExemptAccessAssignments);
+        SyncAccessAssignmentExemptions(target, source.Comp.ExemptAccessAssignments);
+    }
+
+    [PublicAPI]
+    public void SyncAccessNameExemptions(Entity<TurretTargetSettingsComponent> target, Entity<TurretTargetSettingsComponent> source)
+    {
+        SyncAccessNameExemptions(target, source.Comp.ExemptAccessNames);
     }
 
     /// <summary>
@@ -79,12 +125,26 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
     /// <param name="exemption">The access level proto ID being checked</param>
     [PublicAPI]
-    public bool HasAccessLevelExemption(Entity<TurretTargetSettingsComponent> ent, int exemption)
+    public bool HasAccessAssignmentExemption(Entity<TurretTargetSettingsComponent> ent, int exemptionAssignment)
     {
         if (ent.Comp.ExemptAccessAssignments.Count == 0)
             return false;
 
-        return ent.Comp.ExemptAccessAssignments.Contains(exemption);
+        return ent.Comp.ExemptAccessAssignments.Contains(exemptionAssignment);
+    }
+
+    /// <summary>
+    /// Returns whether a <see cref="TurretTargetSettingsComponent.ExemptAccessLevels"/> list contains a specific access level.
+    /// </summary>
+    /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
+    /// <param name="exemption">The access level proto ID being checked</param>
+    [PublicAPI]
+    public bool HasAccessNameExemption(Entity<TurretTargetSettingsComponent> ent, string exemptionName)
+    {
+        if (ent.Comp.ExemptAccessNames.Count == 0)
+            return false;
+
+        return ent.Comp.ExemptAccessNames.Contains(exemptionName);
     }
 
     /// <summary>
@@ -93,14 +153,20 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     /// <param name="ent">The entity and its <see cref="TurretTargetSettingsComponent"/></param>
     /// <param name="exemptions"></param>
     [PublicAPI]
-    public bool HasAnyAccessLevelExemption(Entity<TurretTargetSettingsComponent> ent, ICollection<int> exemptions)
+    public bool HasAnyAccessLevelExemption(Entity<TurretTargetSettingsComponent> ent, ICollection<int> assignmentExemptions, ICollection<string> nameExemptions)
     {
-        if (ent.Comp.ExemptAccessAssignments.Count == 0)
+        if (ent.Comp.ExemptAccessAssignments.Count == 0 && ent.Comp.ExemptAccessNames.Count == 0)
             return false;
 
-        foreach (var exemption in exemptions)
+        foreach (var exemption in assignmentExemptions)
         {
-            if (HasAccessLevelExemption(ent, exemption))
+            if (HasAccessAssignmentExemption(ent, exemption))
+                return true;
+        }
+
+        foreach (var exemption in nameExemptions)
+        {
+            if (HasAccessNameExemption(ent, exemption))
                 return true;
         }
 
@@ -119,13 +185,19 @@ public sealed partial class TurretTargetSettingsSystem : EntitySystem
     public bool EntityIsTargetForTurret(Entity<TurretTargetSettingsComponent> ent, EntityUid target)
     {
         var owningStationUID = _station.GetOwningStation(ent);
+<<<<<<< HEAD
         ICollection<int> accessAssignments = new HashSet<int>();
+=======
+        ICollection<int> accessAssignments =  new HashSet<int>();
+        ICollection<string> accessNames =  new HashSet<string>();
+>>>>>>> origin/staging-stable
 
         if (owningStationUID != null)
         {
-            accessAssignments = _accessReader.FindAccessTagsPersistent(target, owningStationUID.Value);
+            accessAssignments = _accessReader.FindAccessTagsAssignments(target, owningStationUID.Value);
         }
+        accessNames = _accessReader.FindAccessTagsNames(target);
 
-        return !HasAnyAccessLevelExemption(ent, accessAssignments);
+        return !HasAnyAccessLevelExemption(ent, accessAssignments, accessNames);
     }
 }

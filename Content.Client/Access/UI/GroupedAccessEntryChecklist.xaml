@@ -17,7 +17,7 @@
         </PanelContainer.PanelOverride>
     </PanelContainer>
 
-    <!-- Access levels -->
+    <!-- Access entries -->
     <ScrollContainer HorizontalExpand="True" VerticalExpand="True" Margin="10 0 0 0">
         <BoxContainer Name="AccessEntryChecklist" Access="Public" Orientation="Vertical" HorizontalAlignment="Left">
             <!-- Populated with C# code -->

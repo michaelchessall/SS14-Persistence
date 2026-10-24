@@ -30,6 +30,7 @@ public sealed partial class TurretControllerWindow : BaseWindow
 
     // Events
     public event Action<HashSet<int>, bool>? OnAccessAssignmentsChangedEvent;
+    public event Action<HashSet<string>, bool>? OnAccessNameChangedEvent;
     public event Action<TurretArmamentSetting>? OnArmamentSettingChangedEvent;
 
     // Colors
@@ -66,6 +67,7 @@ public sealed partial class TurretControllerWindow : BaseWindow
         AccessConfiguration.SetMonotone(true);
         AccessConfiguration.SetLabelStyleClass("ConsoleText");
         AccessConfiguration.OnAccessAssignmentsChangedEvent += OnAccessAssignmentsChanged;
+        AccessConfiguration.OnAccessNameChangedEvent += OnAccessNameChanged;
 
         // Override footer font
         var smallFont = _cache.NotoStack(size: 8);
@@ -75,6 +77,11 @@ public sealed partial class TurretControllerWindow : BaseWindow
     private void OnAccessAssignmentsChanged(HashSet<int> accessAssignments, bool isPressed)
     {
         OnAccessAssignmentsChangedEvent?.Invoke(accessAssignments, isPressed);
+    }
+
+    private void OnAccessNameChanged(HashSet<string> accessNames, bool delete)
+    {
+        OnAccessNameChangedEvent?.Invoke(accessNames, delete);
     }
 
     private void OnArmamentButtonPressed(MonotoneButton pressedButton, TurretArmamentSetting setting)
@@ -89,7 +96,6 @@ public sealed partial class TurretControllerWindow : BaseWindow
 
         if (_entManager.TryGetComponent<DeployableTurretControllerComponent>(_owner, out var turretController))
         {
-            //AccessConfiguration.SetAccessGroups(turretController.AccessGroups);
             AccessConfiguration.SetAccessAssignmentstoId(turretController.AssignmentIdtoString);
             AccessConfiguration.SetAccessAssignments(turretController.AccessAssignments);
             UpdateTheme((TurretArmamentSetting)turretController.ArmamentState);
@@ -97,7 +103,7 @@ public sealed partial class TurretControllerWindow : BaseWindow
 
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
         {
-            RefreshAccessControls(turretTargetSettings.ExemptAccessAssignments);
+            RefreshAccessControls(turretTargetSettings.ExemptAccessAssignments, turretTargetSettings.ExemptAccessNames);
         }
     }
 
@@ -134,13 +140,12 @@ public sealed partial class TurretControllerWindow : BaseWindow
         {
             UpdateTheme((TurretArmamentSetting)turretController.ArmamentState);
 
-            //AccessConfiguration.SetAccessGroups(turretController.AccessGroups);
             AccessConfiguration.SetAccessAssignmentstoId(turretController.AssignmentIdtoString);
             AccessConfiguration.SetAccessAssignments(turretController.AccessAssignments);
         }
 
         if (_entManager.TryGetComponent<TurretTargetSettingsComponent>(_owner, out var turretTargetSettings))
-            RefreshAccessControls(turretTargetSettings.ExemptAccessAssignments);
+            RefreshAccessControls(turretTargetSettings.ExemptAccessAssignments, turretTargetSettings.ExemptAccessNames);
 
         RefreshLinkedTurrets(state.TurretStateByAddress);
     }
@@ -180,12 +185,13 @@ public sealed partial class TurretControllerWindow : BaseWindow
         TurretStatusHeader.Text = Loc.GetString("turret-controls-window-turret-status-label", ("count", turretCount));
     }
 
-    public void RefreshAccessControls(HashSet<int> exemptAccessAssignments)
+    public void RefreshAccessControls(HashSet<int> exemptAccessAssignments, HashSet<string> exemptAccessNames)
     {
         HashSet<string> exempAccessAssignmentsString = new();
         foreach (var id in exemptAccessAssignments)
             exempAccessAssignmentsString.Add(id.ToString());
         AccessConfiguration.SetActiveAccessAssignments(exempAccessAssignmentsString);
+        AccessConfiguration.SetAccessNames(exemptAccessNames);
         AccessConfiguration.SetLocalPlayerAccessibility(IsLocalPlayerAllowedToInteract());
     }
 
