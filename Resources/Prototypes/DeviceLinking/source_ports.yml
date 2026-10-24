@@ -169,3 +169,35 @@
   name: signal-port-name-item-detected
   description: signal-port-description-item-detected
   defaultLinks: [ Toggle, Trigger, Timer ]
+
+- type: sourcePort
+  id: PowerChargeLevel0
+  name: signal-port-name-power-charge-level0
+  description: signal-port-description-power-charge-level0
+
+- type: sourcePort
+  id: PowerChargeLevel1
+  name: signal-port-name-power-charge-level1
+  description: signal-port-description-power-charge-level1
+
+- type: sourcePort
+  id: PowerChargeLevel2
+  name: signal-port-name-power-charge-level2
+  description: signal-port-description-power-charge-level2
+
+- type: sourcePort
+  id: PowerChargeLevel3
+  name: signal-port-name-power-charge-level3
+  description: signal-port-description-power-charge-level3
+
+- type: sourcePort
+  id: PowerChargeLevel4
+  name: signal-port-name-power-charge-level4
+  description: signal-port-description-power-charge-level4
+
+- type: sourcePort
+  id: PowerChargeLevel5
+  name: signal-port-name-power-charge-level5
+  description: signal-port-description-power-charge-level5
+
+
