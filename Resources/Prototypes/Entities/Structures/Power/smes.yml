@@ -96,6 +96,14 @@
       prefix: device-address-prefix-smes
       sendBroadcastAttemptEvent: true
       examinableAddress: true
+    - type: DeviceLinkSource
+      ports:
+        - PowerChargeLevel0
+        - PowerChargeLevel1
+        - PowerChargeLevel2
+        - PowerChargeLevel3
+        - PowerChargeLevel4
+        - PowerChargeLevel5
     - type: WiredNetworkConnection
     - type: GuideHelp
       guides:

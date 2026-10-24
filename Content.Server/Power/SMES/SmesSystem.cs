@@ -7,6 +7,8 @@ using Content.Shared.Rounding;
 using Content.Shared.SMES;
 using JetBrains.Annotations;
 using Robust.Shared.Timing;
+using Content.Server.DeviceLinking.Systems;
+using Robust.Shared.Utility;
 
 namespace Content.Server.Power.SMES;
 
@@ -16,6 +18,7 @@ internal sealed class SmesSystem : EntitySystem
     [Dependency] private readonly IGameTiming _gameTiming = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SharedBatterySystem _battery = default!;
+    [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
 
     public override void Initialize()
     {
@@ -23,13 +26,20 @@ internal sealed class SmesSystem : EntitySystem
 
         UpdatesAfter.Add(typeof(PowerNetSystem));
 
+        SubscribeLocalEvent<SmesComponent, ComponentInit>(OnInit);
         SubscribeLocalEvent<SmesComponent, MapInitEvent>(OnMapInit);
         SubscribeLocalEvent<SmesComponent, ChargeChangedEvent>(OnBatteryChargeChanged);
+    }
+
+    private void OnInit(EntityUid uid, SmesComponent comp, ComponentInit args)
+    {
+        _deviceLink.EnsureSourcePorts(uid, comp.ChargeLevel0Port, comp.ChargeLevel1Port, comp.ChargeLevel2Port, comp.ChargeLevel3Port, comp.ChargeLevel4Port, comp.ChargeLevel5Port, comp.ChargeLevel6Port);
     }
 
     private void OnMapInit(EntityUid uid, SmesComponent component, MapInitEvent args)
     {
         UpdateSmesState(uid, component);
+        _deviceLink.SendSignal(uid, GetPort(component, component.ChargeLevel), true);
     }
 
     private void OnBatteryChargeChanged(EntityUid uid, SmesComponent component, ref ChargeChangedEvent args)
@@ -42,10 +52,12 @@ internal sealed class SmesSystem : EntitySystem
         var newLevel = CalcChargeLevel(uid);
         if (newLevel != smes.LastChargeLevel && smes.LastChargeLevelTime + smes.VisualsChangeDelay < _gameTiming.CurTime)
         {
+            _deviceLink.SendSignal(uid, GetPort(smes, smes.LastChargeLevel), false);
             smes.LastChargeLevel = newLevel;
             smes.LastChargeLevelTime = _gameTiming.CurTime;
 
             _appearance.SetData(uid, SmesVisuals.LastChargeLevel, newLevel);
+            _deviceLink.SendSignal(uid, GetPort(smes, newLevel), true);
         }
 
         var newChargeState = CalcChargeState(uid);
@@ -78,5 +90,25 @@ internal sealed class SmesSystem : EntitySystem
             < 0 => ChargeState.Charging,
             _ => ChargeState.Still
         };
+    }
+
+    private string GetPort(SmesComponent comp, int chargeLevel)
+    {
+        switch (chargeLevel)
+        {
+            case 0:
+                return comp.ChargeLevel0Port;
+            case 1:
+                return comp.ChargeLevel1Port;
+            case 2:
+                return comp.ChargeLevel2Port;
+            case 3:
+                return comp.ChargeLevel3Port;
+            case 4:
+                return comp.ChargeLevel4Port;
+            case 5:
+                return comp.ChargeLevel5Port;
+        }
+        return comp.ChargeLevel6Port; //unused??
     }
 }
