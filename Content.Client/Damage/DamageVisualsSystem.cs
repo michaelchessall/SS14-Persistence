@@ -331,6 +331,8 @@ public sealed partial class DamageVisualsSystem : VisualizerSystem<DamageVisuals
     {
         if (!Resolve(spriteEnt, ref spriteEnt.Comp))
             return;
+        //Persi change: the intent is that damage visuals always shows on the top layer of walls.
+        index ??= spriteEnt.Comp.AllLayers.Count();
 
         var newLayer = SpriteSystem.AddLayer(
             spriteEnt,

@@ -57,6 +57,20 @@
   id: BaseWall
   components:
   - type: Occluder # Breaks on diagonal walls
+# PERSI change START
+  - type: Appearance # Damage visuals for normal walls
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: Repairable
+    fuelCost: 15
+    doAfterDelay: 8
+  - type: DamageVisuals # Diagonal walls need a diff texture for the damagevisuals
+    thresholds: [5, 10, 20, 30, 40, 50, 60]
+    damageDivisor: 3
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Persistence14/Structures/walls/wall_damage.rsi
+# PERSI change END
   - type: PlacementReplacement
     key: walls
   - type: StructureAlignerPylon
@@ -208,7 +222,7 @@
     base: clock
 
 - type: entity
-  parent: BaseWall
+  parent: [ BaseWall, StructureHealthWall ]
   id: WallClown
   name: bananium wall
   components:
@@ -223,6 +237,8 @@
     cost: 6
     delay: 8
     fx: EffectRCDDeconstruct8
+  - type: Damageable
+    damageModifierSet: PlasteelMod
   - type: Destructible
     thresholds:
     - trigger: *DamageWallWeak
@@ -247,7 +263,7 @@
         - FullTileMask
         layer:
         - WallLayer
-        density: 8000 # really good ramming wall, bananium is rare so it's probably fine
+        density: 4000 # really good ramming wall, bananium is rare so it's probably fine
 
 - type: entity
   parent: [ BaseWall, StructureHealthWallWeak ]
@@ -463,7 +479,7 @@
     resistance: 5
 
 - type: entity
-  parent: BaseWall
+  parent: [ BaseWall, StructureHealthWallWeak ]
   id: WallPlastic
   name: plastic wall
   components:
@@ -488,7 +504,18 @@
       - *SoundMetalSlam
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetPlasma1: *BaseWallSpawn
+          SheetPlastic1: *BaseWallSpawn
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.5,-0.5,0.5,0.5"
+        mask:
+        - FullTileMask
+        layer:
+        - WallLayer
+        density: 500
   - type: IconSmooth
     key: walls
     base: plastic
@@ -801,7 +828,7 @@
         acts: [ "Destruction" ]
   - type: IconSmooth
     key: walls
-    base: wall
+    base: sandstone
   - type: Fixtures
     fixtures:
       fix1:
@@ -953,6 +980,14 @@
         layer:
         - WallLayer
         density: 2000
+  - type: ExaminableDamage
+    messages: WindowMessages
+  - type: DamageVisuals
+    thresholds: [5, 10, 20, 30]
+    damageDivisor: 10
+    trackAllDamage: true
+    damageOverlay:
+      sprite: _Persistence14/Structures/walls/shuttle_damage.rsi
 
 - type: entity
   parent: [ BaseWall, StructureHealthWall ]
@@ -987,6 +1022,7 @@
   - type: IconSmooth
     key: walls
     base: solid
+  - type: Appearance
 
 - type: entity
   parent: [ WallDiagonalBase, StructureHealthWall ]
@@ -1283,10 +1319,11 @@
   - type: IconSmooth
     key: walls
     base: mining
-  - type: RandomIconSmooth
-    randomStates:
-    - mining
-    - miningB
+# Disabled for PERSISTENCE, RandomIconSmooth breaks when used with damagevisuals
+#  - type: RandomIconSmooth
+#    randomStates:
+#    - mining
+#    - miningB
   - type: Appearance
 
 - type: entity
