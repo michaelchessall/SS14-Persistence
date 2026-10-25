@@ -75,12 +75,6 @@ public sealed partial class SmesComponent : Component
     public string ChargeLevel5Port = "PowerChargeLevel5";
 
     /// <summary>
-    /// The port that gets set to high when the battery is at chargelevel6.
-    /// </summary>
-    [DataField("chargeLevel6Port", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
-    public string ChargeLevel6Port = "PowerChargeLevel6";
-
-    /// <summary>
     /// Whether the SMES is being charged/discharged/neither.
     /// </summary>
     [ViewVariables]

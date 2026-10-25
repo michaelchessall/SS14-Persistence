@@ -33,7 +33,7 @@ internal sealed partial class SmesSystem : EntitySystem
 
     private void OnInit(EntityUid uid, SmesComponent comp, ComponentInit args)
     {
-        _deviceLink.EnsureSourcePorts(uid, comp.ChargeLevel0Port, comp.ChargeLevel1Port, comp.ChargeLevel2Port, comp.ChargeLevel3Port, comp.ChargeLevel4Port, comp.ChargeLevel5Port, comp.ChargeLevel6Port);
+        _deviceLink.EnsureSourcePorts(uid, comp.ChargeLevel0Port, comp.ChargeLevel1Port, comp.ChargeLevel2Port, comp.ChargeLevel3Port, comp.ChargeLevel4Port, comp.ChargeLevel5Port);
     }
 
     private void OnMapInit(EntityUid uid, SmesComponent component, MapInitEvent args)
@@ -109,6 +109,6 @@ internal sealed partial class SmesSystem : EntitySystem
             case 5:
                 return comp.ChargeLevel5Port;
         }
-        return comp.ChargeLevel6Port; //unused??
+        return "invalid chargelevel";
     }
 }
