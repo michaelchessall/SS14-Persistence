@@ -620,7 +620,11 @@ public sealed partial class AccessReaderSystem : EntitySystem
     {
         HashSet<EntityUid>? items = null;
         HashSet<int>? ids = null;
+<<<<<<< HEAD
         // var owned = false;
+=======
+        var owned = false;
+>>>>>>> origin/staging-stable
 
         //owning person redundant for now but couldnt find an altentive function and maybe it could possible be used with personalacces
         _station.GetOwning(owningStationUID, out var station, out var owningPerson);
