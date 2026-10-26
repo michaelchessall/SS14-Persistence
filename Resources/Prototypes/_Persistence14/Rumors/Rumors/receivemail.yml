@@ -1,6 +1,6 @@
 - type: rumor
   id: ReceiveMailFriendly
-  name: Mail Time!
+  name: Pen Pals
   description: "Some mail has been delivered that is addressed to you."
   cashReward: 0
   reputationReward: 10
@@ -19,7 +19,7 @@
 
 - type: rumor
   id: ReceiveMailEvil
-  name: Mail Time!
+  name: Mysterious Benefactor
   description: "Some mail has been delivered that is addressed to you."
   cashReward: 0
   reputationReward: 10

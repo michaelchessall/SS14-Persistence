@@ -21,6 +21,7 @@
     - ZenithUpgradeModule
     - TradeGood
     - ZenithCodexFragment
+    - SoLMerchCrate
     - GrandLottery
   rewardsToOffer: 2
 

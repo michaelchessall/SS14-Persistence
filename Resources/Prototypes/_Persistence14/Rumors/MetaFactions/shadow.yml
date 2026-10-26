@@ -21,6 +21,7 @@
     - ShadowUpgradeModule
     - TradeGood
     - ShadowCodexFragment
+    - ShadowMerchCrate
     - GrandLottery
   rewardsToOffer: 2
 

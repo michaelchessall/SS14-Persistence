@@ -20,6 +20,16 @@
     state: unmc-codex
 
 - type: rumorReward
+  id: UNMCMerchCrate
+  name: UNMC Merch Crate
+  description: "Anything a soldier needs to survive out in the Threshold."
+  price: 1200
+  product: CrateUNMCMerch
+  icon:
+    sprite: Clothing/Head/Bandanas/merc.rsi
+    state: icon_mask
+
+- type: rumorReward
   id: MarineViper
   name: Viper
   description: "A small and easily concealable pistol. Retrofitted with a fully automatic receiver. Uses extended pistol magazines (.35 auto)."

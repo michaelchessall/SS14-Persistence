@@ -80,7 +80,8 @@ public enum CompletionType
     Drink,
     Pray,
     ArtifactNodesUnlock,
-    ReceiveMail
+    ReceiveMail,
+    AnomalyStabilize
 
 }
 

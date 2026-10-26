@@ -50,3 +50,79 @@
         - id: SyndicateBusinessCard
           amount: 3
         - id: ClothingOuterWinterSyndie
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateShadowMerch
+  name: Occult paraphernalia crate
+  description: A dark steel crate filled with occult goodies.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlushieSnake
+          amount: 3
+        - id: PlushieNar
+        - id: ClothingShoesCult
+        - id: ClothingOuterRobesCult
+        - id: ClothingHeadHatHoodCulthood
+        - id: ClothingNeckCloakHerald
+        - id: TowelColorBlack
+        - id: PlayingCardDeckBoxBlack
+        - id: ClothingOuterHoodieChaplain
+        - !type:NestedSelector
+          tableId: MeatTable
+        - !type:NestedSelector
+          tableId: MeatTable
+        - !type:NestedSelector
+          tableId: MeatTable
+
+
+- type: entity
+  parent: CrateEngineering
+  id: CrateSoLMerch
+  name: Solar Legion paraphernalia crate
+  description: A Red and Yellow crate filled with Solar Legion Merch.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FoodBakedCookieCandle
+          amount: 3
+        - id: CandlePurple
+          amount: 3
+        - id: BannerSolarLegion
+        - id: ClothingNeckMilitiaCloak
+        - id: BibleEmbrace
+        - id: TowelColorOrange
+        - id: NunoCardDeckBox
+        - id: BookThresholdHandbook
+        - !type:NestedSelector
+          tableId: AllPersistencePlushiesTable
+
+- type: entity
+  parent: CratePrivateSecure
+  id: CrateUNMCMerch
+  name: UNMC paraphernalia crate
+  description: A secure crate filled with UNMC Merch. Hoo Rah!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitBattleDressUniformWoodland
+        - id: ClothingMaskBandMerc
+        - id: PlayingCardDeckBoxBlack
+        - id: ClothingNeckScarfStripedGreen
+        - id: PlushieXeno
+        - id: TowelColorDarkGreen
+        - id: CigCartonBlack
+        - id: ClothingHandsGlovesMercFingerless
+        - id: ClothingHeadHatCorpsoft
+        - id: ClothingShoesBootsMerc
+        - id: FlippoLighter
+        - id: FoodSnackNutribrick
+
+

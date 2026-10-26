@@ -2,7 +2,9 @@ using Content.Shared._Persistence14.Upgrades.Prototypes;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.Radio;
 using Content.Shared.Roles;
+using Robust.Shared.GameObjects;
 using Robust.Shared.GameStates;
+using Robust.Shared.IoC;
 using Robust.Shared.Prototypes;
 using System.Text;
 
@@ -62,18 +64,27 @@ public sealed partial class StationDataComponent : Component
     [DataField]
     public int StoredResonance = 0;
 
-    [DataField]
+    // Persistence 14: Replicate faction radio metadata to clients so headset and chat UI can resolve custom names, hotkeys, and colors without opening the faction console.
+    [DataField, AutoNetworkedField]
     public Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> RadioData = new()
     {
         { "Common", new FactionRadioData(true) },
+        { "CentCom", new FactionRadioData() },
         { "Command", new FactionRadioData() },
         { "Engineering", new FactionRadioData() },
         { "Medical", new FactionRadioData() },
         { "Science", new FactionRadioData() },
         { "Security", new FactionRadioData() },
         { "Service", new FactionRadioData() },
-        { "Supply", new FactionRadioData() }
+        { "Supply", new FactionRadioData() },
+        { "Syndicate", new FactionRadioData() },
+        { "Handheld", new FactionRadioData() },
+        { "Binary", new FactionRadioData() },
+        { "Freelance", new FactionRadioData() },
+        { "Xenoborg", new FactionRadioData() },
+        { "Mothership", new FactionRadioData() }
     };
+    // End Persistence 14
 
     /// <summary>
     /// Optional custom faction tag set from the station modification console.
@@ -156,13 +167,13 @@ public sealed partial class StationDataComponent : Component
     public void RemoveOwner(string owner)
     {
         if (!Owners.Remove(owner)) return;
-        Dirty();
+        IoCManager.Resolve<IEntityManager>().Dirty(Owner, this);
     }
     public void AddOwner(string owner)
     {
         if (Owners.Contains(owner)) return;
         Owners.Add(owner);
-        Dirty();
+        IoCManager.Resolve<IEntityManager>().Dirty(Owner, this);
     }
 }
 
@@ -171,8 +182,22 @@ public sealed partial class StationDataComponent : Component
 [Virtual]
 public partial class FactionRadioData
 {
+    // Persistence 14: Store per-faction custom radio metadata separately from the shared radio prototypes so each faction can rename, recolor, and rebind its own channels.
     [DataField("_enabled")]
     public bool Enabled = false;
+
+    [DataField]
+    public bool IsCustom = false;
+
+    [DataField]
+    public char Hotkey = '\0';
+
+    [DataField]
+    public string? CustomName;
+
+    [DataField]
+    public string? CustomColor;
+
     [DataField("_access")]
     public List<string> Access = new();
 
@@ -181,4 +206,13 @@ public partial class FactionRadioData
     {
         Enabled = enabled;
     }
+
+    public Color GetColor()
+    {
+        if (string.IsNullOrWhiteSpace(CustomColor))
+            return Color.Lime;
+
+        return Color.TryFromHex(CustomColor, out var color) ? color : Color.Lime;
+    }
+    // End Persistence 14
 }

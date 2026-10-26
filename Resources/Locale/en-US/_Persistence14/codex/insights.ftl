@@ -3,8 +3,8 @@
 insight-ration-1-name = Sense Anomaly
 insight-ration-1-desc = Gain the ability to sense the location of the nearest anomaly.
 
-insight-ration-2-name = Beggar's Choice
-insight-ration-2-desc = Gain the ability to reroll one node in an artifact. (WIP)
+insight-ration-2-name = Artifexium Burst
+insight-ration-2-desc = Gain the ability to unleash a burst of artifexium, randomly triggering a primed node on all nearby artifacts.
 
 insight-ration-3-name = Anomaly Generator
 insight-ration-3-desc = Once per day, you can generate an anomaly of your choosing.

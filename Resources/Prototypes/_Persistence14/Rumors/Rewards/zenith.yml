@@ -17,3 +17,13 @@
   icon:
     sprite: _Persistence14/Objects/Specific/codex.rsi
     state: sl-codex
+
+- type: rumorReward
+  id: SoLMerchCrate
+  name: Solar Legion paraphernalia Crate
+  description: "A crate of what makes the threshold livable. The community... and cookies."
+  price: 1200
+  product: CrateSoLMerch
+  icon:
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_sl

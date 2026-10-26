@@ -14,6 +14,7 @@ anomaly-scanner-component-scan-complete = Scan complete!
 
 anomaly-scanner-ui-title = anomaly scanner
 anomaly-scanner-no-anomaly = No anomaly currently scanned.
+anomaly-scanner-stability-percentage = Current stability: [color=gray]{$percent}[/color]
 anomaly-scanner-severity-percentage = Current severity: [color=gray]{$percent}[/color]
 anomaly-scanner-severity-percentage-unknown = Current severity: [color=red]ERROR[/color]
 anomaly-scanner-stability-low = Current anomaly state: [color=gold]Decaying[/color]

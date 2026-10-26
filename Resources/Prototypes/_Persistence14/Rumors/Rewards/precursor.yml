@@ -66,6 +66,17 @@
 
 
 #Medical
+- type: rumorReward
+  id: PrecursorDefib
+  name: Advanced Defibrillator Kit
+  description: "A fast and compact defibrillator. Some say Nanotrasen is known as the best with their advancements in medical science, Interdyne would disagree"
+  price: 6000
+  product: DefibrillatorSyndicate
+  icon:
+    sprite: Objects/Specific/Medical/defibsyndi.rsi
+    state: icon
+
+
 
 #Tools
 - type: rumorReward
@@ -163,6 +174,16 @@
   product: ClothingBackpackDuffelSyndicateHardsuitBundle
   icon:
     sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorMedHardsuitSyndie
+  name: Blood Red Medic Hardsuit Bundle
+  description: "The Syndicate's well known armored blood red hardsuit, Now with medical stylings."
+  price: 12000
+  product: ClothingBackpackDuffelSyndicateMedHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
     state: icon
 
 - type: rumorReward

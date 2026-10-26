@@ -1,5 +1,6 @@
 using Content.Server._NF.Bank;
 using Content.Server.Afk;
+using Content.Server.Atmos.Components;
 using Content.Server.Audio;
 using Content.Server.Cargo.Systems;
 using Content.Server.Chat.Managers;
@@ -15,6 +16,7 @@ using Content.Server.Station.Systems;
 using Content.Shared._Persistence14.PersistentIdentifier;
 using Content.Shared._Persistence14.Rumors.Components;
 using Content.Shared._Persistence14.Rumors.Prototypes;
+using Content.Shared.Anomaly.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
@@ -71,6 +73,7 @@ public sealed partial class RumorsSystem : EntitySystem
     [Dependency] private EntityQuery<RumorHealingTargetComponent> _healingTargetQuery = default!;
     [Dependency] private EntityQuery<RumorPowerTargetComponent> _powerTargetQuery = default!;
     [Dependency] private EntityQuery<XenoArtifactComponent> _artifactQuery = default!;
+    [Dependency] private EntityQuery<AnomalyComponent> _anomalyQuery = default!;
     [Dependency] private EntityQuery<ActiveNPCComponent> _npcQuery = default!;
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private ChatSystem _chatSystem = default!;
@@ -103,6 +106,41 @@ public sealed partial class RumorsSystem : EntitySystem
         SubscribeLocalEvent<PrayableComponent, PrayedEvent>(OnPrayed);
         SubscribeLocalEvent<RumorArtifactNodeUnlockTargetComponent, ArtifactUnlockingFinishedEvent>(OnArtifactNodeUnlock);
         SubscribeLocalEvent<DeliveryComponent, DeliveryUnlockedEvent>(OnDeliveryUnlock);
+        SubscribeLocalEvent<RumorAnomalyStabilizeTargetComponent, AnomalyStabilityChangedEvent>(OnAnomalyStabilityChange);
+        SubscribeLocalEvent<AtmosExposedComponent, ComponentStartup>(OnAtmosExposedStart);
+
+    }
+
+    private void OnAtmosExposedStart(Entity<AtmosExposedComponent> ent, ref ComponentStartup args)
+    {
+        ent.Comp.LastExposure = TimeSpan.Zero;
+    }
+
+    private void OnAnomalyStabilityChange(Entity<RumorAnomalyStabilizeTargetComponent> ent, ref AnomalyStabilityChangedEvent args)
+    {
+        if (args.Stability > 0.1) return;
+        if (!TryComp<PersistentIdentifierComponent>(ent, out var pid) || pid == null) return;
+        _pid.TryGetId((ent, pid), out var pID);
+        if (pID == null) return;
+        var query = EntityQueryEnumerator<RumorGetterComponent>();
+        while (query.MoveNext(out var uid, out var comp))
+        {
+            foreach (var rumor in comp.Rumors.ShallowClone())
+            {
+                if (rumor.CompletionType == CompletionType.AnomalyStabilize)
+                {
+                    if (rumor.Targets.Contains(pID))
+                    {
+                        EntityUid? player = null;
+                        var implant = Transform(uid);
+                        player = implant.ParentUid;
+                        if (player == null) return;
+                        CompleteRumor((uid, comp), player.Value, rumor);
+                        return;
+                    }
+                }
+            }
+        }
     }
 
     private void OnDeliveryUnlock(Entity<DeliveryComponent> ent, ref DeliveryUnlockedEvent args)
@@ -1243,11 +1281,18 @@ public sealed partial class RumorsSystem : EntitySystem
                     EnsureComp<RumorArtifactNodeUnlockTargetComponent>(child);
                     rumor.Targets.Add(_pid.EnsureId(child));
                 }
+                if (rumor.CompletionType == CompletionType.AnomalyStabilize)
+                {
+                    if (!_anomalyQuery.TryGetComponent(child, out var anom))
+                        continue;
+                    EnsureComp<RumorAnomalyStabilizeTargetComponent>(child);
+                    rumor.Targets.Add(_pid.EnsureId(child));
+                }
+
 
             }
         }
         _mapSystem.DeleteMap(salvMapXform.MapID);
-
     }
 
     private bool TryGetGridSpawnPosition(EntityUid player, ActiveRumor rumor, MapId mapId, Box2Rotated attachedBounds, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle)

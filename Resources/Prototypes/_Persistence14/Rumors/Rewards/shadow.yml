@@ -18,6 +18,15 @@
     sprite: _Persistence14/Objects/Specific/codex.rsi
     state: shadow-codex
 
+- type: rumorReward
+  id: ShadowMerchCrate
+  name: Elder Merch Crate
+  description: "All sorts of things needed to start a cult, even plushies."
+  price: 1200
+  product: CrateShadowMerch
+  icon:
+    sprite: Objects/Fun/Plushies/narsie.rsi
+    state: icon
 
 - type: rumorReward
   id: ShadowKnifeKit

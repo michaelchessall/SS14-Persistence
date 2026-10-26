@@ -34,6 +34,8 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Systems;
 using Content.Shared.Speech.Components;
 using Content.Shared.Traits.Assorted;
+using Content.Shared.Xenoarchaeology.Artifact;
+using Content.Shared.Xenoarchaeology.Artifact.Components;
 using Robust.Server.Player;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
@@ -43,6 +45,7 @@ using Robust.Shared.Random;
 using Robust.Shared.Timing;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Numerics;
 using System.Text;
 
@@ -69,19 +72,10 @@ public sealed partial class CodexSystem : EntitySystem
     [Dependency] private RumorsSystem _rumors = default!;
     [Dependency] private ServerGlobalSoundSystem _globalsound = default!;
     [Dependency] private ActionsSystem _actions = default!;
+    [Dependency] private SharedXenoArtifactSystem _artifact = default!;
+
     private SoundSpecifier _codexUnlockSound = new SoundPathSpecifier("/Audio/Effects/RingtoneNotes/gsharp.ogg");
     private SoundSpecifier _insightUnlockSound = new SoundPathSpecifier("/Audio/Effects/RingtoneNotes/dsharp.ogg");
-
-    public override void Initialize()
-    {
-        base.Initialize();
-        SubscribeLocalEvent<ActorComponent, VoidVisionsEvent>(OnVoidVision);
-        SubscribeLocalEvent<ActorComponent, SenseAnomalyEvent>(OnSenseAnomaly);
-        SubscribeLocalEvent<CodexFragmentComponent, UseInHandEvent>(CodexFragmentAfterInteract);
-        SubscribeLocalEvent<CodexExamineUnlockerComponent, ExaminedEvent>(OnUnlockerExamined);
-        SubscribeLocalEvent<MiracleReviveComponent, MiracleReviveEvent>(OnMiracleRevive);
-    }
-
 
     [SubscribeLocalEvent]
     private void OnGuideGranterMapInit(Entity<GuideActionGranterComponent> ent, ref MapInitEvent args)
@@ -91,6 +85,7 @@ public sealed partial class CodexSystem : EntitySystem
         ent.Comp.RemoveIn = ent.Comp.RemoveTime + _timing.CurTime;
     }
 
+    [SubscribeLocalEvent]
     private void OnVoidVision(Entity<ActorComponent> ent, ref VoidVisionsEvent args)
     {
         var getter = _rumors.GetRumorComponent(ent);
@@ -100,6 +95,7 @@ public sealed partial class CodexSystem : EntitySystem
         args.Handled = true;
     }
 
+    [SubscribeLocalEvent]
     private void OnMiracleRevive(Entity<MiracleReviveComponent> ent, ref MiracleReviveEvent args)
     {
         EntityUid target = args.Target;
@@ -217,6 +213,7 @@ public sealed partial class CodexSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void OnUnlockerExamined(Entity<CodexExamineUnlockerComponent> ent, ref ExaminedEvent args)
     {
         if (ent.Comp.Entry == "") return;
@@ -229,6 +226,7 @@ public sealed partial class CodexSystem : EntitySystem
         }
     }
 
+    [SubscribeLocalEvent]
     private void CodexFragmentAfterInteract(Entity<CodexFragmentComponent> ent, ref UseInHandEvent args)
     {
         var mob = args.User;
@@ -277,6 +275,30 @@ public sealed partial class CodexSystem : EntitySystem
         {
             NotifyPlayer(ent, "There are no anomalies within a 1000m range.");
         }
+        args.Handled = true;
+    }
+
+    [SubscribeLocalEvent]
+    public void OnArtifexiumBurst(Entity<ActorComponent> ent, ref ArtifexiumBurstEvent args)
+    {
+        bool any = false;
+        foreach (var arti in _lookup.GetEntitiesInRange<XenoArtifactComponent>(Transform(ent).Coordinates, args.Range))
+        {
+            var primedNodes = _artifact.GetPrimedNodes(arti).ToList();
+            if (primedNodes.Count == 0)
+                continue;
+
+            var node = _random.Pick(primedNodes);
+
+            _artifact.SetNodeUnlocked(arti, node);
+            _artifact.ActivateNode(arti, node, ent.Owner, null, Transform(ent).Coordinates, false);
+            any = true;
+        }
+
+        if (!any)
+            NotifyPlayer(ent, "No valid artifacts in range!");
+        else
+            _audio.PlayPvs(new SoundCollectionSpecifier("ArtifactUnlockingActivationSuccess"), ent.Owner);
         args.Handled = true;
     }
 

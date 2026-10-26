@@ -2,7 +2,7 @@
   id: AnomalySense
   name: insight-ration-1-name
   content: insight-ration-1-desc
-  next: ArtifactReroll
+  next: Rationalist2
   trait: AnomalySense
 
 - type: trait
@@ -30,39 +30,40 @@
     - state: flower
   - type: InstantAction
     event: !type:SenseAnomalyEvent
+      range: 3
 
 - type: insightTrait
-  id: ArtifactReroll
+  id: Rationalist2
   name: insight-ration-2-name
   content: insight-ration-2-desc
-  trait: ArtifactReroll
+  trait: Rationalist2
   next: Rationalist3
 
 - type: trait
-  id: ArtifactReroll
+  id: Rationalist2
   name: insight-ration-2-name
-  description: insight-ration-3-name
+  description: insight-ration-2-desc
   selectable: false
   components:
     - type: ActionGrant
       actions:
-        - ActionArtifactReroll
+        - ArtifexiumBurst
       autoDelete: true
 
 - type: entity
   parent: BaseAction
-  id: ActionArtifactReroll
-  name: Beggar's choice
-  description: Reroll a node on an artifact (WIP).
+  id: ArtifexiumBurst
+  name: Artifexium Burst
+  description: Emits a burst of artifexium, randomly triggering a primed node on all nearby artifacts.
   components:
   - type: Action
-    useDelay: 30
+    useDelay: 1h
   - type: Sprite
-    sprite: Clothing/Neck/Misc/pins.rsi
+    sprite: Objects/Magic/magicactions.rsi
     layers:
-    - state: flower
+    - state: shield
   - type: InstantAction
-    event: !type:ArtifactRerollEvent
+    event: !type:ArtifexiumBurstEvent
 
 - type: insightTrait
   id: Rationalist3
