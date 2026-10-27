@@ -323,7 +323,11 @@ public sealed partial class GroupedAccessEntryChecklist : BoxContainer
     /// </summary>
     public void SetAccessGroups(HashSet<int> _accessGroups)
     {
+<<<<<<< HEAD
         // _accessGroups = _accessGroups;
+=======
+        _accessGroups = _accessGroups;
+>>>>>>> origin/staging-stable
 
         ArrangeAccessControls();
 
