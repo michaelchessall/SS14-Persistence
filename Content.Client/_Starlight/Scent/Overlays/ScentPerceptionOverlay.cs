@@ -8,7 +8,7 @@ using Robust.Shared.Enums;
 
 namespace Content.Client._Starlight.Scent.Overlays;
 
-// Redraws visible ScentMarker sprites after BlindOverlay, DarkenedVisionOverlay, and
+// Redraws visible ScentMarker sprites after BlindOverlay and
 // BlurryVisionOverlay paint over the screen. Only draws markers the client already has and
 // ScentTrackingSystem still marks Visible.
 public sealed class ScentPerceptionOverlay : Robust.Client.Graphics.Overlay
@@ -22,7 +22,7 @@ public sealed class ScentPerceptionOverlay : Robust.Client.Graphics.Overlay
 
     public override OverlaySpace Space => OverlaySpace.WorldSpace;
 
-    // BlindOverlay, DarkenedVisionOverlay, and BlurryVisionOverlay never set ZIndex, so they
+    // BlindOverlay and BlurryVisionOverlay never set ZIndex, so they
     // draw at the default 0. Anything higher draws after them.
     public ScentPerceptionOverlay()
     {
