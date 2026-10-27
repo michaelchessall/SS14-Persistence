@@ -1,0 +1,7 @@
+- type: construction
+  parent: BaseUtility
+  id: StorageCanister
+  objectType: Structure
+  graph: StorageCanisterGraph
+  startNode: start
+  targetNode: canister

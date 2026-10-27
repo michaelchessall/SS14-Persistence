@@ -1,7 +1,7 @@
 using Content.Shared._Persistence14.Botany.Systems;
-using JetBrains.Annotations;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
+using JetBrains.Annotations;
 
 namespace Content.Shared.Botany.Systems;
 

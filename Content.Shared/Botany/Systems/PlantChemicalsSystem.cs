@@ -1,14 +1,14 @@
-using JetBrains.Annotations;
+using Content.Shared.Botany.Components;
 using Content.Shared._Persistence14.Botany;
 using Content.Shared._Persistence14.Botany.Components;
 using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared._Persistence14.Random;
-using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random;
 using Content.Shared.Random.Helpers;
-using Robust.Shared.Prototypes; // Persistence
+using JetBrains.Annotations;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 
@@ -38,14 +38,48 @@ public sealed partial class PlantChemicalsSystem : EntitySystem
     /// Adds a random chemical to the plant chemicals. Persistence: Use WeightedRandomFillPlantChemicalPrototype
     /// </summary>
     [PublicAPI]
-    public void MutateRandomChemical(Entity<PlantChemicalsComponent?> ent, WeightedRandomFillPlantChemicalPrototype randomChems)
+    public void MutateRandomChemical(Entity<PlantChemicalsComponent?> ent, IReadOnlyList<ProtoId<WeightedRandomFillPlantChemicalPrototype>> randomChemTables)
     {
         if (!Resolve(ent, ref ent.Comp, false))
             return;
 
+        var totalWeight = 0f;
+        foreach (var table in randomChemTables)
+        {
+            foreach (var fill in ProtoMan.Index(table).Fills)
+            {
+                totalWeight += fill.Weight;
+            }
+        }
+
+        if (totalWeight <= 0f)
+            return;
+
         var random = SharedRandomExtensions.PredictedRandom(_timing, GetNetEntity(ent));
-        var (chemicalId, quantity) = randomChems.Pick(random);
-        //var amount = FixedPoint2.Max(random.NextFloat(0f, 1f) * quantity, FixedPoint2.Epsilon); Persistence: No more RNG here
+        var selectedWeight = random.NextFloat() * totalWeight;
+        var accumulatedWeight = 0f;
+        WeightedRandomFillPlantChemicalPrototype? selectedTable = null;
+
+        foreach (var table in randomChemTables)
+        {
+            var tableProto = ProtoMan.Index(table);
+            foreach (var fill in tableProto.Fills)
+            {
+                accumulatedWeight += fill.Weight;
+            }
+
+            if (accumulatedWeight > selectedWeight)
+            {
+                selectedTable = tableProto;
+                break;
+            }
+        }
+
+        if (selectedTable == null)
+            return;
+
+        var (chemicalId, quantity) = selectedTable.Pick(random);
+
         var seedChemQuantity = new PlantChemQuantity();
 
         seedChemQuantity.Id = quantity; // Persistence:

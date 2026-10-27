@@ -680,7 +680,9 @@
     - !type:PlantAdjustNutrient
       amount: 0.6
       nutrient: Toxin
-    - !type:PlantPhalanximine
+    - !type:PlantChangeTraits
+      trait: PlantTraitUnviable
+      type: Remove
       minScale: 4
   metabolisms:
     Bloodstream:

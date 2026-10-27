@@ -11,7 +11,7 @@
   tier: 1
   cost: 2500
   recipeUnlocks:
-    PlushieSoundActivator: 1
+    PlushieSoundActivator: 2
 
 - type: technology
   id: Hydroponics
@@ -107,7 +107,7 @@
   tier: 1
   cost: 2500
   recipeUnlocks:
-    CrematoriumElectronics: 1
+    CrematoriumElectronics: 2
 
 - type: technology
   id: PaperProtection
@@ -158,8 +158,8 @@
   tier: 2
   cost: 18750
   recipeUnlocks:
-    StasisBedMachineCircuitboard: 1
-    CryoPodMachineCircuitboard: 1
+    StasisBedMachineCircuitboard: 2
+    CryoPodMachineCircuitboard: 2
     CryostasisBeaker: 1
     SyringeCryostasis: 1
 
@@ -186,10 +186,10 @@
   tier: 2
   cost: 25000
   recipeUnlocks:
-    AdvMopItem: 1
-    MegaSprayBottle: 1
+    AdvMopItem: 2
+    MegaSprayBottle: 2
     BorgModuleAdvancedCleaning: 1
-    TrashBagHolding: 1
+    TrashBagHolding: 2
     WashingMachineCircuitboard: 1 # Funky: Footprints & Stains
 
 - type: technology
@@ -250,7 +250,7 @@
   tier: 3
   cost: 50000
   recipeUnlocks:
-    ClothingShoesBootsSpeed: 1
+    ClothingShoesBootsSpeed: 2
 
 - type: technology
   id: BluespaceChemistry
@@ -262,9 +262,9 @@
   tier: 3
   cost: 50000
   recipeUnlocks:
-    BluespaceBeaker: 1
-    SyringeBluespace: 1
-    BluespaceJug: 1
+    BluespaceBeaker: 2
+    SyringeBluespace: 2
+    BluespaceJug: 2
 
 - type: technology
   id: LauncherSyringe

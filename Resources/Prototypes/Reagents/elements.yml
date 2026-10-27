@@ -462,6 +462,7 @@
       nutrient: Radiation
     - !type:PlantAdjustMutationLevel # TODO: Remove these after nutrients get effects
       amount: 0.6
+      mutationTable: RandomPlantMutations
     - !type:PlantAdjustMutationMod
       probability: 0.2
       amount: 0.1

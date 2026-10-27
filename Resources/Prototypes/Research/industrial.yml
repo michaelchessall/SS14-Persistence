@@ -12,11 +12,11 @@
   recipeUnlocks:
     MiningDrill: 4
     MineralScannerEmpty: 4
-    OreProcessorIndustrialMachineCircuitboard: 4
+    OreProcessorIndustrialMachineCircuitboard: 2
     ClothingMaskWeldingGas: 4
     ClothingShoesBootsJump: 4
     ClothingHandsGlovesColorYellow: 4
-    WeaponGrapplingGun: 2
+    WeaponGrapplingGun: 4
 
 - type: technology
   id: SpaceScanning
@@ -42,8 +42,8 @@
   cost: 3750
   recipeUnlocks:
     PowerCellHigh: 4
-    TurboItemRechargerCircuitboard: 4
-    SMESAdvancedMachineCircuitboard: 4
+    TurboItemRechargerCircuitboard: 2
+    SMESAdvancedMachineCircuitboard: 2
 
 - type: technology
   id: MechanicalCompression
@@ -55,7 +55,7 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-    FlatpackerMachineCircuitboard: 4
+    FlatpackerMachineCircuitboard: 2
 
 - type: technology
   id: ConstructionDevices
@@ -67,8 +67,8 @@
   tier: 1
   cost: 3750
   recipeUnlocks:
-    RCD: 1
-    HCD: 1
+    RCD: 2
+    HCD: 2
 
 - type: technology
   id: IndustrialEngineering
@@ -80,9 +80,9 @@
   tier: 1
   cost: 5000
   recipeUnlocks:
-    AutolatheHyperConvectionMachineCircuitboard: 4
-    ProtolatheHyperConvectionMachineCircuitboard: 4
-    CircuitImprinterHyperConvectionMachineCircuitboard: 4
+    AutolatheHyperConvectionMachineCircuitboard: 2
+    ProtolatheHyperConvectionMachineCircuitboard: 2
+    CircuitImprinterHyperConvectionMachineCircuitboard: 2
     SheetifierMachineCircuitboard: 1
 
 - type: technology
@@ -95,12 +95,12 @@
   tier: 1
   cost: 3750
   recipeUnlocks:
-    PortableGeneratorPacmanMachineCircuitboard: 4
-    PortableGeneratorSuperPacmanMachineCircuitboard: 4
-    PortableGeneratorMegamanMachineCircuitboard: 4
-    PortableGeneratorJrPacmanMachineCircuitboard: 4
-    PortableGeneratorOldmanMachineCircuitboard: 4
-    GasGeneratorMachineCircuitboard: 4
+    PortableGeneratorPacmanMachineCircuitboard: 2
+    PortableGeneratorSuperPacmanMachineCircuitboard: 2
+    PortableGeneratorMegamanMachineCircuitboard: 2
+    PortableGeneratorJrPacmanMachineCircuitboard: 2
+    PortableGeneratorOldmanMachineCircuitboard: 2
+    GasGeneratorMachineCircuitboard: 2
     SolarControlComputerCircuitboard: 4
     SolarTrackerElectronics: 4
     EmitterCircuitboard: 4
@@ -148,7 +148,6 @@
   cost: 3750
   recipeUnlocks:
     Spationautsuit: 2
-    Donknautsuit: 2
     EVAsuit: 3
     EVAsuitHelmet: 3
 
@@ -162,13 +161,13 @@
     state: base
   discipline: Industrial
   tier: 2
-  cost: 25000
+  cost: 20000
   recipeUnlocks:
     ShuttleConsoleCircuitboard: 1
-    ThrusterMachineCircuitboard: 1
-    ThrusterWallmountCircuitboard: 1
-    GyroscopeMachineCircuitboard: 1
-    GyroscopeFloorMachineCircuitboard: 1
+    ThrusterMachineCircuitboard: 4
+    ThrusterWallmountCircuitboard: 4
+    GyroscopeMachineCircuitboard: 2
+    GyroscopeFloorMachineCircuitboard: 2
     MiniGravityGeneratorCircuitboard: 1
     StationAnchorCircuitboard: 1
 
@@ -183,7 +182,7 @@
   cost: 16250
   recipeUnlocks:
     HellfireFreezerMachineCircuitBoard: 2
-    PortableScrubberMachineCircuitBoard: 3
+    PortableScrubberMachineCircuitBoard: 2
     HolofanProjector: 3
   technologyPrerequisites:
   - AtmosphericTech
@@ -196,14 +195,12 @@
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 25000
+  cost: 22500
   recipeUnlocks:
     WelderExperimental: 2
     PowerDrill: 2
     JawsOfLife: 2
     BorgModuleAdvancedTool: 1
-    Fulton: 15
-    FultonBeacon: 1
 
 - type: technology
   id: MassExcavation
@@ -221,23 +218,22 @@
     BorgModuleAdvancedMining: 2
 
 - type: technology
-  id: SpecializedEVA
-  name: research-technology-specialized-eva
+  id: IndustrialEVA
+  name: research-technology-industrial-eva
   icon:
     sprite: Clothing/Head/Hardsuits/engineering.rsi
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 31250
+  cost: 27500
   recipeUnlocks:
+    Miningsuit: 2
     Engineeringsuit: 2
     Atmossuit: 2
     AtmosFireSuit: 2
     AtmosFireHelmet: 2
-    Miningsuit: 2
-    Paramedsuit: 2 # Should probably be on the civilian tech tree
-    ExtendedEmergencyOxygenTank: 4
-    ExtendedEmergencyNitrogenTank: 4
+    ExtendedEmergencyOxygenTank: 2
+    ExtendedEmergencyNitrogenTank: 2
   technologyPrerequisites:
   - EVAManufacturing
 
@@ -275,4 +271,6 @@
     ClothingHandsGlovesCaptain: 1
   technologyPrerequisites:
   - EVAManufacturing
-  - SpecializedEVA
+  - IndustrialEVA
+  - CivilianEVA
+  - SecurityEVA

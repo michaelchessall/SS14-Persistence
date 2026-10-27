@@ -68,7 +68,8 @@ public sealed partial class TemperatureSystem : SharedTemperatureSystem
         // TODO ATMOS: Atmos heat containers!!!
         var atmosContainer = new HeatContainer(_atmosphere.GetHeatCapacity(args.GasMixture, false), args.GasMixture.Temperature);
         ConductHeat(entity.AsNullable(), ref atmosContainer, args.DeltaTime, args.ConductivityMod);
-        args.GasMixture.Temperature = atmosContainer.Temperature;
+        // args.GasMixture.Temperature = atmosContainer.Temperature; // Persistence: Commented, see next line
+        args.GasMixture.Temperature = (atmosContainer.Temperature - args.GasMixture.Temperature) * 0.2f + args.GasMixture.Temperature; // Persistence: Change in gas temp from TemperatureComponent is reduced by 80%
     }
 
     private void OnInit(Entity<InternalTemperatureComponent> entity, ref MapInitEvent args)

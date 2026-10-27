@@ -46,7 +46,7 @@
   tier: 1
   cost: 3750
   recipeUnlocks:
-    WeaponLaserCarbine: 2
+    WeaponLaserCarbine: 3
     RiotLaserShield: 1
 
 - type: technology
@@ -111,11 +111,11 @@
   cost: 5000
   recipeUnlocks:
     SignallerAdvanced: 4
-    SignalTrigger: 4
-    VoiceTrigger: 4
-    TimerTrigger: 4
-    FlashPayload: 4
-    ExplosivePayload: 4
+    SignalTrigger: 2
+    VoiceTrigger: 2
+    TimerTrigger: 2
+    FlashPayload: 2
+    ExplosivePayload: 2
     ChemicalPayload: 4
     CableDetStack1: 15
     EmptyDetonator: 4
@@ -130,7 +130,7 @@
   tier: 1
   cost: 2500
   recipeUnlocks:
-    ClothingBackpackElectropack: 1
+    ClothingBackpackElectropack: 2
     ClothingHandsMercGlovesCombat: 4
     ClothingHandsTacticalMaidGloves: 4
     ClothingHandsGlovesCombat: 4
@@ -159,7 +159,7 @@
   tier: 2
   cost: 25000
   recipeUnlocks:
-    WeaponXrayCannon: 1
+    WeaponXrayCannon: 2
 
 - type: technology
   id: KineticModifications
@@ -225,7 +225,6 @@
     Headofsecurityhardsuit: 1
   technologyPrerequisites:
   - EVAManufacturing
-  - SpecializedEVA
 
 # Tier 3
 
@@ -240,7 +239,7 @@
   cost: 75000
   recipeUnlocks:
     WeaponAdvancedLaser: 1
-    PortableRecharger: 1
+    PortableRecharger: 2
 
 - type: technology
   id: ThermalWeaponry

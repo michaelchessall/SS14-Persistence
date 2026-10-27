@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Botany.Components;
@@ -6,6 +5,7 @@ using Content.Shared.Botany.Events;
 using Content.Shared.Database;
 using Content.Shared.Interaction;
 using Content.Shared.Popups;
+using JetBrains.Annotations;
 
 namespace Content.Shared.Botany.Systems;
 
@@ -18,15 +18,31 @@ public sealed partial class PlantHarvestSystem : EntitySystem
     [Dependency] private BotanySystem _botany = default!;
     [Dependency] private ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private PlantSystem _plant = default!;
-    [Dependency] private PlantTraySystem _tray = default!; // Persistence
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private PlantHolderSystem _plantHolder = default!;
     [Dependency] private PlantRequirementsSystem _requirements = default!; // Persistence
+    [Dependency] private PlantTraySystem _plantTray = default!;
 
-    [Dependency] private EntityQuery<PlantHarvestComponent> _harvestQuery = default!;
-    [Dependency] private EntityQuery<PlantComponent> _plantQuery = default!;
-    [Dependency] private EntityQuery<PlantDataComponent> _dataQuery = default!;
+    [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery;
+    [Dependency] private EntityQuery<PlantHarvestComponent> _harvestQuery;
+    [Dependency] private EntityQuery<PlantComponent> _plantQuery;
+    [Dependency] private EntityQuery<PlantDataComponent> _dataQuery;
     [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery = default!; // Persistence
+
+
+    [SubscribeLocalEvent]
+    private void OnInteractHand(Entity<PlantTrayComponent> ent, ref InteractHandEvent args)
+    {
+        if (args.Handled)
+            return;
+
+        // TODO: Remove this once trays have a proper UI.
+        if (!_plantTray.TryGetAlivePlant(ent.AsNullable(), out var plantUid))
+            return;
+
+        if (TryHandleHarvest(plantUid.Value, args.User))
+            args.Handled = true;
+    }
 
     [SubscribeLocalEvent]
     private void OnPlantGrow(Entity<PlantHolderComponent> ent, ref PlantGrowEvent args)
@@ -76,21 +92,8 @@ public sealed partial class PlantHarvestSystem : EntitySystem
             return;
         }
 
-        if (!ent.Comp.ReadyForHarvest)
-            return;
-
-        var ev = new DoHarvestEvent(args.User, ent.Owner);
-        RaiseLocalEvent(ent.Owner, ref ev);
-        args.Handled = true;
-    }
-
-    [SubscribeLocalEvent]
-    private void OnHandledDoHarvest(Entity<PlantHolderComponent> ent, ref DoHarvestEvent args)
-    {
-        if (args.Cancelled)
-            return;
-
-        TryHandleHarvest(ent, args.User);
+        if (TryHandleHarvest(ent, args.User))
+            args.Handled = true;
     }
 
     private void TryAutoHarvest(Entity<PlantHarvestComponent> ent, EntityUid user)
@@ -99,21 +102,31 @@ public sealed partial class PlantHarvestSystem : EntitySystem
             return;
 
         if (_dataQuery.TryComp(ent.Owner, out var plantData) && plantData.HarvestLogImpact != null)
-            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.Name):seed} at Pos:{Transform(ent.Owner).Coordinates}.");
+            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.Name):seed} at Pos:{Transform(ent).Coordinates}.");
 
         DoHarvest(ent.Owner, user);
     }
 
     /// <summary>
-    /// Handles harvesting a plant for the specified user.
+    /// Attempts to harvest the plant, raising <see cref="PlantHarvestAttemptEvent"/> and harvesting if not cancelled.
     /// </summary>
+    /// <returns>True if the harvest was handled, even if cancelled.</returns>
     [PublicAPI]
-    public void TryHandleHarvest(EntityUid plant, EntityUid user)
+    public bool TryHandleHarvest(EntityUid plant, EntityUid user)
     {
+        if (!_holderQuery.TryComp(plant, out var holder) || !holder.ReadyForHarvest)
+            return false;
+
+        var ev = new PlantHarvestAttemptEvent(user, plant);
+        RaiseLocalEvent(plant, ref ev);
+        if (ev.Cancelled)
+            return true;
+
         if (_dataQuery.TryComp(plant, out var plantData) && plantData.HarvestLogImpact != null)
-            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"Auto-harvested {Loc.GetString(plantData.Name):seed} at Pos:{Transform(plant).Coordinates}.");
+            _adminLogger.Add(LogType.Botany, plantData.HarvestLogImpact.Value, $"{ToPrettyString(user):player} harvested {Loc.GetString(plantData.Name):seed} at Pos:{Transform(user).Coordinates}.");
 
         DoHarvest(plant, user);
+        return true;
     }
 
     /// <summary>
@@ -151,7 +164,7 @@ public sealed partial class PlantHarvestSystem : EntitySystem
 
         foreach (var (nutrientId, requirement) in _requirements.GetAllRequirements(ent.Owner))
         {
-            _tray.AdjustNutrient(tray.AsNullable(), -(requirement.Requirement + requirement.BonusRequirement), nutrientId);
+            _plantTray.AdjustNutrient(tray.AsNullable(), -(requirement.Requirement + requirement.BonusRequirement), nutrientId);
         }
 
         ent.Comp.ReadyForHarvest = false;
@@ -161,8 +174,21 @@ public sealed partial class PlantHarvestSystem : EntitySystem
         if (harvest.HarvestRepeat == HarvestType.NoRepeat)
             _plant.RemovePlant(ent.Owner);
 
-        var ev = new AfterDoHarvestEvent(user, ent.Owner);
+        var ev = new PlantHarvestedEvent(user, ent.Owner);
         RaiseLocalEvent(ent.Owner, ref ev);
+    }
+
+    /// <summary>
+    /// Resets harvest progress to the plant's current age.
+    /// </summary>
+    [PublicAPI]
+    public void ResetHarvestProgress(Entity<PlantHolderComponent?> ent)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
+            return;
+
+        ent.Comp.LastHarvest = ent.Comp.Age;
+        DirtyField(ent, nameof(ent.Comp.LastHarvest));
     }
 
     /// <summary>

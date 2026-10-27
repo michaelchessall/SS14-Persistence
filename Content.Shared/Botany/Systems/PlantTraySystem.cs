@@ -1,4 +1,3 @@
-using JetBrains.Annotations;
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Components;
@@ -7,6 +6,7 @@ using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
@@ -68,10 +68,13 @@ public sealed partial class PlantTraySystem : EntitySystem
         _audio.PlayPredicted(ent.Comp.WateringSound, ent, args.User);
     }
 
+    // TODO: replace with relationship system when it will be merged.
+    // this is really cursed - handler is getting hits on client when plant getting into tray
+    // but not when it gets out, yet it works just fine on server.
     [SubscribeLocalEvent]
     private void OnPlantTerminating(Entity<PlantComponent> ent, ref EntityTerminatingEvent args)
     {
-        var trayUid = Transform(ent.Owner).ParentUid;
+        var trayUid = Transform(ent).ParentUid;
 
         if (!_trayQuery.TryComp(trayUid, out var tray)
             || tray.PlantEntity != ent.Owner)
@@ -129,19 +132,23 @@ public sealed partial class PlantTraySystem : EntitySystem
         if (!_solutionContainer.ResolveSolution(trayUid, trayComp.SoilSolutionName, ref trayComp.SoilSolution, out var solution))
             return;
 
-        if (!TryGetPlant(ent, out var plantUid))
-            return;
-
         if (solution.Volume <= 0)
             return;
 
+        TryGetPlant(ent, out var plantUid);
         var contents = trayComp.SoilSolution.Value.Comp.Solution.Contents.ToArray();
-
         foreach (var entry in contents)
         {
-            var reagentProto = ProtoMan.Index(entry.Reagent.Prototype);
-            _entityEffects.ApplyEffects(trayUid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
-            _entityEffects.ApplyEffects(plantUid.Value, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+            if (entry.Quantity.Float() >= 1f)
+            {
+                var reagentProto = ProtoMan.Index(entry.Reagent.Prototype);
+                _entityEffects.ApplyEffects(trayUid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+
+                if (plantUid != null)
+                {
+                    _entityEffects.ApplyEffects(plantUid.Value, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+                }
+            }
         }
 
         _solutionContainer.RemoveEachReagent(trayComp.SoilSolution.Value, FixedPoint2.New(1));
@@ -154,15 +161,6 @@ public sealed partial class PlantTraySystem : EntitySystem
 
         /*if (ent.Comp is not { WaterLevel: > 10, NutritionLevel: > 5 }) // Persistence: Plant nutrient rework
             return;*/
-
-        if (TryGetPlant(ent, out var plantUid))
-        {
-            if (!_weedPestQuery.TryComp(plantUid.Value, out var weedPestGrowth))
-                return;
-
-            if (ent.Comp.WeedLevel > weedPestGrowth.WeedTolerance)
-                _plantHolder.AdjustsHealth(plantUid.Value, -weedPestGrowth.WeedDamageAmount);
-        }
 
         if (SharedRandomExtensions.PredictedProb(_timing, ent.Comp.WeedGrowthChance, GetNetEntity(ent)))
             AdjustWeed(ent, ent.Comp.WeedGrowthAmount);

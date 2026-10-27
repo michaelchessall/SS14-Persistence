@@ -30,7 +30,6 @@
     - state: flower
   - type: InstantAction
     event: !type:SenseAnomalyEvent
-      range: 3
 
 - type: insightTrait
   id: Rationalist2
@@ -64,6 +63,7 @@
     - state: shield
   - type: InstantAction
     event: !type:ArtifexiumBurstEvent
+      range: 3
 
 - type: insightTrait
   id: Rationalist3

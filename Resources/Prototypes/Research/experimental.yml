@@ -10,7 +10,7 @@
   tier: 1
   cost: 2500
   recipeUnlocks:
-    ProximitySensor: 1
+    ProximitySensor: 3
     RoboticsConsoleCircuitboard: 1
 
 - type: technology
@@ -39,23 +39,24 @@
   tier: 1
   cost: 2500
   recipeUnlocks:
-    NodeScanner: 1
+    NodeScanner: 2
     AnalysisComputerCircuitboard: 1
     ArtifactAnalyzerMachineCircuitboard: 1
     ResearchComputerCircuitboard: 1
     # ResearchAndDevelopmentServerMachineCircuitboard: 1 # Disabling this because of the RNDkit being added.
 
-- type: technology
-  id: AlternativeResearch
-  name: research-technology-alternative-research
-  icon:
-    sprite: Structures/Machines/tech_disk_printer.rsi
-    state: display
-  discipline: Experimental
-  tier: 1
-  cost: 2500
-  recipeUnlocks:
-    TechDiskComputerCircuitboard: 4
+# Removed since it uh... doesn't do anything.
+#- type: technology
+#  id: AlternativeResearch
+#  name: research-technology-alternative-research
+#  icon:
+#    sprite: Structures/Machines/tech_disk_printer.rsi
+#    state: display
+#  discipline: Experimental
+#  tier: 1
+#  cost: 2500
+#  recipeUnlocks:
+#    TechDiskComputerCircuitboard: 4
 
 - type: technology
   id: MagnetsTech
@@ -122,8 +123,8 @@
   tier: 2
   cost: 16250
   recipeUnlocks:
-    WeaponParticleDecelerator: 3
-    HoloprojectorField: 3
+    WeaponParticleDecelerator: 1
+    HoloprojectorField: 1
 
 - type: technology
   id: GravityManipulation
@@ -153,6 +154,7 @@
     ArtifactAnalyzerAdvancedMachineCircuitboard: 2
   technologyPrerequisites:
   - BasicXenoArcheology
+
 - type: technology
   id: BluespaceTimeManipulation
   name: research-technology-bluespace-time-manipulation

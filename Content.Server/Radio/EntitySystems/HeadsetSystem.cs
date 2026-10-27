@@ -212,12 +212,14 @@ public sealed partial class HeadsetSystem : SharedHeadsetSystem
                 if (sD.RadioData.TryGetValue(channel.ID, out var data) && data != null)
                 {
                     if (!data.Enabled) return false;
-                    if (data.Access.Count <= 0) return true;
 
                     if (TryComp<CrewRecordsComponent>(faction, out var crewRecords) && crewRecords != null)
                     {
+                        // Faction membership is always required, even when no access is configured.
                         if (crewRecords.TryGetRecord(recordKey, out var crewRecord) && crewRecord != null)
                         {
+                            if (data.Access.Count <= 0) return true;
+
                             if (TryComp<CrewAssignmentsComponent>(faction, out var crewAssignments) && crewAssignments != null)
                             {
                                 if (crewAssignments.TryGetAssignment(crewRecord.AssignmentID, out var crewAssignment) && crewAssignment != null)

@@ -1,7 +1,7 @@
 # Changing the quantityId of these may leave behind legacy plants with the old requirements. Ids that don't start with Random are also used by plants.
 - type: weightedRandomFillPlantChemical
   id: RandomPickChemicalMutagen
-  fills:
+  fills: # These were completely reworked upstream, might want to change them here too?
   # Weight 0.5 chemicals
   - quantityId: RandomImpedrezene
     weight: 0.5
@@ -48,19 +48,14 @@
     weight: 1
     reagents:
     - Phosphorus
-  - quantityId: RandomAlcoholic
+  - quantityId: RandomAlcoholic # Probably should also be farming? Maybe a seperate category for drinks.
     weight: 1
     reagents:
     - AtomicBomb
-    - CogChamp
   - quantityId: RandomSoda
     weight: 1
     reagents:
     - ChangelingSting
-  - quantityId: RandomWehJuice
-    weight: 1
-    reagents:
-    - JuiceThatMakesYouWeh
   - quantityId: RandomTearGas
     weight: 1
     reagents:
@@ -107,10 +102,6 @@
     reagents:
     - THC
     - Nicotine
-  - quantityId: RandomIceCream
-    weight: 2
-    reagents:
-    - IceCream
   - quantityId: RandomSoda
     weight: 2
     reagents:
@@ -168,10 +159,6 @@
     weight: 3
     reagents:
     - SodiumCarbonate
-  - quantityId: RandomSpaceMirage
-    weight: 3
-    reagents:
-    - SpaceDrugs
   - quantityId: RandomMiscDrink
     weight: 3
     reagents:
@@ -185,18 +172,6 @@
     - FourteenLoko
     - LemonLime
     - LemonLimeCranberry
-  - quantityId: RandomEthanol
-    weight: 3
-    reagents:
-    - Ethanol
-  - quantityId: BungoEnzyme
-    weight: 3
-    reagents:
-    - Enzyme
-  - quantityId: RandomVinegar
-    weight: 3
-    reagents:
-    - Vinegar
   - quantityId: RandomPotassium
     weight: 3
     reagents:
@@ -205,16 +180,11 @@
     weight: 3
     reagents:
     - Fluorine
-  - quantityId: RandomAlcoholic
+  - quantityId: RandomAlcoholic # Should probably be moved to the farming table.
     weight: 3
     reagents:
-    - Wine
     - Beer
   # Weight 3.5 chemicals
-  - quantityId: BluePumpkinVitamin
-    weight: 3.5
-    reagents:
-    - Vitamin
   - quantityId: RandomOil
     weight: 3.5
     reagents:
@@ -223,47 +193,92 @@
     weight: 3.5
     reagents:
     - Slime
-  - quantityId: CottonFiber
-    weight: 3.5
-    reagents:
-    - Fiber
-  - quantityId: MelonWater
-    weight: 3.5
-    reagents:
-    - Water
-  - quantityId: LaughinPeaSugar
-    weight: 3.5
-    reagents:
-    - Sugar
-  - quantityId: RandomCream
-    weight: 3.5
-    reagents:
-    - Cream
   - quantityId: RandomSodaWater
     weight: 3.5
     reagents:
     - SodaWater
-  - quantityId: RandomIce
-    weight: 3.5
-    reagents:
-    - Ice
   - quantityId: RandomJuiceCarrot
     weight: 3.5
     reagents:
     - JuiceCarrot
-  - quantityId: MeatwheatProtein
-    weight: 3.5
-    reagents:
-    - Protein
   - quantityId: BasicGrain10
     weight: 3.5
     reagents:
     - Flour
+
+- type: weightedRandomFillPlantChemical
+  id: RandomPickChemicalFarming
+  fills:
+  # Basic Farming Table
+  #On upstream, mayo and sap are also here.
+  - quantityId: BluePumpkinVitamin
+    weight: 5
+    reagents:
+    - Vitamin
+  - quantityId: CottonFiber
+    weight: 5
+    reagents:
+    - Fiber
+  - quantityId: MelonWater
+    weight: 5
+    reagents:
+    - Water
+  - quantityId: LaughinPeaSugar
+    weight: 5
+    reagents:
+    - Sugar
+  - quantityId: RandomCream
+    weight: 5
+    reagents:
+    - Cream
+  - quantityId: RandomIce
+    weight: 5
+    reagents:
+    - Ice
+  - quantityId: MeatwheatProtein
+    weight: 5
+    reagents:
+    - Protein
   - quantityId: RandomSoySauce
-    weight: 3.5
+    weight: 5
     reagents:
     - Soysauce
   - quantityId: RandomTableSalt
-    weight: 3.5
+    weight: 5
     reagents:
     - TableSalt
+  - quantityId: BungoEnzyme
+    weight: 5
+    reagents:
+    - Enzyme
+  - quantityId: RandomVinegar
+    weight: 5
+    reagents:
+    - Vinegar
+  - quantityId: RandomEthanol
+    weight: 5
+    reagents:
+    - Ethanol
+  - quantityId: RandomAlcoholic
+    weight: 5
+    reagents:
+    - Wine
+  - quantityId: RandomIceCream
+    weight: 5
+    reagents:
+    - IceCream
+  # Interesting Farming Table
+  # On upstream, kelotane, inaprovaline, lipozine, and laughter are also here
+  - quantityId: RandomSpaceMirage
+    weight: 1
+    reagents:
+    - SpaceDrugs
+  - quantityId: RandomWehJuice
+    weight: 1
+    reagents:
+    - JuiceThatMakesYouWeh
+  - quantityId: RandomAlcoholic
+    weight: 1
+    reagents:
+    - CogChamp
+  # On upstream, this table also had 0.02 weight 5 quantity cognizine.

@@ -1,6 +1,6 @@
 # Persistence: This file is no longer used by plant chemical mutations. Check Prototypes/_Persistence14/Hydroponics/RandomChemicals if that's what you are looking for.
 - type: weightedRandomFillSolution
-  id: RandomPickBotanyReagent
+  id: RandomPickBotanyGeneralReagent
   fills:
   - quantity: 5
     weight: 0.5
