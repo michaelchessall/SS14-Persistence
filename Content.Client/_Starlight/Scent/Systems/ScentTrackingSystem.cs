@@ -145,7 +145,7 @@ public sealed class ScentTrackingSystem : EntitySystem
         enclosure = default;
 
         if (_player.LocalSession?.AttachedEntity is not { } local ||
-            !TryComp<TransformComponent>(local, out var localXform) ||
+            !TryComp(local, out TransformComponent? localXform) ||
             !TryComp<EntityStorageComponent>(localXform.ParentUid, out var storage) ||
             !storage.Airtight)
         {
