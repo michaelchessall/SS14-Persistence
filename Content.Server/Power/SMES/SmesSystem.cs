@@ -106,9 +106,7 @@ internal sealed partial class SmesSystem : EntitySystem
                 return comp.ChargeLevel3Port;
             case 4:
                 return comp.ChargeLevel4Port;
-            case 5:
-                return comp.ChargeLevel5Port;
         }
-        return "invalid chargelevel";
+        return comp.ChargeLevel5Port
     }
 }
