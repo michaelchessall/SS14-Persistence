@@ -222,7 +222,7 @@
     base: clock
 
 - type: entity
-  parent: [ BaseWall, StructureHealthWall ]
+  parent: [ BaseWall, StructureHealthWall ] #fixed for persi
   id: WallClown
   name: bananium wall
   components:
@@ -238,7 +238,7 @@
     delay: 8
     fx: EffectRCDDeconstruct8
   - type: Damageable
-    damageModifierSet: PlasteelMod
+    damageModifierSet: PlasteelMod # added for persi, the walls where too weak
   - type: Destructible
     thresholds:
     - trigger: *DamageWallWeak
@@ -263,7 +263,7 @@
         - FullTileMask
         layer:
         - WallLayer
-        density: 4000 # really good ramming wall, bananium is rare so it's probably fine
+        density: 4000 # Reduced the value. it was almost unbreakable - really good ramming wall, bananium is rare so it's probably fine
 
 - type: entity
   parent: [ BaseWall, StructureHealthWallWeak ]
@@ -479,7 +479,7 @@
     resistance: 5
 
 - type: entity
-  parent: [ BaseWall, StructureHealthWallWeak ]
+  parent: [ BaseWall, StructureHealthWallWeak ] # Persi fix, it was indestructable before.
   id: WallPlastic
   name: plastic wall
   components:
@@ -504,18 +504,7 @@
       - *SoundMetalSlam
       - !type:SpawnEntitiesBehavior
         spawn:
-          SheetPlastic1: *BaseWallSpawn
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.5,-0.5,0.5,0.5"
-        mask:
-        - FullTileMask
-        layer:
-        - WallLayer
-        density: 500
+          SheetPlastic1: *BaseWallSpawn # persi fix
   - type: IconSmooth
     key: walls
     base: plastic
@@ -831,7 +820,7 @@
     base: sandstone
   - type: Fixtures
     fixtures:
-      fix1:
+      fix1:a
         shape:
           !type:PhysShapeAabb
           bounds: "-0.5,-0.5,0.5,0.5"
@@ -980,9 +969,7 @@
         layer:
         - WallLayer
         density: 2000
-  - type: ExaminableDamage
-    messages: WindowMessages
-  - type: DamageVisuals
+  - type: DamageVisuals # Persi
     thresholds: [5, 10, 20, 30]
     damageDivisor: 10
     trackAllDamage: true
@@ -1022,7 +1009,6 @@
   - type: IconSmooth
     key: walls
     base: solid
-  - type: Appearance
 
 - type: entity
   parent: [ WallDiagonalBase, StructureHealthWall ]

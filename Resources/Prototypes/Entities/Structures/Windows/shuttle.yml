@@ -52,7 +52,7 @@
     trackAllDamage: true
     damageOverlay:
       sprite: Structures/Windows/cracks.rsi
-  - type: ExaminableDamage
+  - type: ExaminableDamage # persi - damage visuals
     messages: WindowMessages
   - type: StaticPrice
     price: 150
