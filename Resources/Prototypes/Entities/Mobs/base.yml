@@ -310,7 +310,7 @@
 
 # Used for mobs that should slightly see in the dark
 - type: entity
-  save: false
+  save: true
   id: MobNightVision
   abstract: true
   components:

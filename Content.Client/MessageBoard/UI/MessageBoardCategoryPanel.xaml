@@ -1,0 +1,14 @@
+<PanelContainer VerticalExpand="True" HorizontalExpand="True" xmlns="https://spacestation14.io" xmlns:gfx="clr-namespace:Robust.Client.Graphics;assembly=Robust.Client" >
+    <PanelContainer.PanelOverride>
+        <gfx:StyleBoxFlat BackgroundColor="#000000" />
+    </PanelContainer.PanelOverride>
+    <ScrollContainer VerticalExpand="True">
+        <BoxContainer Orientation="Vertical" Margin="5" MinHeight ="10">
+            <BoxContainer Name="PublicBoardEntriesBC"
+                          Orientation="Vertical"
+                          VerticalExpand="True"
+                          Access="Public">
+            </BoxContainer>
+        </BoxContainer>
+    </ScrollContainer>
+</PanelContainer>

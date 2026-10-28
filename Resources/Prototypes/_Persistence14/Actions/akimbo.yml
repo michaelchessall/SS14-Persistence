@@ -1,0 +1,16 @@
+- type: entity
+  parent: BaseAction
+  id: ActionToggleAkimbo
+  name: Toggle Akimbo
+  description: Alternate between the guns in each hand with every trigger pull. If both are set to full-auto, fire them together.
+  components:
+  - type: Action
+    useDelay: 0.5
+    checkCanInteract: false
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
+    layers:
+    - state: icon
+      map: ["enum.ActionVisuals.Icon"]
+  - type: InstantAction
+    event: !type:ToggleAkimboActionEvent

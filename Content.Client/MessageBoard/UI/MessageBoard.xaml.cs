@@ -12,17 +12,11 @@ namespace Content.Client.MessageBoard.UI;
 [GenerateTypedNameReferences]
 public sealed partial class MessageBoard : FancyWindow
 {
-    private readonly IPrototypeManager _protoManager;
-    private readonly CargoSystem _cargoSystem;
-    private readonly SpriteSystem _spriteSystem;
     private EntityUid _owner;
     public MessageBoard(EntityUid owner, IEntityManager entMan, IPrototypeManager protoManager, SpriteSystem spriteSystem)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
-        _protoManager = protoManager;
-        _cargoSystem = entMan.System<CargoSystem>();
-        _spriteSystem = spriteSystem;
         _owner = owner;
         Title = entMan.GetComponent<MetaDataComponent>(owner).EntityName;
         BoardTabContainer.SetTabTitle(0, "Public Board");

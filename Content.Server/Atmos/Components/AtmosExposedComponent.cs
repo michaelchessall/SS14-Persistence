@@ -1,4 +1,5 @@
 using Content.Shared.Temperature.Components;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Atmos.Components;
 
@@ -12,7 +13,7 @@ public sealed partial class AtmosExposedComponent : Component
     /// <summary>
     /// Last real time we were exposed to the atmosphere!
     /// </summary>
-    [DataField, AutoPausedField]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), AutoPausedField]
     public TimeSpan LastExposure = TimeSpan.Zero;
 
     /// <summary>

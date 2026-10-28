@@ -12,7 +12,7 @@ public sealed partial class HumanoidProfileEditor
 
         if (!IsDirty)
             return;
-
+        CheckReady();
         SpriteView.SetName(newName);
     }
 

@@ -1,0 +1,29 @@
+# Tier 2 CivilianServices research that unlocks the requisitions console machine board.
+- type: technology
+  id: RequisitionsLogistics
+  name: research-technology-requisitions-logistics
+  icon:
+    sprite: Structures/Machines/computers.rsi
+    state: computer
+  discipline: CivilianServices
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+    RequisitionsConsoleCircuitboard: 1
+
+- type: technology
+  id: CivilianEVA
+  name: research-technology-civilian-eva
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/paramed.rsi
+    state: icon
+  discipline: CivilianServices
+  tier: 2
+  cost: 27500
+  recipeUnlocks:
+    Paramedsuit: 2
+    Donknautsuit: 2
+    ExtendedEmergencyOxygenTank: 2
+    ExtendedEmergencyNitrogenTank: 2
+  technologyPrerequisites:
+  - EVAManufacturing

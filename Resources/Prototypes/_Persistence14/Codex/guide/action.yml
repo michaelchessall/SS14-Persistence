@@ -1,0 +1,12 @@
+- type: entity
+  parent: BaseAction
+  id: ActionPersistenceGuide
+  name: Open Persistence Guide
+  description: Learn about the new and changed features of Persistence.
+  components:
+  - type: Action
+  - type: Sprite
+    layers:
+    - texture: _Persistence14/Interface/guide.png
+  - type: InstantAction
+    event: !type:PersistenceGuideEvent

@@ -395,6 +395,7 @@ namespace Content.Shared.Preferences
             profile.Alignment = baseProfile.Alignment;
             profile.UniverseOrigin = baseProfile.UniverseOrigin;
             profile.Motive = baseProfile.Motive;
+            profile.TurningPoint = baseProfile.TurningPoint;
             return profile;
         }
 

@@ -45,6 +45,7 @@
   - type: GuideHelp
     guides:
     - ShuttleCraft
+  - type: AccessReader
 
 - type: entity
   id: Thruster

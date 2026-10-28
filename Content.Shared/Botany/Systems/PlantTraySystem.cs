@@ -1,13 +1,15 @@
-using JetBrains.Annotations;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Components;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
 using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Shared.Botany.Systems;
@@ -30,6 +32,7 @@ public sealed partial class PlantTraySystem : EntitySystem
     [Dependency] private EntityQuery<PlantDataComponent> _dataQuery = default!;
     [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery = default!;
     [Dependency] private EntityQuery<PlantWeedPestComponent> _weedPestQuery = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
 
     [SubscribeLocalEvent]
     private void OnExamine(Entity<PlantTrayComponent> ent, ref ExaminedEvent args)
@@ -49,10 +52,11 @@ public sealed partial class PlantTraySystem : EntitySystem
                 args.PushMarkup(Loc.GetString("plant-component-something-already-growing-message", ("seedName", name)));
             }
 
-            args.PushMarkup(Loc.GetString("tray-component-water-level-message",
+            /*args.PushMarkup(Loc.GetString("tray-component-water-level-message",
                 ("waterLevel", (int)ent.Comp.WaterLevel)));
             args.PushMarkup(Loc.GetString("tray-component-nutrient-level-message",
-                ("nutritionLevel", (int)ent.Comp.NutritionLevel)));
+                ("nutritionLevel", (int)ent.Comp.NutritionLevel)));*/
+            args.PushMarkup(GetTrayNutrientsMarkup(ent.AsNullable())); // Persistence 14
 
             args.PushMarkup(GetTrayWarningsMarkup(ent.AsNullable()));
         }
@@ -64,10 +68,13 @@ public sealed partial class PlantTraySystem : EntitySystem
         _audio.PlayPredicted(ent.Comp.WateringSound, ent, args.User);
     }
 
+    // TODO: replace with relationship system when it will be merged.
+    // this is really cursed - handler is getting hits on client when plant getting into tray
+    // but not when it gets out, yet it works just fine on server.
     [SubscribeLocalEvent]
     private void OnPlantTerminating(Entity<PlantComponent> ent, ref EntityTerminatingEvent args)
     {
-        var trayUid = Transform(ent.Owner).ParentUid;
+        var trayUid = Transform(ent).ParentUid;
 
         if (!_trayQuery.TryComp(trayUid, out var tray)
             || tray.PlantEntity != ent.Owner)
@@ -125,19 +132,23 @@ public sealed partial class PlantTraySystem : EntitySystem
         if (!_solutionContainer.ResolveSolution(trayUid, trayComp.SoilSolutionName, ref trayComp.SoilSolution, out var solution))
             return;
 
-        if (!TryGetPlant(ent, out var plantUid))
-            return;
-
         if (solution.Volume <= 0)
             return;
 
+        TryGetPlant(ent, out var plantUid);
         var contents = trayComp.SoilSolution.Value.Comp.Solution.Contents.ToArray();
-
         foreach (var entry in contents)
         {
-            var reagentProto = ProtoMan.Index(entry.Reagent.Prototype);
-            _entityEffects.ApplyEffects(trayUid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
-            _entityEffects.ApplyEffects(plantUid.Value, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+            if (entry.Quantity.Float() >= 1f)
+            {
+                var reagentProto = ProtoMan.Index(entry.Reagent.Prototype);
+                _entityEffects.ApplyEffects(trayUid, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+
+                if (plantUid != null)
+                {
+                    _entityEffects.ApplyEffects(plantUid.Value, [.. reagentProto.PlantMetabolisms], entry.Quantity.Float());
+                }
+            }
         }
 
         _solutionContainer.RemoveEachReagent(trayComp.SoilSolution.Value, FixedPoint2.New(1));
@@ -148,17 +159,8 @@ public sealed partial class PlantTraySystem : EntitySystem
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        if (ent.Comp is not { WaterLevel: > 10, NutritionLevel: > 5 })
-            return;
-
-        if (TryGetPlant(ent, out var plantUid))
-        {
-            if (!_weedPestQuery.TryComp(plantUid.Value, out var weedPestGrowth))
-                return;
-
-            if (ent.Comp.WeedLevel > weedPestGrowth.WeedTolerance)
-                _plantHolder.AdjustsHealth(plantUid.Value, -weedPestGrowth.WeedDamageAmount);
-        }
+        /*if (ent.Comp is not { WaterLevel: > 10, NutritionLevel: > 5 }) // Persistence: Plant nutrient rework
+            return;*/
 
         if (SharedRandomExtensions.PredictedProb(_timing, ent.Comp.WeedGrowthChance, GetNetEntity(ent)))
             AdjustWeed(ent, ent.Comp.WeedGrowthAmount);
@@ -183,19 +185,24 @@ public sealed partial class PlantTraySystem : EntitySystem
     }
 
     /// <summary>
-    /// Adjusts the nutrient level of the tray.
+    /// Persistence: Adjusts the tray's level of a specified nutrient.
     /// </summary>
     [PublicAPI]
-    public void AdjustNutrient(Entity<PlantTrayComponent?> ent, float amount)
+    public void AdjustNutrient(Entity<PlantTrayComponent?> ent, FixedPoint2 amount, ProtoId<PlantNutrientPrototype>  nutrient)
     {
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        ent.Comp.NutritionLevel += amount;
-        ent.Comp.NutritionLevel = MathHelper.Clamp(ent.Comp.NutritionLevel, 0f, ent.Comp.MaxNutritionLevel);
-        DirtyField(ent, nameof(ent.Comp.NutritionLevel));
+        if (!ent.Comp.Nutrients.TryAdd(nutrient, amount))
+            ent.Comp.Nutrients[nutrient] += amount;
+
+        if (ent.Comp.Nutrients[nutrient] <= FixedPoint2.Zero)
+            ent.Comp.Nutrients.Remove(nutrient);
+
+        DirtyField(ent, nameof(ent.Comp.Nutrients));
     }
 
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Adjusts the water level of the tray.
     /// </summary>
@@ -239,6 +246,7 @@ public sealed partial class PlantTraySystem : EntitySystem
         ent.Comp.ToxinLevel = MathHelper.Clamp(ent.Comp.ToxinLevel + amount, 0f, ent.Comp.MaxToxinLevel);
         DirtyField(ent, nameof(ent.Comp.ToxinLevel));
     }
+    */
 
     /// <summary>
     /// Adjusts the weed level of the tray.
@@ -260,10 +268,12 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetToxinThreshold(Entity<PlantTrayComponent?> ent)
     {
+        return false; /* Persistence: Plant nutrient rework
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         return ent.Comp.ToxinLevel >= ent.Comp.MaxToxinLevel * 0.5f;
+        */
     }
 
     /// <summary>
@@ -333,8 +343,10 @@ public sealed partial class PlantTraySystem : EntitySystem
         if (GetWaterThreshold(ent))
             markup.Add(Loc.GetString("tray-component-water-low-warning"));
 
+        /* Persistence
         if (GetNutrientThreshold(ent))
             markup.Add(Loc.GetString("tray-component-nutrient-low-warning"));
+            */
 
         if (GetToxinThreshold(ent))
             markup.Add(Loc.GetString("tray-component-toxin-high-level-warning"));
@@ -345,6 +357,9 @@ public sealed partial class PlantTraySystem : EntitySystem
         if (ent.Comp.DrawWarnings && TryGetPlant(ent, out var plantUid)
             && _holderQuery.TryComp(plantUid.Value, out var holder))
         {
+            if (holder.MissingNutrients) // Persistence
+                markup.Add(Loc.GetString("tray-component-nutrient-low-warning"));
+
             if (holder.ImproperHeat)
                 markup.Add(Loc.GetString("tray-component-plant-improper-heat-warning"));
 
@@ -356,6 +371,29 @@ public sealed partial class PlantTraySystem : EntitySystem
 
             if (_plantHolder.GetHealthThreshold(plantUid.Value))
                 markup.Add(Loc.GetString("tray-component-plant-health-warning"));
+        }
+
+        return string.Join("\n", markup);
+    }
+
+    /// <summary>
+    /// Persistence: Gets the nutrients markup of the tray.
+    /// </summary>
+    [PublicAPI]
+    public string GetTrayNutrientsMarkup(Entity<PlantTrayComponent?> ent)
+    {
+        if (!Resolve(ent.Owner, ref ent.Comp, false))
+            return string.Empty;
+
+        var markup = new List<string>();
+
+        foreach (var (nutrientId, amount) in ent.Comp.Nutrients)
+        {
+            var nutrient = _prototypeManager.Index(nutrientId);
+            markup.Add(Loc.GetString("tray-component-nutrient-message",
+                ("name", nutrient.LocalizedName),
+                ("color", nutrient.SubstanceColor),
+                ("nutrientLevel", amount)));
         }
 
         return string.Join("\n", markup);
@@ -379,10 +417,12 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetPestThreshold(Entity<PlantTrayComponent?> ent)
     {
+        return false; /* Persistence: Plant nutrient rework
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         return ent.Comp.PestLevel >= ent.Comp.MaxPestLevel * 0.5f;
+        */
     }
 
     /// <summary>
@@ -391,10 +431,11 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetWaterThreshold(Entity<PlantTrayComponent?> ent)
     {
-        if (!Resolve(ent.Owner, ref ent.Comp, false))
+        return false; // Persistence TODO: Figure out what to do with the water warning light
+        /*if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
-        return ent.Comp.WaterLevel <= ent.Comp.MaxWaterLevel * 0.1f;
+        return ent.Comp.WaterLevel <= ent.Comp.MaxWaterLevel * 0.1f;*/
     }
 
     /// <summary>
@@ -403,10 +444,12 @@ public sealed partial class PlantTraySystem : EntitySystem
     [PublicAPI]
     public bool GetNutrientThreshold(Entity<PlantTrayComponent?> ent)
     {
+        return false; /* Persistence: Plant nutrient rework
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return false;
 
         return ent.Comp.NutritionLevel <= ent.Comp.MaxNutritionLevel * 0.1f;
+        */
     }
 }
 

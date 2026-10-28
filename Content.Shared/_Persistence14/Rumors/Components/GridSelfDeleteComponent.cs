@@ -12,5 +12,11 @@ public sealed partial class GridSelfDeleteComponent : Component
 {
     [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan DeleteTime = TimeSpan.Zero;
+    [DataField]
+    public TimeSpan AnnounceTime = TimeSpan.Zero;
+    [DataField]
+    public TimeSpan AnnounceCooldown = TimeSpan.FromMinutes(10);
+    [DataField]
+    public List<EntityUid> SpawnedMobs = new();
 
 }

@@ -78,6 +78,10 @@
     seniorofficer: SeniorOfficerPDA
     seniorcourier: SeniorCourierPDA
     pirate: PiratePDA
+    syndicate: SyndiPDA
+    syndicateoperative: SyndiOperativePDA
+    syndicatecommander: SyndiCommanderPDA
+    syndicatecorpsman: SyndiCorpsmanPDA
 
 - type: paintableGroup
   id: ItemHeadsets

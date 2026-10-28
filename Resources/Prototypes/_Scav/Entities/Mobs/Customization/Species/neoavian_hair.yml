@@ -1,0 +1,183 @@
+- type: marking
+  id: NeoAvianHairUprightAlt
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: upright_alt
+
+- type: marking
+  id: NeoAvianHairUpright
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: upright
+
+- type: marking
+  id: NeoAvianHairUnpruned
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: unpruned
+
+- type: marking
+  id: NeoAvianHairTwies
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: twies
+
+- type: marking
+  id: NeoAvianHairSunburst
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: sunburst
+
+- type: marking
+  id: NeoAvianHairSpikyAlt
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: spiky_alt
+
+- type: marking
+  id: NeoAvianHairSpiky
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: spiky
+
+- type: marking
+  id: NeoAvianHairPointy
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: pointy
+
+- type: marking
+  id: NeoAvianHairPlumageAlt
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: plumage_alt
+
+- type: marking
+  id: NeoAvianHairPlumage
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: plumage
+
+- type: marking
+  id: NeoAvianHairNeon
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: neon
+
+- type: marking
+  id: NeoAvianHairMohawkAlt
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: mohawk_alt
+
+- type: marking
+  id: NeoAvianHairMohawk
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: mohawk
+
+- type: marking
+  id: NeoAvianHairMane
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: mane
+
+- type: marking
+  id: NeoAvianHairLongWay
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: long_way
+
+- type: marking
+  id: NeoAvianHairLargeEars
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: large_ears
+
+- type: marking
+  id: NeoAvianHairHedgehog
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: hedgehog
+
+- type: marking
+  id: NeoAvianHairFluffyMohawk
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: fluffy_mohawk
+
+- type: marking
+  id: NeoAvianHairEarsAlt
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: ears_alt
+
+- type: marking
+  id: NeoAvianHairEars
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: ears
+
+- type: marking
+  id: NeoAvianHairDroopy
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: droopy
+
+- type: marking
+  id: NeoAvianHairCrest
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: crest
+
+- type: marking
+  id: NeoAvianHairBackstrafe
+  bodyPart: Hair
+  groupWhitelist: [NeoAvian]
+  sprites:
+    - sprite: _Scav/Mobs/Customization/NeoAvian/hair.rsi
+      state: backstrafe

@@ -39,6 +39,13 @@ public sealed partial class ServerGlobalSoundSystem : SharedGlobalSoundSystem
         RaiseNetworkEvent(msg, filter);
     }
 
+    public void PlayLocalSound(SoundSpecifier specifier, ActorComponent comp, AudioParams? audioParams = null)
+    {
+        if (comp.PlayerSession == null) return;
+        var msg = new LocalSoundEvent(specifier, audioParams);
+        RaiseNetworkEvent(msg, comp.PlayerSession);
+    }
+
     public void StopStationEventMusic(EntityUid source, StationEventMusicType type)
     {
         // TODO REPLAYS

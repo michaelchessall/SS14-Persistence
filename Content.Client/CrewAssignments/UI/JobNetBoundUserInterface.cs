@@ -37,7 +37,7 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
         var spriteSystem = EntMan.System<SpriteSystem>();
         _menu = this.CreateWindow<JobNetMenu>();
         _menu.Owner = this;
-        _menu._spriteSystem = spriteSystem;
+        _menu.SpriteSystem = spriteSystem;
         _menu.PossibleJobs.OnItemSelected += OnJobPressed;
         _menu.LevelPurchaseButton.OnPressed += OnLevelPurchase;
         CodexMenu = new();

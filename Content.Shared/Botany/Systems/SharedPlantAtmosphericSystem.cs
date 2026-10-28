@@ -1,6 +1,7 @@
-using JetBrains.Annotations;
+using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
+using JetBrains.Annotations;
 
 namespace Content.Shared.Botany.Systems;
 
@@ -12,17 +13,23 @@ public abstract partial class SharedPlantAtmosphericSystem : EntitySystem
 {
     [Dependency] private BotanySystem _botany = default!;
     [Dependency] private PlantMutationSystem _mutation = default!;
+    [Dependency] private PlantTolerancesSystem _tolerances = default!; // Persistence
 
-    [SubscribeLocalEvent]
+    [SubscribeLocalEvent(after:[typeof(PlantChemicalsSystem), typeof(PlantConsumeExudeGasComponent)])] // Persistence: Ensure tolerance modifiers apply after chemicals and gas emissions are changed.
     private void OnCrossPollinate(Entity<PlantAtmosphericComponent> ent, ref PlantCrossPollinateEvent args)
     {
+        /* Persistence: No need to check this, since none of the values are being crossbred.
         if (!_botany.TryGetPlantComponent<PlantAtmosphericComponent>(args.PollenData, args.PollenProtoId, out var pollenData))
             return;
+        */
 
-        _mutation.CrossFloat(ref ent.Comp.LowHeatTolerance, pollenData.LowHeatTolerance);
-        _mutation.CrossFloat(ref ent.Comp.HighHeatTolerance, pollenData.HighHeatTolerance);
-        _mutation.CrossFloat(ref ent.Comp.LowPressureTolerance, pollenData.LowPressureTolerance);
-        _mutation.CrossFloat(ref ent.Comp.HighPressureTolerance, pollenData.HighPressureTolerance);
+        _tolerances.UpdateModifiers(ent); // Persistence
+
+        // Persistence: Disable tolerance crossbreeding
+        // _mutation.CrossFloat(ref ent.Comp.LowHeatTolerance, pollenData.LowHeatTolerance);
+        // _mutation.CrossFloat(ref ent.Comp.HighHeatTolerance, pollenData.HighHeatTolerance);
+        // _mutation.CrossFloat(ref ent.Comp.LowPressureTolerance, pollenData.LowPressureTolerance);
+        // _mutation.CrossFloat(ref ent.Comp.HighPressureTolerance, pollenData.HighPressureTolerance);
         Dirty(ent);
     }
 
@@ -39,6 +46,7 @@ public abstract partial class SharedPlantAtmosphericSystem : EntitySystem
         if (ent.Comp.LowHeatTolerance > ent.Comp.HighHeatTolerance)
             ent.Comp.HighHeatTolerance = ent.Comp.LowHeatTolerance;
 
+        _tolerances.UpdateModifiers((ent.Owner, ent.Comp)); // Persistence
         DirtyFields(ent, null, nameof(ent.Comp.LowHeatTolerance), nameof(ent.Comp.HighHeatTolerance));
     }
 
@@ -55,6 +63,7 @@ public abstract partial class SharedPlantAtmosphericSystem : EntitySystem
         if (ent.Comp.HighHeatTolerance < ent.Comp.LowHeatTolerance)
             ent.Comp.LowHeatTolerance = ent.Comp.HighHeatTolerance;
 
+        _tolerances.UpdateModifiers((ent.Owner, ent.Comp)); // Persistence
         DirtyFields(ent, null, nameof(ent.Comp.HighHeatTolerance), nameof(ent.Comp.LowHeatTolerance));
     }
 
@@ -72,6 +81,7 @@ public abstract partial class SharedPlantAtmosphericSystem : EntitySystem
         if (ent.Comp.LowPressureTolerance > ent.Comp.HighPressureTolerance)
             ent.Comp.HighPressureTolerance = ent.Comp.LowPressureTolerance;
 
+        _tolerances.UpdateModifiers((ent.Owner, ent.Comp)); // Persistence
         DirtyFields(ent, null, nameof(ent.Comp.LowPressureTolerance), nameof(ent.Comp.HighPressureTolerance));
     }
 
@@ -89,6 +99,7 @@ public abstract partial class SharedPlantAtmosphericSystem : EntitySystem
         if (ent.Comp.HighPressureTolerance < ent.Comp.LowPressureTolerance)
             ent.Comp.LowPressureTolerance = ent.Comp.HighPressureTolerance;
 
+        _tolerances.UpdateModifiers((ent.Owner, ent.Comp)); // Persistence
         DirtyFields(ent, null, nameof(ent.Comp.HighPressureTolerance), nameof(ent.Comp.LowPressureTolerance));
     }
 }

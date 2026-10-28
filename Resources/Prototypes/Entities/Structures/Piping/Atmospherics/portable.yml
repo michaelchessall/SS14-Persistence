@@ -86,7 +86,7 @@
   id: SpaceHeater
   parent: [BaseMachinePowered, ConstructibleMachine, BaseConstructibleMachineDestructible]
   name: space heater
-  description: A bluespace technology device that alters local temperature. Commonly referred to as a "Space Heater".
+  description: A bluespace technology device that alters local temperature. Commonly referred to as a "Space Heater". This one seems to have also been modified to also allow it to cool spaces down to 210K
   suffix: Unanchored
   components:
   - type: StationAiWhitelist
@@ -137,7 +137,8 @@
   - type: ActivatableUI
     inHandsOnly: false
     key: enum.SpaceHeaterUiKey.Key
-  - type: SpaceHeater
+  - type: SpaceHeater # Persistance14 -- Avali
+    minTemperature: 219.15
   - type: GasThermoMachine
     temperatureTolerance: 0.2
     atmospheric: true

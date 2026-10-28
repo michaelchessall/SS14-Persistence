@@ -31,6 +31,9 @@
     <AdditionalFiles Update="CrewAssignments\UI\CodexPageFragment.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
+    <AdditionalFiles Update="CrewAssignments\UI\FactionUpgradeModuleFragment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
     <AdditionalFiles Update="CrewAssignments\UI\InsightBoxFragment.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
@@ -68,6 +71,9 @@
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
     <AdditionalFiles Update="MessageBoard\UI\ConversationWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </AdditionalFiles>
+    <AdditionalFiles Update="MessageBoard\UI\MessageBoardCategoryPanel.xaml">
       <Generator>MSBuild:Compile</Generator>
     </AdditionalFiles>
   </ItemGroup>

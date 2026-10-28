@@ -584,7 +584,7 @@ namespace Content.Client.Lobby.UI
             var random = IoCManager.Resolve<IRobustRandom>();
 #endif
             bool alignmentSelected = false;
-            if(Profile?.Alignment != null)
+            if (Profile?.Alignment != null)
             {
                 alignmentSelected = true;
             }
@@ -664,7 +664,7 @@ namespace Content.Client.Lobby.UI
             {
                 SaveButton.Disabled = true;
             }
-            if (!alignmentSelected && !originSelected && !motiveSelected)
+            if (!alignmentSelected || !originSelected || !motiveSelected)
             {
                 RequirementsLbl.Visible = true;
                 RequirementsLbl.Text = "[color=red]Complete the Background Page.";
@@ -673,7 +673,7 @@ namespace Content.Client.Lobby.UI
             {
                 RequirementsLbl.Visible = false;
             }
-            if(!turningPointSelected)
+            if (!turningPointSelected)
             {
                 RequirementsJourneyLbl.Text = "[color=red]Complete the Journey Page.";
                 RequirementsJourneyLbl.Visible = true;
@@ -682,7 +682,7 @@ namespace Content.Client.Lobby.UI
             {
                 RequirementsJourneyLbl.Visible = false;
             }
-            if(!nameSelected)
+            if (!nameSelected)
             {
                 RequirementsNameLbl.Text = "[color=red]Set Character Name.";
                 RequirementsNameLbl.Visible = true;
@@ -708,7 +708,6 @@ namespace Content.Client.Lobby.UI
                 TabContainer.Visible = true;
 
                 SaveButton.Visible = true;
-                RequirementsLbl.Visible = true;
                 RandomizerPanel.Visible = true;
                 JoinGameButton.Visible = false;
 
@@ -773,13 +772,13 @@ namespace Content.Client.Lobby.UI
         public void UpdateBackgrounds()
         {
             var motiveStatus = Profile?.Motive;
-            if(motiveStatus != null)
+            if (motiveStatus != null)
             {
                 var ind = 0;
                 foreach (var motive in _prototypeManager.EnumeratePrototypes<MotivePrototype>())
                 {
                     ind++;
-                    if(motive.ID == motiveStatus)
+                    if (motive.ID == motiveStatus)
                     {
                         MotiveButton.SelectId(ind);
                         MotiveTitleLabel.Text = motive.Name;
@@ -932,7 +931,6 @@ namespace Content.Client.Lobby.UI
 
         private void UpdateSaveButton()
         {
-    //        SaveButton.Disabled = Profile is null || !IsDirty;
             ResetButton.Disabled = Profile is null || !IsDirty;
         }
 

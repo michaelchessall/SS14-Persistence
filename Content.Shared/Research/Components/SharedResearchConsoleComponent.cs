@@ -1,3 +1,5 @@
+using Content.Shared.Research.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Research.Components
@@ -28,10 +30,11 @@ namespace Content.Shared.Research.Components
     [Serializable, NetSerializable]
     public sealed class ResearchConsoleBoundInterfaceState : BoundUserInterfaceState
     {
-        public int Points;
-        public ResearchConsoleBoundInterfaceState(int points)
-        {
-            Points = points;
-        }
+        public required int Points;
+        public required float CostMultiplier;
+
+        public required HashSet<ProtoId<TechnologyPrototype>> AvailableTechnologies = new();
+        public required HashSet<ProtoId<TechnologyPrototype>> UnlockedTechnologies = new();
+        public required HashSet<ProtoId<TechDisciplinePrototype>> SupportedDisciplines = new();
     }
 }

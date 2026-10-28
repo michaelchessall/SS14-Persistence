@@ -43,8 +43,8 @@ public sealed class StationTeleporterConsoleBoundUserInterface(EntityUid owner, 
         }
     }
 
-    public void SendTeleporterLinkChangeMessage(NetEntity? teleporter)
+    public void SendTeleporterLinkChangeMessage(NetEntity? teleporter, NetEntity? chip)
     {
-        SendMessage(new StationTeleporterClickMessage(teleporter));
+        SendMessage(new StationTeleporterClickMessage(teleporter, chip));
     }
 }

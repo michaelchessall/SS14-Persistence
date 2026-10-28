@@ -17,6 +17,5 @@
   - [bold]Durability:[/bold] Number of manual activations available.
   - [bold]Effect:[/bold] What happens when the node activates or is manually triggered.
   - [bold]Triggers:[/bold] Required actions to unlock the node.
-  - [bold]Server:[/bold] Choose the research server where extracted points are sent.
   - [bold]Extract Points:[/bold] Extracts points from nodes unlocked since the last extraction.
 </Document>

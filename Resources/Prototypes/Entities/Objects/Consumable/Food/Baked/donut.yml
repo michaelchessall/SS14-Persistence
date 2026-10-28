@@ -70,6 +70,7 @@
   - type: FlavorProfile
     flavors:
       - jelly
+      - sweet
   - type: Sprite
     state: jelly-plain
 
@@ -83,6 +84,7 @@
   - type: FlavorProfile
     flavors:
       - pink
+      - sweet
   - type: Sprite
     state: homer
   - type: Item
@@ -130,6 +132,7 @@
   - type: FlavorProfile
     flavors:
       - pink
+      - sweet
   - type: Sprite
     state: pink
   - type: Item
@@ -165,6 +168,9 @@
   name: caramel donut
   description: Goes great with a mug of hot coco.
   components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
   - type: Sprite
     state: beige
 # Tastes like donut, buttery sweetness.
@@ -178,6 +184,7 @@
   - type: FlavorProfile
     flavors:
       - chocolate
+      - sweet
   - type: Sprite
     state: choc
   - type: Solution
@@ -250,6 +257,10 @@
   name: jelly-donut
   description: You jelly?
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - sweet
   - type: Sprite
     state: jelly-homer
   - type: Item
@@ -261,6 +272,10 @@
   name: pink jelly-donut
   description: Goes great with a soy latte.
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - sweet
   - type: Sprite
     state: jelly-pink
   - type: Item
@@ -272,6 +287,10 @@
   name: spaceman's jelly-donut
   description: Goes great with a cold beaker of malk.
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - sweet
   - type: Sprite
     state: jelly-purple
 # Tastes like jelly-donut, violets.
@@ -282,6 +301,11 @@
   name: apple jelly-donut
   description: Goes great with a shot of cinnamon schnapps.
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - sweet
+      - apple
   - type: Sprite
     state: jelly-green
 
@@ -293,6 +317,10 @@
   name: caramel jelly-donut
   description: Goes great with a mug of hot coco.
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - sweet
   - type: Sprite
     state: jelly-beige
 # Tastes like jelly-donut, buttery sweetness.
@@ -303,6 +331,11 @@
   name: chocolate jelly-donut
   description: Goes great with a glass of warm milk.
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - chocolate
+      - sweet
   - type: Sprite
     state: jelly-choc
   - type: Solution
@@ -338,6 +371,10 @@
   name: bungo jelly-donut
   description: Goes great with a mason jar of hippie's delight.
   components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - fruity
   - type: Sprite
     state: jelly-yellow
 # Tastes like jelly-donut, tropical sweetness.
@@ -348,6 +385,10 @@
   name: matcha jelly-donut
   description: The L-theanine in this jelly-donut is relaxing, yet not euphoric. Goes great with a cup of tea.
   components:
+  - type: FlavorProfile
+    flavors:
+      - jelly
+      - tea
   - type: Sprite
     state: jelly-olive
 # Tastes like jelly-donut, matcha.

@@ -33,7 +33,7 @@
   - type: AmmoCounter
 
 - type: entity
-  parent: [BaseWeaponBattery, BaseGunWieldable]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseGunWieldClassRifle ]
   id: BaseLaserRifle
   abstract: true
   components:
@@ -108,7 +108,7 @@
 
 - type: entity
   id: BaseWeaponBatterySmall
-  parent: BaseWeaponBattery
+  parent: [ BaseWeaponBattery, BaseGunWieldClassPistol ]
   abstract: true
   components:
   - type: Item
@@ -128,7 +128,7 @@
 
 - type: entity
   id: BaseWeaponPowerCellSmall
-  parent: BaseWeaponPowerCell
+  parent: [ BaseWeaponPowerCell, BaseGunWieldClassPistol ]
   abstract: true
   components:
   - type: Item
@@ -236,7 +236,7 @@
 
 - type: entity
   name: tesla gun
-  parent: [BaseWeaponBattery, BaseMajorContraband]
+  parent: [ BaseWeaponBattery, BaseMajorContraband, BaseGunWieldClassRifle ]
   id: WeaponTeslaGun
   description: The power of the primordial element of lightning in your hands.
   components:
@@ -328,7 +328,7 @@
 
 - type: entity
   name: pulse carbine
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunWieldClassRifle ]
   id: WeaponPulseCarbine
   description: A high tech energy carbine favoured by the NT-ERT operatives.
   components:
@@ -366,7 +366,7 @@
 
 - type: entity
   name: pulse rifle
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseCentcommContraband, BaseGunWieldClassRifle ]
   id: WeaponPulseRifle
   description: A weapon that is almost as infamous as its users.
   components:
@@ -402,7 +402,7 @@
 
 - type: entity
   name: laser cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseGunWieldClassHeavy ]
   id: WeaponLaserCannon
   description: A heavy duty, high powered laser weapon.
   components:
@@ -438,7 +438,7 @@
 
 - type: entity
   name: portable particle decelerator
-  parent: [BaseWeaponBattery, BaseEngineeringContraband]
+  parent: [ BaseWeaponBattery, BaseEngineeringContraband ]
   id: WeaponParticleDecelerator
   description: A portable particle decelerator capable of decomposing a tesla or singularity.
   components:
@@ -473,7 +473,7 @@
 
 - type: entity
   name: x-ray cannon
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseGunWieldClassHeavy ]
   id: WeaponXrayCannon
   description: An experimental weapon that uses concentrated x-ray energy against its target.
   components:
@@ -575,7 +575,7 @@
 
 - type: entity
   name: disabler SMG
-  parent: [BaseWeaponBattery, BaseSecurityContraband]
+  parent: [ BaseWeaponBattery, BaseSecurityContraband, BaseGunWieldClassSMG ]
   id: WeaponDisablerSMG
   description: Advanced weapon that exhausts organic targets, weakening them until they collapse.
   components:
@@ -849,7 +849,7 @@
 
 - type: entity
   name: energy shotgun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseGunWieldClassHeavy ]
   id: WeaponEnergyShotgun
   description: A one-of-a-kind prototype energy weapon that uses various shotgun configurations. It offers the possibility of both lethal and non-lethal shots, making it a versatile weapon.
   components:
@@ -940,7 +940,7 @@
 
 - type: entity
   name: temperature gun
-  parent: [BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband]
+  parent: [ BaseWeaponBattery, BaseGunWieldable, BaseSecurityContraband, BaseGunWieldClassRifle ]
   id: WeaponTemperatureGun
   description: An advanced gun that shoots body-temperature-changing beams. This probably constitutes as some kind of war crime.
   components:
@@ -987,6 +987,9 @@
   id: WeaponLaserGunXenoborg
   name: xenoborg laser gun
   components:
+  # xenoborgs cannot wield; no unwielded accuracy penalty
+  - type: GunUnwieldedPenalty
+    angleMultiplier: 1
   - type: BatteryAmmoProvider
     proto: XenoborgLaser
   - type: Sprite
@@ -1002,6 +1005,9 @@
   id: WeaponLaserCannonXenoborg
   name: xenoborg laser cannon
   components:
+  # xenoborgs cannot wield; no unwielded accuracy penalty
+  - type: GunUnwieldedPenalty
+    angleMultiplier: 1
   - type: BatteryAmmoProvider
     proto: XenoborgHeavyLaser
     fireCost: 100
@@ -1029,6 +1035,9 @@
   name: xenoborg burst fire laser
   description: An alien weapon, channelling a burst-fire laser through a prism, causing targets to burst into fire.
   components:
+  # xenoborgs cannot wield; no unwielded accuracy penalty
+  - type: GunUnwieldedPenalty
+    angleMultiplier: 1
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/xenoborg_burstfire.rsi
     layers:

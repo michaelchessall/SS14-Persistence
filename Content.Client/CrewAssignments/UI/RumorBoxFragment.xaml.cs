@@ -6,6 +6,7 @@ using Robust.Client.UserInterface.Controls;
 using Robust.Client.UserInterface.CustomControls;
 using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Client.CrewAssignments.UI;
 
@@ -13,7 +14,9 @@ namespace Content.Client.CrewAssignments.UI;
 public sealed partial class RumorBoxFragment : PanelContainer
 {
     [Dependency] private IPrototypeManager _protoManager = default!;
+    [Dependency] private IGameTiming _timing = default!;
     public int RumorIndex = 0;
+    private TimeSpan _cancelTime = TimeSpan.Zero;
     public RumorBoxFragment(ActiveRumor activeRumor)
     {
         RobustXamlLoader.Load(this);
@@ -29,6 +32,35 @@ public sealed partial class RumorBoxFragment : PanelContainer
         ContentLabel.Text = activeRumor.Description;
         RewardLabel.Text = "";
         bool newline = false;
+        var originalProto = _protoManager.Index<RumorPrototype>(activeRumor.OriginalPrototype);
+        if (activeRumor.CompletionType == CompletionType.Eat || activeRumor.CompletionType == CompletionType.Drink)
+        {
+            var requirement = originalProto.CompletionTarget;
+            var current = activeRumor.CompletionProgress;
+            ReqLabel.Text = $"{current}/{requirement} units consumed.";
+            Requirements.Visible = true;
+
+        }
+        if (activeRumor.CompletionType == CompletionType.Rescue && !activeRumor.ShouldSpawn)
+        {
+            var targets = activeRumor.Targets.Count;
+            ReqLabel.Text = $"{targets} crew need to be saved.";
+            Requirements.Visible = true;
+        }
+        if (activeRumor.CompletionType == CompletionType.ArtifactNodesUnlock && !activeRumor.ShouldSpawn)
+        {
+            ReqLabel.Text = $"{originalProto.CompletionTarget} nodes left to unlock.";
+        }
+        if(activeRumor.Cancelable)
+        {
+            _cancelTime = activeRumor.CancelTime - _timing.CurTime;
+            CancelTimeLabel.Text = _cancelTime.ToString("hh\\:mm\\:ss");
+            CancelTimeLabel.Visible = true;
+        }
+        else
+        {
+            CancelTimeLabel.Visible = false;
+        }
         if(activeRumor.CashReward != 0)
         {
             RewardLabel.Text += $"[color=green]${activeRumor.CashReward}[/color]";
@@ -39,13 +71,25 @@ public sealed partial class RumorBoxFragment : PanelContainer
             if (newline) RewardLabel.Text += "\n";
             RewardLabel.Text += $"[color=orange]{activeRumor.ReputationReward} REP ({factionProto.Name})[/color]";
             newline = true;
+            if(activeRumor.Transfer)
+            {
+                RewardLabel.Text += $"\n[color=gray](Reputation split 50% with {activeRumor.OriginalOwner})[/color]";
+            }
         }
-        var originalProto = _protoManager.Index<RumorPrototype>(activeRumor.OriginalPrototype);
         if(originalProto.RewardRumors != 0)
         {
             if (newline) RewardLabel.Text += "\n";
             RewardLabel.Text += $"[color=yellow]This will lead to a rewarding rumor[/color]";
         }
-        
+       
+    }
+    protected override void FrameUpdate(FrameEventArgs args)
+    {
+        base.FrameUpdate(args);
+        if(_cancelTime > TimeSpan.Zero)
+        {
+            _cancelTime -= TimeSpan.FromSeconds(args.DeltaSeconds);
+            CancelTimeLabel.Text = _cancelTime.ToString("hh\\:mm\\:ss");
+        }
     }
 }

@@ -284,6 +284,9 @@
   id: CartridgeMagnum # .45 caliber used by revolvers and big boy pistols like BaseWeaponRevolver, WeaponPistolN1984.
 
 - type: Tag
+  id: CartridgeMarineRifle # .10 caliber used by very weak rifles like the m45c.
+
+- type: Tag
   id: CartridgePistol # .35 caliber used by pistols and smgs like WeaponPistolMk58, WeaponSubMachineGunC20r, WeaponSubMachineGunDrozd.
 
 - type: Tag
@@ -928,6 +931,9 @@
 
 - type: Tag
   id: MagazineMagnum # WeaponPistolN1984
+
+- type: Tag
+  id: MagazineMarineRifle # M45c
 
 - type: Tag
   id: MagazinePistol # WeaponPistolMk58, WeaponPistolViper, ClothingBeltSecurity

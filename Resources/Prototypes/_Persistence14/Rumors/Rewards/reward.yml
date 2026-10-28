@@ -2,8 +2,334 @@
   id: TradeGood
   name: Trade Node
   description: "A highly valuable device which generates resonance when stored on a trade station. Always exports for $10000."
-  price: 2500
+  price: 5000
   product: TradeGood
   icon:
-    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
-    state: solar-legion-full
+    sprite: _Persistence14/Objects/Specific/trade_node.rsi
+    state: icon
+
+- type: rumorReward
+  id: VoiceMaskImplanter
+  name: Identity Mask Implanter
+  description: "Modifies your vocal cords and facial structure to be able to mimic anyone you could imagine. Be sure to set your name before speaking, or else you'll give yourself away."
+  price: 20000
+  product: VoiceMaskImplanter
+  icon:
+    sprite: Interface/Actions/voice-mask.rsi
+    state: icon
+
+- type: rumorReward
+  id: VestArmor
+  name: Web Vest
+  description: "A synthetic armor vest."
+  price: 15000
+  product: ClothingOuterVestWeb
+  icon:
+    sprite: Clothing/OuterClothing/Vests/webvest.rsi
+    state: icon
+
+- type: rumorReward
+  id: VestArmorElite
+  name: Web Vest
+  description: "A synthetic armor vest. This one has added webbing and ballistic plates."
+  price: 20000
+  product: ClothingOuterVestWebElite
+  icon:
+    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
+    state: icon
+
+- type: rumorReward
+  id: ChemKit
+  name: Chemical Synthesis Kit
+  description: "A starter kit for the aspiring chemist, includes two vials of vestine for all your needs!"
+  price: 10000
+  product: ChemicalSynthesisKit
+  icon:
+    sprite: Objects/Storage/boxicons.rsi
+    state: vials
+
+- type: rumorReward
+  id: Defib
+  name: Advanced Defibrillator Kit
+  description: "A fast and compact defibrillator from Nanotrasen."
+  price: 6000
+  product: DefibrillatorNT
+  icon:
+    sprite: _Persistence14/Objects/Specific/Medical/defibnt.rsi
+    state: icon
+
+- type: rumorReward
+  id: Microwave
+  name: Donk Co Microwave Machine Board
+  description: "Donk Co's famous microwave, capable of baking all kinds of delicious and deadly goods."
+  price: 5000
+  product: SyndicateMicrowaveMachineCircuitboard
+  icon:
+    sprite: Structures/Machines/microwave_syndie.rsi
+    state: mw
+
+- type: rumorReward
+  id: FlashCamera
+  name: Travel Camera
+  description: "Stun people with your photography skills and the conveniently legal camera flash. Makes you look like a tourist."
+  price: 3000
+  product: TravelCamera
+  icon:
+    sprite: Objects/Devices/travel_camera.rsi
+    state: icon
+
+- type: rumorReward
+  id: HyperzineKit
+  name: Hyperzine Kit
+  description: "A standard medkit containing 6 hyperzine microinjectors. Each dose lasts for 30 seconds."
+  price: 8000
+  product: StimkitFilled
+  icon:
+    sprite: Objects/Specific/Medical/medipen.rsi
+    state: stimpen
+
+- type: rumorReward
+  id: StorageImplanter
+  name: Storage Implanter
+  description: "A bluespace marvel capable of hiding two pistols-worth of goodies."
+  price: 10000
+  product: StorageImplanter
+  icon:
+    sprite: Clothing/Back/Backpacks/backpack.rsi
+    state: icon
+
+- type: rumorReward
+  id: Cobra
+  name: Cobra
+  description: "A rugged, robust operator handgun with inbuilt silencer. Uses pistol magazines (.25 caseless)."
+  price: 5000
+  product: WeaponPistolCobra
+  icon:
+    sprite: Objects/Weapons/Guns/Pistols/cobra.rsi
+    state: icon
+
+- type: rumorReward
+  id: Jaws
+  name: Jaws of Death
+  description: "A combined prying and cutting tool. Useful for entering the station or its departments."
+  price: 9000
+  product: SyndicateJawsOfLife
+  icon:
+    sprite: Objects/Tools/jaws_of_life.rsi
+    state: syn_jaws_pry
+
+- type: rumorReward
+  id: ESword
+  name: Energy Sword
+  description: "A very dangerous energy sword that can reflect shots. Can be stored in pockets when turned off. Makes a lot of noise when used or turned on."
+  price: 20000
+  product: EnergySword
+  icon:
+    sprite: Objects/Weapons/Melee/e_sword.rsi
+    state: icon
+
+- type: rumorReward
+  id: EShield
+  name: Energy Shield
+  description: "An exotic energy shield that reflects almost all laser beams, and provides protection from bullets and other physical attacks. Cannot be repaired."
+  price: 12000
+  product: EnergyShield
+  icon:
+    sprite: Objects/Weapons/Melee/e_shield.rsi
+    state: eshield-on
+
+- type: rumorReward
+  id: ECrossbow
+  name: Mini Energy Crossbow
+  description: "The go-to sidearm of any operative who prefers their victims not to be moving. Fires regenerating toxic arrows that floors victims in an instant."
+  price: 14000
+  product: WeaponEnergyCrossbow
+  icon:
+    sprite: Objects/Weapons/Guns/Basic/energy_crossbow.rsi
+    state: icon
+
+
+- type: rumorReward
+  id: FreedomImplanter
+  name: Freedom Implanter
+  description: "Escape from cuffs in an instant with this 3 use injector!"
+  price: 11000
+  product: FreedomImplanter
+  icon:
+    sprite: Actions/Implants/implants.rsi
+    state: freedom
+
+- type: rumorReward
+  id: Python
+  name: Python
+  description: "A loud and powerful revolver. Uses magnum ammo (.45)"
+  price: 12000
+  product: WeaponRevolverPython
+  icon:
+    sprite: Objects/Weapons/Guns/Revolvers/python.rsi
+    state: icon
+
+- type: rumorReward
+  id: IchorCigarettes
+  name: Ichor Smokes Packet
+  description: "Elite cigarettes for elite agents. Infused with ichor for when you need to do more than calm your nerves."
+  price: 3000
+  product: CigPackSyndicate
+  icon:
+    sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
+    state: closed
+
+- type: rumorReward
+  id: GrandLottery
+  name: Grand Lottery $$$
+  description: "A box containing treasure beyond your greatest imaginations!"
+  price: 10000
+  product: CrateCargoGambling
+  icon:
+    sprite: Objects/Economy/cash.rsi
+    state: cash_10000
+
+- type: rumorReward
+  id: KnuckleDusters
+  name: Knuckle Dusters
+  description: "A pair of plastitanium knuckle dusters that let you punch hard enough to break the captain's jaw into pieces."
+  price: 6000
+  product: ClothingHandsKnuckleDustersSyndicate
+  icon:
+    sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi
+    state: syndicateknuckleduster
+
+- type: rumorReward
+  id: RadioJammer
+  name: Radio Jammer
+  description: "This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated. Battery powered, so you might want to bring a spare."
+  price: 13000
+  product: RadioJammer
+  icon:
+    sprite: Objects/Devices/jammer.rsi
+    state: jammer
+
+
+- type: rumorReward
+  id: ScramImplanter
+  name: Scram Implanter
+  description: "A 2-use implant which teleports you within a medium radius. Attempts to teleport you onto an unobstructed tile, but may sometimes fail to do so. Life insurance not included."
+  price: 18000
+  product: ScramImplanter
+  icon:
+    sprite: Structures/Specific/anomaly.rsi
+    state: anom4
+
+- type: rumorReward
+  id: C-20r
+  name: C-20r
+  description: "Old faithful: The classic C-20r Submachine Gun."
+  price: 20000
+  product: BriefcaseWeaponC20Filled
+  icon:
+    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
+    state: icon
+
+- type: rumorReward
+  id: GlovesNorthStar
+  name: Gloves of the North Star
+  description: "A pair of gloves that improve the damage and speed of your punches, allowing you to beat people to death in a flurry of blows."
+  price: 10000
+  product: ClothingHandsGlovesNorthStar
+  icon:
+    sprite: Clothing/Hands/Gloves/northstar.rsi
+    state: icon
+
+- type: rumorReward
+  id: RaidSuit
+  name: Raid Suit
+  description: "A very durable and reasonably flexible suit of blood-red armor, reinforced against all common forms of damage but not capable of space walks. Comes with a sick helmet."
+  price: 11000
+  product: ClothingBackpackSyndicateRaidBundle
+  icon:
+    sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
+    state: icon
+
+- type: rumorReward
+  id: Hushpup
+  name: Hushpup
+  description: "A powerful silenced shotgun with a low magazine capacity. Uses .50 shotgun ammo."
+  price: 15000
+  product: BriefcaseWeaponHushpupFilled
+  icon:
+    sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi
+    state: icon
+
+
+- type: rumorReward
+  id: Hypopen
+  name: Hypopen
+  description: "A chemical hypospray disguised as a pen, capable of instantly injecting up to 10u of reagents. Takes a moment to refill it, so plan accordingly!"
+  price: 6000
+  product: HypopenBox
+  icon:
+    sprite: Objects/Misc/pens.rsi
+    state: pen
+
+
+
+- type: rumorReward
+  id: StealthBox
+  name: Stealth Box
+  description: "A box outfitted with stealth technology. Sneak around unnoticed, but don't move too fast or you'll be revealed!"
+  price: 30000
+  product: StealthBox
+  icon:
+    sprite: Structures/Storage/closet.rsi
+    state: agentbox
+
+
+- type: rumorReward
+  id: HyperzinePen
+  name: Hyperzine Injector
+  description: "The legendary chemical produced first by Donk Co. Injecting yourself with this will increase your run speed and let you recover from stuns faster for 60 seconds."
+  price: 9000
+  product: Stimpack
+  icon:
+    sprite: Objects/Specific/Medical/medipen.rsi
+    state: stimpen
+
+- type: rumorReward
+  id: CombatToolbox
+  name: Combat Toolbox
+  description: "A full compliment of tools for the mechanically inclined agent. Includes a pair of insulated combat gloves and a agent gas mask as well."
+  price: 2000
+  product: ToolboxSyndicateFilled
+  icon:
+    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
+    state: icon
+
+- type: rumorReward
+  id: EDagger
+  name: Energy Dagger
+  description: "A very dangerous energy dagger that can reflect shots. Can be stored in pockets when turned off. Makes a lot of noise when used or turned on."
+  price: 25000
+  product: EnergyDaggerBox
+  icon:
+    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    state: icon
+
+- type: rumorReward
+  id: ChameleonProjector
+  name: Chameleon Projector
+  description: "Disappear in plain sight by creating a hologram of an item around you, disguising you as that object!"
+  price: 12000
+  product: ChameleonProjector
+  icon:
+    sprite: Objects/Devices/chameleon_projector.rsi
+    state: icon
+
+- type: rumorReward
+  id: Chameleon
+  name: Chameleon Kit
+  description: "A backpack full of items that contain chameleon technology allowing you to disguise as pretty much anyone on the station, and more!"
+  price: 25000
+  product: ClothingBackpackChameleonFillAgent
+  icon:
+    sprite: Clothing/Uniforms/Jumpsuits/Color/rainbow.rsi
+    state: icon

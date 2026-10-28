@@ -54,7 +54,7 @@
 
 - type: backgroundEffect
   id: TraitOriginZenith
-  description: "[color=green]You will gain the 'Worked with Solar Legion' trait."
+  description: "[color=green]You will gain the 'Worked with Solar Legion' trait.\nA codex entry will be unlocked."
   traits:
     - OriginZenith
   equipment:
@@ -63,10 +63,12 @@
     Zenith: 200
   extraFactionRumors:
     Zenith: 1
+  codexEntries:
+    - Zenith101
 
 - type: backgroundEffect
   id: TraitOriginGreen
-  description: "[color=green]You will gain the 'Known to Nanotrasen' trait."
+  description: "[color=green]You will gain the 'Known to Nanotrasen' trait.\nA codex entry will be unlocked."
   traits:
     - OriginGreen
   equipment:
@@ -75,10 +77,12 @@
     Green: 200
   extraFactionRumors:
     Green: 1
+  codexEntries:
+    - Green101
 
 - type: backgroundEffect
   id: TraitOriginMarine
-  description: "[color=green]You will gain the 'Familiar with the UNMC' trait."
+  description: "[color=green]You will gain the 'Familiar with the UNMC' trait.\nA codex entry will be unlocked."
   traits:
     - OriginMarine
   equipment:
@@ -87,11 +91,13 @@
     Marines: 200
   extraFactionRumors:
     Marines: 1
+  codexEntries:
+    - Marine101
 
 
 - type: backgroundEffect
   id: TraitOriginPrecursor
-  description: "[color=green]You will gain the 'Syndicate Associate' trait."
+  description: "[color=green]You will gain the 'Syndicate Associate' trait.\nA codex entry will be unlocked."
   traits:
     - OriginPrecursor
   equipment:
@@ -100,10 +106,12 @@
     Precursor: 200
   extraFactionRumors:
     Precursor: 1
+  codexEntries:
+    - Precursor101
 
 - type: backgroundEffect
   id: TraitOriginShadow
-  description: "[color=green]You will gain the 'Seen too much' trait."
+  description: "[color=green]You will gain the 'Seen too much' trait.\nA codex entry will be unlocked."
   traits:
     - OriginShadow
   equipment:
@@ -112,6 +120,8 @@
     Shadow: 200
   extraFactionRumors:
     Shadow: 1
+  codexEntries:
+    - Shadow101
 
 
 - type: backgroundEffect
@@ -120,5 +130,29 @@
   traits:
     - NexusPledge
 
+- type: backgroundEffect
+  id: MotiveWealth
+  description: "[color=green]You will arrive with an additional $2000"
+  bonusCash: 2000
 
+- type: backgroundEffect
+  id: MotivePower
+  description: "[color=green]You will arrive with an additional rumor"
+  extraRumors: 1
 
+- type: backgroundEffect
+  id: MotiveSecretKnowledge
+  description: "[color=green]You will unlock a Codex entry."
+  codexEntries:
+    - Shadow102
+
+- type: backgroundEffect
+  id: MotiveFriendship
+  description: "[color=green]You will arrive with an additional rumor"
+  extraRumors: 1
+
+- type: backgroundEffect
+  id: MotiveEnlightenment
+  description: "[color=green]You will unlock a Codex entry."
+  codexEntries:
+    - Luminal101

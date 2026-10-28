@@ -212,6 +212,8 @@
         Quantity: 10
       - ReagentId: Water
         Quantity: 10
+      - ReagentId: Vinaigrette
+        Quantity: 5
 
 - type: entity
   name: caesar salad
@@ -910,6 +912,7 @@
     flavors:
       - jungle
       - banana
+      - spicy
   - type: Sprite
     layers:
     - state: bowl
@@ -1107,6 +1110,13 @@
     layers:
     - state: bowl
     - state: sweetpotato
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 30
+      - ReagentId: Sugar
+        Quantity: 5
 # Tastes like sweet potato.
 
 - type: entity
@@ -1194,6 +1204,7 @@
   - type: FlavorProfile
     flavors:
       - jungle
+      - spicy
   - type: Sprite
     layers:
     - state: bowl

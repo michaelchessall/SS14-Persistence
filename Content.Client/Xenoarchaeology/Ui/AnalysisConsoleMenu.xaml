@@ -69,7 +69,6 @@
                 </ScrollContainer>
                 <Control MinHeight="5"/>
                 <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                    <Button Name="ServerButton" Text="{Loc 'analysis-console-server-list-button'}" StyleClasses="OpenRight" HorizontalExpand="True" MinHeight="35"/>
                     <Button Name="ExtractButton" Text="{Loc 'analysis-console-extract-button'}" StyleClasses="OpenLeft" HorizontalExpand="True" MinHeight="35"/>
                 </BoxContainer>
             </BoxContainer>

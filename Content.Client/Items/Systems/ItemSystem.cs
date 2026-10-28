@@ -102,7 +102,12 @@ public sealed partial class ItemSystem : SharedItemSystem
             : $"{item.HeldPrefix}-{defaultKey}";
 
         if (!rsi.TryGetState(state, out var _))
-            return false;
+        {
+            // No sprite for the prefixed state (e.g. a wielded gun without wielded sprites): use the normal in-hand sprite.
+            state = defaultKey;
+            if (item.HeldPrefix == null || !rsi.TryGetState(state, out var _))
+                return false;
+        }
 
         var layer = new PrototypeLayerData();
         layer.RsiPath = rsi.Path.ToString();

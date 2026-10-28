@@ -13,10 +13,12 @@ namespace Content.Client.Research.UI;
 public sealed partial class TechnologyCardControl : Control
 {
     public Action? OnPressed;
+    public Action? OnExpand;
+    public Action? OnCollapse;
 
     private bool _expanded = false;
 
-    public TechnologyCardControl(TechnologyPrototype technology, IPrototypeManager prototypeManager, SpriteSystem spriteSys, FormattedMessage description, int points, bool hasAccess)
+    public TechnologyCardControl(TechnologyPrototype technology, IPrototypeManager prototypeManager, SpriteSystem spriteSys, FormattedMessage description, int points, bool hasAccess, bool openState, float costMultiplier)
     {
         RobustXamlLoader.Load(this);
 
@@ -46,15 +48,23 @@ public sealed partial class TechnologyCardControl : Control
             CollapsedResearchButton.ToolTip = Loc.GetString("research-console-no-access-popup");
         }
 
-        ResearchButton.Disabled = points < technology.Cost || !hasAccess;
-        CollapsedResearchButton.Disabled = points < technology.Cost || !hasAccess;
+        ResearchButton.Disabled = points < MathF.Floor(technology.Cost * costMultiplier) || !hasAccess;
+        CollapsedResearchButton.Disabled = points < MathF.Floor(technology.Cost * costMultiplier) || !hasAccess;
         ResearchButton.OnPressed += _ => OnPressed?.Invoke();
         CollapsedResearchButton.OnPressed += _ => OnPressed?.Invoke();
 
-        ExpandButton.OnPressed += _ => SetExpanded(true);
-        CollapseButton.OnPressed += _ => SetExpanded(false);
+        ExpandButton.OnPressed += _ =>
+        {
+            OnExpand?.Invoke();
+            SetExpanded(true);
+        };
+        CollapseButton.OnPressed += _ =>
+        {
+            OnCollapse?.Invoke();
+            SetExpanded(false);
+        };
 
-        SetExpanded(false);
+        SetExpanded(openState);
     }
 
     private void SetExpanded(bool expanded)

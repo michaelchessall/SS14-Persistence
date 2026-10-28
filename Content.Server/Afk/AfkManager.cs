@@ -103,10 +103,12 @@ namespace Content.Server.Afk
 
             if (_adminManager.IsAdmin(player))
             {
+                if (_adminAfkTime == TimeSpan.Zero) return false;
                 timeOut = _adminAfkTime;
             }
             else
             {
+                if (_afkTime == TimeSpan.Zero) return false;
                 timeOut = _afkTime;
             }
 

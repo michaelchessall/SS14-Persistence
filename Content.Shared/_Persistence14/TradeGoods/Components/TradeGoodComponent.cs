@@ -3,5 +3,6 @@ namespace Content.Shared._Persistence14.TradeGoods.Components;
 [RegisterComponent]
 public sealed partial class TradeGoodComponent : Component
 {
-
+    [DataField]
+    public int PriceOverride = 10000;
 }

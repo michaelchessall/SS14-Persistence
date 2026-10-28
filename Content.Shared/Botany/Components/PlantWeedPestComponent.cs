@@ -22,6 +22,7 @@ public sealed partial class PlantWeedPestComponent : Component
     [DataField, AutoNetworkedField]
     public float WeedDamageAmount = 1f;
 
+    /* Persistence: Replace pests as part of nutrient system rework
     /// <summary>
     /// Maximum pest level the plant can tolerate before taking damage.
     /// </summary>
@@ -45,4 +46,5 @@ public sealed partial class PlantWeedPestComponent : Component
     /// </summary>
     [DataField, AutoNetworkedField]
     public float PestDamageAmount = 1f;
+    */
 }

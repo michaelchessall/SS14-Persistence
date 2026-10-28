@@ -1,3 +1,4 @@
+/* Persistence: Made obsolete by plant nutrient rework
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 using Content.Shared.Botany.Traits.Components;
@@ -70,3 +71,4 @@ public sealed partial class RobustHarvest : EntityEffectBase<RobustHarvest>
             ("chance", Probability));
     }
 }
+*/

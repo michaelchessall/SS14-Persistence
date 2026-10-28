@@ -83,11 +83,11 @@
                                 <Label Name="Production"
                                        StyleClasses="LabelWeak" />
                                 <Label Name="ProductionDelta" />
-                                <Label Text="{Loc 'botany-ui-potency'}"
+                                <!--<Label Text="{Loc 'botany-ui-potency'}" Persistence: Remove potency
                                        Margin="0 0 8 0" />
                                 <Label Name="Potency"
                                        StyleClasses="LabelWeak" />
-                                <Label Name="PotencyDelta" />
+                                <Label Name="PotencyDelta" /> -->
                             </GridContainer>
                         </BoxContainer>
                     </PanelContainer>

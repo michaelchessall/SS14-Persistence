@@ -1,26 +1,23 @@
 <Document>
-  # Threshold
-  This guide will explain the Threshold, the region of space where you currently are.
+  # Welcome to Persistence SS14!
 
   ## The Basics
-  The Threshold is a region of space which was previously inaccessible because of anamalous physical properties that isolated it from the rest of the galaxy.
-  Nanotrasen has worked with the Earth-based Solar Legion and the Vox to develop new technology that has allowed them to send colonists into the Threshold.
 
-  You are one such colonist.
+  In Persistence SS14 the game world and characters are saved and loaded and so the round never ends; nothing is ever reset and the world is built up continously.
 
-  ## The ins and outs
-  The Threshold is hard to enter but impossible to leave.
-  If you fly a ship far in any direction you will eventually hit the barrier and be pushed back towards the center.
-  Until the colonists of the Threshold can find a way to expand or disable the barrier they are trapped in a bubble of space.
-  When you need to sleep return to the cryo chamber you first arrived from and you can safely rest in cryo storage.
+  These guidebook entries will teach you how to get started in Persistence SS14 and the important mechanics to have an enjoyable and successful time.
 
-  No emergency shuttle is coming any time soon. You need to find a way to live here with the other colonists while keeping enough power, air, food and water for everyone to survive.
+  ## Getting Started
+  A jobs desk will be nearby the starting cryogenic storage which can help you find an assignment with the station or an independent faction.
+  You can always change your assignment, join a faction or start an independent crew later once you have the necessary equipment and money.
 
-  ## Independence and Interdependence
-  As a colonist in the Threshold you are cant be forced to only work for Nanotrasen or the Solar Legion.
+  Your character has access to exclusive rumors and rumored imports which makes you a valuable member of any crew. Completing rumors is important for characters to become wealthy and powerful.
 
-  The trade stations are too far apart for a single organization to operate them all effectively and so faction-creation devices have been distributed to the Threshold.
-  Factions can be created to organize colonists into groups which range from small businesses and shuttle crews to large organizations that can operate full sized space stations.
-  Colonists are free to associate and work with multiple factions.
+  ## Access your Job Network Implant
+ The Job Network is used to manage assignment, insights, rumors and more. Using the Job Network is key to managing your character and understanding the game world.
+  <Box>
+    <GuideEntityEmbed Entity="ReinforcementRadioSyndicateNukeops" Caption="Open Job Network"/>
+  </Box>
+  The Job Network is opened using an action with this icon.
 </Document>
 

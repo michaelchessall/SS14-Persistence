@@ -4,8 +4,8 @@ meta:
   engineVersion: 290.0.0
   forkId: ""
   forkVersion: ""
-  time: 10/02/2026 14:31:44
-  entityCount: 546
+  time: 10/12/2026 23:46:47
+  entityCount: 549
 maps: []
 grids:
 - 1
@@ -1596,6 +1596,13 @@ entities:
       pos: -16.5,-6.5
     - type: Wires
       wireSeed: 1641820430
+- proto: CrateRNDKit
+  entities:
+  - uid: 413
+    components:
+    - type: Transform
+      parent: 1
+      pos: -10.5,-8.5
 - proto: CybersunFlippo
   entities:
   - uid: 193
@@ -3036,11 +3043,6 @@ entities:
       canCollide: False
 - proto: RandomArtifactSpawner
   entities:
-  - uid: 413
-    components:
-    - type: Transform
-      parent: 1
-      pos: -13.5,-7.5
   - uid: 414
     components:
     - type: Transform
@@ -3166,6 +3168,33 @@ entities:
     - type: Transform
       parent: 1
       pos: -18.5,-2.5
+- proto: SalvageMobSpawner75
+  entities:
+  - uid: 470
+    components:
+    - type: Transform
+      parent: 1
+      pos: -1.5,-6.5
+  - uid: 471
+    components:
+    - type: Transform
+      parent: 1
+      pos: -8.5,-2.5
+  - uid: 547
+    components:
+    - type: Transform
+      parent: 1
+      pos: -5.5,-7.5
+  - uid: 548
+    components:
+    - type: Transform
+      parent: 1
+      pos: -9.5,-6.5
+  - uid: 549
+    components:
+    - type: Transform
+      parent: 1
+      pos: -14.5,-7.5
 - proto: SalvageSpawnerMobShark
   entities:
   - uid: 436
@@ -3379,18 +3408,6 @@ entities:
     - type: Transform
       parent: 1
       pos: -19.5,-8.5
-- proto: SpawnMobXenoEasy
-  entities:
-  - uid: 470
-    components:
-    - type: Transform
-      parent: 1
-      pos: -4.5,-8.5
-  - uid: 471
-    components:
-    - type: Transform
-      parent: 1
-      pos: -6.5,-6.5
 - proto: SubstationBasicEmpty
   entities:
   - uid: 472

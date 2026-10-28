@@ -1,38 +1,39 @@
 - type: codexEntry
   id: Green101
-  name: 101
-  content: "UNFILLED"
+  name: Nanotrasen in the Threshold
+  content: "Nanotrasen is a Trans-Galactic Research and Manufacturing MegaCorporation that explores and colonizes the Threshold trying to discover new scientific principles.\n\nThe operations of Nanotrasen within the Threshold are centered in the [bold]Green Universe[/bold], where the Threshold entrance is controlled directly by Nanotrasen.\n\nNanotrasen is the largest material supporter of the NCC and considers the Nexus Space to be a key element to their ambitions."
   order: 0
   category: Green
   unlockHint: "Use a Codex Fragment"
+
 - type: codexEntry
   id: Green102
-  name: 102
-  content: "UNFILLED"
+  name: The Green Universe
+  content: "The Green Universe is a version of the Threshold where Nanotrasen is the dominant power. It is named after the [bold]'NTSS Green'[/bold] which is the primary space station of the Sector closest to the Nexus Space.\n\nThe Green Universe only has three active sectors; each with a Nanotrasen controlled Space Station which provides support and funding to a number of contractors who operate the tertiary facilities.\n\nMuch of the [bold]Resonance[/bold] produced in the Green Universe is used for research rather than maintaining or expanding the Sectors, which has caused unrest in the general populace."
   order: 1
   category: Green
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Green103
-  name: 103
-  content: "UNFILLED"
+  name: Nanotrasen Ambitions
+  content: "The research that Nanotrasen is doing into Resonance is centered around one thing: Breaching the Threshold barrier to enable two way travel between the Threshold and the normal Galaxy.\n\nThe leadership of Nanotrasen within the Threshold is obsessed with escaping and the discovery of the Nexus Space has only deepened that obsession.\n\nNanotrasen has embraced the multiverse and now wants to use the Thresholds as multiversal highways to facilitate a [bold]Multiversal Merger[/bold]"
   order: 2
   category: Green
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Green104
-  name: 104
-  content: "UNFILLED"
+  name: Multiversal Merger
+  content: "The Multiversal Merger is a concept developed by the lawyers and executives of the Threshold division of Nanotrasen. The legal language of Nanotrasen contracts enforces the rights of shareholders and the [bold]Trasen Family[/bold] to Nanotrasen assets and IP across all possible universes.\n\nThese contracts establish a legal framework for Nanotrasen to enforce a Multiversal Merger with any alternate Nanotrasens from other universes.\n\nIf Nanotrasen can discover a way to travel through the Thresholds it will grow from one of the largest Trans-Galactic MegaCorporations to the [italic]only[/italic] [bold]Trans-Universal GigaCorporation[/bold]!"
   order: 3
   category: Green
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Green105
-  name: 105
-  content: "UNFILLED"
+  name: The Trasen Family
+  content: "The fact that Nanotrasen started as a family business could be a footnote in its long history as a publically-traded corporate juggernaut, except for the peculiar practice that sees board members adopted into 'Trasen Family'.\n\nThe original Trasen family has died out two generations ago, but Nanotrasen Board Members are 'adopted' into a family which exists now as a symbol of fealty to the shareholders.\n\nBeing a top Nanotrasen executive affords a lifestyle that few in any universe could afford but the loyalty of every executive must be to the machine that enables that lifestyle; The machine that creates value for the shareholders."
   order: 4
   category: Green
   unlockHint: "Use a Codex Fragment"

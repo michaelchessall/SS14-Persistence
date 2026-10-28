@@ -193,11 +193,11 @@ namespace Content.Server.GameTicking
 
             _playTimeTrackings.PlayerRolesChanged(player);
 
-            _bankSystem.EnsureAccount(character.Name, 50);
+            _bankSystem.EnsureAccount(character.Name, 500);
             if (_crewMetaRecords.MetaRecords != null)
             {
                 _crewMetaRecords.MetaRecords.CreateRecord(character!.Name, out var createdRecord);
-                if(createdRecord != null)
+                if (createdRecord != null)
                 {
                     if (character.Alignment != null) createdRecord.Alignment = character.Alignment.Value;
                     if (character.UniverseOrigin != null) createdRecord.Origin = character.UniverseOrigin.Value;
@@ -226,15 +226,6 @@ namespace Content.Server.GameTicking
                 $"Player {player.Name} late joined as {character.Name:characterName} on station {Name(station.Value):stationName} with {ToPrettyString(mob):entity} as a {jobName:jobName}.");
 
 
-            if (!silent && TryComp(station, out MetaDataComponent? metaData))
-            {
-                _chatManager.DispatchServerMessage(player,
-                    Loc.GetString("job-greet-station-name", ("stationName", metaData.EntityName)));
-            }
-
-
-
-
             // We raise this event directed to the mob, but also broadcast it so game rules can do something now.
             PlayersJoinedRoundNormally++;
             var aev = new PlayerSpawnCompleteEvent(mob,
@@ -246,6 +237,9 @@ namespace Content.Server.GameTicking
                 station.Value,
                 character);
             RaiseLocalEvent(mob, aev, true);
+
+            _chatManager.DispatchServerMessage(player, $"You have arrived in the Nexus Space as a Colonist. Find a job at a hiring desk.");
+
             var saveFilePath = new ResPath($"{data!.UserId}]{character.Name}");
             if (mobMaybe != null)
             {
@@ -287,7 +281,7 @@ namespace Content.Server.GameTicking
             var jobPrototype = ProtoMan.Index<JobPrototype>(jobId);
 
             _playTimeTrackings.PlayerRolesChanged(player);
-            _bankSystem.EnsureAccount(character!.Name, 50);
+            _bankSystem.EnsureAccount(character!.Name, 500);
             if (_crewMetaRecords.MetaRecords != null)
                 _crewMetaRecords.MetaRecords.CreateRecord(character!.Name, out _);
 

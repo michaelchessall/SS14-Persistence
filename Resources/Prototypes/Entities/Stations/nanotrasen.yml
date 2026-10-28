@@ -19,7 +19,6 @@
     - BaseStationCentcomm
     - BaseStationEvacuation
     - BaseStationAlertLevels
-    - BaseStationMagnet
     - BaseStationExpeditions
     - BaseStationSalvageJobs
     - BaseStationSiliconLawCrewsimov
@@ -40,7 +39,6 @@
   - BaseStationRecords
   - BaseStationShuttles
   - BaseStationAlertLevels
-  - BaseStationMagnet
   - BaseStationExpeditions
   - BaseStationSalvageJobs
   - BaseStationSiliconLawCrewsimov

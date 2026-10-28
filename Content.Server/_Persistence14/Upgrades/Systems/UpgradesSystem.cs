@@ -274,7 +274,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                     comp.ChooseOneUpgrades[upgrade] = appliedTimes + 1;
                 }
                 QueueDel(moduleUid);
-                _audioSystem.PlayPredicted(new SoundPathSpecifier("/Audio/Weapons/Guns/MagIn/revolver_magin.ogg"), uid, null);
+                _audioSystem.PlayPredicted(upgradeModuleComp.ApplySound, uid, null);
                 return;
             }
         }

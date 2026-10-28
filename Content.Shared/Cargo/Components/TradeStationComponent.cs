@@ -2,6 +2,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.HijackBeacon;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Cargo.Components;
 
@@ -36,4 +37,10 @@ public sealed partial class TradeStationComponent : Component
         "ILevelGeneral3",
         "ILevelGeneral4"
     };
+
+    [DataField]
+    public TimeSpan AnnounceCooldown = TimeSpan.FromMinutes(10);
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
+    public TimeSpan CurrentCooldown = TimeSpan.Zero;
+
 }

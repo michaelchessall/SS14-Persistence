@@ -25,7 +25,8 @@
 # Donkpocket
 
 # Scav: Warm gives +5 reagent
-# Warm ones contain a small amount of Omnizine.
+#Persistence 14
+#Warm ones contain a small amount of Ichor.
 
 - type: entity
   name: donk-pocket
@@ -67,6 +68,15 @@
       - bread
       - meaty
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        maxVol: 10
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 8
+        - ReagentId: Ichor
+          Quantity: 2
 
 - type: entity
   name: dank-pocket
@@ -91,6 +101,14 @@
     flavors:
       - leafy
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 4
 
 - type: entity
   name: spicy-pocket
@@ -117,6 +135,14 @@
       - spicy
       - meaty
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
   - type: Sprite
     state: spicy
 
@@ -145,6 +171,14 @@
       - meaty
       - sweet
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
 
 - type: entity
   name: pizza-pocket
@@ -173,6 +207,14 @@
       - cheesy
       - tomato
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 15
+        - ReagentId: Ichor
+          Quantity: 2
 
 - type: entity
   name: honk-pocket
@@ -206,17 +248,16 @@
     flavors:
       - funny
       - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 5 # Scav 10 < 5
-      - ReagentId: Honk
-        Quantity: 2
-      - ReagentId: Omnizine
-        Quantity: 3
-      - ReagentId: Grain # Scav
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Honk
+          Quantity: 1
+        - ReagentId: Ichor
+          Quantity: 2
 
 - type: entity
   name: berry-pocket
@@ -241,17 +282,16 @@
     flavors:
       - sweet
       - cheap
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: Nutriment
-        Quantity: 5 # Scav: 10 < 5
-      - ReagentId: Omnizine
-        Quantity: 3
-      - ReagentId: JuiceBerry
-        Quantity: 2
-      - ReagentId: Grain # Scav
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
+        - ReagentId: Sugar
+          Quantity: 2
 
 - type: entity
   name: stonk-pocket
@@ -275,6 +315,14 @@
     flavors:
       - profits
       - cheap
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
 
 - type: entity
   name: carp-pocket
@@ -298,6 +346,14 @@
     flavors:
     - cheap
     - fishops
+  - type: SolutionContainerManager
+    solutions:
+      food:
+        reagents:
+        - ReagentId: Nutriment
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 2
 
 - type: entity
   name: dink-pocket
@@ -363,5 +419,5 @@
         Quantity: 10
       - ReagentId: Grain # Scav: Nutriment < Grain
         Quantity: 2
-      - ReagentId: Omnizine
+      - ReagentId: Ichor
         Quantity: 3

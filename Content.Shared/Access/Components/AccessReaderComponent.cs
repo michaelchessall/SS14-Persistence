@@ -102,6 +102,8 @@ public sealed partial class AccessReaderComponent : Component
     /// </remarks>
     [DataField]
     public LocId ExaminationText = "access-reader-examination";
+    [DataField]
+    public bool BlockUnanchor = true;
 }
 
 [DataDefinition, Serializable, NetSerializable]

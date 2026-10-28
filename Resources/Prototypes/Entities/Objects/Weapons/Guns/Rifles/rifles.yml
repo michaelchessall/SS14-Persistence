@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponRifle
-  parent: [BaseItem, BaseGunWieldable]
+  parent: [ BaseItem, BaseGunWieldable, BaseGunWieldClassRifle ]
   id: BaseWeaponRifle
   description: A rooty tooty point and shooty.
   abstract: true
@@ -299,9 +299,6 @@
   - type: EyeCursorOffset
     maxOffset: 2
     pvsIncrease: 0.2
-  - type: SpeedModifiedOnWield
-    walkModifier: 0.9
-    sprintModifier: 0.9
   - type: ContainerContainer
     containers:
       gun_magazine: !type:ContainerSlot

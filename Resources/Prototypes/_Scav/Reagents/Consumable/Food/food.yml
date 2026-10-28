@@ -17,8 +17,9 @@
             type: [ Yinglet ]
           probability: 0.6
   plantMetabolism:
-  - !type:PlantAdjustNutrition
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 1.5
+    nutrient: Nutrient
   - !type:PlantAdjustHealth
     amount: 0.75
   pricePerUnit: 2

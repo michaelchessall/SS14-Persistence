@@ -33,7 +33,6 @@ public sealed partial class CharacterUIController : UIController, IOnStateEntere
     [Dependency] private IPrototypeManager _prototypeManager = default!;
 
     [UISystemDependency] private readonly CharacterInfoSystem _characterInfo = default!;
-    [UISystemDependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {

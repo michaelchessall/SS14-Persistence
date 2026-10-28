@@ -30,13 +30,13 @@ public sealed partial class ResonanceProductPrototype : IPrototype
     ///     Texture path used in the GUI.
     /// </summary>
     [DataField]
-    public SpriteSpecifier Icon { get; private set; } = SpriteSpecifier.Invalid;
+    public SpriteSpecifier? Icon { get; private set; } = null;
 
     /// <summary>
     ///     The entity prototype ID of the product.
     /// </summary>
     [DataField]
-    public EntProtoId Product { get; private set; } = string.Empty;
+    public EntProtoId? Product { get; private set; } = null;
 
     [DataField]
     public EntProtoId Container { get; private set; } = "CrateSecure";
@@ -49,5 +49,7 @@ public sealed partial class ResonanceProductPrototype : IPrototype
 
 public enum ResonanceProductType : byte
 {
-    MainWorldBoundary
+    MainWorldBoundary,
+    MainWorldAwakening,
+    Product
 }

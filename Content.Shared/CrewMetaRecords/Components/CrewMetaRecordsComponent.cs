@@ -42,6 +42,8 @@ public sealed partial class CrewMetaRecordsComponent : Component
     public List<ProtoId<ResonanceProductPrototype>> ResonancePurchases = new();
     [DataField]
     public Dictionary<ProtoId<ResonanceProductPrototype>, int> PartialPurchases = new();
+    [DataField]
+    public bool SectorAwoke = false;
 
     public bool TryGetRecord(string name, out CrewMetaRecord? record)
     {

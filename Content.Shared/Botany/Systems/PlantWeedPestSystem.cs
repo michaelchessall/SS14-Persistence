@@ -1,7 +1,8 @@
-using JetBrains.Annotations;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
-using Robust.Shared.Random;
+using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Botany.Systems;
 
@@ -11,8 +12,8 @@ namespace Content.Shared.Botany.Systems;
 /// </summary>
 public sealed partial class PlantWeedPestSystem : EntitySystem
 {
+    [Dependency] private IGameTiming _timing = default!;
     [Dependency] private BotanySystem _botany = default!;
-    [Dependency] private IRobustRandom _random = default!;
     [Dependency] private PlantMutationSystem _mutation = default!;
     [Dependency] private PlantHolderSystem _plantHolder = default!;
     [Dependency] private PlantTraySystem _plantTray = default!;
@@ -26,22 +27,25 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
             return;
 
         _mutation.CrossFloat(ref ent.Comp.WeedTolerance, pollenData.WeedTolerance);
-        _mutation.CrossFloat(ref ent.Comp.PestTolerance, pollenData.PestTolerance);
+        //_mutation.CrossFloat(ref ent.Comp.PestTolerance, pollenData.PestTolerance); // Persistence: Replace pests as part of nutrient system rework
         Dirty(ent);
     }
 
     [SubscribeLocalEvent]
     private void OnPlantGrow(Entity<PlantWeedPestComponent> ent, ref PlantGrowEvent args)
     {
-        var trayUid = GetEntity(args.Tray);
+        var trayUid = args.Tray;
         if (!_trayQuery.TryComp(trayUid, out var tray))
             return;
 
-        if (_random.Prob(ent.Comp.PestGrowthChance))
-            _plantTray.AdjustPest((trayUid, tray), ent.Comp.PestGrowthAmount);
+        //if (SharedRandomExtensions.PredictedProb(_timing, ent.Comp.PestGrowthChance, GetNetEntity(ent))) // Persistence
+        //    _plantTray.AdjustPest((trayUid, tray), ent.Comp.PestGrowthAmount);
 
-        if (tray.PestLevel > ent.Comp.PestTolerance)
-            _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.PestDamageAmount);
+        if (tray.WeedLevel > ent.Comp.WeedTolerance)
+            _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.WeedDamageAmount);
+
+        //if (tray.PestLevel > ent.Comp.PestTolerance) // Persistence
+        //    _plantHolder.AdjustsHealth(ent.Owner, -ent.Comp.PestDamageAmount);
     }
 
     /// <summary>
@@ -66,7 +70,7 @@ public sealed partial class PlantWeedPestSystem : EntitySystem
         if (!Resolve(ent.Owner, ref ent.Comp, false))
             return;
 
-        ent.Comp.PestTolerance = MathF.Max(0f, ent.Comp.PestTolerance + amount);
-        DirtyField(ent, nameof(ent.Comp.PestTolerance));
+        // ent.Comp.PestTolerance = MathF.Max(0f, ent.Comp.PestTolerance + amount); // Persistence: Replace pests as part of nutrient system rework
+        // DirtyField(ent, nameof(ent.Comp.PestTolerance));
     }
 }

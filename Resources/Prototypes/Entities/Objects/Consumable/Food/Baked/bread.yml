@@ -825,6 +825,7 @@
     flavors:
       - bread
       - garlic
+      - oily
   - type: Sprite
     layers:
     - state: garlic-slice

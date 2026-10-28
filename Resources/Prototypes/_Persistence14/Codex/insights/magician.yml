@@ -1,11 +1,94 @@
 - type: insightTrait
-  id: MagicTest1
-  name: Dark Vision
-  content: "Gain the ability to detect the coordinates of the nearest anomaly."
-  next: MagicTest2
+  id: Magic1
+  name: insight-magic-1-name
+  content: insight-magic-1-desc
+  next: Magic2
+  trait: Magic1
+
+- type: trait
+  id: Magic1
+  name: insight-magic-1-name
+  description: insight-magic-1-desc
+  selectable: false
+  components:
+    - type: ActionGrant
+      actions:
+        - ActionVoidVisions
+      autoDelete: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionVoidVisions
+  name: Void Vision
+  description: Peek into the void to get a random rumor.
+  components:
+  - type: Action
+    useDelay: 14400
+  - type: Sprite
+    sprite: Structures/Specific/Anomalies/shadow_anom.rsi
+    layers:
+    - state: anom
+      map: ["enum.AnomalyVisualLayers.Base"]
+    - state: pulse
+      map: ["enum.AnomalyVisualLayers.Animated"]
+      visible: false
+  - type: InstantAction
+    event: !type:VoidVisionsEvent
 
 - type: insightTrait
-  id: MagicTest2
-  name: Summon
-  content: "Gain the ability to reroll one node in an artifact."
+  id: Magic2
+  name: insight-magic-2-name
+  content: insight-magic-2-desc
+  next: Magic3
+  trait: Magic2
+
+- type: trait
+  id: Magic2
+  name: insight-magic-2-name
+  description: insight-magic-2-desc
+  selectable: false
+  components:
+  - type: ActionGrant
+    actions:
+      - ActionGoliathTentacleInsight
+    autoDelete: true
+
+- type: entity
+  parent: BaseAction
+  id: ActionGoliathTentacleInsight
+  name: "[color=red]Summon Tentacles[/color]"
+  description: Use your tentacles to grab and stun a target player!
+  components:
+  - type: Action
+    raiseOnUser: true
+    sound:
+      path: "/Audio/Weapons/slash.ogg"
+    useDelay: 120
+  - type: Sprite
+    sprite: Mobs/Aliens/Asteroid/goliath.rsi
+    layers:
+    - state: goliath_tentacle_spawn
+      map: ["enum.ActionVisuals.Icon"]
+    - state: goliath_tentacle_wiggle
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
+  - type: TargetAction
+    range: 6
+  - type: WorldTargetAction
+    event: !type:GoliathSummonTentacleAction
+
+- type: insightTrait
+  id: Magic3
+  name: insight-magic-3-name
+  content: insight-magic-3-desc
+  trait: Priest1
+  requiresAwake: true
+  next: Magic4
+
+- type: insightTrait
+  id: Magic4
+  name: insight-magic-4-name
+  content: insight-magic-4-desc
+  trait: Priest1
+  requiresAwake: true
 

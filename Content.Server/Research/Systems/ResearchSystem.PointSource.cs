@@ -13,7 +13,7 @@ public sealed partial class ResearchSystem
 
     private void OnGetPointsPerSecond(Entity<ResearchPointSourceComponent> source, ref ResearchServerGetPointsPerSecondEvent args)
     {
-        if (CanProduce(source))
+        if (CanProduce(source) && ServerCompatible(source.Owner, args.Server))
             args.Points += source.Comp.PointsPerSecond;
     }
 

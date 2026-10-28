@@ -1,4 +1,5 @@
 using Content.Shared._Persistence14.Resonance.Prototypes;
+using Content.Shared._Persistence14.Upgrades.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
@@ -21,6 +22,16 @@ public sealed class StationModificationResonancePurchase : BoundUserInterfaceMes
 {
     public ProtoId<ResonanceProductPrototype> Prototype;
     public StationModificationResonancePurchase(ProtoId<ResonanceProductPrototype> prototype)
+    {
+        Prototype = prototype;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class StationModificationApplyModule : BoundUserInterfaceMessage
+{
+    public ProtoId<UpgradeModuleTypePrototype> Prototype;
+    public StationModificationApplyModule(ProtoId<UpgradeModuleTypePrototype> prototype)
     {
         Prototype = prototype;
     }

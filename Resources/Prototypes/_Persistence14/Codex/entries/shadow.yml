@@ -1,38 +1,39 @@
 - type: codexEntry
   id: Shadow101
-  name: 101
-  content: "UNFILLED"
+  name: Story of the Elders
+  content: "The Elders exist in the Threshold of the [bold]Shadow Universe[/bold]. Creatures of void and flesh exist within this cursed variant of the Threshold and they beckon life into this Threshold to be used for vile rituals and schemes.\n\nSome of these mortals are carelessly discarded when they cease to be of use to the [bold]Void Entities[/bold]. These mortals have slipped beyond the view of the [bold]Void Entities[/bold] and carved out a community within the cursed Threshold.\n\nThey call themselves 'The Elders'."
   order: 0
   category: Shadow
   unlockHint: "Use a Codex Fragment"
+
 - type: codexEntry
   id: Shadow102
-  name: 102
-  content: "UNFILLED"
+  name: Void Entities
+  content: "The 'Shadow Universe' is named such because it is being devestated by the malign influence of creatures known as 'Void Entities'. The Void Entities did not originate from the Shadow Universe but abide within the connected Threshold and project mental influence through the Threshold Entrance.\n\nThe Void Creatures manipulate the space-faring civilizations of the Shadow Universe to funnel mortals into the Threshold. These mortals are used in schemes to generate and steal resonance which the Void Creatures need in huge quantities."
   order: 1
   category: Shadow
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Shadow103
-  name: 103
-  content: "UNFILLED"
+  name: Surviving in the Dark
+  content: "The methods developed to survive within the Shadow Universe have created a secretive and severe society. Space installation are hidden inside ateroids the Elders go to great lengths to prevent space travel from being tracked.\n\nThe Void Entities travel between the sectors of the Shadow Universe and an entrance to [bold]The Underworld[/bold] and so travel is always risky. The Elders are quietly collecting Resonance to fuel the [bold]Ascension[/bold] of key members of the collective. The Elders hope the power of [bold]Ascension[/bold] along with the [bold]Threshold Awakening[/bold] will be enough to seal the Void Entities back into the [bold]Underworld[/bold]."
   order: 2
   category: Shadow
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Shadow104
-  name: 104
-  content: "UNFILLED"
+  name: The Underworld
+  content: "'The Underworld' is the home universe of the Void Entities. It is a terrifying realm of meat and bone that only a few have seen and survived to tell. The Void Entities must return to this foul Universe periodically to deposit the collected Resonance and feed on the output of the Resonance Processors.\n\nThe Underworld is carefully guarded so no one can say if it operates under the same fundemental principles of a Threshold. The Elders dedicate every resource they have to sealing the passage to the Underworld but it is believed that the [bold]Threshold Awakening[/bold] is required before this is possible."
   order: 3
   category: Shadow
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Shadow105
-  name: 105
-  content: "UNFILLED"
+  name: Threshold Awakening
+  content: "Threshold Awakening is a theory by high-level Elders that the extreme properties of the [bold]Awakened Nexus[/bold] can be amplified to stretch across the connected Thresholds.\n\nThe Elders believe that participation in the NCC and the colonization of the Nexus Space will lead to the Threshold Awakening. Once the Threshold is Awakened the Elders plan to come out of hiding and seal the Void Entities within the Underworld in a final decisive war."
   order: 4
   category: Shadow
   unlockHint: "Use a Codex Fragment"

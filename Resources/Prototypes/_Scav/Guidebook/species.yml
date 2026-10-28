@@ -2,3 +2,8 @@
   id: Yinglet
   name: species-name-yinglet
   text: "/ServerInfo/_Scav/Guidebook/Mobs/Yinglet.xml"
+
+- type: guideEntry
+  id: NeoAvian
+  name: species-name-neoavian
+  text: "/ServerInfo/_Scav/Guidebook/Mobs/NeoAvian.xml"

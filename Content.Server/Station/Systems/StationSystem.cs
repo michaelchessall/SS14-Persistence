@@ -20,6 +20,7 @@ using Robust.Shared.Enums;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Player;
+using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
 
@@ -42,9 +43,8 @@ public sealed partial class StationSystem : SharedStationSystem
     [Dependency] private CrewMetaRecordsSystem _metaRecords = default!;
     [Dependency] private MapSystem _mapSystem = default!;
     [Dependency] private CrewManifestSystem _crewManifest = default!;
-
     [Dependency] private EntityQuery<MapGridComponent> _gridQuery = default!;
-
+    [Dependency] private IGameTiming _timing = default!;
     private ISawmill _sawmill = default!;
 
     /// <inheritdoc/>
@@ -68,6 +68,25 @@ public sealed partial class StationSystem : SharedStationSystem
 
         _player.PlayerStatusChanged += OnPlayerStatusChanged;
     }
+
+    public void AnnounceTradeStationCapture(EntityUid faction, TradeStationComponent comp)
+    {
+        if (_timing.CurTime < comp.CurrentCooldown)
+        {
+            comp.CurrentCooldown = _timing.CurTime + comp.AnnounceCooldown;
+            _chatSystem.DispatchGlobalAnnouncement($"A trade station has been claimed by {Name(faction)}; {Name(comp.Owner)}.", "Sector News");
+        }
+    }
+
+    public void AnnounceTradeStationRelease(TradeStationComponent comp)
+    {
+        if (_timing.CurTime < comp.CurrentCooldown)
+        {
+            comp.CurrentCooldown = _timing.CurTime + comp.AnnounceCooldown;
+            _chatSystem.DispatchGlobalAnnouncement($"A trade station has been unclaimed by; {Name(comp.Owner)}.", "Sector News");
+        }
+    }
+
 
     public int GetStationID(EntityUid station)
     {
@@ -355,22 +374,32 @@ public sealed partial class StationSystem : SharedStationSystem
         StationConfig stationConfig,
         IEnumerable<EntityUid>? gridIds,
         string? name = null,
-        Content.Shared.Maps.GameMapPrototype? gameMap = null)
+        Content.Shared.Maps.GameMapPrototype? gameMap = null,
+        string? owner = null)
     {
         // Use overrides for setup.
         var station = EntityManager.SpawnEntity(stationConfig.StationPrototype, MapCoordinates.Nullspace, stationConfig.StationComponentOverrides);
         DebugTools.Assert(HasComp<StationDataComponent>(station), "Stations should have StationData in their prototype.");
 
         var data = Comp<StationDataComponent>(station);
+        if (owner != null)
+            data.AddOwner(owner);
         data.JobWeights = gameMap?.JobWeights;
         Dirty(station, data);
-        name ??= MetaData(station).EntityName;
-
+        if (name == null) name ??= MetaData(station).EntityName;
+        else
+        {
+            data.StationName = name;
+            _metaData.SetEntityName(station, name);
+        }
+        if (owner != null)
+        {
+            data.AddOwner(owner);
+        }
         foreach (var grid in gridIds ?? Array.Empty<EntityUid>())
         {
             AddGridToStation(station, grid, null, data, name);
         }
-
         var ev = new StationPostInitEvent((station, data));
         RaiseLocalEvent(station, ref ev, true);
 
@@ -421,6 +450,7 @@ public sealed partial class StationSystem : SharedStationSystem
         stationMember.OwnerName = owner;
 
         OnGridClaimed(mapGrid);
+        RaiseLocalEvent(mapGrid, new StationGridAddedEvent(mapGrid, new(), false), true);
     }
 
     private void OnGridClaimed(EntityUid mapGrid)
@@ -458,6 +488,7 @@ public sealed partial class StationSystem : SharedStationSystem
             throw new ArgumentException("Tried to initialize a station on a non-grid entity!", nameof(mapGrid));
 
         RemComp<PersonalMemberComponent>(mapGrid);
+        RaiseLocalEvent(mapGrid, new StationGridRemovedEvent(mapGrid, new()), true);
     }
 
     /// <summary>

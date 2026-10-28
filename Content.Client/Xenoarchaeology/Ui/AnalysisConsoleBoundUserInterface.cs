@@ -26,10 +26,10 @@ public sealed class AnalysisConsoleBoundUserInterface(EntityUid owner, Enum uiKe
         _consoleMenu.OnClose += Close;
         _consoleMenu.OpenCentered();
 
-        _consoleMenu.OnServerSelectionButtonPressed += () =>
-        {
-            SendMessage(new ConsoleServerSelectionMessage());
-        };
+        //_consoleMenu.OnServerSelectionButtonPressed += () =>
+        //{
+        //    SendMessage(new ConsoleServerSelectionMessage());
+        //};
         _consoleMenu.OnExtractButtonPressed += () =>
         {
             SendMessage(new AnalysisConsoleExtractButtonPressedMessage());

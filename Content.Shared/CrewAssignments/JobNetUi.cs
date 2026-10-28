@@ -44,7 +44,8 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
     public List<ProtoId<InsightTraitPrototype>> UnlockedInsights = new();
     public int CodexUnlocksSince = 0;
     public int UnspentInsights = 0;
-    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<ProtoId<CodexEntryPrototype>> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, string sectorStatus, Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations, List<ActiveRumor> rumors, TimeSpan? rumorCooldown, int rumorTax, Dictionary<string, DirectMessageConversation>? directMessages, Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> rumorRewards, TimeSpan? rewardCooldown, List<ProtoId<InsightTraitPrototype>> unlockedInsights, int codexUnlocksSince, int unspentInsights)
+    public bool SectorAwake;
+    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<ProtoId<CodexEntryPrototype>> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, string sectorStatus, Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations, List<ActiveRumor> rumors, TimeSpan? rumorCooldown, int rumorTax, Dictionary<string, DirectMessageConversation>? directMessages, Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> rumorRewards, TimeSpan? rewardCooldown, List<ProtoId<InsightTraitPrototype>> unlockedInsights, int codexUnlocksSince, int unspentInsights, bool sectorAwake)
     {
         Stations = stations;
         AssignmentName = assignmentName;
@@ -70,6 +71,7 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
         UnlockedInsights = unlockedInsights;
         CodexUnlocksSince = codexUnlocksSince;
         UnspentInsights = unspentInsights;
+        SectorAwake = sectorAwake;
     }
 }
 

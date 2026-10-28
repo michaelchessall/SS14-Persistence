@@ -200,12 +200,22 @@ namespace Content.Server.Atmos.EntitySystems
         /// <summary>
         ///     Scrubs specified gases from a gas mixture into a <see cref="destination"/> gas mixture.
         /// </summary>
-        public void ScrubInto(GasMixture mixture, GasMixture destination, IReadOnlyCollection<Gas> filterGases)
+        public void ScrubInto(GasMixture mixture, GasMixture destination, IReadOnlyCollection<Gas> filterGases, IReadOnlyDictionary<Gas, float> filterLimits) // Persistence: Add IReadOnlyDictionary<Gas, float> filterLimits
         {
             var buffer = new GasMixture(mixture.Volume) { Temperature = mixture.Temperature };
+            var scrubGas = new Dictionary<Gas, bool>(); // Persistence: Scrub above percentage
+            var totalMoles = mixture.TotalMoles; // Persistence: Scrub above percentage
 
             foreach (var gas in filterGases)
             {
+                // Start Persistence: If a gas filter limit is in place, and the filter limit is below the target, don't scrub
+                if (filterLimits.ContainsKey(gas) && mixture.GetMoles(gas) / totalMoles <= filterLimits[gas] / 100)
+                {
+                    continue;
+                }
+                // End Persistence
+
+                // If no filter limit is in place, filter all of it
                 buffer.AdjustMoles(gas, mixture.GetMoles(gas));
                 mixture.SetMoles(gas, 0f);
             }

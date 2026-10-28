@@ -1,3 +1,4 @@
+using Content.Server._Persistence14.Research.Anomalies;
 using Content.Server.Anomaly;
 using Content.Server.StationEvents.Components;
 using Content.Shared.GameTicking.Components;
@@ -7,7 +8,7 @@ namespace Content.Server.StationEvents.Events;
 
 public sealed partial class AnomalySpawnRule : StationEventSystem<AnomalySpawnRuleComponent>
 {
-    [Dependency] private AnomalySystem _anomaly = default!;
+    [Dependency] private AnomalyGeneratorSystem _anomaly = default!;
 
     protected override void Added(EntityUid uid, AnomalySpawnRuleComponent component, GameRuleComponent gameRule, GameRuleAddedEvent args)
     {
@@ -39,7 +40,7 @@ public sealed partial class AnomalySpawnRule : StationEventSystem<AnomalySpawnRu
         var amountToSpawn = 1;
         for (var i = 0; i < amountToSpawn; i++)
         {
-            _anomaly.SpawnOnRandomGridLocation(grid.Value, component.AnomalySpawnerPrototype);
+            _anomaly.SpawnAnomalyOnGrid(grid.Value, component.AnomalySpawnerPrototype);
         }
     }
 }

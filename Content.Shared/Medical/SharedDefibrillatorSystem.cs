@@ -251,56 +251,7 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
             if (_mobState.IsDead(target, targetMobState))
             {
                 canRevive = false;
-                var hasAdrenaline = false;
-
-                if (TryComp<BloodstreamComponent>(target, out var bloodstream))
-                {
-                    var bloodSolution = bloodstream.BloodSolution;
-
-                    if (_solutionContainer.ResolveSolution(target, bloodstream.BloodSolutionName, ref bloodSolution))
-                    {
-                        var contents = bloodSolution.Value.Comp.Solution.Contents;
-
-                        // check reagents in bloodstream
-                        foreach (var (reagentId, quantity) in contents)
-                        {
-                            if (quantity <= FixedPoint2.Zero)
-                                continue;
-
-                            // check effects
-                            if (!ProtoMan.TryIndex(reagentId.Prototype, out var reagentProto))
-                                continue;
-
-                            if (reagentProto.Metabolisms == null || !reagentProto.Metabolisms.Metabolisms.TryGetValue("Bloodstream", out var metabolism))
-                                continue;
-
-                            var isAdrenaline = metabolism.Effects.Any(effect => effect is GenericStatusEffect
-                            {
-                                Key: "Adrenaline",
-                            });
-
-                            // if this reagent grants adrenaline, consume it and roll for revival
-                            if (!isAdrenaline)
-                                continue;
-
-                            hasAdrenaline = true;
-
-                            // removes the adrenaline cost amount
-                            _solutionContainer.RemoveReagent(bloodSolution.Value, reagentId, FixedPoint2.New(_adrenalineCostPerShock));
-
-                            // server-only roll to prevent client mispredicting a successful revival
-                            canRevive = _net.IsServer && _random.Prob(_reviveChance);
-
-                            break;
-                        }
-                    }
-                }
-
-                // if they have no adrenaline reagent, popup
-                if (!hasAdrenaline)
-                {
-                    _popup.PopupClient(Loc.GetString("defibrillator-no-adrenaline"), target, user);
-                }
+                canRevive = _net.IsServer && _random.Prob(_reviveChance);
             }
             // funky end
 
@@ -319,13 +270,6 @@ public abstract partial class SharedDefibrillatorSystem : EntitySystem
                 // notify them they're being revived.
                 if (mindComp.CurrentEntity != target)
                     OpenReturnToBodyEui((mindUid, mindComp), playerSession);
-            }
-            else
-            {
-                if (HasComp<MindContainerComponent>(target))
-                    _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString("defibrillator-no-mind"), InGameICChatType.Speak, true); //target can host a mind but doesn't
-                else
-                    _chat.TrySendInGameICMessage(ent.Owner, Loc.GetString("defibrillator-not-living"), InGameICChatType.Speak, true); //target couldn't have hosted a mind
             }
         }
 

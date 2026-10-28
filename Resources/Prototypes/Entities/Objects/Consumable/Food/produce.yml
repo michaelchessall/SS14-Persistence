@@ -215,9 +215,12 @@
     refineResult:
     - id: MaterialWoodPlank1
       amount: 2
+  - type: PhysicalComposition # Persistence: Make recyclable, low efficiency, but easier to grow.
+    materialComposition:
+      Wood: 150
 
 - type: entity
-  parent: ProduceBase # Persistence14: Removed BaseSlicingRefinable component since we aren't using ToolRefinable
+  parent: [ProduceBase, BaseSlicingRefinable]
   id: SteelLog
   name: steel-cap log
   description: Steel doesn't grow on trees! It grows on mushrooms, of course.
@@ -232,10 +235,13 @@
         Blunt: 12
   - type: Produce
     plantId: SteelcapPlants
-# - type: ToolRefinable
-#   qualityNeeded: Sawing
-#   refineResult:
-#   - id: SheetSteel1
+  - type: ToolRefinable
+    qualityNeeded: Sawing
+    refineResult:
+    - id: SheetSteel1
+  - type: PhysicalComposition # Persistence: Make recyclable, since nutrient requirements mean clicking more shouldn't be what makes it difficult.
+    materialComposition:
+      Steel: 100
 
 - type: entity
   parent: ProduceBaseRuminant
@@ -1128,8 +1134,10 @@
         Quantity: 10
       - ReagentId: Vitamin
         Quantity: 5
-      - ReagentId: DoctorsDelight
-        Quantity: 15
+#      - ReagentId: DoctorsDelight # Persistence: Remove to match plant
+#        Quantity: 15
+      - ReagentId: Gold # Persistence: Add to match plant
+        Quantity: 10
   - type: Sprite
     sprite: Objects/Specific/Hydroponics/golden_apple.rsi
   - type: Item
@@ -1141,8 +1149,8 @@
       reagents:
       - ReagentId: JuiceApple
         Quantity: 10
-      - ReagentId: Gold
-        Quantity: 10
+#      - ReagentId: Gold # Persistence: Gold is obtained from grinding now, as reagents from juicing can't have nutrient requirements.
+#        Quantity: 10
   - type: Tag
     tags:
     - Fruit
@@ -1738,7 +1746,7 @@
   - type: Tag
     tags:
     - Galaxythistle
-    - Fruit # Probably?
+    - Flower
   - type: FoodSequenceElement
     entries:
       Taco: Galaxythistle

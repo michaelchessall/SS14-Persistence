@@ -1,12 +1,8 @@
 using Content.Server.Cargo.Components;
 using Content.Server.Chat.Systems;
-using Content.Server.CrewAssignments.Systems;
 using Content.Server.NameIdentifier;
-using Content.Shared._Persistence14.Cargo;
 using Content.Shared._Persistence14.Rumors.Systems;
 using Content.Shared.Access.Components;
-using Content.Shared.Atmos.Components;
-using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.Components;
 using Content.Shared.Cargo.Prototypes;
@@ -14,23 +10,18 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.Database;
 using Content.Shared.FixedPoint;
-using Content.Shared.IdentityManagement;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.NameIdentifier;
 using Content.Shared.Paper;
-using Content.Shared.Stacks;
 using Content.Shared.Station.Components;
-using Content.Shared.Whitelist;
 using JetBrains.Annotations;
 using Robust.Server.Containers;
 using Robust.Shared.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
-using System.Xml.Linq;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -68,10 +59,10 @@ public sealed partial class CargoSystem
         var rumorGetter = _rumors.GetRumorComponent(args.Actor);
         if (rumorGetter == null) return;
         CargoBountyData? data = null;
-        foreach(var rumor in rumorGetter.Value.Comp.Rumors)
+        foreach (var rumor in rumorGetter.Value.Comp.Rumors)
         {
             if (rumor.Bounty == null) continue;
-            if(rumor.Bounty.Id == args.BountyId)
+            if (rumor.Bounty.Id == args.BountyId)
             {
                 data = rumor.Bounty;
                 break;
@@ -208,14 +199,14 @@ public sealed partial class CargoSystem
         List<CargoBountyData> final = new();
         var rumorGetter = _rumors.GetRumorComponent(actor);
         if (rumorGetter == null) return;
-        foreach(var rumor in rumorGetter.Value.Comp.Rumors)
+        foreach (var rumor in rumorGetter.Value.Comp.Rumors)
         {
-            if(rumor.Bounty != null)
+            if (rumor.Bounty != null)
             {
                 final.Add(rumor.Bounty);
             }
         }
-        if(final.Count > 0)
+        if (final.Count > 0)
         {
             BountyRumorBountiesMessage msg = new(final);
             _uiSystem.ServerSendUiMessage(uid, CargoConsoleUiKey.Bounty, msg, actor);
@@ -276,7 +267,7 @@ public sealed partial class CargoSystem
         if (!Resolve(uid, ref paper, ref label) || !ProtoMan.Resolve<CargoBountyPrototype>(bounty.Bounty, out var prototype))
             return;
 
-        if(dealerName != null)
+        if (dealerName != null)
         {
             label.DealerName = dealerName;
         }
@@ -293,8 +284,8 @@ public sealed partial class CargoSystem
             msg.AddMarkupOrThrow($"- {entry}");
             msg.PushNewline();
         }
-
-        msg.AddMarkupOrThrow(Loc.GetString("bounty-console-manifest-reward", ("reward", prototype.Reward)));
+        var calculatedReward = prototype.Reward * bounty.PriceMultiplier;
+        msg.AddMarkupOrThrow(Loc.GetString("bounty-console-manifest-reward", ("reward", calculatedReward)));
         msg.PushNewline();
         msg.AddText($"For Trade Station: {Name(stationId)}");
         _paperSystem.SetContent((uid, paper), msg.ToMarkup());
@@ -333,9 +324,9 @@ public sealed partial class CargoSystem
             {
                 return;
             }
-            foreach(var rumor in jobNet.Rumors)
+            foreach (var rumor in jobNet.Rumors)
             {
-                if(rumor.Bounty != null && rumor.Bounty.Id == component.Id)
+                if (rumor.Bounty != null && rumor.Bounty.Id == component.Id)
                 {
                     bounty = rumor.Bounty;
                 }
@@ -349,10 +340,10 @@ public sealed partial class CargoSystem
             return;
 
         var result = bountyPrototype.Condition.CheckCondition(container.Owner, EntityManager);
-
         args.Handled = true;
         component.Calculating = true;
-        args.Price = Math.Max(bountyPrototype.Reward * Math.Min(result, 1 - bounty.PercentCompleted) - _pricing.GetPrice(container.Owner), 0f);
+        var calculatedReward = bountyPrototype.Reward * bounty.PriceMultiplier;
+        args.Price = Math.Max(calculatedReward * Math.Min(result, 1 - bounty.PercentCompleted) - _pricing.GetPrice(container.Owner), 0f);
         component.Calculating = false;
     }
 
@@ -457,23 +448,31 @@ public sealed partial class CargoSystem
 
         Dictionary<ProtoId<CargoBountyGroupPrototype>, int> groups = component.Groups;
         var station = _station.GetOwningStation(uid);
-        if (station != null && TryComp<TradeStationComponent>(uid, out var tradeStation) && tradeStation != null)
+
+        TradeStationComponent? tradeStation = null;
+        InfrastructureLevelPrototype? proto = null;
+        if (station != null && TryComp<TradeStationComponent>(uid, out tradeStation) && tradeStation != null)
         {
-            InfrastructureLevelPrototype? proto = GetTradeStationLevel(uid, tradeStation);
+            proto = GetTradeStationLevel(uid, tradeStation);
             if (proto != null)
             {
                 groups = proto.Groups;
             }
         }
+        float bountyMult = 0.6f;
+        if (proto != null)
+        {
+            bountyMult = proto.BountyPriceMult;
+        }
         foreach (var kv in groups)
         {
-            var proto = kv.Key;
+            var groupProto = kv.Key;
             var count = kv.Value;
-            ProtoMan.Resolve(proto, out var prototype);
+            ProtoMan.Resolve(groupProto, out var prototype);
             if (prototype == null) continue;
             for (var i = 0; i < count; i++)
             {
-                if (!TryAddBounty(uid, component, kv.Key))
+                if (!TryAddBounty(uid, component, kv.Key, bountyMult))
                     break;
             }
         }
@@ -518,7 +517,7 @@ public sealed partial class CargoSystem
     #endregion
 
     [PublicAPI]
-    public bool TryAddBounty(EntityUid uid, StationCargoBountyDatabaseComponent? component = null, ProtoId<CargoBountyGroupPrototype>? group = null)
+    public bool TryAddBounty(EntityUid uid, StationCargoBountyDatabaseComponent? component = null, ProtoId<CargoBountyGroupPrototype>? group = null, float bountyMult = 0)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -541,7 +540,7 @@ public sealed partial class CargoSystem
         var pool = filteredBounties.Count == 0 ? allBounties : filteredBounties;
         if (pool.Count < 1) return false;
         var bounty = _random.Pick(pool);
-        return TryAddBounty(uid, bounty, component);
+        return TryAddBounty(uid, bounty, component, bountyMult);
     }
 
     [PublicAPI]
@@ -555,7 +554,7 @@ public sealed partial class CargoSystem
         return TryAddBounty(uid, bounty, component);
     }
 
-    public bool TryAddBounty(EntityUid uid, CargoBountyPrototype bounty, StationCargoBountyDatabaseComponent? component = null)
+    public bool TryAddBounty(EntityUid uid, CargoBountyPrototype bounty, StationCargoBountyDatabaseComponent? component = null, float bountyMult = 1f)
     {
         if (!Resolve(uid, ref component))
             return false;
@@ -565,13 +564,14 @@ public sealed partial class CargoSystem
 
         _nameIdentifier.GenerateUniqueNameModifier(BountyNameIdentifierGroup, out var randomVal);
         var newBounty = new CargoBountyData(bounty, randomVal);
+        newBounty.PriceMultiplier = bountyMult;
         // This bounty id already exists! Probably because NameIdentifierSystem ran out of ids.
         if (component.Bounties.Any(b => b.Id == newBounty.Id))
         {
             Log.Error("Failed to add bounty {ID} because another one with the same ID already existed!", newBounty.Id);
             return false;
         }
-        component.Bounties.Add(new CargoBountyData(bounty, randomVal));
+        component.Bounties.Add(newBounty);
         _adminLogger.Add(LogType.Action, LogImpact.Low, $"Added bounty \"{bounty.ID}\" (id:{component.TotalBounties}) to station {ToPrettyString(uid)}");
         component.TotalBounties++;
         return true;
@@ -610,7 +610,8 @@ public sealed partial class CargoSystem
                         ? CargoBountyHistoryData.BountyResult.Skipped
                         : CargoBountyHistoryData.BountyResult.Completed,
                     Timing.CurTime,
-                    actorName));
+                    actorName,
+                    data.PriceMultiplier));
                 ent.Comp.Bounties.RemoveAt(i);
                 return true;
             }
@@ -644,9 +645,9 @@ public sealed partial class CargoSystem
 
         var rumorGetter = _rumors.GetRumorGetterByName(dealerName);
         if (rumorGetter == null) return false;
-        foreach(var rumor in rumorGetter.Rumors)
+        foreach (var rumor in rumorGetter.Rumors)
         {
-            if(rumor.Bounty != null && rumor.Bounty.Id == label.Id)
+            if (rumor.Bounty != null && rumor.Bounty.Id == label.Id)
             {
                 bounty = rumor.Bounty;
                 return true;
@@ -698,7 +699,6 @@ public sealed partial class CargoSystem
         }
 
     }
-
     private void BountyRefresh(EntityUid uid, StationCargoBountyDatabaseComponent comp)
     {
         var station = _station.GetOwningStation(uid);
@@ -707,7 +707,7 @@ public sealed partial class CargoSystem
             TryComp<TradeStationComponent>(uid, out var tradeStation);
             if (tradeStation != null)
             {
-                if(TryComp<StationDataComponent>(station, out var stationData) && stationData != null)
+                if (TryComp<StationDataComponent>(station, out var stationData) && stationData != null)
                 {
                     var earnedResonance = tradeStation.ExperiencePoints * 10;
                     stationData.StoredResonance += earnedResonance;

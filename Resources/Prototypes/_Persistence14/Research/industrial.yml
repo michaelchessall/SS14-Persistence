@@ -1,0 +1,12 @@
+- type: technology
+  id: InterstellarLogistics
+  name: research-technology-interstellar-logistics
+  icon:
+    sprite: /Textures/Objects/Tools/fulton.rsi
+    state: extraction_pack
+  discipline: Industrial
+  tier: 2
+  cost: 20000
+  recipeUnlocks:
+    Fulton: 40
+    FultonBeacon: 2

@@ -34,7 +34,11 @@
   components:
   - type: FlavorProfile
     flavors:
-      - food
+      - salty
+      - meaty
+      - egg
+      - bacon
+      - potatoes
   - type: Sprite
     state: fullamerican
 
@@ -46,6 +50,10 @@
   components:
   - type: FlavorProfile
     flavors:
-      - food
+      - salty
+      - meaty
+      - egg
+      - bacon
+      - tomato
   - type: Sprite
     state: fullenglish

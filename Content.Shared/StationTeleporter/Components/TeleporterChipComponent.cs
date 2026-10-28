@@ -1,3 +1,5 @@
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
+using Content.Shared._Persistence14.PersistentIdentifier;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 
@@ -14,7 +16,7 @@ public sealed partial class TeleporterChipComponent : Component
     /// Uid of the teleporter this chip is synced with.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public EntityUid? ConnectedTeleporter;
+    public PersistentEntityReference ConnectedTeleporter = PersistentIdentifierSystem.EmptyId;
 
     /// <summary>
     /// The already-localized name of the teleporter this chip is synced with, copied here for use when examining the chip.
@@ -30,4 +32,16 @@ public sealed partial class TeleporterChipComponent : Component
     {
         Params = AudioParams.Default.WithVariation(0.05f),
     };
+
+    /// <summary>
+    /// The maximum distance a portal may be from the console in order to be controlled by the console.
+    /// </summary>
+    [DataField]
+    public float MaxConnectDistance = 512f;
+
+    /// <summary>
+    /// The maximum distance at which the console can locate the connected portal.
+    /// </summary>
+    [DataField]
+    public float MaxLocateDistance = 1024f;
 }

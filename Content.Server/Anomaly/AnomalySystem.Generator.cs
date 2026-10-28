@@ -1,7 +1,13 @@
+/*
+Subsumed into Content.Server\_Persistence14\Research\Anomalies\AnomalyGeneratorSystem.cs
+
+
 using Content.Server.Anomaly.Components;
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Persistence14.Research.Anomalies;
 using Content.Shared.Anomaly;
 using Content.Shared.CCVar;
+using Content.Shared.Containers.ItemSlots;
 using Content.Shared.Materials;
 using Content.Shared.Physics;
 using Content.Shared.Power;
@@ -20,9 +26,9 @@ namespace Content.Server.Anomaly;
 /// </summary>
 public sealed partial class AnomalySystem
 {
-    [Dependency] private SharedMapSystem _mapSystem = default!;
-    [Dependency] private SharedTransformSystem _transform = default!;
-    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private readonly SharedMapSystem _mapSystem = default!;
+    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly ItemSlotsSystem _slots = default!;
 
     private void InitializeGenerator()
     {
@@ -188,3 +194,4 @@ public sealed partial class AnomalySystem
         }
     }
 }
+*/

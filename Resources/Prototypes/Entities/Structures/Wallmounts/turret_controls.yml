@@ -95,49 +95,6 @@
         node: frame
   - type: StationAiWhitelist
   - type: DeployableTurretController
-    accessGroups:
-    - Cargo
-    - Command
-    - Engineering
-    - General
-    - Medical
-    - Research
-    - Security
-    - Service
-    - Silicon
-    accessLevels:
-    - Armory
-    - Atmospherics
-    - Bar
-    - BasicSilicon
-    - Borg
-    - Brig
-    - Detective
-    - Captain
-    - Cargo
-    - Chapel
-    - Chemistry
-    - ChiefEngineer
-    - ChiefMedicalOfficer
-    - Command
-    - Cryogenics
-    - Engineering
-    - External
-    - HeadOfPersonnel
-    - HeadOfSecurity
-    - Hydroponics
-    - Janitor
-    - Kitchen
-    - Lawyer
-    - Maintenance
-    - Medical
-    - Quartermaster
-    - Research
-    - ResearchDirector
-    - Salvage
-    - Security
-    - Service
-    - Theatre
   - type: DeviceList
     isAllowList: true
   - type: DeviceNetwork
@@ -190,15 +147,7 @@
     receiveFrequencyId: TurretAI
     transmitFrequencyId: TurretControlAI
   - type: TurretTargetSettings
-    exemptAccessLevels:
-    - BasicSilicon
-    - Borg
   - type: DeployableTurretController
-    accessGroups:
-    - Silicon
-    accessLevels:
-    - BasicSilicon
-    - Borg
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
@@ -212,10 +161,6 @@
       board:
       - WeaponEnergyTurretSecurityControlPanelElectronics
   - type: TurretTargetSettings
-    exemptAccessLevels:
-    - Security
-    - BasicSilicon
-    - Borg
 
 - type: entity
   parent: WeaponEnergyTurretStationControlPanelBase
@@ -229,7 +174,3 @@
       board:
       - WeaponEnergyTurretCommandControlPanelElectronics
   - type: TurretTargetSettings
-    exemptAccessLevels:
-    - Command
-    - BasicSilicon
-    - Borg

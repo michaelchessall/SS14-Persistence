@@ -1,0 +1,24 @@
+- type: messageBoardCategory
+  id: General
+  name: General
+  order: 0
+
+- type: messageBoardCategory
+  id: Faction
+  name: Faction Recruiting
+  order: 1
+
+- type: messageBoardCategory
+  id: Buy
+  name: Buy Requests
+  order: 2
+
+- type: messageBoardCategory
+  id: Sell
+  name: Sell Offers
+  order: 3
+
+- type: messageBoardCategory
+  id: Events
+  name: Events
+  order: 4

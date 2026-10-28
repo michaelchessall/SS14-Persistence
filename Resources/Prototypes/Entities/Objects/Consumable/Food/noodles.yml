@@ -162,6 +162,8 @@
         Quantity: 12
       - ReagentId: Grain # Scav
         Quantity: 20
+      - ReagentId: Oil
+        Quantity: 2
 # Tastes like pasta, tomato.
 
 - type: entity

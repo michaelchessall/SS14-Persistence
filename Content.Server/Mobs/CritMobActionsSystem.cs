@@ -13,18 +13,20 @@ using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Mobs.Events;
 using Content.Shared.Mobs.Systems;
-using Content.Shared.Speech.Muting;
-using Content.Shared.StatusEffectNew;
 using Content.Shared.Players;
 using Content.Shared.Preferences;
+using Content.Shared.Radio;
+using Content.Shared.Speech.Muting;
+using Content.Shared.StatusEffectNew;
 using Content.Shared.Tag;
 using Robust.Server.Console;
 using Robust.Server.GameObjects;
+using Robust.Shared.Audio.Sources;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map; // Persistence
 using Robust.Shared.Player;
-using Robust.Shared.Timing;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Timing;
 
 namespace Content.Server.Mobs;
 
@@ -33,24 +35,25 @@ namespace Content.Server.Mobs;
 /// </summary>
 public sealed partial class CritMobActionsSystem : EntitySystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly DeathgaspSystem _deathgasp = default!;
-    [Dependency] private readonly IServerConsoleHost _host = default!;
-    [Dependency] private readonly MobStateSystem _mobState = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly QuickDialogSystem _quickDialog = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private DeathgaspSystem _deathgasp = default!;
+    [Dependency] private IServerConsoleHost _host = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private QuickDialogSystem _quickDialog = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
-
     // Start Persistence
-    [Dependency] private readonly GameTicker _ticker = default!;
-    [Dependency] private readonly IServerPreferencesManager _prefsManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly RadioSystem _radio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly IConfigurationManager _configurationManager = default!;
-    [Dependency] private readonly TagSystem _tag = default!;
+    [Dependency] private GameTicker _ticker = default!;
+    [Dependency] private IServerPreferencesManager _prefsManager = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private RadioSystem _radio = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private IConfigurationManager _configurationManager = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
     // End Persistence
+
     private const int MaxLastWordsLength = 30;
     private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib"; // Persistence: Gib prevention
 
@@ -159,15 +162,9 @@ public sealed partial class CritMobActionsSystem : EntitySystem
     public bool ValidateSOS(EntityUid uid, MobStateActionsComponent component)
     {
         if (component.SOSCooldown > _timing.CurTime) return false;
-
-        var ev = new GetSosOverrideEvent();
-        RaiseLocalEvent(uid, ev);
-
-        // state is null entirely (not just alive) for something like a mind vessel, which has no
-        // MobStateComponent at all - that's fine as long as the override says this is allowed.
         TryComp<MobStateComponent>(uid, out var state);
-        if (state is not { CurrentState: MobState.Dead } && !ev.AllowWhileAlive) return false;
-
+        if (state == null) return false;
+        if (state.CurrentState != MobState.Dead) return false;
         return true;
     }
 
@@ -194,7 +191,9 @@ public sealed partial class CritMobActionsSystem : EntitySystem
         var message = overrideEv.MessageOverride ?? $"{Name(uid)} has died at ({mapPos.X:F1}, {mapPos.Y:F1}) and is broadcasting an SOS.";
 
         var speaker = overrideEv.SpeakerOverride ?? uid;
-        _radio.SendRadioMessage(speaker, message, "Common", speaker, true);
+        var commonID = "Common";
+        var common = _protoMan.Index<RadioChannelPrototype>(commonID);
+        _radio.SendRadioMessage(speaker, message, common, speaker, escapeMarkup: true, useNetworkOverride: true, transmitterRange: float.PositiveInfinity);
         var respawnTime = TimeSpan.FromSeconds(_configurationManager.GetCVar(CCVars.AcceptDeathTime));
         component.SOSCooldown = _timing.CurTime + respawnTime;
         UpdateUserInterface(uid, uid, component);

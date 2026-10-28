@@ -275,3 +275,4 @@
     alternateState: Standing
   - type: StunVisuals
   - type: FootprintOwner # Funky: Footprints & Stains
+  - type: GuideActionGranter

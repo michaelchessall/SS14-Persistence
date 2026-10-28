@@ -11,6 +11,7 @@
     - sour
     - oily
     - cheesy
+    - spicy
   rewardRumors: 1
   possibleFollowups:
     - ExterminateGeneral
@@ -18,7 +19,8 @@
     - DiscoverSmallSalvage
     - BountyBasicGeneral
     - BountyBasicScience
-
+    - PowerLuminal
+    - ArtifactNodeBasic
 
 - type: rumor
   id: EatBasicEvil
@@ -33,6 +35,7 @@
     - sour
     - oily
     - cheesy
+    - spicy
   rewardRumors: 1
   possibleFollowups:
     - DiscoverSmallCriminal
@@ -40,3 +43,6 @@
     - ExterminateCult
     - BountyBasicCriminal
     - BountyBasicWeapon
+    - RescuePrecursor
+    - PowerPrecursor
+    - RescueShadow

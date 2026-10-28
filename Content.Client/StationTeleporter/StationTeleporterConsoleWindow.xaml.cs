@@ -8,6 +8,7 @@ using Robust.Client.UserInterface.XAML;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
 using Content.Client.Pinpointer.UI;
+using Robust.Shared.Physics;
 
 namespace Content.Client.StationTeleporter;
 
@@ -18,7 +19,7 @@ public sealed partial class StationTeleporterConsoleWindow : FancyWindow
     private readonly SpriteSystem _spriteSystem;
     private readonly SharedTransformSystem _xformSystem;
 
-    public event Action<NetEntity?>? SendTeleporterLinkChangeAction;
+    public event Action<NetEntity?, NetEntity?>? SendTeleporterLinkChangeAction;
 
     private static readonly Color DefaultBlipColor = Color.Aqua; //TODO: UI palette usage
     private static readonly Color UnpoweredBlipColor = Color.Gray; //TODO: UI palette usage
@@ -27,6 +28,8 @@ public sealed partial class StationTeleporterConsoleWindow : FancyWindow
     private NetEntity? _trackedEntity;
     private readonly Texture _teleportMarkerTexture;
     private readonly Texture _selectedTeleportMarkerTexture;
+
+    private StationTeleporterState? _state = null;
 
     public StationTeleporterConsoleWindow()
     {
@@ -59,6 +62,7 @@ public sealed partial class StationTeleporterConsoleWindow : FancyWindow
 
     public void ShowTeleporters(StationTeleporterState state, EntityUid monitor, EntityCoordinates? monitorCoords)
     {
+        _state = state;
         ClearOutdatedData();
 
         var teleporters = state.Teleporters;
@@ -72,38 +76,46 @@ public sealed partial class StationTeleporterConsoleWindow : FancyWindow
 
         NoTeleportersLabel.Visible = false;
 
+        var consoleCoords = _entManager.GetCoordinates(state.ConsoleCoordinates);
+
 
         // Show all teleporters
         foreach (var teleporter in teleporters)
         {
             var coordinates = _entManager.GetCoordinates(teleporter.Coordinates);
 
+            var sqrDist = consoleCoords is null ? 0f : coordinates is null ? 0f :
+                (consoleCoords.Value.Position - coordinates.Value.Position).LengthSquared();
+
             var isSelected = teleporter.TeleporterUid == state.SelectedTeleporter;
             var isLinked = teleporter.LinkCoordinates is not null;
 
-            var row = new TeleporterRowControl(teleporter, isSelected, coordinates);
+            var row = new TeleporterRowControl(teleporter, isSelected, coordinates, consoleCoords, sqrDist);
             TeleportersTable.AddChild(row);
 
             row.LinkButton.OnButtonUp += _ =>
             {
-                SendTeleporterLinkChangeAction?.Invoke(teleporter.TeleporterUid);
+                SendTeleporterLinkChangeAction?.Invoke(teleporter.TeleporterUid, teleporter.Chip);
             };
 
             //Add teleporter coordinates to the NavMap
             var blipColor = DefaultBlipColor;
             if (isSelected)
                 blipColor = SelectedBlipColor;
-            else if (!teleporter.Powered)
+            else if (!teleporter.Powered || !teleporter.CanConnect)
                 blipColor = UnpoweredBlipColor;
 
             if (coordinates != null && NavMap.Visible)
             {
-                var blip = new NavMapBlip(
-                    coordinates.Value,
-                    isLinked ? _selectedTeleportMarkerTexture : _teleportMarkerTexture,
-                    blipColor,
-                    false);
-                NavMap.TrackedEntities.TryAdd(teleporter.TeleporterUid, blip);
+                if (teleporter.CanLocate)
+                {
+                    var blip = new NavMapBlip(
+                        coordinates.Value,
+                        isLinked ? _selectedTeleportMarkerTexture : _teleportMarkerTexture,
+                        blipColor,
+                        false);
+                    NavMap.TrackedEntities.TryAdd(teleporter.TeleporterUid, blip);
+                }
 
                 row.LocateButton.OnButtonUp += _ =>
                 {
@@ -146,7 +158,27 @@ public sealed partial class StationTeleporterConsoleWindow : FancyWindow
 
     private void ClickTeleporterOnNavMap(NetEntity? netEntity)
     {
-        SendTeleporterLinkChangeAction?.Invoke(netEntity);
+        if (_state is not { } state)
+            return;
+
+        if (netEntity is null)
+            return;
+
+        bool found = false;
+        NetEntity? chip = null;
+        foreach (var teleporter in state.Teleporters)
+        {
+            if (teleporter.TeleporterUid != netEntity ||
+                !teleporter.CanConnect)
+                continue;
+
+            chip = teleporter.Chip;
+            found = true;
+            break;
+        }
+
+        if (found)
+            SendTeleporterLinkChangeAction?.Invoke(netEntity, chip);
     }
 
     private void ClearOutdatedData()

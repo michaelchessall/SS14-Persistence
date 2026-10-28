@@ -91,13 +91,13 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
         private void Scrub(float timeDelta, GasVentScrubberComponent scrubber, GasMixture? tile, PipeNode outlet)
         {
-            Scrub(timeDelta, scrubber.TransferRate * _atmosphereSystem.PumpSpeedup(), scrubber.PumpDirection, scrubber.FilterGases, tile, outlet.Air);
+            Scrub(timeDelta, scrubber.TransferRate * _atmosphereSystem.PumpSpeedup(), scrubber.PumpDirection, scrubber.FilterGases, scrubber.FilterGasLimits, tile, outlet.Air); // Persistence: Add scrubber.FilterGasLimits
         }
 
         /// <summary>
         /// True if we were able to scrub, false if we were not.
         /// </summary>
-        public bool Scrub(float timeDelta, float transferRate, ScrubberPumpDirection mode, HashSet<Gas> filterGases, GasMixture? tile, GasMixture destination)
+        public bool Scrub(float timeDelta, float transferRate, ScrubberPumpDirection mode, HashSet<Gas> filterGases, Dictionary<Gas, float> filterLimits, GasMixture? tile, GasMixture destination) // Persistence: Add Dictionary<Gas, float> filterLimits
         {
             // Cannot scrub if tile is null or air-blocked.
             if (tile == null
@@ -116,7 +116,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
             if (mode == ScrubberPumpDirection.Scrubbing)
             {
-                _atmosphereSystem.ScrubInto(removed, destination, filterGases);
+                _atmosphereSystem.ScrubInto(removed, destination, filterGases, filterLimits); // Persistence: Add filterLimits
 
                 // Remix the gases.
                 _atmosphereSystem.Merge(tile, removed);

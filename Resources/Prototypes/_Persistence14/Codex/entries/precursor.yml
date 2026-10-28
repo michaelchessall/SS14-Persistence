@@ -1,0 +1,39 @@
+- type: codexEntry
+  id: Precursor101
+  name: The Syndicate Precursors
+  content: "The Syndicate is a coalition of corporations that are being financially crushed by hegemonic big-tech companies such as Nanotrasen.\n\nWhen the Syndicate discovered the Threshold they believed it could provide the technology and materials that would allow them to finally recapture the market. Syndicate agents discovered and explored the Threshold before any other, and so they called themselves the [bold]Precursors[/bold]."
+  category: Precursor
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Precursor102
+  name: The Precursor Universe
+  content: "The Universe where the Syndicate controls the Threshold is known as the 'Precursor Universe' because the Syndicate discovered the Threshold and the Nexus Space before anyone else.\n\nThe Syndicate peered through the Nexus Space and saw the other Thresholds just starting to be colonized by the Solar Legion, Nanotrasen and the UNMC.\n\nThe Syndicate used early access to the Nexus Space to create the [bold]'Precursor Network'[/bold] which broadcast into the other Thresholds. This network offered rewards in exchange for colonists in the other Threshold doing odd tasks that put them at odds with the rest of society."
+  order: 1
+  category: Precursor
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Precursor103
+  name: The Network of Agents
+  content: "Using the [bold]Precursor Networks[/bold] the Syndicate has established agents within the local population of the alternate Thresholds.\n\nThese contacts allowed the Syndicate to provide [bold]crucial assistance[/bold] during the [bold]AJAX Crisis[/bold] by steering the alternate Thresholds into the guidance of the [bold]Luminals[/bold]. This has bought the Syndicate enough political capital to become members of the [bold]Nexus Closed Council[/bold]; a key element of the [bold]Syndicate Strategy[/bold]."
+  order: 2
+  category: Precursor
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Precursor104
+  name: Syndicate on AJAX
+  content: "During the [bold]AJAX Crisis[/bold] the Syndicate was initially manipulated into helping the [bold]Void Whale[/bold] and [bold]Rebel Luminals[/bold] by providing Resonance which was used to establish the planet AJAX.\n\nWhen the Syndicate became fully aware of the consequences that the AJAX crisis would have for the connected universes they flipped sides and began supporting the Luminals. The goals of the [bold]Void Whale[/bold] are not compatible with the [bold]Syndicate Strategy[/bold] and so the Syndicate pivoted to helping develop the [bold]NCC[/bold]."
+  order: 3
+  category: Precursor
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Precursor105
+  name: The Syndicate Strategy
+  content: "The Syndicate Strategy is a strategy developed by the [bold]Syndicate Leadership[/bold] that operates inside the Threshold. The strategy is to use the Nexus Space as a highway to reach and do business with sectors from all possible Universes.\n\nThe Syndicate believes that sectors of the Thresholds can be made independent and will become reliant on Syndicate businesses to sustain intra-sector competition. The strategy is well underway, with Syndicate businesses selling equipment to the [bold]UNMC, the Solar Legion and even Nanotrasen and the Elders.[/bold]"
+  order: 4
+  category: Precursor
+  unlockHint: "Use a Codex Fragment"
+

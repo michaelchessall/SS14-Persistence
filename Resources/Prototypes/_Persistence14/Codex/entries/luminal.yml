@@ -1,38 +1,39 @@
 - type: codexEntry
   id: Luminal101
-  name: 101
-  content: "UNFILLED"
+  name: The Luminal Collective
+  content: "The Luminal Collective is a gestalt consciousness located within the Nexus Space. The location of the Luminal is a well kept secret.\nThe Luminal can split off a portion of its energy into an individual life form for the purpose of travel or contact with other life forms. The ability for the Luminal Collective to split into individual entities has allowed it to contact and work with the colonists of the Thresholds in critical matters but it is also what led to the [bold]'Discontusion'[/bold]."
   order: 0
-  category: Luminal
-  unlockHint: "Use a Codex Fragment"
-- type: codexEntry
-  id: Luminal102
-  name: 102
-  content: "UNFILLED"
-  order: 1
   category: Luminal
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
+  id: Luminal102
+  name: The Discontusion
+  content: "The Discontusion"
+  order: 1
+  category: Luminal
+  unlockHint: "Thirty years ago the Luminal Collective was cleaved in half by a calamity known as the 'Discontusion'.\nThe Luminal encountered biological life which had found its way into the Nexus Space and it learned the nature of individuality, form and existence beyond its own homeworld. In time this knowledge would divide the Luminal as the individual entities that split off from it refused to return to the collective. These renegade fragments of the Luminal are known as [bold]'Florals'[/bold] and the conflict between the Florals and the Luminal would escalate into the [bold]'War of Light and Sound'[/bold]."
+
+- type: codexEntry
   id: Luminal103
-  name: 103
-  content: "UNFILLED"
+  name: War of Light and Sound
+  content: "The internal division within the Luminal on whether to exist as a collective or as many individual lifeforms escalated into the 'War of Light and Sound'\n The nature of the conflict is impossible for biological life to understand; The result was that the independent fragments of the Luminal which call themselves 'Florals' were exlied to a Threshold in a universe now known as the 'Floral Universe'.\nBoth sides were greatly diminished but clarity and unity was restored to the Luminal. The Florals would not be heard of again until the start of the [bold]'AJAX Crisis'[/bold]."
   order: 2
   category: Luminal
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Luminal104
-  name: 104
-  content: "UNFILLED"
+  name: The Florals on AJAX
+  content: "The Void Entities manipulated the Florals by offering them the power to force the Luminal into another [bold]Discontusion[/bold].\nThe Florals and the Void Entity worked together to use [bold]Resonance[/bold] to grow the planet AJAX within the Nexus Space. AJAX captured the [bold]Luminal Homeworld[/bold] within its orbit and the Florals weaponized the shard of the Floral Universe against the Luminal.\nColonists from the Zenith Universe managed to breach into the Floral Universe and seize the shard back; A decisive victory which was instrumental to resolving the AJAX Crisis."
   order: 3
   category: Luminal
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Luminal105
-  name: 105
-  content: "UNFILLED"
+  name: The Eclipsed Nexus
+  content: "In the aftermath of the AJAX Crisis the Luminal convinced the Nations of the NCC to colonize the Nexus Space. Resonance could be generated within the Nexus Space that could hide the Luminal Home World and therefore protect the Thresholds from another AJAX Crisis.\nNations from five of the connected Universes came together to colonize the Nexus Space, each Nation having its own ulterior motive but for the Luminal securing the Nexus Space is a matter of survival. The Luminal is convinced that grave threats to the Nexus and the Thresholds are approaching and considered the work of the NCC to be crucial preperation for the coming conflict."
   order: 4
   category: Luminal
   unlockHint: "Use a Codex Fragment"

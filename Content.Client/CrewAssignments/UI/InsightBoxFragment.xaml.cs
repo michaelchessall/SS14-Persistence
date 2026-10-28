@@ -17,7 +17,7 @@ public sealed partial class InsightBoxFragment : PanelContainer
     private JobNetMenu _owner;
     [Dependency] private IPrototypeManager _protoManager = default!;
 
-    public InsightBoxFragment(InsightCategoryPrototype insightCategory, List<ProtoId<InsightTraitPrototype>> unlockedInsights, bool hasPoints, JobNetMenu jobNetMenu)
+    public InsightBoxFragment(InsightCategoryPrototype insightCategory, List<ProtoId<InsightTraitPrototype>> unlockedInsights, bool hasPoints, JobNetMenu jobNetMenu, bool sectorAwake)
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -33,10 +33,10 @@ public sealed partial class InsightBoxFragment : PanelContainer
         TitleLbl.Text = insightCategory.Name;
         var nextInsight = _protoManager.Index(insightCategory.FirstTrait);
         bool possible = hasPoints;
-        while(nextInsight != null)
+        while (nextInsight != null)
         {
             var current = nextInsight;
-            if(current.Next == null)
+            if (current.Next == null)
             {
                 nextInsight = null;
             }
@@ -45,14 +45,19 @@ public sealed partial class InsightBoxFragment : PanelContainer
                 nextInsight = _protoManager.Index(current.Next);
             }
             Button button = new();
-            button.Text = current.Name;
+            button.Text = Loc.GetString(current.Name);
             button.HorizontalExpand = true;
-            button.ToolTip = current.Content;
-            if(!possible)
+            button.ToolTip = current.Content is not null ? Loc.GetString(current.Content) : "";
+            if(current.RequiresAwake && !sectorAwake)
+            {
+                possible = false;
+                button.ToolTip = "Sector Awakening Required";
+            }
+            if (!possible)
             {
                 button.Disabled = true;
             }
-            if(unlockedInsights.Contains(current.ID))
+            if (unlockedInsights.Contains(current.ID))
             {
                 button.Pressed = true;
             }
@@ -68,7 +73,7 @@ public sealed partial class InsightBoxFragment : PanelContainer
 
     private void OnInsightPurchase(string iD)
     {
-        if(_owner.Owner != null)
+        if (_owner.Owner != null)
             _owner.Owner.OnInsightPurchase(iD);
     }
 }

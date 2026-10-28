@@ -1,0 +1,10 @@
+- type: construction
+  id: BannerNexus
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerNexus
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true

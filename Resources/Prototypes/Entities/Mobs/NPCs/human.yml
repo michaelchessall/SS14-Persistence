@@ -108,6 +108,7 @@
   - type: Speech
     speechVerb: Cluwne
 
+#Persistence 14
 - type: entity
   parent: MobHuman
   suffix: Dead
@@ -118,11 +119,65 @@
     randomizeName: true
   - type: NonSpreaderZombie
   - type: ZombifyOnDeath
+  - type: SalvageMobRestrictions
+  - type: MobState
+    currentState: Alive
   - type: Damageable
     damage:
       types:
-        Slash: 100
-        Blunt: 99
-  - type: Inventory
-    templateId: corpse
+        Slash: 99
+        Blunt: 45
+  - type: Loadout
+    prototypes:
+        - ZombieCivilian
 
+#persistence 14
+
+- type: entity
+  parent: SalvageZombieHuman
+  suffix: Dead
+  id: SalvageZombieBio
+  components:
+  - type: Loadout
+    prototypes:
+        - ZombieBio
+
+#Persistence 14
+- type: entity
+  name: syndicate civilian
+  parent: SalvageHumanCorpse
+  id: MobSyndicateDeadCivilian
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateOperativeGearCivilian
+
+#Persistence 14
+- type: entity
+  name: cultist
+  parent: SalvageHumanCorpse
+  id: MobCultistDead
+  components:
+    - type: Loadout
+      prototypes:
+        - CultistGear
+
+#Persistence 14
+- type: entity
+  name: cultist leader
+  parent: SalvageHumanCorpse
+  id: MobCultistLeaderDead
+  components:
+    - type: Loadout
+      prototypes:
+        - CultLeaderGear
+
+#Persistence 14
+- type: entity
+  name: UNMC footsoldier
+  parent: SalvageHumanCorpse
+  id: MobUNMCDead
+  components:
+    - type: Loadout
+      prototypes:
+        - UNMCFootSoldierGear

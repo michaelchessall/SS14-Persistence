@@ -76,16 +76,16 @@
                                        VSeparationOverride="6"
                                        HSeparationOverride="6"
                                        HorizontalExpand="True">
-                            <botany:BotanyMetricControl Name="Water"
+                            <!--<botany:BotanyMetricControl Name="Water" Persistence: Plant nutrient rework
                                                         StyleClasses="MetricWater" />
                             <botany:BotanyMetricControl Name="Nutrients"
                                                         StyleClasses="MetricNutrients" />
                             <botany:BotanyMetricControl Name="Weeds"
-                                                        StyleClasses="MetricWeeds" />
-                            <botany:BotanyMetricControl Name="Pests"
+                                                        StyleClasses="MetricWeeds" /> -->
+                            <!-- <botany:BotanyMetricControl Name="Pests" Persistence: Plant nutrient rework
                                                         StyleClasses="MetricPests" />
                             <botany:BotanyMetricControl Name="Toxins"
-                                                        StyleClasses="MetricToxins" />
+                                                        StyleClasses="MetricToxins" /> -->
                         </GridContainer>
                     </BoxContainer>
                 </PanelContainer>

@@ -8,13 +8,23 @@
     sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
     state: syndicate-full
 
-#Decoration
 
+- type: rumorReward
+  id: PrecursorCodexFragment
+  name: Codex Fragment (Syndicate)
+  description: "Will unlock a codex entry when used."
+  price: 2000
+  product: PrecursorCodexFragment
+  icon:
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+    state: syndi-codex
+
+#Decoration
 - type: rumorReward
   id: PrecursorMerchCrate
   name: Syndicate Merch
   description: "One thing the Syndicate prides itself in is looking its best."
-  price: 500
+  price: 1200
   product: CrateSyndicateMerch
   icon:
     sprite: Objects/Misc/Handy_Flags/syndie_handy_flag.rsi
@@ -24,7 +34,7 @@
   id: PrecursorPJs
   name: Syndicate Pyjama Duffel Bag
   description: "Contains 3 pairs of syndicate pyjamas and 4 plushies for the ultimate sleepover."
-  price: 600
+  price: 1000
   product: ClothingBackpackDuffelSyndicatePyjamaBundle
   icon:
     sprite: Clothing/Back/Duffels/syndicate.rsi
@@ -34,7 +44,7 @@
   id: PrecursorCarpSuitBag
   name: Carp Suit Duffel Bag
   description: "Contains a carp suit and some friends to play with."
-  price: 600
+  price: 1500
   product: ClothingBackpackDuffelSyndicateCarpSuit
   icon:
     sprite: Clothing/Back/Duffels/syndicate.rsi
@@ -42,105 +52,7 @@
 
 #Weapons
 
-- type: rumorReward
-  id: PrecursorViper
-  name: Viper
-  description: "A small and easily concealable pistol. Retrofitted with a fully automatic receiver. Uses extended pistol magazines (.35 auto)."
-  price: 1200
-  product: WeaponPistolViper
-  icon:
-    sprite: Objects/Weapons/Guns/Pistols/viper.rsi
-    state: icon
 
-- type: rumorReward
-  id: PrecursorCobra
-  name: Cobra
-  description: "A rugged, robust operator handgun with inbuilt silencer. Uses pistol magazines (.25 caseless)."
-  price: 1200
-  product: WeaponPistolCobra
-  icon:
-    sprite: Objects/Weapons/Guns/Pistols/cobra.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorPython
-  name: Python
-  description: "A loud and powerful revolver. THE gun of the syndicate. Uses magnum ammo (.45)"
-  price: 1200
-  product: WeaponRevolverPython
-  icon:
-    sprite: Objects/Weapons/Guns/Revolvers/python.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorESword
-  name: Energy Sword
-  description: "A very dangerous energy sword that can reflect shots. Can be stored in pockets when turned off. Makes a lot of noise when used or turned on."
-  price: 8000
-  product: EnergySword
-  icon:
-    sprite: Objects/Weapons/Melee/e_sword.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorEDagger
-  name: Energy Dagger
-  description: "A very dangerous energy sword that can reflect shots. Can be stored in pockets when turned off. Makes a lot of noise when used or turned on."
-  price: 9000
-  product: EnergyDaggerBox
-  icon:
-    sprite: Objects/Weapons/Melee/e_dagger.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorECrossbow
-  name: Mini Energy Crossbow
-  description: "The go-to sidearm of any operative who prefers their victims not to be moving. Fires regenerating toxic arrows that floors victims in an instant."
-  price: 8000
-  product: WeaponEnergyCrossbow
-  icon:
-    sprite: Objects/Weapons/Guns/Basic/energy_crossbow.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorGlovesNorthStar
-  name: Mini Energy Crossbow
-  description: "A pair of gloves that improve the damage and speed of your punches, allowing you to beat people to death in a flurry of blows."
-  price: 4500
-  product: ClothingHandsGlovesNorthStar
-  icon:
-    sprite: Clothing/Hands/Gloves/northstar.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorKnifeKit
-  name: Throwing Knife Kit
-  description: "A set of 8 syndicate branded throwing knives, perfect for embedding into the body of your victims. Capable of ignoring armor entirely when thrown."
-  price: 900
-  product: ThrowingKnivesKit
-  icon:
-    sprite: Objects/Storage/boxicons.rsi
-    state: throwing_knives
-
-- type: rumorReward
-  id: PrecursorKnuckleDusters
-  name: Syndicate Knuckle Dusters
-  description: "A pair of plastitanium knuckle dusters that let you punch hard enough to break the captain's jaw into pieces."
-  price: 400
-  product: ClothingHandsKnuckleDustersSyndicate
-  icon:
-    sprite: Clothing/Hands/Gloves/KnuckleDusters/syndicateknuckleduster.rsi
-    state: syndicateknuckleduster
-
-- type: rumorReward
-  id: PrecursorEShield
-  name: Energy Shield
-  description: "An exotic energy shield that reflects almost all laser beams, and provides protection from bullets and other physical attacks. Cannot be repaired."
-  price: 6000
-  product: EnergyShield
-  icon:
-    sprite: Objects/Weapons/Melee/e_shield.rsi
-    state: eshield-on
 
 - type: rumorReward
   id: PrecursorRiggedBoxingGloves
@@ -152,130 +64,21 @@
     sprite: Clothing/Hands/Gloves/Boxing/boxingblue.rsi
     state: icon
 
-- type: rumorReward
-  id: PrecursorHushpup
-  name: Hushpup
-  description: "A powerful silenced shotgun with a low magazine capacity. Uses .50 shotgun ammo."
-  price: 6000
-  product: BriefcaseWeaponHushpupFilled
-  icon:
-    sprite: Objects/Weapons/Guns/Shotguns/hushpup.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorC-20r
-  name: C-20r
-  description: "Old faithful: The classic C-20r Submachine Gun."
-  price: 8000
-  product: BriefcaseWeaponC20Filled
-  icon:
-    sprite: Objects/Weapons/Guns/SMGs/c20r.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorL-6SawBundle
-  name: L6 Saw Bundle
-  description: "More dakka: The iconic L6 light machine gun, bundled with 2 box magazines."
-  price: 16000
-  product: ClothingBackpackDuffelSyndicateFilledLMG
-  icon:
-    sprite: Objects/Weapons/Guns/LMGs/l6.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorMicrowave
-  name: Donk Co Microwave Machine Board
-  description: "Donk Co's famous microwave, capable of baking all kinds of delicious and deadly goods. The secret ingredient is crime."
-  price: 2000
-  product: SyndicateMicrowaveMachineCircuitboard
-  icon:
-    sprite: Structures/Machines/microwave_syndie.rsi
-    state: mw
 
 #Medical
-
-- type: rumorReward
-  id: PrecursorHypopen
-  name: Hypopen
-  description: "A chemical hypospray disguised as a pen, capable of instantly injecting up to 10u of reagents. Takes a moment to refill it, so plan accordingly!"
-  price: 6000
-  product: HypopenBox
-  icon:
-    sprite: Objects/Misc/pens.rsi
-    state: pen
-
-- type: rumorReward
-  id: PrecursorHypoDart
-  name: Hypodart
-  description: "A seemingly unremarkable dart with a hidden 10u liquid reserve. Instantly injects into a target when thrown and pierces hardsuits."
-  price: 4500
-  product: HypoDartBox
-  icon:
-    sprite: Objects/Fun/Darts/dart_red.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorChemKit
-  name: Chemical Synthesis Kit
-  description: "A starter kit for the aspiring chemist, includes two vials of vestine for all your criminal needs!"
-  price: 1000
-  product: ChemicalSynthesisKit
-  icon:
-    sprite: Objects/Storage/boxicons.rsi
-    state: vials
-
-- type: rumorReward
-  id: PrecursorHyperzinePen
-  name: Hyperzine Injector
-  description: "The legendary chemical produced by Donk Co. for the Syndicate. Injecting yourself with this will increase your run speed and let you recover from stuns faster for 60 seconds."
-  price: 800
-  product: Stimpack
-  icon:
-    sprite: Objects/Specific/Medical/medipen.rsi
-    state: stimpen
-
-- type: rumorReward
-  id: PrecursorHyperzineKit
-  name: Hyperzine Kit
-  description: "A standard medkit containing 6 hyperzine microinjectors. Each dose lasts for 30 seconds."
-  price: 2400
-  product: StimkitFilled
-  icon:
-    sprite: Objects/Specific/Medical/medipen.rsi
-    state: stimpen
-
-- type: rumorReward
-  id: PrecursorCigarettes
-  name: Syndicate Smokes Packet
-  description: "Elite cigarettes for elite agents. Infused with omnizine for when you need to do more than calm your nerves."
-  price: 800
-  product: CigPackSyndicate
-  icon:
-    sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
-    state: closed
-
 - type: rumorReward
   id: PrecursorDefib
-  name: Interdyne Defibrillator Kit
-  description: "A fast and compact defibrillator. Some say that Nanotrasen is known as best with their advancements in medical sience, Interdyne begs to differ."
-  price: 2000
+  name: Advanced Defibrillator Kit
+  description: "A fast and compact defibrillator. Some say Nanotrasen is known as the best with their advancements in medical science, Interdyne would disagree"
+  price: 6000
   product: DefibrillatorSyndicate
   icon:
     sprite: Objects/Specific/Medical/defibsyndi.rsi
     state: icon
 
+
+
 #Tools
-
-- type: rumorReward
-  id: PrecursorJaws
-  name: Syndicate Jaws of Death
-  description: "A combined prying and cutting tool. Useful for entering the station or its departments. Can even open bolted doors!"
-  price: 2500
-  product: SyndicateJawsOfLife
-  icon:
-    sprite: Objects/Tools/jaws_of_life.rsi
-    state: syn_jaws_pry
-
 - type: rumorReward
   id: PrecursorAccessBreaker
   name: Authentication Disruptor
@@ -286,35 +89,6 @@
     sprite: Objects/Tools/access_breaker.rsi
     state: syndi-icon
 
-- type: rumorReward
-  id: PrecursorStealthBox
-  name: Stealth Box
-  description: "A box outfitted with stealth technology. Sneak around unnoticed, but don't move too fast or you'll be revealed!"
-  price: 2000
-  product: StealthBox
-  icon:
-    sprite: Structures/Storage/closet.rsi
-    state: agentbox
-
-- type: rumorReward
-  id: PrecursorChameleonProjector
-  name: Chameleon Projector
-  description: "Disappear in plain sight by creating a hologram of an item around you, disguising you as that object! Do not use this to play the game 'Object Search'."
-  price: 3400
-  product: ChameleonProjector
-  icon:
-    sprite: Objects/Devices/chameleon_projector.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorFlashCamera
-  name: Travel Camera
-  description: "Stun people with your photography skills and the conveniently legal camera flash. Makes you look like a tourist."
-  price: 1500
-  product: TravelCamera
-  icon:
-    sprite: Objects/Devices/travel_camera.rsi
-    state: icon
 
 - type: rumorReward
   id: PrecursorDecoy
@@ -325,16 +99,6 @@
   icon:
     sprite: Objects/Tools/Decoys/operative_decoy.rsi
     state: folded
-
-- type: rumorReward
-  id: PrecursorRadioJammer
-  name: Radio Jammer
-  description: "This device will disrupt any nearby outgoing radio communication as well as suit sensors when activated. Battery powered, so you might want to bring a spare."
-  price: 2750
-  product: RadioJammer
-  icon:
-    sprite: Objects/Devices/jammer.rsi
-    state: jammer
 
 - type: rumorReward
   id: PrecursorSoapSyndie
@@ -357,16 +121,6 @@
     state: syndie-4
 
 - type: rumorReward
-  id: PrecursorToolbox
-  name: Toolbox
-  description: "A full compliment of tools for the mechanically inclined traitor. Includes a pair of insulated combat gloves and a syndicate gas mask as well."
-  price: 800
-  product: ToolboxSyndicateFilled
-  icon:
-    sprite: Objects/Tools/Toolboxes/toolbox_syn.rsi
-    state: icon
-
-- type: rumorReward
   id: PrecursorCameraBug
   name: Camera Bug
   description: "A portable device that allows you to view the station through the lens of the station's camera systems."
@@ -379,35 +133,6 @@
 
 # # Implants
 
-- type: rumorReward
-  id: PrecursorStorageImplanter
-  name: Storage Implanter
-  description: "A bluespace marvel capable of hiding two pistols-worth of goodies. Immediately useful for stashing the empty implanter."
-  price: 3500
-  product: StorageImplanter
-  icon:
-    sprite: Clothing/Back/Backpacks/backpack.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorFreedomImplanter
-  name: Freedom Implanter
-  description: "Get away from those nasty sec officers with this three use implant!"
-  price: 4000
-  product: FreedomImplanter
-  icon:
-    sprite: Actions/Implants/implants.rsi
-    state: freedom
-
-- type: rumorReward
-  id: PrecursorScramImplanter
-  name: Scram Implanter
-  description: "A 2-use implant which teleports you within a medium radius. Attempts to teleport you onto an unobstructed tile, but may sometimes fail to do so. Life insurance not included."
-  price: 4500
-  product: ScramImplanter
-  icon:
-    sprite: Structures/Specific/anomaly.rsi
-    state: anom4
 
 - type: rumorReward
   id: PrecursorFakeMindshield
@@ -419,37 +144,13 @@
     sprite: Interface/Actions/actions_fakemindshield.rsi
     state: icon-on
 
-- type: rumorReward
-  id: PrecursorVoiceMaskImplanter
-  name: Identity Mask Implanter
-  description: "Modifies your vocal cords and facial structure to be able to mimic anyone you could imagine. Be sure to set your name before speaking, or else you'll give yourself away."
-  price: 5000
-  product: VoiceMaskImplanter
-  icon:
-    sprite: Interface/Actions/voice-mask.rsi
-    state: icon
+
 
 #Wearables
 
-- type: rumorReward
-  id: PrecursorWebbing
-  name: Military Webbing
-  description: "Explosion-resistant tactical webbing used for holding traitor goods."
-  price: 400
-  product: ClothingBeltMilitaryWebbing
-  icon:
-    sprite: Clothing/Belt/militarywebbing.rsi
-    state: icon
 
-- type: rumorReward
-  id: PrecursorChameleon
-  name: Chameleon Kit
-  description: "A backpack full of items that contain chameleon technology allowing you to disguise as pretty much anyone on the station, and more! Comes with a free Agent ID card! Don't forget that Mindshield implant if attempting to impersonate Security or Command."
-  price: 5000
-  product: ClothingBackpackChameleonFillAgent
-  icon:
-    sprite: Clothing/Uniforms/Jumpsuits/Color/rainbow.rsi
-    state: icon
+
+
 
 - type: rumorReward
   id: PrecursorNoSlips
@@ -461,25 +162,7 @@
     sprite: Clothing/Shoes/color.rsi
     state: icon
 
-- type: rumorReward
-  id: PrecursorVestArmor
-  name: Web Vest
-  description: "A synthetic armor vest. This one has added webbing and ballistic plates."
-  price: 2000
-  product: ClothingOuterVestWeb
-  icon:
-    sprite: Clothing/OuterClothing/Vests/webvest.rsi
-    state: icon
 
-- type: rumorReward
-  id: PrecursorVestArmorElite
-  name: Web Vest
-  description: "A synthetic armor vest. This one has added webbing and ballistic plates."
-  price: 2500
-  product: ClothingOuterVestWebElite
-  icon:
-    sprite: Clothing/OuterClothing/Vests/elitevest.rsi
-    state: icon
 
 #Space Gear
 
@@ -494,10 +177,20 @@
     state: icon
 
 - type: rumorReward
+  id: PrecursorMedHardsuitSyndie
+  name: Blood Red Medic Hardsuit Bundle
+  description: "The Syndicate's well known armored blood red hardsuit, Now with medical stylings."
+  price: 12000
+  product: ClothingBackpackDuffelSyndicateMedHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+    state: icon
+
+- type: rumorReward
   id: PrecursorMagBoots
   name: BloodRed Mag Boots
   description: "A pair of boots that when turned on prevent slipping and, in zero gravity, allow you to move normally, at the cost of a slight slowdown. Additionally, they have jetpack functionality and come fueled, but don't last for long."
-  price: 3000
+  price: 8000
   product: ClothingShoesBootsMagSyndie
   icon:
     sprite: Clothing/Shoes/Boots/magboots-syndicate.rsi
@@ -507,7 +200,7 @@
   id: PrecursorSyndieEva
   name: Syndicate EVA Suit
   description: "A simple EVA suit that offers no protection other than what's needed to survive in space."
-  price: 2000
+  price: 5000
   product: ClothingBackpackDuffelSyndicateEVABundle
   icon:
     sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
@@ -521,16 +214,6 @@
   product: ClothingOuterHardsuitCarp
   icon:
     sprite: Clothing/OuterClothing/Suits/carpsuit.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorRaidSuit
-  name: Syndicate Raid Suit
-  description: "A very durable and reasonably flexible suit of blood-red armor, reinforced against all common forms of damage but not capable of space walks. Comes with a sick helmet."
-  price: 11000
-  product: ClothingBackpackSyndicateRaidBundle
-  icon:
-    sprite: Clothing/OuterClothing/Armor/syndie-raid.rsi
     state: icon
 
 - type: rumorReward

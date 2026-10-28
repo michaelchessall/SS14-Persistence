@@ -1,3 +1,4 @@
+using System.Linq;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Research.Components;
 using Content.Shared.Access.Components;
@@ -6,6 +7,7 @@ using Content.Shared.IdentityManagement;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
 using Content.Shared.UserInterface;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Research.Systems;
 
@@ -56,31 +58,47 @@ public sealed partial class ResearchSystem
             _radio.SendRadioMessage(uid, message, component.AnnouncementChannel, uid, escapeMarkup: false);
         }
 
-        SyncClientWithServer(uid);
         UpdateTechnologyCards(uid);
         UpdateConsoleInterface(uid, component);
     }
 
     private void OnConsoleBeforeUiOpened(EntityUid uid, ResearchConsoleComponent component, BeforeActivatableUIOpenEvent args)
     {
-        SyncClientWithServer(uid);
+        UpdateConsoleInterface(uid, component);
     }
 
-    private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? clientComponent = null)
+    private void UpdateConsoleInterface(EntityUid uid, ResearchConsoleComponent? component = null, ResearchClientComponent? client = null)
     {
-        if (!Resolve(uid, ref component, ref clientComponent, false))
+        if (!Resolve(uid, ref component, ref client, false))
             return;
 
         ResearchConsoleBoundInterfaceState state;
 
-        if (TryGetClientServer(uid, out _, out var serverComponent, clientComponent))
+        if (TryGetClientServer((uid, client), out var server))
         {
-            var points = clientComponent.ConnectedToServer ? serverComponent.Points : 0;
-            state = new ResearchConsoleBoundInterfaceState(points);
+            var (_, serverComp, dbComp) = server;
+            var multiplier = CalculateDiversityMultiplier(serverComp, dbComp);
+            var points = serverComp.Points;
+
+            state = new ResearchConsoleBoundInterfaceState
+            {
+                Points = points,
+                CostMultiplier = multiplier,
+                AvailableTechnologies = dbComp.CurrentTechnologyCards.ToHashSet(),
+                UnlockedTechnologies = GetUnlockedTechnologies((server, dbComp)).ToHashSet(),
+                SupportedDisciplines = dbComp.SupportedDisciplines.ToHashSet()
+            };
         }
         else
         {
-            state = new ResearchConsoleBoundInterfaceState(default);
+            state = new ResearchConsoleBoundInterfaceState
+            {
+                Points = 0,
+                CostMultiplier = 1f,
+                AvailableTechnologies = new(),
+                UnlockedTechnologies = new(),
+                SupportedDisciplines = new()
+            };
         }
 
         _uiSystem.SetUiState(uid, ResearchConsoleUiKey.Key, state);
@@ -95,13 +113,11 @@ public sealed partial class ResearchSystem
 
     private void OnConsoleRegistrationChanged(EntityUid uid, ResearchConsoleComponent component, ref ResearchRegistrationChangedEvent args)
     {
-        SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }
 
     private void OnConsoleDatabaseModified(EntityUid uid, ResearchConsoleComponent component, ref TechnologyDatabaseModifiedEvent args)
     {
-        SyncClientWithServer(uid);
         UpdateConsoleInterface(uid, component);
     }
 

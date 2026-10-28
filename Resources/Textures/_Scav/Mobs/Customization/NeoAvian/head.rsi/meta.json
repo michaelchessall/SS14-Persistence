@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "Sprites by https://github.com/NuclearCreeperIII",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "scar_right",
+      "directions": 4
+    },
+    {
+      "name": "scar_left",
+      "directions": 4
+    }
+  ]
+}

@@ -143,7 +143,7 @@
       Burn:
         sprite: Mobs/Effects/burn_damage.rsi
   - type: Speech
-    speechSounds: Parrot
+    speechSounds: MaleAvali
     speechVerb: Avali
     allowedEmotes: [ 'Chirp', 'Hisses', 'Purr', 'Growl', 'Scree', 'Call', 'Squawk', "Trill"]
   - type: Reactive
@@ -173,6 +173,8 @@
       types:
         Piercing: 2
         Slash: 3
+  - type: Wagging
+    action: "ActionToggleWaggingAvali"
   - type: Temperature
     specificHeat: 44
     temperature: 220
@@ -195,6 +197,11 @@
       SoftCritical: HumanCrit
       HardCritical: HumanCrit
       Dead: HumanDead
+  - type: TemperatureSpeed
+    thresholds:
+      210: 0.9
+      180: 0.8
+      150: 0.7
   - type: TemperatureDamage
     heatDamageThreshold: 280
     coldDamageThreshold: 200
@@ -238,7 +245,7 @@
   components:
   - type: VisualOrgan
     data:
-      sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+      sprite: _Harmony/Mobs/Species/Avali/parts.rsi
   - type: VisualOrganMarkings
     markingData:
       group: Avali
@@ -249,7 +256,7 @@
   abstract: true
   components:
   - type: Sprite
-    sprite: _Starlight/Mobs/Species/Avali/parts.rsi
+    sprite: _Harmony/Mobs/Species/Avali/parts.rsi
 
 - type: entity
   parent: [ OrganBaseTorsoSexed, OrganBaseTorso, OrganAvaliExternal ]
@@ -269,6 +276,15 @@
     dependentHidingLayers:
       enum.HumanoidVisualLayers.Snout:
       - enum.HumanoidVisualLayers.SnoutCover
+  - type: Sprite
+    state: head_f
+  - type: VisualOrgan
+    data:
+      sprite: _Harmony/Mobs/Species/Avali/parts.rsi
+    sexStateOverrides:
+      Male: head_m
+      Female: head_f
+
 
 - type: entity
   parent: [ OrganBaseArmLeft, OrganAvaliExternal ]

@@ -31,8 +31,9 @@ public sealed partial class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSyste
         if (!TryGetArtifactsFromConsole(ent, out var artifacts))
             return;
 
-        if (!_research.TryGetClientServer(ent, out var server, out var serverComponent))
+        if (!_research.TryGetClientServer(ent.Owner, out var server))
             return;
+        var (serverUid, serverComp, dbComp) = server;
 
         var sumResearch = 0;
         foreach (var artifact in artifacts)
@@ -49,7 +50,7 @@ public sealed partial class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSyste
         if (sumResearch <= 0)
             return;
 
-        _research.ModifyServerPoints(server.Value, sumResearch, serverComponent);
+        _research.ModifyServerPoints(server, sumResearch, serverComp);
 
         // Only play feedback once, on the artifact currently shown on the console - an advanced
         // analyzer could hold a hundred artifacts and we don't want a hundred sounds/popups.

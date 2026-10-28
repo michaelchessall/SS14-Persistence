@@ -1,0 +1,269 @@
+meta:
+  format: 7
+  category: Grid
+  engineVersion: 293.0.1
+  forkId: ""
+  forkVersion: ""
+  time: 10/21/2026 15:04:03
+  entityCount: 6
+maps: []
+grids:
+- 1
+orphans:
+- 1
+nullspace: []
+tilemap:
+  0: Space
+  24: FloorAstroGrass
+  23: FloorAstroSnow
+  20: FloorBlueCircuit
+  4: FloorDark
+  6: FloorDarkMini
+  10: FloorDarkMono
+  14: FloorDarkOffset
+  28: FloorDirt
+  7: FloorFreezer
+  26: FloorGrass
+  25: FloorGrassDark
+  31: FloorGrassJungle
+  32: FloorGrassLight
+  9: FloorHydro
+  29: FloorJungleAstroGrass
+  8: FloorKitchen
+  33: FloorMowedAstroGrass
+  30: FloorPlanetDirt
+  27: FloorPlanetGrass
+  18: FloorReinforced
+  22: FloorSnow
+  1: FloorSteel
+  2: FloorSteelMini
+  3: FloorSteelMono
+  5: FloorTechMaint2
+  11: FloorWhite
+  12: FloorWhiteDiagonal
+  21: FloorWhiteDiagonalMini
+  19: FloorWhiteMini
+  13: FloorWhiteMono
+  16: FloorWood
+  15: FloorWoodLarge
+  17: FloorWoodTile
+  153: Lattice
+  147: Plating
+  150: PlatingAsteroid
+entities:
+- proto: ""
+  entities:
+  - uid: 1
+    mapInit: true
+    components:
+    - type: MetaData
+      name: grid
+    - type: Transform
+      parent: invalid
+      rot: 3.48541522026062 rad
+      pos: 640.3908,220.01932
+    - type: MapGrid
+      chunks:
+        1,1:
+          ind: 1,1
+          tiles: AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZAAAAAAAAmQAAAAAAAJkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACZAAAAAAAAmQAAAAAAAJkAAAAAAACZAAAAAAAAmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAJkAAAAAAACZAAAAAAAAmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAmQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==
+          version: 7
+    - type: Broadphase
+    - type: Physics
+      linearDamping: 0.05
+      fixedRotation: False
+      bodyType: Dynamic
+      bodyStatus: InAir
+      angularDamping: 0.05
+    - type: Fixtures
+      fixtures: {}
+    - type: OccluderTree
+    - type: SpreaderGrid
+      updateAccumulator: 0.4668398
+    - type: Shuttle
+      dampingModifier: 0.25
+    - type: GridPathfinding
+    - type: Gravity
+      gravityShakeSound: !type:SoundPathSpecifier
+        path: /Audio/Effects/alert.ogg
+    - type: GridAtmosphere
+      version: 2
+      data:
+        uniqueMixes:
+        - volume: 2500
+          moles: {}
+          immutable: True
+        tiles:
+          5,5:
+            0: 65508
+          5,6:
+            0: 1263
+          6,5:
+            0: 12544
+          4,5:
+            0: 32768
+          6,6:
+            0: 1
+        chunkSize: 4
+      atmosDevicesOrder: []
+    - type: GasTileOverlay
+    - type: IFF
+      flags: HideLabel
+    - type: ImplicitRoof
+    - type: ChunkContainer
+      chunkEntities: []
+    - type: TileHistory
+      chunkHistory: {}
+- proto: Catwalk
+  entities:
+  - uid: 2
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 22.5,22.5
+    - type: Destructible
+      thresholds:
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: Destruction
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: False
+          spawn:
+            PartRodMetal:
+              min: 0
+              max: 1
+          offset: 0.5
+          transferForensics: False
+        - !type:DoActsBehavior
+          acts: Destruction
+  - uid: 3
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 22.5,23.5
+    - type: Destructible
+      thresholds:
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: Destruction
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: False
+          spawn:
+            PartRodMetal:
+              min: 0
+              max: 1
+          offset: 0.5
+          transferForensics: False
+        - !type:DoActsBehavior
+          acts: Destruction
+  - uid: 4
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 22.5,24.5
+    - type: Destructible
+      thresholds:
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: Destruction
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: False
+          spawn:
+            PartRodMetal:
+              min: 0
+              max: 1
+          offset: 0.5
+          transferForensics: False
+        - !type:DoActsBehavior
+          acts: Destruction
+  - uid: 5
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 21.5,23.5
+    - type: Destructible
+      thresholds:
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: Destruction
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: False
+          spawn:
+            PartRodMetal:
+              min: 0
+              max: 1
+          offset: 0.5
+          transferForensics: False
+        - !type:DoActsBehavior
+          acts: Destruction
+  - uid: 6
+    mapInit: true
+    components:
+    - type: Transform
+      parent: 1
+      pos: 23.5,23.5
+    - type: Destructible
+      thresholds:
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 100
+        behaviors:
+        - !type:DoActsBehavior
+          acts: Destruction
+      - triggersOnce: False
+        triggered: False
+        trigger: !type:DamageTrigger
+          damage: 40
+        behaviors:
+        - !type:SpawnEntitiesBehavior
+          spawnInContainer: False
+          spawn:
+            PartRodMetal:
+              min: 0
+              max: 1
+          offset: 0.5
+          transferForensics: False
+        - !type:DoActsBehavior
+          acts: Destruction
+...

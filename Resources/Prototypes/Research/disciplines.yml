@@ -7,7 +7,7 @@
     state: industrial
   tierPrerequisites:
     1: 0
-    2: 0.75
+    2: 0.5
     3: 0.75
 
 - type: techDiscipline
@@ -19,7 +19,7 @@
     state: arsenal
   tierPrerequisites:
     1: 0
-    2: 0.75
+    2: 0.5
     3: 0.75
 
 - type: techDiscipline
@@ -31,7 +31,7 @@
     state: experimental
   tierPrerequisites:
     1: 0
-    2: 0.75
+    2: 0.5
     3: 0.75
 
 - type: techDiscipline
@@ -43,5 +43,5 @@
     state: civilianservices
   tierPrerequisites:
     1: 0
-    2: 0.75
+    2: 0.5
     3: 0.75

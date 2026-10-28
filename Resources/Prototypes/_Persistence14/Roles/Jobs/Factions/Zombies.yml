@@ -1,0 +1,21 @@
+- type: startingGear
+  id: ZombieCivilian
+  equipment:
+    jumpsuit: ClothingUniformRandomStandard
+    shoes: ClothingShoesColorBlack
+    id: PassengerPDA
+
+
+
+- type: startingGear
+  id: ZombieBio
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitVirology
+    shoes: ClothingShoesColorGreen
+    id: MedicalPDA
+    back: ClothingBackpackVirology
+    head: ClothingHeadHatHoodBioVirology
+    outerClothing: ClothingOuterBioVirology
+  storage:
+    back:
+    - BoxSurvival

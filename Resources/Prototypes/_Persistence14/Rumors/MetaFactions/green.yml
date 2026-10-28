@@ -6,11 +6,13 @@
     - DrinkBasicFriendly
     - EatBasicFriendly
     - PrayBasicFriendly
+    - ReceiveMailFriendly
   color: Green
   levels:
     Green2: 150
     Green3: 500
     Green4: 1000
+  order: 1
 
 
 - type: metaFactionLevel
@@ -19,12 +21,10 @@
   rumorRewards:
     - GreenUpgradeModule
     - TradeGood
+    - GreenCodexFragment
     - GreenPlasmaCrate
     - GreenMerchCrate
-    - GreenFlippoWelder
-    - GreenPhoronCrate
-    - GreenMagBoots
-  rewardsToOffer: 3
+  rewardsToOffer: 2
 
 
 - type: metaFactionLevel
@@ -32,10 +32,30 @@
   name: Officer
   rumorRewards:
     - GreenUpgradeModule
+    - GreenCodexFragment
     - TradeGood
+    - GreenFlippoWelder
+    - GreenPhoronCrate
+    - GreenMagBoots
+    - ChemKit
+    - Defib
+    - Hypopen
+    - Jaws
+    - HyperzinePen
+    - CombatToolbox
   rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Green4
   name: Executive
-
+  rumorRewards:
+    - GreenUpgradeModule
+    - GreenCodexFragment
+    - TradeGood
+    - StorageImplanter
+    - EShield
+    - ECrossbow
+    - ScramImplanter
+    - EDagger
+    - ChameleonProjector
+  rewardsToOffer: 2

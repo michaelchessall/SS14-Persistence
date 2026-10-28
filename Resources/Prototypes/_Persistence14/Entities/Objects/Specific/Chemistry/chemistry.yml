@@ -1,0 +1,89 @@
+- type: entity
+  name: crimson pill canister
+  id: PillCanisterCrimson
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_crimson
+
+- type: entity
+  name: red pill canister
+  id: PillCanisterRed
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_red
+
+- type: entity
+  name: orange pill canister
+  id: PillCanisterOrange
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_orange
+
+- type: entity
+  name: yellow pill canister
+  id: PillCanisterYellow
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_yellow
+
+- type: entity
+  name: lime pill canister
+  id: PillCanisterLime
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_lime
+
+- type: entity
+  name: green pill canister
+  id: PillCanisterGreen
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_green
+
+- type: entity
+  name: cyan pill canister
+  id: PillCanisterCyan
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_cyan
+
+- type: entity
+  name: blue pill canister
+  id: PillCanisterBlue
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_blue
+
+- type: entity
+  name: purple pill canister
+  id: PillCanisterPurple
+  parent: PillCanister
+  description: Holds up to 10 pills.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Chemistry/pill_canister_colors.rsi
+    state: pill_canister_purple

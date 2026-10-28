@@ -1,4 +1,5 @@
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Botany.Components;
@@ -37,10 +38,11 @@ public sealed partial class PlantHolderComponent : Component
     public int MaxYieldMod = 2;
 
     /// <summary>
-    /// Current mutation level.
+    /// Current mutation level buildup per mutation table.
+    /// Levels are consumed (reset to zero) each time the plant ages and processes its mutations.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public float MutationLevel;
+    public Dictionary<ProtoId<RandomPlantMutationListPrototype>, float> MutationLevels = [];
 
     [DataField, AutoNetworkedField]
     public float MaxMutationLevel = 25f;
@@ -110,4 +112,11 @@ public sealed partial class PlantHolderComponent : Component
     [DataField, AutoNetworkedField]
     [Access(Other = AccessPermissions.ReadWriteExecute)]
     public bool MissingGas;
+
+    /// <summary>
+    /// Persistence: True if the plant is losing health due to lack of nutrients.
+    /// </summary>
+    [DataField, AutoNetworkedField]
+    [Access(Other = AccessPermissions.ReadWriteExecute)]
+    public bool MissingNutrients;
 }

@@ -91,6 +91,7 @@ public sealed partial class ActionContainerSystem : EntitySystem
 
         if (Exists(actionId))
         {
+            if (comp.Container == null) return false;
             if (!comp.Container.Contains(actionId.Value))
             {
                 Log.Error($"Action {ToPrettyString(actionId.Value)} is not contained in the expected container {ToPrettyString(uid)}");

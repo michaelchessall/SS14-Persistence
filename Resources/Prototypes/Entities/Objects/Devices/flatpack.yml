@@ -295,8 +295,8 @@
 - type: entity
   parent: BaseFlatpack
   id: ComputerStationModificationFlatpack
-  name: faction modifcation computer flatpack
-  description: A flatpack used for constructing a faction modifcation computer.
+  name: faction modification computer flatpack
+  description: A flatpack used for constructing a faction modification computer.
   components:
   - type: Flatpack
     entity: ComputerStationModification
@@ -450,3 +450,21 @@
     - state: flatpack
   - type: Flatpack
     entity: CMIV
+
+- type: entity
+  parent: BaseFlatpack
+  id: ComputerInvoicePrinterFlatpack
+  name: invoice printer computer flatpack
+  description: A flatpack used for constructing an invoice printer computer.
+  components:
+  - type: Flatpack
+    entity: ComputerInvoicePrinter
+
+- type: entity
+  parent: BaseFlatpack
+  id: HolopadLongRangeFlatpack
+  name: long-range holopad flatpack
+  description: A flatpack used for constructing a long-range holopad.
+  components:
+  - type: Flatpack
+    entity: HolopadLongRange

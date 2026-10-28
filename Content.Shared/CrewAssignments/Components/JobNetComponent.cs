@@ -28,6 +28,8 @@ public sealed partial class JobNetComponent : Component
     [DataField]
     public SoundSpecifier ErrorSound = new SoundPathSpecifier("/Audio/Effects/Cargo/buzz_sigh.ogg");
     [DataField]
+    public SoundSpecifier DMSound = new SoundPathSpecifier("/Audio/Effects/RingtoneNotes/csharp.ogg");
+    [DataField]
     public int? WorkingFor;
     [DataField]
     public TimeSpan WorkedTime = TimeSpan.Zero;

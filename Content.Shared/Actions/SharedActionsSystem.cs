@@ -875,7 +875,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
             return false;
 
         var curTime = GameTiming.CurTime;
-        if (comp.Cooldown.HasValue && comp.Cooldown.Value.End > curTime)
+        if (comp.Cooldown != null && comp.Cooldown.End > curTime)
             return false;
 
         // TODO: use event for this
@@ -1036,7 +1036,7 @@ public abstract partial class SharedActionsSystem : EntitySystem
     {
         // TODO: Check for charge recovery timer
         curTime ??= GameTiming.CurTime;
-        return action.Cooldown.HasValue && action.Cooldown.Value.End > curTime;
+        return action.Cooldown != null && action.Cooldown.End > curTime;
     }
 
     /// <summary>

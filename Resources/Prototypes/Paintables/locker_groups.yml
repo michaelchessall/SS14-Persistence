@@ -36,6 +36,7 @@
     scientist: LockerScientist
     security: LockerSecurity
     welding: LockerWeldingSupplies
+    syndicate: LockerSyndicatePersonal
 
 - type: paintableGroup
   id: Closet
@@ -58,6 +59,7 @@
     oxygen: ClosetEmergency
     radiation: ClosetRadiationSuit
     tool: ClosetTool
+    syndicate: LockerSyndicate
 
 - type: paintableGroup
   id: WallCloset
@@ -94,3 +96,4 @@
     wallprisoner6: LockerWallPrisoner6
     wallprisoner7: LockerWallPrisoner7
     wallprisoner8: LockerWallPrisoner8
+    syndicate: LockerWallSyndicate

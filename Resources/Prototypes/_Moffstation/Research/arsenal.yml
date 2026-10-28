@@ -8,15 +8,15 @@
     state: colorful-icon
   discipline: Arsenal
   tier: 1
-  cost: 6000
+  cost: 3000 # Price changed for Persistence14
   recipeUnlocks:
-  - ClothingEyesModularHudVisor
-  - ClothingEyesModularHudGoggles
-  - ClothingEyesModularHudGlasses
-  - ClothingEyesModularHudSunglasses
-  - ClothingEyesModularHudCheapSunglasses
-  - ClothingEyesModularHudJamjars
-  - ClothingEyesModularHudPatch
+    ClothingEyesModularHudVisor: 2
+    ClothingEyesModularHudGoggles: 2
+    ClothingEyesModularHudGlasses: 2
+    ClothingEyesModularHudSunglasses: 2
+    ClothingEyesModularHudCheapSunglasses: 2
+    ClothingEyesModularHudJamjars: 2
+    ClothingEyesModularHudPatch: 2
 
 # Tier 2
 
@@ -27,8 +27,8 @@
     entity: HudModuleFlashImmunity
   discipline: Arsenal
   tier: 2
-  cost: 20000 # Price changed for Persistence14
+  cost: 10000 # Price changed for Persistence14
   technologyPrerequisites:
   - ModularHudFrames
   recipeUnlocks:
-  - HudModuleFlashImmunity
+    HudModuleFlashImmunity: 2

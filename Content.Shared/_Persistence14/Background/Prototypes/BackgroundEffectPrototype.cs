@@ -11,10 +11,8 @@ public sealed partial class BackgroundEffectPrototype : IPrototype, IEquipmentLo
 {
     [IdDataField]
     public string ID { get; private set; } = "";
-
     [DataField]
     public string Description { get; set; } = string.Empty;
-
     /// <inheritdoc />
     [DataField]
     public Dictionary<string, EntProtoId> Equipment { get; set; } = new();
@@ -41,6 +39,7 @@ public sealed partial class BackgroundEffectPrototype : IPrototype, IEquipmentLo
 
     [DataField]
     public List<ProtoId<CodexEntryPrototype>> CodexEntries = new();
-
+    [DataField]
+    public int BonusCash = 0;
 
 }

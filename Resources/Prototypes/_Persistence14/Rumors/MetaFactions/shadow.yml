@@ -6,30 +6,61 @@
     - DrinkBasicEvil
     - EatBasicEvil
     - PrayBasicEvil
+    - ReceiveMailEvil
   color: DarkGray
   levels:
     Shadow2: 150
     Shadow3: 500
     Shadow4: 1000
+  order: 4
 
 - type: metaFactionLevel
   id: Shadow2
-  name: Pawn
+  name: Neophyte
   rumorRewards:
     - ShadowUpgradeModule
     - TradeGood
-  rewardsToOffer: 1
+    - ShadowCodexFragment
+    - ShadowMerchCrate
+    - GrandLottery
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Shadow3
-  name: Cultist
+  name: Truth Seeker
   rumorRewards:
     - ShadowUpgradeModule
     - TradeGood
+    - ShadowCodexFragment
+    - ShadowKnifeKit
+    - ChemKit
+    - VestArmor
+    - VestArmorElite
+    - HyperzineKit
+    - Cobra
+    - FreedomImplanter
+    - Jaws
+    - KnuckleDusters
+    - IchorCigarettes
+    - RaidSuit
+    - CombatToolbox
   rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Shadow4
-  name: Cult Leader
+  name: Knowledge Keeper
+  rumorRewards:
+    - ShadowUpgradeModule
+    - TradeGood
+    - ShadowCodexFragment
+    - EDagger
+    - VoiceMaskImplanter
+    - StorageImplanter
+    - ESword
+    - EShield
+    - ECrossbow
+    - RadioJammer
+    - Chameleon
+  rewardsToOffer: 2
 
 

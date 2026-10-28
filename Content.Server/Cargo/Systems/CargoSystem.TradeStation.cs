@@ -13,6 +13,8 @@ using Content.Shared.HijackBeacon;
 using Robust.Shared.Audio;
 using System.Linq;
 using Content.Shared.Cargo.Components;
+using Content.Server._Persistence14.Shuttles;
+using Robust.Shared.Player;
 
 namespace Content.Server.Cargo.Systems;
 
@@ -24,9 +26,9 @@ public sealed partial class CargoSystem
     * Handles cargo shuttle / trade mechanics.
     */
 
-    [Dependency] private readonly HandsSystem _hands = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly IEntityManager _entityManager = default!;
+    [Dependency] private HandsSystem _hands = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private IEntityManager _entityManager = default!;
     private static readonly SoundPathSpecifier ApproveSound = new("/Audio/Effects/Cargo/ping.ogg");
     private bool _lockboxCutEnabled;
 
@@ -156,7 +158,7 @@ public sealed partial class CargoSystem
     #region Shuttle
     /// GetCargoPallets(gridUid, BuySellType.Sell) to return only Sell pads
     /// GetCargoPallets(gridUid, BuySellType.Buy) to return only Buy pads
-    private List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid gridUid, BuySellType requestType = BuySellType.All)
+    public List<(EntityUid Entity, CargoPalletComponent Component, TransformComponent PalletXform)> GetCargoPallets(EntityUid gridUid, BuySellType requestType = BuySellType.All)
     {
         _pads.Clear();
 
@@ -259,6 +261,18 @@ public sealed partial class CargoSystem
                     continue;
                 toSell.Add(ent);
                 goods.Add((ent, CompOrNull<OverrideSellComponent>(ent), price));
+            }
+            var query = _entityManager.EntityQueryEnumerator<ActorComponent>();
+            while(query.MoveNext(out var uid, out var comp))
+            {
+                var containers = _container.GetContainingContainers((uid, Transform(uid)));
+                foreach(var container in containers)
+                {
+                    if(toSell.Contains(container.Owner))
+                    {
+                        toSell.Remove(container.Owner);
+                    }
+                }
             }
         }
     }
@@ -420,6 +434,17 @@ public sealed partial class CargoSystem
     }
 
     #endregion
+
+    /// <summary>
+    /// Trade stations cannot be unanchored.
+    /// </summary>
+    [SubscribeLocalEvent]
+    private void OnStationAnchorAttempt(ref StationAnchorAttemptEvent args)
+    {
+        if (args.State == StationAnchorState.Unanchored &&
+            HasComp<TradeStationComponent>(args.Grid))
+            args.Cancel();
+    }
 }
 
 /// <summary>

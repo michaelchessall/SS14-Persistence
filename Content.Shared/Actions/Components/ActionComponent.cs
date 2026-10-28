@@ -39,7 +39,7 @@ public sealed partial class ActionComponent : Component
     /// <summary>
     ///     The current cooldown on the action.
     /// </summary>
-    [AutoNetworkedField] // Persistence: Remove DataField. There is some issue where TimeOffsetSerializer is not being applied to the fields inside of ActionCooldown, for now just don't serialize this field.
+    [DataField, AutoNetworkedField] // Persistence: Remove DataField. There is some issue where TimeOffsetSerializer is not being applied to the fields inside of ActionCooldown, for now just don't serialize this field.
     public ActionCooldown? Cooldown;
 
     /// <summary>
@@ -154,8 +154,8 @@ public sealed partial class ActionComponent : Component
     public SoundSpecifier? Sound;
 }
 
-[DataRecord, Serializable, NetSerializable]
-public partial record struct ActionCooldown
+[DataDefinition, Serializable, NetSerializable, Virtual]
+public partial class ActionCooldown
 {
     [DataField(required: true, customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan Start;

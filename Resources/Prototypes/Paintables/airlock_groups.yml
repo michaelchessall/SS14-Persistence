@@ -18,6 +18,7 @@
     science: AirlockScience
     security: AirlockSecurity
     virology: AirlockVirology
+    syndicate: AirlockSyndicate
 
 - type: paintableGroup
   id: AirlockGlass
@@ -39,3 +40,4 @@
     security: AirlockSecurityGlass
     virology: AirlockVirologyGlass
     fancy: AirlockFancyGlass
+    syndicate: AirlockSyndicateGlass

@@ -1,0 +1,57 @@
+<Document>
+  # Rumors
+  This guide will explain how rumors can be used to gain money, equipment and influence in Persistence. Rumors are a great source of income for all characters and gaining reputation with the Nations is a key element of character progression.
+
+  Information about rumors currently available to your character is accessed through the 'Rumors' tab of the [bold]Job Network Menu[/bold].
+
+  ## What Rumors are
+
+  Rumors are jobs given to characters by the Nations that colonize the Thresholds. Completing these rumors will give the character money and reputation with the Nation it comes from.
+
+  As you gain reputation with the Nations they will send more rewarding rumors and you will unlock additional [bold]Rumored Imports[/bold] from that Nation.
+
+  For more information see the Rumored Imports guide.
+
+  ## Gaining Rumors
+  Characters gain a new rumor once every 60 minutes as long as they don't have 4 already.
+  Rumors can be transfered between characters so they can be bought or sold.
+
+  Rumors with simple objectives will progress into more complex rumors when completed.
+
+  ## Completing Rumors
+  You can view the objective of the rumor through the Job Nework Menu.
+
+  ### Eat/Drink Rumors
+  These require the character [bold]travel to the specified station[/bold] and eat or drink something [bold]with the specified flavors[/bold].
+
+  Drinking will not work for an Eat requirement and eatng will not work for a Drink requirement.
+
+  ### Pray/Reflect Rumors
+  These require the character [bold]travel to the specified station[/bold] and [bold]pray or reflect using an altar[/bold].
+
+  Characters with an [bold]Insight[/bold] that makes them capable of using a bible are able to use that [bold]on the specified station[/bold] to complete the rumor.
+
+  ### Bounty Rumors
+  These require the character to use a cargo bounty computer to complete a bounty [bold]on the specified station[/bold] from the 'Rumors' tab of the bounty computer.
+
+  Only the character with the rumor can see the bounty on the cargo bounty computer, but anyone can do the actual exporting once the manifest is printed.
+
+  ### Explore Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the character who holds the rumor must [bold]board the new grid[/bold] to complete the rumor.
+
+  ### Rescue Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then any humanoid NPCs aboard the grid must be [bold]brought to the specified station, healed and revived[/bold] to complete the rumor.
+
+  ### Recharge Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the [bold]specified machines on board the grid must be fully recharged[/bold] to complete the rumor.
+</Document>
+

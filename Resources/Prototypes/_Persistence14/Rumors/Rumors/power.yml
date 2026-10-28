@@ -8,3 +8,25 @@
   reputationReward: 50
   completionType: Power
   descriptionAddon: "Power all SMES on board the grid."
+
+- type: rumor
+  id: PowerLuminal
+  name: Power Struggle
+  description: "Eliminate the Rebel Luminals and restore power to the substation and the 2 SMESs."
+  eventGrids:
+    - /Maps/Rumors/Charge/lumi-charge.yml
+  cashReward: 5000
+  reputationReward: 50
+  completionType: Power
+  descriptionAddon: "Power all SMES on board the grid."
+
+- type: rumor
+  id: PowerPrecursor
+  name: Power Banks
+  description: "Restore power to the 2 SMES and the substation so we can retrieve our science data!"
+  eventGrids:
+    - /Maps/Rumors/Charge/syndi-charge.yml
+  cashReward: 5000
+  reputationReward: 50
+  completionType: Power
+  descriptionAddon: "Power all SMES on board the grid."

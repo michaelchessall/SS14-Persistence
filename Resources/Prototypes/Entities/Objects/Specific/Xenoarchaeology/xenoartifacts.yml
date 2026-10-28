@@ -23,8 +23,9 @@
     - Xenoarchaeology
   # gameplay interactions
   - type: XenoArtifact
-    effectsTable: !type:NestedSelector
-      tableId: XenoArtifactEffectsDefaultTable
+    rootNodeThreshold: 1
+    deepNodeThreshold: 4
+
   - type: Damageable
   - type: Injurable
   - type: Actions

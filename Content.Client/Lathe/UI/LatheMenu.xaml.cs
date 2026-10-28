@@ -25,7 +25,7 @@ public sealed partial class LatheMenu : FancyWindow
     private readonly LatheSystem _lathe;
     private readonly MaterialStorageSystem _materialStorage;
 
-    public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed;
+    //public event Action<BaseButton.ButtonEventArgs>? OnServerListButtonPressed; Persistence14: Removed in place of Recipe Relay System
     public event Action<string, int>? RecipeQueueAction;
     public event Action<int>? QueueDeleteAction;
     public event Action<int>? QueueMoveUpAction;
@@ -68,7 +68,7 @@ public sealed partial class LatheMenu : FancyWindow
 
         FilterOption.OnItemSelected += OnItemSelected;
 
-        ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a);
+        // ServerListButton.OnPressed += a => OnServerListButtonPressed?.Invoke(a); Persistence14: Removed in place of Recipe Relay System
         DeleteFabricating.OnPressed += _ => DeleteFabricatingAction?.Invoke();
     }
 
@@ -79,10 +79,10 @@ public sealed partial class LatheMenu : FancyWindow
 
         if (_entityManager.TryGetComponent<LatheComponent>(Entity, out var latheComponent))
         {
-            if (!latheComponent.DynamicPacks.Any())
+            /*if (!latheComponent.DynamicPacks.Any()) Persistence14: Removed in place of Recipe Relay System
             {
                 ServerListButton.Visible = false;
-            }
+            }*/
 
             AmountLineEdit.SetText(latheComponent.DefaultProductionAmount.ToString());
         }

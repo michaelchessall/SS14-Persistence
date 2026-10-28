@@ -1,0 +1,19 @@
+<Document>
+  # Upgrades
+  This guide will explain Upgrade Modules and how they can be used to upgrade items and machines in a variety of ways.
+
+  ## View Available Upgrades
+  To view what upgrades an item or machine has available you must stand close to it and press the 'Upgrades' button under the examine dropdown of the right click menu.
+  If 'Upgrades' does not appear then it may not have any available upgrades.
+
+  If you can examine the upgrades it will list the available upgrades along with [bold]the upgrade module type required to apply it[/bold].
+  When the upgrades say 'choose one' only one type of upgrade can be applied before locking the others out.
+
+  ## Upgrade Modules
+  Upgrade Modules are available through the Rumored Imports with every upgrade module having a specific pattern that it relates to.
+  Every upgrade requires a specific type of module to apply it.
+
+  ## Applying the Upgrade Modules
+  Hold the upgrade module in your active hand and choose the "Upgrade" option from the right click menu of the device.
+</Document>
+

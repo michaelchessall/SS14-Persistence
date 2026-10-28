@@ -86,4 +86,7 @@ public sealed partial class DeliveryComponent : Component
     /// </summary>
     [DataField]
     public string Container = "delivery";
+
+    [DataField]
+    public bool RumorDelivery = false;
 }

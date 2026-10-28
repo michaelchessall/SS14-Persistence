@@ -138,29 +138,29 @@ public sealed partial class HumanoidProfileEditor
         switch (strategy.InputType)
         {
             case SkinColorationStrategyInput.Unary:
+            {
+                if (!Skin.Visible)
                 {
-                    if (!Skin.Visible)
-                    {
-                        Skin.Visible = true;
-                        RgbSkinColorContainer.Visible = false;
-                    }
-
-                    Skin.Value = strategy.ToUnary(Profile.Appearance.SkinColor);
-
-                    break;
+                    Skin.Visible = true;
+                    RgbSkinColorContainer.Visible = false;
                 }
+
+                Skin.Value = strategy.ToUnary(Profile.Appearance.SkinColor);
+
+                break;
+            }
             case SkinColorationStrategyInput.Color:
+            {
+                if (!RgbSkinColorContainer.Visible)
                 {
-                    if (!RgbSkinColorContainer.Visible)
-                    {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
-                    }
-
-                    _rgbSkinColorSelector.Color = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
-
-                    break;
+                    Skin.Visible = false;
+                    RgbSkinColorContainer.Visible = true;
                 }
+
+                _rgbSkinColorSelector.Color = strategy.ClosestSkinColor(Profile.Appearance.SkinColor);
+
+                break;
+            }
         }
     }
 
@@ -311,35 +311,35 @@ public sealed partial class HumanoidProfileEditor
         switch (strategy.InputType)
         {
             case SkinColorationStrategyInput.Unary:
+            {
+                if (!Skin.Visible)
                 {
-                    if (!Skin.Visible)
-                    {
-                        Skin.Visible = true;
-                        RgbSkinColorContainer.Visible = false;
-                    }
-
-                    var color = strategy.FromUnary(Skin.Value);
-
-                    _markingsModel.SetOrganSkinColor(color);
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-
-                    break;
+                    Skin.Visible = true;
+                    RgbSkinColorContainer.Visible = false;
                 }
+
+                var color = strategy.FromUnary(Skin.Value);
+
+                _markingsModel.SetOrganSkinColor(color);
+                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
+                break;
+            }
             case SkinColorationStrategyInput.Color:
+            {
+                if (!RgbSkinColorContainer.Visible)
                 {
-                    if (!RgbSkinColorContainer.Visible)
-                    {
-                        Skin.Visible = false;
-                        RgbSkinColorContainer.Visible = true;
-                    }
-
-                    var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
-
-                    _markingsModel.SetOrganSkinColor(color);
-                    Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
-
-                    break;
+                    Skin.Visible = false;
+                    RgbSkinColorContainer.Visible = true;
                 }
+
+                var color = strategy.ClosestSkinColor(_rgbSkinColorSelector.Color);
+
+                _markingsModel.SetOrganSkinColor(color);
+                Profile = Profile.WithCharacterAppearance(Profile.Appearance.WithSkinColor(color));
+
+                break;
+            }
         }
 
         ReloadProfilePreview();

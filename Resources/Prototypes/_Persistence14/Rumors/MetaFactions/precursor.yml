@@ -6,11 +6,13 @@
     - DrinkBasicEvil
     - EatBasicEvil
     - PrayBasicEvil
+    - ReceiveMailEvil
   color: Purple
   levels:
     Precursor2: 150
     Precursor3: 500
     Precursor4: 1000
+  order: 2
 
 - type: metaFactionLevel
   id: Precursor2
@@ -18,9 +20,10 @@
   rumorRewards:
     - PrecursorUpgradeModule
     - TradeGood
+    - PrecursorCodexFragment
+    - PrecursorPJs
     - PrecursorMerchCrate
-  rewardsToOffer: 1
-
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Precursor3
@@ -28,45 +31,24 @@
   rumorRewards:
     - PrecursorUpgradeModule
     - TradeGood
-    - PrecursorPJs
-    - PrecursorCarpSuitBag
-    - PrecursorViper
-    - PrecursorPython
-    - PrecursorKnifeKit
-    - PrecursorKnuckleDusters
-    - PrecursorRiggedBoxingGloves
-    - PrecursorMicrowave
-    - PrecursorChemKit
-    - PrecursorHyperzinePen
-    - PrecursorCigarettes
+    - PrecursorCodexFragment
+    - Microwave
+    - ChemKit
     - PrecursorDefib
-    - PrecursorJaws
-    - PrecursorStealthBox
-    - PrecursorFlashCamera
+    - HyperzinePen
+    - IchorCigarettes
     - PrecursorDecoy
     - PrecursorSoapSyndie
-    - PrecursorToolbox
-    - PrecursorFakeMindshield
-    - PrecursorWebbing
     - PrecursorMagBoots
     - PrecursorSyndieEva
-    - PrecursorCobra
-    - PrecursorECrossbow
-    - PrecursorGlovesNorthStar
-    - PrecursorHushpup
-    - PrecursorHypopen
-    - PrecursorHypoDart
-    - PrecursorHyperzineKit
+    - Cobra
+    - Hushpup
+    - Hypopen
     - PrecursorSoapSyndieCluster
-    - PrecursorCameraBug
-    - PrecursorStorageImplanter
-    - PrecursorFreedomImplanter
+    - FreedomImplanter
     - PrecursorNoSlips
-    - PrecursorVestArmor
-    - PrecursorVestArmorElite
     - PrecursorHardsuitSyndie
-    - PrecursorCarpHardsuit
-    - PrecursorRaidSuit
+    - PrecursorMedHardsuitSyndie
   rewardsToOffer: 2
 
 - type: metaFactionLevel
@@ -75,20 +57,14 @@
   rumorRewards:
     - PrecursorUpgradeModule
     - TradeGood
-    - PrecursorESword
-    - PrecursorEDagger
-    - PrecursorECrossbow
-    - PrecursorGlovesNorthStar
-    - PrecursorEShield
-    - PrecursorC-20r
-    - PrecursorL-6SawBundle
-    - PrecursorAccessBreaker
-    - PrecursorRadioJammer
-    - PrecursorChameleonProjector
-    - PrecursorScramImplanter
-    - PrecursorVoiceMaskImplanter
-    - PrecursorChameleon
+    - PrecursorCodexFragment
+    - ECrossbow
+    - RadioJammer
+    - ChameleonProjector
+    - VoiceMaskImplanter
+    - Chameleon
     - PrecursorHardsuitSyndieElite
     - PrecursorHardsuitSyndieJug
+    - StealthBox
   rewardsToOffer: 2
 

@@ -9,10 +9,20 @@
     state: nanotrasen-full
 
 - type: rumorReward
+  id: GreenCodexFragment
+  name: Codex Fragment (Nanotrasen)
+  description: "Will unlock a codex entry when used."
+  price: 2000
+  product: GreenCodexFragment
+  icon:
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+    state: nt-codex
+
+- type: rumorReward
   id: GreenPlasmaCrate
   name: Plasma Shipment
   description: "NT runs on plasma its only natural they have some to spare... for a price."
-  price: 5000
+  price: 9000
   product: CrateMaterialPlasma
   icon:
     sprite: Objects/Materials/Sheets/other.rsi
@@ -22,7 +32,7 @@
   id: GreenMerchCrate
   name: Marketing Shipment
   description: "A crate of Nanotrasen themed merch for you to wear or give out."
-  price: 500
+  price: 1500
   product: CrateNTMerch
   icon:
     sprite: Objects/Misc/Handy_Flags/NT_handy_flag.rsi
@@ -32,7 +42,7 @@
   id: GreenFlippoWelder
   name: Gilded CentComm Flippo
   description: "A bluespace powered flippo lighter with auto refueling and locking mechanism you'll be the talk of the town when you pull this out at a party. In dire straits it also doubles as a welder."
-  price: 1000
+  price: 5000
   product: CentCommFlippo
   icon:
     sprite: Objects/Tools/Lighters/centcomm.rsi
@@ -42,7 +52,7 @@
   id: GreenPhoronCrate
   name: Phoron Shipment
   description: "Phoron the material of tomorrow. You seem trustworthy enough for a small amount of it."
-  price: 6000
+  price: 10000
   product: CrateMaterialPhoron10
   icon:
     sprite: Objects/Materials/Sheets/other.rsi
@@ -52,7 +62,7 @@
   id: GreenMagBoots
   name: ERT Mag Boots
   description: "A pair of boots that when turned on prevent slipping and, in zero gravity, allow you to move normally, at the cost of a slight slowdown. Additionally, they have jetpack functionality and come fueled, but don't last for long."
-  price: 3000
+  price: 13000
   product: ClothingShoesBootsMagERT
   icon:
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi

@@ -1,38 +1,39 @@
 - type: codexEntry
   id: Marine101
-  name: 101
-  content: "UNFILLED"
+  name: UNMC Remnant Origin
+  content: "When the [bold]United Nations[/bold] discovered an entrance to the Threshold it initially commited abundant resources to its colonization and control.\n\nEntire regiments of the UNMC were sent into the Threshold to secure Xeno-infested territory but this quickly developed into a calamity known as [bold]The Forever War[/bold].\n\nAs the situation has gotten worse the flow of materials, contractors and troops has slowed to a trickle as the [bold]United Nations[/bold] grows increasingly skeptical of the investment. The diminished UNMC forces within the Threshold have become known as the [italic]UNMC Remnants[/italic]."
   order: 0
   category: Marine
   unlockHint: "Use a Codex Fragment"
+
 - type: codexEntry
   id: Marine102
-  name: 102
-  content: "UNFILLED"
+  name: United Nations
+  content: "The United Nations is a federation of space-faring species that governs large portions of the home galaxy of the UNMC. The Federation has grown increasingly militant while facing down threats from rebellions, insurgents and the [bold]Xenos[/bold].\n\nThe United Nations originally considered the Threshold to be an opportunity to harvest exotic materials to develop weapons and technologies that would give them a decisive advantage over the enemy.\n\nWhen the scope and horror of the [bold]Forever War[/bold] was leaked, members of the United Nations lost faith in the Threshold as a viable investment.\n\nFor now the discovery of the Nexus Space remains a secret known only to top members of the United Nations and UNMC."
   order: 1
   category: Marine
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Marine103
-  name: 103
-  content: "UNFILLED"
+  name: The Forever War
+  content: "The UNMC forces that were deployed into the Threshold encountered fierce resistance from [bold]Xeno Hives[/bold] that had established themselves in sectors across the Threshold. The [bold]Special Death Property[/bold] of the Threshold caused combat operations to stagnate into battles that would last for weeks.\n\nMarines and Xenos would fight and die only to be recovered, resurrected and redeployed. This never-ending slaughter is known as 'The Forever War' and it still continues to this day.\n\nThe grim reality of war in the Threshold has caused the Commanders of the UNMC Remnant to adopt [bold]'The Mortality Mandate'[/bold]"
   order: 2
   category: Marine
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Marine104
-  name: 104
-  content: "UNFILLED"
+  name: Xenos
+  content: "The Xenos are a species of terrifying creatures that have adapted for killng and warfare. They are intelligent but do not process emotions or empathy as most sapient species do.\n\nThe Xenos are a product of bio-engineering and will rapidly evolve to meet the requirements of any battlefield. Xenos benefit from the [bold]Special Death Property[/bold] in the same way other sapients do. They are nearly impossible to kill while in the Threshold."
   order: 3
   category: Marine
   unlockHint: "Use a Codex Fragment"
 
 - type: codexEntry
   id: Marine105
-  name: 105
-  content: "UNFILLED"
+  name: The Mortality Mandate
+  content: "Faced with the insanity of [bold]The Forver War[/bold], the waning support from the [bold]United Nations[/bold] and the impossibility of escape from the Threshold, the Commanders of the UNMC Remnant have adopted The Mortality Mandate.\n\nThe Remnant forces put any effort they can spare into the pursuit of a way to end the [bold]Special Death Property[/bold] and to restore the normal properties of death to the Threshold.\n\nIf [bold]True Death[/bold] could be restored within the Marine Threshold, the UNMC and the Xenos could finally have a decisive conflict and the Forever War could finally end."
   order: 4
   category: Marine
   unlockHint: "Use a Codex Fragment"

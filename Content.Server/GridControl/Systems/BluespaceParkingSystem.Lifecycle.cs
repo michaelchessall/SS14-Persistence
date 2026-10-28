@@ -10,6 +10,7 @@ using Content.Shared.Database;
 using Content.Shared.GridControl.Components;
 using Content.Shared.GridControl.Systems;
 using Content.Shared.Station.Components;
+using Content.Shared.Movement.Components;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Components;
 using Robust.Shared.Audio.Systems;
@@ -433,37 +434,70 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
         return true;
     }
 
-    private bool TryGetUnparkPlacementLocation(MapId mapId, Vector2 origin, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle, float spawnDistance = 20f, int maxIterations = 20)
+    private bool TryGetUnparkPlacementLocation(MapId mapId, Vector2 origin, Box2 bounds, Angle worldAngle, out MapCoordinates coords, out Angle angle, float spawnDistance = 10, int maxIterations = 40)
     {
         var finalCoords = new MapCoordinates(origin, mapId);
         angle = worldAngle;
+        var angleCount = 8;
+        float[] angles = new float[angleCount];
+        var rampUprate = 1.1f;
+        var incrementRate = 10f;
+        var angleHalfRange = (360f / angles.Length) / 2f;
+
+        var radius = 0f;
+        var mapUid = _mapSystem.GetMap(mapId);
+        if (TryComp(mapUid, out MapBoundsComponent? mapBoundaryComponent))
+        {
+            radius = mapBoundaryComponent.Radius;
+        } else
+        {
+            angle = Angle.Zero;
+            coords = MapCoordinates.Nullspace;
+            return false;
+        }
+
+        for (var i = 1; i < angles.Length; i++)
+        {
+            angles[i] = angles[i-1] + 360 / angles.Length;
+        }
 
         for (var i = 0; i < maxIterations; i++)
         {
-            var box2 = Box2.CenteredAround(finalCoords.Position, bounds.Size);
-            var box2Rot = new Box2Rotated(box2, angle, finalCoords.Position).Enlarged(-0.5f);
-
-            // This doesn't stop it from spawning on top of random things in space
-            var grids = new List<Entity<MapGridComponent>>();
-            _mapping.FindGridsIntersecting(finalCoords.MapId, box2Rot, ref grids);
-            if (grids.Any())
+            for (var j = 0; j < angles.Length; j++)
             {
-                // Bump it further and further just in case.
-                var fraction = (float)(i + 1) / maxIterations;
-                var randomPos = origin +
-                    (worldAngle + Math.PI / 2).ToVec() * (DockingSystem.DockRange + (spawnDistance * fraction));
+                //setting to int is going to make it a bit innacurate but should be fine for now aslong as some really larger anglecount isnt used, wich is very unlikely
+                var randomAngle = Random.Shared.Next((int)(angles[j] - angleHalfRange), (int)(angles[j] + angleHalfRange));
+                angle = Angle.FromDegrees(randomAngle);
+                var randomPos = origin + (angle + Math.PI / 2).ToVec() * spawnDistance;
                 finalCoords = new MapCoordinates(randomPos, mapId);
-                continue;
-            }
-            else if (i == 0)
-            {
-                var pos = origin + (worldAngle + Math.PI / 2).ToVec() * DockingSystem.DockRange;
-                finalCoords = new MapCoordinates(pos, mapId);
-            }
-            coords = finalCoords;
-            return true;
-        }
 
+                var distance = Math.Sqrt((finalCoords.X * finalCoords.X) + (finalCoords.Y * finalCoords.Y));
+
+                if (distance >= radius)
+                {
+                    //give opposite angle double the checks if one reaches border
+                    var oppositeAngleIndex = (j + 4) % 8;
+                    angles[j] = angles[oppositeAngleIndex];
+                    continue;
+                }
+
+                var box2 = Box2.CenteredAround(finalCoords.Position + bounds.Center, bounds.Size);
+                var box2Rot = new Box2Rotated(box2, worldAngle, finalCoords.Position);
+                List<Entity<MapGridComponent>> grids = new();
+                _mapping.FindGridsIntersecting(finalCoords.MapId, box2Rot, ref grids);
+                if (grids.Any())
+                {
+                    continue;
+                }
+                angle = worldAngle;
+                coords = finalCoords;
+                return true;
+
+            }
+            // Bump it further and further if all dorection checks are exhausted
+            spawnDistance += incrementRate;
+            incrementRate *= rampUprate;
+        }
         angle = Angle.Zero;
         coords = MapCoordinates.Nullspace;
         return false;

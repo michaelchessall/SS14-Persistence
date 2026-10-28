@@ -6,6 +6,7 @@ using Content.Shared.Cargo.Prototypes;
 using Content.Shared.Chat;
 using Content.Shared.Delivery;
 using Content.Shared.FingerprintReader;
+using Content.Shared.Forensics.Components;
 using Content.Shared.Labels.EntitySystems;
 using Content.Shared.StationRecords;
 using Content.Shared.StationRecords.Systems;
@@ -45,28 +46,43 @@ public sealed partial class DeliverySystem : SharedDeliverySystem
         InitializeSpawning();
     }
 
+    public void SetupDelivery(Entity<DeliveryComponent> ent, EntityUid target)
+    {
+        if (!TryComp<FingerprintComponent>(target, out var finger) || finger == null) return;
+        var name = Name(target);
+        var job = "Colonist";
+        ent.Comp.RecipientName = name;
+        ent.Comp.RecipientJobTitle = job;
+        _label.Label(ent, ent.Comp.RecipientName);
+        if (TryComp<FingerprintReaderComponent>(ent, out var reader) && finger.Fingerprint != null)
+        {
+            _fingerprintReader.AddAllowedFingerprint((ent.Owner, reader), finger.Fingerprint);
+        }
+        Dirty(ent);
+    }
+
     private void OnMapInit(Entity<DeliveryComponent> ent, ref MapInitEvent args)
     {
         _container.EnsureContainer<Container>(ent, ent.Comp.Container);
 
-        if (_station.GetStationInMap(Transform(ent).MapID) is not { } stationId)
-            return;
+        //if (_station.GetStationInMap(Transform(ent).MapID) is not { } stationId)
+        //    return;
 
-        if (!_records.TryGetRandomRecord<GeneralStationRecord>(stationId, out var entry, seedEntity: ent))
-            return;
+        //if (!_records.TryGetRandomRecord<GeneralStationRecord>(stationId, out var entry, seedEntity: ent))
+        //    return;
 
-        ent.Comp.RecipientName = entry.Name;
-        ent.Comp.RecipientJobTitle = entry.JobTitle;
-        ent.Comp.RecipientStation = stationId;
+        //ent.Comp.RecipientName = entry.Name;
+        //ent.Comp.RecipientJobTitle = entry.JobTitle;
+        //ent.Comp.RecipientStation = stationId;
 
-        _appearance.SetData(ent, DeliveryVisuals.JobIcon, entry.JobIcon);
+        //_appearance.SetData(ent, DeliveryVisuals.JobIcon, entry.JobIcon);
 
-        _label.Label(ent, ent.Comp.RecipientName);
+        //_label.Label(ent, ent.Comp.RecipientName);
 
-        if (TryComp<FingerprintReaderComponent>(ent, out var reader) && entry.Fingerprint != null)
-        {
-            _fingerprintReader.AddAllowedFingerprint((ent.Owner, reader), entry.Fingerprint);
-        }
+        //if (TryComp<FingerprintReaderComponent>(ent, out var reader) && entry.Fingerprint != null)
+        //{
+        //    _fingerprintReader.AddAllowedFingerprint((ent.Owner, reader), entry.Fingerprint);
+        //}
 
         Dirty(ent);
     }

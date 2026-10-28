@@ -5,7 +5,9 @@ using Content.Server.Explosion.EntitySystems;
 using Content.Server.Materials;
 using Content.Server.Radiation.Systems;
 using Content.Server.Radio.EntitySystems;
+using Content.Server.Research.Systems;
 using Content.Server.Station.Systems;
+using Content.Shared.Access.Systems;
 using Content.Shared.Anomaly;
 using Content.Shared.Anomaly.Components;
 using Content.Shared.Anomaly.Prototypes;
@@ -38,6 +40,8 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     [Dependency] private RadiationSystem _radiation = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private UserInterfaceSystem _ui = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private AccessReaderSystem _access = default!;
 
     public const float MinParticleVariation = 0.8f;
     public const float MaxParticleVariation = 1.2f;
@@ -53,7 +57,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
         SubscribeLocalEvent<AnomalyComponent, StartCollideEvent>(OnStartCollide);
         SubscribeLocalEvent<AnomalyStabilityChangedEvent>(OnVesselAnomalyStabilityChanged);
 
-        InitializeGenerator();
+        //InitializeGenerator(); Effect moved to Content.Server\_Persistence14\Research\Anomalies\AnomalyGeneratorSystem.cs for Persistence14
         InitializeVessel();
         InitializeCommands();
     }
@@ -96,13 +100,6 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
 
         if (args.OtherFixtureId != particle.FixtureId)
             return;
-
-        if (anomaly.Comp.IgnoreParticleHitsAfterSupercritical &&
-            Appearance.TryGetData<bool>(anomaly, AnomalyVisuals.Supercritical, out var alreadyWent) &&
-            alreadyWent)
-        {
-            return;
-        }
 
         var behaviorMod = 1f;
         if (anomaly.Comp.CurrentBehavior != null)
@@ -188,7 +185,7 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
     {
         base.Update(frameTime);
 
-        UpdateGenerator();
+        //UpdateGenerator(); Effect moved to Content.Server\_Persistence14\Research\Anomalies\AnomalyGeneratorSystem.cs for Persistence14
         UpdateVessels();
     }
 
@@ -238,6 +235,11 @@ public sealed partial class AnomalySystem : SharedAnomalySystem
             msg.AddMarkupOrThrow(Loc.GetString("anomaly-scanner-no-anomaly"));
             return msg;
         }
+
+        //Stability PersistenceEdit
+        var stabilityText = Loc.GetString("anomaly-scanner-stability-percentage", ("percent", (1 - anomalyComp.Stability).ToString("P")));
+        msg.AddMarkupOrThrow(stabilityText);
+        msg.PushNewline();
 
         TryComp<SecretDataAnomalyComponent>(anomaly, out var secret);
 

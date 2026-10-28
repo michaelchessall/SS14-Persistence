@@ -26,7 +26,7 @@ public sealed partial class SwapToFreeHandOperator : HTNOperator
             return (true, new Dictionary<string, object>()
             {
                 {
-                    NPCBlackboard.ActiveHand, hand
+                    NPCBlackboard.ActiveHand, handsComp.Hands[hand]
                 },
                 {
                     NPCBlackboard.ActiveHandFree, true

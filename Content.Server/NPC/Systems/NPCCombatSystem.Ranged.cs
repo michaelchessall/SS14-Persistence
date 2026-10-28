@@ -1,4 +1,3 @@
-using Content.Server.Anomaly.Effects.Components;
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
@@ -7,7 +6,6 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
-using static Content.Shared.Interaction.SharedInteractionSystem;
 
 namespace Content.Server.NPC.Systems;
 
@@ -132,18 +130,7 @@ public sealed partial class NPCCombatSystem
 
                 // For consistency with NPC steering.
                 var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
-
-                // An Eye-possessed thrall's own anomaly anchor is a static, Opaque-flagged fixture
-                // it constantly stands near/fights around - ignore ONLY that entity for a
-                // thrall's own LOS check, so its own tether anchor can't block its shots.
-                Ignored? ignore = null;
-                if (TryComp<TetheredByEyeComponent>(uid, out var tetherComp) && _pid.TryResolveId(tetherComp.Eye, out var eyeEnt))
-                {
-                    var eyeAnomaly = eyeEnt.Owner;
-                    ignore = entity => entity == eyeAnomaly;
-                }
-
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup, ignore);
+                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
             }
 
             if (!comp.TargetInLOS)
@@ -192,9 +179,7 @@ public sealed partial class NPCCombatSystem
             // TODO: Check if we can face
 
             if (!Enabled || !_gun.CanShoot(gun))
-            {
                 continue;
-            }
 
             EntityCoordinates targetCordinates;
 
@@ -211,7 +196,7 @@ public sealed partial class NPCCombatSystem
 
             if (gun.Comp.NextFire > _timing.CurTime)
             {
-                continue;
+                return;
             }
 
             _gun.AttemptShoot(uid, gun, targetCordinates, comp.Target);

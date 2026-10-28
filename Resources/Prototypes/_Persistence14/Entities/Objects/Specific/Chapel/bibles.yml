@@ -11,7 +11,7 @@
 
 - type: entity
   name: The Threshold Candle
-  description: "An artifact of the Threshold's Embrace. This candle was lit by the light of the very Threshold itself. It's ever-burning wick is a sign of the vitality of the Threshold."
+  description: "An artifact of the Threshold's Embrace. This candle was lit by the light of the Zenith Threshold itself. It's ever-burning wick was a sign of the vitality of the Zenith Threshold; What does it mean now?"
   parent: CandleInfinite
   id: CandleThresholdInfinite
   components:

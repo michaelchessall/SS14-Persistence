@@ -42,6 +42,8 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Body.Components;
 using Content.Shared.StatusEffectNew;
 using Content.Shared._Persistence14.Polymorph;
+using Content.Server.DoAfter;
+using Content.Shared.DoAfter;
 
 namespace Content.Server.Polymorph.Systems;
 
@@ -70,6 +72,7 @@ public sealed partial class PolymorphSystem : EntitySystem
     [Dependency] private EntityVoidSystem _void = default!;
     [Dependency] private RejuvenateSystem _rejuv = default!;
     [Dependency] private StatusEffectsSystem _statusEffect = default!;
+    [Dependency] private DoAfterSystem _doAfter = default!;
 
     private static readonly ProtoId<TagPrototype> PolymorphTransferReagentTag = "PolymorphTransferReagent";
     private static readonly EntProtoId RevertPolymorphId = "ActionRevertPolymorph";
@@ -340,7 +343,7 @@ public sealed partial class PolymorphSystem : EntitySystem
         }
 
         var pid = _pid.EnsureId(uid, out var pidEntity);
-
+        
         // mostly just for vehicles
         _buckle.TryUnbuckle(uid, uid, true);
 
@@ -428,7 +431,13 @@ public sealed partial class PolymorphSystem : EntitySystem
                 solution.AddReagent(reagent, qty);
             }
         }
-
+        if(TryComp<DoAfterComponent>(uid, out var doAfter))
+        {
+            foreach(var action in doAfter.DoAfters)
+            {
+                _doAfter.Cancel(action.Value.Id);
+            }
+        }
         // ALL DATA MODIFICATION SHOULD OCCUR BEFORE THIS POINT
         if (!_void.TryVoidEntity(uid))
         {

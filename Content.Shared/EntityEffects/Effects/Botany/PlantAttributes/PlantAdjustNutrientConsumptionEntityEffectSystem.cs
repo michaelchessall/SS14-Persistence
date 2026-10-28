@@ -1,3 +1,4 @@
+/* Persistence: Made obsolete by plant nutrient rework
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 
@@ -27,3 +28,4 @@ public sealed partial class PlantAdjustNutrientConsumption : BasePlantAdjustAttr
     public override string GuidebookAttributeName { get; set; } = "plant-attribute-nutrient-consumption";
     public override bool GuidebookIsAttributePositive { get; protected set; } = false;
 }
+*/

@@ -127,8 +127,16 @@ public abstract partial class SharedChatSystem : EntitySystem
         if (!input.StartsWith(RadioChannelPrefix))
             return;
 
-        if (!_keyCodes.TryGetValue(char.ToLower(input[1]), out _))
-            return;
+        // Persistence 14: Preserve custom faction radio prefixes through emote sanitization so hotkeys like :d still route to radio when a faction channel owns that key.
+        var key = char.ToLowerInvariant(input[1]);
+        if (!_keyCodes.ContainsKey(key))
+        {
+            var customEv = new ResolveCustomRadioChannelEvent(key);
+            RaiseLocalEvent(source, customEv);
+            if (customEv.Channel == null)
+                return;
+        }
+        // End Persistence 14
 
         prefix = input[..2];
         output = input[2..];
@@ -149,10 +157,12 @@ public abstract partial class SharedChatSystem : EntitySystem
         string input,
         out string output,
         out RadioChannelPrototype? channel,
+        out int? encryptionID,
         bool quiet = false)
     {
         output = input.Trim();
         channel = null;
+        encryptionID = null;
 
         if (input.Length == 0)
             return false;
@@ -188,6 +198,16 @@ public abstract partial class SharedChatSystem : EntitySystem
                 ProtoMan.TryIndex(ev.Channel, out channel);
             return true;
         }
+
+        // Persistence 14: Resolve faction-scoped custom radio hotkeys before falling back to global prototype keycodes so each headset can target its configured faction channels.
+        var customEv = new ResolveCustomRadioChannelEvent(channelKey);
+        RaiseLocalEvent(source, customEv);
+        if (customEv.Channel != null && ProtoMan.TryIndex(customEv.Channel, out channel))
+        {
+            encryptionID = customEv.EncryptionID;
+            return true;
+        }
+        // End Persistence 14
 
         if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
         {

@@ -1,5 +1,8 @@
+using Content.Server._NF.Bank;
 using Content.Server._Persistence14.Codex.Systems;
 using Content.Server.CrewRecords.Systems;
+using Content.Server.NPC.Queries.Queries;
+using Content.Server.Storage.EntitySystems;
 using Content.Server.Traits;
 using Content.Shared._Persistence14.Background.Prototypes;
 using Content.Shared._Persistence14.Rumors.Systems;
@@ -8,8 +11,11 @@ using Content.Shared.Hands.Components;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Roles;
+using Content.Shared.Species;
+using Content.Shared.Storage;
 using Content.Shared.Traits;
 using Content.Shared.Whitelist;
+using NetCord;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Serilog.Parsing;
@@ -26,6 +32,11 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
     [Dependency] private CrewMetaRecordsSystem _crewMetaRecords = default!;
     [Dependency] private RumorsSystem _rumors = default!;
     [Dependency] private CodexSystem _codex = default!;
+    [Dependency] private BankSystem _bank = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
+    [Dependency] private EntityQuery<InventoryComponent> _inventoryQuery = default!;
+    [Dependency] private EntityQuery<StorageComponent> _storageQuery = default!;
+    [Dependency] private StorageSystem _storage = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -86,21 +97,50 @@ public sealed partial class CharacterBackgroundSystem : EntitySystem
                     _inventorySystem.TryEquip(mob, item, kv.Key, true, true);
                 }
             }
+            if (effectProto.Storage.Count > 0)
+            {
+                var entity = mob;
+                var coords = _xform.GetMapCoordinates(entity);
+                _inventoryQuery.TryComp(entity, out var inventoryComp);
+
+                foreach (var (slotName, entProtos) in effectProto.Storage)
+                {
+                    if (entProtos == null || entProtos.Count == 0)
+                        continue;
+
+                    if (inventoryComp != null &&
+                        _inventorySystem.TryGetSlotEntity(entity, slotName, out var slotEnt, inventoryComponent: inventoryComp) &&
+                        _storageQuery.TryComp(slotEnt, out var storage))
+                    {
+
+                        foreach (var entProto in entProtos)
+                        {
+                            var spawnedEntity = Spawn(entProto, coords);
+
+                            _storage.Insert(slotEnt.Value, spawnedEntity, out _, storageComp: storage, playSound: false);
+                        }
+                    }
+                }
+            }
             foreach (var trait in effectProto.Traits)
             {
                 var traitProto = ProtoMan.Index<TraitPrototype>(trait);
                 _traitSystem.AddTrait(mob, traitProto);
             }
-            if(crewrecord != null)
+            if (crewrecord != null)
             {
                 foreach (var kv in effectProto.ReputationGains)
                 {
                     var total = kv.Value;
-                    if(crewrecord.MetaFactionReputations.ContainsKey(kv.Key))
+                    if (crewrecord.MetaFactionReputations.ContainsKey(kv.Key))
                     {
                         total += crewrecord.MetaFactionReputations[kv.Key];
                     }
                     crewrecord.MetaFactionReputations[kv.Key] = total;
+                }
+                if (effectProto.BonusCash > 0)
+                {
+                    _bank.TryBankDeposit(args.Mob, effectProto.BonusCash);
                 }
             }
             var rumorEnt = _rumors.GetRumorComponent(args.Mob);

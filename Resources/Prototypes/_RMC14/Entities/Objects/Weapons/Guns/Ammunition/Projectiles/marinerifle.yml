@@ -1,0 +1,45 @@
+- type: entity
+  parent: BaseBullet
+  id: BulletMarineRifle
+  categories: [ HideSpawnMenu ]
+  name: bullet (.10 rifle)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 12
+
+- type: entity
+  parent: BaseBulletPractice
+  id: BulletMarineRiflePractice
+  categories: [ HideSpawnMenu ]
+  name: bullet (.10 rifle practice)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Blunt: 1
+
+- type: entity
+  parent: BaseBulletIncendiary
+  id: BulletMarineRifleIncendiary
+  categories: [ HideSpawnMenu ]
+  name: bullet (.10 rifle incendiary)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Piercing: 7
+        Heat: 5
+
+- type: entity
+  parent: BaseBulletUranium
+  id: BulletMarineRifleUranium
+  categories: [ HideSpawnMenu ]
+  name: bullet (.10 rifle uranium)
+  components:
+  - type: Projectile
+    damage:
+      types:
+        Radiation: 5
+        Piercing: 7

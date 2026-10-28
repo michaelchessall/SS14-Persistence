@@ -1,5 +1,6 @@
-using JetBrains.Annotations;
 using System.Diagnostics.CodeAnalysis;
+using Content.Shared._Persistence14.Botany;
+using Content.Shared._Persistence14.Botany.Components;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Items.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -7,6 +8,7 @@ using Content.Shared.Cloning;
 using Content.Shared.Examine;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Random;
+using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -15,7 +17,6 @@ namespace Content.Shared.Botany.Systems;
 
 public sealed partial class BotanySystem : EntitySystem
 {
-    [Dependency] private IComponentFactory _componentFactory = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
     [Dependency] private PlantSystem _plant = default!;
@@ -87,7 +88,55 @@ public sealed partial class BotanySystem : EntitySystem
         if (!ProtoMan.TryIndex(plantProtoId.Value, out var proto))
             return false;
 
-        return proto.TryComp(out plant, _componentFactory);
+        return proto.TryComp(out plant, Factory);
+    }
+
+    /// <summary>
+    /// Persistence: Tries to get a plant's nutrient requirements from a snapshot or prototype.
+    /// </summary>
+    /// <typeparam name="T">The type of component to get.</typeparam>
+    /// <param name="snapshot">The snapshot to get the requirements from.</param>
+    /// <param name="plantProtoId">The prototype ID to get the requirements from.</param>
+    /// <param name="totalRequirements">The nutrient requirements if found.</param>
+    [PublicAPI]
+    public bool TryGetPlantRequirements(EntityUid? snapshot, EntProtoId? plantProtoId, [NotNullWhen(true)] out Dictionary<ProtoId<PlantNutrientPrototype>, NutrientRequirement> totalRequirements)
+    {
+        totalRequirements = new();
+        var gotRequirements = false;
+
+        if (TryGetPlantComponent(snapshot, plantProtoId, out PlantBaseRequirementsComponent? baseRequirementComp))
+        {
+            foreach (var (nutrient, baseRequirement) in baseRequirementComp.BaseRequirements)
+            {
+                NutrientRequirement requirement = new()
+                {
+                    Requirement = baseRequirement,
+                };
+                totalRequirements.Add(nutrient, requirement);
+            }
+            gotRequirements = true;
+        }
+
+        if (TryGetPlantComponent(snapshot, plantProtoId, out PlantChemicalsComponent? chemicalsComp))
+        {
+            foreach (var chemQuantity in chemicalsComp.Chemicals.Values)
+            {
+                var quantityProto = _prototypeManager.Index(chemQuantity.Id);
+                foreach (var (nutrient, requirement) in quantityProto.Requirements)
+                {
+                    if (!totalRequirements.TryAdd(nutrient, requirement))
+                    {
+                        var newRequirement = totalRequirements[nutrient];
+                        newRequirement.Requirement += requirement.Requirement;
+                        newRequirement.BonusRequirement += requirement.BonusRequirement;
+                        newRequirement.BonusAmount += requirement.BonusAmount;
+                        totalRequirements[nutrient] = newRequirement;
+                    }
+                }
+            }
+        }
+
+        return gotRequirements;
     }
 
     /// <summary>
@@ -178,5 +227,34 @@ public sealed partial class BotanySystem : EntitySystem
 
         _hands.TryPickupAnyHand(user, seedItem);
         return seedItem;
+    }
+
+    /// <summary>
+    /// Reverts a planted plant back into a seed packet while preserving its genetics.
+    /// </summary>
+    [PublicAPI]
+    public bool TryRevertPlantToSeed(Entity<PlantComponent?, PlantDataComponent?> ent)
+    {
+        if (!Resolve(ent, ref ent.Comp1, ref ent.Comp2, false))
+            return false;
+
+        if (!_plant.TryGetTray(ent.Owner, out var tray))
+            return false;
+
+        if (!ProtoMan.Resolve(ent.Comp2.PacketPrototype, out var seedProto)
+            || !seedProto.TryComp<SeedComponent>(out var seedComp, Factory))
+        {
+            return false;
+        }
+
+        SpawnSeedPacket(
+            ent.Comp2,
+            seedComp.PlantProtoId,
+            ent.Owner,
+            Transform(tray).Coordinates,
+            tray.Owner);
+
+        _plant.RemovePlant(ent.Owner);
+        return true;
     }
 }

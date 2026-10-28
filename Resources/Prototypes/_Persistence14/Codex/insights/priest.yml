@@ -1,0 +1,76 @@
+- type: insightTrait
+  id: Priest1
+  name: insight-priest-1-name
+  content: insight-priest-1-desc
+  next: Priest2
+  trait: Priest1
+
+- type: trait
+  id: Priest1
+  name: insight-priest-1-name
+  description: insight-priest-1-desc
+  selectable: false
+  components:
+    - type: BibleUser
+
+- type: insightTrait
+  id: Priest2
+  name: insight-priest-2-name
+  content: insight-priest-2-desc
+  trait: Priest2
+  next: Priest3
+
+- type: trait
+  id: Priest2
+  name: insight-priest-2-name
+  description: insight-priest-2-desc
+  selectable: false
+  components:
+    - type: ActionGrant
+      actions:
+        - ActionMiracleWorker
+      autoDelete: true
+    - type: MiracleRevive
+      zapHeal:
+        types:
+          Asphyxiation: -40
+
+- type: entity
+  parent: BaseAction
+  id: ActionMiracleWorker
+  name: Miracle Worker
+  description: "Attempt to zap someone back to life. Will only work if the body can sustain life."
+  components:
+  - type: Action
+    priority: 1
+    useDelay: 3600
+    raiseOnUser: true
+    itemIconStyle: BigAction
+  - type: Sprite
+    sprite: Interface/Actions/changeling.rsi
+    layers:
+    - state: "devour"
+      map: ["enum.ActionVisuals.Icon"]
+    - state: "devour_on"
+      map: ["enum.ActionVisuals.IconToggled"]
+      visible: false
+  - type: TargetAction
+  - type: EntityTargetAction
+    canTargetSelf: false
+    whitelist:
+      components:
+      - MobState
+    event: !type:MiracleReviveEvent
+
+- type: insightTrait
+  id: Priest3
+  name: insight-priest-3-name
+  content: insight-priest-3-desc
+  trait: Priest2
+  next: Priest4
+
+- type: insightTrait
+  id: Priest4
+  name: insight-priest-4-name
+  content: insight-priest-4-desc
+  trait: Priest2

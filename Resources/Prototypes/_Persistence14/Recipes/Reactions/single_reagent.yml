@@ -1,0 +1,19 @@
+- type: reaction
+  id: WatertoIce
+  impact: Low
+  maxTemp: 173.15 # This is not real physics, but screw real physics.
+  reactants:
+    Water:
+      amount: 1
+  products:
+    Ice: 1
+
+- type: reaction
+  id: IceToWater
+  impact: Low
+  minTemp: 373.15 # This is not real physics, but screw real physics.
+  reactants:
+    Ice:
+      amount: 1
+  products:
+    Water: 1

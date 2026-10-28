@@ -9,6 +9,7 @@
     radiation: CrateRadiation
     science: CrateScience
     surgery: CrateSurgery
+    syndicate: CrateSyndicate
 
 - type: paintableGroup
   id: CratePlastic
@@ -36,3 +37,4 @@
     science: CrateScienceSecure
     secgear: CrateSecgear
     weapon: CrateWeaponSecure
+    syndicate: CrateSyndicateSecure

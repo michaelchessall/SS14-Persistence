@@ -62,9 +62,10 @@ public sealed partial class SatiationComponent : Component
 /// implement <see cref="IRobustCloneable{T}"/>.
 /// </summary>
 /// <remarks>TODO This existing at all is a hack to work around https://github.com/space-wizards/RobustToolbox/issues/6972 . When the engine supports generating this, this should be removed.</remarks>
-[DataRecord, Serializable, NetSerializable, Access(typeof(SatiationDictionarySerializer))]
+[DataDefinition, Serializable, NetSerializable, Access(typeof(SatiationDictionarySerializer))]
 public sealed partial class SatiationDictionary : IRobustCloneable<SatiationDictionary>
 {
+    [DataField]
     public Dictionary<ProtoId<SatiationTypePrototype>, Satiation> Data = new();
 
     /// <inheritdoc/>

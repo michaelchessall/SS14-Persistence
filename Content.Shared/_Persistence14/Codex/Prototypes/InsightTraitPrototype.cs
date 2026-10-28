@@ -1,8 +1,5 @@
 using Content.Shared.Traits;
 using Robust.Shared.Prototypes;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Content.Shared._Persistence14.Codex.Prototypes;
 
@@ -13,12 +10,14 @@ public sealed partial class InsightTraitPrototype : IPrototype
     /// <inheritdoc/>
     [IdDataField]
     public string ID { get; private set; } = default!;
+    [DataField(required: true)]
+    public LocId Name = "";
     [DataField]
-    public string Name = "";
-    [DataField]
-    public string Content = "";
+    public LocId? Content = null;
     [DataField]
     public ProtoId<InsightTraitPrototype>? Next = null;
-    [DataField]
+    [DataField(required: true)]
     public ProtoId<TraitPrototype> Trait = "";
+    [DataField]
+    public bool RequiresAwake = false;
 }

@@ -10,7 +10,8 @@
     - ExterminateLuminal
     - DiscoverSmallShadow
     - DiscoverSmallScience
-
+    - PowerLuminal
+    - ArtifactNodeBasic
 
 - type: rumor
   id: PrayBasicEvil
@@ -24,5 +25,8 @@
     - ExterminateCult
     - DiscoverSmallShadow
     - DiscoverSmallCriminal
+    - RescuePrecursor
+    - PowerPrecursor
+    - RescueShadow
   targetTag: "Evil"
 

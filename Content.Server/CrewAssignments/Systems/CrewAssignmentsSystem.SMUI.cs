@@ -1,6 +1,10 @@
+using Content.Server._Persistence14.Codex.Systems;
 using Content.Server._Persistence14.Resonance.Systems;
+using Content.Server.Chat.Systems;
 using Content.Server.CrewRecords.Systems;
+using Content.Server.Hands.Systems;
 using Content.Shared._Persistence14.Resonance.Prototypes;
+using Content.Shared._Persistence14.Upgrades.Components;
 using Content.Shared.Access;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -9,8 +13,13 @@ using Content.Shared.CrewAccesses.Components;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Events;
 using Content.Shared.CrewAssignments.Systems;
+using Content.Shared.MessageBoard.Components;
+using Content.Shared.Radio;
 using Content.Shared.Station.Components;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
+using JetBrains.Annotations;
+using System.Linq;
 
 namespace Content.Server.CrewAssignments.Systems;
 
@@ -19,9 +28,10 @@ public sealed partial class CrewAssignmentSystem
 
     [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
     [Dependency] private ResonanceSystem _resonance = default!;
+    [Dependency] private CodexSystem _codex = default!;
+    [Dependency] private HandsSystem _hands = default!;
     private void InitializeConsole()
     {
-        SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationPurchaseUpgrade>(OnPurchaseUpgrade);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationChangeSalesTax>(OnChangeSalesTax);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationChangeExportTax>(OnChangeExportTax);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationChangeImportTax>(OnChangeImportTax);
@@ -36,6 +46,9 @@ public sealed partial class CrewAssignmentSystem
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationToggleChannelAccess>(OnToggleChannelAccess);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationEnableChannel>(OnEnableChannel);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationDisableChannel>(OnDisableChannel);
+        SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationCreateChannel>(OnCreateChannel);
+        SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationEditChannel>(OnEditChannel);
+        SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationDeleteChannel>(OnDeleteChannel);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationToggleClaim>(OnToggleClaim);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationToggleGenRec>(OnToggleGenRec);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationToggleAssign>(OnToggleAssign);
@@ -48,15 +61,60 @@ public sealed partial class CrewAssignmentSystem
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationJobNetOn>(OnJobNetOn);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationJobNetOff>(OnJobNetOff);
         SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationResonancePurchase>(OnResonancePurchase);
+        SubscribeLocalEvent<StationModificationConsoleComponent, StationModificationApplyModule>(OnApplyModule);
         SubscribeLocalEvent<StationModificationConsoleComponent, BoundUIOpenedEvent>(OnOrderUIOpened);
         SubscribeLocalEvent<StationModificationConsoleComponent, ComponentInit>(OnInit);
+    }
+
+    private void OnApplyModule(Entity<StationModificationConsoleComponent> ent, ref StationModificationApplyModule args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        var station = _station.GetOwningStation(ent);
+        if (station == null) return;
+
+        if (!Validate(ent, ent.Comp, player, out var stationData)) return;
+        if (!TryComp<StationDataComponent>(station, out var data) || data == null)
+            return;
+        _protoMan.Resolve(data.Level, out var currentLevel);
+        if (currentLevel == null || currentLevel.Next == null) return;
+        _protoMan.Resolve(currentLevel.Next, out var nextLevel);
+        if (nextLevel == null) return;
+        if (!nextLevel.RequiredModules.ContainsKey(args.Prototype)) return;
+        var module = _hands.GetActiveItem(player);
+        if (module == null || !TryComp<UpgradeModuleComponent>(module, out var upgradeComp) || upgradeComp == null || upgradeComp.TargetModule != args.Prototype)
+        {
+            _codex.NotifyPlayer(player, $"You must be holding an upgrade module of the correct type in your active hand.");
+            return;
+        }
+        if (data.UpgradeProgress.ContainsKey(args.Prototype))
+        {
+            if (data.UpgradeProgress[args.Prototype] >= nextLevel.RequiredModules[args.Prototype])
+            {
+                return;
+            }
+            data.UpgradeProgress[args.Prototype]++;
+        }
+        else data.UpgradeProgress.Add(args.Prototype, 1);
+        _codex.NotifyPlayer(player, "Upgade Module Applied.", upgradeComp.ApplySound);
+        QueueDel(module);
+        UpdateOrders(station.Value);
+        if (data.UpgradeProgress[args.Prototype] < nextLevel.RequiredModules[args.Prototype]) return;
+        foreach (var kv in nextLevel.RequiredModules)
+        {
+            if (!data.UpgradeProgress.ContainsKey(kv.Key)) return;
+            if (data.UpgradeProgress[kv.Key] < kv.Value) return;
+        }
+        data.UpgradeProgress = new();
+        data.Level = currentLevel.Next.Value;
+        UpdateOrders(station.Value);
     }
 
     private void OnResonancePurchase(Entity<StationModificationConsoleComponent> ent, ref StationModificationResonancePurchase args)
     {
         _resonance.OnResonancePurchase(ent, args);
-        var station = _station.GetOwningStation(ent);
-        UpdateOrderState(ent.Owner, station);
+        UpdateAllUserInterfaces();
     }
 
     private void OnInit(EntityUid uid, StationModificationConsoleComponent orderConsole, ComponentInit args)
@@ -180,6 +238,7 @@ public sealed partial class CrewAssignmentSystem
         crewAssignment.Name = args.Owner;
         Dirty((EntityUid)station, crewAssignments);
         UpdateOrders(station.Value);
+        RaiseLocalEvent(new StationRenameAssignment(station.Value));
 
     }
     private void OnCreateAssignment(EntityUid uid, StationModificationConsoleComponent component, StationModificationCreateAssignment args)
@@ -213,32 +272,7 @@ public sealed partial class CrewAssignmentSystem
         crewAssignments.CreateAssignment(args.Owner);
         Dirty((EntityUid)station, crewAssignments);
         UpdateOrders(station.Value);
-    }
-
-    private void OnPurchaseUpgrade(EntityUid uid, StationModificationConsoleComponent component, StationModificationPurchaseUpgrade args)
-    {
-        if (args.Actor is not { Valid: true } player)
-            return;
-
-        var station = _station.GetOwningStation(uid);
-        if (station == null) return;
-
-        if (!Validate(uid, component, player, out var stationData)) return;
-
-        if (!TryComp<StationBankAccountComponent>(station, out var bank) || bank == null)
-            return;
-        if (!TryComp<StationDataComponent>(station, out var data))
-            return;
-        _protoMan.Resolve(data.Level, out var currentLevel);
-        if (currentLevel == null || currentLevel.Next == null) return;
-        _protoMan.Resolve(currentLevel.Next, out var nextLevel);
-        if (nextLevel == null) return;
-        var balance = _cargo.GetBalanceFromAccount((station.Value, bank), "Cargo");
-        var cost = nextLevel.Cost;
-        if (balance < cost) return;
-        _cargo.UpdateBankAccount((station.Value, bank), -cost, "Cargo");
-        data.Level = currentLevel.Next.Value;
-        UpdateOrders(station.Value);
+        RaiseLocalEvent(new StationCreateAssignment(station.Value));
     }
 
     private void OnChangeSalesTax(EntityUid uid, StationModificationConsoleComponent component, StationModificationChangeSalesTax args)
@@ -387,6 +421,7 @@ public sealed partial class CrewAssignmentSystem
         crewAssignments.CrewAssignments.Remove(args.AccessID);
         Dirty((EntityUid)station, crewAssignments);
         UpdateOrders(station.Value);
+        RaiseLocalEvent(new StationDeleteAssignment(station.Value));
 
     }
     private void OnChangeWage(EntityUid uid, StationModificationConsoleComponent component, StationModificationChangeAssignmentWage args)
@@ -504,6 +539,267 @@ public sealed partial class CrewAssignmentSystem
             }
         }
         Dirty(station.Value, sD);
+        UpdateOrders(station.Value);
+    }
+
+    private static readonly ProtoId<RadioChannelPrototype>[] CustomChannelPool =
+    {
+        "FactionCustom1",
+        "FactionCustom2",
+        "FactionCustom3",
+        "FactionCustom4",
+        "FactionCustom5",
+        "FactionCustom6",
+        "FactionCustom7",
+        "FactionCustom8",
+        "FactionCustom9",
+        "FactionCustom10",
+        "FactionCustom11",
+        "FactionCustom12",
+    };
+
+    private static string ClampBrightCustomColor(int red, int green, int blue)
+    {
+        // Persistence 14: Clamp only HSV value into the brightest third so saved custom radio colors stay readable without shifting their hue or saturation.
+        var color = new Color(
+            (byte) Math.Clamp(red, 0, 255),
+            (byte) Math.Clamp(green, 0, 255),
+            (byte) Math.Clamp(blue, 0, 255));
+
+        var hsv = Color.ToHsv(color);
+        hsv.Z = Math.Clamp(hsv.Z, 2f / 3f, 1f);
+        return Color.FromHsv(hsv).ToHex();
+        // End Persistence 14
+    }
+
+    private void OnCreateChannel(EntityUid uid, StationModificationConsoleComponent component, StationModificationCreateChannel args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        var station = _station.GetOwningStation(uid);
+        if (station == null)
+            return;
+
+        if (!Validate(uid, component, player, out _))
+            return;
+
+        if (!TryComp<StationDataComponent>(station, out var stationData))
+        {
+            ConsolePopup(player, "No Station Data Component!");
+            return;
+        }
+
+        var name = args.Name.Trim();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            ConsolePopup(player, "Channel name is required.");
+            return;
+        }
+
+        if (name.Length > 24)
+            name = name[..24];
+
+        if (stationData.RadioData.Values.Any(data =>
+                !string.IsNullOrWhiteSpace(data.CustomName) &&
+                string.Equals(data.CustomName, name, StringComparison.OrdinalIgnoreCase)))
+        {
+            ConsolePopup(player, "A channel with that name already exists.");
+            return;
+        }
+
+        var hotkeyText = args.Hotkey?.Trim() ?? string.Empty;
+        if (hotkeyText.Length != 1)
+        {
+            ConsolePopup(player, "Hotkey must be exactly one character.");
+            return;
+        }
+
+        var hotkey = char.ToLowerInvariant(hotkeyText[0]);
+        if (char.IsWhiteSpace(hotkey) || hotkey is ':' or '/' or '\\' or '[' or ']' or '>' or ',' or '@' or '*')
+        {
+            ConsolePopup(player, "Invalid hotkey character.");
+            return;
+        }
+
+        if (stationData.RadioData.Values.Any(data => data.Hotkey != '\0' && char.ToLowerInvariant(data.Hotkey) == hotkey))
+        {
+            ConsolePopup(player, "That hotkey is already in use by another channel.");
+            return;
+        }
+
+        ProtoId<RadioChannelPrototype>? selectedChannel = null;
+        foreach (var channel in CustomChannelPool)
+        {
+            if (!stationData.RadioData.ContainsKey(channel))
+            {
+                selectedChannel = channel;
+                break;
+            }
+        }
+
+        if (selectedChannel == null)
+        {
+            ConsolePopup(player, "Custom channel limit reached.");
+            return;
+        }
+
+        stationData.RadioData[selectedChannel.Value] = new FactionRadioData(true)
+        {
+            IsCustom = true,
+            CustomName = name,
+            Hotkey = hotkey,
+            CustomColor = ClampBrightCustomColor(args.Red, args.Green, args.Blue),
+        };
+
+        Dirty(station.Value, stationData);
+        UpdateOrders(station.Value);
+    }
+
+    private void OnEditChannel(EntityUid uid, StationModificationConsoleComponent component, StationModificationEditChannel args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        var station = _station.GetOwningStation(uid);
+        if (station == null)
+            return;
+
+        if (!Validate(uid, component, player, out _))
+            return;
+
+        if (!TryComp<StationDataComponent>(station, out var stationData))
+        {
+            ConsolePopup(player, "No Station Data Component!");
+            return;
+        }
+
+        if (args.ChannelID == "Common")
+        {
+            ConsolePopup(player, "Common channel cannot be customized.");
+            return;
+        }
+
+        if (!stationData.RadioData.TryGetValue(args.ChannelID, out var existing))
+        {
+            ConsolePopup(player, "Invalid Channel!");
+            return;
+        }
+
+        var name = args.Name.Trim();
+        if (string.IsNullOrWhiteSpace(name))
+        {
+            ConsolePopup(player, "Channel name is required.");
+            return;
+        }
+
+        if (name.Length > 24)
+            name = name[..24];
+
+        _protoMan.Resolve(args.ChannelID, out RadioChannelPrototype? channelProto);
+
+        var currentEffectiveName = !string.IsNullOrWhiteSpace(existing.CustomName)
+            ? existing.CustomName!
+            : channelProto?.LocalizedName ?? string.Empty;
+
+        var currentEffectiveHotkey = existing.Hotkey != '\0'
+            ? char.ToLowerInvariant(existing.Hotkey)
+            : char.ToLowerInvariant(channelProto?.KeyCode ?? '\0');
+
+        var nameChanged = !string.Equals(currentEffectiveName, name, StringComparison.OrdinalIgnoreCase);
+        if (nameChanged && stationData.RadioData.Any(pair =>
+                pair.Key != args.ChannelID &&
+                !string.IsNullOrWhiteSpace(pair.Value.CustomName) &&
+                string.Equals(pair.Value.CustomName, name, StringComparison.OrdinalIgnoreCase)))
+        {
+            ConsolePopup(player, "A channel with that name already exists.");
+            return;
+        }
+
+        var hotkeyText = args.Hotkey?.Trim() ?? string.Empty;
+        if (hotkeyText.Length != 1)
+        {
+            ConsolePopup(player, "Hotkey must be exactly one character.");
+            return;
+        }
+
+        var hotkey = char.ToLowerInvariant(hotkeyText[0]);
+        if (char.IsWhiteSpace(hotkey) || hotkey is ':' or '/' or '\\' or '[' or ']' or '>' or ',' or '@' or '*')
+        {
+            ConsolePopup(player, "Invalid hotkey character.");
+            return;
+        }
+
+        var hotkeyChanged = currentEffectiveHotkey == '\0' || currentEffectiveHotkey != hotkey;
+        if (hotkeyChanged && stationData.RadioData.Any(pair =>
+                pair.Key != args.ChannelID &&
+                pair.Value.Hotkey != '\0' &&
+                char.ToLowerInvariant(pair.Value.Hotkey) == hotkey))
+        {
+            ConsolePopup(player, "That hotkey is already in use by another channel.");
+            return;
+        }
+
+        existing.IsCustom = true;
+        existing.CustomName = name;
+        existing.Hotkey = hotkey;
+        existing.CustomColor = ClampBrightCustomColor(args.Red, args.Green, args.Blue);
+        existing.Enabled = true;
+
+        Dirty(station.Value, stationData);
+        UpdateOrders(station.Value);
+    }
+
+    private void OnDeleteChannel(EntityUid uid, StationModificationConsoleComponent component, StationModificationDeleteChannel args)
+    {
+        if (args.Actor is not { Valid: true } player)
+            return;
+
+        var station = _station.GetOwningStation(uid);
+        if (station == null)
+            return;
+
+        if (!Validate(uid, component, player, out _))
+            return;
+
+        if (!TryComp<StationDataComponent>(station, out var stationData))
+        {
+            ConsolePopup(player, "No Station Data Component!");
+            return;
+        }
+
+        if (args.ChannelID == "Common")
+        {
+            ConsolePopup(player, "Common channel cannot be customized.");
+            return;
+        }
+
+        if (!stationData.RadioData.TryGetValue(args.ChannelID, out var existing))
+        {
+            ConsolePopup(player, "Invalid Channel!");
+            return;
+        }
+
+        if (!existing.IsCustom)
+        {
+            ConsolePopup(player, "Only customized channels can be deleted.");
+            return;
+        }
+
+        if (CustomChannelPool.Contains(args.ChannelID))
+        {
+            stationData.RadioData.Remove(args.ChannelID);
+        }
+        else
+        {
+            existing.IsCustom = false;
+            existing.CustomName = null;
+            existing.CustomColor = null;
+            existing.Hotkey = '\0';
+            existing.Access.Clear();
+        }
+
+        Dirty(station.Value, stationData);
         UpdateOrders(station.Value);
     }
 
@@ -793,6 +1089,17 @@ public sealed partial class CrewAssignmentSystem
         var station = _station.GetOwningStation(uid);
         UpdateOrderState(uid, station);
     }
+    public void UpdateAllUserInterfaces()
+    {
+        var query = EntityQueryEnumerator<StationModificationConsoleComponent>();
+
+        while (query.MoveNext(out var uid, out var component))
+        {
+            var station = _station.GetOwningStation(uid);
+            if (station == null) continue;
+            UpdateOrderState(uid, station);
+        }
+    }
 
     #endregion
 
@@ -842,7 +1149,8 @@ public sealed partial class CrewAssignmentSystem
                 hasTrade,
                 resonanceMarket,
                 data.StoredResonance,
-                partialPurchases
+                partialPurchases,
+                data.UpgradeProgress
             ));
         }
     }
@@ -883,6 +1191,54 @@ public sealed partial class CrewAssignmentSystem
             UpdateOrderState(uid, station);
         }
     }
+}
+/// <summary>
+/// Directed event fired on a station when an assignment is made.
+/// </summary>
+[PublicAPI]
+public sealed class StationCreateAssignment : EntityEventArgs
+{
+    /// <summary>
+    /// ID of the station the assignment was added to.
+    /// </summary>
+    public EntityUid StationId;
 
+    public StationCreateAssignment(EntityUid stationId)
+    {
+        StationId = stationId;
+    }
+}
 
+/// <summary>
+/// Directed event fired on a station when an assignment is removed.
+/// </summary>
+[PublicAPI]
+public sealed class StationDeleteAssignment : EntityEventArgs
+{
+    /// <summary>
+    /// ID of the station the assignment was removed from.
+    /// </summary>
+    public EntityUid StationId;
+
+    public StationDeleteAssignment(EntityUid stationId)
+    {
+        StationId = stationId;
+    }
+}
+
+/// <summary>
+/// Directed event fired on a station when an assignment is renamed.
+/// </summary>
+[PublicAPI]
+public sealed class StationRenameAssignment : EntityEventArgs
+{
+    /// <summary>
+    /// ID of the stations renamed assignment.
+    /// </summary>
+    public EntityUid StationId;
+
+    public StationRenameAssignment(EntityUid stationId)
+    {
+        StationId = stationId;
+    }
 }

@@ -1,7 +1,7 @@
-using JetBrains.Annotations;
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Events;
 using Content.Shared.Random.Helpers;
+using JetBrains.Annotations;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
@@ -20,8 +20,8 @@ public sealed partial class PlantGrowthSystem : EntitySystem
     [Dependency] private PlantHolderSystem _plantHolder = default!;
     [Dependency] private PlantTraySystem _plantTray = default!;
 
-    [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery = default!;
-    [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery = default!;
+    [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery;
+    [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery;
 
     [SubscribeLocalEvent]
     private void OnCrossPollinate(Entity<PlantGrowthComponent> ent, ref PlantCrossPollinateEvent args)
@@ -29,8 +29,8 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         if (!_botany.TryGetPlantComponent<PlantGrowthComponent>(args.PollenData, args.PollenProtoId, out var pollenData))
             return;
 
-        _mutation.CrossFloat(ref ent.Comp.WaterConsumption, pollenData.WaterConsumption);
-        _mutation.CrossFloat(ref ent.Comp.NutrientConsumption, pollenData.NutrientConsumption);
+        // _mutation.CrossFloat(ref ent.Comp.WaterConsumption, pollenData.WaterConsumption); Persistence: Plant nutrient rework
+        // _mutation.CrossFloat(ref ent.Comp.NutrientConsumption, pollenData.NutrientConsumption); Persistence: Plant nutrient rework
         Dirty(ent);
     }
 
@@ -38,7 +38,7 @@ public sealed partial class PlantGrowthSystem : EntitySystem
     private void OnPlantGrow(Entity<PlantGrowthComponent> ent, ref PlantGrowEvent args)
     {
         var (plantUid, plantComp) = ent;
-        var trayUid = GetEntity(args.Tray);
+        var trayUid = args.Tray;
 
         if (!_trayQuery.TryComp(trayUid, out var trayComp))
             return;
@@ -55,14 +55,14 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         else if (random.Prob(0.8f))
             _plantHolder.AdjustsAge((plantUid, holder), 1);
 
-        if (plantComp.WaterConsumption > 0 && trayComp.WaterLevel > 0 && random.Prob(0.75f))
-            _plantTray.AdjustWater((trayUid, trayComp), -MathF.Max(0f, plantComp.WaterConsumption * trayComp.TrayConsumptionMultiplier));
+        // if (plantComp.WaterConsumption > 0 && trayComp.WaterLevel > 0 && random.Prob(0.75f))
+        //     _plantTray.AdjustWater((trayUid, trayComp), -MathF.Max(0f, plantComp.WaterConsumption * trayComp.TrayConsumptionMultiplier));
 
-        if (plantComp.NutrientConsumption > 0 && trayComp.NutritionLevel > 0 && random.Prob(0.75f))
-            _plantTray.AdjustNutrient((trayUid, trayComp), -MathF.Max(0f, plantComp.NutrientConsumption * trayComp.TrayConsumptionMultiplier));
+        // if (plantComp.NutrientConsumption > 0 && trayComp.NutritionLevel > 0 && random.Prob(0.75f))
+        //     _plantTray.AdjustNutrient((trayUid, trayComp), -MathF.Max(0f, plantComp.NutrientConsumption * trayComp.TrayConsumptionMultiplier));
 
         var healthMod = random.Next(1, 3);
-        if (holder.SkipAging < 10)
+        /*if (holder.SkipAging < 10) Persistence: Plant nutrient rework
         {
             // Make sure the plant is not thirsty.
             if (trayComp.WaterLevel > 10)
@@ -82,9 +82,10 @@ public sealed partial class PlantGrowthSystem : EntitySystem
                 _plantHarvest.AffectGrowth(plantUid, -1);
                 _plantHolder.AdjustsHealth((plantUid, holder), -healthMod);
             }
-        }
+        }*/
     }
 
+    /* Persistence: Plant nutrient rework
     /// <summary>
     /// Adjusts the water consumption of a plant.
     /// </summary>
@@ -110,4 +111,5 @@ public sealed partial class PlantGrowthSystem : EntitySystem
         ent.Comp.NutrientConsumption = MathF.Max(0f, ent.Comp.NutrientConsumption + amount);
         DirtyField(ent, nameof(ent.Comp.NutrientConsumption));
     }
+    */
 }

@@ -4,7 +4,6 @@ using Content.Server.Chat.Systems;
 using Content.Server.Ghost;
 using Content.Server.Power.Components;
 using Content.Server.Station.Systems;
-using Content.Shared._RMC14.Chat; // Persistence: Chat stacking from RMC14 - pull/7587
 using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Database;
@@ -13,10 +12,13 @@ using Content.Shared.Radio;
 using Content.Shared.Radio.Components;
 using Content.Shared.Radio.EntitySystems;
 using Content.Shared.Speech;
+using Content.Shared.Station.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Map;
+using Robust.Shared.Maths;
 using Robust.Shared.Network;
 using Robust.Shared.Player;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using Robust.Shared.Replays;
 using Robust.Shared.Utility;
@@ -32,6 +34,7 @@ public sealed partial class RadioSystem : SharedRadioSystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IReplayRecordingManager _replay = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private ChatSystem _chat = default!;
     [Dependency] private IChatManager _chatManager = default!;
@@ -96,8 +99,20 @@ public sealed partial class RadioSystem : SharedRadioSystem
         _netMan.ServerSendMessage(msg, actor.PlayerSession.Channel);
     }
 
-    /// <inheritdoc/>
-    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true, bool useNetworkOverride = true, float transmitterRange = float.PositiveInfinity)
+    /// <summary>
+    /// Send radio message to all active radio listeners
+    /// </summary>
+    public void SendRadioMessage(EntityUid messageSource, string message, ProtoId<RadioChannelPrototype> channel, EntityUid radioSource, bool escapeMarkup = true, bool useNetworkOverride = true, int encryptionID = 0)
+    {
+        SendRadioMessage(messageSource, message, _prototype.Index(channel), radioSource, escapeMarkup: escapeMarkup, useNetworkOverride, encryptionID);
+    }
+
+    /// <summary>
+    /// Send radio message to all active radio listeners
+    /// </summary>
+    /// <param name="messageSource">Entity that spoke the message</param>
+    /// <param name="radioSource">Entity that picked up the message and will send it, e.g. headset</param>
+    public void SendRadioMessage(EntityUid messageSource, string message, RadioChannelPrototype channel, EntityUid radioSource, bool escapeMarkup = true, bool useNetworkOverride = true, int encryptionID = 0, float transmitterRange = float.PositiveInfinity)
     {
         // TODO if radios ever garble / modify messages, feedback-prevention needs to be handled better than this.
         if (!_messages.Add(message))
@@ -121,12 +136,37 @@ public sealed partial class RadioSystem : SharedRadioSystem
             ? FormattedMessage.EscapeText(message)
             : message;
 
+        var displayColor = channel.Color;
+        var displayName = channel.LocalizedName;
+        var factionTag = "";
+        var factionTagSeparator = " - ";
+
+        TryComp<HeadsetComponent>(radioSource, out var sourceHeadset);
+
+        if (encryptionID > 0)
+        {
+            ResolveCustomChannelPresentation(encryptionID, channel, ref displayColor, ref displayName, ref factionTag);
+        }
+        else if (sourceHeadset is not null && sourceHeadset.TransmitTo.Count > 0)
+        {
+            ResolveCustomChannelPresentation(sourceHeadset.TransmitTo.First(), channel, ref displayColor, ref displayName, ref factionTag);
+        }
+
+        var commonId = "Common";
+
+        if (sourceHeadset is not null &&
+            sourceHeadset.ShowTags &&
+            !string.IsNullOrWhiteSpace(factionTag) &&
+            channel != ProtoMan.Index<RadioChannelPrototype>(commonId))
+            displayName = factionTag + factionTagSeparator + displayName;
+
+
         var wrappedMessage = Loc.GetString(speech.Bold ? "chat-radio-message-wrap-bold" : "chat-radio-message-wrap",
-            ("color", channel.Color),
+            ("color", displayColor),
             ("fontType", speech.FontId),
             ("fontSize", speech.FontSize),
             ("verb", Loc.GetString(_random.Pick(speech.SpeechVerbStrings))),
-            ("channel", $"\\[{channel.LocalizedName}\\]"),
+            ("channel", $"\\[{displayName}\\]"),
             ("name", name),
             ("message", content));
 
@@ -135,9 +175,8 @@ public sealed partial class RadioSystem : SharedRadioSystem
             ChatChannel.Radio,
             message,
             wrappedMessage,
-            GetNetEntity(messageSource), // Persistence: Chat stacking from RMC14 - pull/7587
-            _chatManager.EnsurePlayer(CompOrNull<ActorComponent>(messageSource)?.PlayerSession.UserId)?.Key,  // Persistence: Chat stacking from RMC14 - pull/7587
-            repeatCheckSender: !HasComp<ChatRepeatIgnoreSenderComponent>(radioSource));  // Persistence: Chat stacking from RMC14 - pull/7587
+            NetEntity.Invalid,
+            null);
         var chatMsg = new MsgChatMessage { Message = chat };
         var ev = new RadioReceiveEvent(message, messageSource, channel, radioSource, chatMsg);
 
@@ -181,10 +220,10 @@ public sealed partial class RadioSystem : SharedRadioSystem
             hasActiveServer = true; // Changed from HasActiveServer(mapId, channelId)
 
         var radioQuery = EntityQueryEnumerator<ActiveRadioComponent, TransformComponent>();
-        var encryptionID = 0;
-        if (TryComp<HeadsetComponent>(radioSource, out var headset) && headset != null)
+        // Unencrypted channels (e.g. Common / the Death Network SOS) are global and must not be narrowed to a faction.
+        if (channel.Encrypted && encryptionID <= 0 && TryComp<HeadsetComponent>(radioSource, out var headset) && headset != null && headset.TransmitTo.Count > 0)
         {
-            encryptionID = headset.TransmitTo;
+            encryptionID = headset.TransmitTo.First();
         }
         while (canSend && radioQuery.MoveNext(out var receiver, out var radio, out var transform))
         {
@@ -195,26 +234,28 @@ public sealed partial class RadioSystem : SharedRadioSystem
 
             else if (TryComp<HeadsetComponent>(receiver, out var targetHeadset) && targetHeadset != null)
             {
-                if (targetHeadset.RecieveFrom != 0 && targetHeadset.RecieveFrom != encryptionID)
-                {
-                    continue;
-                }
                 var station = _station.GetStationByID(encryptionID);
                 if (station == null) continue;
                 var parent = Transform(receiver).ParentUid;
 
-                if (parent.IsValid())
-                {
-                    if (!_headset.HasChannelAccess(parent, station.Value, channel))
-                    {
-                        continue;
-                    }
-                }
-                else
+                if (!parent.IsValid())
+                    continue;
+
+                // Persistence 14: Access to a channel is the authoritative gate - a listener with access
+                // must always be able to hear it, even when several factions share one channel hotkey and
+                // the message fans out into one copy per faction.
+                if (!_headset.HasChannelAccess(parent, station.Value, channel))
                 {
                     continue;
                 }
 
+                // Persistence 14: An explicit per-faction mute still wins over access. RecieveFrom defaults
+                // to every faction the listener can access, so an accessible faction missing from the set
+                // means it was explicitly toggled off - a genuine mute. (Access was already confirmed above.)
+                if (targetHeadset.RecieveFrom.Count > 0 && !targetHeadset.RecieveFrom.Contains(encryptionID))
+                {
+                    continue;
+                }
             }
             else if (!radio.ReceiveAllChannels)
             {
@@ -222,6 +263,8 @@ public sealed partial class RadioSystem : SharedRadioSystem
                                                              !intercom.SupportedChannels.Contains(channel.ID)))
                     continue;
             }
+
+
 
             if (!channel.LongRange && transform.MapID != sourceMapId && !radio.GlobalReceive)
                 continue;
@@ -279,6 +322,27 @@ public sealed partial class RadioSystem : SharedRadioSystem
             }
         }
         return false;
+    }
+
+    private void ResolveCustomChannelPresentation(int stationId, RadioChannelPrototype channel, ref Color color, ref string name, ref string factionTag)
+    {
+        var station = _station.GetStationByID(stationId);
+        if (station == null || !TryComp<StationDataComponent>(station, out var stationData))
+            return;
+
+        if (!stationData.RadioData.TryGetValue(channel.ID, out var radioData))
+            return;
+
+        // Persistence 14: Always resolve a faction tag (configured or auto-generated from the faction name)
+        // so copies of the same channel hotkey fanned out across factions render with distinct labels and
+        // don't collapse into one stacked chat line.
+        factionTag = stationData.GetResolvedFactionTag(stationData.StationName ?? string.Empty);
+
+        if (!string.IsNullOrWhiteSpace(radioData.CustomColor))
+            color = radioData.GetColor();
+
+        if (!string.IsNullOrWhiteSpace(radioData.CustomName))
+            name = radioData.CustomName;
     }
 
 }

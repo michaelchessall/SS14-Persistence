@@ -288,6 +288,44 @@
     tags:
     - PlushieCarp
 
+#Persistence 14
+
+- type: entity
+  parent: [PlushieSnake, RehydratableItem, BaseSyndicateContraband]
+  id: DehydratedPurpleSnake
+  name: dehydrated space adder
+  description: Looks like a plush toy snake, but just add water and it becomes a real-life space adder!
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        density: 5
+        mask:
+        - ItemMask
+      rehydrate:
+        shape:
+          !type:PhysShapeAabb
+          bounds: "-0.3,-0.3,0.3,0.3"
+        hard: false
+        layer:
+        - LowImpassable
+  - type: FactionException
+  - type: PettableFriend
+    successString: petting-success-dehydrated-carp
+    failureString: petting-failure-dehydrated-carp
+  - type: EmitSoundOnUse
+    handle: false
+  - type: Rehydratable
+    possibleSpawns:
+    - MobPurpleSnake
+  - type: Tag
+    tags:
+    - PlushieCarp
+
+
 - type: entity
   parent: MonkeyCube
   id: SyndicateSponge

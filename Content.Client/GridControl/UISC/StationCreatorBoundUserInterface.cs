@@ -34,7 +34,7 @@ namespace Content.Client.GridControl.UISC
             _window = this.CreateWindow<StationCreatorWindow>();
             _window.PrivilegedIdButton.OnPressed += _ => SendMessage(new ItemSlotButtonPressedEvent(StationCreatorComponent.PrivilegedIdCardSlotId));
             _window.BUI = this;
-            _window.Title = "station genesis device";
+            _window.Title = "faction genesis device";
         }
 
 

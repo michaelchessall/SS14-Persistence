@@ -1,0 +1,23 @@
+- type: resonanceProduct
+  id: SalvationShard
+  name: The Salvation Shard
+  description: "This universal shard can help protect the Nexus Planet if stored on Eclipse Station."
+  price: 1000
+  shared: false
+  productType: Product
+  product: ResonanceArtifactSalvationShard
+  icon:
+    sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
+    state: core
+
+- type: resonanceProduct
+  id: ThresholdCandle
+  name: The Threshold Candle
+  description: "An artifact of the Threshold's Embrace. This candle was lit by the light of the Zenith Threshold itself"
+  price: 500
+  shared: false
+  productType: Product
+  product: CandleThresholdInfiniteArtifact
+  icon:
+    sprite: _Persistence14/Objects/Specific/Chapel/thresholdcandle.rsi
+    state: icon

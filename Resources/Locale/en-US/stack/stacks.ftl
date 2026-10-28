@@ -104,10 +104,6 @@ stack-xenoborg-crystal = xenoborg {$amount ->
     [1] crystal
     *[other] crystals
 }
-stack-conveyor-belt = {$amount ->
-    [1] conveyor belt
-    *[other] conveyor belts
-}
 
 # best materials
 stack-ground-tobacco = ground tobacco

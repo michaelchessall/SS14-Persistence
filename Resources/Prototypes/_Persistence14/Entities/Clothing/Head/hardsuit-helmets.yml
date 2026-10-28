@@ -186,3 +186,119 @@
         Slash: 0.9
         Piercing: 0.9
         Heat: 0.9
+
+#waffle co engi
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitWaffleCoEngi
+  name: Waffle co engineering hardsuit helmet
+  description: An engineering hardsuit helmet designed by Waffle co for working in low-pressure, high radioactive environments.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoengi.rsi
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+  - type: Clothing
+  - type: PointLight
+    color: "#e8e8ba"
+  - type: PressureProtection
+    highPressureMultiplier: 0.1
+    lowPressureMultiplier: 1000
+  - type: ModularHud
+    moduleContainerId: modular-hud-modules
+    maximumContainedModules: 3
+    moduleExtractionToolQuality: Screwing
+    moduleRemovalDelay: 1s
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullEyeCovering
+
+#waffle co atmos hardsuit
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitWaffleCoAtmos
+  name: Waffle co atmos hardsuit helmet
+  description: A special hardsuit helmet designed by Waffle co for working in low-pressure, high thermal environments.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoatmos.rsi
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+  - type: Clothing
+  - type: PointLight
+    color: "#e8e8ba"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: ModularHud
+    moduleContainerId: modular-hud-modules
+    maximumContainedModules: 4
+    moduleExtractionToolQuality: Screwing
+    moduleRemovalDelay: 1s
+  - type: Tag
+    tags:
+    - WhitelistChameleon
+    - FullEyeCovering
+
+
+#Waffle co Elite hardsuit
+
+- type: entity
+  parent: ClothingHeadHelmetHardsuitDonk
+  id: ClothingHeadHelmetHardsuitWaffleCoElite
+  name: elite Waffle co hardsuit helmet
+  description: Lightweight hardsuit helmet that doesn't restrict your head movements. Designed for the best of the best of waffle co.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/wafflecoelite.rsi
+  - type: HandheldLight
+    addPrefix: false
+  - type: ToggleableVisuals
+  - type: Clothing
+  - type: PointLight
+    radius: 6
+    color: "#e8e8ba"
+  - type: PressureProtection
+    highPressureMultiplier: 0.08
+    lowPressureMultiplier: 1000
+  - type: FireProtection
+    reduction: 0.2
+  - type: ModularHud
+    moduleContainerId: modular-hud-modules
+    maximumContainedModules: 5
+    moduleExtractionToolQuality: Screwing
+    moduleRemovalDelay: 1s
+  - type: ContainerContainer
+    containers:
+      modular-hud-modules: !type:Container
+  - type: Tag
+    tags:
+    - FullEyeCovering
+
+#Donk Microwave suit
+
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitDonkMicrowave
+  name: Donk co mining hardsuit helmet
+  description: Lightweight hardsuit helmet that doesn't restrict your head movements. you hear a faint humming when its turned on.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/donkmicrowave.rsi
+  - type: Clothing
+    unequipSound: /Audio/Machines/microwave_done_beep.ogg
+  - type: PointLight
+    radius: 7
+    energy: 3
+    color: "#07e807"
+  - type: PressureProtection
+    highPressureMultiplier: 0.525
+    lowPressureMultiplier: 1000
+  - type: Tag
+    tags:
+    - WhitelistChameleon

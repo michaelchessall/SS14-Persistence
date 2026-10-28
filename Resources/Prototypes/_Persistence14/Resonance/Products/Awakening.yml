@@ -1,0 +1,10 @@
+- type: resonanceProduct
+  id: WorldAwakening
+  name: Trigger An Awakening
+  description: "Use Resonance to further peel back the fabric of reality. Tier 3 Insights become available to purchase for all characters.\n[color=red]This will have unusual consequences."
+  price: 1000
+  shared: true
+  productType: MainWorldAwakening
+  icon:
+    sprite: Structures/Specific/anomaly.rsi
+    state: anom4

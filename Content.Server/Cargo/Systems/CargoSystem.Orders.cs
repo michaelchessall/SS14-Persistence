@@ -1,5 +1,6 @@
 using Content.Server._NF.Bank;
 using Content.Server.Cargo.Components;
+using Content.Shared._Persistence14.Resonance.Prototypes;
 using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Access.Components;
 using Content.Shared.Cargo;
@@ -13,6 +14,7 @@ using Content.Shared.Interaction;
 using Content.Shared.Labels.Components;
 using Content.Shared.Paper;
 using Content.Shared.Station.Components;
+using Content.Shared.Storage.Components;
 using JetBrains.Annotations;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
@@ -213,7 +215,7 @@ namespace Content.Server.Cargo.Systems
                 if (!TryComp(station, out StationBankAccountComponent? bank) ||
                     !TryComp(station, out StationDataComponent? stationData) ||
                     !TryGetOrderDatabase(station, out var orderDatabase))
-                              {
+                {
                     _popup.PopupCursor(Loc.GetString("cargo-console-station-not-found"), args.Actor);
                     PlayDenySound(uid, component);
                     return;
@@ -486,6 +488,98 @@ namespace Content.Server.Cargo.Systems
             }
 
             return tradeDestination;
+        }
+
+        public EntityUid? TryFulfillOrderResonance(ResonanceProductPrototype proto, string? paperProto, EntityUid trade)
+        {
+            EntityUid? tradeDestination = null;
+            var tradePads = GetCargoPallets(trade, BuySellType.Buy);
+            _random.Shuffle(tradePads);
+
+            var freePads = GetFreeCargoPallets(trade, tradePads);
+            if (freePads.Count >= 1) //check if the station has enough free pallets
+            {
+                foreach (var pad in freePads)
+                {
+                    var coordinates = new EntityCoordinates(trade, pad.Transform.LocalPosition);
+
+                    if (FulfillOrderResonance(proto, coordinates, paperProto, Name(trade)))
+                    {
+                        tradeDestination = trade;
+                        break;
+                    }
+                }
+            }
+
+            return tradeDestination;
+        }
+
+        private bool FulfillOrderResonance(ResonanceProductPrototype proto, EntityCoordinates spawn, string? paperProto, string personalAccount)
+        {
+
+            // Create the item itself
+            var item = Spawn(proto.Product, spawn);
+            var itemXForm = Transform(item);
+
+            // Ensure the item doesn't start anchored
+            _transformSystem.Unanchor(item, itemXForm);
+
+            // Spawn container and insert the item into it if a container is defined.
+            var containerEntity = Spawn(proto.Container, itemXForm.Coordinates);
+            if (TryComp<AccessReaderComponent>(containerEntity, out var accessReader) && accessReader != null)
+            {
+                _accessReaderSystem.TryAddPersonalAccess((containerEntity, accessReader), personalAccount);
+            }
+            _transformSystem.SetLocalRotation(containerEntity, itemXForm.LocalRotation);
+
+            if (!_container.TryGetContainer(containerEntity, proto.ContainerId, out var container1) ||
+                !_container.Insert(item, container1, force: true))
+            {
+                QueueDel(containerEntity);
+            }
+            else
+            {
+                item = containerEntity;
+            }
+
+            // Create a sheet of paper to write the order details on
+            var printed = Spawn(paperProto, spawn);
+            if (TryComp<PaperComponent>(printed, out var paper))
+            {
+                // fill in the order data
+                var val = Loc.GetString("cargo-console-paper-print-name", ("orderNumber", "N/A"));
+                _metaSystem.SetEntityName(printed, val);
+
+                var paccount = "";
+                var paccountcode = "";
+
+                if (personalAccount != null)
+                {
+                    paccount = personalAccount;
+                    paccountcode = "[RES]";
+
+                }
+
+                _paperSystem.SetContent((printed, paper),
+                    Loc.GetString(
+                        "cargo-console-paper-print-text",
+                        ("orderNumber", "N/A"),
+                        ("itemName", proto.Name),
+                        ("orderQuantity", 1),
+                        ("requester", paccount),
+                        ("reason", "Special Import"),
+                        ("account", paccount),
+                        ("accountcode", paccountcode),
+                        ("approver", "Special import")));
+
+                // attempt to attach the label to the item
+                if (TryComp<PaperLabelComponent>(item, out var label))
+                {
+                    _slots.TryInsert(item, label.LabelSlot, printed, null);
+                }
+            }
+
+            return true;
         }
 
         public EntityUid? TryFulfillOrderRumor(ActiveRumorReward reward, string? paperProto, string personalAccount)
@@ -906,25 +1000,27 @@ namespace Content.Server.Cargo.Systems
 
             // Ensure the item doesn't start anchored
             _transformSystem.Unanchor(item, itemXForm);
-
-            // Spawn container and insert the item into it if a container is defined.
-            var containerEntity = Spawn(rumorProto.Container, itemXForm.Coordinates);
-            if(TryComp<AccessReaderComponent>(containerEntity, out var accessReader) && accessReader != null)
+            EntityUid containerEntity = item;
+            if (!TryComp<EntityStorageComponent>(item, out _))
             {
-                _accessReaderSystem.TryAddPersonalAccess((containerEntity, accessReader), personalAccount);
-            }
-            _transformSystem.SetLocalRotation(containerEntity, itemXForm.LocalRotation);
-
-            if (!_container.TryGetContainer(containerEntity, rumorProto.ContainerId, out var container1) ||
+                containerEntity = Spawn(rumorProto.Container, itemXForm.Coordinates);
+                if (!_container.TryGetContainer(containerEntity, rumorProto.ContainerId, out var container1) ||
                 !_container.Insert(item, container1, force: true))
-            {
-                QueueDel(containerEntity);
+                {
+                    QueueDel(containerEntity);
+                }
+                else _transformSystem.SetLocalRotation(containerEntity, itemXForm.LocalRotation);
             }
             else
             {
                 item = containerEntity;
             }
-
+            _metaSystem.SetEntityName(containerEntity, $"{Name(item)} ({personalAccount})");
+            if (TryComp<AccessReaderComponent>(containerEntity, out var accessReader) && accessReader != null)
+            {
+                _accessReaderSystem.TryAddPersonalAccess((containerEntity, accessReader), personalAccount);
+                accessReader.PersonalAccessMode = true;
+            }
             // Create a sheet of paper to write the order details on
             var printed = Spawn(paperProto, spawn);
             if (TryComp<PaperComponent>(printed, out var paper))

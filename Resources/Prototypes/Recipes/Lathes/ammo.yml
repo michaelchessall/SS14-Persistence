@@ -397,6 +397,47 @@
     Uranium: 180
   unlockUses: 6
 
+# .10 Rifle
+- type: latheRecipe
+  parent: BaseEmptyAmmoRecipe
+  id: MagazineMarineRifleEmpty
+  result: MagazineMarineRifleEmpty
+  materials:
+    Steel: 25
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineMarineRifle
+  result: MagazineMarineRifle
+  materials:
+    Steel: 565
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineMarineRifleIncendiary
+  result: MagazineMarineRifleIncendiary
+  materials:
+    Steel: 25
+    Plastic: 540
+  unlockUses: 6
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineMarineRiflePractice
+  result: MagazineMarineRiflePractice
+  materials:
+    Steel: 205
+
+- type: latheRecipe
+  parent: BaseAmmoRecipe
+  id: MagazineMarineRifleUranium
+  result: MagazineMarineRifleUranium
+  materials:
+    Steel: 25
+    Plastic: 360
+    Uranium: 360
+  unlockUses: 6
+  
 # .50 Shell
 - type: latheRecipe
   parent: BaseEmptyAmmoRecipe

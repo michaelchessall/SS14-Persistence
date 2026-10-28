@@ -48,7 +48,7 @@ public sealed partial class PlantComponent : Component
     public float Maturation;
 
     /// <summary>
-    /// The number of growth ticks it takes for a plant to be (re-)harvestable. Shouldn't be lower than <see cref="Maturation"/>.
+    /// The number of growth ticks it takes for a plant to be (re-)harvestable.
     /// </summary>
     [DataField, AutoNetworkedField]
     public float Production;
@@ -62,6 +62,6 @@ public sealed partial class PlantComponent : Component
     /// <summary>
     /// A scalar for sprite size and chemical solution volume in the produce. Caps at 100.
     /// </summary>
-    [DataField, AutoNetworkedField]
-    public float Potency = 1f;
+    // [DataField, AutoNetworkedField] // Persistence: Remove potency
+    // public float Potency = 1f;
 }

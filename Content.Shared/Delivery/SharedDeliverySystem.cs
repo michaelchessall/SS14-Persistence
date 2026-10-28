@@ -64,13 +64,13 @@ public abstract partial class SharedDeliverySystem : EntitySystem
             args.PushText(Loc.GetString("delivery-recipient-examine", ("recipient", recipientName), ("job", jobTitle)));
         }
 
-        if (ent.Comp.IsLocked)
-        {
-            var multiplier = GetDeliveryMultiplier(ent);
-            var totalSpesos = Math.Round(ent.Comp.BaseSpesoReward * multiplier);
+        //if (ent.Comp.IsLocked)
+        //{
+        //    var multiplier = GetDeliveryMultiplier(ent);
+        //    var totalSpesos = Math.Round(ent.Comp.BaseSpesoReward * multiplier);
 
-            args.PushMarkup(Loc.GetString("delivery-earnings-examine", ("spesos", totalSpesos)), -1);
-        }
+        //    args.PushMarkup(Loc.GetString("delivery-earnings-examine", ("spesos", totalSpesos)), -1);
+        //}
     }
 
     private void OnSpawnerExamine(Entity<DeliverySpawnerComponent> ent, ref ExaminedEvent args)

@@ -183,15 +183,16 @@
   - PlantHarvest
   - PlantChemicals
   - PlantGrowth
-  - PlantAtmospheric
+  # - PlantAtmospheric # Persistence: Plant nutrient rework
   - PlantConsumeExudeGas
   - PlantWeedPest
-  - PlantToxins
+  # - PlantToxins # Persistence: Plant nutrient rework
   # traits
   - PlantTraitKudzu
   - PlantTraitLigneous
   - PlantTraitScream
   - PlantTraitUnviable
+  - PlantTraitSeedless
 
 # for plant lifecycle clones
 - type: cloningSettings
@@ -200,6 +201,5 @@
   components:
   # traits
   - PlantTraitSampled
-  - PlantTraitSeedless
   eventComponents:
   - PlantHolder

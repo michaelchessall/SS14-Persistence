@@ -19,7 +19,7 @@ public abstract partial class SharedBuckleSystem
     }
 
     [SubscribeLocalEvent]
-    private void OnStrapStartup(Entity<StrapComponent> ent, ref ComponentStartup args)
+    private void OnStrapStartup(Entity<StrapComponent> ent, ref ComponentInit args)
     {
         Appearance.SetData(ent, StrapVisuals.State, ent.Comp.BuckledEntities.Count != 0);
 

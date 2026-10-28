@@ -33,6 +33,13 @@
   - type: FlavorProfile
     flavors:
       - sweet
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 10
   - type: Item
     size: Tiny
 
@@ -53,6 +60,8 @@
         Quantity: 1
       - ReagentId: JuiceBerry
         Quantity: 1
+      - ReagentId: Sugar
+        Quantity: 10
   - type: Tag
     tags:
     - Fruit
@@ -74,6 +83,8 @@
         Quantity: 1
       - ReagentId: JuiceCherry
         Quantity: 1
+      - ReagentId: Sugar
+        Quantity: 10
   - type: Tag
     tags:
     - Fruit
@@ -107,6 +118,8 @@
         Quantity: 1
       - ReagentId: CocoaPowder
         Quantity: 1
+      - ReagentId: Sugar
+        Quantity: 10
 
 - type: entity
   name: banana muffin
@@ -125,6 +138,8 @@
         Quantity: 1
       - ReagentId: JuiceBanana
         Quantity: 1
+      - ReagentId: Sugar
+        Quantity: 10
   - type: Tag
     tags:
     - Fruit
@@ -166,6 +181,13 @@
   id: FoodBakedCookie
   description: COOKIE!!!
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     state: COOKIE!!!
 
@@ -175,6 +197,13 @@
   id: FoodBakedCookieOatmeal
   description: The best of both cookie and oat.
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     state: cookie-oatmeal
 
@@ -184,6 +213,13 @@
   id: FoodBakedCookieRaisin
   description: Why would you put raisins in a cookie?
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     state: cookie-raisin
   - type: Tag
@@ -196,6 +232,13 @@
   id: FoodBakedCookieSugar
   description: Just like your mom used to make.
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 10
   - type: Sprite
     state: cookie-sugar
 
@@ -205,6 +248,13 @@
   id: FoodBakedCookieNuke
   description: A nuclear cookie disk, capable of being very tasty if used along with milk. Note from the baker reads "THIS IS YOUR MOST IMPORTANT POSESSION, SECURE DAT FUKKEN DISK!"
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     state: cookie-nuke
 
@@ -214,6 +264,13 @@
   id: FoodBakedCookieBanana
   description: Despite the fact that bananas contain potassium, this cookie probably won't explode in water.
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     state: cookie-banana
   - type: Tag
@@ -226,6 +283,13 @@
   id: FoodBakedCookieCotton
   description: Are cookies supposed to be this fluffy?
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
   - type: Sprite
     state: cookie-cotton
   - type: Edible
@@ -269,6 +333,10 @@
   id: FoodBakedPancake
   description: A fluffy pancake. The softer, superior relative of the waffle.
   components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - egg
   - type: Stack
     stackType: Pancake
     count: 1
@@ -324,6 +392,11 @@
   id: FoodBakedPancakeBb
   description: A fluffy and delicious blueberry pancake.
   components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - fruity
+      - berry
   - type: Stack
     stackType: PancakeBb
     layerStates:
@@ -377,6 +450,10 @@
   id: FoodBakedPancakeCc
   description: A fluffy and delicious chocolate chip pancake.
   components:
+  - type: FlavorProfile
+    flavors:
+      - sweet
+      - chocolate
   - type: Stack
     stackType: PancakeCc
     layerStates:
@@ -713,6 +790,8 @@
         - ReagentId: Allicin
           Quantity: 1
         - ReagentId: Vitamin
+          Quantity: 1
+        - ReagentId: Oil
           Quantity: 1
 
 - type: entity

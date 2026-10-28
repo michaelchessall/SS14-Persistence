@@ -12,7 +12,6 @@ using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Examine;
 using Content.Shared.Fluids.Components;
-using Content.Shared.Interaction;
 using Content.Shared.Inventory;
 using Content.Shared.Mobs;
 using Content.Shared.Mobs.Components;
@@ -23,7 +22,6 @@ using Content.Shared.Nutrition.EntitySystems;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Content.Shared.Storage.Components;
-using static Content.Shared.Interaction.SharedInteractionSystem;
 using Content.Shared.Stunnable;
 using Content.Shared.Temperature.Components;
 using Content.Shared.Tools.Systems;
@@ -36,9 +34,6 @@ using Microsoft.Extensions.ObjectPool;
 using Robust.Server.Containers;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
-using Content.Shared._Persistence14.PersistentIdentifier;
-using Content.Server.Anomaly.Effects.Components;
-using Content.Shared.Tag;
 
 namespace Content.Server.NPC.Systems;
 
@@ -47,7 +42,6 @@ namespace Content.Server.NPC.Systems;
 /// </summary>
 public sealed partial class NPCUtilitySystem : EntitySystem
 {
-    [Dependency] private PersistentIdentifierSystem _pid = default!;
     [Dependency] private ContainerSystem _container = default!;
     [Dependency] private EntityLookupSystem _lookup = default!;
     [Dependency] private HandsSystem _hands = default!;
@@ -66,7 +60,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private SatiationSystem _satiation = default!;
     [Dependency] private SharedStealthSystem _stealth = default!;
-
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
 
     private ObjectPool<HashSet<EntityUid>> _entPool =
@@ -167,23 +160,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
         }
     }
 
-    /// <summary>
-    /// An Eye-possessed thrall's own anomaly anchor is a static, opaque fixture it constantly
-    /// stands near/fights around - exempt only that entity from a thrall's own LOS checks so its
-    /// tether anchor can't block its own targeting. Null (no exemption) for every other NPC.
-    /// </summary>
-    private Ignored? GetEyeAnomalyIgnorePredicate(EntityUid owner)
-    {
-        if (!TryComp<TetheredByEyeComponent>(owner, out var tether))
-            return null;
-
-        if (!_pid.TryResolveId(tether.Eye, out var eyeEnt))
-            return null;
-
-        var eyeAnomaly = eyeEnt.Owner;
-        return entity => entity == eyeAnomaly;
-    }
-
     private float GetScore(NPCBlackboard blackboard, EntityUid targetUid, UtilityConsideration consideration)
     {
         var owner = blackboard.GetValue<EntityUid>(NPCBlackboard.Owner);
@@ -199,7 +175,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                 // only eat when hungry or if it will eat anything
                 if (TryComp<SatiationComponent>(owner, out var satiation) &&
-                    _satiation.IsValueInRange((owner, satiation), SatiationSystem.Hunger, below: foodValueConsideration.HungerThreshold) &&
+                    _satiation.IsValueInRange((owner, satiation), SatiationSystem.Hunger, above: foodValueConsideration.HungerThreshold) &&
                     avoidBadFood)
                     return 0f;
 
@@ -221,7 +197,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
 
                 // only drink when thirsty
                 if (TryComp<SatiationComponent>(owner, out var satiation) &&
-                    _satiation.IsValueInRange((owner, satiation), SatiationSystem.Thirst, below: drinkValueConsideration.ThirstThreshold))
+                    _satiation.IsValueInRange((owner, satiation), SatiationSystem.Thirst, above: drinkValueConsideration.ThirstThreshold))
                     return 0f;
 
                 // no janicow don't drink the blood puddle
@@ -349,7 +325,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             {
                 var radius = blackboard.GetValueOrDefault<float>(blackboard.GetVisionRadiusKey(EntityManager), EntityManager);
 
-                return _examine.InRangeUnOccluded(owner, targetUid, radius + 0.5f, GetEyeAnomalyIgnorePredicate(owner)) ? 1f : 0f;
+                return _examine.InRangeUnOccluded(owner, targetUid, radius + 0.5f, null) ? 1f : 0f;
             }
             case TargetInLOSOrCurrentCon:
             {
@@ -366,7 +342,7 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                     return 1f;
                 }
 
-                return _examine.InRangeUnOccluded(owner, targetUid, radius + bufferRange, GetEyeAnomalyIgnorePredicate(owner)) ? 1f : 0f;
+                return _examine.InRangeUnOccluded(owner, targetUid, radius + bufferRange, null) ? 1f : 0f;
             }
             case TargetIsAliveCon:
             {
@@ -393,12 +369,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
             {
                 if (TryComp(targetUid, out FlammableComponent? fire) && fire.OnFire)
                     return 1f;
-
-                // Persistence: Firebots can target reagent fires
-                var reagentFireTagPrototype = "ReagentFire";
-                if (TryComp(targetUid, out TagComponent? tags) && tags.Tags.AsReadOnly().Contains(ProtoMan.Index<TagPrototype>(reagentFireTagPrototype)))
-                    return 1f;
-
                 return 0f;
             }
             case TargetIsStunnedCon:
@@ -521,24 +491,6 @@ public sealed partial class NPCUtilitySystem : EntitySystem
                 {
                     entities.Add(ent);
                 }
-                break;
-            }
-            case ComponentQueryAny compQueryAny: // Persistence: Firebots can target reagent fires
-            {
-                if (compQueryAny.Components.Count == 0)
-                    return;
-
-                var mapPos = _transform.GetMapCoordinates(owner, xform: Transform(owner));
-                _compTypes.Clear();
-                _entitySet.Clear();
-                foreach (var comp in compQueryAny.Components.Values)
-                {
-                    _lookup.GetEntitiesInRange(comp.Component.GetType(), mapPos, vision, _entitySet);
-                }
-
-                foreach (var ent in _entitySet)
-                    entities.Add(ent);
-
                 break;
             }
             default:

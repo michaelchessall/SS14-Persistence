@@ -1,5 +1,7 @@
 using Content.Server.Administration.Managers;
+using Content.Server.Audio;
 using Content.Server.Chat.Managers;
+using Content.Server.Chat.Systems;
 using Content.Server.CrewAssignments.Systems;
 using Content.Server.CrewRecords.Systems;
 using Content.Shared._Persistence14.PersistentIdentifier;
@@ -14,6 +16,7 @@ using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
+using System.ComponentModel;
 
 namespace Content.Server.MessageBoard.Systems;
 
@@ -25,7 +28,8 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly IChatManager _chatManager = default!;
     [Dependency] private JobNetSystem _jobNet = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private ServerGlobalSoundSystem _globalsound = default!;
+    [Dependency] private ChatSystem _chatSystem = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -36,9 +40,16 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
         SubscribeLocalEvent<MessageBoardComponent, MessageBoardDeleteCommentPublicMessage>(OnDeleteCommentPublic);
         SubscribeLocalEvent<MessageBoardComponent, MessageBoardDeleteEntryPublicMessage>(OnDeleteEntryPublic);
         SubscribeLocalEvent<MessageBoardComponent, MessageBoardSendDirectMessagePublicMessage>(OnSendDirectMessagePublic);
+        SubscribeLocalEvent<MessageBoardComponent, MessageBoardSilenceMessage>(OnSilence);
     }
 
-    public void NotifyPlayer(EntityUid player, string msg, SoundSpecifier? sound = null, EntityUid? source = null)
+    private void OnSilence(Entity<MessageBoardComponent> ent, ref MessageBoardSilenceMessage args)
+    {
+        ent.Comp.Silenced = args.State;
+        UpdateUserInterface(ent, ent.Comp);
+    }
+
+    public void NotifyPlayer(EntityUid player, string msg, SoundSpecifier? sound = null)
     {
         if (TryComp<ActorComponent>(player, out var actor) && actor != null && actor.PlayerSession != null)
         {
@@ -49,10 +60,10 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
                 false,
                 actor.PlayerSession.Channel
                 );
-        }
-        if (sound != null && source != null)
-        {
-            _audio.PlayEntity(sound, player, source.Value);
+            if (sound != null)
+            {
+                _globalsound.PlayLocalSound(sound, actor);
+            }
         }
     }
     private void OnSendDirectMessagePublic(Entity<MessageBoardComponent> ent, ref MessageBoardSendDirectMessagePublicMessage args)
@@ -82,7 +93,7 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
         recipientConversation.IsRead = false;
         UpdateDirectMessaging(ent, args.Actor);
         var authorJobnet = _jobNet.GetJobNetByName(Name(args.Actor));
-        if(authorJobnet != null)
+        if (authorJobnet != null)
         {
             _jobNet.UpdateUserInterface(args.Actor, authorJobnet.Owner, authorJobnet);
         }
@@ -91,7 +102,7 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
         var implantXform = Transform(recipientJobnet.Owner);
         var recipientPlayer = implantXform.ParentUid;
         if (!recipientPlayer.IsValid()) return;
-        NotifyPlayer(recipientPlayer, $"(DM) {Name(args.Actor)} sends: '{args.Body}'");
+        NotifyPlayer(recipientPlayer, $"(DM) {Name(args.Actor)} sends: '{args.Body}'", recipientJobnet.DMSound);
         _jobNet.UpdateUserInterface(recipientPlayer, recipientJobnet.Owner, recipientJobnet);
         UpdateDirectMessageByName(args.Recipient);
 
@@ -103,18 +114,17 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
         var playerQuery = EntityQueryEnumerator<ActorComponent>();
         while (playerQuery.MoveNext(out var uid, out var comp))
         {
-            if(Name(uid) == name)
+            if (Name(uid) == name)
             {
                 target = uid;
                 break;
             }
-
         }
         if (target == null) return;
         var query = EntityQueryEnumerator<MessageBoardComponent>();
         while (query.MoveNext(out var uid, out var comp))
         {
-            if(_uiSystem.IsUiOpen(uid, MessageBoardUiKey.Main, target.Value))
+            if (_uiSystem.IsUiOpen(uid, MessageBoardUiKey.Main, target.Value))
             {
                 UpdateDirectMessaging((uid, comp), target.Value);
             }
@@ -208,18 +218,23 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
             }
         }
         if (entry == null) return;
-        MessageBoardComment newComment = new(entry.NextCommentID++, Name(args.Actor), args.Body);
+        var senderName = Name(args.Actor);
+        MessageBoardComment newComment = new(entry.NextCommentID++, senderName, args.Body);
         entry.Comments.Add(newComment);
         authorRecord.NextMessageBoardComment = _timing.CurTime + TimeSpan.FromSeconds(5);
-        UpdateAllUserInterfaces();
+        UpdateAllUserInterfaces($"A new comment has been posted on {entry.Title} by {senderName}.");
     }
 
-    public void UpdateAllUserInterfaces()
+    public void UpdateAllUserInterfaces(string? report = null)
     {
         var query = EntityQueryEnumerator<MessageBoardComponent>();
 
         while (query.MoveNext(out var uid, out var component))
         {
+            if (report != null && !component.Silenced)
+            {
+                _chatSystem.TrySendInGameICMessage(uid, report, Shared.Chat.InGameICChatType.Speak, true);
+            }
             UpdateUserInterface(uid, component);
         }
     }
@@ -263,17 +278,18 @@ public sealed partial class MessageBoardSystem : SharedMessageBoardSystem
             }
             return;
         }
-        MessageBoardEntry newEntry = new(metaRecord.NextMessageBoardEntryID++, args.Title, Name(args.Actor), args.Body);
+        var posterName = Name(args.Actor);
+        MessageBoardEntry newEntry = new(metaRecord.NextMessageBoardEntryID++, args.Title, posterName, args.Body, args.CategoryProtoID);
         metaRecord.MessageBoardEntries.Add(newEntry);
         authorRecord.NextMessageBoardEntry = _timing.CurTime + TimeSpan.FromHours(4);
-        UpdateAllUserInterfaces();
+        UpdateAllUserInterfaces($"A new thread '{args.Title}' has been created by {posterName}.");
     }
 
     private void UpdateUserInterface(EntityUid uid, MessageBoardComponent component)
     {
         var metaRecord = _crewMetaRecordsSystem.MetaRecords;
         if (metaRecord == null) return;
-        var entries = metaRecord.MessageBoardEntries;    
-        _uiSystem.SetUiState(uid, MessageBoardUiKey.Main, new MessageBoardInterfaceState(entries));
-    }   
+        var entries = metaRecord.MessageBoardEntries;
+        _uiSystem.SetUiState(uid, MessageBoardUiKey.Main, new MessageBoardInterfaceState(entries, component.Silenced));
+    }
 }

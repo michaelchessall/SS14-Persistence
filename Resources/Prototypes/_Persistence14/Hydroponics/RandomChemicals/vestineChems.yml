@@ -1,0 +1,30 @@
+# Changing the quantityId of these may leave behind legacy plants with the old requirements. Ids that don't start with Random are also used by plants.
+- type: weightedRandomFillPlantChemical
+  id: RandomPickChemicalVestine
+  fills:
+  # weight 40, 0.05 quantity. TODO: Rebalance weights after vestine chems have proper requirements.
+  - quantityId: VestineRandomNocturine
+    weight: 40
+    reagents:
+    - Nocturine
+  - quantityId: VestineRandomMuteToxin
+    weight: 40
+    reagents:
+    - MuteToxin
+  - quantityId: VestineRandomLead
+    weight: 40
+    reagents:
+    - Lead
+    # weight 1, 1 quantity. TODO: Rebalance weights after vestine chems have proper requirements.
+  - quantityId: VestineRandomTazinide
+    weight: 40
+    reagents:
+    - Tazinide
+  - quantityId: VestineRandomStimulants
+    weight: 40
+    reagents:
+    - Stimulants
+  - quantityId: VestineRandomLexorin
+    weight: 40
+    reagents:
+    - Lexorin

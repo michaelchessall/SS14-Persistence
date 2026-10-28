@@ -12,5 +12,9 @@
         </BoxContainer>
         <RichTextLabel Name="ContentLabel" Text="Rumor content" />
         <RichTextLabel Name="RewardLabel" Text="Rumor reward" />
+        <BoxContainer Orientation="Vertical" Name="Requirements" Visible="False">
+            <RichTextLabel Name="ReqLabel" />
+        </BoxContainer>
+        <RichTextLabel Name="CancelTimeLabel" />
     </BoxContainer>
 </PanelContainer>

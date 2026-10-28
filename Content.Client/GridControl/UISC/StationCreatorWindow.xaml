@@ -8,14 +8,14 @@
         <Control VerticalExpand="True"/>
         <Label Name="MissingPrivilegesLabel" Text =" " />
         <BoxContainer Orientation="Horizontal">
-            <Label Text="Initial Station Owner: " />
+            <Label Text="Initial Faction Owner: " />
             <Label Name="OwnerLabel" Text="" />
         </BoxContainer>
         <BoxContainer Orientation="Horizontal">
-            <Label Text="New Station Name: " />            
+            <Label Text="New Faction Name: " />            
             <LineEdit Name="StationNameLineEdit" HorizontalExpand="True" Access="Public"/>
         </BoxContainer>
 
-        <Button Name="FinishBtn" Text="Finalize Station" Access="Public" />
+        <Button Name="FinishBtn" Text="Finalize Faction" Access="Public" />
     </BoxContainer>
 </DefaultWindow>

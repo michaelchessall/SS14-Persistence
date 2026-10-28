@@ -6,11 +6,13 @@
     - DrinkBasicFriendly
     - EatBasicFriendly
     - PrayBasicFriendly
+    - ReceiveMailFriendly
   color: Red
   levels:
     Zenith2: 150
     Zenith3: 500
     Zenith4: 1000
+  order: 0
 
 - type: metaFactionLevel
   id: Zenith2
@@ -18,7 +20,10 @@
   rumorRewards:
     - ZenithUpgradeModule
     - TradeGood
-  rewardsToOffer: 1
+    - ZenithCodexFragment
+    - SoLMerchCrate
+    - GrandLottery
+  rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Zenith3
@@ -26,9 +31,29 @@
   rumorRewards:
     - ZenithUpgradeModule
     - TradeGood
+    - ZenithCodexFragment
+    - VestArmor
+    - VestArmorElite
+    - Defib
+    - Microwave
+    - FlashCamera
+    - HyperzineKit
+    - RaidSuit
+    - Hushpup
   rewardsToOffer: 2
 
 - type: metaFactionLevel
   id: Zenith4
   name: Knight
+  rumorRewards:
+    - ZenithUpgradeModule
+    - TradeGood
+    - ZenithCodexFragment
+    - ESword
+    - ScramImplanter
+    - C-20r
+    - GlovesNorthStar
+    - StealthBox
+    - ChameleonProjector
+  rewardsToOffer: 2
 

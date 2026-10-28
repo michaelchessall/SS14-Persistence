@@ -8,10 +8,10 @@
     state: fab-idle
   discipline: Experimental
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
-  - ProximitySensor
-  - RoboticsConsoleCircuitboard
+    ProximitySensor: 3
+    RoboticsConsoleCircuitboard: 1
 
 - type: technology
   id: BasicAnomalousResearch
@@ -21,13 +21,13 @@
     state: icon
   discipline: Experimental
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
-  - AnomalyScanner
-  - AnomalyLocator
-  - AnomalyLocatorWide
-  - APECircuitboard
-  - AnomalyVesselCircuitboard
+    AnomalyScanner: 2
+    AnomalyLocator: 2
+    AnomalyLocatorWide: 2
+    APECircuitboard: 1
+    AnomalyVesselCircuitboard: 1
 
 - type: technology
   id: BasicXenoArcheology
@@ -37,25 +37,26 @@
     state: display
   discipline: Experimental
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
-  - NodeScanner
-  - AnalysisComputerCircuitboard
-  - ArtifactAnalyzerMachineCircuitboard
-  - ResearchComputerCircuitboard
-#  - ResearchAndDevelopmentServerMachineCircuitboard # Disabling this because of the RNDkit being added.
+    NodeScanner: 2
+    AnalysisComputerCircuitboard: 1
+    ArtifactAnalyzerMachineCircuitboard: 1
+    ResearchComputerCircuitboard: 1
+    # ResearchAndDevelopmentServerMachineCircuitboard: 1 # Disabling this because of the RNDkit being added.
 
-- type: technology
-  id: AlternativeResearch
-  name: research-technology-alternative-research
-  icon:
-    sprite: Structures/Machines/tech_disk_printer.rsi
-    state: display
-  discipline: Experimental
-  tier: 1
-  cost: 5000
-  recipeUnlocks:
-  - TechDiskComputerCircuitboard
+# Removed since it uh... doesn't do anything.
+#- type: technology
+#  id: AlternativeResearch
+#  name: research-technology-alternative-research
+#  icon:
+#    sprite: Structures/Machines/tech_disk_printer.rsi
+#    state: display
+#  discipline: Experimental
+#  tier: 1
+#  cost: 2500
+#  recipeUnlocks:
+#    TechDiskComputerCircuitboard: 4
 
 - type: technology
   id: MagnetsTech
@@ -65,10 +66,10 @@
     state: icon
   discipline: Experimental
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - ClothingShoesBootsMagSci
-  - ClothingShoesBootsMoon
+    ClothingShoesBootsMagSci: 4
+    ClothingShoesBootsMoon: 4
 
 - type: technology
   id: AnomalyCoreHarnessing
@@ -78,9 +79,9 @@
     state: icon
   discipline: Experimental
   tier: 1
-  cost: 10000
+  cost: 5000
   recipeUnlocks:
-  - WeaponGauntletGorilla
+    WeaponGauntletGorilla: 1
 
 # Tier 2
 
@@ -92,9 +93,9 @@
     state: icon
   discipline: Experimental
   tier: 2
-  cost: 25000
+  cost: 12500
   recipeUnlocks:
-  - ArtifactCrusherMachineCircuitboard
+    ArtifactCrusherMachineCircuitboard: 2
 
 - type: technology
   id: AdvancedAnomalyResearch
@@ -104,11 +105,11 @@
     state: base
   discipline: Experimental
   tier: 2
-  cost: 50000
+  cost: 25000
   recipeUnlocks:
-  - WeaponPistolCHIMP
-  - AnomalySynchronizerCircuitboard
-  - AnomalyVesselExperimentalCircuitboard
+    WeaponPistolCHIMP: 3
+    AnomalySynchronizerCircuitboard: 2
+    AnomalyVesselExperimentalCircuitboard: 4
   technologyPrerequisites:
   - BasicAnomalousResearch
 
@@ -120,10 +121,10 @@
     state: base
   discipline: Experimental
   tier: 2
-  cost: 32500
+  cost: 16250
   recipeUnlocks:
-  - WeaponParticleDecelerator
-  - HoloprojectorField
+    WeaponParticleDecelerator: 1
+    HoloprojectorField: 1
 
 - type: technology
   id: GravityManipulation
@@ -133,10 +134,10 @@
     state: base
   discipline: Experimental
   tier: 2
-  cost: 50000
+  cost: 25000
   recipeUnlocks:
-    - WeaponForceGun
-    - WeaponTetherGun
+    WeaponForceGun: 1
+    WeaponTetherGun: 1
 
 # Tier 3
 
@@ -148,23 +149,11 @@
     state: display
   discipline: Experimental
   tier: 3
-  cost: 100000
+  cost: 50000
   recipeUnlocks:
-  - ArtifactAnalyzerAdvancedMachineCircuitboard
+    ArtifactAnalyzerAdvancedMachineCircuitboard: 2
   technologyPrerequisites:
   - BasicXenoArcheology
-
-- type: technology
-  id: QuantumLeaping
-  name: research-technology-quantum-leaping
-  icon:
-    sprite: Objects/Devices/swapper.rsi
-    state: icon
-  discipline: Experimental
-  tier: 3
-  cost: 100000
-  recipeUnlocks:
-  - DeviceQuantumSpinInverter
 
 - type: technology
   id: BluespaceTimeManipulation
@@ -174,9 +163,9 @@
     state: icon
   discipline: Experimental
   tier: 3
-  cost: 100000
+  cost: 50000
   recipeUnlocks:
-  - DeviceDesynchronizer
+    DeviceDesynchronizer: 1
 
 - type: technology
   id: TeleSci
@@ -188,6 +177,6 @@
   tier: 3
   cost: 10000
   recipeUnlocks:
-  - StationTeleportersControlCircuitboard
-  - StationTeleporterMachineCircuitboard
-  - TeleporterChipBlank
+    StationTeleportersControlCircuitboard: 1
+    StationTeleporterMachineCircuitboard: 2
+    TeleporterChipBlank: 4

@@ -1,0 +1,50 @@
+<Document>
+  # Trade Stations/Resonance
+  This guide will explain Trade Stations and the Resonance that they generate. Trade Stations and Resonance are pivotal to the economy and politics of the sector.
+
+  ## Imports and Bounties
+  Every Trade Station gets a unique set of imports that can be purchased through a Cargo Request Console and unique bounties that can be viewed through a Bounty Console.
+
+  More imports become available as the Trade Station Infrastructure increases.
+
+  Bounties can be completed by individual characters or factions but they are subject to the export tax that the faction who controls the Trade Station sets.
+
+  ## Infrastructure Level
+  The Infrastructure Level is determined by [bold]the amount of Trade Nodes that are stored aboard[/bold] the Trade Station.
+  As the infrastructure level increases a Trade Station will offer more imports and bounties.
+  Infrastructure Level is only applied to Trade Stations which are directly controlled by a Faction.
+
+  ### Trade Nodes
+  Trade Nodes are purchased through Rumored Imports and [bold]must be stored aboard a Trade Station[/bold] to increase the Infrastructure Level and [bold]generate Resonance for the owner of the Trade Station[/bold].
+  Trade Nodes can be exported for $10,000  so they are expensive and must be defended.
+
+  ## Controlling a Trade Station
+  Trade Stations can only be claimed by a Level 3 Faction and it requires at least 5 Trade Nodes already be stored aboard.
+
+  [bold]If a Trade Station ever drops below 5 stored Trade Nodes it will be automatically unclaimed![/bold]
+
+  ## Resonance
+  Factions that control a Trade Station will generate 10 Resonance for each Trade Node stored aboard.
+  This Resonance is generated every time the Trade Station Bounties refresh.
+
+  Resonance can be [bold]spent by a faction owner at the Resonance Market available through a Faction Modification Computer[/bold]
+  The Resonance Market contains Unique Artifacts of extreme power and decisions that can shape the entire sector.
+  Most purchases can only be made once.
+
+  ## Example Purchases
+
+  ### Sector Boundary increase
+  Resonance can be contributed by all the Trade Stations to expand the sector boundary giving more space for asteroids and additional installations.
+
+  ### Sector Awakening
+  The hidden powers of the sector can be awakened unlocking tier 3 insights for all characters permanently and makes numerous other changes to the gameplay.
+
+  ### Unique Artifacts
+  Completely unique artifacts of history or power can be purchased. These artifacts can unlock Codex entries or have other powerful properties.
+
+  ### New Place of Interest
+  Powerful factions will determine which places of interest can be discovered in the available territory such as Geysers, Salvage Magnets or additional Trade Stations.
+
+
+</Document>
+

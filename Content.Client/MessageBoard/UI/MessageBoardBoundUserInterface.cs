@@ -6,6 +6,7 @@ using Content.Shared.CCVar;
 using Content.Shared.CrewMetaRecords;
 using Content.Shared.IdentityManagement;
 using Content.Shared.MessageBoard.Components;
+using Content.Shared.MessageBoard.Prototypes;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
@@ -16,6 +17,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using static Robust.Client.UserInterface.Controls.MenuBar;
 
@@ -26,6 +28,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
 {
     [Dependency] private readonly IClientAdminManager _admin = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
     private MessageBoard? _menu;
     private CreateEntry? _createEntry;
     private EntryWindow? _entryWindow;
@@ -44,49 +47,80 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
         if (player == null) return;
         var playerName = Identity.Name(player.Value, EntMan);
         base.UpdateState(state);
-        if(_menu == null)
+        if (_menu == null)
         {
             return;
         }
         if (state is not MessageBoardInterfaceState cState)
             return;
-        _menu.PublicBoardEntriesBC.RemoveAllChildren();
+        _menu.MuteButton.Pressed = cState.Silenced;
+        _menu.MuteButton.OnToggled += args =>
+        {
+            SendMessage(new MessageBoardSilenceMessage(args.Pressed));
+        };
+        _menu.PublicCategories.RemoveAllChildren();
         cState.PublicEntries.Reverse();
+        Dictionary<ProtoId<MessageBoardCategoryPrototype>, List<MessageBoardEntry>> sortedEntries = new();
+        foreach (var cat in _protoMan.EnumeratePrototypes<MessageBoardCategoryPrototype>().OrderBy(p => p.Order).ThenBy(p => p.Name).ToList())
+        {
+            sortedEntries.Add(cat.ID, new List<MessageBoardEntry>());
+        }
         foreach (var entry in cState.PublicEntries)
         {
-            bool delete = false;
-            if (isAdmin || playerName == entry.Author) delete = true;
-            var adjustedTime = entry.CreationTime.AddYears(_cfg.GetCVar(CCVars.YearOffset));
-            EntryHeader header = new EntryHeader(entry.Title, entry.Author, $"{adjustedTime.ToString()}", entry.Comments.Count, delete);
-            _menu.PublicBoardEntriesBC.AddChild(header);
-            header.DeleteButton.OnPressed += (args) =>
+            if (sortedEntries.ContainsKey(entry.Category))
             {
-                SendMessage(new MessageBoardDeleteEntryPublicMessage(entry.UID));
-            };
-            header.ViewButton.OnPressed += (args) =>
-            {
-                if(_entryWindow != null)
-                {
-                    _entryWindow.Dispose();
-                }
-                var entryWindow = new EntryWindow(entry, isAdmin, playerName, this);
-                _entryWindow = entryWindow;
-                entryWindow.OpenCentered();
-                entryWindow.AddCommentBtn.OnPressed += (commentArgs) =>
-                {
-                    var comment = entryWindow.AddCommentLE.Text;
-                    if (comment == string.Empty) return;
-                    var ID = entryWindow.Entry.UID;
-                    entryWindow.AddCommentLE.Text = string.Empty;
-                    SendMessage(new MessageBoardPostCommentPublicMessage(ID, comment));
-                };
-            };
-            if (_entryWindow != null && _entryWindow.Entry.UID == entry.UID)
-            {
-                _entryWindow.UpdateEntry(entry);
+                sortedEntries[entry.Category].Add(entry);
             }
-        }
+            else
+            {
+                List<MessageBoardEntry> entries = new();
+                entries.Add(entry);
+                sortedEntries.Add(entry.Category, entries);
+            }
 
+        }
+        foreach (var kv in sortedEntries)
+        {
+            MessageBoardCategoryPanel panel = new();
+            var categoryProto = _protoMan.Index(kv.Key);
+            if (categoryProto == null) continue;
+            panel.Name = categoryProto.Name;
+            foreach (var entry in kv.Value)
+            {
+                bool delete = false;
+                if (isAdmin || playerName == entry.Author) delete = true;
+                var adjustedTime = entry.CreationTime.AddYears(_cfg.GetCVar(CCVars.YearOffset));
+                EntryHeader header = new EntryHeader(entry.Title, entry.Author, $"{adjustedTime.ToString()}", entry.Comments.Count, delete);
+                panel.PublicBoardEntriesBC.AddChild(header);
+                header.DeleteButton.OnPressed += (args) =>
+                {
+                    SendMessage(new MessageBoardDeleteEntryPublicMessage(entry.UID));
+                };
+                header.ViewButton.OnPressed += (args) =>
+                {
+                    if (_entryWindow != null)
+                    {
+                        _entryWindow.Dispose();
+                    }
+                    var entryWindow = new EntryWindow(entry, isAdmin, playerName, this);
+                    _entryWindow = entryWindow;
+                    entryWindow.OpenCentered();
+                    entryWindow.AddCommentBtn.OnPressed += (commentArgs) =>
+                    {
+                        var comment = entryWindow.AddCommentLE.Text;
+                        if (comment == string.Empty) return;
+                        var ID = entryWindow.Entry.UID;
+                        entryWindow.AddCommentLE.Text = string.Empty;
+                        SendMessage(new MessageBoardPostCommentPublicMessage(ID, comment));
+                    };
+                };
+                if (_entryWindow != null && _entryWindow.Entry.UID == entry.UID)
+                {
+                    _entryWindow.UpdateEntry(entry);
+                }
+            }
+            _menu.PublicCategories.AddChild(panel);
+        }
         _menu.ActiveConversations.RemoveAllChildren();
         if (_directMessages != null)
         {
@@ -229,11 +263,13 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
         _createEntry = new CreateEntry();
         _createEntry.OpenCentered();
         _createEntry.CurrentEntryType = CreateEntry.EntryType.Public;
-        _createEntry.PostButton.OnPressed += FinalizeEntryPublic;
+        _createEntry.PostButton.OnPressed += _ => FinalizeEntryPublic(_createEntry.CategoryButton.SelectedMetadata);
     }
 
-    public void FinalizeEntryPublic(BaseButton.ButtonEventArgs args)
+    public void FinalizeEntryPublic(object? selectedMetadata)
     {
+        if (selectedMetadata == null) return;
+        MessageBoardCategoryPrototype proto = (MessageBoardCategoryPrototype)selectedMetadata;
         if (_createEntry == null)
             return;
         var title = _createEntry.MainTitleLabel.Text;
@@ -242,7 +278,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
         {
             return;
         }
-        SendMessage(new MessageBoardCreateEntryPublicMessage(title, content));
+        SendMessage(new MessageBoardCreateEntryPublicMessage(title, content, proto.ID));
         _createEntry.Dispose();
         _createEntry = null;
     }

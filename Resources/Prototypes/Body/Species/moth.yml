@@ -82,6 +82,8 @@
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: ["enum.HumanoidVisualLayers.LHandOverlay"] # Scav: Things that go on top of hands
+    - map: ["enum.HumanoidVisualLayers.RHandOverlay"] # Scav
 
     # Stuff that goes over the body but below equipment
     - map: ["enum.HumanoidVisualLayers.Overlay"]

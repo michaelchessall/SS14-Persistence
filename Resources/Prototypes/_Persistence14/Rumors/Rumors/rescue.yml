@@ -7,4 +7,23 @@
   cashReward: 5000
   reputationReward: 70
   completionType: Rescue
-  descriptionAddon: "Rescue all humanoid crew aboard!"
+
+- type: rumor
+  id: RescuePrecursor
+  name: Survival of the Fittest
+  description: "Rescue the three people on board the facility!"
+  eventGrids:
+    - /Maps/Rumors/Rescue/Medium/SyndicateRescue.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionType: Rescue
+
+- type: rumor
+  id: RescueShadow
+  name: Rejected Offerings
+  description: "Three humanoids need to be retrieved and revived from this location."
+  eventGrids:
+    - /Maps/Rumors/Rescue/Medium/ChurchMeat.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionType: Rescue

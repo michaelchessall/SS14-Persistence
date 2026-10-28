@@ -2,7 +2,6 @@
   id: BannerGraph
   start: start
   graph:
-
     - node: start
       actions:
         - !type:DestroyEntity {}
@@ -232,6 +231,23 @@
         - material: FloorCarpetSkyBlue
           amount: 2
           doAfter: 1
+      - to: bannerNexus
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlue
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetGreen
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetRed
+          amount: 1
+          doAfter: 1
 
     - node: bannerNT
       entity: BannerNanotrasen
@@ -460,3 +476,20 @@
           steps:
             - tool: Cutting
               doAfter: 1
+    - node: bannerNexus
+      entity: BannerNexus
+      edges:
+      - to: start
+        completed:
+        - !type:GivePrototype
+          prototype: FloorCarpetItemBlue
+          amount: 1
+        - !type:GivePrototype
+          prototype: FloorCarpetItemGreen
+          amount: 1
+        - !type:GivePrototype
+          prototype: FloorCarpetItemRed
+          amount: 1
+        steps:
+        - tool: Cutting
+          doAfter: 1

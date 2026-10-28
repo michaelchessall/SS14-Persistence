@@ -8,4 +8,7 @@ public sealed partial class ReagentQuantityValueDefinition : RandomTableValueDef
     private ReagentQuantity _value;
 
     protected override object? Get(RandomTableContext ctx) => _value;
+
+    public override int GetHashCode()
+        => _value.GetHashCode();
 }

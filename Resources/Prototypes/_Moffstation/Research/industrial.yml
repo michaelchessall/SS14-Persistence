@@ -24,9 +24,9 @@
     entity: HudModuleEyeProtection
   discipline: Industrial
   tier: 2
-  cost: 17500 # Price changed for Persistence14
+  cost: 8750 # Price changed for Persistence14
   technologyPrerequisites:
   - ModularHudFrames
 #  - ModularHudModulesIndustrialT1
   recipeUnlocks:
-  - HudModuleEyeProtection
+    HudModuleEyeProtection: 2

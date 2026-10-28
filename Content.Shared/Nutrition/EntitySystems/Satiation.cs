@@ -28,8 +28,8 @@ public sealed partial class Satiation : IRobustCloneable<Satiation>
     /// <summary>
     /// This satiation's <see cref="SatiationTypePrototype"/>.
     /// </summary>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public ProtoId<SatiationTypePrototype> SatiationType;
+    [DataField, ViewVariables(VVAccess.ReadOnly)]
+    public ProtoId<SatiationTypePrototype>? SatiationType;
 
     /// <summary>
     /// This satiation's <see cref="SatiationPrototype"/>, which describes how it changes over time.

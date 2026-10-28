@@ -2,7 +2,6 @@ using Content.Shared.Access;
 using Content.Shared.Turrets;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.TurretController;
@@ -32,20 +31,11 @@ public sealed partial class DeployableTurretControllerComponent : Component
     [DataField, AutoNetworkedField]
     public int ArmamentState = -1;
 
-    /// <summary>
-    /// Access level prototypes that are known to the entity.
-    /// Determines what access permissions can be adjusted.
-    /// It is also used to populate the controller UI.
-    /// </summary>
-    [DataField]
-    public HashSet<ProtoId<AccessLevelPrototype>> AccessLevels = new();
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public HashSet<int> AccessAssignments = new();
 
-    /// <summary>
-    /// Access group prototypes that are known to the entity.
-    /// Determines how access permissions are organized on the controller UI.
-    /// </summary>
-    [DataField]
-    public HashSet<ProtoId<AccessGroupPrototype>> AccessGroups = new();
+    [AutoNetworkedField, ViewVariables(VVAccess.ReadOnly)]
+    public Dictionary<int, string> AssignmentIdtoString = new();
 
     /// <summary>
     /// Sound to play when denying access to the device.
@@ -77,15 +67,28 @@ public sealed class DeployableTurretArmamentSettingChangedMessage : BoundUserInt
 }
 
 [Serializable, NetSerializable]
-public sealed class DeployableTurretExemptAccessLevelChangedMessage : BoundUserInterfaceMessage
+public sealed class DeployableTurretExemptAccessAssignmentChangedMessage : BoundUserInterfaceMessage
 {
-    public HashSet<ProtoId<AccessLevelPrototype>> AccessLevels;
+    public HashSet<int> AccessAssignments;
     public bool Enabled;
 
-    public DeployableTurretExemptAccessLevelChangedMessage(HashSet<ProtoId<AccessLevelPrototype>> accessLevels, bool enabled)
+    public DeployableTurretExemptAccessAssignmentChangedMessage(HashSet<int> accessAssignments, bool enabled)
     {
-        AccessLevels = accessLevels;
+        AccessAssignments = accessAssignments;
         Enabled = enabled;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class DeployableTurretExemptAccessNameChangedMessage : BoundUserInterfaceMessage
+{
+    public HashSet<string> AccessNames;
+    public bool Delete;
+
+    public DeployableTurretExemptAccessNameChangedMessage(HashSet<string> accessNames, bool delete)
+    {
+        AccessNames = accessNames;
+        Delete = delete;
     }
 }
 

@@ -1,3 +1,4 @@
+/* Persistence: Moved to a different location, since this has to be completely reworked.
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 using Content.Shared.Random.Helpers;
@@ -90,3 +91,4 @@ public sealed partial class PlantMutateConsumeGases : EntityEffectBase<PlantMuta
                 ("maxValue", MaxValue));
     }
 }
+*/

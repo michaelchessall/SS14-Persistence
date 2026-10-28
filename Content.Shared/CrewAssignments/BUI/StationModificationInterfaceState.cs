@@ -1,4 +1,5 @@
 using Content.Shared._Persistence14.Resonance.Prototypes;
+using Content.Shared._Persistence14.Upgrades.Prototypes;
 using Content.Shared.CrewAccesses.Components;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
@@ -29,8 +30,9 @@ public sealed class StationModificationInterfaceState : BoundUserInterfaceState
     public List<ProtoId<ResonanceProductPrototype>> ResonanceMarket;
     public int Resonance;
     public Dictionary<ProtoId<ResonanceProductPrototype>, int> PartialPurchases;
+    public Dictionary<ProtoId<UpgradeModuleTypePrototype>, int> UpgradeProgress;
 
-    public StationModificationInterfaceState(string name, string factionTag, NetEntity station, List<string> owners, Dictionary<string, CrewAccess> crewAccess, Dictionary<int, CrewAssignment> crewAssignments, int importTax, int exportTax, int salesTax, ProtoId<FactionLevelPrototype> level, int accountBalance, Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> radioData, bool jobNetEnabled, bool tradeStationClaimed, List<ProtoId<ResonanceProductPrototype>> resonanceMarket, int resonance, Dictionary<ProtoId<ResonanceProductPrototype>, int> partialPurchases)
+    public StationModificationInterfaceState(string name, string factionTag, NetEntity station, List<string> owners, Dictionary<string, CrewAccess> crewAccess, Dictionary<int, CrewAssignment> crewAssignments, int importTax, int exportTax, int salesTax, ProtoId<FactionLevelPrototype> level, int accountBalance, Dictionary<ProtoId<RadioChannelPrototype>, FactionRadioData> radioData, bool jobNetEnabled, bool tradeStationClaimed, List<ProtoId<ResonanceProductPrototype>> resonanceMarket, int resonance, Dictionary<ProtoId<ResonanceProductPrototype>, int> partialPurchases, Dictionary<ProtoId<UpgradeModuleTypePrototype>, int> upgradeProgress)
     {
         Name = name;
         FactionTag = factionTag;
@@ -49,5 +51,6 @@ public sealed class StationModificationInterfaceState : BoundUserInterfaceState
         ResonanceMarket = resonanceMarket;
         Resonance = resonance;
         PartialPurchases = partialPurchases;
+        UpgradeProgress = upgradeProgress;
     }
 }

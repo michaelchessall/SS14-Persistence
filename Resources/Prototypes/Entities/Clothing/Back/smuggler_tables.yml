@@ -623,7 +623,6 @@
     - id: HolofanProjector
     - id: HoloprojectorField
     - id: HoloprojectorSecurity
-    - id: DeviceQuantumSpinInverter
       amount: !type:ConstantNumberSelector
         value: 2
     - id: SpectralLocator

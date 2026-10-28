@@ -28,16 +28,19 @@ public sealed partial class ResonanceProductBox : PanelContainer
         IoCManager.InjectDependencies(this);
         _product = product;
         _owner = owner;
-        this.PanelOverride = new StyleBoxFlat
+        PanelOverride = new StyleBoxFlat
         {
             BackgroundColor = Color.Black
         };
         var proto = _prototypeManager.Index(product);
         var spriteSystem = _entMan.System<SpriteSystem>();
-        Icon.Texture = spriteSystem.Frame0(proto.Icon);
+        if (proto.Icon is not null)
+            Icon.Texture = spriteSystem.Frame0(proto.Icon);
+        else
+            Icon.Visible = false;
         TitleLabel.Text = proto.Name;
         ContentLabel.Text = proto.Description;
-        if(proto.Shared)
+        if (proto.Shared)
         {
             int paid = 0;
             if (partialPurchases.ContainsKey(product))
@@ -45,7 +48,7 @@ public sealed partial class ResonanceProductBox : PanelContainer
                 paid = partialPurchases[product];
             }
             PurchaseBtn.Text = "Invest $$100";
-            if(resonance < 100)
+            if (resonance < 100)
             {
                 PurchaseBtn.Disabled = true;
             }

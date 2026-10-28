@@ -1,20 +1,52 @@
 # Only entries which are children of this first entry (or their children & so on) should be defined in this file.
 - type: guideEntry
-  id: Threshold
+  id: Persistence
   name: guide-entry-threshold
   priority: 11 # After PersistRuleset
   text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Threshold.xml"
   children:
+    - Rumors
+    - RumorRewards
+    - Insights
+    - Upgrades
+    - Tradestation
     - MakingMoney
     - ThresholdCargo
     - ThresholdMiningHunting
     - ThresholdGasMining
     - ThresholdScience
     - Death
-    - Achievements
+    # - Achievements
     - GridControl
     - AccessControl
     - ThresholdMedical
+    - ThresholdBotany
+
+- type: guideEntry
+  id: Rumors
+  name: guide-entry-rumors
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Rumors.xml"
+
+- type: guideEntry
+  id: RumorRewards
+  name: guide-entry-rumorsrewards
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/RumoredImports.xml"
+
+- type: guideEntry
+  id: Insights
+  name: guide-entry-insights
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Insights.xml"
+
+- type: guideEntry
+  id: Upgrades
+  name: guide-entry-upgrades
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Upgrades.xml"
+
+
+- type: guideEntry
+  id: Tradestation
+  name: guide-entry-tradestation
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/TradeStations.xml"
 
 - type: guideEntry
   id: MakingMoney
@@ -46,10 +78,10 @@
   name: guide-entry-death
   text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Death.xml"
 
-- type: guideEntry
-  id: Achievements
-  name: guide-entry-achievements
-  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Achievements.xml"
+# - type: guideEntry
+#   id: Achievements
+#   name: guide-entry-achievements
+#   text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Achievements.xml"
 
 - type: guideEntry
   id: GridControl
@@ -69,6 +101,11 @@
     - ThresholdMedicineMetabolism
     - ThresholdTopicals
     - ThresholdResuscitation
+
+- type: guideEntry
+  id: ThresholdBotany
+  name: guide-entry-threshold-botany
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/ThresholdBotany.xml"
 
 - type: guideEntry
   id: ThresholdMedicineMetabolism

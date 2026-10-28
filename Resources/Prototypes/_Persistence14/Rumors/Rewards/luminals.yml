@@ -7,3 +7,15 @@
   icon:
     sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
     state: luminals-full
+
+
+- type: rumorReward
+  id: LuminalCodexFragment
+  name: Codex Fragment (Luminals)
+  description: "Will unlock a codex entry when used."
+  price: 2000
+  product: LuminalCodexFragment
+  icon:
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+    state: lumi
+

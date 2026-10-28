@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
 using Robust.Shared.Audio;
 
 namespace Content.Shared.StationTeleporter.Components;
@@ -37,7 +38,7 @@ public sealed partial class StationTeleporterComponent : Component
     /// The last link that the portal will attempt to connect to after power up.
     /// </summary>
     [DataField]
-    public EntityUid? LastLink;
+    public PersistentEntityReference LastLink;
 
     /// <summary>
     /// Used for coloring from AppearanceChanged

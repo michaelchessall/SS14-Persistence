@@ -403,6 +403,15 @@
   id: FoodCakeLime
   description: A cake with added lime.
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 10
+      - ReagentId: Grain
+        Quantity: 30
+      - ReagentId: JuiceLime
+        Quantity: 10
   - type: Sprite
     layers:
     - state: plain
@@ -432,6 +441,15 @@
   parent: FoodCakeSliceBase
   id: FoodCakeLimeSlice
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 1.25
+      - ReagentId: Grain
+        Quantity: 3.75
+      - ReagentId: JuiceLime
+        Quantity: 1.25
   - type: Sprite
     layers:
     - state: plain-slice
@@ -460,6 +478,15 @@
   id: FoodCakeLemon
   description: A cake with added lemon.
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 10
+      - ReagentId: Grain
+        Quantity: 30
+      - ReagentId: JuiceLemon
+        Quantity: 10
   - type: Sprite
     layers:
     - state: plain
@@ -489,6 +516,15 @@
   parent: FoodCakeSliceBase
   id: FoodCakeLemonSlice
   components:
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 1.25
+      - ReagentId: Grain
+        Quantity: 3.75
+      - ReagentId: JuiceLemon
+        Quantity: 1.25
   - type: Sprite
     layers:
     - state: plain-slice

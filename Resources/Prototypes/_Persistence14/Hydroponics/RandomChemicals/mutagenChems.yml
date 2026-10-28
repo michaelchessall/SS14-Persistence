@@ -1,0 +1,284 @@
+# Changing the quantityId of these may leave behind legacy plants with the old requirements. Ids that don't start with Random are also used by plants.
+- type: weightedRandomFillPlantChemical
+  id: RandomPickChemicalMutagen
+  fills: # These were completely reworked upstream, might want to change them here too?
+  # Weight 0.5 chemicals
+  - quantityId: RandomImpedrezene
+    weight: 0.5
+    reagents:
+    - Impedrezene
+  - quantityId: RandomHeartbreakerToxin
+    weight: 0.5
+    reagents:
+    - HeartbreakerToxin
+  - quantityId: RandomHonk
+    weight: 0.5
+    reagents:
+    - Honk
+  - quantityId: RandomBuzzochloricBees
+    weight: 0.5
+    reagents:
+    - BuzzochloricBees
+    # Weight 1 chemicals
+  - quantityId: RandomToxin
+    weight: 1
+    reagents:
+    - Toxin
+  - quantityId: RandomCarpoToxin
+    weight: 1
+    reagents:
+    - CarpoToxin
+  - quantityId: RandomSulfuricAcid
+    weight: 1
+    reagents:
+    - SulfuricAcid
+  - quantityId: RandomLicoxide
+    weight: 1
+    reagents:
+    - Licoxide
+  - quantityId: RandomNapalm
+    weight: 1
+    reagents:
+    - Napalm
+  - quantityId: RandomChlorineTrifluoride
+    weight: 1
+    reagents:
+    - ChlorineTrifluoride
+  - quantityId: RandomPhosphorus
+    weight: 1
+    reagents:
+    - Phosphorus
+  - quantityId: RandomAlcoholic # Probably should also be farming? Maybe a seperate category for drinks.
+    weight: 1
+    reagents:
+    - AtomicBomb
+  - quantityId: RandomSoda
+    weight: 1
+    reagents:
+    - ChangelingSting
+  - quantityId: RandomTearGas
+    weight: 1
+    reagents:
+    - TearGas
+  - quantityId: RandomLipolicide
+    weight: 1
+    reagents:
+    - Lipolicide
+  - quantityId: RandomBenzene
+    weight: 1
+    reagents:
+    - Benzene
+    # Weight 2 chemicals
+  - quantityId: RandomChloralHydrate
+    weight: 2
+    reagents:
+    - ChloralHydrate
+  - quantityId: RandomIpecac
+    weight: 2
+    reagents:
+    - Ipecac
+  - quantityId: RandomPax
+    weight: 2
+    reagents:
+    - Pax
+  - quantityId: RandomHistamine
+    weight: 2
+    reagents:
+    - Histamine
+  - quantityId: RandomBlood
+    weight: 2
+    reagents:
+    - Blood
+  - quantityId: RandomPhenol
+    weight: 2
+    reagents:
+    - Phenol
+  - quantityId: RandomCarbon
+    weight: 2
+    reagents:
+    - Carbon
+  - quantityId: BasicSmokable
+    weight: 2
+    reagents:
+    - THC
+    - Nicotine
+  - quantityId: RandomSoda
+    weight: 2
+    reagents:
+    - Cola
+  - quantityId: RandomBleach
+    weight: 2
+    reagents:
+    - Bleach
+  # Weight 3 chemicals
+  - quantityId: RandomNorepinephricAcid
+    weight: 3
+    reagents:
+    - NorepinephricAcid
+  - quantityId: RandomSaline
+    weight: 3
+    reagents:
+    - Saline
+  - quantityId: RandomCryptobiolin
+    weight: 3
+    reagents:
+    - Cryptobiolin
+  - quantityId: RandomEZNutrient
+    weight: 3
+    reagents:
+    - EZNutrient
+  - quantityId: RandomAmmonia
+    weight: 3
+    reagents:
+    - Ammonia
+  - quantityId: RandomRobustHarvest
+    weight: 3
+    reagents:
+    - RobustHarvest
+  - quantityId: RandomSpaceLube
+    weight: 3
+    reagents:
+    - SpaceLube
+  - quantityId: RandomTheobromine
+    weight: 3
+    reagents:
+    - Theobromine
+  - quantityId: BloonionAllicin
+    weight: 3
+    reagents:
+    - Allicin
+  - quantityId: RandomAcetone
+    weight: 3
+    reagents:
+    - Acetone
+  - quantityId: RandomAsh
+    weight: 3
+    reagents:
+    - Ash
+  - quantityId: RandomSodiumCarbonate
+    weight: 3
+    reagents:
+    - SodiumCarbonate
+  - quantityId: RandomMiscDrink
+    weight: 3
+    reagents:
+    - JuiceBerryPoison
+    - Posca
+    - Coffee
+  - quantityId: RandomSoda
+    weight: 3
+    reagents:
+    - Pilk
+    - FourteenLoko
+    - LemonLime
+    - LemonLimeCranberry
+  - quantityId: RandomPotassium
+    weight: 3
+    reagents:
+    - Potassium
+  - quantityId: RandomFluorine
+    weight: 3
+    reagents:
+    - Fluorine
+  - quantityId: RandomAlcoholic # Should probably be moved to the farming table.
+    weight: 3
+    reagents:
+    - Beer
+  # Weight 3.5 chemicals
+  - quantityId: RandomOil
+    weight: 3.5
+    reagents:
+    - Oil
+  - quantityId: RandomSlime
+    weight: 3.5
+    reagents:
+    - Slime
+  - quantityId: RandomSodaWater
+    weight: 3.5
+    reagents:
+    - SodaWater
+  - quantityId: RandomJuiceCarrot
+    weight: 3.5
+    reagents:
+    - JuiceCarrot
+  - quantityId: BasicGrain10
+    weight: 3.5
+    reagents:
+    - Flour
+
+- type: weightedRandomFillPlantChemical
+  id: RandomPickChemicalFarming
+  fills:
+  # Basic Farming Table
+  #On upstream, mayo and sap are also here.
+  - quantityId: BluePumpkinVitamin
+    weight: 5
+    reagents:
+    - Vitamin
+  - quantityId: CottonFiber
+    weight: 5
+    reagents:
+    - Fiber
+  - quantityId: MelonWater
+    weight: 5
+    reagents:
+    - Water
+  - quantityId: LaughinPeaSugar
+    weight: 5
+    reagents:
+    - Sugar
+  - quantityId: RandomCream
+    weight: 5
+    reagents:
+    - Cream
+  - quantityId: RandomIce
+    weight: 5
+    reagents:
+    - Ice
+  - quantityId: MeatwheatProtein
+    weight: 5
+    reagents:
+    - Protein
+  - quantityId: RandomSoySauce
+    weight: 5
+    reagents:
+    - Soysauce
+  - quantityId: RandomTableSalt
+    weight: 5
+    reagents:
+    - TableSalt
+  - quantityId: BungoEnzyme
+    weight: 5
+    reagents:
+    - Enzyme
+  - quantityId: RandomVinegar
+    weight: 5
+    reagents:
+    - Vinegar
+  - quantityId: RandomEthanol
+    weight: 5
+    reagents:
+    - Ethanol
+  - quantityId: RandomAlcoholic
+    weight: 5
+    reagents:
+    - Wine
+  - quantityId: RandomIceCream
+    weight: 5
+    reagents:
+    - IceCream
+  # Interesting Farming Table
+  # On upstream, kelotane, inaprovaline, lipozine, and laughter are also here
+  - quantityId: RandomSpaceMirage
+    weight: 1
+    reagents:
+    - SpaceDrugs
+  - quantityId: RandomWehJuice
+    weight: 1
+    reagents:
+    - JuiceThatMakesYouWeh
+  - quantityId: RandomAlcoholic
+    weight: 1
+    reagents:
+    - CogChamp
+  # On upstream, this table also had 0.02 weight 5 quantity cognizine.

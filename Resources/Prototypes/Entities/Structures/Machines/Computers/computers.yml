@@ -670,6 +670,8 @@
   - type: GuideHelp
     guides:
     - AnalysisConsole
+  - type: AccessReader
+  - type: ActivatableUIRequiresAccess
 
 - type: entity
   parent: BaseComputerAiAccess

@@ -52,6 +52,13 @@
     state: boritos
   - type: Item
     heldPrefix: boritos
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
   - type: Edible
     trash:
     - FoodPacketBoritosTrash
@@ -109,6 +116,15 @@
   - type: Edible
     trash:
     - FoodPacketChipsTrash
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Oil
+        Quantity: 1
+      - ReagentId: TableSalt
+        Quantity: 1
 
 - type: entity
   parent: BaseItem
@@ -196,6 +212,13 @@
   - type: Item
     heldPrefix: energybar-open
     storedOffset: 0,-2
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
 
 - type: entity
   parent: FoodSnackBase
@@ -219,6 +242,13 @@
     tags:
     - Fruit # Seed of a fruit, you can yell at me
     - Pistachios # Added tag due to CrateServiceGetMore interaction with BountyFruit.
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
 
 - type: entity
   name: popcorn
@@ -238,6 +268,13 @@
   - type: Edible
     trash:
     - FoodPacketPopcornTrash
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
 
 - type: entity
   name: 4no raisins
@@ -393,6 +430,8 @@
         Quantity: 10
       - ReagentId: Soysauce
         Quantity: 2
+      - ReagentId: Oil
+        Quantity: 1
   - type: Edible
     trash:
     - FoodPacketChowMeinTrash
@@ -422,6 +461,8 @@
         Quantity: 2
       - ReagentId: Soysauce
         Quantity: 2
+      - ReagentId: Oil
+        Quantity: 1
   - type: Edible
     trash:
     - FoodPacketDanDanTrash

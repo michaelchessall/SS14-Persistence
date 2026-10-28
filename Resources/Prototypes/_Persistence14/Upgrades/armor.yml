@@ -19,7 +19,7 @@
   upgradeType: Armor
   armorModifiers:
     coefficients:
-      Slashing: 0.1
+      Slash: 0.1
 
 - type: upgrade
   id: ArmorShadow

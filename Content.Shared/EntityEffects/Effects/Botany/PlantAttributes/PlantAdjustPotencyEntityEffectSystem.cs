@@ -1,3 +1,4 @@
+/* Persistence: Made obsolete by plant nutrient rework
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 
@@ -26,3 +27,4 @@ public sealed partial class PlantAdjustPotency : BasePlantAdjustAttribute<PlantA
 {
     public override string GuidebookAttributeName { get; set; } = "plant-attribute-potency";
 }
+*/

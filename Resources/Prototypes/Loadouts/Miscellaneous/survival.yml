@@ -21,6 +21,7 @@
     - Vulpkanin
     - Avali # Persistence
     - Yinglet # Scav
+    - NeoAvian # Scav
 
 - type: loadoutEffectGroup # Persistance14 Edit
   id: EffectSpeciesAvali

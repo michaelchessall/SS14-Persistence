@@ -66,6 +66,15 @@
       - salty
   - type: Sprite
     state: fries
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 40
+      - ReagentId: Oil
+        Quantity: 1
+      - ReagentId: TableSalt
+        Quantity: 1
 # Tastes like fries, salt.
 
 - type: entity
@@ -83,6 +92,15 @@
       - cheesy
   - type: Sprite
     state: fries-cheesy
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 40
+      - ReagentId: Oil
+        Quantity: 1
+      - ReagentId: TableSalt
+        Quantity: 1
 # Tastes like fries, cheese.
 
 - type: entity
@@ -109,6 +127,10 @@
         Quantity: 20
       - ReagentId: Nutriment
         Quantity: 20
+      - ReagentId: Oil
+        Quantity: 1
+      - ReagentId: TableSalt
+        Quantity: 1
 # Tastes like carrots, salt.
 
 - type: entity
@@ -300,6 +322,13 @@
       - potatoes
   - type: Sprite
     state: yakiimo
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 40
+      - ReagentId: Sugar
+        Quantity: 5
 # Tastes like sweet potato.
 
 - type: entity
@@ -355,6 +384,13 @@
   - type: Tag
     tags:
     - Meat
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 40
+      - ReagentId: TableSalt
+        Quantity: 1
 # Tastes like meat, cabbage.
 
 - type: entity
@@ -486,6 +522,11 @@
   - type: Tag
     tags:
     - Meat
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: TableSalt
+        Quantity: 1
 # Tastes like egg, salt, pepper.
 
 - type: entity
@@ -546,6 +587,7 @@
     - type: FlavorProfile
       flavors:
         - cheesy
+        - spicy
     - type: Sprite
       state: queso
 # Its queso! Everyone loves queso... Right?.
@@ -586,6 +628,8 @@
     - type: FlavorProfile
       flavors:
         - meaty
+        - corn
+        - spicy
     - type: Sprite
       state: enchiladas
     - type: Solution
@@ -633,6 +677,8 @@
         Quantity: 5
       - ReagentId: Kelotane
         Quantity: 5
+      - ReagentId: JuiceLemon
+        Quantity: 5
   - type: Tag
     tags:
     - Fruit
@@ -652,6 +698,7 @@
     flavors:
       - corn
       - butter
+      - oily
   - type: Sprite
     state: corn-in-butter
   - type: Solution

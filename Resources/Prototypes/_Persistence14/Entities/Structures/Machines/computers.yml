@@ -67,6 +67,9 @@
     radius: 1.5
     energy: 1.6
     color: "#00FF00"
+  - type: Speech
+    speechVerb: Robotic
+    speechSounds: Pai
 
 - type: entity
   id: ComputerStationModification

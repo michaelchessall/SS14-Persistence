@@ -1,6 +1,7 @@
 using Content.Shared.StationTeleporter;
 using Content.Shared.StationTeleporter.Components;
 using Robust.Client.GameObjects;
+using Robust.Shared.Timing;
 
 namespace Content.Client.StationTeleporter;
 

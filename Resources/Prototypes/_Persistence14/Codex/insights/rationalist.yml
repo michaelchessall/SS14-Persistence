@@ -1,14 +1,14 @@
 - type: insightTrait
   id: AnomalySense
-  name: Sense Anomaly
-  content: "Gain the ability to sense the location of the nearest anomaly."
-  next: ArtifactReroll
+  name: insight-ration-1-name
+  content: insight-ration-1-desc
+  next: Rationalist2
   trait: AnomalySense
 
 - type: trait
   id: AnomalySense
-  name: Sense Anomaly
-  description: "Gain the ability to sense the location of the nearest anomaly."
+  name: insight-ration-1-name
+  description: insight-ration-1-desc
   selectable: false
   components:
     - type: ActionGrant
@@ -23,6 +23,7 @@
   description: Sense the location of the nearest anomaly.
   components:
   - type: Action
+    useDelay: 30
   - type: Sprite
     sprite: Clothing/Neck/Misc/pins.rsi
     layers:
@@ -31,7 +32,48 @@
     event: !type:SenseAnomalyEvent
 
 - type: insightTrait
-  id: ArtifactReroll
-  name: Beggars Choice
-  content: "Gain the ability to reroll one node in an artifact."
+  id: Rationalist2
+  name: insight-ration-2-name
+  content: insight-ration-2-desc
+  trait: Rationalist2
+  next: Rationalist3
 
+- type: trait
+  id: Rationalist2
+  name: insight-ration-2-name
+  description: insight-ration-2-desc
+  selectable: false
+  components:
+    - type: ActionGrant
+      actions:
+        - ArtifexiumBurst
+      autoDelete: true
+
+- type: entity
+  parent: BaseAction
+  id: ArtifexiumBurst
+  name: Artifexium Burst
+  description: Emits a burst of artifexium, randomly triggering a primed node on all nearby artifacts.
+  components:
+  - type: Action
+    useDelay: 1h
+  - type: Sprite
+    sprite: Objects/Magic/magicactions.rsi
+    layers:
+    - state: shield
+  - type: InstantAction
+    event: !type:ArtifexiumBurstEvent
+      range: 3
+
+- type: insightTrait
+  id: Rationalist3
+  name: insight-ration-3-name
+  content: insight-ration-3-desc
+  next: Rationalist4
+  trait: AnomalySense
+
+- type: insightTrait
+  id: Rationalist4
+  name: insight-ration-4-name
+  content: insight-ration-4-desc
+  trait: AnomalySense

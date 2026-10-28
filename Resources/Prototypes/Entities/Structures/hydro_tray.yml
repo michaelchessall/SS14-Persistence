@@ -105,7 +105,7 @@
   parent: hydroponicsTray
   id: HydroponicsTrayEmpty
   suffix: Empty
-  components:
-  - type: PlantTray
-    waterLevel: 0
-    nutritionLevel: 0
+#  components: # Persistence: Water and nutrition level no longer exist. Same as a normal tray now.
+#  - type: PlantTray
+#    waterLevel: 0
+#    nutritionLevel: 0

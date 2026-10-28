@@ -12,3 +12,6 @@ ps14-background-origin-precursor-desc = You associated with syndicate operatives
 
 ps14-background-origin-shadow = Seen too much
 ps14-background-origin-shadow-desc = You came into contact with mind-breaking entities of pure shadow and evil while traveling through the Threshold.
+
+ps14-background-origin-freelancer-pledge = Freelancer's pledge
+ps14-background-origin-freelancer-pledge-desc = Everyone who enters Nexus Space must renounce all formal ties to any outside organization.

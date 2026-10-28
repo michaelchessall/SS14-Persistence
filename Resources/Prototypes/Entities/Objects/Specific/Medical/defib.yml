@@ -131,3 +131,42 @@
       types:
         Blunt: 8
         Shock: 16
+
+
+#Persistence 14
+
+- type: entity
+  id: DefibrillatorNT
+  parent: DefibrillatorCompact
+  name: Nanotrasen defibrillator
+  description: An advanced Defibrillator from Nanotrasen. The paint hasn't quite dried on it yet.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/Medical/defibnt.rsi
+    layers:
+      - state: icon
+      - state: screen
+        map: [ "enum.ToggleableVisuals.Layer" ]
+        visible: false
+        shader: unshaded
+      - state: ready
+        map: ["enum.PowerDeviceVisualLayers.Powered"]
+        shader: unshaded
+  - type: MeleeWeapon
+    damage:
+      types:
+        Blunt: 8
+  - type: ItemToggleMeleeWeapon
+    activatedSoundOnHit:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+    activatedSoundOnHitNoDamage:
+      path: /Audio/Items/Defib/defib_zap.ogg
+      params:
+        variation: 0.250
+        volume: -10
+    activatedDamage:
+      types:
+        Blunt: 8
+        Shock: 16

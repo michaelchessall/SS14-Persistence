@@ -194,6 +194,10 @@
           inverted: true
       - !type:Drunk
         boozePower: 2
+  plantMetabolism:
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 1
+    nutrient: Alcohol
 
 - type: reagent
   id: Gin
@@ -2500,3 +2504,10 @@
         - !type:MetabolizerTypeCondition
           type: [Dwarf]
           inverted: true
+  plantMetabolism:
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 2
+    nutrient: Alcohol
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 0.25
+    nutrient: Toxin

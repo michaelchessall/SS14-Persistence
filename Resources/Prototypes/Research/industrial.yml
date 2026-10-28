@@ -8,16 +8,15 @@
     state: handdrill
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - MiningDrill
-  - MineralScannerEmpty
-  - OreProcessorIndustrialMachineCircuitboard
-  - ClothingMaskWeldingGas
-  - ClothingShoesBootsJump
-  - ClothingHandsGlovesColorYellow
-  - ClothingEyesGlassesMeson
-  - WeaponGrapplingGun
+    MiningDrill: 4
+    MineralScannerEmpty: 4
+    OreProcessorIndustrialMachineCircuitboard: 2
+    ClothingMaskWeldingGas: 4
+    ClothingShoesBootsJump: 4
+    ClothingHandsGlovesColorYellow: 4
+    WeaponGrapplingGun: 4
 
 - type: technology
   id: SpaceScanning
@@ -27,10 +26,10 @@
     state: icon
   discipline: Industrial
   tier: 1
-  cost: 5000
+  cost: 2500
   recipeUnlocks:
-  - RadarConsoleCircuitboard
-  - HandHeldMassScanner
+    RadarConsoleCircuitboard: 4
+    HandHeldMassScanner: 4
 
 - type: technology
   id: AdvancedPowercells
@@ -40,11 +39,11 @@
     state: empty
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - PowerCellHigh
-  - TurboItemRechargerCircuitboard
-  - SMESAdvancedMachineCircuitboard
+    PowerCellHigh: 4
+    TurboItemRechargerCircuitboard: 2
+    SMESAdvancedMachineCircuitboard: 2
 
 - type: technology
   id: MechanicalCompression
@@ -54,9 +53,9 @@
     state: base
   discipline: Industrial
   tier: 1
-  cost: 10000
+  cost: 5000
   recipeUnlocks:
-  - FlatpackerMachineCircuitboard
+    FlatpackerMachineCircuitboard: 2
 
 - type: technology
   id: ConstructionDevices
@@ -66,10 +65,10 @@
     state: icon
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - RCD
-  - HCD
+    RCD: 2
+    HCD: 2
 
 - type: technology
   id: IndustrialEngineering
@@ -79,12 +78,12 @@
     state: building
   discipline: Industrial
   tier: 1
-  cost: 10000
+  cost: 5000
   recipeUnlocks:
-  - AutolatheHyperConvectionMachineCircuitboard
-  - ProtolatheHyperConvectionMachineCircuitboard
-  - CircuitImprinterHyperConvectionMachineCircuitboard
-  - SheetifierMachineCircuitboard
+    AutolatheHyperConvectionMachineCircuitboard: 2
+    ProtolatheHyperConvectionMachineCircuitboard: 2
+    CircuitImprinterHyperConvectionMachineCircuitboard: 2
+    SheetifierMachineCircuitboard: 1
 
 - type: technology
   id: PowerGeneration
@@ -94,17 +93,17 @@
     state: portgen0
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - PortableGeneratorPacmanMachineCircuitboard
-  - PortableGeneratorSuperPacmanMachineCircuitboard
-  - PortableGeneratorMegamanMachineCircuitboard
-  - PortableGeneratorJrPacmanMachineCircuitboard
-  - PortableGeneratorOldmanMachineCircuitboard
-  - GasGeneratorMachineCircuitboard
-  - SolarControlComputerCircuitboard
-  - SolarTrackerElectronics
-  - EmitterCircuitboard
+    PortableGeneratorPacmanMachineCircuitboard: 2
+    PortableGeneratorSuperPacmanMachineCircuitboard: 2
+    PortableGeneratorMegamanMachineCircuitboard: 2
+    PortableGeneratorJrPacmanMachineCircuitboard: 2
+    PortableGeneratorOldmanMachineCircuitboard: 2
+    GasGeneratorMachineCircuitboard: 2
+    SolarControlComputerCircuitboard: 4
+    SolarTrackerElectronics: 4
+    EmitterCircuitboard: 4
 
 - type: technology
   id: AtmosphericTech
@@ -114,10 +113,10 @@
     state: freezerOff
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - ThermomachineFreezerMachineCircuitBoard
-  - GasRecyclerMachineCircuitboard
+    ThermomachineFreezerMachineCircuitBoard: 4
+    GasRecyclerMachineCircuitboard: 4
 
 - type: technology
   id: RipleyAPLU
@@ -127,16 +126,16 @@
     state: ripley
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - RipleyHarness
-  - RipleyLArm
-  - RipleyRArm
-  - RipleyLLeg
-  - RipleyRLeg
-  - RipleyCentralElectronics
-  - RipleyPeripheralsElectronics
-  - MechEquipmentGrabber
+    RipleyHarness: 1
+    RipleyLArm: 1
+    RipleyRArm: 1
+    RipleyLLeg: 1
+    RipleyRLeg: 1
+    RipleyCentralElectronics: 1
+    RipleyPeripheralsElectronics: 1
+    MechEquipmentGrabber: 2
 
 - type: technology
   id: EVAManufacturing
@@ -146,12 +145,11 @@
     state: icon
   discipline: Industrial
   tier: 1
-  cost: 7500
+  cost: 3750
   recipeUnlocks:
-  - Spationautsuit
-  - Donknautsuit
-  - EVAsuit
-  - EVAsuitHelmet
+    Spationautsuit: 2
+    EVAsuit: 3
+    EVAsuitHelmet: 3
 
 # Tier 2
 
@@ -163,15 +161,15 @@
     state: base
   discipline: Industrial
   tier: 2
-  cost: 50000
+  cost: 20000
   recipeUnlocks:
-  - ShuttleConsoleCircuitboard
-  - ThrusterMachineCircuitboard
-  - ThrusterWallmountCircuitboard
-  - GyroscopeMachineCircuitboard
-  - GyroscopeFloorMachineCircuitboard
-  - MiniGravityGeneratorCircuitboard
-  - StationAnchorCircuitboard
+    ShuttleConsoleCircuitboard: 1
+    ThrusterMachineCircuitboard: 4
+    ThrusterWallmountCircuitboard: 4
+    GyroscopeMachineCircuitboard: 2
+    GyroscopeFloorMachineCircuitboard: 2
+    MiniGravityGeneratorCircuitboard: 1
+    StationAnchorCircuitboard: 1
 
 - type: technology
   id: AdvancedAtmospherics
@@ -181,11 +179,11 @@
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 32500
+  cost: 16250
   recipeUnlocks:
-  - HellfireFreezerMachineCircuitBoard
-  - PortableScrubberMachineCircuitBoard
-  - HolofanProjector
+    HellfireFreezerMachineCircuitBoard: 2
+    PortableScrubberMachineCircuitBoard: 2
+    HolofanProjector: 3
   technologyPrerequisites:
   - AtmosphericTech
 
@@ -197,14 +195,12 @@
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 50000
+  cost: 22500
   recipeUnlocks:
-    - WelderExperimental
-    - PowerDrill
-    - JawsOfLife
-    - BorgModuleAdvancedTool
-    - Fulton
-    - FultonBeacon
+    WelderExperimental: 2
+    PowerDrill: 2
+    JawsOfLife: 2
+    BorgModuleAdvancedTool: 1
 
 - type: technology
   id: MassExcavation
@@ -214,50 +210,34 @@
     state: handdrill
   discipline: Industrial
   tier: 2
-  cost: 62500
+  cost: 31250
   recipeUnlocks:
-    - OreBagOfHolding
-    - MiningDrillDiamond
-    - AdvancedMineralScannerEmpty
-    - BorgModuleAdvancedMining
+    OreBagOfHolding: 2
+    MiningDrillDiamond: 2
+    AdvancedMineralScannerEmpty: 2
+    BorgModuleAdvancedMining: 2
 
 - type: technology
-  id: SpecializedEVA
-  name: research-technology-specialized-eva
+  id: IndustrialEVA
+  name: research-technology-industrial-eva
   icon:
     sprite: Clothing/Head/Hardsuits/engineering.rsi
     state: icon
   discipline: Industrial
   tier: 2
-  cost: 62500
+  cost: 27500
   recipeUnlocks:
-  - Engineeringsuit
-  - Atmossuit
-  - AtmosFireSuit
-  - AtmosFireHelmet
-  - Miningsuit
-  - ExtendedEmergencyOxygenTank
-  - ExtendedEmergencyNitrogenTank
-  - Paramedsuit
+    Miningsuit: 2
+    Engineeringsuit: 2
+    Atmossuit: 2
+    AtmosFireSuit: 2
+    AtmosFireHelmet: 2
+    ExtendedEmergencyOxygenTank: 2
+    ExtendedEmergencyNitrogenTank: 2
   technologyPrerequisites:
   - EVAManufacturing
 
 # Tier 3
-
-- type: technology
-  id: BluespaceStorage
-  name: research-technology-bluespace-storage
-  icon:
-    sprite: Clothing/Back/Backpacks/holding.rsi
-    state: holding
-  discipline: Industrial
-  tier: 3
-  cost: 150000
-  recipeUnlocks:
-  - ClothingBackpackHolding
-  - ClothingBackpackSatchelHolding
-  - ClothingBackpackDuffelHolding
-
 - type: technology
   id: OptimizedMicrogalvanism
   name: research-technology-optimized-microgalvanism
@@ -266,10 +246,10 @@
     state: microreactor
   discipline: Industrial
   tier: 3
-  cost: 100000
+  cost: 75000
   recipeUnlocks:
-  - PowerCellMicroreactor
-  - PowerCellHyper
+    PowerCellMicroreactor: 2
+    PowerCellHyper: 3
   technologyPrerequisites:
   - AdvancedPowercells
 
@@ -281,14 +261,16 @@
     state: icon
   discipline: Industrial
   tier: 3
-  cost: 200000
+  cost: 100000
   recipeUnlocks:
-  - Luxuryminingsuit
-  - Researchdirectorsuit
-  - Chiefmedicalsuit
-  - Chiefengineersuit
-  - Captainsuit
-  - ClothingHandsGlovesCaptain
+    Luxuryminingsuit: 1
+    Researchdirectorsuit: 1
+    Chiefmedicalsuit: 1
+    Chiefengineersuit: 1
+    Captainsuit: 1
+    ClothingHandsGlovesCaptain: 1
   technologyPrerequisites:
   - EVAManufacturing
-  - SpecializedEVA
+  - IndustrialEVA
+  - CivilianEVA
+  - SecurityEVA

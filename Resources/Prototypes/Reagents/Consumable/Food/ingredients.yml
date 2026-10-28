@@ -70,6 +70,10 @@
     Digestion:
       metabolites:
         UncookedAnimalProteins: 1
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Protein
 
 - type: reagent
   id: EggCooked
@@ -84,6 +88,10 @@
     Digestion:
       metabolites:
         Protein: 2
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Protein
 
 - type: reagent
   id: Blackpepper
@@ -199,9 +207,16 @@
         Nutriment: 1.5
       effects:
       - !type:AdjustTemperature
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ NeoAvian ]
+          inverted: true
         amount: 250 # thermal energy, not temp
       - !type:HealthChange
         conditions:
+          - !type:MetabolizerTypeCondition # Scav
+            type: [ NeoAvian ]
+            inverted: true
           - !type:ReagentCondition
             reagent: CapsaicinOil
             min: 5
@@ -209,6 +224,10 @@
           types:
             Caustic: 1
       - !type:PopupMessage
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ NeoAvian ]
+          inverted: true
         type: Local
         messages: [ "capsaicin-effect-light-burn" ]
         probability: 0.2
@@ -233,12 +252,14 @@
           min: 0.1
         factor: 1
   plantMetabolism:
-  - !type:PlantAdjustNutrition
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 0.1
+    nutrient: Nutrient
   - !type:PlantAdjustWeeds
     amount: 2
-  - !type:PlantAdjustPests
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 2
+    nutrient: Pest
 
 - type: reagent
   id: Butter

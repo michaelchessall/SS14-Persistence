@@ -55,7 +55,7 @@ public sealed partial class PlantTrayVisualizerSystem : VisualizerSystem<PlantTr
             return;
 
         var water = _plantTray.GetWaterThreshold(ent.AsNullable());
-        var nutrition = _plantTray.GetNutrientThreshold(ent.AsNullable());
+        var nutrition = false; // Persistence
         var alert = _plantTray.GetWeedThreshold(ent.AsNullable())
                     || _plantTray.GetToxinThreshold(ent.AsNullable())
                     || _plantTray.GetPestThreshold(ent.AsNullable());
@@ -72,6 +72,7 @@ public sealed partial class PlantTrayVisualizerSystem : VisualizerSystem<PlantTr
 
                 health = _plantHolder.GetHealthThreshold(plantUid.Value);
                 harvest = plantHolder.ReadyForHarvest;
+                nutrition = plantHolder.MissingNutrients; // Persistence
             }
         }
 

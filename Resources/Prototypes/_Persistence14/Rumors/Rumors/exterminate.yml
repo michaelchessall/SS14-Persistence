@@ -5,6 +5,7 @@
   eventGrids:
     - /Maps/Rumors/Exterminate/Medium/meatball.yml
     - /Maps/Rumors/Exterminate/Medium/tick-colony.yml
+    - /Maps/Rumors/Exterminate/Medium/tick-caves.yml
   cashReward: 5000
   reputationReward: 70
   completionType: Exterminate

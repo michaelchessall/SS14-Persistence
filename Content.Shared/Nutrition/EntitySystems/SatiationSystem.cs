@@ -186,7 +186,7 @@ public abstract partial class SatiationSystem : EntitySystem
 
         if (!TryGetValueByThreshold(
                 entity,
-                satiation.SatiationType,
+                satiation.SatiationType!.Value,
                 proto.ChangeModifiers,
                 out var currentChangeMod,
                 out var nextHigherThreshold,
@@ -204,7 +204,7 @@ public abstract partial class SatiationSystem : EntitySystem
             nextLowerThreshold
         );
 
-        var updateEvent = new SatiationUpdateEvent(satiation.SatiationType);
+        var updateEvent = new SatiationUpdateEvent(satiation.SatiationType!.Value);
         RaiseLocalEvent(entity, ref updateEvent);
 
         DirtyField(entity.AsNullable(), SatiationComponent.SatiationFieldName);
@@ -218,7 +218,7 @@ public abstract partial class SatiationSystem : EntitySystem
     {
         TryGetValueByThreshold(
             entity,
-            satiation.SatiationType,
+            satiation.SatiationType!.Value,
             proto.Alerts,
             out var result,
             out var nextHigherThreshold,

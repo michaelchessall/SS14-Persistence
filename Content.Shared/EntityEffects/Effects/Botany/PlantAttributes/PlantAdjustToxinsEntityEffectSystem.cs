@@ -1,3 +1,4 @@
+/* Persistence: Replaced with PlantAdjustNutrientEntityEffect in _Persistence14 content folder
 using Content.Shared.Botany.Components;
 using Content.Shared.Botany.Systems;
 
@@ -13,7 +14,7 @@ public sealed partial class PlantAdjustToxinsEntityEffectSystem : EntityEffectSy
 
     protected override void Effect(Entity<PlantTrayComponent> entity, ref EntityEffectEvent<PlantAdjustToxins> args)
     {
-        if (!_plantTray.TryGetAlivePlant(entity.AsNullable(), out _))
+        if (!_plantTray.HasAlivePlant(entity.AsNullable()))
             return;
 
         _plantTray.AdjustToxin(entity.AsNullable(), args.Effect.Amount);
@@ -26,3 +27,4 @@ public sealed partial class PlantAdjustToxins : BasePlantAdjustAttribute<PlantAd
     public override string GuidebookAttributeName { get; set; } = "plant-attribute-toxins";
     public override bool GuidebookIsAttributePositive { get; protected set; } = false;
 }
+*/

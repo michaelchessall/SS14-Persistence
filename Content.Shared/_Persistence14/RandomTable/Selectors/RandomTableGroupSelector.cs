@@ -35,7 +35,7 @@ public sealed partial class RandomTableGroupSelector : RandomTableSelector, IRan
     }
 
     /// <inheritdoc/>
-    public override IEnumerable<(RandomTableValueDefinition value, float prob)> List(RandomTableContext ctx, float probabilityMultipler = 1f)
+    public override IEnumerable<(RandomTableValueDefinition value, float prob)> ListImplementation(RandomTableContext ctx, float probabilityMultipler = 1f)
     {
         var totalWeight = SumWeights(ctx, out var activeChildren, useConditions: false);
         if (totalWeight <= 0) totalWeight = 1; // Literally just idiot proofing this...

@@ -17,6 +17,7 @@ using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
+using Content.Shared._Persistence14.PersistentIdentifier;
 
 namespace Content.Shared.Teleportation.Systems;
 
@@ -36,6 +37,8 @@ public abstract partial class SharedPortalSystem : EntitySystem
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private PersistentIdentifierSystem _pid = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
 
     private const string PortalFixture = "portalFixture";
     private const string ProjectileFixture = "projectile";
@@ -77,8 +80,10 @@ public abstract partial class SharedPortalSystem : EntitySystem
                     return;
 
                 var destination = link.LinkedEntities.First();
+                if (!_pid.TryResolveId(destination, out var destEnt))
+                    return;
 
-                TeleportEntity(ent, subject, Transform(destination).Coordinates, destination, false);
+                TeleportEntity(ent, subject, Transform(destEnt.Owner).Coordinates, destEnt.Owner, false);
             },
             Disabled = disabled,
             Text = Loc.GetString("portal-component-ghost-traverse"),
@@ -132,8 +137,13 @@ public abstract partial class SharedPortalSystem : EntitySystem
 
             // pick a target and teleport there
             var target = _random.Pick(link.LinkedEntities);
+            if (!_pid.TryResolveId(target, out var targetEnt))
+            {
+                _link.TrySever(ent.Owner, target);
+                return; // TODO: It would make more sense to pick another...
+            }
 
-            if (HasComp<PortalComponent>(target))
+            if (HasComp<PortalComponent>(targetEnt.Owner))
             {
                 // if target is a portal, signal that they shouldn't be immediately teleported back
                 var timeout = EnsureComp<PortalTimeoutComponent>(subject);
@@ -141,7 +151,7 @@ public abstract partial class SharedPortalSystem : EntitySystem
                 Dirty(subject, timeout);
             }
 
-            TeleportEntity(ent, subject, Transform(target).Coordinates, target);
+            TeleportEntity(ent, subject, Transform(targetEnt.Owner).Coordinates, targetEnt.Owner);
             return;
         }
 
@@ -190,11 +200,11 @@ public abstract partial class SharedPortalSystem : EntitySystem
     private bool CanPredictTeleport(Entity<LinkedEntityComponent> portal)
     {
         var first = portal.Comp.LinkedEntities.First();
-        var exists = Exists(first);
+        var exists = _pid.TryResolveId(first, out var firstEnt);
 
         if (!exists ||
             portal.Comp.LinkedEntities.Count != 1 || // 0 and >1 use RNG
-            exists && Transform(first).MapID == MapId.Nullspace) // The linked entity is most likely outside PVS
+            exists && Transform(firstEnt.Owner).MapID == MapId.Nullspace) // The linked entity is most likely outside PVS
             return false;
 
         return true;

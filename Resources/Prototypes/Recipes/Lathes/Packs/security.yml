@@ -53,6 +53,7 @@
   - MagazinePistolPractice
   - MagazinePistolCaselessRiflePracticeRecipe
   - SpeedLoaderMagnumPractice
+  - MagazineMarineRiflePractice
   - MagazinePistolSubMachineGunPractice
   - WeaponFlareGunSecurity
 
@@ -80,6 +81,8 @@
   - MagazineRifleEmpty
   - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
+  - MagazineMarineRifle
+  - MagazineMarineRifleEmpty
 
 - type: latheRecipePack
   id: SecurityWeaponsStatic
@@ -155,6 +158,8 @@
   - MagazineShotgunIncendiary
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
+  - MagazineMarineRifleIncendiary
+  - MagazineMarineRifleUranium
 
 - type: latheRecipePack
   id: SecurityWeapons

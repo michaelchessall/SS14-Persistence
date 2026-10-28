@@ -81,6 +81,8 @@
   possibleFollowups:
     - ExterminateGeneral
     - DiscoverSmallSalvage
+    - PowerLuminal
+    - RescuePrecursor
 
 - type: rumor
   id: BountyBasicScience
@@ -120,7 +122,8 @@
   rewardRumors: 1
   possibleFollowups:
     - DiscoverSmallScience
-    - PowerBasic
+    - PowerLuminal
+    - ArtifactNodeBasic
 
 - type: rumor
   id: BountyBasicCriminal
@@ -139,6 +142,9 @@
   possibleFollowups:
     - DiscoverSmallCriminal
     - DiscoverSmallShadow
+    - RescuePrecursor
+    - PowerPrecursor
+    - RescueShadow
 
 - type: rumor
   id: BountyBasicWeapon
@@ -160,3 +166,5 @@
     - ExterminateGeneral
     - DiscoverSmallShadow
     - ExterminateLuminal
+    - PowerLuminal
+    - RescueShadow

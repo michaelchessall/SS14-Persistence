@@ -259,7 +259,6 @@
     containers:
       storagebase: !type:AllSelector
         children:
-        - id: ChameleonAgentPDA
         - id: ClothingUniformJumpsuitChameleon
         - id: ClothingOuterChameleon
         - id: ClothingNeckChameleon

@@ -30,7 +30,7 @@ public sealed partial class JobNetMenu : DefaultWindow
     public TimeSpan UntilNextPrec = TimeSpan.Zero;
     public TimeSpan UntilNextRumor = TimeSpan.Zero;
     public TimeSpan UntilNextReward = TimeSpan.Zero;
-    public SpriteSystem? _spriteSystem;
+    public SpriteSystem? SpriteSystem;
     public JobNetBoundUserInterface? Owner;
     public Action<string>? OnLabelButtonPressed;
     public JobNetMenu()
@@ -69,6 +69,7 @@ public sealed partial class JobNetMenu : DefaultWindow
         PossibleJobs.Clear();
         PossibleJobs.AddItem("Off Duty", 0);
         RumorTaxLabel.Text = $"{state.RumorTax.ToString()}% of rumor money rewards paid to your employer.";
+        SectorStatusLabel.Text = state.SectorStatus;
         if (state.Stations != null)
         {
             int ind = 1;
@@ -130,14 +131,14 @@ public sealed partial class JobNetMenu : DefaultWindow
 
         var codexCategories = _prototypeManager.EnumeratePrototypes<CodexCategoryPrototype>();
         Dictionary<ProtoId<CodexCategoryPrototype>, List<ProtoId<CodexEntryPrototype>>> sortedCodex = new();
-        foreach (var codexCategory in codexCategories.OrderBy(P => P.Order).ThenBy(p => p.Name).ToList())
+        foreach (var codexCategory in codexCategories.OrderBy(p => p.Order).ThenBy(p => p.Name).ToList())
         {
             sortedCodex[codexCategory.ID] = new();
         }
         var codexEntries = _prototypeManager.EnumeratePrototypes<CodexEntryPrototype>();
-        foreach (var codexEntry in codexEntries.OrderBy(P => P.Order).ThenBy(p => p.Name).ToList())
+        foreach (var codexEntry in codexEntries.OrderBy(p => p.Order).ThenBy(p => p.Name).ToList())
         {
-            if(sortedCodex.ContainsKey(codexEntry.Category))
+            if (sortedCodex.ContainsKey(codexEntry.Category))
             {
                 sortedCodex[codexEntry.Category].Add(codexEntry.ID);
             }
@@ -163,7 +164,7 @@ public sealed partial class JobNetMenu : DefaultWindow
                                                          .ThenBy(p => p.Name)
                                                          .ToList())
         {
-            InsightBoxFragment box = new(insightCategory, state.UnlockedInsights, state.UnspentInsights > 0, this);
+            InsightBoxFragment box = new(insightCategory, state.UnlockedInsights, state.UnspentInsights > 0, this, state.SectorAwake);
             InsightsBox.AddChild(box);
         }
         _prototypeManager.Resolve(state.Level, out var levelProto);
@@ -197,7 +198,7 @@ public sealed partial class JobNetMenu : DefaultWindow
         CurrentGrid.RemoveAllChildren();
         ReputationsGrid.RemoveAllChildren();
         Dictionary<ProtoId<MetaFactionPrototype>, int> reputations = new();
-        foreach (var faction in metaFactions.OrderBy(p => p.Name).ToList())
+        foreach (var faction in metaFactions.OrderBy(p => p.Order).ThenBy(p => p.Name).ToList())
         {
             int rep = 0;
             if (state.MetaFactionReputations.TryGetValue(faction.ID, out var repVal))
@@ -224,12 +225,12 @@ public sealed partial class JobNetMenu : DefaultWindow
         }
         if (state.RumorCooldown != null)
         {
-            RumorCooldownLbl.Text = $"{state.RumorCooldown.Value.ToString("mm\\:ss")}";
+            RumorCooldownLbl.Text = $"{state.RumorCooldown.Value.ToString("hh\\:mm\\:ss")}";
             UntilNextRumor = state.RumorCooldown.Value;
         }
         if (state.RewardCooldown != null)
         {
-            RewardCooldownLbl.Text = $"{state.RewardCooldown.Value.ToString("mm\\:ss")}";
+            RewardCooldownLbl.Text = $"{state.RewardCooldown.Value.ToString("hh\\:mm\\:ss")}";
             UntilNextReward = state.RewardCooldown.Value;
         }
         RumorLimitLbl.Text = $"{state.Rumors.Count.ToString()}/4 Available";
@@ -294,7 +295,6 @@ public sealed partial class JobNetMenu : DefaultWindow
                 }
             }
         }
-        
     }
 
 
@@ -315,12 +315,12 @@ public sealed partial class JobNetMenu : DefaultWindow
         UntilNextRumor -= TimeSpan.FromSeconds(deltaSeconds);
         if (UntilNextRumor > TimeSpan.Zero)
         {
-            RumorCooldownLbl.Text = UntilNextRumor.ToString("mm\\:ss");
+            RumorCooldownLbl.Text = UntilNextRumor.ToString("hh\\:mm\\:ss");
         }
         UntilNextReward -= TimeSpan.FromSeconds(deltaSeconds);
         if (UntilNextReward > TimeSpan.Zero)
         {
-            RewardCooldownLbl.Text = UntilNextReward.ToString("mm\\:ss");
+            RewardCooldownLbl.Text = UntilNextReward.ToString("hh\\:mm\\:ss");
         }
     }
 
@@ -332,7 +332,7 @@ public sealed partial class JobNetMenu : DefaultWindow
 
     public void RumorRewardPurchase(ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID)
     {
-        if(Owner == null) return;
+        if (Owner == null) return;
         Owner.RumorRewardPurchase(rewardID, levelID, factionID);
     }
 }

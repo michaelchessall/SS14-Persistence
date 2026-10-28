@@ -1,0 +1,157 @@
+- type: entity
+  abstract: true
+  parent: [ BaseItem, BaseMajorContraband ]
+  id: BaseMagazineMarineRifle
+  name: "magazine (.10 rifle)"
+  components:
+  - type: Tag
+    tags:
+      - MagazineMarineRifle
+  - type: BallisticAmmoProvider
+    mayTransfer: true
+    whitelist:
+      tags:
+        - CartridgeMarineRifle
+    proto: CartridgeMarineRifle
+    capacity: 40
+  - type: Item
+    size: Small
+  - type: ContainerContainer
+    containers:
+      ballistic-ammo: !type:Container
+  - type: Sprite
+    sprite: _RMC14/Objects/Weapons/Ammunition/Magazines/marinerifle.rsi
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: MagazineVisuals
+    magState: mag
+    steps: 2
+    zeroVisible: false
+  - type: Appearance
+
+- type: entity
+  parent: BaseMagazineMarineRifle
+  id: MagazineMarineRifle
+  name: "magazine (.10 rifle)"
+  description: A 40 round straight magazine used by the UNMC's M45C Mk2 assault rifle.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMarineRifle
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  parent: MagazineMarineRifle
+  id: MagazineMarineRifleEmpty
+  name: "magazine (.10 rifle any)"
+  suffix: empty
+  description: A 40 round straight magazine used by the UNMC's M45C Mk2 assault rifle.
+  components:
+  - type: BallisticAmmoProvider
+    proto: null
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      right:
+      - state: inhand-right-mag
+
+- type: entity
+  parent: BaseMagazineMarineRifle
+  id: MagazineMarineRiflePractice
+  name: "magazine (.10 rifle practice)"
+  description: A 40 round straight magazine used by the UNMC's M45C Mk2 assault rifle. Intended to hold harmless practice ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMarineRiflePractice
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#dbdbdb"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#dbdbdb"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#dbdbdb"
+
+- type: entity
+  parent: BaseMagazineMarineRifle
+  id: MagazineMarineRifleUranium
+  name: "magazine (.10 rifle uranium)"
+  description: A 40 round straight magazine used by the UNMC's M45C Mk2 assault rifle. Intended to hold exotic uranium-core ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeMarineRifleUranium
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#00cd42"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#00cd42"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#00cd42"
+
+- type: entity
+  parent: MagazineMarineRifle
+  id: MagazineMarineRifleIncendiary
+  name: "magazine (.10 rifle incendiary)"
+  description: A 40 round straight magazine used by the UNMC's M45C Mk2 assault rifle. Intended to hold self-igniting incendiary ammunition.
+  components:
+  - type: BallisticAmmoProvider
+    proto: CartridgeLightRifleIncendiary
+  - type: Sprite
+    layers:
+    - state: base
+      map: ["enum.GunVisualLayers.Base"]
+    - state: mag-1
+      map: ["enum.GunVisualLayers.Mag"]
+    - state: stripe
+      color: "#ff6e52"
+  - type: Item
+    inhandVisuals:
+      left:
+      - state: inhand-left-mag
+      - state: inhand-left-stripe
+        color: "#ff6e52"
+      right:
+      - state: inhand-right-mag
+      - state: inhand-right-stripe
+        color: "#ff6e52"

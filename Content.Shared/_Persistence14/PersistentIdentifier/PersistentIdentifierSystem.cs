@@ -58,6 +58,14 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         id = EmptyId;
         return false;
     }
+    public bool TryGetId(EntityUid uid, out string id)
+    {
+        if (TryComp<PersistentIdentifierComponent>(uid, out var comp))
+            return TryGetId((uid, comp), out id);
+
+        id = EmptyId;
+        return false;
+    }
 
     /// <summary>
     /// Resets the ID of a <see cref="PersistentIdentifierComponent"/> to a new valid GUID.
@@ -118,7 +126,6 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
     /// <param name="ent">The output variable storing the retrieved entity.</param>
     /// <param name="conditional">A conditional function applied to the search.</param>
     /// <param name="useFetchIfFalse">If true, the resolve method will attempt to fetch the entity using <see cref="TryFetchId"/> if unable to resolve using the source registry.</param>
-    /// <param name="ensureRegistry">If true, the resolve method will ensure the existence of a <see cref="PersistentIdRegisterComponent"/> on the source Uid.</param> 
     /// <returns>True if able to successfully resolve the id, otherwise false.</returns>
     public bool TryResolveId(
         EntityUid sourceUid,
@@ -141,6 +148,40 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
             return TryFetchId(id, out ent, conditional, registry);
         return false;
     }
+    /// <summary>
+    /// Attempts to resolve a given id on a source entity. Will prioritize an existing <see cref="PersistentIdRegisterComponent"/> and may add one if none are available.
+    /// </summary>
+    /// <param name="sourceUid">The Uid of the entity to look into.</param>
+    /// <param name="id">The desired id.</param>
+    /// <param name="ent">The output variable storing the retrieved entity.</param>
+    /// <param name="conditional">A conditional function applied to the search.</param>
+    /// <param name="useFetchIfFalse">If true, the resolve method will attempt to fetch the entity using <see cref="TryFetchId"/> if unable to resolve using the source registry.</param>
+    /// <returns>True if able to successfully resolve the id, otherwise false.</returns>
+    public bool TryResolveId<TComp>(
+        EntityUid sourceUid,
+        string id,
+        out Entity<TComp> ent,
+        Func<Entity<PersistentIdentifierComponent, TComp?>, bool>? conditional = null,
+        bool useFetchIfFalse = true) where TComp : Component
+    {
+        conditional ??= _ => true;
+        Func<Entity<PersistentIdentifierComponent>, bool> convertedConditional = (x) =>
+        {
+            TComp? comp = null;
+            if (TryComp<TComp>(x, out var compResult))
+                comp = compResult;
+
+            return conditional((x.Owner, x.Comp, comp));
+        };
+
+        ent = default!;
+        if (!TryResolveId(sourceUid, id, out var persistEnt, convertedConditional, useFetchIfFalse) ||
+            !TryComp<TComp>(persistEnt.Owner, out var comp))
+            return false;
+
+        ent = (persistEnt.Owner, comp);
+        return true;
+    }
 
     /// <summary>
     /// Attempts to resolve a provided <see cref="PersistentEntityReference"/> into an entity.
@@ -153,6 +194,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         bool useFetchIfFalse = true)
     {
         ent = default!;
+        if (reference.TargetId == EmptyId) return false;
         conditional ??= _ => true;
         var register = EnsureGlobalRegister();
         if (register.Comp.TryGet(reference.TargetId, out ent, _entMan) && conditional(ent))
@@ -161,6 +203,34 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         if (useFetchIfFalse)
             return TryFetchId(reference.TargetId, out ent, conditional, register);
         return false;
+    }
+    /// <summary>
+    /// Attempts to resolve a provided <see cref="PersistentEntityReference"/> into an entity.
+    /// </summary>
+    /// <returns>True if the reference sucessfully resolved into an entity, otherwise false.</returns>
+    public bool TryResolveId<TComp>(
+        PersistentEntityReference reference,
+        out Entity<TComp> ent,
+        Func<Entity<PersistentIdentifierComponent, TComp?>, bool>? conditional = null,
+        bool useFetchIfFalse = true) where TComp : Component
+    {
+        conditional ??= _ => true;
+        Func<Entity<PersistentIdentifierComponent>, bool> convertedConditional = (x) =>
+        {
+            TComp? comp = null;
+            if (TryComp<TComp>(x, out var compResult))
+                comp = compResult;
+
+            return conditional((x.Owner, x.Comp, comp));
+        };
+
+        ent = default!;
+        if (!TryResolveId(reference, out var persistEnt, convertedConditional, useFetchIfFalse) ||
+            !TryComp<TComp>(persistEnt.Owner, out var comp))
+            return false;
+
+        ent = (persistEnt.Owner, comp);
+        return true;
     }
 
     /// <summary>
