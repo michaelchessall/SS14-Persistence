@@ -2,7 +2,7 @@
   id: HCD
   parent: [ BaseItem, BaseEngineeringContraband ]
   name: HCD
-  description: The hardlight construction device can be used to depoy long lasting holograms, used to assist in construction.
+  description: The hardlight construction device can be used to deploy long lasting holograms, used to assist in construction.
   components:
   - type: ConstructionChalk
     powerUsage: 1
