@@ -227,7 +227,6 @@
   parent: BaseGasUnary
   id: GasVentPump
   targetNode: ventpump
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -243,7 +242,6 @@
   graph: GasUnary
   startNode: start
   targetNode: ventpumpalt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -259,7 +257,6 @@
   graph: GasUnary
   startNode: start
   targetNode: ventpumpalt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -273,7 +270,6 @@
   parent: BaseGasUnary
   id: GasPassiveVent
   targetNode: passivevent
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -289,7 +285,6 @@
   graph: GasUnary
   startNode: start
   targetNode: passiveventalt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -305,7 +300,6 @@
   graph: GasUnary
   startNode: start
   targetNode: passiveventalt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -319,7 +313,6 @@
   parent: BaseGasUnary
   id: GasVentScrubber
   targetNode: ventscrubber
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -335,7 +328,6 @@
   graph: GasUnary
   startNode: start
   targetNode: ventscrubberalt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -351,7 +343,6 @@
   graph: GasUnary
   startNode: start
   targetNode: ventscrubberalt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -365,7 +356,6 @@
   parent: BaseGasUnary
   id: GasOutletInjector
   targetNode: outletinjector
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -381,7 +371,6 @@
   graph: GasUnary
   startNode: start
   targetNode: outletinjectoralt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -397,7 +386,6 @@
   graph: GasUnary
   startNode: start
   targetNode: outletinjectoralt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -567,7 +555,7 @@
   graph: GasBinary
   startNode: start
   targetNode: heatpump
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -583,7 +571,7 @@
   graph: GasBinary
   startNode: start
   targetNode: heatpumpAlt1
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -599,7 +587,7 @@
   graph: GasBinary
   startNode: start
   targetNode: heatpumpAlt2
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -616,7 +604,6 @@
   parent: BaseGasTrinary
   id: GasFilter
   targetNode: filter
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasFilterFlipped
@@ -633,7 +620,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: filteralt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasFilterFlipped
@@ -650,7 +636,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: filteralt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasFilterFlipped
@@ -666,7 +651,6 @@
   id: GasFilterFlipped
   hide: true
   targetNode: filterflipped
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasFilter
@@ -683,7 +667,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: filterflippedalt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasFilter
@@ -700,7 +683,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: filterflippedalt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasFilter
@@ -715,7 +697,6 @@
   parent: BaseGasTrinary
   id: GasMixer
   targetNode: mixer
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixerFlipped
@@ -732,7 +713,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: mixeralt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixerFlipped
@@ -749,7 +729,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: mixeralt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixerFlipped
@@ -765,7 +744,6 @@
   id: GasMixerFlipped
   hide: true
   targetNode: mixerflipped
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixer
@@ -782,7 +760,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: mixerflippedalt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixer
@@ -799,7 +776,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: mixerflippedalt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   mirror: GasMixer
@@ -814,7 +790,6 @@
   parent: BaseGasTrinary
   id: PressureControlledValve
   targetNode: pneumaticvalve
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -830,7 +805,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: pneumaticvalvealt1
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
@@ -846,7 +820,6 @@
   graph: GasTrinary
   startNode: start
   targetNode: pneumaticvalvealt2
-  category: construction-category-utilities
   placementMode: AlignAtmosPipeLayers
   canBuildInImpassable: false
   conditions:
