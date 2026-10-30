@@ -1,7 +1,7 @@
 - type: construction
   id: PipeInterchangePrimarySecondary
   name: pipe-interchange-name-short
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: SnapgridCenter
   canBuildInImpassable: true
   mirror: PipeInterchangePrimaryTertiary
@@ -15,7 +15,7 @@
   id: PipeInterchangePrimaryTertiary
   hide: true
   name: pipe-interchange-name-short
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: SnapgridCenter
   canBuildInImpassable: true
   mirror: PipeInterchangePrimarySecondary
@@ -28,7 +28,7 @@
 - type: construction
   id: PipeInterchangeSecondaryTertiary
   name: pipe-interchange-name-long
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: SnapgridCenter
   canBuildInImpassable: true
   mirror: PipeInterchangeSecondaryTertiaryFlipped
@@ -42,7 +42,7 @@
   id: PipeInterchangeSecondaryTertiaryFlipped
   hide: true
   name: pipe-interchange-name-long
-  category: construction-category-utilities
+  category: construction-category-atmospherics
   placementMode: SnapgridCenter
   canBuildInImpassable: true
   mirror: PipeInterchangeSecondaryTertiary
