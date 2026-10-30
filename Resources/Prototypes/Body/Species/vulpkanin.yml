@@ -184,16 +184,13 @@
         Heat: 2.5 # Per second, scales with temperature & other constants
   - type: Wagging
     action: ActionToggleWaggingVulpkanin
-  - type: JumpAbility
-    action: ActionVulpkaninGravityJump
-    canCollide: true
-    jumpDistance: 3
-    jumpSound:
-      path: /Audio/Weapons/punchmiss.ogg
-      params:
-        pitch: 1.33
-        volume: -5
-        variation: 0.05
+  - type: Smeller
+    perception: Partial
+  - type: UserInterface
+    interfaces:
+      enum.ScentSniffUiKey.Key:
+        type: ScentSniffBoundUserInterface
+    # Starlight End
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
