@@ -21,7 +21,8 @@ namespace Content.Shared.Atmos.Piping.Binary.Components
     public enum GasCanisterVisuals
     {
         PressureState,
-        TankInserted
+        TankInserted,
+        TemperatureState //added for canister temp persistence
     }
 
     #endregion

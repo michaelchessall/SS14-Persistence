@@ -155,22 +155,33 @@ public abstract partial class SharedGasCanisterSystem : GasMaxPressureSystem<Gas
     {
         if (!TryComp<AppearanceComponent>(entity, out var appearance))
             return;
+        // persi start
+        var maxPressure = Atmospherics.MaxOutputPressure * 2;
+        float[] thresholds = [0.01f, 0.08f, 0.16f, 0.32f, 0.5f, 0.64f, 0.85f, 0.95f, 1.0f];
 
-        if (entity.Comp.Air.Pressure < 10)
+        for (var index = 0; index < thresholds.Length; index++)
         {
-            _appearance.SetData(entity, GasCanisterVisuals.PressureState, 0, appearance);
+            if (entity.Comp.Air.Pressure < maxPressure * thresholds[index])
+            {
+                _appearance.SetData(entity, GasCanisterVisuals.PressureState, index, appearance);
+                break;
+            }
         }
-        else if (entity.Comp.Air.Pressure < Atmospherics.OneAtmosphere)
+
+        if (entity.Comp.Air.Pressure >= maxPressure * thresholds[^1])
+            _appearance.SetData(entity, GasCanisterVisuals.PressureState, thresholds.Length - 1, appearance);
+
+        float[] tempThresholds = [100, 150, 200, 268, 450, 650, 750, 900, 1100, 1300, 1600];
+        for (var index = 0; index < tempThresholds.Length; index++)
         {
-            _appearance.SetData(entity, GasCanisterVisuals.PressureState, 1, appearance);
+            if (entity.Comp.Air.Temperature < tempThresholds[index])
+            {
+                _appearance.SetData(entity, GasCanisterVisuals.TemperatureState, index, appearance);
+                return;
+            }
         }
-        else if (entity.Comp.Air.Pressure < (15 * Atmospherics.OneAtmosphere))
-        {
-            _appearance.SetData(entity, GasCanisterVisuals.PressureState, 2, appearance);
-        }
-        else
-        {
-            _appearance.SetData(entity, GasCanisterVisuals.PressureState, 3, appearance);
-        }
+
+        _appearance.SetData(entity, GasCanisterVisuals.TemperatureState, tempThresholds.Length - 1, appearance);
+        //persi end
     }
 }
