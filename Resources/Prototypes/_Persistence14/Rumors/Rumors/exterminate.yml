@@ -37,3 +37,15 @@
   reputationReward: 70
   completionType: Exterminate
   descriptionAddon: "Kill all hostile creatures aboard!"
+
+- type: rumor
+  id: ExterminateGreen
+  name: Corpse Disposal
+  description: "An old NT station got dumped into the Threshold, we need you to go in and make sure its cleared of all hostiles."
+  eventGrids:
+    - /Maps/Rumors/Exterminate/Medium/zed-lab.yml
+    - /Maps/Rumors/Exterminate/Medium/zed-charge-kill.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionType: Exterminate
+  descriptionAddon: "Kill all hostile creatures aboard!"

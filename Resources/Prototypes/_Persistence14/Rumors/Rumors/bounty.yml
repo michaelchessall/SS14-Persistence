@@ -126,6 +126,7 @@
     - DiscoverSmallScience
     - PowerLuminal
     - PowerGreen
+    - ExterminateGreen
     - ArtifactNodeBasic
 
 - type: rumor
@@ -169,5 +170,6 @@
     - ExterminateGeneral
     - DiscoverSmallShadow
     - ExterminateLuminal
+    - ExterminateGreen
     - PowerLuminal
     - RescueShadow
