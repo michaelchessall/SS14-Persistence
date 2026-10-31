@@ -20,6 +20,9 @@
     - BountyBasicGeneral
     - BountyBasicScience
     - PowerLuminal
+    - PowerGreen
+    - ExterminateGreen
+    - RescueMarine
     - ArtifactNodeBasic
 
 - type: rumor

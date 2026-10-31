@@ -23,9 +23,20 @@
 - type: rumor
   id: PowerPrecursor
   name: Power Banks
-  description: "Restore power to the 2 SMES and the substation so we can retrieve our science data!"
+  description: "Restore power to the 2 SMESs and the substation so we can retrieve our science data!"
   eventGrids:
     - /Maps/Rumors/Charge/syndi-charge.yml
+  cashReward: 5000
+  reputationReward: 50
+  completionType: Power
+  descriptionAddon: "Power all SMES on board the grid."
+
+- type: rumor
+  id: PowerGreen
+  name: Power Banks
+  description: "An old piece of an NT station got pulled into your sector, kill the creatures on board and charge the 2 SMESs and the substation, we'll make it worth your while."
+  eventGrids:
+    - /Maps/Rumors/Charge/zed-charge.yml
   cashReward: 5000
   reputationReward: 50
   completionType: Power

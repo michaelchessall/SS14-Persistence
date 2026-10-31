@@ -27,3 +27,13 @@
   cashReward: 5000
   reputationReward: 70
   completionType: Rescue
+
+- type: rumor
+  id: RescueMarine
+  name: MIA
+  description: "Four UNMC soldiers went dark a bit ago in a wreck with heavy xenonid activity. We need you to go in and get them back in fighting shape."
+  eventGrids:
+    - /Maps/Rumors/Rescue/Medium/xeno-medium-rescue.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionType: Rescue
