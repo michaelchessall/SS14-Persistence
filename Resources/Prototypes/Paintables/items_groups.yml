@@ -105,3 +105,13 @@
     freelance: ClothingHeadsetFreelance
     wizard: ClothingHeadsetWizard
     ninja: ClothingHeadsetNinja
+    overearcargo: ClothingHeadsetAltCargo
+    overearcentcom: ClothingHeadsetAltCentCom
+    overearcommand: ClothingHeadsetAltCommand
+    overearengineering: ClothingHeadsetAltEngineering
+    overearfreelancer: ClothingHeadsetAltFreelancer
+    overearmedical: ClothingHeadsetAltMedical
+    overearscience: ClothingHeadsetAltScience
+    overearsecurity: ClothingHeadsetAltSecurity
+    overearsyndicate: ClothingHeadsetAltSyndicate
+    overearwizard: ClothingHeadsetAltWizard

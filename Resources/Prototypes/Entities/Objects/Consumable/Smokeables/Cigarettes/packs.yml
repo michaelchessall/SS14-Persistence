@@ -177,6 +177,23 @@
   - type: Item
     sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/black.rsi
 
+#Persistence 14 SL cig pack
+- type: entity
+  id: CigPackSL
+  parent: CigPackBase
+  name: Solar Legion cigarette packet
+  description: Cigarettes for the most persistent spessman. Infused with ichor and arithrazine these cigs will have you feeling better in no time.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Smokeables/Cigarettes/Packs/solarlegion.rsi
+  - type: Item
+    sprite: _Persistence14/Objects/Consumable/Smokeables/Cigarettes/Packs/solarlegion.rsi
+  - type: EntityTableContainerFill
+    containers:
+      storagebase:
+        id: CigaretteSL
+        amount: 10
+
 - type: entity
   id: CigPackSyndicate
   parent: [CigPackBase, BaseSyndicateContraband]

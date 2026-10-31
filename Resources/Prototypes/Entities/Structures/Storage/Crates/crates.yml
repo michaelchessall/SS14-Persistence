@@ -182,6 +182,17 @@
     openSound:
       path: /Audio/Effects/rustle2.ogg
 
+#Persistence 14
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateSolarLegion
+  name: Solar Legion crate
+  components:
+  - type: Icon
+    sprite: _Persistence14/Structures/storage/Crates/solarlegion.rsi
+  - type: Sprite
+    sprite: _Persistence14/Structures/storage/Crates/solarlegion.rsi
+
 # Secure Crates
 
 - type: entity
@@ -337,6 +348,17 @@
     sprite: Structures/Storage/Crates/syndicate_secure.rsi
   - type: AccessReader
     access: [["SyndicateAgent", "NuclearOperative"]]
+
+#Persistence 14
+- type: entity
+  parent: CrateBaseSecure
+  id: CrateSolarLegionSecure
+  name: Solar Legion secure crate
+  components:
+  - type: Icon
+    sprite: _Persistence14/Structures/storage/Crates/solarlegionsecure.rsi
+  - type: Sprite
+    sprite: _Persistence14/Structures/storage/Crates/solarlegionsecure.rsi
 
 - type: entity
   parent: [ BaseCrate, StructureHealthContainerFlimsy ]

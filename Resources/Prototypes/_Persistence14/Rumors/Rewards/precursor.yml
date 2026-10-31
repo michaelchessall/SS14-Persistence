@@ -76,6 +76,16 @@
     sprite: Objects/Specific/Medical/defibsyndi.rsi
     state: icon
 
+- type: rumorReward
+  id: SyndiCigarettes
+  name: Interdyne Herbals Packet
+  description: "Elite cigarettes for elite agents. Infused with ichor for when you need to do more than calm your nerves."
+  price: 3000
+  product: CigPackSyndicate
+  icon:
+    sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
+    state: closed
+
 
 
 #Tools

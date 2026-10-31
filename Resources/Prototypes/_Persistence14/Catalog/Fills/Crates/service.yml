@@ -80,7 +80,7 @@
 
 
 - type: entity
-  parent: CrateEngineering
+  parent: CrateSolarLegion
   id: CrateSoLMerch
   name: Solar Legion paraphernalia crate
   description: A Red and Yellow crate filled with Solar Legion Merch.
@@ -101,6 +101,7 @@
         - id: BookThresholdHandbook
         - !type:NestedSelector
           tableId: AllPersistencePlushiesTable
+        - id: SolarLegionFlippo
 
 - type: entity
   parent: CratePrivateSecure
