@@ -1,10 +1,15 @@
 # Hacky for the stress test so don't even consider adding to this
+#Persistence 14 added - type: SalvageMobRestrictions for exterminate rumors
+#Persistence 14 added Modifiers for incentivising guns
 - type: entity
   name: burrower
   id: MobXeno
   parent: [ SimpleSpaceMobBase, MobNightVision, BaseMobDestructible ]
   description: They mostly come at night. Mostly.
   components:
+  - type: SalvageMobRestrictions
+  - type: Damageable
+    damageModifierSet: XenoModifiers
   - type: Insulated
   - type: CombatMode
   - type: InputMover

@@ -82,6 +82,8 @@
     - ExterminateGeneral
     - DiscoverSmallSalvage
     - PowerLuminal
+    - PowerGreen
+    - RescueMarine
     - RescuePrecursor
 
 - type: rumor
@@ -123,6 +125,8 @@
   possibleFollowups:
     - DiscoverSmallScience
     - PowerLuminal
+    - PowerGreen
+    - ExterminateGreen
     - ArtifactNodeBasic
 
 - type: rumor
@@ -166,5 +170,6 @@
     - ExterminateGeneral
     - DiscoverSmallShadow
     - ExterminateLuminal
+    - ExterminateGreen
     - PowerLuminal
     - RescueShadow
