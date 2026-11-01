@@ -16,9 +16,6 @@ public sealed partial class SharedRecipeRelaySystem : EntitySystem
 
     public override void Initialize()
     {
-        SubscribeLocalEvent<RecipeRelaySourceComponent, ComponentStartup>(OnSourceStartup);
-        SubscribeLocalEvent<RecipeRelayReceiverComponent, ComponentStartup>(OnReceiverStartup);
-
         SubscribeLocalEvent<RecipeRelayToggleReceieverMessage>(OnToggleReceiverMessage);
         SubscribeLocalEvent<RecipeRelaySourceComponent, PowerChangedEvent>(OnPowerChanged);
         SubscribeLocalEvent<RecipeRelaySourceComponent, BoundUIOpenedEvent>(OnUiOpened);
@@ -73,10 +70,6 @@ public sealed partial class SharedRecipeRelaySystem : EntitySystem
         container = (sourceEnt.Owner, sourceContainer);
         return true;
     }
-
-    private void OnSourceStartup(Entity<RecipeRelaySourceComponent> source, ref ComponentStartup args) => EnsureSourceIntegrity(source);
-    private void OnReceiverStartup(Entity<RecipeRelayReceiverComponent> receiver, ref ComponentStartup args) => EnsureReceiverIntegrity(receiver);
-
     /// <summary>
     /// Ensures all is well inside a relay source.
     /// </summary>
@@ -207,6 +200,7 @@ public sealed partial class SharedRecipeRelaySystem : EntitySystem
 
     private void OnUiOpened(Entity<RecipeRelaySourceComponent> source, ref BoundUIOpenedEvent args)
     {
+        EnsureSourceIntegrity(source);
         UpdateSourceUI(source, args.Actor);
     }
 }

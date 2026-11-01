@@ -18,6 +18,7 @@ public sealed partial class BotanyShovelSystem : EntitySystem
     [Dependency] private PlantTraySystem _plantTray = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
 
+    [Dependency] private EntityQuery<PlantComponent> _plantQuery;
     [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery;
 
     [SubscribeLocalEvent]
