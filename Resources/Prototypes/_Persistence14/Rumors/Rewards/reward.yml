@@ -172,11 +172,11 @@
 - type: rumorReward
   id: IchorCigarettes
   name: Ichor Smokes Packet
-  description: "Elite cigarettes for elite agents. Infused with ichor for when you need to do more than calm your nerves."
+  description: "Solar Legion cigarettes with chems capable of healing any ailment."
   price: 3000
-  product: CigPackSyndicate
+  product: CigPackSL
   icon:
-    sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
+    sprite: _Persistence14/Objects/Consumable/Smokeables/Cigarettes/Packs/solarlegion.rsi
     state: closed
 
 - type: rumorReward

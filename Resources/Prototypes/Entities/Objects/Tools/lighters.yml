@@ -290,6 +290,20 @@
   - type: PointLight
     color: green
 
+#Persistence 14
+- type: entity
+  parent: BaseBrandedLighter
+  id: SolarLegionFlippo
+  name: Solar Legion flippo
+  description: "All for one, one for all."
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Tools/Lighters/solarlegion.rsi
+  - type: Item
+    sprite: _Persistence14/Objects/Tools/Lighters/solarlegion.rsi
+  - type: PointLight
+    color: orange
+
 - type: entity
   parent: [BaseBrandedLighter, BaseSyndicateContraband]
   id: CybersunFlippo

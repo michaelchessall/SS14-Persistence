@@ -77,6 +77,22 @@
           Quantity: 10
         - ReagentId: Ichor
           Quantity: 20
+#Persistance 14
+- type: entity
+  id: CigaretteSL
+  suffix: solar legion
+  parent: Cigarette
+  name: cigarette
+  components:
+  - type: Solution
+    solution:
+      reagents:
+        - ReagentId: Nicotine
+          Quantity: 10
+        - ReagentId: Ichor
+          Quantity: 15
+        - ReagentId: Arithrazine
+          Quantity: 5
 #new for Persistance 14 switched to ichor due to omni changes
 - type: entity
   id: CigaretteOmnizine
