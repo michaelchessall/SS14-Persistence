@@ -5,22 +5,40 @@
   priority: 11 # After PersistRuleset
   text: "/ServerInfo/_Persistence14/Guidebook/Threshold/Threshold.xml"
   children:
+    - CharacterBackground
     - Rumors
     - RumorRewards
     - Insights
     - Upgrades
     - Tradestation
+    - MessageBoards
     - MakingMoney
     - ThresholdCargo
     - ThresholdMiningHunting
     - ThresholdGasMining
     - ThresholdScience
+    - ThresholdEngineering
     - Death
     # - Achievements
     - GridControl
     - AccessControl
     - ThresholdMedical
     - ThresholdBotany
+
+- type: guideEntry
+  id: CharacterBackground
+  name: guide-entry-character-background
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/CharacterBackground.xml"
+
+- type: guideEntry
+  id: MessageBoards
+  name: guide-entry-message-boards
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/MessageBoards.xml"
+
+- type: guideEntry
+  id: ThresholdEngineering
+  name: guide-entry-threshold-engineering
+  text: "/ServerInfo/_Persistence14/Guidebook/Threshold/ThresholdEngineering.xml"
 
 - type: guideEntry
   id: Rumors

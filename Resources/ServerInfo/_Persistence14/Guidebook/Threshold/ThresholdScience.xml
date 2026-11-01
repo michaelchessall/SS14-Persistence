@@ -8,10 +8,33 @@
   As a result of these research consoles in the Threshold have been configured to allow the same technologies to be researched again and again to grant more prints out of a lathe.
   We work endlessly to try to understand this enigmatic region of space but the Threshold endlessly eludes us..
 
+  ### Restock Technologies
+  Some technologies unlock consumable parts such as power cells, fulton beacons or teleporter chips. Rather than researching the whole technology again, [bold]restock technologies[/bold] can be researched to grant more prints of just those parts.
+
+  ### Tier Requirements
+  Unlocking third tier technologies in a discipline requires that [bold]50% of the earlier technologies in that discipline[/bold] have been researched.
+
   ## Manufacturing
   Research machines must be connected to a faction to function correctly, but even a small faction can engage in research or manufacturing.
   Machine boards for nearly any machine can be made from a circuit imprinter, inclduing a machine board for a circuit imprinter.
   If you cant find a Threshold science department that is willing to sell you these machine boards you can import them through one of the trade stations.
   Being able to manufacture your own machines is key for a faction which wants to be independent in the Threshold.
-</Document>
 
+  ## Recipe Relays
+  Researched prints are stored on the [bold]R&D server[/bold]. Lathes cannot choose a server themselves; instead, [bold]lathes must be linked to a server from the server's own menu[/bold].
+  Open the R&D server and press 'Link' next to a lathe in the client list. A linked lathe prints using the server's stored prints, and every print uses up one of them.
+
+  A lathe can only be linked when:
+  It is [bold]on the same grid[/bold] as the server.
+  It is [bold]powered[/bold].
+  You have [bold]access[/bold] to the lathe.
+
+  A lathe can only be linked to one server at a time. Press 'Unlink' to disconnect it.
+
+  ## Teleporters
+  Teleporters are controlled from a teleporter control console using a [bold]teleporter chip[/bold].
+  Use a blank teleporter chip on a teleporter to record its coordinates, then insert the chip into a teleporter control console to connect to it.
+
+  A standard teleporter chip can control a teleporter up to [bold]512 meters[/bold] away and locate it up to 1024 meters away.
+  [bold]Advanced teleporter chips[/bold] have a far greater range, controlling teleporters up to [bold]2048 meters[/bold] away and locating them up to 4096 meters away. Advanced teleporter chips are only available through the Rumored Imports.
+</Document>

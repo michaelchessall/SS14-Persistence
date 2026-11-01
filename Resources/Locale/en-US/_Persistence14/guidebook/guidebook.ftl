@@ -34,6 +34,9 @@ guide-entry-grid-control = Grid Control
 guide-entry-access-control = Access Control
 guide-entry-threshold-medical = Persistence Medical
 guide-entry-threshold-botany = Persistence Botany
+guide-entry-threshold-engineering = Persistence Engineering
+guide-entry-character-background = Character Background
+guide-entry-message-boards = Message Boards
 # Persistence Medical #
 guide-entry-threshold-medicine-metabolism = Medicine & Metabolism
 guide-entry-threshold-topicals = Topicals
