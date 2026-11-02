@@ -6,7 +6,7 @@ on:
     - cron: '0 18 * * 2'
 
 permissions:
-    contents: write
+    contents: write #this is a comment to test a change
 
 jobs:
     release:
