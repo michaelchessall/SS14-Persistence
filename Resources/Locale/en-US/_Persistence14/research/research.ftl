@@ -67,4 +67,3 @@ research-technology-industrial-eva-restock = Emergency Air Capacity Restock
 research-technology-telesci-restock = Teleporter Chip Restock
 research-technology-launcher-syringe-restock = Mini Syringe Restock
 research-technology-basic-shuttle-armament-restock = Power Cage Restock
-research-technology-industrial-eva = Industrial EVA Manufacturing
