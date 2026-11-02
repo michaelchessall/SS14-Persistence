@@ -71,9 +71,6 @@ public abstract partial class SharedStationTeleporterSystem : EntitySystem
 
         var canConnect = chip is null ? true : distSqr <= maxDist * maxDist;
 
-        if (!Power.IsPowered(teleporter.Value) || !canConnect)
-            return;
-
         // Not every linkable teleporter is a StationTeleporter (e.g. hand teleporter portals aren't),
         // so this component is optional here - only used for its LastLink/PortalColor bookkeeping.
         TryComp<StationTeleporterComponent>(teleporter.Value, out var stationTeleporterComponent);
@@ -87,27 +84,33 @@ public abstract partial class SharedStationTeleporterSystem : EntitySystem
         else //If the pressed teleporter is not connected to anything...
         {
             if (ent.Comp.SelectedTeleporter is null) //And the console doesn't have teleporter selected - select it.
-            {
                 ent.Comp.SelectedTeleporter = teleporter;
-            }
+
             else //If we have selected teleporter - tie them together
             {
-                if (ent.Comp.SelectedTeleporter != teleporter.Value &&
-                    Power.IsPowered(ent.Comp.SelectedTeleporter.Value))
-                {
-                    // Set the console's portal color on both sides before linking, so OnLinkedChanged
-                    // can pick it up when it reacts to the link actually succeeding.
-                    stationTeleporterComponent?.PortalColor = ent.Comp.PortalColor;
-
-                    if (TryComp<StationTeleporterComponent>(ent.Comp.SelectedTeleporter.Value, out var selectedComponent))
-                        selectedComponent.PortalColor = ent.Comp.PortalColor;
-
-                    if (Link.TryLink(teleporter.Value, ent.Comp.SelectedTeleporter.Value) && stationTeleporterComponent is not null)
-                        stationTeleporterComponent.LastLink = Pid.EnsureId(ent.Comp.SelectedTeleporter.Value);
-                }
+                if (ent.Comp.SelectedTeleporter != teleporter.Value && canConnect)
+                    LinkTeleporters(ent, teleporter.Value, ent.Comp.SelectedTeleporter.Value);
 
                 ent.Comp.SelectedTeleporter = null;
             }
+        }
+    }
+
+    private void LinkTeleporters(Entity<StationTeleporterConsoleComponent> console, EntityUid a, EntityUid b)
+    {
+        if (!Power.IsPowered(a) || !Power.IsPowered(b))
+            return;
+
+        var aComp = TryComp<StationTeleporterComponent>(a, out var aTeleporter);
+        var bComp = TryComp<StationTeleporterComponent>(b, out var bTeleporter);
+
+        if (aComp) aTeleporter!.PortalColor = console.Comp.PortalColor;
+        if (bComp) bTeleporter!.PortalColor = console.Comp.PortalColor;
+
+        if (Link.TryLink(a, b))
+        {
+            if (aComp) aTeleporter!.LastLink = Pid.EnsureId(b);
+            if (bComp) bTeleporter!.LastLink = Pid.EnsureId(a);
         }
     }
 
