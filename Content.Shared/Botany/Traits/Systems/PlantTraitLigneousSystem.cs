@@ -32,7 +32,7 @@ public sealed partial class PlantTraitLigneousSystem : EntitySystem
 
         // Ligneous requires sharp tool.
         var harvestToolQuality = ent.Comp.HarvestToolQuality;
-        if (harvestToolQuality.HasValue && !_tool.HasQuality(args.Used, harvestToolQuality.Value))
+        if (!_tool.HasQuality(args.Used, harvestToolQuality))
             return;
 
         _plantHarvest.TryHandleHarvest(ent.Owner, args.User, args.Used);
