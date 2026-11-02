@@ -1,3 +1,4 @@
+# Given there have been changes since last week, creates a new named release and increments the release minor revision number.
 name: Auto Version Increment
 
 on:
