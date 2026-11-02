@@ -105,6 +105,12 @@
   components:
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
+  - type: PhysicalComposition
+    materialComposition:
+      Steel: 360
+      Copper: 180
+      Plastic: 90
+
 
 - type: entity
   parent: [SolutionWelder, SolutionSmall]
@@ -121,7 +127,7 @@
   name: industrial welding tool
   parent: [SolutionToolWelderIndsutrial, BaseWelder]
   id: WelderIndustrial
-  description: "The tip uses more durable materials to reach higher temperatures, with a higher fuel tank capacity."
+  description: "New improved welder made with heavy use in mind. The tip uses a more durable material to reach higher temperatures, with a higher fuel tank capacity."
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_industrial.rsi
@@ -129,6 +135,12 @@
     sprite: Objects/Tools/welder_industrial.rsi
   - type: Tool
     speedModifier: 1.2
+  - type: PhysicalComposition
+    materialComposition:
+      Titanium: 270
+      Steel: 180
+      Aluminium: 180
+      Copper: 180
 
 - type: entity
   parent: [SolutionWelder, SolutionToolNormal]
@@ -145,7 +157,7 @@
   name: advanced industrial welding tool
   parent: WelderIndustrial
   id: WelderIndustrialAdvanced
-  description: ""
+  description: "This welder is made with the most advanced materials available, allowing it to weld faster than any other welder."
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_industrialadv.rsi
@@ -156,6 +168,12 @@
   - type: Solution
     solution:
       maxVol: 750 #persi adjustment
+  - type: PhysicalComposition
+    materialComposition:
+      Titanium: 180
+      Plasteel: 270
+      Aluminium: 270
+      Copper: 45
 
 - type: entity
   name: experimental welding tool
@@ -175,10 +193,12 @@
     fuelReagent: Plasma
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
-  - type: PhysicalComposition
+  - type: PhysicalComposition # gives back 90% mat needed to print when recycled
     materialComposition:
-      Steel: 200
-      Plasma: 100
+      Steel: 720
+      Plasma: 180
+      Silver: 90
+      Titanium: 90
 
 - type: entity
   parent: [SolutionWelder, SolutionToolGinormous] # Bluespace technology
