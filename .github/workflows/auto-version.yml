@@ -6,7 +6,7 @@ on:
     - cron: '0 18 * * 2'
 
 permissions:
-    contents: write #this is a comment to test a change
+    contents: write #this is a comment to test a change and another change
 
 jobs:
     release:
@@ -34,10 +34,13 @@ jobs:
                 # 
                 # Special versions such as stable tags (i.e. 3.X.S) cause an abort
                 
-                LATEST_TAG=$(git describe \
-                    --tags \
-                    --abbrev=0 \
-                    --match '[0-9]*.*.*')
+                LATEST_TAG=$(
+                    git tag \
+                        --merged HEAD \
+                        --list '[0-9]*.*.*' \
+                        --sort=-version:refname \
+                    | head -n 1
+                )
                 echo "Latest Version: $LATEST_TAG"
                 echo "tag=$LATEST_TAG" >> "$GITHUB_OUTPUT"
 
