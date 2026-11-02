@@ -78,6 +78,10 @@ public sealed partial class CartridgeLoaderSystem
     /// <seealso cref="PDA.PdaSystem.UpdatePdaUserInterface"/>
     public void UpdateUiState(Entity<CartridgeLoaderComponent?> ent)
     {
+        if (ent.Owner == EntityUid.Invalid)
+        {
+            return;
+        }
         if (!Resolve(ent, ref ent.Comp))
             return;
 

@@ -1,0 +1,117 @@
+# Given there have been changes since last week, creates a new named release and increments the release minor revision number.
+name: Auto Version Increment
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 18 * * 2'
+
+permissions:
+    contents: write
+
+jobs:
+    release:
+        name: Check and create minor release
+        runs-on: ubuntu-latest
+        steps:
+          - name: Checkout staging-stable
+            uses: actions/checkout@v4
+            with:
+                ref: staging-stable
+                fetch-depth: 0
+                fetch-tags: true
+          - name: Find latest version
+            id: version
+            shell: bash
+            run: |
+                set -euo pipefail
+
+                # Version tags expected
+                # I.M.m
+                # i.e.
+                # 4.0.3
+                # 4.1.1
+                # etc
+                # 
+                # Special versions such as stable tags (i.e. 3.X.S) cause an abort
+                
+                LATEST_TAG=$(
+                    git tag \
+                        --merged HEAD \
+                        --list '[0-9]*.*.*' \
+                        --sort=-version:refname \
+                    | head -n 1
+                )
+                echo "Latest Version: $LATEST_TAG"
+                echo "tag=$LATEST_TAG" >> "$GITHUB_OUTPUT"
+
+
+                if [[ ! "$LATEST_TAG" =~ ^([0-9]+)\.([0-9]+)\.([0-9]+)$ ]]; then
+                    echo "Latest version $LATEST_TAG is special."
+                    echo "Automatic minor tag not created"
+                    echo "special=true" >> "$GITHUB_OUTPUT"
+                    exit 0
+                fi
+
+
+                echo "special=false" >> "$GITHUB_OUTPUT"
+                echo "iteration=${BASH_REMATCH[1]}" >> "$GITHUB_OUTPUT"
+                echo "major=${BASH_REMATCH[2]}" >> "$GITHUB_OUTPUT"
+                echo "minor=${BASH_REMATCH[3]}" >> "$GITHUB_OUTPUT"
+
+          - name: Check for unversioned changes
+            if: steps.version.outputs.special == 'false'
+            id: changes
+            shell: bash
+            run: |
+                set -euo pipefail
+
+                LATEST_TAG="${{ steps.version.outputs.tag }}"
+
+                if [ "$(git rev-parse "$LATEST_TAG^{commit}")" = "$(git rev-parse HEAD)" ]; then
+                    echo "No changes since $LATEST_TAG."
+                    echo "changes=false" >> "$GITHUB_OUTPUT"
+                else
+                    echo "Changes found since $LATEST_TAG."
+                    echo "changes=true" >> "$GITHUB_OUTPUT"
+                fi
+        
+          - name: Calculate next version
+            if: steps.changes.outputs.changes == 'true' && steps.version.outputs.special == 'false'
+            id: next
+            shell: bash
+            run: |
+                ITERATION="${{ steps.version.outputs.iteration }}"
+                MAJOR="${{ steps.version.outputs.major }}"
+                MINOR="${{ steps.version.outputs.minor }}"
+
+                NEXT_MINOR=$((MINOR + 1))
+                NEXT_VERSION="$ITERATION.$MAJOR.$NEXT_MINOR"
+
+                echo "Next Version: $NEXT_VERSION"
+                echo "version=$NEXT_VERSION" >> "$GITHUB_OUTPUT"
+        
+          - name: Create tag
+            if: steps.changes.outputs.changes == 'true' && steps.version.outputs.special == 'false'
+            shell: bash
+            run: |
+                VERSION="${{ steps.next.outputs.version }}"
+
+                git config user.name "github-actions[bot]"
+                git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+                git tag -a "$VERSION" -m "Release $VERSION"
+                git push origin "$VERSION"
+            
+          - name: Create GitHub release
+            if: steps.changes.outputs.changes == 'true' && steps.version.outputs.special == 'false'
+            shell: bash
+            env:
+                GH_TOKEN: ${{ github.token }}
+            run: |
+                VERSION="${{ steps.next.outputs.version }}"
+
+                gh release create "$VERSION" \
+                    --title "$VERSION" \
+                    --generate-notes \
+                    --target staging-stable
