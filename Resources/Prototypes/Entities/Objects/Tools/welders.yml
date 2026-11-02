@@ -76,8 +76,6 @@
         Blunt: 5 #i mean... i GUESS you could use it like that
     soundHit:
       collection: MetalThud
-  - type: RefillableSolution
-    solution: welder
   - type: Tool
     useSound:
       collection: Welder
@@ -116,17 +114,21 @@
   - type: Solution
     solution:
       maxVol: 250 #Persi adjustment, small tanks makes engineering work infernal
+  - type: RefillableSolution
+    solution: welder
 
 - type: entity
   name: industrial welding tool
   parent: [SolutionToolWelderIndsutrial, BaseWelder]
   id: WelderIndustrial
-  description: "An industrial welder with over double the fuel capacity."
+  description: "The tip uses more durable materials to reach higher temperatures, with a higher fuel tank capacity."
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_industrial.rsi
   - type: Item
     sprite: Objects/Tools/welder_industrial.rsi
+  - type: Tool
+    speedModifier: 1.2
 
 - type: entity
   parent: [SolutionWelder, SolutionToolNormal]
@@ -136,14 +138,14 @@
   - type: Solution
     solution:
       maxVol: 500 #persi adjustment
-  - type: Tool
-    speedModifier: 1.2
+  - type: RefillableSolution
+    solution: welder
 
 - type: entity
   name: advanced industrial welding tool
   parent: WelderIndustrial
   id: WelderIndustrialAdvanced
-  description: "An advanced industrial welder with over double the fuel capacity and hotter flame."
+  description: ""
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_industrialadv.rsi
@@ -196,15 +198,13 @@
   name: emergency welding tool
   parent: [SolutionToolWelderMiniEmergency, BaseWelder]
   id: WelderMini
-  description: "A miniature welder used during emergencies."
+  description: "A disposable welder used during emergencies."
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_mini.rsi
   - type: Item
     size: Tiny
     sprite: Objects/Tools/welder_mini.rsi
-  - type: RefillableSolution
-    solution: welder
   - type: Tool
     speedModifier: 0.7
   - type: PointLight
@@ -217,15 +217,15 @@
 
 - type: entity
   parent: [SolutionWelder, SolutionTiny]
-  id: SolutionToolWelderMiniEmergency # TODO, replace with below :(
+  id: SolutionToolWelderMiniEmergency
   categories: [ HideSpawnMenu ]
   components:
   - type: Solution
     solution:
-      maxVol: 100
+      maxVol: 150
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 100 # persi adjustment
+        Quantity: 150 # persi adjustment
 
 - type: entity
   parent: [SolutionWelder, SolutionToolTiny]

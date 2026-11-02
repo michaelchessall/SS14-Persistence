@@ -42,6 +42,30 @@
   result: Welder
   materials:
     Steel: 400
+    Plastic: 50
+    Copper: 100
+
+- type: latheRecipe # Added for Persi14
+  parent: BaseToolRecipe
+  id: WelderIndustrialLR
+  result: WelderIndustrial
+  completetime: 6
+  materials:
+    Titanium: 100
+    Steel: 200
+    Aluminium: 200
+  unlockUses: 3
+
+- type: latheRecipe # Added for persi14
+  parent: BaseToolRecipe
+  id: WelderIndustrialAdvancedLR
+  result: WelderIndustrialAdvanced
+  completetime: 6
+  materials:
+    Titanium: 200
+    Plasteel: 300
+    Aluminium: 300
+  unlockUses: 3
 
 - type: latheRecipe
   parent: BaseToolRecipe
@@ -254,6 +278,8 @@
   completetime: 6
   materials:
     Steel: 800
+    Titanium: 100
+    Silver: 100
     Plasma: 200
   unlockUses: 3
 
