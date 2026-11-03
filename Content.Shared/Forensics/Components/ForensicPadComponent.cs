@@ -13,9 +13,9 @@ public sealed partial class ForensicPadComponent : Component
     /// </summary>
     [DataField]
     public TimeSpan ScanDelay = TimeSpan.FromSeconds(3.0f);
-
+    [DataField]
     [AutoNetworkedField]
-    public bool Used;
+    public bool Used = false;
 
     /// <summary>
     /// The information acquired from using the forensic pad.
