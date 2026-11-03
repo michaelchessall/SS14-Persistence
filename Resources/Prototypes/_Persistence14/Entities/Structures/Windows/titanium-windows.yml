@@ -11,6 +11,8 @@
     state: icon
   - type: IconSmooth
     base: swindow
+    additionalKeys: 
+    - walls
   - type: Destructible
     thresholds:
     - trigger:
