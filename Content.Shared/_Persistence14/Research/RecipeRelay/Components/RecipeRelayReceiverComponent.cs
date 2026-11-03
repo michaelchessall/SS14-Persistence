@@ -14,5 +14,5 @@ public sealed partial class RecipeRelayReceiverComponent : Component
     public PersistentEntityReference Source = new();
 
     [ViewVariables(VVAccess.ReadOnly)]
-    public bool HasSource => Source != PersistentIdentifierSystem.EmptyId;
+    public bool HasSource => Source.TargetId != PersistentIdentifierSystem.EmptyId;
 }

@@ -43,6 +43,7 @@
     - Jaws
     - HyperzinePen
     - CombatToolbox
+    - AdvancedTeleporterChip
   rewardsToOffer: 2
 
 - type: metaFactionLevel
@@ -58,4 +59,5 @@
     - ScramImplanter
     - EDagger
     - ChameleonProjector
+    - AdvancedTeleporterChip
   rewardsToOffer: 2

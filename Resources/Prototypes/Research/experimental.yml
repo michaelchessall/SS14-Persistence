@@ -175,7 +175,7 @@
     state: portal-artifact
   discipline: Experimental
   tier: 3
-  cost: 10000
+  cost: 50000
   recipeUnlocks:
     StationTeleportersControlCircuitboard: 1
     StationTeleporterMachineCircuitboard: 2

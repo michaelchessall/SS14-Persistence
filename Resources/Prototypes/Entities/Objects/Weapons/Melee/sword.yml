@@ -201,6 +201,7 @@
   - type: Clothing
     sprite: Objects/Weapons/Melee/claymore.rsi
     slots:
+    - Belt
     - Back
     - SuitStorage #Bigger than the other swords, easier to strap to your suit.
   - type: DisarmMalus

@@ -1,0 +1,41 @@
+<Document>
+  # Character Background
+  This guide will explain the Background and Journey pages of character creation, which decide where your character comes from and give them a head start in the Threshold.
+
+  ## Creating a Character
+  Before a new character can be finalized you must [bold]set a name, complete the Background page and complete the Journey page[/bold].
+  Pressing 'Finalize and Join' saves the character permanently, so choose carefully.
+
+  Every choice lists its effects underneath its description. These effects are applied when the character first arrives in the Threshold.
+
+  ## Background Page
+
+  ### Alignment
+  Your character's moral alignment, from Lawful Good to Chaotic Evil. Your character gains a trait matching their alignment.
+
+  ### Universe of Origin
+  The universe your character comes from, which decides who controls the Threshold in their homeworld:
+  [bold]Zenith Universe[/bold]: Controlled by the Solar Legion. A suitable choice for characters from past Persistence 14 iterations.
+  [bold]Green Universe[/bold]: Controlled by Nanotrasen. A suitable choice for traditional SS14 characters.
+  [bold]Marine Universe[/bold]: Contested between the United Nations and an endless horde of hostile aliens. A suitable choice for RMC characters.
+  [bold]Precursor Universe[/bold]: Controlled by the corporations of the Syndicate. A suitable choice for roguish characters.
+  [bold]Shadow Universe[/bold]: Controlled by malevolent entities that manipulate mortals to do their bidding. An unusual origin.
+
+  Your universe of origin grants a trait and unlocks a Codex entry related to that universe.
+
+  ### Motive
+  Why your character came to the Threshold: [bold]Wealth[/bold], [bold]Power[/bold], [bold]Secret Knowledge[/bold], [bold]Friendship[/bold] or [bold]Enlightenment[/bold].
+  [bold]Wealth[/bold]: Arrive with an additional $2000.
+  [bold]Power[/bold] and [bold]Friendship[/bold]: Arrive with an additional rumor.
+  [bold]Secret Knowledge[/bold] and [bold]Enlightenment[/bold]: Unlock a Codex entry.
+
+  ## Journey Page
+  The Journey page introduces the lore of the Threshold and Nexus Space.
+
+  ### Turning Point
+  The moment that changed everything and brought your character into Nexus Space, such as being chosen for the Nexus, being suddenly disgraced, or an encounter with a Magician, Priestess or Rationalist.
+  Every turning point grants the [bold]Freelancer Pledge[/bold] trait, as everyone who enters Nexus Space must do so as an independent.
+
+  ## Viewing Your Traits
+  The traits your character has gained can be viewed in the 'Traits' tab of the character menu.
+</Document>

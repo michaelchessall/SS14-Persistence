@@ -10,6 +10,7 @@
     science: CrateScience
     surgery: CrateSurgery
     syndicate: CrateSyndicate
+    solarlegion: CrateSolarLegion
 
 - type: paintableGroup
   id: CratePlastic
@@ -38,3 +39,4 @@
     secgear: CrateSecgear
     weapon: CrateWeaponSecure
     syndicate: CrateSyndicateSecure
+    solarlegion: CrateSolarLegionSecure

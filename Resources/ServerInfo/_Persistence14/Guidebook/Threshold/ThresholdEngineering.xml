@@ -1,0 +1,24 @@
+<Document>
+  # Persistence Engineering
+  This guide will explain the unique engineering tools available in the Threshold.
+
+  ## SMES Charge Signals
+  <Box>
+    <GuideEntityEmbed Entity="SMESBasic"/>
+  </Box>
+  SMES units can send device signals based on how charged their battery is. This allows you to automate your power grid, such as switching generators on when your power stores run low.
+
+  Link an SMES to other devices with a network configurator. The SMES has a signal port for each charge level:
+  [bold]0%[/bold]: The battery is empty.
+  [bold]1% - 25%[/bold]
+  [bold]25% - 50%[/bold]
+  [bold]50% - 75%[/bold]
+  [bold]75% - 99%[/bold]
+  [bold]100%[/bold]: The battery is full.
+
+  When the battery enters a charge level, that level's port is set high and the previous level's port is set low.
+
+  ## Upgrades
+  APCs, SMES units, thermo-electric generators, radiation collectors and telecommunication servers can all be improved with Upgrade Modules.
+  For more information see the 'Upgrades' guidepage.
+</Document>

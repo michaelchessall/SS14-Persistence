@@ -537,6 +537,7 @@
 - type: entity
   parent: ComputerStationTeleportersControl
   id: ComputerStationTeleportersControlFilled
+  categories: [ HideSpawnMenu ]
   suffix: Autofilled, Nanotrasen Network
   components:
   - type: StationTeleporterConsole
@@ -545,6 +546,7 @@
 - type: entity
   parent: ComputerStationTeleportersControl
   id: ComputerSyndicateTeleportersControl
+  categories: [ HideSpawnMenu ]
   name: syndicate teleporters control console
   components:
   - type: Sprite

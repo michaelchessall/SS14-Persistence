@@ -1,10 +1,12 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared._Persistence14.Botany;
 using Content.Shared.Botany.Components;
+using Content.Shared.Botany.Events;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.EntityEffects;
 using Content.Shared.Examine;
 using Content.Shared.FixedPoint;
+using Content.Shared.Interaction;
 using Content.Shared.Random.Helpers;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
@@ -25,13 +27,13 @@ public sealed partial class PlantTraySystem : EntitySystem
     [Dependency] private PlantSystem _plant = default!;
     [Dependency] private SharedAudioSystem _audio = default!;
     [Dependency] private SharedEntityEffectsSystem _entityEffects = default!;
+    [Dependency] private SharedInteractionSystem _interaction = default!;
     [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
     [Dependency] private SharedTransformSystem _transform = default!;
 
-    [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery = default!;
-    [Dependency] private EntityQuery<PlantDataComponent> _dataQuery = default!;
-    [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery = default!;
-    [Dependency] private EntityQuery<PlantWeedPestComponent> _weedPestQuery = default!;
+    [Dependency] private EntityQuery<PlantHolderComponent> _holderQuery;
+    [Dependency] private EntityQuery<PlantTrayComponent> _trayQuery;
+    [Dependency] private EntityQuery<PlantDataComponent> _dataQuery;
     [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
 
     [SubscribeLocalEvent]
@@ -93,6 +95,26 @@ public sealed partial class PlantTraySystem : EntitySystem
         // Make sure the removed entity was our contained solution and clear our cached reference
         if (args.Entity == ent.Comp.SoilSolution?.Owner)
             ent.Comp.SoilSolution = null;
+    }
+
+    [SubscribeLocalEvent]
+    private void OnRelayInteractUsing(Entity<PlantTrayComponent> ent,
+        ref PlantHolderRelayedEvent<InteractUsingEvent> args)
+    {
+        if (args.Args.Handled)
+            return;
+
+        args.Args.Handled = _interaction.InteractUsing(args.Args.User, args.Args.Used, ent, args.Args.ClickLocation);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPlantAnalyzerAttempt(Entity<PlantTrayComponent> ent, ref PlantAnalyzerAttemptEvent args)
+    {
+        if (!TryGetPlant(ent.AsNullable(), out var plant))
+            return;
+
+        RaiseLocalEvent(plant.Value, ref args);
+        args.Target ??= plant.Value;
     }
 
     /// <summary>
@@ -274,6 +296,12 @@ public sealed partial class PlantTraySystem : EntitySystem
 
         return ent.Comp.ToxinLevel >= ent.Comp.MaxToxinLevel * 0.5f;
         */
+    }
+
+    [PublicAPI]
+    public bool TryGetPlant(Entity<PlantTrayComponent?> ent)
+    {
+        return TryGetPlant(ent, out _);
     }
 
     /// <summary>

@@ -58,3 +58,12 @@ research-technology-interstellar-logistics = Interstellar Logistics
 research-technology-civilian-eva = Civilian EVA Manufacturing
 research-technology-plushie-sound-activation = Plushie Sound Activation
 research-technology-industrial-eva = Industrial EVA Manufacturing
+
+research-technology-interstellar-logistics-restock = Fulton Beacon Restock
+research-technology-advanced-powercells-restock = Power Cell Restock
+research-technology-shuttlecraft-restock-small = Small-Scale Propulsion Restock
+research-technology-shuttlecraft-restock-large = Large-Scale Propulsion Restock
+research-technology-industrial-eva-restock = Emergency Air Capacity Restock
+research-technology-telesci-restock = Teleporter Chip Restock
+research-technology-launcher-syringe-restock = Mini Syringe Restock
+research-technology-basic-shuttle-armament-restock = Power Cage Restock

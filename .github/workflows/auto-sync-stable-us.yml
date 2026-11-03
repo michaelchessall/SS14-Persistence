@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     #To run 24 hours before US publish. Scheduled at 20:00 UTC
-    - cron: '0 20 * * 6,2'
+    - cron: '0 16 * * 2'
 
 jobs:
   sync-us:

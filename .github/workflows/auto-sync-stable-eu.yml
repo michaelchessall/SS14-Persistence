@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   schedule:
     # To run 24 hours before EU publish. Scheduled at 15:00 UTC
-    - cron: '0 15 * * 0,5'
+    - cron: '0 15 * * 2'
 
 jobs:
   sync-eu:

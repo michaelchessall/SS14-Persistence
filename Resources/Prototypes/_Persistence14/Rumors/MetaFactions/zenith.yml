@@ -40,6 +40,7 @@
     - HyperzineKit
     - RaidSuit
     - Hushpup
+    - AdvancedTeleporterChip
   rewardsToOffer: 2
 
 - type: metaFactionLevel
@@ -55,5 +56,6 @@
     - GlovesNorthStar
     - StealthBox
     - ChameleonProjector
+    - AdvancedTeleporterChip
   rewardsToOffer: 2
 

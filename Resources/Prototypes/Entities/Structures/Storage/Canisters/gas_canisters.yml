@@ -23,7 +23,18 @@
       visible: false
     - state: mask-grey
       map: [ "enum.MaxPressureVisualLayers.Base" ]
+    # Persi start - I had problems with layer ordering, so i had to explicitly assign them
       visible: false
+    - state: can-t0
+      map: [ "temperatureOverlay" ]
+      visible: false
+    - state: unlocked
+      map: [ "locked"]
+      visible: false
+    - state: can-connector
+      map: [ "connectedToPort" ]
+      visible: false
+    # persi end
   - type: Appearance
   - type: GenericVisualizer
     visuals:
@@ -37,14 +48,34 @@
           True: { state: can-open, visible: true }
       enum.LockVisuals.Locked:
         locked:
-          False: { state: unlocked, shader: "unshaded" }
-          True: { state: locked, shader: "unshaded" }
+          False: { state: unlocked, visible: true } # persi change
+          True: { state: unlocked, visible: false }
       enum.GasCanisterVisuals.PressureState:
         pressureLight:
-          0: { state: can-o0, shader: "unshaded" }
-          1: { state: can-o1, shader: "unshaded" }
-          2: { state: can-o2, shader: "unshaded" }
-          3: { state: can-o3, shader: "unshaded" }
+          #persi start - More detailed pressure indicator & temp textures
+          0: { state: can-o0, visible: false}
+          1: { state: can-o0, shader: "unshaded", visible: true }
+          2: { state: can-o1, shader: "unshaded", visible: true }
+          3: { state: can-o2, shader: "unshaded", visible: true }
+          4: { state: can-o3, shader: "unshaded", visible: true }
+          5: { state: can-o4, shader: "unshaded", visible: true }
+          6: { state: can-o5, shader: "unshaded", visible: true }
+          7: { state: can-o6, shader: "unshaded", visible: true }
+          8: { state: can-o7, shader: "unshaded", visible: true }
+      enum.GasCanisterVisuals.TemperatureState:
+        temperatureOverlay:
+          0: { state: can-t0, visible: true}
+          1: { state: can-t1, visible: true}
+          2: { state: can-t2, visible: true}
+          3: { state: can-t3, visible: true}
+          4: { state: can-t3, visible: false}
+          5: { state: can-t4, visible: true}
+          6: { state: can-t5, visible: true}
+          7: { state: can-t6, visible: true, shader: unshaded}
+          8: { state: can-t7, visible: true, shader: unshaded}
+          9: { state: can-t8, visible: true, shader: unshaded}
+          10: { state: can-t9, visible: true, shader: unshaded}
+          #Persi end
       enum.PaperLabelVisuals.HasLabel:
         enum.PaperLabelVisuals.Layer:
           True: { visible: true }

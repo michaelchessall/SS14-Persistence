@@ -316,7 +316,7 @@
     heldPrefix: titanium
   - type: Appearance
   - type: Extractable
-    grindableSolutionName: aluminium
+    grindableSolutionName: aluminum
   - type: Solution
     id: aluminum
     solution:

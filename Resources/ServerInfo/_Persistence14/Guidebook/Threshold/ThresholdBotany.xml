@@ -18,7 +18,6 @@
   [textlink="Click here to see a complete list of plant nutrients, and their sources." link="PlantNutrients"]
 
   These nutrients can be added to a tray by pouring reagents into it.
-  (NOTE: As of writing this, there is a glitch caused by the most recent upstream merge that prevents trays without plants in them from absorbing reagents.)
 
   Nutrients are also be able to be absorbed from gasses in the atmosphere, (PLANNED: and even other environmental sources, such as radiaton.)
 

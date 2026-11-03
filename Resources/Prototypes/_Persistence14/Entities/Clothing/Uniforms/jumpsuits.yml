@@ -76,6 +76,28 @@
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/execformal.rsi
 
 - type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitNCC
+  name: nexus central council's jumpsuit
+  description: Beautiful crafted garb for the commanding officers of the Eclipse Station.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ncc.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ncc.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, BaseCommandContraband]
+  id: ClothingUniformJumpsuitCOSNCC
+  name: chief of staff's jumpsuit
+  description: Beautiful crafted garb for the Chief of Staff of the Eclipse Station.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cosncc.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cosncc.rsi
+
+- type: entity
   parent: [ClothingUniformBase, BaseCommandContraband, ClothingUniformFoldableBase]
   id: ClothingUniformJumpsuitHoSAltSOL
   name: solar legion chief of police's jumpsuit

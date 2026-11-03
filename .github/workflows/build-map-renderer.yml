@@ -9,10 +9,6 @@ on:
     types: [ opened, reopened, synchronize, ready_for_review ]
     branches: [ master, staging, stable ]
 
-concurrency:
-  group: ${{ github.workflow }}-${{ github.event_name == 'pull_request' && github.event.pull_request.number || github.ref }}
-  cancel-in-progress: ${{ github.event_name != 'merge_group' }}
-
 jobs:
   build:
     if: github.actor != 'PJBot' && github.event.pull_request.draft == false
@@ -24,7 +20,7 @@ jobs:
 
     steps:
       - name: Checkout Master
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4.2.2
 
       - name: Setup Submodule
         run: |
@@ -39,7 +35,7 @@ jobs:
           git submodule update --init --recursive
 
       - name: Setup .NET Core
-        uses: actions/setup-dotnet@v5
+        uses: actions/setup-dotnet@v4.1.0
         with:
           dotnet-version: 10.0.x
 

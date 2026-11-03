@@ -71,6 +71,7 @@
 - type: entity
   parent: StationTeleporter
   id: StationTeleporterNanotrasen
+  categories: [ HideSpawnMenu ]
   suffix: Unknown Coordinates, Nanotrasen Network
   components:
   - type: StationTeleporter
@@ -79,6 +80,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterCenter
+  categories: [ HideSpawnMenu ]
   suffix: Center, Nanotrasen
   components:
   - type: Label
@@ -87,6 +89,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterSalvage
+  categories: [ HideSpawnMenu ]
   suffix: Salvage, Nanotrasen
   components:
   - type: Label
@@ -95,6 +98,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterMedical
+  categories: [ HideSpawnMenu ]
   suffix: Medical, Nanotrasen
   components:
   - type: Label
@@ -103,6 +107,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterEngineering
+  categories: [ HideSpawnMenu ]
   suffix: Engineering, Nanotrasen
   components:
   - type: Label
@@ -111,6 +116,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterSecurity
+  categories: [ HideSpawnMenu ]
   suffix: Security, Nanotrasen
   components:
   - type: Label
@@ -119,6 +125,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterScience
+  categories: [ HideSpawnMenu ]
   suffix: Science, Nanotrasen
   components:
   - type: Label
@@ -127,6 +134,7 @@
 - type: entity
   parent: StationTeleporterNanotrasen
   id: StationTeleporterCargo
+  categories: [ HideSpawnMenu ]
   suffix: Cargo, Nanotrasen
   components:
   - type: Label

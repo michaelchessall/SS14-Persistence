@@ -13,7 +13,10 @@
     - BountyBasicGeneral
     - BountyBasicScience
     - PowerLuminal
+    - PowerGreen
+    - RescueMarine
     - ArtifactNodeBasic
+    - ExterminateGreen
   table: !type:NestedSelector
     tableId: RandomDeliveryBasic
 

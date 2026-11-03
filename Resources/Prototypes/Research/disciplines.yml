@@ -8,7 +8,7 @@
   tierPrerequisites:
     1: 0
     2: 0.5
-    3: 0.75
+    3: 0.5
 
 - type: techDiscipline
   id: Arsenal
@@ -20,7 +20,7 @@
   tierPrerequisites:
     1: 0
     2: 0.5
-    3: 0.75
+    3: 0.5
 
 - type: techDiscipline
   id: Experimental
@@ -32,7 +32,7 @@
   tierPrerequisites:
     1: 0
     2: 0.5
-    3: 0.75
+    3: 0.5
 
 - type: techDiscipline
   id: CivilianServices
@@ -44,4 +44,4 @@
   tierPrerequisites:
     1: 0
     2: 0.5
-    3: 0.75
+    3: 0.5

@@ -18,6 +18,19 @@
 
   Rumors with simple objectives will progress into more complex rumors when completed.
 
+  ### Transfering Rumors
+  Rumors are transfered with the 'Transfer' button on the rumor. The receiving character must not already have 4 rumors.
+
+  When a transfered rumor is completed [bold]the reputation reward is split 50% with the original owner of the rumor[/bold]. The character who completes the rumor still receives the full cash reward.
+
+  ### Abandoning Rumors
+  Rumors you don't want can be removed with the 'Abandon' button on the rumor.
+
+  ## Rumor Rewards
+  Completing a rumor gives a cash reward and reputation with the Nation that the rumor comes from.
+
+  [bold]Cash rewards are taxed by the sales tax of the faction you are working for[/bold]. The tax is deposited directly into that faction's account.
+
   ## Completing Rumors
   You can view the objective of the rumor through the Job Nework Menu.
 
@@ -53,5 +66,36 @@
   The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
 
   Then the [bold]specified machines on board the grid must be fully recharged[/bold] to complete the rumor.
+
+  ### Exterminate Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then [bold]every hostile creature that arrived with the grid must be killed[/bold] to complete the rumor.
+
+  ### Artifact Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the [bold]xeno-artifacts found on the grid must have the specified number of nodes unlocked[/bold] to complete the rumor.
+  The rumor shows how many nodes are left to unlock.
+
+  ### Anomaly Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the [bold]anomaly found on the grid must be brought to 90% stability[/bold] as shown on an anomaly scanner to complete the rumor.
+
+  ### Mail Rumors
+  These require the character to [bold]unlock a piece of mail addressed to them[/bold] which is delivered to the [bold]cargo pallets of the specified Trade Station[/bold].
+
+  [bold]If anyone other than the character who holds the rumor unlocks the mail the rumor will fail![/bold]
+  Transfering a mail rumor will readdress the mail to the new owner.
+
+  ## Rumor Grids
+  Grids spawned by rumors are temporary. A rumor with temporary grids shows a timer, and [bold]when the timer runs out the grids disappear and the rumor expires[/bold].
+  Characters still aboard a rumor grid when it disappears will be left floating in space, and any items left on the grid will be lost.
+
+  Rumor grids cannot be claimed.
 </Document>
 

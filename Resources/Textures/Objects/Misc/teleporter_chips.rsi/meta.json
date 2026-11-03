@@ -11,6 +11,12 @@
       "name": "base"
     },
     {
+      "name": "base-advanced"
+    },
+    {
+      "name": "icon"
+    },
+    {
       "name": "mark1"
     }
   ]

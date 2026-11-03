@@ -27,3 +27,18 @@
     ExtendedEmergencyNitrogenTank: 2
   technologyPrerequisites:
   - EVAManufacturing
+
+# Refill Technologies: Used to restock consumable parts of larger tech unlocks
+- type: technology
+  id: LauncherSyringeRestock
+  name: research-technology-launcher-syringe-restock
+  icon:
+    sprite: /Textures/Objects/Specific/Chemistry/syringe.rsi
+    state: syringeproj
+  discipline: CivilianServices
+  tier: 3
+  cost: 35000
+  recipeUnlocks:
+    MiniSyringe: 3
+  technologyPrerequisites:
+  - LauncherSyringe
