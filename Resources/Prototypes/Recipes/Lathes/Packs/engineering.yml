@@ -94,6 +94,16 @@
 
 ## Dynamic
 
+- type: latheRecipePack # Persi14
+  id: IndustrialTools
+  recipes:
+  - WelderIndustrialLR
+
+- type: latheRecipePack #Persi 14
+  id: AdvancedIndustrialTools
+  recipes:
+  - WelderIndustrialAdvancedLR
+
 - type: latheRecipePack
   id: AdvancedTools
   recipes:
