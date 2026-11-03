@@ -98,25 +98,19 @@
     temperature: 700
 
 - type: entity
-  parent: [SolutionToolWelder, BaseWelder]
+  parent: BaseWelder
   id: Welder
   name: welding tool
   description: "Melts anything as long as it's fueled, don't forget your eye protection!"
   components:
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
-  - type: PhysicalComposition
+  - type: Tool
+    speedModifier: 0.8
+  - type: PhysicalComposition # gives back 90% mat used to print when recycled
     materialComposition:
       Steel: 360
-      Copper: 180
       Plastic: 90
-
-
-- type: entity
-  parent: [SolutionWelder, SolutionSmall]
-  id: SolutionToolWelder
-  categories: [ HideSpawnMenu ]
-  components:
   - type: Solution
     solution:
       maxVol: 250 #Persi adjustment, small tanks makes engineering work infernal
@@ -125,7 +119,7 @@
 
 - type: entity
   name: industrial welding tool
-  parent: [SolutionToolWelderIndsutrial, BaseWelder]
+  parent: Welder
   id: WelderIndustrial
   description: "New improved welder made with heavy use in mind. The tip uses a more durable material to reach higher temperatures, with a higher fuel tank capacity."
   components:
@@ -133,42 +127,32 @@
     sprite: Objects/Tools/welder_industrial.rsi
   - type: Item
     sprite: Objects/Tools/welder_industrial.rsi
-  - type: Tool
-    speedModifier: 1.2
-  - type: PhysicalComposition
+  - type: PhysicalComposition # gives back 90% mat used to print when recycled
     materialComposition:
       Titanium: 270
       Steel: 180
       Aluminium: 180
       Copper: 180
-
-- type: entity
-  parent: [SolutionWelder, SolutionToolNormal]
-  id: SolutionToolWelderIndsutrial
-  categories: [ HideSpawnMenu ]
-  components:
   - type: Solution
     solution:
       maxVol: 500 #persi adjustment
-  - type: RefillableSolution
-    solution: welder
 
 - type: entity
   name: advanced industrial welding tool
   parent: WelderIndustrial
   id: WelderIndustrialAdvanced
-  description: "This welder is made with the most advanced materials available, allowing it to weld faster than any other welder."
+  description: "Miniaturization and better materials make this welder the best welder on the market, for now anyways"
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_industrialadv.rsi
   - type: Item
     sprite: Objects/Tools/welder_industrialadv.rsi
   - type: Tool
-    speedModifier: 1.4 # This would make the progression more marked
+    speedModifier: 1.2 # This would make the progression more marked
   - type: Solution
     solution:
       maxVol: 750 #persi adjustment
-  - type: PhysicalComposition
+  - type: PhysicalComposition # gives back 90% mat used to print when recycled
     materialComposition:
       Titanium: 180
       Plasteel: 270
@@ -177,9 +161,9 @@
 
 - type: entity
   name: experimental welding tool
-  parent: [SolutionToolWelderExperimental, BaseWelder]
+  parent: BaseWelder
   id: WelderExperimental
-  description: "An experimental welder capable of self-fuel generation and less harmful to the eyes."
+  description: "An experimental welder capable of fuel generation and less harmful to the eyes."
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_experimental.rsi
@@ -190,35 +174,31 @@
     radius: 1.5
     color: lightblue
   - type: Welder
-    fuelReagent: Plasma
+    fuelReagent: WeldingFuel # just gonna use welding fuel as fuel for now, in the future I would like to make it use powercells
   - type: RequiresEyeProtection
     statusEffectTime: 5 # less harmful; sunglasses can block it
-  - type: PhysicalComposition # gives back 90% mat needed to print when recycled
+  - type: Tool
+    speedModifier: 0.8
+  - type: PhysicalComposition # gives back 90% mat used to print when recycled
     materialComposition:
       Steel: 720
       Plasma: 180
       Silver: 90
       Titanium: 90
-
-- type: entity
-  parent: [SolutionWelder, SolutionToolGinormous] # Bluespace technology
-  id: SolutionToolWelderExperimental
-  categories: [ HideSpawnMenu ]
-  components:
   - type: Solution
     solution:
       maxVol: 450 #Persi adjustment
   - type: SolutionRegeneration
     generated:
       reagents:
-      - ReagentId: Plasma
+      - ReagentId: WeldingFuel
         Quantity: 0.1 #Persi adjustent
 
 - type: entity
+  parent: BaseWelder
   name: emergency welding tool
-  parent: [SolutionToolWelderMiniEmergency, BaseWelder]
   id: WelderMini
-  description: "A disposable welder used during emergencies."
+  description: "A disposable welder used during emergencies. Can't be refuelled"
   components:
   - type: Sprite
     sprite: Objects/Tools/welder_mini.rsi
@@ -227,6 +207,8 @@
     sprite: Objects/Tools/welder_mini.rsi
   - type: Tool
     speedModifier: 0.7
+  - type: Welder
+    canRefill: false
   - type: PointLight
     enabled: false
     radius: 1.0
@@ -234,29 +216,12 @@
   - type: PhysicalComposition
     materialComposition:
       Steel: 50
-
-- type: entity
-  parent: [SolutionWelder, SolutionTiny]
-  id: SolutionToolWelderMiniEmergency
-  categories: [ HideSpawnMenu ]
-  components:
   - type: Solution
     solution:
-      maxVol: 150
+      maxVol: 600
       reagents:
       - ReagentId: WeldingFuel
-        Quantity: 150 # persi adjustment
-
-- type: entity
-  parent: [SolutionWelder, SolutionToolTiny]
-  id: SolutionToolWelderMini
-  categories: [ HideSpawnMenu ]
-  components:
-  - type: Solution
-    solution:
-      reagents:
-      - ReagentId: WeldingFuel
-        Quantity: 15
+        Quantity: 600 # persi adjustment
 
 - type: entity
   parent: [ Welder, BaseXenoborgContraband ]
