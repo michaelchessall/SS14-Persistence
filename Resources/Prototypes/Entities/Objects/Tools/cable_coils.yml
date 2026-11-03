@@ -63,6 +63,9 @@
   - type: CablePlacer
     cablePrototypeID: CableHV
     blockingWireType: HighVoltage
+    blacklist: 
+      tags:
+      - CableJunctionHV
   - type: Solution
     solution:
       reagents:
@@ -117,6 +120,9 @@
   - type: CablePlacer
     cablePrototypeID: CableMV
     blockingWireType: MediumVoltage
+    blacklist: 
+      tags:
+      - CableJunctionMV
 
 - type: entity
   abstract: true
@@ -174,6 +180,9 @@
   - type: CablePlacer
     cablePrototypeID: CableApcExtension
     blockingWireType: Apc
+    blacklist: 
+      tags:
+      - CableJunctionLV
 
 - type: entity
   parent: CableApcStack

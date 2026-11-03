@@ -97,6 +97,9 @@
     range: 2
     sound:
       path: /Audio/Ambience/Objects/emf_buzz.ogg
+  - type: Construction
+    graph: hvcable
+    node: cable
 
 - type: entity
   id: CableHVUncuttable
@@ -141,6 +144,9 @@
   - type: CableVisualizer
     statePrefix: mvcable_
     extraLayerPrefix: mvstripes_
+  - type: Construction
+    graph: mvcable
+    node: cable
 
 - type: entity
   id: CableMVUncuttable
@@ -185,6 +191,9 @@
             max: 1
   - type: CableVisualizer
     statePrefix: lvcable_
+  - type: Construction
+    graph: lvcable
+    node: cable
 
 - type: entity
   id: CableApcExtensionUncuttable
