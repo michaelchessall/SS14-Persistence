@@ -69,14 +69,19 @@
     - !type:TileNotBlocked
 
 - type: construction
+  parent: BaseWindow
   id: ShuttleWindowTitanium
-  graph: Window
   startNode: start
   targetNode: shuttleWindowTitanium
   category: construction-category-structures
   objectType: Structure
   placementMode: SnapgridCenter
-  canRotate: false
-  canBuildInImpassable: false
-  conditions:
-    - !type:EmptyOrWindowValidInTile
+
+- type: construction
+  parent: BaseWindowDiagonal
+  id: ShuttleWindowTitaniumDiagonal
+  startNode: start
+  targetNode: shuttleWindowTitaniumDiagonal
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter

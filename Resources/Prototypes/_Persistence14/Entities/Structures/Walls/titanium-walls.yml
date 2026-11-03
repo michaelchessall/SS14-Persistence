@@ -12,8 +12,6 @@
   - type: IconSmooth
     key: walls
     base: wall
-    additionalKeys:
-    - windows
   - type: Appearance
   - type: WallReplacementMarker
   - type: Injurable
