@@ -1,0 +1,22 @@
+
+- type: upgrade
+  id: TelecomServerRangeLuminal
+  name: Telecom Range Increase
+  description: "Adds 512 to the server range."
+  targetModule: Luminal
+  maxApplications: 2
+  upgradeValues:
+    - 512
+  upgradeType: TelecomServerRange
+
+
+- type: upgrade
+  id: TelecomServerRangeShadow
+  name: Telecom Range Increase
+  description: "Adds 512 to the server range."
+  targetModule: Shadow
+  maxApplications: 2
+  upgradeValues:
+    - 512
+  upgradeType: TelecomServerRange
+

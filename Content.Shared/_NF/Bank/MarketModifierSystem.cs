@@ -1,6 +1,7 @@
 using Content.Shared._NF.Bank.Components;
 using Content.Shared.Examine;
 using Content.Shared.VendingMachines;
+using Content.Shared.VendingMachines.Components;
 
 namespace Content.Shared._NF.Bank;
 

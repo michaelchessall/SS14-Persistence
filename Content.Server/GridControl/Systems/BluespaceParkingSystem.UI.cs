@@ -1,6 +1,7 @@
 using Content.Server.Cargo.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
+using Content.Shared.Cargo.Components;
 using Content.Shared.CCVar;
 using Content.Shared.GridControl.Components;
 using Content.Shared.GridControl.Systems;
@@ -155,6 +156,9 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
 
         if (HasComp<TradeStationComponent>(grid))
             errMsg = "Trade stations cannot be parked.";
+
+        if (HasComp<TradeStationComponent>(grid))
+            errMsg = "Temporary grids cannot be parked.";
 
         return new BSPAnchorKeyBoundUserInterfaceState(
             component.State,

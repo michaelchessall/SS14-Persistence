@@ -8,10 +8,10 @@ namespace Content.Server.Atmos.EntitySystems;
 /// <summary>
 /// Handles gas filtering and intake for <see cref="AirIntakeComponent"/> and <see cref="AirFilterComponent"/>.
 /// </summary>
-public sealed class AirFilterSystem : EntitySystem
+public sealed partial class AirFilterSystem : EntitySystem
 {
-    [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private AtmosphereSystem _atmosphere = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
 
     public override void Initialize()
     {
@@ -71,7 +71,7 @@ public sealed class AirFilterSystem : EntitySystem
 
         if (destination != null)
         {
-            _atmosphere.ScrubInto(removed, destination, gases);
+            _atmosphere.ScrubInto(removed, destination, gases, new Dictionary<Gas, float>()); // Persistence: Add new Dictionary<Gas, float>()
         }
         else
         {

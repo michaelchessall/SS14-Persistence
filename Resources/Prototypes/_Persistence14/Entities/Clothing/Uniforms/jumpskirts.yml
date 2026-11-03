@@ -121,6 +121,17 @@
 
 - type: entity
   parent: [ClothingUniformSkirtBase, BaseCommandContraband]
+  id: ClothingUniformJumpskirtCosNCC
+  name: nexus central council chief of staff's skirt
+  description: It's a blue jumpskirt suited for the Chief of Staff in the Nexus Central Council.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cosncc.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/cosncc.rsi
+
+- type: entity
+  parent: [ClothingUniformSkirtBase, BaseCommandContraband]
   id: ClothingUniformJumpskirtCosTurtleSOL
   name: solar legion chief of staff's turtleneck dress
   description: It's a very comfortable dark blue dress with Solar Legion colorations. The silver trims on the cuffs denote the wearer as the head of a Solar Legion bureaucracy department.
@@ -151,3 +162,14 @@
     sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
   - type: Clothing
     sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/newsenior_physician.rsi
+
+- type: entity
+  parent: [ClothingUniformBase, ClothingUniformFoldableBase]
+  id: ClothingUniformJumpskirtNCC
+  name: nexus central council's jumpskirt
+  description: An elegant and fine garb, tailored with the NNC colors for the First Officer of the Eclipse Station.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/ncc.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Uniforms/Jumpskirt/ncc.rsi

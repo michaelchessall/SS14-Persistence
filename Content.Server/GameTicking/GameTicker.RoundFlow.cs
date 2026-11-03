@@ -1,3 +1,4 @@
+using Content.Server._Persistence14.GameTicking;
 using Content.Server.Announcements;
 using Content.Server.Discord;
 using Content.Server.GameTicking.Events;
@@ -35,9 +36,9 @@ namespace Content.Server.GameTicking
 {
     public sealed partial class GameTicker
     {
-        [Dependency] private readonly DiscordWebhook _discord = default!;
-        [Dependency] private readonly RoleSystem _role = default!;
-        [Dependency] private readonly ITaskManager _taskManager = default!;
+        [Dependency] private DiscordWebhook _discord = default!;
+        [Dependency] private RoleSystem _role = default!;
+        [Dependency] private ITaskManager _taskManager = default!;
 
         private static readonly Counter RoundNumberMetric = Metrics.CreateCounter(
             "ss14_round_number",
@@ -195,7 +196,7 @@ namespace Content.Server.GameTicking
             }
 
             if (CurrentPreset?.MapPool != null &&
-                _prototypeManager.TryIndex<GameMapPoolPrototype>(CurrentPreset.MapPool, out var pool) &&
+                ProtoMan.TryIndex<GameMapPoolPrototype>(CurrentPreset.MapPool, out var pool) &&
                 !pool.Maps.Contains(mainStationMap.ID))
             {
                 var msg = Loc.GetString("game-ticker-start-round-invalid-map",
@@ -440,100 +441,104 @@ namespace Content.Server.GameTicking
             try
             {
 #endif
-                // If this game ticker is a dummy or the round is already being started, do nothing!
-                if (DummyTicker || _startingRound)
-                    return;
+            // If this game ticker is a dummy or the round is already being started, do nothing!
+            if (DummyTicker || _startingRound)
+                return;
 
-                _startingRound = true;
+            _startingRound = true;
 
-                if (RoundId == 0)
-                    IncrementRoundNumber();
+            if (RoundId == 0)
+                IncrementRoundNumber();
 
-                ReplayStartRound();
+            ReplayStartRound();
 
-                DebugTools.Assert(RunLevel == GameRunLevel.PreRoundLobby);
-                _sawmill.Info("Starting round!");
+            DebugTools.Assert(RunLevel == GameRunLevel.PreRoundLobby);
+            _sawmill.Info("Starting round!");
 
-                SendServerMessage(Loc.GetString("game-ticker-start-round"));
+            SendServerMessage(Loc.GetString("game-ticker-start-round"));
 
-                var readyPlayers = new List<ICommonSession>();
-                var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
-                var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
-                foreach (var (userId, status) in _playerGameStatuses)
+            var readyPlayers = new List<ICommonSession>();
+            var readyPlayerProfiles = new Dictionary<NetUserId, HumanoidCharacterProfile>();
+            var autoDeAdmin = _cfg.GetCVar(CCVars.AdminDeadminOnJoin);
+            foreach (var (userId, status) in _playerGameStatuses)
+            {
+                if (LobbyEnabled && status != PlayerGameStatus.ReadyToPlay) continue;
+                if (!_playerManager.TryGetSessionById(userId, out var session)) continue;
+
+                if (autoDeAdmin && _adminManager.IsAdmin(session))
                 {
-                    if (LobbyEnabled && status != PlayerGameStatus.ReadyToPlay) continue;
-                    if (!_playerManager.TryGetSessionById(userId, out var session)) continue;
-
-                    if (autoDeAdmin && _adminManager.IsAdmin(session))
-                    {
-                        _adminManager.DeAdmin(session);
-                    }
+                    _adminManager.DeAdmin(session);
+                }
 #if DEBUG
                 DebugTools.Assert(_userDb.IsLoadComplete(session), $"Player was readied up but didn't have user DB data loaded yet??");
 #endif
 
-                    readyPlayers.Add(session);
-                    HumanoidCharacterProfile? profile;
-                    if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
-                    {
-                        profile = preferences.SelectedCharacter as HumanoidCharacterProfile;
-                    }
-                    else
-                    {
-                        var speciesToBlacklist =
-                            new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
-                        profile = HumanoidCharacterProfile.Random(speciesToBlacklist);
-                    }
-                    readyPlayerProfiles.Add(userId, profile!);
-                }
-
-                DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
-
-                // Just in case it hasn't been loaded previously we'll try loading it.
-                LoadMaps();
-
-                // map has been selected so update the lobby info text
-                // applies to players who didn't ready up
-                UpdateInfoText();
-
-                StartGamePresetRules();
-
-                RoundLengthMetric.Set(0);
-
-                var startingEvent = new RoundStartingEvent(RoundId);
-                RaiseLocalEvent(startingEvent);
-
-                var origReadyPlayers = readyPlayers.ToArray();
-
-                if (!StartPreset(origReadyPlayers, force))
+                readyPlayers.Add(session);
+                HumanoidCharacterProfile? profile;
+                if (_prefsManager.TryGetCachedPreferences(userId, out var preferences))
                 {
-                    _startingRound = false;
-                    return;
+                    profile = preferences.SelectedCharacter as HumanoidCharacterProfile;
                 }
-                var skipinit = false;
-                if (_ent.TryGetComponent(_map.GetMap(DefaultMap), out MapComponent? mc))
+                else
                 {
-                    if (mc.MapInitialized) skipinit = true;
+                    var speciesToBlacklist =
+                        new HashSet<string>(_cfg.GetCVar(CCVars.ICNewAccountSpeciesBlacklist).Split(","));
+                    profile = HumanoidCharacterProfile.Random(speciesToBlacklist);
                 }
-                if (!skipinit)
-                {
-                    // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
-                    _map.InitializeMap(DefaultMap);
-                }
-                _map.SetPaused(DefaultMap, false);
+                readyPlayerProfiles.Add(userId, profile!);
+            }
 
-                SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
+            DebugTools.AssertEqual(readyPlayers.Count, ReadyPlayerCount());
 
-                _roundStartDateTime = DateTime.UtcNow;
-                RunLevel = GameRunLevel.InRound;
+            // Just in case it hasn't been loaded previously we'll try loading it.
+            LoadMaps();
 
-                RoundStartTimeSpan = _gameTiming.CurTime;
-                SendStatusToAll();
-                ReqWindowAttentionAll();
-                UpdateLateJoinStatus();
-                AnnounceRound();
-                UpdateInfoText();
-                SendRoundStartedDiscordMessage();
+            // map has been selected so update the lobby info text
+            // applies to players who didn't ready up
+            UpdateInfoText();
+
+            StartGamePresetRules();
+
+            RoundLengthMetric.Set(0);
+
+            var startingEvent = new RoundStartingEvent(RoundId);
+            RaiseLocalEvent(startingEvent);
+
+            var origReadyPlayers = readyPlayers.ToArray();
+
+            if (!StartPreset(origReadyPlayers, force))
+            {
+                _startingRound = false;
+                return;
+            }
+            var skipinit = false;
+            if (_ent.TryGetComponent(_map.GetMap(DefaultMap), out MapComponent? mc))
+            {
+                if (mc.MapInitialized) skipinit = true;
+            }
+            if (!skipinit)
+            {
+                // MapInitialize *before* spawning players, our codebase is too shit to do it afterwards...
+                _map.InitializeMap(DefaultMap);
+            }
+            _map.SetPaused(DefaultMap, false);
+
+            SpawnPlayers(readyPlayers, readyPlayerProfiles, force);
+
+            _roundStartDateTime = DateTime.UtcNow;
+            RunLevel = GameRunLevel.InRound;
+
+            RoundStartTimeSpan = _gameTiming.CurTime;
+            SendStatusToAll();
+            ReqWindowAttentionAll();
+            UpdateLateJoinStatus();
+            AnnounceRound();
+            UpdateInfoText();
+            SendRoundStartedDiscordMessage();
+
+            // New for Persistence14
+            var ev = new PostInitEvent();
+            RaiseLocalEvent(ref ev);
 
 #if EXCEPTION_TOLERANCE
             }
@@ -818,8 +823,6 @@ namespace Content.Server.GameTicking
 
             EntityManager.FlushEntities();
 
-            _mapManager.Restart();
-
             _banManager.Restart();
 
             _gameMapManager.ClearSelectedMap();
@@ -856,7 +859,7 @@ namespace Content.Server.GameTicking
         }
         private void UpdateRoundFlow(float frameTime)
         {
-            
+
             if (_cfg.GetCVar(CCVars.AutoSaveEnabled) && RunLevel == GameRunLevel.InRound)
             {
                 RoundLengthMetric.Inc(frameTime);
@@ -921,7 +924,7 @@ namespace Content.Server.GameTicking
         {
             if (CurrentPreset == null) return;
 
-            var options = _prototypeManager.EnumeratePrototypes<RoundAnnouncementPrototype>().ToList();
+            var options = ProtoMan.EnumeratePrototypes<RoundAnnouncementPrototype>().ToList();
 
             if (options.Count == 0)
                 return;

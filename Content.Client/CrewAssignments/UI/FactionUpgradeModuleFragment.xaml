@@ -1,0 +1,5 @@
+<BoxContainer xmlns="https://spacestation14.io" Orientation="Horizontal">
+    <Label Name="RequirementText" />
+    <Control HorizontalExpand="True" />
+    <Button Name="ApplyButton" Access="Public" Text="Apply Module"/>
+</BoxContainer>

@@ -1,0 +1,38 @@
+{
+    "version": 1,
+    "license": "CC-BY-3.0",
+    "copyright": "sprited by Yoshifan360 on Github",
+    "size": {
+        "x": 32,
+        "y": 32
+    },
+    "states": [
+        {
+            "name": "pill_canister_blue"
+        },
+        {
+            "name": "pill_canister_crimson"
+        },
+        {
+            "name": "pill_canister_cyan"
+        },
+        {
+            "name": "pill_canister_green"
+        },
+        {
+            "name": "pill_canister_lime"
+        },
+        {
+            "name": "pill_canister_orange"
+        },
+        {
+            "name": "pill_canister_purple"
+        },
+        {
+            "name": "pill_canister_red"
+        },
+        {
+            "name": "pill_canister_yellow"
+        }
+    ]
+}

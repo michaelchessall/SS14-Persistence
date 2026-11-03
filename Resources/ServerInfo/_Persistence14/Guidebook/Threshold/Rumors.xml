@@ -1,0 +1,101 @@
+<Document>
+  # Rumors
+  This guide will explain how rumors can be used to gain money, equipment and influence in Persistence. Rumors are a great source of income for all characters and gaining reputation with the Nations is a key element of character progression.
+
+  Information about rumors currently available to your character is accessed through the 'Rumors' tab of the [bold]Job Network Menu[/bold].
+
+  ## What Rumors are
+
+  Rumors are jobs given to characters by the Nations that colonize the Thresholds. Completing these rumors will give the character money and reputation with the Nation it comes from.
+
+  As you gain reputation with the Nations they will send more rewarding rumors and you will unlock additional [bold]Rumored Imports[/bold] from that Nation.
+
+  For more information see the Rumored Imports guide.
+
+  ## Gaining Rumors
+  Characters gain a new rumor once every 60 minutes as long as they don't have 4 already.
+  Rumors can be transfered between characters so they can be bought or sold.
+
+  Rumors with simple objectives will progress into more complex rumors when completed.
+
+  ### Transfering Rumors
+  Rumors are transfered with the 'Transfer' button on the rumor. The receiving character must not already have 4 rumors.
+
+  When a transfered rumor is completed [bold]the reputation reward is split 50% with the original owner of the rumor[/bold]. The character who completes the rumor still receives the full cash reward.
+
+  ### Abandoning Rumors
+  Rumors you don't want can be removed with the 'Abandon' button on the rumor.
+
+  ## Rumor Rewards
+  Completing a rumor gives a cash reward and reputation with the Nation that the rumor comes from.
+
+  [bold]Cash rewards are taxed by the sales tax of the faction you are working for[/bold]. The tax is deposited directly into that faction's account.
+
+  ## Completing Rumors
+  You can view the objective of the rumor through the Job Nework Menu.
+
+  ### Eat/Drink Rumors
+  These require the character [bold]travel to the specified station[/bold] and eat or drink something [bold]with the specified flavors[/bold].
+
+  Drinking will not work for an Eat requirement and eatng will not work for a Drink requirement.
+
+  ### Pray/Reflect Rumors
+  These require the character [bold]travel to the specified station[/bold] and [bold]pray or reflect using an altar[/bold].
+
+  Characters with an [bold]Insight[/bold] that makes them capable of using a bible are able to use that [bold]on the specified station[/bold] to complete the rumor.
+
+  ### Bounty Rumors
+  These require the character to use a cargo bounty computer to complete a bounty [bold]on the specified station[/bold] from the 'Rumors' tab of the bounty computer.
+
+  Only the character with the rumor can see the bounty on the cargo bounty computer, but anyone can do the actual exporting once the manifest is printed.
+
+  ### Explore Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the character who holds the rumor must [bold]board the new grid[/bold] to complete the rumor.
+
+  ### Rescue Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then any humanoid NPCs aboard the grid must be [bold]brought to the specified station, healed and revived[/bold] to complete the rumor.
+
+  ### Recharge Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the [bold]specified machines on board the grid must be fully recharged[/bold] to complete the rumor.
+
+  ### Exterminate Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then [bold]every hostile creature that arrived with the grid must be killed[/bold] to complete the rumor.
+
+  ### Artifact Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the [bold]xeno-artifacts found on the grid must have the specified number of nodes unlocked[/bold] to complete the rumor.
+  The rumor shows how many nodes are left to unlock.
+
+  ### Anomaly Rumors
+  These require the character to travel [bold]to specific coordinates in space[/bold] where a nearby grid will spawn.
+  The character who holds the rumor must approach the coordinates to trigger the grid to spawn.
+
+  Then the [bold]anomaly found on the grid must be brought to 90% stability[/bold] as shown on an anomaly scanner to complete the rumor.
+
+  ### Mail Rumors
+  These require the character to [bold]unlock a piece of mail addressed to them[/bold] which is delivered to the [bold]cargo pallets of the specified Trade Station[/bold].
+
+  [bold]If anyone other than the character who holds the rumor unlocks the mail the rumor will fail![/bold]
+  Transfering a mail rumor will readdress the mail to the new owner.
+
+  ## Rumor Grids
+  Grids spawned by rumors are temporary. A rumor with temporary grids shows a timer, and [bold]when the timer runs out the grids disappear and the rumor expires[/bold].
+  Characters still aboard a rumor grid when it disappears will be left floating in space, and any items left on the grid will be lost.
+
+  Rumor grids cannot be claimed.
+</Document>
+

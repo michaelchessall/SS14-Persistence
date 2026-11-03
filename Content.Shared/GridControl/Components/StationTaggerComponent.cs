@@ -71,7 +71,12 @@ public enum StationTaggerUiKey : byte
     Key,
 }
 
-
+[ByRefEvent, Serializable, NetSerializable]
+public sealed class StationTaggedStateChangedEvent : EntityEventArgs
+{
+    public required NetEntity Target;
+    public required NetEntity? Faction;
+}
 
 [Serializable, NetSerializable]
 public sealed class StationTaggerLink : BoundUserInterfaceMessage

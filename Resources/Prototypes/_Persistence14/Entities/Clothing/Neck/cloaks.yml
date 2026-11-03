@@ -9,6 +9,24 @@
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakNCC
+  name: nexus central command captain's cloak
+  description: A cloak of the highiest regards, adorned in moonlit silver trim. Worn by the one who stands in defense of all.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/ncccap.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckCloakCOSNCC
+  name: nexus central command chief of staff's cloak
+  description: A cloak of the highiest regards, adorned in moonlit silver trim. Worn by the one who stands in defense of all.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/Cloaks/ncccos.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckCloakHosSOL
   name: solar legion chief of police's cloak
   description: A glorious dark cloak with Solar Legion colors and emblems emblazoned across it. Features silver trim denoting the rank of the wearer.

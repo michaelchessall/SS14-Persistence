@@ -1,0 +1,57 @@
+- type: metaFaction
+  id: Luminals
+  name: The Luminals
+  description: "The Luminals are beings of light and sound."
+  rumors:
+    - PrayBasicFriendly
+    - DrinkBasicFriendly
+    - ReceiveMailFriendly
+  color: Yellow
+  levels:
+    Luminals2: 150
+    Luminals3: 500
+    Luminals4: 1000
+  order: 5
+
+- type: metaFactionLevel
+  id: Luminals2
+  name: Associate
+  rumorRewards:
+    - LuminalUpgradeModule
+    - TradeGood
+    - LuminalCodexFragment
+    - GrandLottery
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Luminals3
+  name: Officer
+  rumorRewards:
+    - LuminalUpgradeModule
+    - TradeGood
+    - LuminalCodexFragment
+    - Defib
+    - FlashCamera
+    - FreedomImplanter
+    - Python
+    - Jaws
+    - Microwave
+    - Hypopen
+    - HyperzinePen
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Luminals4
+  name: Prophet
+  rumorRewards:
+    - LuminalUpgradeModule
+    - TradeGood
+    - LuminalCodexFragment
+    - VoiceMaskImplanter
+    - StorageImplanter
+    - ScramImplanter
+    - StealthBox
+    - GlovesNorthStar
+    - EDagger
+    - Chameleon
+  rewardsToOffer: 2

@@ -1,5 +1,6 @@
 using Content.Server.Objectives.Systems;
 using Content.Shared.Roles;
+using Content.Shared.Roles.Jobs;
 using Robust.Shared.Prototypes;
 
 /// <summary>

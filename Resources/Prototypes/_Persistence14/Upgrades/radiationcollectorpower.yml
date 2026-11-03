@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: RadiationCollectorPowerShadow
+  name: Increase Power Generation
+  description: "Increases the power generated"
+  targetModule: Shadow
+  maxApplications: 2
+  upgradeValues:
+    - 2500
+  upgradeType: RadiationCollectorPower

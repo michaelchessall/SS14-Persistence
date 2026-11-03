@@ -12,7 +12,6 @@ namespace Content.Shared.Store;
 [DataDefinition]
 public sealed partial class CurrencyPrototype : IPrototype
 {
-    [ViewVariables]
     [IdDataField]
     public string ID { get; private set; } = default!;
 

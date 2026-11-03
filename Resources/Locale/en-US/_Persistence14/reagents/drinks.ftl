@@ -19,3 +19,8 @@ reagent-name-cherry-limeade = Cherry Limeade
 reagent-desc-cherry-limeade = Who says life gives you lemons? Sometimes it gives you limes.
 flavor-complex-cherry-limeade = sweet and sour, with a slight bitter undertone
 reagent-physical-desc-cherry-limeade = light red
+
+# Helldiver
+reagent-name-helldiver = Helldiver
+reagent-desc-helldiver = Makes you feel incredibly patriotic.
+flavor-complex-helldiver = like a hot drop

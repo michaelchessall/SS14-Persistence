@@ -1,4 +1,5 @@
 ﻿- type: entity
+  parent: SolutionStain
   id: WallStain
   categories: [ HideSpawnMenu ]
   components:
@@ -9,14 +10,6 @@
     sprite: _Funkystation/Effects/wallstain.rsi
     state: splatter
   - type: WallStain
-  - type: SolutionContainerManager
-    solutions:
-      stain:
-        maxVol: 5
-#  - type: Solution
-#    id: stain
-#    solution:
-#      maxVol: 5
   - type: Forensics
   - type: FlammableWallStain
   - type: Appearance

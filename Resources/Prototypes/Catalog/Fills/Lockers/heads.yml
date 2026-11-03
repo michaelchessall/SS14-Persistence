@@ -188,8 +188,6 @@
     - id: ClothingHeadsetAltEngineering
     - id: DoorRemoteEngineering
     - id: BoxCECircuitboards
-    - id: RCD
-    - id: RCDAmmo
     - id: RubberStampCE
     - id: MetalFoamGrenade
     - id: PlushieLizardJobChiefengineer
@@ -386,7 +384,6 @@
     - id: RubberStampHos
     - id: BoxHoSCircuitboards
     - id: WeaponDisabler
-    - id: WeaponTaser
     - id: WantedListCartridge
     - id: DrinkHosFlask
     - id: PlushieLizardJobHeadofsecurity

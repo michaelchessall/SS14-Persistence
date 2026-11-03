@@ -3,7 +3,7 @@ using System.Numerics;
 
 namespace Content.Server.Camera;
 
-public sealed class CameraRecoilSystem : SharedCameraRecoilSystem
+public sealed partial class CameraRecoilSystem : SharedCameraRecoilSystem
 {
     public override void KickCamera(EntityUid euid, Vector2 kickback, CameraRecoilComponent? component = null)
     {

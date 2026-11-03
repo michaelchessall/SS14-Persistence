@@ -1,4 +1,3 @@
-The Threshold is a region of space which was previously inaccessible because of anamalous physical properties that isolated it from the rest of the galaxy.
-Nanotrasen has worked with the Earth-based Solar Legion and the Vox to develop new technology that has allowed them to send colonists into the Threshold.
+Welcome to Persistence SS14!
 
-You are one such colonist.
+In Persistence SS14 the game world and characters are saved and loaded and so the round never ends, nothing is ever reset and the world is built up continously.

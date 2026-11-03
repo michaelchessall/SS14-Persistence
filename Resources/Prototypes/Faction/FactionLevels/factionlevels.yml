@@ -2,7 +2,7 @@
   id: FactionLevel1
   name: Starter Faction
   cost: 0
-  tileLimit: 500
+  tileLimit: 2000
   tradestationClaim: false
   next: FactionLevel2
 
@@ -10,21 +10,44 @@
   id: FactionLevel2
   name: Standard Faction
   cost: 5000
-  tileLimit: 2000
+  tileLimit: 5000
   tradestationClaim: false
   next: FactionLevel3
+  requiredModules:
+    Zenith: 1
+    Green: 1
+    Precursor: 1
+    Marine: 1
+    Shadow: 1
+    Luminal: 1
+
 
 - type: factionLevel
   id: FactionLevel3
   name: Major Faction
   cost: 25000
-  tileLimit: 5000
+  tileLimit: 20000
   tradestationClaim: true
   next: FactionLevel4
+  requiredModules:
+    Zenith: 2
+    Green: 2
+    Precursor: 2
+    Marine: 2
+    Shadow: 2
+    Luminal: 2
+
 
 - type: factionLevel
   id: FactionLevel4
   name: Grand Faction
   cost: 100000
-  tileLimit: 20000
+  tileLimit: 100000
   tradestationClaim: true
+  requiredModules:
+    Zenith: 3
+    Green: 3
+    Precursor: 3
+    Marine: 3
+    Shadow: 3
+    Luminal: 3

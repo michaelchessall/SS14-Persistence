@@ -18,21 +18,26 @@
                     </BoxContainer>
                 </BoxContainer>
             </PanelContainer>
-            <Label Name="ObjectivesLabel" Access="Public" Text="{Loc 'character-info-objectives-label'}" HorizontalAlignment="Center" Visible="False"/> <!-- Persistence: Add Visible=False  -->
-            <BoxContainer Orientation="Vertical" Name="Objectives" Access="Public" Visible="False"/> <!-- Persistence: Add Visible=False  -->
-            <cc:Placeholder Name="RolePlaceholder" Access="Public" PlaceholderText="{Loc 'character-info-roles-antagonist-text'}" Visible="False"/> <!-- Persistence: Add Visible=False  -->
-            <PanelContainer StyleClasses="PanelLight" Margin = "0 4 0 0">
-                <BoxContainer Orientation="Vertical" Name="DetailExaminableContainer" Access="Public" Margin="10 2 10 0">
-                    <BoxContainer Orientation="Horizontal">
-                        <Label Text="{Loc 'character-info-detail-examinable-label'}" StyleClasses="LabelKeyText" VerticalAlignment="Bottom"/>
-                        <Control HorizontalExpand="True"/>
-                        <Button Name="DetailExaminableSubmitButton" Access="Public" Text="{Loc 'character-info-detail-examinable-submit'}" HorizontalAlignment="Right"/>
+            <TabContainer>
+                <PanelContainer StyleClasses="PanelLight" Margin = "0 4 0 0" Name="FlavorText">
+                    <BoxContainer Orientation="Vertical" Name="DetailExaminableContainer" Access="Public" Margin="10 2 10 0">
+                        <BoxContainer Orientation="Horizontal">
+                            <Label Text="{Loc 'character-info-detail-examinable-label'}" StyleClasses="LabelKeyText" VerticalAlignment="Bottom"/>
+                            <Control HorizontalExpand="True"/>
+                            <Button Name="DetailExaminableSubmitButton" Access="Public" Text="{Loc 'character-info-detail-examinable-submit'}" HorizontalAlignment="Right"/>
+                        </BoxContainer>
+                        <PanelContainer StyleClasses="PanelDark" Margin = "0 0 0 6">
+                            <TextEdit Name="DetailExaminableTextEdit" Access="Public" MinHeight="200" Margin="5 5" VerticalExpand="True"/>
+                        </PanelContainer>
                     </BoxContainer>
-                    <PanelContainer StyleClasses="PanelDark" Margin = "0 0 0 6">
-                        <TextEdit Name="DetailExaminableTextEdit" Access="Public" MinHeight="200" Margin="5 5" VerticalExpand="True"/>
-                    </PanelContainer>
+                </PanelContainer>
+                <BoxContainer Name="Traits" Orientation="Vertical" VerticalExpand="True">
+                    <Label Text="Traits" StyleClasses="LabelKeyText" VerticalAlignment="Bottom"/>
+                    <BoxContainer Name="TraitsBox" Orientation="Vertical" Access="Public">
+                        
+                    </BoxContainer>
                 </BoxContainer>
-            </PanelContainer>
+            </TabContainer>
         </BoxContainer>
     </ScrollContainer>
 </windows:CharacterWindow>

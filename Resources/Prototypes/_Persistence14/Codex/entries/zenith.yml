@@ -1,0 +1,48 @@
+- type: codexEntry
+  id: Zenith101
+  name: The Little Kingdom of the Solar Legion
+  content: "The Solar Legion is a galaxy-spanning hegemonic empire in the [bold]'Zenith Universe[/bold]. They discovered an area of space; 'The Threshold', rich in exotic materials and rare research opportunities and so they poured colonists and resources into the area to colonize it.\n\nBecause there is no known way to escape a Threshold once you've entered it, the Imperial rulers of the Solar Legion sent a distant cousin, Linda Valeria into the Threshold to act as the noble conduit for imperial authority.\n\nValeria has declared herself the Queen of the 'Little Kingdom', which represents all Solar Legion territory, assets and people within the Threshold. [bold]Queen Valeria[/bold] controls the Zenith Threshold alongside thirteen [italic](now twelve)[/italic] Counts, each with control over a Sector."
+  order: 0
+  category: Zenith
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Zenith102
+  name: The Reign of Queen Valeria
+  content: "Queen Valeria established her reign within the Threshold shortly after the Solar Legion colonization project began. She gives the Counts tremendous freedom to govern the sectors but maintains an extreme level of control over the taxation of [bold]Resonance[/bold] produced by these sectors.\n\nThe Queen collects this resonance as a required material of [bold]'The Quest to Reunite'[/bold], which has become her primary aim since the conclusion of the [bold]'AJAX crisis'[/bold]."
+  order: 1
+  category: Zenith
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Zenith103
+  name: The Age of Independents
+  content: "Trade Stations in the Zenith Universe produce the most Resonance when operated by ambitious and competitive crews. The Solar Legion found that the best way to maximize the Resonance that each Sector produces was to keep the colonists largely independent from the Solar Legion.\n\nThe Solar Legion would rely on a single station to project power into the Sector while allowing crews of independents to operate the trade stations in the sector and compete with each other."
+  order: 2
+  category: Zenith
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Zenith104
+  name: Zenith during the AJAX Crisis
+  content: "During the [bold]AJAX Crisis[/bold], Zenith Station was the nearest Solar Legion installation and directly recived communications that allowed it to reveal the planet AJAX. The colonists of the Zenith Sector were pivotal to resolving the AJAX crisis and so the home universe of the Solar Legion was named the 'Zenith Universe'\n\nAfter the planet AJAX was banished the Solar Legion made contact with the Nanotrasen of the Green Universe and together they drafted the plans for the 'NCC' and the colonization of Nexus Space."
+  order: 3
+  category: Zenith
+  unlockHint: "Use a Codex Fragment"
+
+- type: codexEntry
+  id: Zenith105
+  name: The Quest to Reunite
+  content: "The Queen and her Counts see the Nexus Space as an existential threat to the entire Solar Legion; including that which exists outside the Threshold. Queen Valeria has made it her top priority to restore the status quo by permanently sealing the connection between the Zenith Universe and the Nexus Space and then finding a way to escape the Threshold back into normal-space.\n\nThe Solar Legion believes that participation in the NCC and initially colonizing the territory is necessary to discover a method to permanently seal the passage to the Zenith Universe. The Solar Legion intends to evacuate the Zenith colonists from the Nexus Space before they seal the passage."
+  order: 4
+  category: Zenith
+  unlockHint: "Use a Codex Fragment"
+
+
+- type: codexEntry
+  id: ThresholdCandle
+  name: The Threshold Candle
+  content: "UNFILLED"
+  order: 5
+  category: Zenith
+  unlockHint: "Examine the Threshold Candle"

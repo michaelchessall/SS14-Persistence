@@ -14,6 +14,7 @@ anomaly-scanner-component-scan-complete = Scan complete!
 
 anomaly-scanner-ui-title = anomaly scanner
 anomaly-scanner-no-anomaly = No anomaly currently scanned.
+anomaly-scanner-stability-percentage = Current stability: [color=gray]{$percent}[/color]
 anomaly-scanner-severity-percentage = Current severity: [color=gray]{$percent}[/color]
 anomaly-scanner-severity-percentage-unknown = Current severity: [color=red]ERROR[/color]
 anomaly-scanner-stability-low = Current anomaly state: [color=gold]Decaying[/color]
@@ -32,6 +33,7 @@ anomaly-scanner-particle-unstable-unknown = - [color=plum]Unstable type:[/color]
 anomaly-scanner-particle-containment-unknown = - [color=goldenrod]Containment type:[/color] [color=red]ERROR[/color]
 anomaly-scanner-particle-transformation-unknown = - [color=#6b75fa]Transformation type:[/color] [color=red]ERROR[/color]
 anomaly-scanner-pulse-timer = Time until next pulse: [color=gray]{$time}[/color]
+anomaly-scanner-doafter-examine = { CAPITALIZE(SUBJECT($user)) } {CONJUGATE-BE($user)} [color=plum]scanning an anomaly[/color].
 
 anomaly-gorilla-core-slot-name = Anomaly core
 anomaly-gorilla-charge-none = It has no [bold]anomaly core[/bold] inside of it.

@@ -72,8 +72,8 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
         if (!(args.InvoiceCost > 0)) return;
         var privilegedIdName = string.Empty;
         var privilegedName = string.Empty;
-        int taxRate = 0;
-        int owningStation = 0;
+        //int taxRate = 0;
+        //int owningStation = 0;
         if (args.Actor is not { Valid: true } player)
             return;
         int? targetStation = null;
@@ -95,30 +95,30 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
             privilegedName = printingData.StationName;
             targetStation = printingData.UID;
             var taxingStation = _station.GetOwningStation(uid, null, true);
-            if (taxingStation != null)
-            {
-                if (TryComp<StationDataComponent>(taxingStation, out var sD) && sD != null)
-                {
-                    taxRate = sD.SalesTax;
-                    if (component.StationMode)
-                    {
-                        owningStation = sD.UID;
-                    }
-                }
-            }
+            //if (taxingStation != null)
+            //{
+            //    if (TryComp<StationDataComponent>(taxingStation, out var sD) && sD != null)
+            //    {
+            //        taxRate = sD.SalesTax;
+            //        if (component.StationMode)
+            //        {
+            //            owningStation = sD.UID;
+            //        }
+            //    }
+            //}
         }
         else
         {
             var taxingStation = _station.GetOwningStation(uid, null, true);
-            if (taxingStation != null)
-            {
-                if (TryComp<StationDataComponent>(taxingStation, out var sD) && sD != null)
-                {
-                    taxRate = sD.SalesTax;
-                    owningStation = sD.UID;
+            //if (taxingStation != null)
+            //{
+            //    if (TryComp<StationDataComponent>(taxingStation, out var sD) && sD != null)
+            //    {
+            //        taxRate = sD.SalesTax;
+            //        owningStation = sD.UID;
 
-                }
-            }
+            //    }
+            //}
             if (component.PrivilegedIdSlot.Item is { Valid: true } idCard)
             {
                 privilegedIdName = Comp<MetaDataComponent>(idCard).EntityName;
@@ -240,22 +240,22 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
         var taxStation = _station.GetOwningStation(uid, null, true);
         int taxingStation = 0;
         string taxingName = "Unknown";
-        if (taxStation != null)
-        {
-            if (TryComp<StationDataComponent>(taxStation, out var sD) && sD != null)
-            {
-                taxingStation = sD.UID;
-                taxRate = sD.SalesTax;
-                if (sD.StationName != null)
-                {
-                    taxingName = sD.StationName;
-                }
-            }
-            else
-            {
-                component.StationMode = false;
-            }
-        }
+        //if (taxStation != null)
+        //{
+        //    if (TryComp<StationDataComponent>(taxStation, out var sD) && sD != null)
+        //    {
+        //        taxingStation = sD.UID;
+        //        taxRate = sD.SalesTax;
+        //        if (sD.StationName != null)
+        //        {
+        //            taxingName = sD.StationName;
+        //        }
+        //    }
+        //    else
+        //    {
+        //        component.StationMode = false;
+        //    }
+        //}
         List<EntityUid> possibleStations = new();
         Dictionary<int, string> formattedStations = new();
         if (privilegedName != string.Empty && privilegedName != null)
@@ -351,33 +351,33 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
         EntityUid? taxStation = null;
         if (!component.PayslipMode)
         {
-            if (station != null)
-            {
-                if (component.TaxOwner != 0)
-                {
-                    taxStation = _station.GetStationByID(component.TaxOwner);
-                    if (taxStation != null)
-                    {
-                        if (TryComp<StationDataComponent>(taxStation, out var taxSD) && taxSD != null)
-                        {
-                            if (taxSD.SalesTax > 0)
-                            {
-                                var taxRate = taxSD.SalesTax;
-                                taxAmount = (int)Math.Round((float)cost * ((float)taxRate / 100f));
-                            }
-                        }
-                    }
+            //if (station != null)
+            //{
+            //    if (component.TaxOwner != 0)
+            //    {
+            //        taxStation = _station.GetStationByID(component.TaxOwner);
+            //        if (taxStation != null)
+            //        {
+            //            if (TryComp<StationDataComponent>(taxStation, out var taxSD) && taxSD != null)
+            //            {
+            //                if (taxSD.SalesTax > 0)
+            //                {
+            //                    var taxRate = taxSD.SalesTax;
+            //                    taxAmount = (int)Math.Round((float)cost * ((float)taxRate / 100f));
+            //                }
+            //            }
+            //        }
 
-                }
-                if (TryComp<StationDataComponent>(station, out var sD) && sD != null)
-                {
-                    if (sD.StationName != null) stationName = sD.StationName;
-                    if (_station.CanSpend(userName, station.Value, component.InvoiceCost))
-                    {
-                        valid = true;
-                    }
-                }
-            }
+            //    }
+            //    if (TryComp<StationDataComponent>(station, out var sD) && sD != null)
+            //    {
+            //        if (sD.StationName != null) stationName = sD.StationName;
+            //        if (_station.CanSpend(userName, station.Value, component.InvoiceCost))
+            //        {
+            //            valid = true;
+            //        }
+            //    }
+            //}
             if (valid && station != null)
             {
                 var accountBalance = 0;
@@ -468,17 +468,17 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
             if (component.TaxOwner != 0)
             {
                 taxStation = _station.GetStationByID(component.TaxOwner);
-                if (taxStation != null)
-                {
-                    if (TryComp<StationDataComponent>(taxStation, out var taxSD) && taxSD != null)
-                    {
-                        if (taxSD.SalesTax > 0)
-                        {
-                            var taxRate = taxSD.SalesTax;
-                            taxAmount = (int)Math.Round((float)cost * ((float)taxRate / 100f));
-                        }
-                    }
-                }
+                //if (taxStation != null)
+                //{
+                //    if (TryComp<StationDataComponent>(taxStation, out var taxSD) && taxSD != null)
+                //    {
+                //        if (taxSD.SalesTax > 0)
+                //        {
+                //            var taxRate = taxSD.SalesTax;
+                //            taxAmount = (int)Math.Round((float)cost * ((float)taxRate / 100f));
+                //        }
+                //    }
+                //}
             }
             if (_bank.TryBankWithdraw(args.Actor, component.InvoiceCost))
             {

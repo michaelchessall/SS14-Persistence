@@ -43,21 +43,6 @@
       - !type:AdjustReagent
         conditions:
         - !type:ReagentCondition
-          reagent: CorgiJuice
-          min: 1
-        reagent: CorgiJuice
-        amount: -1
-      - !type:AdjustReagent
-        conditions:
-        - !type:ReagentCondition
-          reagent: CorgiJuice
-          min: 1
-        reagent: Mnemosyne
-        amount: -1
-      
-      - !type:AdjustReagent
-        conditions:
-        - !type:ReagentCondition
           reagent: PolyciderElixir
           min: 1
         reagent: PolyciderElixir

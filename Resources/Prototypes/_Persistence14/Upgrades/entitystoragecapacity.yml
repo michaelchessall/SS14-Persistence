@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: EntityStorageCapacityMarine
+  name: Storage Capacity Increase
+  description: "Adds 10 to the storage capacity."
+  targetModule: Marine
+  maxApplications: 2
+  upgradeValues:
+    - 10
+  upgradeType: EnttiyStorageCapacity

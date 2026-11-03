@@ -12,10 +12,10 @@ namespace Content.Server.NodeContainer.EntitySystems
     /// </summary>
     /// <seealso cref="NodeGroupSystem"/>
     [UsedImplicitly]
-    public sealed class NodeContainerSystem : SharedNodeContainerSystem
+    public sealed partial class NodeContainerSystem : SharedNodeContainerSystem
     {
-        [Dependency] private readonly NodeGroupSystem _nodeGroupSystem = default!;
-        private EntityQuery<NodeContainerComponent> _query;
+        [Dependency] private NodeGroupSystem _nodeGroupSystem = default!;
+        [Dependency] private EntityQuery<NodeContainerComponent> _nodeContainerQuery = default!;
 
         public override void Initialize()
         {
@@ -25,11 +25,8 @@ namespace Content.Server.NodeContainer.EntitySystems
             SubscribeLocalEvent<NodeContainerComponent, ComponentStartup>(OnStartupEvent);
             SubscribeLocalEvent<NodeContainerComponent, ComponentShutdown>(OnShutdownEvent);
             SubscribeLocalEvent<NodeContainerComponent, AnchorStateChangedEvent>(OnAnchorStateChanged);
-            SubscribeLocalEvent<NodeContainerComponent, ReAnchorEvent>(OnReAnchor);
             SubscribeLocalEvent<NodeContainerComponent, MoveEvent>(OnMoveEvent);
             SubscribeLocalEvent<NodeContainerComponent, ExaminedEvent>(OnExamine);
-
-            _query = GetEntityQuery<NodeContainerComponent>();
         }
 
         public bool TryGetNode<T>(NodeContainerComponent component, string? identifier, [NotNullWhen(true)] out T? node) where T : Node
@@ -52,7 +49,7 @@ namespace Content.Server.NodeContainer.EntitySystems
 
         public bool TryGetNode<T>(Entity<NodeContainerComponent?> ent, string identifier, [NotNullWhen(true)] out T? node) where T : Node
         {
-            if (_query.Resolve(ent, ref ent.Comp, false)
+            if (_nodeContainerQuery.Resolve(ent, ref ent.Comp, false)
                 && ent.Comp.Nodes.TryGetValue(identifier, out var n)
                 && n is T t)
             {
@@ -73,7 +70,7 @@ namespace Content.Server.NodeContainer.EntitySystems
             where T1 : Node
             where T2 : Node
         {
-            if (_query.Resolve(ent, ref ent.Comp, false)
+            if (_nodeContainerQuery.Resolve(ent, ref ent.Comp, false)
                 && ent.Comp.Nodes.TryGetValue(id1, out var n1)
                 && n1 is T1 t1
                 && ent.Comp.Nodes.TryGetValue(id2, out var n2)
@@ -101,7 +98,7 @@ namespace Content.Server.NodeContainer.EntitySystems
             where T2 : Node
             where T3 : Node
         {
-            if (_query.Resolve(ent, ref ent.Comp, false)
+            if (_nodeContainerQuery.Resolve(ent, ref ent.Comp, false)
                 && ent.Comp.Nodes.TryGetValue(id1, out var n1)
                 && n1 is T1 t1
                 && ent.Comp.Nodes.TryGetValue(id2, out var n2)
@@ -163,15 +160,6 @@ namespace Content.Server.NodeContainer.EntitySystems
                     _nodeGroupSystem.QueueReflood(node);
                 else
                     _nodeGroupSystem.QueueNodeRemove(node);
-            }
-        }
-
-        private void OnReAnchor(EntityUid uid, NodeContainerComponent component, ref ReAnchorEvent args)
-        {
-            foreach (var node in component.Nodes.Values)
-            {
-                _nodeGroupSystem.QueueNodeRemove(node);
-                _nodeGroupSystem.QueueReflood(node);
             }
         }
 

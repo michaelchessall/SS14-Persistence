@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseConstructibleMachineDestructible ]
   id: TelecomServer
   name: telecommunication server
   description: When powered and filled with encryption keys it allows radio headset communication.
@@ -96,7 +96,7 @@
     color: "#39b8ee"
   - type: LitOnPowered
   - type: ApcPowerReceiver
-    powerLoad: 5000 
+    powerLoad: 5000
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -143,7 +143,7 @@
     range: 5
     enabled: false
     sound:
-      path: /Audio/Ambience/Objects/server_fans.ogg
+      collection: ServerFans
   - type: WiresVisuals
   - type: Physics
     bodyType: Static
@@ -160,17 +160,15 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
+    - trigger: !type:DamageTrigger
+        damage: 175
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - key_slots
   - type: Machine
     board: TelecomServerCircuitboard
   - type: WiresPanel
@@ -187,6 +185,10 @@
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: Upgradeable
+    upgrades:
+      TelecomServerRangeLuminal : 0
+      TelecomServerRangeShadow : 0
 
 - type: entity
   parent: TelecomServer
@@ -303,6 +305,6 @@
   - type: TelecomServer
     maxRange: 2048 # Increased from 1024
   - type: ApcPowerReceiver
-    powerLoad: 15000 
+    powerLoad: 15000
   - type: Machine
     board: TelecomServerAdvancedCircuitboard

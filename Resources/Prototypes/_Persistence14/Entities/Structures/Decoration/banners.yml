@@ -49,3 +49,16 @@
   - type: Construction
     graph: BannerGraph
     node: bannerPREG
+
+- type: entity
+  id: BannerNexus
+  parent: BannerBase
+  name: N.C.C. Banner
+  description: A banner signifying the unification of unprecedented power within the Nexus Coalition Council.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_nexus
+  - type: Construction
+    graph: BannerGraph
+    node: bannerNexus

@@ -1,0 +1,15 @@
+- type: entity
+  id: TeleporterChipBlankAdvanced
+  parent: TeleporterChipBlank
+  name: advanced teleporter chip
+  description: An advanced version of the teleporter chip with significantly extended range.
+  components:
+  - type: TeleporterChip
+    connect: 2048
+    locate: 4096
+  - type: Sprite
+    sprite: Objects/Misc/teleporter_chips.rsi
+    layers:
+    - state: base-advanced
+    - state: mark1
+      color: "#f5a42c"

@@ -12,6 +12,19 @@ public abstract class SharedGlobalSoundSystem : EntitySystem
 
 [Virtual]
 [Serializable, NetSerializable]
+public class LocalSoundEvent : EntityEventArgs
+{
+    public SoundSpecifier Specifier;
+    public AudioParams? AudioParams;
+    public LocalSoundEvent(SoundSpecifier specifier, AudioParams? audioParams = null)
+    {
+        Specifier = specifier;
+        AudioParams = audioParams;
+    }
+}
+
+[Virtual]
+[Serializable, NetSerializable]
 public class GlobalSoundEvent : EntityEventArgs
 {
     public ResolvedSoundSpecifier Specifier;

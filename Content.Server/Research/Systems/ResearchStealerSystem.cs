@@ -1,13 +1,15 @@
 using Content.Shared.Research.Components;
+using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 
 namespace Content.Server.Research.Systems;
 
-public sealed class ResearchStealerSystem : SharedResearchStealerSystem
+public sealed partial class ResearchStealerSystem : SharedResearchStealerSystem
 {
-    [Dependency] private readonly SharedResearchSystem _research = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
+    [Dependency] private SharedResearchSystem _research = default!;
+    [Dependency] private IRobustRandom _random = default!;
 
     public override void Initialize()
     {
@@ -33,7 +35,12 @@ public sealed class ResearchStealerSystem : SharedResearchStealerSystem
             if (database.UnlockedTechnologies.Count == 0)
                 break;
 
-            var toRemove = _random.Pick(database.UnlockedTechnologies);
+            var techs = new List<ProtoId<TechnologyPrototype>>();
+            foreach (var (_, list) in database.UnlockedTechnologies)
+                foreach (var tech in list)
+                    techs.Add(tech);
+
+            var toRemove = _random.Pick(techs);
             if (_research.TryRemoveTechnology((target, database), toRemove))
                 ev.Techs.Add(toRemove);
         }

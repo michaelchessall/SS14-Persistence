@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.Upgrades.Prototypes;
 using Robust.Shared.Prototypes;
 
 namespace Content.Shared.CrewAssignments.Prototypes;
@@ -25,6 +26,9 @@ public sealed partial class FactionLevelPrototype : IPrototype
     /// </summary>
     [DataField]
     public int Cost = 0;
+
+    [DataField]
+    public Dictionary<ProtoId<UpgradeModuleTypePrototype>, int> RequiredModules = new();
 
     /// <summary>
     /// How many tiles this faction is allowed to claim.

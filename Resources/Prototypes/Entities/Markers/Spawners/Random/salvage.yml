@@ -7,38 +7,40 @@
   name: Salvage Material Crate Spawner
   id: SalvageMaterialCrateSpawner
   components:
-    - type: Sprite
-      layers:
-        - state: red
-        - sprite: Structures/Storage/Crates/generic.rsi
-          state: icon
-    - type: RandomSpawner
-      prototypes:
-        - SalvageHumanCorpse
-        - CrateMaterialPlasteel
-        - CrateMaterialWood
-        - CrateMaterialPlastic
-        - CrateSalvageEquipment
-        - CrateMaterialSteel
-        - CrateMaterialGlass
-        - CrateServiceJanitorialSupplies
-        - CrateHydroponicsSeedsMedicinal
-        - CrateEmergencyInternals
-        - CrateFoodMRE
-        - CrateMaterialTextiles
-        - CrateMedicalSupplies
-        - CrateEngineeringCableBulk
-        - CrateMaterialCardboard
-        - CrateServiceBooks
-        - CrateServiceSmokeables
-        - CrateTrashCartFilled
-        - ClosetMaintenanceFilledRandom
-        - ClosetEmergencyFilledRandom
-
-      rarePrototypes:
-        - CrateSalvageAssortedGoodies
-      rareChance: 0.1
-      chance: 0.5
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: Structures/Storage/Crates/generic.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:GroupSelector
+      prob: 0.9
+      children:
+      - id: CrateSalvageAssortedGoodies
+        weight: 0.6
+      - !type:GroupSelector
+        weight: 0.4
+        children:
+        - id: SalvageHumanCorpse
+        - id: CrateMaterialPlasteel
+        - id: CrateMaterialWood
+        - id: CrateMaterialPlastic
+        - id: CrateSalvageEquipment
+        - id: CrateMaterialSteel
+        - id: CrateMaterialGlass
+        - id: CrateJanitorialSupplies
+        - id: CrateHydroponicsSeedsMedicinal
+        - id: CrateEmergencyEVA
+        - id: CrateFoodMRE
+        - id: CrateMaterialCloth
+        - id: CrateMedicalSupplies
+        - id: CrateEngineeringCableBulk
+        - id: CrateMaterialCardboard
+        - id: CrateServiceBooks
+        - id: CrateServiceSmokeables
+        - id: CrateTrashCartFilled
+        - id: ClosetMaintenanceFilledRandom
+        - id: ClosetEmergencyFilledRandom
       offset: 0.0
 
 - type: entity

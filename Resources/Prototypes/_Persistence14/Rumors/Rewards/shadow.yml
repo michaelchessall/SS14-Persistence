@@ -1,0 +1,49 @@
+- type: rumorReward
+  id: ShadowUpgradeModule
+  name: Upgrade Module (Elder Pattern)
+  description: "Can be applied to a variety of items and machines."
+  price: 2500
+  product: ShadowUpgradeModule
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: shadow-full
+
+- type: rumorReward
+  id: ShadowCodexFragment
+  name: Codex Fragment (The Elders)
+  description: "Will unlock a codex entry when used."
+  price: 2000
+  product: ShadowCodexFragment
+  icon:
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+    state: shadow-codex
+
+- type: rumorReward
+  id: ShadowMerchCrate
+  name: Elder Merch Crate
+  description: "All sorts of things needed to start a cult, even plushies."
+  price: 1200
+  product: CrateShadowMerch
+  icon:
+    sprite: Objects/Fun/Plushies/narsie.rsi
+    state: icon
+
+- type: rumorReward
+  id: ShadowKnifeKit
+  name: Throwing Knife Kit
+  description: "A set of 8 syndicate branded throwing knives, perfect for embedding into the body of your victims. Capable of ignoring armor entirely when thrown."
+  price: 900
+  product: ThrowingKnivesKit
+  icon:
+    sprite: Objects/Storage/boxicons.rsi
+    state: throwing_knives
+
+- type: rumorReward
+  id: ShadowEDagger
+  name: Energy Dagger
+  description: "A very dangerous energy dagger that can reflect shots. Can be stored in pockets when turned off. Makes a lot of noise when used or turned on."
+  price: 9000
+  product: EnergyDaggerBox
+  icon:
+    sprite: Objects/Weapons/Melee/e_dagger.rsi
+    state: icon

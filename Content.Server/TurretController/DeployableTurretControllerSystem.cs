@@ -26,7 +26,6 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
     [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
     [Dependency] private readonly IAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedStationSystem _station = default!;
-    [Dependency] private readonly IEntityManager _entManager = default!;
 
     /// Keys for the device network. See <see cref="DeviceNetworkConstants"/> for further examples.
     public const string CmdSetArmamemtState = "set_armament_state";
@@ -218,7 +217,7 @@ public sealed partial class DeployableTurretControllerSystem : SharedDeployableT
             !TryComp<TurretTargetSettingsComponent>(ent, out var turretTargetingSettings))
             return;
 
-         // Update linked turrets' cleared target selection exemptions
+        // Update linked turrets' cleared target selection exemptions
         var payload = new NetworkPayload
         {
             [DeviceNetworkConstants.Command] = CmdSetAccessExemptions,

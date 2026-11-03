@@ -1,0 +1,20 @@
+- type: entity
+  id: TradeGood
+  parent: BaseItem
+  name: trade node
+  description: A highly valuable device which generates resonance when stored on a trade station. Always exports for $10000.
+  components:
+  - type: Item
+    storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/trade_node.rsi
+    layers:
+    - state: icon
+  - type: StaticPrice
+    price: 10000
+  - type: TradeGood

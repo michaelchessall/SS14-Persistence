@@ -131,7 +131,7 @@
   suffix: Glass
   components:
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    sprite: Structures/Doors/Airlocks/Glass/basic.rsi # Persistence glass.rsi < basic.rsi
     state: "assembly"
 
 #Freezer

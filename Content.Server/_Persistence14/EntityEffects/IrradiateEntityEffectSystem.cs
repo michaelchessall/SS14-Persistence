@@ -1,3 +1,4 @@
+using Content.Server.Radiation.Systems;
 using Content.Shared._Persistence14.EntityEffects;
 using Content.Shared._Persistence14.Radiation;
 using Content.Shared.EntityEffects;
@@ -8,6 +9,7 @@ namespace Content.Server._Persistence14.EntityEffects;
 
 public sealed partial class IrradiateEntityEffectSystem : EntityEffectSystem<TransformComponent, Irradiate>
 {
+    [Dependency] private RadiationSystem _radiation = default!;
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<Irradiate> args)
     {
         if (!TryComp<RadiationSourceComponent>(entity.Owner, out var sourceComponent))
@@ -16,9 +18,9 @@ public sealed partial class IrradiateEntityEffectSystem : EntityEffectSystem<Tra
                 return;
 
             sourceComponent = AddComp<RadiationSourceComponent>(entity.Owner);
-            sourceComponent.Intensity = 0f;
+            _radiation.SetIntensity((entity.Owner, sourceComponent), 0f);
         }
-        sourceComponent.Intensity += args.Effect.Intensity;
+        _radiation.SetIntensity((entity.Owner, sourceComponent), sourceComponent.Intensity + args.Effect.Intensity);
 
         if (args.Effect.Decays)
         {

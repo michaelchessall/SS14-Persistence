@@ -164,6 +164,19 @@ public record struct IngestedEvent(EntityUid User, EntityUid Target, Solution Sp
     public bool Repeat;
 }
 
+[ByRefEvent]
+public record struct IngestedRumorEvent(EntityUid User, EntityUid Target, Solution Split, bool ForceFed, bool Satiated)
+{
+    // Should we destroy the ingested entity?
+    public bool Destroy;
+
+    // Has this eaten event been handled? Used to prevent duplicate flavor popups and sound effects.
+    public bool Handled;
+
+    // Should we try eating again?
+    public bool Repeat;
+}
+
 /// <summary>
 /// Raised directed at the food after finishing eating it and before it's deleted.
 /// </summary>
@@ -206,16 +219,4 @@ public record struct GetEdibleTypeEvent
     {
         Type = proto;
     }
-}
-
-/// <summary>
-/// Raised directed at the food being sliced before it's deleted.
-/// Cancel this if you want to do something special before a food is deleted.
-/// </summary>
-public sealed class BeforeFullySlicedEvent : CancellableEntityEventArgs
-{
-    /// <summary>
-    /// The person slicing the food.
-    /// </summary>
-    public EntityUid User;
 }

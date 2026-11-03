@@ -1,0 +1,39 @@
+- type: codexEntry
+  id: Nexus101
+  name: Nexus Space
+  content: "At the center of every Threshold is 'Nexus Space'. This is the space where each Threshold spatially overlaps creating a multi-versal Nexus.\nThe Nexus Space is crucial territory for each of the connected universes and so the 'Nexus Coalition Council' was formed by several of the universes to occupy the Nexus Space and prevent multi-versal war."
+  order: 0
+  category: Nexus
+
+- type: codexEntry
+  id: EclipseStation101
+  name: The Nexus Coalition Council
+  content: "Formed from the major nations of the Zenith, Green, Precursor, Marine and Shadow universes, the Nexus Coalition Counci is the governing body which regulates all entry into the Nexus Space. \nThe Coalition has built 'Eclipse Station' to process entry to a key sector within the Nexus Space and has begun sending colonists from the member Universes into the Sector."
+  order: 1
+  category: Nexus
+  unlockHint: "Spend a little time aboard Eclipse Station."
+
+- type: codexEntry
+  id: EclipseStation102
+  name: Eclipse Station
+  content: "Eclipse Station was one of the first installations built in the Nexus Space after the resolution of the 'AJAX Crisis'. \nAll five nations provided resources and labor towards the construction and initial staffing of the station. It is a fully functional trade station capable of generating Resonance, but it's primary function is a mystery to most."
+  order: 2
+  category: Nexus
+  unlockHint: "Spend some more time aboard Eclipse Station."
+
+- type: codexEntry
+  id: EclipseStation103
+  name: The AJAX Crisis
+  content: "The AJAX Crisis was the event that alerted four of the five Nations about the existence of the Nexus Space. During the crisis the 'Void Entities' from the Shadow Universe, renegade Luminals and misguided Syndicate Agents used Resonance to generate the planet AJAX where they staged incursions into the connected universes. \nThe AJAX Crisis was a threat to all life in the connected Thresholds and so a coalition of universes worked together to defeat the Void Entities. This coaltion went on to form the Nexus Coaltiion Council"
+  order: 3
+  category: Nexus
+  unlockHint: "Spend a lot of time aboard Eclipse Station."
+
+- type: codexEntry
+  id: SalvationShard
+  name: The Salvation Shard
+  content: "UNFILLED"
+  order: 4
+  category: Nexus
+  unlockHint: "Examine the Salvation Shard"
+

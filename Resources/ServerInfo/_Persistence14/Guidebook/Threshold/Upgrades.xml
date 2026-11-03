@@ -1,0 +1,47 @@
+<Document>
+  # Upgrades
+  This guide will explain Upgrade Modules and how they can be used to upgrade items and machines in a variety of ways.
+
+  ## View Available Upgrades
+  To view what upgrades an item or machine has available you must stand close to it and press the 'Upgrades' button under the examine dropdown of the right click menu.
+  If 'Upgrades' does not appear then it may not have any available upgrades.
+
+  If you can examine the upgrades it will list the available upgrades along with [bold]the upgrade module type required to apply it[/bold].
+  When the upgrades say 'choose one' only one type of upgrade can be applied before locking the others out.
+
+  ## Upgrade Modules
+  Upgrade Modules are available through the Rumored Imports with every upgrade module having a specific pattern that it relates to.
+  Every upgrade requires a specific type of module to apply it.
+
+  ## Applying the Upgrade Modules
+  Hold the upgrade module in your active hand and choose the "Upgrade" option from the right click menu of the device.
+
+  ## Upgradeable Items and Machines
+  Most upgrades can be applied [bold]up to two times[/bold] to the same item or machine.
+
+  ### Equipment
+  [bold]Backpacks[/bold] and [bold]storage belts[/bold] can gain extra storage space.
+  [bold]Helmets, hats, armor and jumpsuits[/bold] can gain extra armor against a specific type of damage.
+  [bold]Tools[/bold] can be made to work faster.
+  [bold]Gas tanks[/bold] can hold more gas.
+  [bold]Handheld mass scanners[/bold] can gain extra range.
+
+  ### Machines
+  [bold]Lathes[/bold] can be made to print faster.
+  [bold]Microwaves[/bold] can hold more and cook faster.
+  [bold]Reagent grinders[/bold] can be made to work faster.
+  [bold]Lockers, crates and washing machines[/bold] can hold more.
+  [bold]Gas canisters[/bold] can hold more gas.
+
+  ### Engineering
+  [bold]APCs[/bold] can handle a higher maximum load.
+  [bold]SMES units[/bold] can store more power.
+  [bold]Thermo-electric generators[/bold] and [bold]radiation collectors[/bold] can generate more power.
+  [bold]Telecommunication servers[/bold] can broadcast over a longer range.
+
+  ### Shuttles
+  [bold]Radar and shuttle consoles[/bold] can gain extra radar range.
+
+  ## Faction Upgrades
+  Upgrade Modules are also required to level up a faction. For more information see the 'Faction Modification' guidepage.
+</Document>

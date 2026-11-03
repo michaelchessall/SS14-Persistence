@@ -10,12 +10,10 @@ namespace Content.Shared.Xenoarchaeology.Artifact;
 
 public abstract partial class SharedXenoArtifactSystem
 {
-    private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery;
+    [Dependency] private EntityQuery<XenoArtifactUnlockingComponent> _unlockingQuery = default!;
 
     private void InitializeUnlock()
     {
-        _unlockingQuery = GetEntityQuery<XenoArtifactUnlockingComponent>();
-
         SubscribeLocalEvent<XenoArtifactUnlockingComponent, MapInitEvent>(OnUnlockingStarted);
     }
 
@@ -65,7 +63,7 @@ public abstract partial class SharedXenoArtifactSystem
     /// </summary>
     public void FinishUnlockingState(Entity<XenoArtifactUnlockingComponent, XenoArtifactComponent> ent)
     {
-        string unlockAttemptResultMsg;
+        string? unlockAttemptResultMsg;
         XenoArtifactComponent artifactComponent = ent;
         XenoArtifactUnlockingComponent unlockingComponent = ent;
 
@@ -76,32 +74,34 @@ public abstract partial class SharedXenoArtifactSystem
             node.Value.Comp.ArtifexiumUnlockFraction = artifexiumFraction;
             SetNodeUnlocked((ent, artifactComponent), node.Value);
             ActivateNode((ent, ent), (node.Value, node.Value), null, null, Transform(ent).Coordinates, false);
-            unlockAttemptResultMsg = "artifact-unlock-state-end-success";
+            unlockAttemptResultMsg = artifactComponent.UnlockSuccessMsg;
             UpdateNodeResearchValue(node.Value);
 
             soundEffect = unlockingComponent.UnlockActivationSuccessfulSound;
         }
         else
         {
-            unlockAttemptResultMsg = "artifact-unlock-state-end-failure";
+            unlockAttemptResultMsg = artifactComponent.UnlockFailureMsg;
             soundEffect = unlockingComponent.UnlockActivationFailedSound;
         }
 
         if (_net.IsServer)
         {
-            _popup.PopupEntity(Loc.GetString(unlockAttemptResultMsg), ent);
+            if (unlockAttemptResultMsg != null)
+                _popup.PopupEntity(Loc.GetString(unlockAttemptResultMsg), ent);
+
             _audio.PlayPvs(soundEffect, ent.Owner);
         }
 
         RemComp(ent, unlockingComponent);
-        RaiseUnlockingFinished(ent, node);
+        RaiseUnlockingFinished(ent, node, true);
         artifactComponent.NextUnlockTime = _timing.CurTime + artifactComponent.UnlockStateRefractory;
     }
 
     public void CancelUnlockingState(Entity<XenoArtifactUnlockingComponent, XenoArtifactComponent> ent)
     {
         RemComp(ent, ent.Comp1);
-        RaiseUnlockingFinished(ent, null);
+        RaiseUnlockingFinished(ent, null, false);
     }
 
     /// <summary>
@@ -146,12 +146,12 @@ public abstract partial class SharedXenoArtifactSystem
                 continue;
 
             var missingTriggers = requiredIndices.Count - artifactUnlockingComponent.TriggeredNodeIndexes.Count;
-            var wildcardsAvailable = (int) (artifactUnlockingComponent.ArtifexiumScale / artifactComponent.ArtifexiumCostPerTrigger);
+            var wildcardsAvailable = (int)(artifactUnlockingComponent.ArtifexiumScale / artifactComponent.ArtifexiumCostPerTrigger);
             if (missingTriggers > wildcardsAvailable)
                 continue;
 
             // Fraction of this node's triggers that artifexium covered rather than being triggered manually.
-            var fraction = requiredIndices.Count > 0 ? (float) missingTriggers / requiredIndices.Count : 0f;
+            var fraction = requiredIndices.Count > 0 ? (float)missingTriggers / requiredIndices.Count : 0f;
             potentialNodes.Add((curNode, fraction));
         }
 
@@ -173,10 +173,11 @@ public abstract partial class SharedXenoArtifactSystem
 
     private void RaiseUnlockingFinished(
         Entity<XenoArtifactUnlockingComponent, XenoArtifactComponent> ent,
-        Entity<XenoArtifactNodeComponent>? node
+        Entity<XenoArtifactNodeComponent>? node,
+        bool succeeded
     )
     {
-        var unlockingFinishedEvent = new ArtifactUnlockingFinishedEvent(node);
+        var unlockingFinishedEvent = new ArtifactUnlockingFinishedEvent(node, succeeded);
         RaiseLocalEvent(ent.Owner, ref unlockingFinishedEvent);
     }
 
@@ -193,4 +194,4 @@ public record struct ArtifactUnlockingStartedEvent;
 /// </summary>
 /// <param name="UnlockedNode">Node which were unlocked. Null if stage was finished without new unlocks.</param>
 [ByRefEvent]
-public record struct ArtifactUnlockingFinishedEvent(EntityUid? UnlockedNode);
+public record struct ArtifactUnlockingFinishedEvent(EntityUid? UnlockedNode, bool Success);

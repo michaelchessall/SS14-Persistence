@@ -1,0 +1,158 @@
+- type: backgroundEffect
+  id: TraitGood
+  description: "[color=green]You will gain the 'Good' trait."
+  traits:
+    - Good
+
+- type: backgroundEffect
+  id: TraitLawfulGood
+  description: "[color=green]You will gain the 'Lawful Good' trait."
+  traits:
+    - LawfulGood
+
+- type: backgroundEffect
+  id: TraitChaoticGood
+  description: "[color=green]You will gain the 'Chaotic Good' trait."
+  traits:
+    - ChaoticGood
+
+- type: backgroundEffect
+  id: TraitChaotic
+  description: "[color=green]You will gain the 'Chaotic' trait."
+  traits:
+    - Chaotic
+
+- type: backgroundEffect
+  id: TraitLawful
+  description: "[color=green]You will gain the 'Lawful' trait."
+  traits:
+    - Lawful
+
+- type: backgroundEffect
+  id: TraitNeutral
+  description: "[color=green]You will gain the 'Neutral' trait."
+  traits:
+    - Neutral
+
+- type: backgroundEffect
+  id: TraitEvil
+  description: "[color=green]You will gain the 'Evil' trait."
+  traits:
+    - Evil
+
+- type: backgroundEffect
+  id: TraitLawfulEvil
+  description: "[color=green]You will gain the 'Lawful Evil' trait."
+  traits:
+    - LawfulEvil
+
+- type: backgroundEffect
+  id: TraitChaoticEvil
+  description: "[color=green]You will gain the 'Chaotic Evil' trait."
+  traits:
+    - ChaoticEvil
+
+- type: backgroundEffect
+  id: TraitOriginZenith
+  description: "[color=green]You will gain the 'Worked with Solar Legion' trait.\nA codex entry will be unlocked."
+  traits:
+    - OriginZenith
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorRed
+  reputationGains:
+    Zenith: 200
+  extraFactionRumors:
+    Zenith: 1
+  codexEntries:
+    - Zenith101
+
+- type: backgroundEffect
+  id: TraitOriginGreen
+  description: "[color=green]You will gain the 'Known to Nanotrasen' trait.\nA codex entry will be unlocked."
+  traits:
+    - OriginGreen
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorGreen
+  reputationGains:
+    Green: 200
+  extraFactionRumors:
+    Green: 1
+  codexEntries:
+    - Green101
+
+- type: backgroundEffect
+  id: TraitOriginMarine
+  description: "[color=green]You will gain the 'Familiar with the UNMC' trait.\nA codex entry will be unlocked."
+  traits:
+    - OriginMarine
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBattleDressUniformWoodlandTShirt
+  reputationGains:
+    Marines: 200
+  extraFactionRumors:
+    Marines: 1
+  codexEntries:
+    - Marine101
+
+
+- type: backgroundEffect
+  id: TraitOriginPrecursor
+  description: "[color=green]You will gain the 'Syndicate Associate' trait.\nA codex entry will be unlocked."
+  traits:
+    - OriginPrecursor
+  equipment:
+    jumpsuit: ClothingUniformGenericTurtleNeckAndJeans
+  reputationGains:
+    Precursor: 200
+  extraFactionRumors:
+    Precursor: 1
+  codexEntries:
+    - Precursor101
+
+- type: backgroundEffect
+  id: TraitOriginShadow
+  description: "[color=green]You will gain the 'Seen too much' trait.\nA codex entry will be unlocked."
+  traits:
+    - OriginShadow
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitColorBlack
+  reputationGains:
+    Shadow: 200
+  extraFactionRumors:
+    Shadow: 1
+  codexEntries:
+    - Shadow101
+
+
+- type: backgroundEffect
+  id: TraitPledge
+  description: "[color=green]You will gain the 'Freelancer Pledge' trait."
+  traits:
+    - NexusPledge
+
+- type: backgroundEffect
+  id: MotiveWealth
+  description: "[color=green]You will arrive with an additional $2000"
+  bonusCash: 2000
+
+- type: backgroundEffect
+  id: MotivePower
+  description: "[color=green]You will arrive with an additional rumor"
+  extraRumors: 1
+
+- type: backgroundEffect
+  id: MotiveSecretKnowledge
+  description: "[color=green]You will unlock a Codex entry."
+  codexEntries:
+    - Shadow102
+
+- type: backgroundEffect
+  id: MotiveFriendship
+  description: "[color=green]You will arrive with an additional rumor"
+  extraRumors: 1
+
+- type: backgroundEffect
+  id: MotiveEnlightenment
+  description: "[color=green]You will unlock a Codex entry."
+  codexEntries:
+    - Luminal101

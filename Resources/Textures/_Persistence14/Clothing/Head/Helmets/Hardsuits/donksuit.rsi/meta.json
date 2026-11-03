@@ -1,7 +1,8 @@
 {
     "version": 1,
     "license": "CC-BY-SA-3.0",
-    "copyright": "Created by Cluckers1 (Github)",
+    "copyright": "Creadted by Cluckers1 (github)",
+
     "size": {
         "x": 32,
         "y": 32
@@ -11,40 +12,58 @@
             "name": "icon"
         },
         {
-            "name": "icon-flash"
+            "name": "icon-unshaded"
         },
         {
-            "name": "off-equipped-HELMET",
+            "name": "light-overlay"
+        },
+        {
+            "name": "equipped-head",
             "directions": 4
         },
         {
-            "name": "on-equipped-HELMET",
+            "name": "equipped-head-light",
             "directions": 4
         },
         {
-            "name": "off-equipped-HELMET-vox",
+            "name": "equipped-head-unshaded",
             "directions": 4
         },
         {
-            "name": "on-equipped-HELMET-vox",
+            "name": "equipped-head-vox",
             "directions": 4
         },
         {
-            "name": "on-equipped-HELMET-vulpkanin",
+            "name": "equipped-head-light-vox",
             "directions": 4
         },
         {
-            "name": "off-equipped-HELMET-vulpkanin",
+            "name": "equipped-head-unshaded-vox",
             "directions": 4
         },
         {
-            "name": "off-equipped-HELMET-reptilian",
+            "name": "equipped-head-vulpkanin",
             "directions": 4
         },
         {
-            "name": "on-equipped-HELMET-reptilian",
+            "name": "equipped-head-light-vulpkanin",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-unshaded-vulpkanin",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-reptilian",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-light-reptilian",
+            "directions": 4
+        },
+        {
+            "name": "equipped-head-unshaded-reptilian",
             "directions": 4
         }
-
     ]
 }

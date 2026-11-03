@@ -26,17 +26,17 @@ using Robust.Server.GameObjects;
 namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 {
     [UsedImplicitly]
-    public sealed class GasVentScrubberSystem : EntitySystem
+    public sealed partial class GasVentScrubberSystem : EntitySystem
     {
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphereSystem = default!;
-        [Dependency] private readonly DeviceNetworkSystem _deviceNetSystem = default!;
-        [Dependency] private readonly NodeContainerSystem _nodeContainer = default!;
-        [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] private readonly TransformSystem _transformSystem = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly WeldableSystem _weldable = default!;
-        [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private AtmosphereSystem _atmosphereSystem = default!;
+        [Dependency] private DeviceNetworkSystem _deviceNetSystem = default!;
+        [Dependency] private NodeContainerSystem _nodeContainer = default!;
+        [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+        [Dependency] private TransformSystem _transformSystem = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private WeldableSystem _weldable = default!;
+        [Dependency] private PowerReceiverSystem _powerReceiverSystem = default!;
 
         public override void Initialize()
         {
@@ -91,13 +91,13 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
         private void Scrub(float timeDelta, GasVentScrubberComponent scrubber, GasMixture? tile, PipeNode outlet)
         {
-            Scrub(timeDelta, scrubber.TransferRate * _atmosphereSystem.PumpSpeedup(), scrubber.PumpDirection, scrubber.FilterGases, tile, outlet.Air);
+            Scrub(timeDelta, scrubber.TransferRate * _atmosphereSystem.PumpSpeedup(), scrubber.PumpDirection, scrubber.FilterGases, scrubber.FilterGasLimits, tile, outlet.Air); // Persistence: Add scrubber.FilterGasLimits
         }
 
         /// <summary>
         /// True if we were able to scrub, false if we were not.
         /// </summary>
-        public bool Scrub(float timeDelta, float transferRate, ScrubberPumpDirection mode, HashSet<Gas> filterGases, GasMixture? tile, GasMixture destination)
+        public bool Scrub(float timeDelta, float transferRate, ScrubberPumpDirection mode, HashSet<Gas> filterGases, Dictionary<Gas, float> filterLimits, GasMixture? tile, GasMixture destination) // Persistence: Add Dictionary<Gas, float> filterLimits
         {
             // Cannot scrub if tile is null or air-blocked.
             if (tile == null
@@ -116,7 +116,7 @@ namespace Content.Server.Atmos.Piping.Unary.EntitySystems
 
             if (mode == ScrubberPumpDirection.Scrubbing)
             {
-                _atmosphereSystem.ScrubInto(removed, destination, filterGases);
+                _atmosphereSystem.ScrubInto(removed, destination, filterGases, filterLimits); // Persistence: Add filterLimits
 
                 // Remix the gases.
                 _atmosphereSystem.Merge(tile, removed);

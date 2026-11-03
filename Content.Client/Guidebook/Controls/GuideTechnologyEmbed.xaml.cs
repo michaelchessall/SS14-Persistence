@@ -21,9 +21,9 @@ namespace Content.Client.Guidebook.Controls;
 [UsedImplicitly, GenerateTypedNameReferences]
 public sealed partial class GuideTechnologyEmbed : BoxContainer, IDocumentTag, ISearchableControl
 {
-    [Dependency] private readonly IEntitySystemManager _systemManager = default!;
-    [Dependency] private readonly ILogManager _logManager = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
+    [Dependency] private IEntitySystemManager _systemManager = default!;
+    [Dependency] private ILogManager _logManager = default!;
+    [Dependency] private IPrototypeManager _prototype = default!;
 
     private readonly ResearchSystem _research;
     private readonly SpriteSystem _sprite;
@@ -85,7 +85,7 @@ public sealed partial class GuideTechnologyEmbed : BoxContainer, IDocumentTag, I
         var discipline = _prototype.Index(technology.Discipline);
 
         NameLabel.SetMarkup($"[bold]{Loc.GetString(technology.Name)}[/bold]");
-        DescriptionLabel.SetMessage(_research.GetTechnologyDescription(technology, includePrereqs: true, disciplinePrototype: discipline));
+        DescriptionLabel.SetMessage(_research.GetTechnologyDescription(technology, costMultiplier: 1f, includePrereqs: true, disciplinePrototype: discipline));
         TechTexture.Texture = _sprite.Frame0(technology.Icon);
 
         DisciplineColorBackground.PanelOverride = new StyleBoxFlat

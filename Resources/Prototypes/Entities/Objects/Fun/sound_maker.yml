@@ -232,6 +232,9 @@
       collection: BaseWhistle
   - type: Whistle
     distance: 3
+  - type: Tag
+    tags:
+    - MonkeyWearable
   - type: PhysicalComposition
     materialComposition:
       Steel: 50

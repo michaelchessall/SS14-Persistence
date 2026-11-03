@@ -27,7 +27,7 @@
     - type: UseDelay
       delay: 1
     - type: PowerCellDraw
-      drawRate: 2
+      drawRate: 1.5
     - type: ItemToggle
       soundActivate: /Audio/Items/flashlight_on.ogg
       soundDeactivate: /Audio/Items/flashlight_on.ogg

@@ -1,0 +1,64 @@
+- type: metaFaction
+  id: Marines
+  name: UNMC Remnant
+  description: "The UNMC controls the Marines Universe."
+  rumors:
+    - DrinkBasicFriendly
+    - EatBasicFriendly
+    - DrinkBasicEvil
+    - ReceiveMailFriendly
+  color: Olive
+  levels:
+    Marines2: 150
+    Marines3: 500
+    Marines4: 1000
+  order: 3
+
+- type: metaFactionLevel
+  id: Marines2
+  name: Associate
+  rumorRewards:
+    - MarineUpgradeModule
+    - TradeGood
+    - MarineCodexFragment
+    - UNMCMerchCrate
+    - MarineWebbing
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Marines3
+  name: Officer
+  rumorRewards:
+    - MarineUpgradeModule
+    - TradeGood
+    - MarineCodexFragment
+    - MarineViper
+    - VestArmor
+    - VestArmorElite
+    - HyperzineKit
+    - Cobra
+    - Python
+    - KnuckleDusters
+    - IchorCigarettes
+    - RaidSuit
+    - Hushpup
+    - CombatToolbox
+    - MarineM45c
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Marines4
+  name: Commander
+  rumorRewards:
+    - MarineUpgradeModule
+    - TradeGood
+    - MarineCodexFragment
+    - MarineL-6SawBundle
+    - ESword
+    - EShield
+    - RadioJammer
+    - C-20r
+    - GlovesNorthStar
+    - Chameleon
+  rewardsToOffer: 2
+

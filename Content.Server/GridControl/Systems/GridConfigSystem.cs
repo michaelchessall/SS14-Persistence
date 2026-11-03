@@ -1,10 +1,11 @@
-using Content.Server.Cargo.Components;
 using Content.Server.CrewRecords.Systems;
 using Content.Server.Popups;
 using Content.Server.Station.Systems;
+using Content.Shared._Persistence14;
+using Content.Shared._Persistence14.Rumors.Components;
 using Content.Shared.Access.Components;
 using Content.Shared.Access.Systems;
-using Content.Shared.Administration.Logs;
+using Content.Shared.Cargo.Components;
 using Content.Shared.Containers.ItemSlots;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
@@ -17,8 +18,6 @@ using Content.Shared.Station;
 using Content.Shared.Station.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;
-using Robust.Shared.Audio.Systems;
-using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
@@ -30,21 +29,21 @@ using static Content.Shared.GridControl.Components.StationCreatorComponent;
 namespace Content.Server.GridControl.Systems;
 
 [UsedImplicitly]
-public sealed class GridConfigSystem : SharedGridConfigSystem
+public sealed partial class GridConfigSystem : SharedGridConfigSystem
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly UserInterfaceSystem _userInterface = default!;
-    [Dependency] private readonly AccessReaderSystem _accessReader = default!;
-    [Dependency] private readonly SharedInteractionSystem _interactionSystem = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-    [Dependency] private readonly StationSystem _station = default!;
-    [Dependency] private readonly TransformSystem _transform = default!;
-    [Dependency] private readonly MetaDataSystem _metaData = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly MapSystem _mapSystem = default!;
-    [Dependency] private readonly IPrototypeManager _protoMan = default!;
-    [Dependency] private readonly CrewMetaRecordsSystem _crewMeta = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private UserInterfaceSystem _userInterface = default!;
+    [Dependency] private AccessReaderSystem _accessReader = default!;
+    [Dependency] private SharedInteractionSystem _interactionSystem = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+    [Dependency] private StationSystem _station = default!;
+    [Dependency] private TransformSystem _transform = default!;
+    [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private MapSystem _mapSystem = default!;
+    [Dependency] private IPrototypeManager _protoMan = default!;
+    [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
     public override void Initialize()
     {
         base.Initialize();
@@ -116,38 +115,60 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
 
     private void OnUnlink(EntityUid uid, StationTaggerComponent component, EntityEventArgs args)
     {
-        if (component.TargetAccessReaderId == EntityUid.Invalid) return;
+        if (component.TargetAccessReaderId == EntityUid.Invalid)
+            return;
 
         if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt))
             return;
-        if (accessReaderEnt == null) return;
-        if (TryComp<StationTrackerComponent>(accessReaderEnt.Value.Owner, out var comp) && comp != null)
-        {
+
+        if (TryComp<StationTrackerComponent>(accessReaderEnt.Value.Owner, out var comp))
             RemComp(accessReaderEnt.Value.Owner, comp);
-        }
+
         UpdateUserInterface(uid, component, args);
+        var ev = new StationTaggedStateChangedEvent
+        {
+            Target = GetNetEntity(accessReaderEnt.Value.Owner),
+            Faction = null
+        };
+        RaiseLocalEvent(accessReaderEnt.Value.Owner, ref ev);
     }
     private void OnLink(EntityUid uid, StationTaggerComponent component, EntityEventArgs args)
     {
-        if (component.TargetAccessReaderId == EntityUid.Invalid) return;
-        if (component.ConnectedStation == null || component.ConnectedStation == 0) return;
-        if (TryComp<StationTrackerComponent>(component.TargetAccessReaderId, out var comp) && comp != null)
-        {
+        if (component.TargetAccessReaderId == EntityUid.Invalid)
             return;
-        }
+
+        if (component.ConnectedStation == null || component.ConnectedStation == 0)
+            return;
+
+        if (TryComp<StationTrackerComponent>(component.TargetAccessReaderId, out var comp) && comp != null)
+            return;
+
         if (!_accessReader.GetMainAccessReader(component.TargetAccessReaderId, out var accessReaderEnt))
             return;
-        if (accessReaderEnt == null) return;
 
-        if (component.ConnectedStation == null) return;
+        if (accessReaderEnt == null)
+            return;
+
+        if (component.ConnectedStation == null)
+            return;
+
         var station = _station.GetStationByID(component.ConnectedStation.Value);
-        if (station == null) return;
-        var comp2 = EnsureComp<StationTrackerComponent>(accessReaderEnt.Value.Owner);
-        if (comp2 == null) return;
-        comp2.locked = false;
-        _station.SetStation((accessReaderEnt.Value.Owner, comp2), station);
-        comp2.locked = true;
+        if (station == null)
+            return;
+
+        var trackerComponent = EnsureComp<StationTrackerComponent>(accessReaderEnt.Value.Owner);
+
+        trackerComponent.locked = false;
+        _station.SetStation((accessReaderEnt.Value.Owner, trackerComponent), station);
+        trackerComponent.locked = true;
+
         UpdateUserInterface(uid, component, args);
+        var ev = new StationTaggedStateChangedEvent
+        {
+            Target = GetNetEntity(accessReaderEnt.Value.Owner),
+            Faction = GetNetEntity(station)
+        };
+        RaiseLocalEvent(accessReaderEnt.Value.Owner, ref ev);
     }
     private void OnRemoved(EntityUid uid, GridConfigComponent component, EntityEventArgs args)
     {
@@ -187,6 +208,10 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
         var targetGrid = _transform.GetGrid(uid);
         var targetStation = _station.GetStationByID(component.ConnectedStation.Value);
         bool tradeStationGrid = false;
+        if (TryComp<GridSelfDeleteComponent>(targetGrid, out var gridDelete))
+        {
+            return false;
+        }
         if (TryComp<TradeStationComponent>(targetGrid, out var tradeStation))
         {
             tradeStationGrid = true;
@@ -214,6 +239,10 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
                     return false;
             }
         }
+        if (tradeStationGrid && targetStation != null && tradeStation != null)
+        {
+            _station.AnnounceTradeStationCapture(targetStation.Value, tradeStation);
+        }
         return true;
     }
     private bool ValidatePersonalClaim(EntityUid uid, GridConfigComponent component, bool requireTarget = true)
@@ -235,8 +264,14 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
         limit = levelProto.TileLimit;
         if (limit < 1) return false;
         var targetGrid = _transform.GetGrid(uid);
-        bool tradeStationGrid = false;
-        if (tradeStationGrid) return false;
+        if (TryComp<TradeStationComponent>(targetGrid, out var tradeStation))
+        {
+            return false;
+        }
+        if (TryComp<GridSelfDeleteComponent>(targetGrid, out var gridDelete))
+        {
+            return false;
+        }
         if (targetGrid.HasValue && TryComp<MapGridComponent>(targetGrid, out var targetGridComp))
         {
             var tiles = _mapSystem.GetAllTiles(targetGrid.Value, targetGridComp);
@@ -259,11 +294,7 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
         bool idPresent = false;
 
         var targetGrid = _transform.GetGrid(uid);
-        //bool tradeStationGrid = false;
-        //if (TryComp<TradeStationComponent>(targetGrid, out var tradeStation))
-        //{
-        //    tradeStationGrid = true;
-        //}
+
         if (component.PrivilegedIdSlot.Item is { Valid: true } idCard)
         {
             idPresent = true;
@@ -456,10 +487,10 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
         if (args.StationName == null || args.StationName == "") return;
         StationConfig config = new();
         config.StationPrototype = "StandardNanotrasenStation";
-        _station.InitializeNewStation(config, null, args.StationName, realName);
+        _station.InitializeNewStation(config, null, args.StationName, null, realName);
         if (idCard != null)
         {
-            _popupSystem.PopupEntity($"The station {args.StationName} was created.", idCard.Value);
+            _popupSystem.PopupEntity($"The faction {args.StationName} was created.", idCard.Value);
             _itemSlots.TryEjectToHands(idCard.Value, component.PrivilegedIdSlot, args.Actor);
         }
         TryQueueDel(uid);
@@ -492,7 +523,8 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
 
     private void AfterInteractOn(EntityUid uid, StationTaggerComponent component, AfterInteractEvent args)
     {
-        if (args.Target == null || !TryComp(args.Target, out AccessReaderComponent? accessReader))
+        if (args.Target == null ||
+            !(HasComp<AccessReaderComponent>(args.Target) || HasComp<FactionTaggableComponent>(args.Target)))
             return;
 
         if (!_interactionSystem.InRangeUnobstructed(args.User, (EntityUid)args.Target))
@@ -733,6 +765,14 @@ public sealed class GridConfigSystem : SharedGridConfigSystem
             {
                 errMsg = "Trade stations cannot be claimed by individuals";
             }
+            if (tradeStation.ExperiencePoints < 5)
+            {
+                errMsg = "A minimum of five trade nodes must be on board to claim the trade station.";
+            }
+        }
+        if(TryComp<GridSelfDeleteComponent>(grid, out var deleteGrid))
+        {
+            errMsg = $"This grid is temporary and will self-delete soon. It cannot be claimed.";
         }
         newState = new GridConfigBoundUserInterfaceState(
             idPresent, isOwner, isAuth, component.PersonalMode, controlled, possibleStations,

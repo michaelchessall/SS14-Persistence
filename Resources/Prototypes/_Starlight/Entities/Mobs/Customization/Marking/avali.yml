@@ -15,7 +15,7 @@
   bodyPart: Tail
   groupWhitelist: [ Avali ] # FH + Starlight
   sprites:
-  - sprite: _Starlight/Mobs/Customization/Avali/avali_parts.rsi
+  - sprite: _RMC14/Mobs/Avali/avali_parts.rsi
     state: tail_avalibase
 
 # Stripe one

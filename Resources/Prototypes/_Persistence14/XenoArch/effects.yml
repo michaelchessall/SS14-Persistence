@@ -15,12 +15,14 @@
     - type: MultipleTool
       statusShowBehavior: true
       entries:
-      - behavior: Prying
+      - behavior:
+        - Prying
         useSound:
           path: /Audio/Items/jaws_pry.ogg
         changeSound:
           path: /Audio/Items/change_drill.ogg
-      - behavior: Cutting
+      - behavior:
+        - Cutting
         useSound:
           path: /Audio/Items/jaws_cut.ogg
         changeSound:
@@ -42,12 +44,14 @@
     - type: MultipleTool
       statusShowBehavior: true
       entries:
-      - behavior: Screwing
+      - behavior:
+        - Screwing
         useSound:
           path: /Audio/Items/jaws_pry.ogg
         changeSound:
           path: /Audio/Items/drill_use.ogg
-      - behavior: Anchoring
+      - behavior:
+        - Anchoring
         useSound:
           path: /Audio/Items/jaws_cut.ogg
         changeSound:

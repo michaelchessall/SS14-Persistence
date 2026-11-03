@@ -3,6 +3,7 @@ using Content.Server.Worldgen.Systems.Biomes;
 using Content.Shared.CCVar;
 using Content.Shared.EntityTable;
 using Content.Shared.Ghost;
+using Content.Shared.Ghost.Components;
 using Content.Shared.Mind.Components;
 using JetBrains.Annotations;
 using Robust.Server.GameObjects;

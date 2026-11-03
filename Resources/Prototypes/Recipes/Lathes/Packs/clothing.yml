@@ -414,6 +414,7 @@
   - ClothingMaskScaredMime
   - ClothingNeckStoleChaplain
   - SprayFlowerPin
+  - ClothingUniformJumpsuitTramDriver
 
 - type: latheRecipePack
   id: WinterCoats
@@ -468,6 +469,7 @@
   - ClothingNeckTieRed
   - ClothingNeckTieDet
   - ClothingNeckTieSci
+  - ClothingNeckTieSerious
 
 - type: latheRecipePack
   id: Scarves

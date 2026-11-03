@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: LatheSpeedPrecursor
+  name: Crafting Speed increase
+  description: "Makes crafting 10% faster."
+  targetModule: Precursor
+  maxApplications: 2
+  upgradeValues:
+    - 0.1
+  upgradeType: LatheSpeed

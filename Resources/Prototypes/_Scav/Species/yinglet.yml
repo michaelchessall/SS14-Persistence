@@ -1,0 +1,22 @@
+- type: species
+  id: Yinglet
+  name: species-name-yinglet
+  roundStart: true
+  prototype: MobYinglet
+  defaultSkinTone: "#AD8667FF"
+  dollPrototype: AppearanceYinglet
+  skinColoration: Hues
+  maleFirstNames: NamesYingletMale
+  femaleFirstNames: NamesYingletFemale
+  naming: First
+  minAge: 2
+  youngAge: 6
+  oldAge: 12
+  maxAge: 30
+  defaultSoundsBySex: # TODO: add yinglet sounds
+  - MaleHuman
+  - FemaleHuman
+  - MaleHuman
+  voices: # TODO: add yinglet voices
+  - MaleHuman
+  - FemaleHuman

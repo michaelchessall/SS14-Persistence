@@ -10,3 +10,5 @@ comp-gas-filter-ui-needs-anchor = Anchor it first!
 
 # Moffstation
 comp-gas-filter-filtered-gases = Filtered gases :
+
+comp-gas-filter-filtered-gas-examine = It is filtering [color={$statusColor}]{$filteredGas}[/color].

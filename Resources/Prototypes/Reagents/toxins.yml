@@ -8,10 +8,9 @@
   physicalDesc: reagent-physical-desc-opaque
   contrabandSeverity: Minor
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
-  - !type:PlantAdjustHealth
-    amount: -5
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -33,8 +32,15 @@
   boilingPoint: -127.3
   meltingPoint: -186.4
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 40
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Titanium
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Clown
+    - !type:PlantAdjustNutrient
+      amount: 2
+      nutrient: Plasma
   metabolisms:
     Bloodstream:
       effects:
@@ -70,22 +76,34 @@
   allowedDepartments:
   - Medical
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
-  - !type:PlantAdjustHealth
-    amount: -5
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
       - !type:HealthChange
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         damage:
           types:
             Poison: 4
       - !type:PopupMessage
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         type: Local
         visualType: MediumCaution
         messages: [ "generic-reagent-effect-burning-insides" ]
         probability: 0.33
+      - !type:Drunk # Scav
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+        boozePower: 10
 
 - type: reagent
   id: ChloralHydrate
@@ -102,7 +120,6 @@
       effects:
       - !type:Emote
         emote: Yawn
-        showInChat: true
         probability: 0.1
       - !type:MovementSpeedModifier
         walkSpeedModifier: 0.65
@@ -132,11 +149,18 @@
     Bloodstream:
       effects:
         - !type:HealthChange
+          conditions: # Scav
+          - !type:MetabolizerTypeCondition
+            type: [ Yinglet ]
+            inverted: true
           damage:
             types:
               Poison: 2
         - !type:Vomit
           conditions:
+          - !type:MetabolizerTypeCondition # Scav
+            type: [ Yinglet ]
+            inverted: true
           - !type:ReagentCondition
             reagent: GastroToxin
             min: 2
@@ -171,8 +195,9 @@
   boilingPoint: 78.2 # This isn't a real chemical...
   meltingPoint: -19.4
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 20
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Acid
   - !type:PlantAdjustWeeds
     amount: -4
   - !type:PlantAdjustHealth
@@ -217,7 +242,8 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: -1.5
       - !type:HealthChange
         ignoreResistances: true
@@ -237,6 +263,14 @@
   color: "#5050ff"
   boilingPoint: 165
   meltingPoint: -87
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1.5
+    nutrient: Acid
+  - !type:PlantAdjustWeeds
+    amount: -3
+  - !type:PlantAdjustHealth
+    amount: -6
   reactiveEffects:
     Acidic:
       methods: [ Touch ]
@@ -280,8 +314,9 @@
   boilingPoint: 337.0
   meltingPoint: 10.31
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Acid
   - !type:PlantAdjustWeeds
     amount: -2
   - !type:PlantAdjustHealth
@@ -331,6 +366,7 @@
   plantMetabolism:
   - !type:PlantAdjustMutationLevel
     amount: 1
+    mutationTable: RandomPlantMutations
   metabolisms:
     Bloodstream:
       effects:
@@ -355,8 +391,9 @@
           types:
             Asphyxiation: 5
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Toxin
 
 - type: reagent
   id: Lexorin
@@ -384,8 +421,9 @@
   flavor: bitter
   color: "#77b58e"
   plantMetabolism:
-  - !type:PlantAdjustToxins
-    amount: 10
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -451,15 +489,15 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [Animal] # Applying damage to the mobs with lower metabolism capabilities
+          type: [ Animal, Arachnid ] # Applying damage to the mobs with lower metabolism capabilities
         damage:
           types:
             Poison: 0.4
       - !type:Vomit
         probability: 0.04 #Scaled for time, not metabolismrate.
         conditions:
-          - !type:MetabolizerTypeCondition
-            type: [Animal]
+        - !type:MetabolizerTypeCondition
+          type: [ Animal, Arachnid ]
 
 - type: reagent
   id: TartaricAcid
@@ -484,8 +522,8 @@
       - !type:Vomit
         probability: 0.04 #Scaled for time, not metabolismrate.
         conditions:
-          - !type:MetabolizerTypeCondition
-            type: [Animal]
+        - !type:MetabolizerTypeCondition
+          type: [ Animal, Arachnid ]
 
 - type: reagent
   id: Amatoxin
@@ -500,9 +538,18 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         damage:
           types:
             Poison: 3
+      - !type:Drunk # Scav
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+        boozePower: 5
 
 - type: reagent
   id: VentCrud
@@ -547,13 +594,17 @@
   physicalDesc: reagent-physical-desc-clumpy
   flavor: bitter
   color: "#FFFFE5"
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Protein
   metabolisms:
     Bloodstream:
       effects:
       - !type:PopupMessage
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Goblin ]
+          type: [ Animal, Vox, Arachnid, Goblin, Yinglet ] # Scav: Add Yinglet
           inverted: true
         type: Local
         visualType: MediumCaution
@@ -563,12 +614,12 @@
         probability: 0.1
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Goblin ]
+          type: [ Animal, Vox, Plant, Arachnid, Goblin, Yinglet ] # Scav: Add Yinglet
           inverted: true
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Vox, Plant, Goblin ]
+          type: [ Animal, Vox, Plant, Arachnid, Goblin, Yinglet ] # Scav: Add Yinglet
           inverted: true
         damage:
           types:
@@ -583,13 +634,25 @@
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal ]
+          type: [ Animal, Arachnid ]
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Goblin ]
+        reagent: Protein
+        amount: 0.5
+      - !type:AdjustReagent
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Goblin ]
+        reagent: Protein
+        amount: 0.5
+      - !type:AdjustReagent # Scav
+        conditions:
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
         reagent: Protein
         amount: 0.5
       - !type:AdjustReagent
@@ -617,28 +680,10 @@
           reagent: Allicin
           min: 1
         - !type:MetabolizerTypeCondition
-          type: [Animal]
+          type: [ Animal ]
         damage:
           types:
             Poison: 0.1
-
-- type: reagent
-  id: Pax
-  name: reagent-name-pax
-  group: Narcotics
-  desc: reagent-desc-pax
-  physicalDesc: reagent-physical-desc-soothing
-  allowedDepartments:
-  - Security
-  - Medical
-  color: "#AAAAAA"
-  metabolisms:
-    Bloodstream:
-      effects:
-      - !type:GenericStatusEffect
-        key: Pacified
-        component: Pacified
-        time: 4
 
 - type: reagent
   id: Honk
@@ -648,13 +693,16 @@
   physicalDesc: reagent-physical-desc-pungent
   flavor: bitter
   color: "#F2E9D2"
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Clown
   metabolisms:
     Bloodstream:
       metabolismRate: 0.05
       effects:
       - !type:Emote
         emote: Honk
-        showInChat: true
         showInGuidebook: true
         force: true
         probability: 0.2
@@ -664,7 +712,7 @@
           reagent: Honk
           min: 1
         - !type:MetabolizerTypeCondition
-          type: [ Animal ]
+          type: [ Animal, Arachnid ]
         damage:
           types:
             Poison: 0.06
@@ -700,6 +748,10 @@
       metabolismRate: 0.2
       effects:
       - !type:HealthChange
+        conditions: # Scav
+        - !type:MetabolizerTypeCondition
+          type: [ Yinglet ]
+          inverted: true
         damage:
           types:
             Poison: 1.8
@@ -714,10 +766,12 @@
   flavor: medicine
   color: "#435166"
   plantMetabolism:
-  - !type:PlantMutateChemicals
-    randomPickBotanyReagent: EvilRandomFillSolution
-  - !type:PlantAdjustToxins
-    amount: 10
+  - !type:PlantAdjustMutationLevel
+    amount: 1
+    mutationTable: EvilPlantMutations
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Toxin
   metabolisms:
     Bloodstream:
       effects:
@@ -767,12 +821,14 @@
       effects:
       - !type:HealthChange
         conditions:
-        - !type:HungerCondition
+        - !type:SatiationCondition
+          satiationType: Hunger
           max: 50
         damage:
           types:
             Poison: 2
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         factor: -6
 
 # inspired by the spider neurotoxin GsMtx-4
@@ -828,7 +884,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         factor: 1
         conditions:
         - !type:MetabolizerTypeCondition
@@ -852,3 +909,95 @@
         type: Update
       - !type:ModifyBleed
         amount: 0.5
+
+- type: reagent
+  id: Hivarol
+  name: reagent-name-hivarol
+  group: Toxins
+  desc: reagent-desc-hivarol
+  physicalDesc: reagent-physical-desc-sickly
+  flavor: sharp
+  color: "#96424f"
+  metabolisms:
+    Bloodstream:
+      effects:
+      - !type:HealthChange
+        conditions:
+        - !type:ReagentCondition
+          reagent: Hivarol
+          min: 4
+        - !type:MetabolizerTypeCondition
+          type: [ Changeling ]
+        damage:
+          types:
+            Shock: 3
+      - !type:PopupMessage
+        conditions:
+        - !type:ReagentCondition
+          reagent: Hivarol
+          min: 4
+        - !type:MetabolizerTypeCondition
+          type: [ Changeling ]
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.33
+      - !type:Emote
+        conditions:
+        - !type:ReagentCondition
+          reagent: Hivarol
+          min: 4
+        - !type:MetabolizerTypeCondition
+          type: [ Changeling ]
+        emote: Scream
+        probability: 0.5
+      - !type:Jitter
+        conditions:
+        - !type:ReagentCondition
+          reagent: Hivarol
+          min: 4
+        - !type:MetabolizerTypeCondition
+          type: [ Changeling ]
+
+- type: reagent
+  id: PhosphoricAcid
+  name: reagent-name-phosphoric-acid
+  desc: reagent-name-phosphoric-acid
+  physicalDesc: reagent-physical-desc-oily
+  group: Toxins
+  flavor: sour
+  color: "#236931" # Not actually green IRL but is often dyed green when diluted.
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Fertilizer
+  - !type:PlantAdjustHealth
+    amount: -0.5
+  reactiveEffects:
+    Acidic:
+      methods: [ Touch ]
+      effects:
+      - !type:HealthChange
+        ignoreResistances: false
+        damage:
+          types:
+            Caustic: 0.1
+      - !type:Emote
+        emote: Scream
+        probability: 0.1
+  metabolisms:
+    Bloodstream:
+      metabolismRate: 0.2 # Phosphoric Acid is a relatively slow acid.
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Caustic: 0.3
+      - !type:PopupMessage
+        type: Local
+        visualType: Large
+        messages: [ "generic-reagent-effect-burning-insides" ]
+        probability: 0.2
+      - !type:Emote
+        emote: Scream
+        probability: 0.1

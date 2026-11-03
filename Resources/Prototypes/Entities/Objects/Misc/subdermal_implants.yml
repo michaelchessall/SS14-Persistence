@@ -45,13 +45,8 @@
     enabled: false
     radius: 2.5
     softness: 5
-    mask: /Textures/Effects/LightMasks/cone.png
+    lightMask: ConeSingle
     autoRot: true
-  - type: Tag
-    tags:
-    - SubdermalImplant
-    - HideContextMenu
-    - Flashlight
   - type: UnpoweredFlashlight
 
 - type: entity
@@ -70,9 +65,6 @@
       collection: BikeHorn
       params:
         variation: 0.125
-  - type: Tag
-    tags:
-    - BikeHorn
 
 #Security implants
 
@@ -171,6 +163,7 @@
       enum.JobNetUiKey.Key:
         type: JobNetBoundUserInterface
   - type: JobNet
+  - type: RumorGetter
 
 - type: entity
   parent: [ BaseSubdermalImplant, StorePresetUplink ]
@@ -184,9 +177,7 @@
     whitelist:
       components:
       - Hands # prevent mouse buying grenade penguin since its not telepathic
-  - type: Store
-    balance:
-      Telecrystal: 0
+  - type: RemoteStore
   - type: UserInterface
     interfaces:
       enum.StoreUiKey.Key:
@@ -270,9 +261,6 @@
     interfaces:
       enum.VoiceMaskUIKey.Key:
         type: VoiceMaskBoundUserInterface
-  - type: Tag
-    tags:
-    - SubdermalImplant
 
 #Nuclear Operative/Special Exclusive implants
 
@@ -344,10 +332,6 @@
       intensitySlope: 15
       maxIntensity: 70
       canCreateVacuum: true
-    - type: Tag
-      tags:
-      - SubdermalImplant
-      - HideContextMenu
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -369,10 +353,6 @@
   - type: SpawnOnTrigger
     proto: Acidifier
     predicted: true
-  - type: Tag
-    tags:
-    - SubdermalImplant
-    - HideContextMenu
 
 - type: entity
   parent: BaseSubdermalImplant
@@ -402,9 +382,7 @@
   components:
   - type: SubdermalImplant
     implantAction: FakeMindShieldToggleAction
-    implantComponents:
-    - type: FakeMindShield # TODO: put the component on the implant and use implant relay events for the status icon
-  - type: FakeMindShieldImplant
+  - type: FakeMindShield
 
 # Sec and Command implants
 
@@ -417,6 +395,7 @@
   components:
    - type: SubdermalImplant
    - type: MindShieldImplant
+   - type: MindShield
 
 # Centcomm implants
 

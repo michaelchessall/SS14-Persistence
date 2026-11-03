@@ -7,7 +7,7 @@ using Robust.Shared.Audio.Systems;
 
 namespace Content.Server.DeviceLinking.Systems;
 
-public sealed class SignalSwitchSystem : EntitySystem
+public sealed partial class SignalSwitchSystem : EntitySystem
 {
     [Dependency] private readonly DeviceLinkSystem _deviceLink = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
@@ -45,7 +45,9 @@ public sealed class SignalSwitchSystem : EntitySystem
             _deviceLink.SendSignal(uid, comp.StatusPort, comp.State);
         }
 
-        _audio.PlayPvs(comp.ClickSound, uid, AudioParams.Default.WithVariation(0.125f).WithVolume(8f));
+        var audioParams = comp.ClickSound?.Params ?? AudioParams.Default;
+        audioParams = audioParams.WithVariation(0.125f).AddVolume(8f);
+        _audio.PlayPvs(comp.ClickSound, uid, audioParams);
 
         UpdateVisualState(uid, comp);
 

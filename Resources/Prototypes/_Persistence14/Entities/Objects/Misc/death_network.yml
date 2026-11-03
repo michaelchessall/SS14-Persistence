@@ -6,3 +6,4 @@
   - type: DeathNetworkSpeaker
   - type: Speech # Borg voice
     speechVerb: Robotic
+  - type: TelecomExempt

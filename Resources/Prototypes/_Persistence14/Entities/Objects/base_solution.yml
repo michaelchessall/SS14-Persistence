@@ -1,0 +1,48 @@
+# this is used to allow organs to be turned into biomass in the biogenerator
+- type: entity
+  parent: SolutionFood
+  id: SolutionBiomassMiniscule
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 2
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 2
+
+# used by our port of funky's stain implementation
+- type: entity
+  parent: Solution
+  id: SolutionStain
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    id: stain
+    solution:
+      maxVol: 5
+
+# used by our port of funky's stain implementation
+- type: entity
+  parent: Solution
+  id: SolutionFiberClothes
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 10
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+
+- type: entity
+  parent: Solution
+  id: SolutionFiberClothesLarge
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 30

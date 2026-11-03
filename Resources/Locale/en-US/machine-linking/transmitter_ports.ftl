@@ -75,3 +75,21 @@ signal-port-description-power-discharging = This port is invoked with HIGH when 
 
 signal-port-name-item-detected = Detected
 signal-port-description-item-detected = This port is invoked whenever the transmitter detects an item.
+
+signal-port-name-power-charge-level0 = 0%
+signal-port-description-power-charge-level0 = This port is invoked when the battery is empty.
+
+signal-port-name-power-charge-level1 = >0% - 25%
+signal-port-description-power-charge-level1 = This port is invoked when the battery is between >0% and 25%.
+
+signal-port-name-power-charge-level2 = 25% - 50%
+signal-port-description-power-charge-level2 = This port is invoked when the battery is between 25% and 50%.
+
+signal-port-name-power-charge-level3 = 50% - 75%
+signal-port-description-power-charge-level3 = This port is invoked when the battery is between 50% and 75%.
+
+signal-port-name-power-charge-level4 = 75% - <100%
+signal-port-description-power-charge-level4 = This port is invoked when the battery is between 75% and <100%.
+
+signal-port-name-power-charge-level5 = 100%
+signal-port-description-power-charge-level5 = This port is invoked when the battery is full.

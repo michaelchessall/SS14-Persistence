@@ -1,0 +1,34 @@
+- type: codexCategory
+  id: Nexus
+  name: Nexus Space
+  order: 0
+
+- type: codexCategory
+  id: Zenith
+  name: Solar Legion
+  order: 2
+
+- type: codexCategory
+  id: Green
+  name: Nanotrasen
+  order: 3
+
+- type: codexCategory
+  id: Precursor
+  name: Syndicate
+  order: 4
+
+- type: codexCategory
+  id: Shadow
+  name: The Elders
+  order: 5
+
+- type: codexCategory
+  id: Marine
+  name: UNMC Remnant
+  order: 6
+
+- type: codexCategory
+  id: Luminal
+  name: Luminals
+  order: 7

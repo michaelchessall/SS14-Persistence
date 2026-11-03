@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
 using Content.Shared.Teleportation.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
@@ -16,7 +17,7 @@ public sealed partial class LinkedEntityComponent : Component
     ///     The entities that this entity is linked to.
     /// </summary>
     [DataField, AutoNetworkedField]
-    public HashSet<EntityUid> LinkedEntities = new();
+    public HashSet<PersistentEntityReference> LinkedEntities = new();
 
     /// <summary>
     ///     Should this entity be deleted if all of its links are removed?

@@ -1,4 +1,5 @@
 - type: entity
+  parent: BaseMachineDestructible
   id: RadiationCollector
   name: radiation collector
   suffix: Empty tank
@@ -86,6 +87,18 @@
           - GasTank
   - type: UseDelay
     delay: 1
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 175
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+  - type: Upgradeable
+    upgrades:
+      RadiationCollectorPowerShadow : 0
 
 - type: entity
   id: RadiationCollectorNoTank

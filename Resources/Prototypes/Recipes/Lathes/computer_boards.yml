@@ -127,6 +127,11 @@
   result: ResearchComputerCircuitboard
   unlockUses: 4
 
+- type: latheRecipe
+  parent: [ BaseGoldCircuitboardRecipe, BaseResearchComputerRecipeCategory ]
+  id: StationTeleportersControlCircuitboard
+  result: StationTeleportersControlCircuitboard
+
 # Cameras
 
 - type: latheRecipe

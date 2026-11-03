@@ -12,7 +12,8 @@
       metabolites:
         Theobromine: 0.1
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
@@ -50,7 +51,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 1
 
 - type: reagent
@@ -64,7 +66,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 4 # Coconut water is 94% water
 
 - type: reagent
@@ -91,7 +94,8 @@
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Goblin]  # Goblins vomit when eating sugar
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
 
 - type: reagent
@@ -111,7 +115,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
@@ -169,7 +174,8 @@
       metabolites:
         Theobromine: 0.1
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
@@ -223,7 +229,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
       - !type:HealthChange
         damage:
           types:
@@ -260,7 +267,8 @@
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Goblin]  # Goblins vomit when eating sugar
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
 
 - type: reagent
@@ -273,14 +281,17 @@
   color: "#DFDFDF"
   recognizable: true
   plantMetabolism:
-    - !type:PlantAdjustNutrition
-      amount: 0.1
-    - !type:PlantAdjustWater
-      amount: 0.9
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 0.1
+    nutrient: Protein
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 0.9
+    nutrient: Water
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 4
 
 - type: reagent
@@ -288,6 +299,12 @@
   parent: Milk
   name: reagent-name-milk-goat
   desc: reagent-desc-milk-goat
+
+- type: reagent
+  id: MilkSheep
+  parent: Milk
+  name: reagent-name-milk-sheep
+  desc: reagent-desc-milk-sheep
 
 - type: reagent
   id: MilkOat
@@ -301,7 +318,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 4
 
 - type: reagent
@@ -324,7 +342,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: -2
 
 - type: reagent
@@ -336,7 +355,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
         # TODO heal mimes
 
@@ -358,7 +378,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 6
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
@@ -410,7 +431,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 2
       - !type:ModifyStatusEffect
         effectProto: StatusEffectDrowsiness
@@ -471,7 +493,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 4
     Respiration:
       effects:
@@ -502,11 +525,13 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 3 # Slightly worse for quenching thirst than just straight water
   plantMetabolism:
-  - !type:PlantAdjustWater
-    amount: 1 # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 1
+    nutrient: Water # The internet tells me I should avoid watering plants with ice, but mostly because of temperature, so this value being the same as water should probably be fine?
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/iceglass.rsi
     state: icon_empty
@@ -525,7 +550,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         factor: 1
 
 - type: reagent
@@ -539,7 +565,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         factor: 4
 
 - type: reagent
@@ -561,7 +588,8 @@
       metabolites:
         Theobromine: 0.1
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 4
 
 - type: reagent
@@ -575,7 +603,8 @@
   metabolisms:
     Digestion:
       effects:
-        - !type:SatiateThirst
+        - !type:Satiate
+          satiationType: Thirst
           factor: 1
         - !type:PopupMessage
           conditions:
@@ -644,7 +673,8 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: 0.6
 
 - type: reagent

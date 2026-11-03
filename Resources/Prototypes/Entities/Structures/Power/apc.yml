@@ -109,8 +109,9 @@
     layoutId: APC
   - type: WiresVisuals
   - type: Damageable
-    damageContainer: StructuralInorganic
     damageModifierSet: StructuralMetallicStrong
+  - type: Injurable
+    damageContainer: StructuralInorganic
   - type: Destructible
     thresholds:
     - trigger:
@@ -152,6 +153,10 @@
     guides:
     - VoltageNetworks
     - Power
+  - type: Upgradeable
+    upgrades:
+      ApcMaxLoadGreen : 0
+
 
 # APC under construction
 - type: entity

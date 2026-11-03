@@ -9,13 +9,13 @@ using Robust.Shared.Timing;
 namespace Content.Shared.Xenoarchaeology.Equipment;
 
 /// <summary> Controls behaviour of artifact node scanner device. </summary>
-public sealed class NodeScannerSystem : EntitySystem
+public sealed partial class NodeScannerSystem : EntitySystem
 {
     [Dependency] private readonly UseDelaySystem _useDelay = default!;
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly SharedUserInterfaceSystem _ui = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private PersistentIdentifierSystem _pid = default!;
+    [Dependency] private readonly PersistentIdentifierSystem _pid = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -87,9 +87,6 @@ public sealed class NodeScannerSystem : EntitySystem
         EntityUid actor
     )
     {
-        if (!_timing.IsFirstTimePredicted)
-            return;
-
         if (TryComp(device, out UseDelayComponent? useDelay)
             && !_useDelay.TryResetDelay((device, useDelay), true))
             return;

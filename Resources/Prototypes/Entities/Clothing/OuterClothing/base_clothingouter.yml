@@ -12,20 +12,19 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: outerclothing
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: outerclothing
-  - type: SolutionContainerManager # Funky: Footprints & Stains
+  - type: SolutionManager
     solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 30
-      stain:
-        maxVol: 5
+    - SolutionStain
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 30
   - type: StainBlocker # Funky: Footprints & Stains
     slots: [INNERCLOTHING]
 
@@ -46,10 +45,44 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: suitblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
+      state: suitbloodicon
+  - type: StainBlocker # Funky: Footprints & Stains
+    slots: [INNERCLOTHING, FEET, GLOVES]
+
+- type: entity
+  abstract: true
+  parent: [ ClothingOuterBaseLarge, TemperatureProtectionGood ]
+  id: ClothingOuterBaseLargeInsulated
+  components:
+  - type: Stainable # Funky: Footprints & Stains
+    clothingVisuals:
+      outerClothing:
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
+        state: suitblood
+    iconVisuals:
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
+      state: suitbloodicon
+  - type: StainBlocker # Funky: Footprints & Stains
+    slots: [INNERCLOTHING, FEET, GLOVES]
+
+- type: entity
+  abstract: true
+  parent: [ ClothingOuterBaseLarge, TemperatureProtectionGreat ]
+  id: ClothingOuterBaseLargeFireproof
+  components:
+  - type: FireProtection
+    reduction: 0.65
+  - type: Stainable # Funky: Footprints & Stains
+    clothingVisuals:
+      outerClothing:
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
+        state: suitblood
+    iconVisuals:
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: suitbloodicon
   - type: StainBlocker # Funky: Footprints & Stains
     slots: [INNERCLOTHING, FEET, GLOVES]
@@ -80,18 +113,35 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: coatblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: coatbloodicon
+
+- type: entity
+  abstract: true
+  parent: [SolutionFood, SolutionNormal, ClothingOuterStorageBase]
+  id: ClothingOuterStorageEdible
+  components:
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 60
+
+- type: entity
+  abstract: true
+  parent: [ ClothingOuterStorageEdible, TemperatureProtectionMinimal]
+  id: ClothingOuterJacketBase
 
 - type: entity
   abstract: true
   parent: [ClothingOuterStorageBase, BaseFoldable]
   id: ClothingOuterStorageFoldableBase
   components:
-  - type: Appearance
   - type: Foldable
     canFoldInsideContainer: true
     unfoldVerbText: fold-zip-verb
@@ -109,10 +159,10 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       outerClothing:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: outerclothing
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: outerclothing
 
 - type: entity
@@ -138,8 +188,8 @@
 
 - type: entity
   abstract: true
-  parent: ClothingOuterStorageBase
-  id: ClothingOuterStorageToggleableBase
+  parent: ClothingOuterJacketBase
+  id: ClothingOuterJacketToggleableBase
   components:
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterDefault
@@ -152,25 +202,45 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterBase, GeigerCounterClothing, AllowSuitStorageClothing]
-  id: ClothingOuterHardsuitBase
-  name: base hardsuit
+  parent: [ClothingOuterBaseLargeInsulated, AllowSuitStorageClothing]
+  id: ClothingOuterEVASuitBase
+  name: base EVA Suit
   components:
 # SlotBlocker blocked until UI change
 #  - type: SlotBlock
 #    slots: [innerclothing, feet]
   - type: PressureProtection
-    highPressureMultiplier: 0.3
+    highPressureMultiplier: 0.6
     lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.01
-    coolingCoefficient: 0.01
+  - type: ClothingSpeedModifier
+    walkModifier: 0.8
+    sprintModifier: 0.8
+  - type: ProtectedFromStepTriggers
+    slots: WITHOUT_POCKET
+  - type: DamageOnInteractProtection
+    damageProtection:
+      flatReductions:
+        Heat: 10 # the average lightbulb only does around four damage!
+    slots: OUTERCLOTHING
+  - type: HideLayerClothing
+    slots:
+    - Tail
+
+- type: entity
+  abstract: true
+  parent: [ ClothingOuterEVASuitBase, GeigerCounterClothing ]
+  id: ClothingOuterHardsuitBase
+  name: base hardsuit
+  components:
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
   - type: ClothingSpeedModifier
     walkModifier: 0.6
     sprintModifier: 0.6
-  - type: HeldSpeedModifier
   - type: Item
     size: Ginormous
+    shape:
+    - 0,0,4,5
   - type: Armor
     modifiers:
       coefficients:
@@ -181,6 +251,8 @@
         Radiation: 0.25
   - type: ToggleableClothing
     slot: head
+    verbText: toggle-clothing-verb-helmet
+    action: ActionToggleSuitPiece
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}
@@ -204,47 +276,14 @@
 
 - type: entity
   abstract: true
-  parent: [ClothingOuterBase, AllowSuitStorageClothing]
-  id: ClothingOuterEVASuitBase
-  name: base EVA Suit
-  components:
-# SlotBlocker blocked until UI change
-#  - type: SlotBlock
-#    slots: [innerclothing, feet]
-  - type: PressureProtection
-    highPressureMultiplier: 0.6
-    lowPressureMultiplier: 1000
-  - type: TemperatureProtection
-    heatingCoefficient: 0.01 # Not complete protection from fire
-    coolingCoefficient: 0.01
-  - type: ClothingSpeedModifier
-    walkModifier: 0.8
-    sprintModifier: 0.8
-  - type: HeldSpeedModifier
-  - type: Item
-    size: Huge
-  - type: ProtectedFromStepTriggers
-    slots: WITHOUT_POCKET
-  - type: DamageOnInteractProtection
-    damageProtection:
-      flatReductions:
-        Heat: 10 # the average lightbulb only does around four damage!
-    slots: OUTERCLOTHING
-  - type: HideLayerClothing
-    slots:
-    - Tail
-  - type: StainBlocker # Funky: Footprints & Stains
-    slots: [INNERCLOTHING, FEET, GLOVES]
-
-- type: entity
   parent: ClothingOuterBase
   id: ClothingOuterBaseToggleable
   name: hoodie with hood
-  abstract: True
   components:
   - type: ToggleableClothing
     clothingPrototype: ClothingHeadHatHoodWinterDefault
     slot: head
+    verbText: toggle-clothing-verb-hood
   - type: ContainerContainer
     containers:
       toggleable-clothing: !type:ContainerSlot {}

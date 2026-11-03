@@ -319,7 +319,7 @@ public sealed class BookPublisherSystem : EntitySystem
 
         if (_webhookId != null && actor != null)
         {
-            var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(ent, actor.Value);
+            var tryGetIdentityShortInfoEvent = new TryGetIdentityShortInfoEvent(ent, actor.Value, false);
             RaiseLocalEvent(tryGetIdentityShortInfoEvent);
             string? authorName = tryGetIdentityShortInfoEvent.Title;
 

@@ -1,17 +1,20 @@
 <Document>
-  # Death and What Comes Next
-  This guide will explain death in The Threshold and what you can do about it.
+  # Death
+  This guide will explain death in Persistence and what you can do about it.
 
-  ## Why Not Die?
-  Survival is incredibly imporant in the Threshold! Cloning is rare in the Threshold and many people who die will never be recovered.
-  Once a consciousness has moved on the body it leaves behind is brain-dead and beyond recovery. Any time you die you risk being lost forever.
-  Don't die!
+  Characters in Persistence are typically recoverable and so a dead character usually has two options:
 
-  ## I'm Dead, What Do I Do?
-  When you die in the Threshold an implant we have given you will trap your consciousness right on the edge of oblivion. Don't worry, it doesn't hurt!
-  Remaining in this semi-dead state will prevent your body from rotting. Even if you remain dead for weeks or months you can still be revived by a trained Threshold doctor.
+  ## Death SOS
+    Using the "Death Network" action you can open a menu where you can emit a death SOS.
+    This broadcasts a radio globally which contains the coordinates of your body.
 
-  However, as a safety measure to prevent you from being trapped eternally in a state between life and death you will be able to trigger a failsafe and release your consciousness.
-  Once you do that you'll be dead forever with no chance of recovery. You are strongly advised to wait for rescue for as long as you can.
+    Typically you can be swiftly recovered by a medical department and revived even after a prolonged period of rotting.
+
+  ## Accept Death
+    Using the "Death Network" action you can open a menu where you can accept death.
+    A character that accepts death will be permanently killed and cannot be recreated.
+
+    You will be returned to the lobby to create a new character.
+
 </Document>
 

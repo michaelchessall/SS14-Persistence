@@ -10,7 +10,7 @@ using Content.Shared.Power.EntitySystems;
 
 namespace Content.Shared.Atmos.EntitySystems;
 
-public abstract class SharedGasPressurePumpSystem : EntitySystem
+public abstract partial class SharedGasPressurePumpSystem : EntitySystem
 {
     [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
@@ -36,9 +36,6 @@ public abstract class SharedGasPressurePumpSystem : EntitySystem
 
     private void OnExamined(Entity<GasPressurePumpComponent> ent, ref ExaminedEvent args)
     {
-        if (!Transform(ent).Anchored)
-            return;
-
         if (Loc.TryGetString("gas-pressure-pump-system-examined",
                 out var str,
                 ("statusColor", "lightblue"), // TODO: change with pressure?

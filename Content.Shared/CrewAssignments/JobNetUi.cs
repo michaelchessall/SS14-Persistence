@@ -1,7 +1,10 @@
+using Content.Shared._Persistence14.Codex.Prototypes;
+using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.CrewAssignments.Components;
 using Content.Shared.CrewAssignments.Prototypes;
 using Content.Shared.CrewAssignments.Systems;
+using Content.Shared.CrewMetaRecords;
 using Content.Shared.Precursor;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
@@ -24,27 +27,25 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
     public TimeSpan? RemainingMinutes;
     public List<WorldObjectivesEntry> CurrentObjectives;
     public List<WorldObjectivesEntry> CompletedObjectives;
-    public List<CodexEntry> CodexEntries;
+    public List<ProtoId<CodexEntryPrototype>> CodexEntries;
     public ProtoId<NetworkLevelPrototype> Level;
     public int Balance;
     public bool SpendAuth;
     public int Spent;
     public int Spendable;
-    public int Precursor;
-    public List<ProtoId<PrecursorObjectivePrototype>> Objectives;
-    public TimeSpan PrecursorResetTime;
-    public ProtoId<RogueLevelPrototype> RogueLevel;
-    public int XP;
-    public RogueNetworkType NetworkType;
-    public string SecretPhrase;
-    public string? KillTarget;
-    public CargoBountyData? DealerObjective;
-    public string? DealerObjectiveStation;
-    public TimeSpan RogueObjectiveResetTime;
-    public int SectorChaos;
-    public int SectorDevelopment;
     public string SectorStatus;
-    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<CodexEntry> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, int precursor, List<ProtoId<PrecursorObjectivePrototype>> objectives, TimeSpan precursorResetTime, ProtoId<RogueLevelPrototype> rogueLevel, int xP, RogueNetworkType networkType, string secretPhrase, string? killTarget, CargoBountyData? bountyData, string? stationName, TimeSpan rogueReset, int sectorChaos, int sectorDevelopment, string sectorStatus)
+    public Dictionary<ProtoId<MetaFactionPrototype>, int> MetaFactionReputations = new();
+    public List<ActiveRumor> Rumors = new();
+    public TimeSpan? RumorCooldown;
+    public int RumorTax;
+    public Dictionary<string, DirectMessageConversation>? DirectMessages;
+    public Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> RumorRewards;
+    public TimeSpan? RewardCooldown;
+    public List<ProtoId<InsightTraitPrototype>> UnlockedInsights = new();
+    public int CodexUnlocksSince = 0;
+    public int UnspentInsights = 0;
+    public bool SectorAwake;
+    public JobNetUpdateState(Dictionary<int, string>? stations, string? assignmentName, int? wage, int selectedStation, TimeSpan? remainingMinutes, List<WorldObjectivesEntry> currentObjectives, List<WorldObjectivesEntry> completedObjectives, List<ProtoId<CodexEntryPrototype>> codexEntries, ProtoId<NetworkLevelPrototype> level, int balance, bool spendAuth, int spent, int spendable, string sectorStatus, Dictionary<ProtoId<MetaFactionPrototype>, int> metaFactionReputations, List<ActiveRumor> rumors, TimeSpan? rumorCooldown, int rumorTax, Dictionary<string, DirectMessageConversation>? directMessages, Dictionary<ProtoId<MetaFactionPrototype>, Dictionary<ProtoId<MetaFactionLevelPrototype>, List<ActiveRumorReward>>> rumorRewards, TimeSpan? rewardCooldown, List<ProtoId<InsightTraitPrototype>> unlockedInsights, int codexUnlocksSince, int unspentInsights, bool sectorAwake)
     {
         Stations = stations;
         AssignmentName = assignmentName;
@@ -59,20 +60,18 @@ public sealed class JobNetUpdateState : BoundUserInterfaceState
         SpendAuth = spendAuth;
         Spent = spent;
         Spendable = spendable;
-        Precursor = precursor;
-        Objectives = objectives;
-        PrecursorResetTime = precursorResetTime;
-        RogueLevel = rogueLevel;
-        XP = xP;
-        NetworkType = networkType;
-        SecretPhrase = secretPhrase;
-        KillTarget = killTarget;
-        DealerObjective = bountyData;
-        DealerObjectiveStation = stationName;
-        RogueObjectiveResetTime = rogueReset;
-        SectorChaos = sectorChaos;
-        SectorDevelopment = sectorDevelopment;
         SectorStatus = sectorStatus;
+        MetaFactionReputations = metaFactionReputations;
+        Rumors = rumors;
+        RumorCooldown = rumorCooldown;
+        RumorTax = rumorTax;
+        DirectMessages = directMessages;
+        RumorRewards = rumorRewards;
+        RewardCooldown = rewardCooldown;
+        UnlockedInsights = unlockedInsights;
+        CodexUnlocksSince = codexUnlocksSince;
+        UnspentInsights = unspentInsights;
+        SectorAwake = sectorAwake;
     }
 }
 
@@ -92,6 +91,52 @@ public sealed class JobNetSelectMessage : BoundUserInterfaceMessage
     }
 }
 
+[Serializable, NetSerializable]
+public sealed class JobNetCancelRumorMessage : BoundUserInterfaceMessage
+{
+    public int ID;
+    public JobNetCancelRumorMessage(int id)
+    {
+        ID = id;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class JobNetInsightPurchaseMessage : BoundUserInterfaceMessage
+{
+    public string Target;
+    public JobNetInsightPurchaseMessage(string target)
+    {
+        Target = target;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class JobNetTransferRumorMessage : BoundUserInterfaceMessage
+{
+    public int ID;
+    public string Target;
+    public JobNetTransferRumorMessage(int id, string target)
+    {
+        ID = id;
+        Target = target;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class JobNetRumorRewardPurchaseMessage : BoundUserInterfaceMessage
+{
+    public JobNetRumorRewardPurchaseMessage(ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID)
+    {
+        RewardID = rewardID;
+        LevelID = levelID;
+        FactionID = factionID;
+    }
+
+    public ProtoId<RumorRewardPrototype> RewardID { get; }
+    public ProtoId<MetaFactionLevelPrototype> LevelID { get; }
+    public ProtoId<MetaFactionPrototype> FactionID { get; }
+}
 
 [Serializable, NetSerializable]
 public sealed class JobNetPurchaseMessage : BoundUserInterfaceMessage

@@ -37,6 +37,7 @@
             <Control MinWidth="10"/>
             <LineEdit Name="GridNameLineEdit" HorizontalExpand="True" Access="Public" PlaceHolder="New Grid Name"/>
             <Button Name="GridNameBtn" Text="Save" Access="Public" />
-        </BoxContainer>        
+        </BoxContainer>
+        <RichTextLabel Name="ErrorLabel" />
     </BoxContainer>
 </DefaultWindow>

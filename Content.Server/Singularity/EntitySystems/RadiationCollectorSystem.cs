@@ -17,13 +17,13 @@ using System.Linq;
 
 namespace Content.Server.Singularity.EntitySystems;
 
-public sealed class RadiationCollectorSystem : EntitySystem
+public sealed partial class RadiationCollectorSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly PopupSystem _popupSystem = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly UseDelaySystem _useDelay = default!;
+    [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private PopupSystem _popupSystem = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private UseDelaySystem _useDelay = default!;
 
     private const string GasTankContainer = "gas_tank";
 
@@ -39,6 +39,13 @@ public sealed class RadiationCollectorSystem : EntitySystem
         SubscribeLocalEvent<RadiationCollectorComponent, EntInsertedIntoContainerMessage>(OnTankChanged);
         SubscribeLocalEvent<RadiationCollectorComponent, EntRemovedFromContainerMessage>(OnTankChanged);
         SubscribeLocalEvent<NetworkBatteryPostSync>(PostSync);
+    }
+
+    public void SetChargeModifier(EntityUid uid, float modifier, RadiationCollectorComponent? component = null)
+    {
+        if (!Resolve(uid, ref component))
+            return;
+        component.ChargeModifier = modifier;
     }
 
     private bool TryGetLoadedGasTank(EntityUid uid, [NotNullWhen(true)] out GasTankComponent? gasTankComponent)

@@ -72,22 +72,31 @@
 - type: entity
   parent: MobHuman
   suffix: Dead
-  save: true # mobs are currently not saveable.
   id: SalvageHumanCorpse
   name: unidentified corpse
-  description: I think they're dead.
   components:
   - type: RandomHumanoidAppearance
-    randomizeName: false
-  - type: Damageable
-    damage:
-      types:
-        Bloodloss: 49
-        Asphyxiation: 76
-        Slash: 56
-        Blunt: 19
+    randomizeName: true
+  - type: RumorHealingTarget
+    possibleDamageTypes:
+    - Blunt
+    - Slash
+    - Piercing
+    - Heat
+    - Shock
+    - Cold
+    - Caustic
+    - Asphyxiation
+    - Radiation
   - type: Inventory
     templateId: corpse
+  - type: MobState
+    currentState: Dead
+    allowedStates:
+    - Alive
+    - SoftCritical
+    - HardCritical
+    - Dead
 
 - type: entity
   parent: MobHuman
@@ -98,3 +107,94 @@
   - type: Cluwne
   - type: Speech
     speechVerb: Cluwne
+
+#Persistence 14
+- type: entity
+  parent: MobHuman
+  suffix: Dead
+  id: SalvageZombieHuman
+  name: unidentified corpse
+  components:
+  - type: RandomHumanoidAppearance
+    randomizeName: true
+  - type: NonSpreaderZombie
+  - type: ZombifyOnDeath
+  - type: SalvageMobRestrictions
+  - type: MobState
+    currentState: Alive
+  - type: Damageable
+    damage:
+      types:
+        Slash: 99
+        Blunt: 45
+  - type: Loadout
+    prototypes:
+        - ZombieCivilian
+
+#persistence 14
+
+- type: entity
+  parent: SalvageZombieHuman
+  suffix: Dead
+  id: SalvageZombieBio
+  components:
+  - type: Loadout
+    prototypes:
+        - ZombieBio
+
+- type: entity
+  parent: SalvageZombieHuman
+  suffix: Dead
+  id: SalvageZombieTank
+  components:
+  - type: Damageable
+    damage:
+      types:
+        Slash: 200
+        Blunt: 199
+  - type: MobThresholds
+    thresholds:
+      0: Alive
+      250: SoftCritical
+      400: HardCritical
+      500: Dead
+
+#Persistence 14
+- type: entity
+  name: syndicate civilian
+  parent: SalvageHumanCorpse
+  id: MobSyndicateDeadCivilian
+  components:
+    - type: Loadout
+      prototypes:
+        - SyndicateOperativeGearCivilian
+
+#Persistence 14
+- type: entity
+  name: cultist
+  parent: SalvageHumanCorpse
+  id: MobCultistDead
+  components:
+    - type: Loadout
+      prototypes:
+        - CultistGear
+
+#Persistence 14
+- type: entity
+  name: cultist leader
+  parent: SalvageHumanCorpse
+  id: MobCultistLeaderDead
+  components:
+    - type: Loadout
+      prototypes:
+        - CultLeaderGear
+
+#Persistence 14
+- type: entity
+  name: UNMC footsoldier
+  parent: SalvageHumanCorpse
+  id: MobUNMCDead
+  components:
+    - type: Loadout
+      prototypes:
+        - UNMCFootSoldierGear

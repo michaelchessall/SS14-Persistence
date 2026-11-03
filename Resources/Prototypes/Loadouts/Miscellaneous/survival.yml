@@ -19,7 +19,9 @@
     - Moth
     - Reptilian
     - Vulpkanin
-    - Avali
+    - Avali # Persistence
+    - Yinglet # Scav
+    - NeoAvian # Scav
 
 - type: loadoutEffectGroup # Persistance14 Edit
   id: EffectSpeciesAvali
@@ -62,7 +64,7 @@
     proto: OxygenBreather
   storage:
     back:
-    - BoxHug
+    - BoxSurvivalHug
 
 - type: loadout
   id: EmergencyNitrogenClown
@@ -71,54 +73,7 @@
     proto: NitrogenBreather
   storage:
     back:
-    - BoxHugNitrogen
-
-# Mime
-- type: loadoutEffectGroup
-  id: OxygenBreatherMime
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Arachnid
-    - Diona
-    - Dwarf
-    - Human
-    - Reptilian
-    - Vulpkanin
-
-- type: loadoutEffectGroup
-  id: OxygenBreatherMimeMoth
-  effects:
-  - !type:SpeciesLoadoutEffect
-    species:
-    - Moth
-
-- type: loadout
-  id: EmergencyOxygenMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: OxygenBreatherMime
-  storage:
-    back:
-    - BoxMime
-
-- type: loadout
-  id: EmergencyNitrogenMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: NitrogenBreather
-  storage:
-    back:
-    - BoxMimeNitrogen
-
-- type: loadout
-  id: EmergencySpeciesMothMime
-  effects:
-  - !type:GroupLoadoutEffect
-    proto: OxygenBreatherMimeMoth
-  storage:
-    back:
-    - BoxMimeMoth
+    - BoxSurvivalHugNitrogen
 
 # Engineering / Extended
 - type: loadout
@@ -177,7 +132,26 @@
     back:
     - BoxSurvivalSecurityNitrogen
 
-# Syndicate
+# Antagonist
+
+- type: loadout
+  id: EmergencyOxygenExtendedAntag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: OxygenBreather
+  storage:
+    back:
+    - BoxSurvivalDeluxeExtended
+
+- type: loadout
+  id: EmergencyNitrogenExtendedAntag
+  effects:
+  - !type:GroupLoadoutEffect
+    proto: NitrogenBreather
+  storage:
+    back:
+    - BoxSurvivalDeluxeExtendedNitrogen
+
 - type: loadout
   id: EmergencyOxygenSyndicate
   effects:

@@ -59,3 +59,12 @@
   - type: Construction
     graph: Windoor
     node: phglassSecure
+
+- type: entity
+  parent: AirlockAssembly
+  id: AirlockAssemblyFancyGlass
+  suffix: Fancy Glass
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    state: "assembly"

@@ -1,3 +1,4 @@
+using Content.Shared.FixedPoint;
 using Robust.Shared.GameStates;
 using Robust.Shared.Serialization;
 
@@ -50,7 +51,7 @@ public sealed partial class RadioJammerComponent : Component
     /// Frequencies that are NOT jammed by this jammer.
     /// </summary>
     [DataField]
-    public HashSet<int> FrequenciesExcluded = [];
+    public HashSet<FixedPoint2> FrequenciesExcluded = [];
 
     /// <summary>
     /// Index of the currently selected setting.

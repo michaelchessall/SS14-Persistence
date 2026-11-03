@@ -5,13 +5,12 @@
   components:
   - type: Label
     currentLabel: Acetaminophen
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Acetaminophen
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Acetaminophen
+        Quantity: 30
 
 - type: entity
   id: ChemistryBottleAlgesiprol
@@ -19,14 +18,13 @@
   parent: BaseChemistryBottleFilled
   components:
   - type: Label
-    currentLabel: Acetaminophen
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Algesiprol
-          Quantity: 30
+    currentLabel: Algesiprol
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Algesiprol
+        Quantity: 30
 
 - type: entity
   id: ChemistryBottleAmoxla
@@ -35,11 +33,10 @@
   components:
   - type: Label
     currentLabel: Amoxla
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
-        reagents:
-        - ReagentId: Amoxla
-          Quantity: 30
+  - type: Solution
+    solution:
+      maxVol: 30
+      reagents:
+      - ReagentId: Amoxla
+        Quantity: 30
 

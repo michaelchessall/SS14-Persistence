@@ -99,16 +99,6 @@
   group: market
 
 - type: cargoProduct
-  id: EvaKit
-  icon:
-    sprite: Clothing/Head/Helmets/eva.rsi
-    state: icon
-  product: CrateEvaKit
-  cost: 6500
-  category: cargoproduct-category-name-engineering
-  group: market
-
-- type: cargoProduct
   id: EngineeringRCDAmmo
   icon:
     sprite: Objects/Tools/rcd.rsi

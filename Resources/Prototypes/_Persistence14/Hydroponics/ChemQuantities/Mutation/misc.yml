@@ -1,0 +1,83 @@
+- type: plantChemQuantity
+  id: RandomEZNutrient
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomRobustHarvest
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomSpaceLube
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomAsh
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomSodiumCarbonate
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomBlood
+  baseAmount: 2.5
+  requirements:
+    Water:
+      requirement: 2.5
+    Protein:
+      requirement: 0.5
+    Iron:
+      bonusRequirement: 0.1
+      bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: RandomWehJuice
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3

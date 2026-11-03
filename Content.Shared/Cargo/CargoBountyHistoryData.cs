@@ -34,19 +34,22 @@ public readonly partial record struct CargoBountyHistoryData
     [DataField]
     public TimeSpan Timestamp { get; init; } = TimeSpan.MinValue;
 
+    [DataField]
+    public float PriceMult { get; init; } = 1f;
     /// <summary>
     /// The prototype containing information about the bounty.
     /// </summary>
     [DataField(required: true)]
     public ProtoId<CargoBountyPrototype> Bounty { get; init; } = string.Empty;
 
-    public CargoBountyHistoryData(CargoBountyData bounty, BountyResult result, TimeSpan timestamp, string? actorName)
+    public CargoBountyHistoryData(CargoBountyData bounty, BountyResult result, TimeSpan timestamp, string? actorName, float bountyMult = 1f)
     {
         Bounty = bounty.Bounty;
         Result = result;
         Id = bounty.Id;
         ActorName = actorName;
         Timestamp = timestamp;
+        PriceMult = bountyMult;
     }
 
     /// <summary>

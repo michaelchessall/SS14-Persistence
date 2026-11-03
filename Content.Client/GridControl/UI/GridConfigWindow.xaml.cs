@@ -163,7 +163,15 @@ public sealed partial class GridConfigWindow : DefaultWindow
         {
             GridDisconnect.Disabled = false;
         }
-
+        if (state.ErrorMessage != null)
+        {
+            ErrorLabel.Text = state.ErrorMessage;
+            ErrorLabel.Visible = true;
+        }
+        else
+        {
+            ErrorLabel.Visible = false;
+        }
         if (gridFound && state.IsAuth && state.ErrorMessage == null)
         {
             if (gridOwned)

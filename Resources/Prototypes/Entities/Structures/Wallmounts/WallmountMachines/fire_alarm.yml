@@ -1,5 +1,5 @@
 - type: entity
-  parent: BaseWallmountMachine
+  parent: [ BaseWallmountMachine, StructureHealthMachineFlimsy ]
   id: FireAlarm
   name: fire alarm
   description: A fire alarm. Spicy!
@@ -53,12 +53,13 @@
   - type: WiresVisuals
   - type: AlertLevelDisplay
     alertVisuals:
-      green: fire_0
-      blue: fire_1
-      red: fire_2
-      violet: fire_1
-      yellow: fire_1
-      delta: fire_3
+      Green: fire_0
+      Blue: fire_1
+      Red: fire_2
+      Violet: fire_1
+      Yellow: fire_1
+      DeltaNuke: fire_3
+      # TODO: add missing alarm states
   - type: UserInterface
     interfaces:
       enum.WiresUiKey.Key:
@@ -82,34 +83,25 @@
     graph: FireAlarm
     node: fire_alarm
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: Metallic
+    damageModifierSet: PlasticMod
   - type: GuideHelp
     guides:
     - Networking
   - type: Destructible
     thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 160
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 80
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:PlaySoundBehavior
-            sound:
-              collection: MetalGlassBreak
-              params:
-                volume: -4
+    - trigger: &DamageMachineFlimsy
+        !type:DamageTrigger
+        damage: 50
+      behaviors:
+      - &SoundMetalGlassBreak !type:PlaySoundBehavior
+        sound:
+          collection: MetalGlassBreak
+          params:
+            volume: -4
   - type: StationAiWhitelist
 
 - type: entity
-  parent: BaseWallmountMetallic
+  parent: [ BaseWallmountMetallic, StructureHealthMachineFlimsy ]
   id: FireAlarmAssembly
   name: fire alarm assembly
   description: A fire alarm assembly. Very mild.
@@ -129,25 +121,13 @@
   - type: Construction
     graph: FireAlarm
     node: assembly
+  - type: Damageable
+    damageModifierSet: PlasticMod
   - type: Destructible
     thresholds:
-      - trigger:
-          !type:DamageTrigger
-          damage: 20
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-      - trigger:
-          !type:DamageTrigger
-          damage: 15
-        behaviors:
-          - !type:DoActsBehavior
-            acts: [ "Destruction" ]
-          - !type:PlaySoundBehavior
-            sound:
-              collection: MetalGlassBreak
-              params:
-                volume: -4
+    - trigger: *DamageMachineFlimsy
+      behaviors:
+      - *SoundMetalGlassBreak
 
 - type: entity
   id: FireAlarmXeno

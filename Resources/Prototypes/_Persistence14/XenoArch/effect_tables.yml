@@ -247,6 +247,10 @@
       weight: 8.0
     - id: XenoArtifactWandering
       weight: 8.0
+    - id: XenoArtifactBecomeLamp
+      weight: 10.0
+    - id: XenoArtifactBecomeRainbowLamp
+      weight: 5.0
 
 - type: entityTable # Main Nodes (Depth 1-2)
   id: XenoArtifactEffectsMain
@@ -428,6 +432,10 @@
       weight: 3.0
     - id: XenoArtifactWandering
       weight: 8.0
+    - id: XenoArtifactBecomeLamp
+      weight: 5.0
+    - id: XenoArtifactBecomeRainbowLamp
+      weight: 5.0
 
 - type: entityTable # Deep Nodes (Depth 3+)
   id: XenoArtifactEffectsDeep
@@ -609,6 +617,10 @@
       weight: 3.0
     - id: XenoArtifactWandering
       weight: 8.0
+    - id: XenoArtifactBecomeLamp
+      weight: 2.0
+    - id: XenoArtifactBecomeRainbowLamp
+      weight: 2.0
 
 - type: entityTable # Root Handheld (Depth 0)
   id: XenoArtifactEffectsRootHandheldOnly

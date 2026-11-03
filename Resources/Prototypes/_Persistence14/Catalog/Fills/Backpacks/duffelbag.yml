@@ -1,0 +1,15 @@
+
+
+- type: entity
+  parent: ClothingBackpackDuffelSyndicateBundle
+  id: ClothingBackpackDuffelSyndicateMedHardsuitBundle
+  name: syndicate medical hardsuit bundle
+  description: "Contains the Syndicate's medical blood red hardsuit."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitSyndieMedic
+        - !type:NestedSelector
+          tableId: SyndicateHardsuitExtrasEntityTable

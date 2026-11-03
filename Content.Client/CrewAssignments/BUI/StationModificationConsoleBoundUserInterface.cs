@@ -1,5 +1,7 @@
 using Content.Client.Cargo.UI;
 using Content.Client.CrewAssignments.UI;
+using Content.Shared._Persistence14.Resonance.Prototypes;
+using Content.Shared._Persistence14.Upgrades.Prototypes;
 using Content.Shared.Cargo;
 using Content.Shared.Cargo.BUI;
 using Content.Shared.Cargo.Components;
@@ -13,6 +15,7 @@ using Content.Shared.Station.Components;
 using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Client.UserInterface.Controls;
+using Robust.Shared.Maths;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Linq;
@@ -46,7 +49,7 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
 
         var spriteSystem = EntMan.System<SpriteSystem>();
         var dependencies = IoCManager.Instance!;
-        _menu = new StationModificationMenu(Owner, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
+        _menu = new StationModificationMenu(this, EntMan, dependencies.Resolve<IPrototypeManager>(), spriteSystem);
         var localPlayer = dependencies.Resolve<IPlayerManager>().LocalEntity;
         var description = new FormattedMessage();
 
@@ -79,9 +82,11 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
         _menu.ITaxConfirm.OnPressed += ChangeITax;
         _menu.ETaxConfirm.OnPressed += ChangeETax;
         _menu.STaxConfirm.OnPressed += ChangeSTax;
-        _menu.LevelPurchaseButton.OnPressed += PurchaseUpgrade;
         _menu.ChannelEnable.OnPressed += OnChannelEnable;
         _menu.ChannelDisable.OnPressed += OnChannelDisable;
+        _menu.CreateChannelButton.OnPressed += OnCreateChannel;
+        _menu.EditChannelButton.OnPressed += OnEditChannel;
+        _menu.DeleteChannelButton.OnPressed += OnDeleteChannel;
         _menu.JobNetOn.OnPressed += OnJobNetOn;
         _menu.JobNetOff.OnPressed += OnJobNetOff;
         _menu.OpenCentered();
@@ -105,10 +110,11 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
         _menu?.UpdateStation(station, cState.Name, cState.FactionTag);
         _menu?.UpdateAccesses(Accesses);
         _menu?.UpdateAssignments(Assignments);
-        _menu?.UpdateUpgrades(cState.Level, cState.AccountBalance);
+        _menu?.UpdateUpgrades(cState.Level, cState.UpgradeProgress, this);
         _menu?.UpdateChannels(cState.RadioData);
+        _menu?.UpdateResonance(cState);
         if (_menu != null)
-        {
+        { 
             _menu.ETaxSpinBox.Value = cState.ExportTax;
             _menu.ITaxSpinBox.Value = cState.ImportTax;
             _menu.STaxSpinBox.Value = cState.SalesTax;
@@ -219,29 +225,72 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
     private void ToggleChannelAccess(ButtonToggledEventArgs args)
     {
         if (_menu == null || _menu.RadioData == null) return;
-        var ind = _menu.PossibleChannels.SelectedId;
-        if (_menu.RadioData.Count - 1 < ind) return;
-        var kv = _menu.RadioData.ElementAtOrDefault(ind);
+        var channelId = _menu.SelectedChannelId;
+        if (channelId == null) return;
         Button real = (Button)args.Button;
         if (real == null || real.Text == null) return;
-        SendMessage(new StationModificationToggleChannelAccess(kv.Key, args.Pressed, real.Text));
+        SendMessage(new StationModificationToggleChannelAccess(channelId.Value, args.Pressed, real.Text));
     }
     private void OnChannelEnable(ButtonEventArgs args)
     {
         if (_menu == null || _menu.RadioData == null) return;
-        var ind = _menu.PossibleChannels.SelectedId;
-        if (_menu.RadioData.Count - 1 < ind) return;
-        var kv = _menu.RadioData.ElementAtOrDefault(ind);
-        SendMessage(new StationModificationEnableChannel(kv.Key));
+        var channelId = _menu.SelectedChannelId;
+        if (channelId == null) return;
+        SendMessage(new StationModificationEnableChannel(channelId.Value));
     }
 
     private void OnChannelDisable(ButtonEventArgs args)
     {
         if (_menu == null || _menu.RadioData == null) return;
-        var ind = _menu.PossibleChannels.SelectedId;
-        if (_menu.RadioData.Count - 1 < ind) return;
-        var kv = _menu.RadioData.ElementAtOrDefault(ind);
-        SendMessage(new StationModificationDisableChannel(kv.Key));
+        var channelId = _menu.SelectedChannelId;
+        if (channelId == null) return;
+        SendMessage(new StationModificationDisableChannel(channelId.Value));
+    }
+
+    private void OnCreateChannel(ButtonEventArgs args)
+    {
+        if (_menu == null) return;
+
+        var name = _menu.CustomChannelName.Text;
+        var hotkey = _menu.CustomChannelHotkey.Text;
+        // Persistence 14: Send the picker color directly so custom channel save/load round-trips do not distort HSV saturation or value through an extra sRGB conversion.
+        var color = _menu.ChannelColorPicker.Color;
+
+        SendMessage(new StationModificationCreateChannel(name, hotkey, color.RByte, color.GByte, color.BByte));
+        // End Persistence 14
+    }
+
+    private void OnEditChannel(ButtonEventArgs args)
+    {
+        if (_menu == null || _menu.RadioData == null)
+            return;
+
+        var channelId = _menu.SelectedChannelId;
+        if (channelId == null)
+            return;
+
+        var name = _menu.EditChannelName.Text;
+        var hotkey = _menu.EditChannelHotkey.Text;
+        // Persistence 14: Send the picker color directly so editing an existing custom channel preserves the client preview color apart from the explicit brightness clamp.
+        var color = _menu.ChannelColorPicker.Color;
+
+        SendMessage(new StationModificationEditChannel(channelId.Value, name, hotkey, color.RByte, color.GByte, color.BByte));
+        // End Persistence 14
+    }
+
+    private void OnDeleteChannel(ButtonEventArgs args)
+    {
+        if (_menu == null || _menu.RadioData == null)
+            return;
+
+        var channelId = _menu.SelectedChannelId;
+        if (channelId == null)
+            return;
+
+        if (_menu.RequireDeleteChannelConfirmation())
+            return;
+
+        SendMessage(new StationModificationDeleteChannel(channelId.Value));
     }
     private void ToggleAssignmentAccess(ButtonToggledEventArgs args)
     {
@@ -340,5 +389,15 @@ public sealed class StationModificationConsoleBoundUserInterface : BoundUserInte
     private void DefaultAccessCreate(ButtonEventArgs args)
     {
         SendMessage(new StationModificationDefaultAccess());
+    }
+
+    public void OnResonancePurchase(ProtoId<ResonanceProductPrototype> product)
+    {
+        SendMessage(new StationModificationResonancePurchase(product));
+    }
+
+    public void OnModuleApply(ProtoId<UpgradeModuleTypePrototype> key)
+    {
+        SendMessage(new StationModificationApplyModule(key));
     }
 }

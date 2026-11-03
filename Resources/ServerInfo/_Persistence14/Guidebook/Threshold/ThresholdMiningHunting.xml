@@ -14,5 +14,17 @@
   ### Hunting
   The creatures found in asteroid fields will often have trophies that can be collected by butchering their corpses.
   Certain trade stations offer bounties for these trophies.
+
+  ## Salvage Magnetic Isolators
+  <Box>
+    <GuideEntityEmbed Entity="SalvageMagnetAnchored" Caption="Threshold Salvage Magnetic Isolator"/>
+  </Box>
+  Salvage magnets cannot be built in the Threshold. Instead, [bold]Threshold Salvage Magnetic Isolators[/bold] are found as places of interest scattered around the sector.
+  Mysterious powers anchor these devices to a fixed point in space, [bold]so the grid they are on can never be moved[/bold].
+
+  An isolator offers five pulls: a mix of asteroids, salvage wrecks and space debris. After choosing one of the offers, the selected chunk will be pulled in for the next [bold]6 minutes[/bold]. At the end of this time, any loot remaining on the pulled grid will disappear.
+  If none of the offers look appealing to you, they refresh every [bold]3 minutes[/bold] if unclaimed.
+
+  Every isolator has its own offers and is not tied to any faction, but whoever controls the grid it is on may restrict access to it.
 </Document>
 

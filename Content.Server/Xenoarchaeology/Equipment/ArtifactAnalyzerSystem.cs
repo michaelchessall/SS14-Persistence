@@ -8,12 +8,12 @@ using Robust.Shared.Audio.Systems;
 namespace Content.Server.Xenoarchaeology.Equipment;
 
 /// <inheritdoc />
-public sealed class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSystem
+public sealed partial class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSystem
 {
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly ResearchSystem _research = default!;
-    [Dependency] private readonly XenoArtifactSystem _xenoArtifact = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private XenoArtifactSystem _xenoArtifact = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -31,8 +31,9 @@ public sealed class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSystem
         if (!TryGetArtifactsFromConsole(ent, out var artifacts))
             return;
 
-        if (!_research.TryGetClientServer(ent, out var server, out var serverComponent))
+        if (!_research.TryGetClientServer(ent.Owner, out var server))
             return;
+        var (serverUid, serverComp, dbComp) = server;
 
         var sumResearch = 0;
         foreach (var artifact in artifacts)
@@ -49,7 +50,7 @@ public sealed class ArtifactAnalyzerSystem : SharedArtifactAnalyzerSystem
         if (sumResearch <= 0)
             return;
 
-        _research.ModifyServerPoints(server.Value, sumResearch, serverComponent);
+        _research.ModifyServerPoints(server, sumResearch, serverComp);
 
         // Only play feedback once, on the artifact currently shown on the console - an advanced
         // analyzer could hold a hundred artifacts and we don't want a hundred sounds/popups.

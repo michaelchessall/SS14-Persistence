@@ -1,0 +1,8 @@
+<PanelContainer xmlns="https://spacestation14.io" VerticalExpand="True" MinWidth="200" Margin="30 0 10 10" Name="InsightBox">
+    <BoxContainer Orientation="Vertical" Margin="10 10 10 10">
+        <Label Name="TitleLbl" StyleClasses="LabelHeading" />
+        <BoxContainer Orientation="Vertical" Name="MainBox">
+            
+        </BoxContainer>
+    </BoxContainer>
+</PanelContainer>

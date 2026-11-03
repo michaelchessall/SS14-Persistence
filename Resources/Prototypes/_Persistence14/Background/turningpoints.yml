@@ -1,0 +1,34 @@
+- type: turningPoint
+  id: ChosenByAuthority
+  name: Chosen for the Nexus
+  description: "The ruling authority in your sector selected you to send into the [bold]Nexus Space[/bold].\nYou must cut formal ties as the [bold]NCC[/bold] requires that everyone who enters [bold]Nexus Space[/bold] does so as an independent."
+  effects:
+    - TraitPledge
+
+- type: turningPoint
+  id: FellFromGrace
+  name: Suddenly Disgraced
+  description: "As your reputation with the local authorities soured you were to flee into the [bold]Nexus Space[/bold].\nBecause of the [bold]NCC[/bold] and the [italic]Independents Truce[/italic] you know your pursuers cannot follow you into the [bold]Nexus Space[/bold]."
+  effects:
+    - TraitPledge
+
+- type: turningPoint
+  id: Magician
+  name: Encountered by a Magician
+  description: "You encountered a strange traveler from beyond your Universe.\nThey claimed to be a [color=gray]Magician[/color] and convinced you to travel to the [bold]Nexus Space[/bold].\nYou left everything behind to pursue this Destiny."
+  effects:
+    - TraitPledge
+
+- type: turningPoint
+  id: Priestess
+  name: Encouraged by a Priestess
+  description: "You encountered a wise [color=yellow]Priestess[/color] who knew many secrets of the Threshold.\nShe encouraged you to travel to the [bold]Nexus Space[/bold] to seek the Gods.\nYou left everything behind to pursue this Destiny."
+  effects:
+    - TraitPledge
+
+- type: turningPoint
+  id: Rational
+  name: Lectured by a Rationalist
+  description: "A rationalist genius gave a lecture in your sector.\nThey said that everything about the Threshold can be explained by the science being conducted in the [bold]Nexus Space[/bold].\nYou left everything behind to pursue this Destiny."
+  effects:
+    - TraitPledge

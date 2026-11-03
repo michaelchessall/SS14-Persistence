@@ -1,5 +1,7 @@
 using Content.Client.CrewAssignments.UI;
+using Content.Client.MessageBoard.UI;
 using Content.Client.UserInterface.Systems.Guidebook;
+using Content.Shared._Persistence14.Rumors.Prototypes;
 using Content.Shared.Cargo.Components;
 using Content.Shared.CrewAssignments;
 using Content.Shared.CrewAssignments.Components;
@@ -23,6 +25,7 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
     [ViewVariables]
     public CodexEntryMenu? CodexMenu;
 
+    public ConversationWindow? ConversationWindow;
 
     public JobNetBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey)
     {
@@ -34,58 +37,10 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
         var spriteSystem = EntMan.System<SpriteSystem>();
         _menu = this.CreateWindow<JobNetMenu>();
         _menu.Owner = this;
-        _menu._spriteSystem = spriteSystem;
+        _menu.SpriteSystem = spriteSystem;
         _menu.PossibleJobs.OnItemSelected += OnJobPressed;
         _menu.LevelPurchaseButton.OnPressed += OnLevelPurchase;
-        _menu.DealerSelect.OnPressed += DealerSelect_OnPressed;
-        _menu.AssassinSelect.OnPressed += AssassinSelect_OnPressed;
-        _menu.BountyHSelect.OnPressed += BountyHSelect_OnPressed;
-        _menu.HuntedLEB.OnPressed += HuntedLEB_OnPressed;
-        _menu.HuntLEB.OnPressed += HuntLEB_OnPressed;
-        _menu.OnItemSelected += (row) =>
-        {
-            if (row == null || row.Product == null)
-                return;
-
-            SendMessage(new JobNetPurchasePrecursorMessage(row.Product.ID));
-        };
-        _menu.OnLabelButtonPressed += id =>
-        {
-            SendMessage(new JobNetDealerLabelMessage(id));
-        };
         CodexMenu = new();
-        _menu.PrecursorGuidebook.OnPressed += (ButtonEventArgs obj) =>
-        {
-            var guidebookController = _menu.UserInterfaceManager.GetUIController<GuidebookUIController>();
-            guidebookController.OpenGuidebook(selected: "Precursor");
-        };
-    }
-
-    private void HuntLEB_OnPressed(ButtonEventArgs obj)
-    {
-        if (_menu == null) return;
-        SendMessage(new JobNetSubmitHuntMessage(_menu.HuntLE.Text));
-    }
-
-    private void HuntedLEB_OnPressed(ButtonEventArgs obj)
-    {
-        if (_menu == null) return;
-        SendMessage(new JobNetSubmitHuntedMessage(_menu.HuntedLE.Text));
-    }
-
-    private void BountyHSelect_OnPressed(ButtonEventArgs obj)
-    {
-        SendMessage(new JobNetSelectRogueNetMessage(RogueNetworkType.BountyHunter));
-    }
-
-    private void AssassinSelect_OnPressed(ButtonEventArgs obj)
-    {
-        SendMessage(new JobNetSelectRogueNetMessage(RogueNetworkType.Assassin));
-    }
-
-    private void DealerSelect_OnPressed(ButtonEventArgs obj)
-    {
-        SendMessage(new JobNetSelectRogueNetMessage(RogueNetworkType.Dealer));
     }
 
     public void OnLevelPurchase(ButtonEventArgs args)
@@ -104,7 +59,25 @@ public sealed class JobNetBoundUserInterface : BoundUserInterface
         if (state is not JobNetUpdateState cState)
             return;
         _menu.UpdateState(cState);
+    }
 
+    public void CancelRumor(int ind)
+    {
+        SendMessage(new JobNetCancelRumorMessage(ind));
+    }
 
+    public void TransferRumor(int rumorIndex, string text)
+    {
+        SendMessage(new JobNetTransferRumorMessage(rumorIndex, text));
+    }
+
+    public void RumorRewardPurchase(ProtoId<RumorRewardPrototype> rewardID, ProtoId<MetaFactionLevelPrototype> levelID, ProtoId<MetaFactionPrototype> factionID)
+    {
+        SendMessage(new JobNetRumorRewardPurchaseMessage(rewardID, levelID, factionID));
+    }
+
+    public void OnInsightPurchase(string iD)
+    {
+        SendMessage(new JobNetInsightPurchaseMessage(iD));
     }
 }

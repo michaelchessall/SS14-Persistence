@@ -249,12 +249,13 @@ public abstract partial class SharedCprSystem : EntitySystem
             return;
         }
 
-        var interactingEntities = new HashSet<EntityUid>();
-        _interactionSystem.GetEntitiesInteractingWithTarget(recipient, interactingEntities);
+        // Persistence: Commented as buckling into a seat/bed is considered an interaction & prevents CPR otherwise
+        // var interactingEntities = new HashSet<EntityUid>();
+        // _interactionSystem.GetEntitiesInteractingWithTarget(recipient, interactingEntities);
+        //
+        // interactingEntities.Remove(giver);
 
-        interactingEntities.Remove(giver);
-
-        if (interactingEntities.Count > 0)
+        if (cpr.LastCaretaker is not null && cpr.LastCaretaker != giver) // Persistence: Removed interactingEntities.Count > 0
         {
             _popup.PopupClient(Loc.GetString("cpr-already-in-progress"), recipient, giver);
             return;
