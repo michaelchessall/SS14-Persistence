@@ -282,7 +282,7 @@
     sprite: Clothing/Back/Backpacks/ertchaplain.rsi
 
 - type: entity
-  parent: [ ClothingBackpackHoldingBase, ClothingBackpackERTSecurity ]
+  parent: [ ClothingBackpack, ClothingBackpackERTSecurity ]
   id: ClothingBackpackDeathSquad
   name: operative backpack
   description: Holds the kit of CentComm's most feared agents.
