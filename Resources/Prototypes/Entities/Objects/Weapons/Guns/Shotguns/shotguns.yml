@@ -154,6 +154,9 @@
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: SpeedModifiedOnWield # PS14: rifle-class slowdown instead of heavy; keep in sync with BaseGunWieldClassRifle
+    walkModifier: 0.7
+    sprintModifier: 0.7
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -176,6 +179,9 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: SpeedModifiedOnWield # PS14: rifle-class slowdown instead of heavy; keep in sync with BaseGunWieldClassRifle
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: Gun
     fireRate: 1
   - type: GunSpreadModifier
