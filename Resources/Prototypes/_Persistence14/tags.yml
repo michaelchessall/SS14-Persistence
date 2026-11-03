@@ -9,6 +9,13 @@
   id: BaseMech # Identifies all mechs.
 
 ## C ##
+- type: Tag
+  id: CableJunctionHV # Prevents HV wires from being placed on an HV Junction
+- type: Tag
+  id: CableJunctionMV # Prevents HV wires from being placed on an HV Junction
+- type: Tag
+  id: CableJunctionLV # Prevents HV wires from being placed on an HV Junction
+
 
 ## D ##
 - type: Tag
