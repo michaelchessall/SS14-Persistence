@@ -38,7 +38,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     public void Update(BotanyAnalyzerState state)
     {
-        if (!_entityManager.TryGetEntity(state.Target, out var target))
+        if (!_entityManager.TryGetEntity(state.Target, out var target) || !_entityManager.EntityExists(target.Value))
             return;
 
         EntityUid? plantEntity = null;
@@ -103,7 +103,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         UpdateDelta(YieldDelta, plant.Yield, prototypePlant.Yield);
         UpdateDelta(LifespanDelta, plant.Lifespan, prototypePlant.Lifespan);
         UpdateDelta(MaturationDelta, plant.Maturation, prototypePlant.Maturation, invert: true);
-        UpdateDelta(ProductionDelta, plant.Production, prototypePlant.Production);
+        UpdateDelta(ProductionDelta, plant.Production, prototypePlant.Production, invert: true);
         //UpdateDelta(PotencyDelta, plant.Potency, prototypePlant.Potency); // Persistence: Remove potency
     }
 
@@ -122,21 +122,27 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     private void UpdateConditions(EntityUid? plantEntity, EntProtoId? prototypeId, PlantComponent plant)
     {
-        if (!_botanySystem.TryGetPlantComponent<PlantAtmosphericComponent>(plantEntity, prototypeId, out var atmospheric))
-            return;
+        var hasAtmospheric = _botanySystem.TryGetPlantComponent<PlantAtmosphericComponent>(plantEntity, prototypeId, out var atmospheric);
+        Temperature.Visible = hasAtmospheric;
+        Pressure.Visible = hasAtmospheric;
+        if (hasAtmospheric && atmospheric != null)
+        {
+            UpdateCondition(Temperature,
+                "botany-ui-temperature", // Persistence: Use modified tolerances
+                atmospheric.ModifiedLowHeatTolerance,
+                atmospheric.ModifiedHighHeatTolerance,
+                "units-kelvin");
+            UpdateCondition(Pressure, // Persistence: Use modified tolerances
+                "botany-ui-pressure",
+                atmospheric.ModifiedLowPressureTolerance,
+                atmospheric.ModifiedHighPressureTolerance,
+                "units-k-pascal");
+        }
 
-        UpdateCondition(Temperature, // Persistence: Use modified tolerances
-            "botany-ui-temperature",
-            atmospheric.ModifiedLowHeatTolerance,
-            atmospheric.ModifiedHighHeatTolerance,
-            "units-kelvin");
-        UpdateCondition(Pressure, // Persistence: Use modified tolerances
-            "botany-ui-pressure",
-            atmospheric.ModifiedLowPressureTolerance,
-            atmospheric.ModifiedHighPressureTolerance,
-            "units-k-pascal");
-
-        if (!_botanySystem.TryGetPlantComponent<PlantGrowthComponent>(plantEntity, prototypeId, out var growth))
+        var hasGrowth = _botanySystem.TryGetPlantComponent<PlantGrowthComponent>(plantEntity, prototypeId, out var growth);
+        Water.Visible = hasGrowth;
+        Nutrients.Visible = hasGrowth;
+        if (!hasGrowth || growth == null)
             return;
 
         /* Persistence: Plant nutrient rework
@@ -195,36 +201,28 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     private void UpdateGases(EntityUid? plantEntity, EntProtoId? prototypeId)
     {
+        //Consumed.ShowEmptyMessage(); // Persistence: Remove gas consumption
+        Exuded.ShowEmptyMessage();
         if (!_botanySystem.TryGetPlantComponent<PlantConsumeExudeGasComponent>(plantEntity, prototypeId, out var gases))
             return;
 
-        Consumed.ClearDisplay();
         /* Persistence: Remove gas consumption
-        var consumed = gases.ConsumeGasses
-            .Where(x => x.Value > 0f)
-            .Select(x => new GasEntry(x.Key, x.Value))
-            .ToArray();
-        foreach (var gas in consumed)
+        foreach (var (gas, amount) in gases.ConsumeGasses)
         {
-            Consumed.AddGas(gas);
+            if (amount > 0f)
+                Consumed.AddGas(new GasEntry(gas, amount));
         }
+        */
 
-        if (consumed.Length == 0)
-            Consumed.ShowEmptyMessage();
-            */
-
-        Exuded.ClearDisplay();
-        var exuded = gases.ExudeGasses
-            //.Where(x => x.Value > 0f) Persistence: Comment this out
-            .Select(x => new GasEntry(x.Key, _prototypeManager.Index(x.Value).BaseAmount))
-            .ToArray();
-        foreach (var gas in exuded)
+        foreach (var (gas, quantity) in gases.ExudeGasses) // Persistence 14: Use PlantGasQuantityPrototype
         {
-            Exuded.AddGas(gas);
-        }
+            var quantityProto = _prototypeManager.Index(quantity);
 
-        if (exuded.Length == 0)
-            Exuded.ShowEmptyMessage();
+            var amount = quantityProto.BaseAmount; // TODO: Make this not just the base amount
+
+            if (amount > 0f)
+                Exuded.AddGas(new GasEntry(gas, amount));
+        }
     }
 
     private string GetGrowthType(EntityUid? plantEntity, EntProtoId? prototypeId)
@@ -238,21 +236,17 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
 
     private void UpdateChemicals(EntityUid? plantEntity, EntProtoId? prototypeId, PlantComponent plant)
     {
-        Chemicals.ClearDisplay();
+        Chemicals.ShowEmptyMessage();
 
         if (!_botanySystem.TryGetPlantComponent<PlantChemicalsComponent>(plantEntity, prototypeId, out var plantChemicals)
             || plantChemicals.Chemicals.Count == 0)
-        {
-            if (Chemicals.ChildCount == 0)
-                Chemicals.ShowEmptyMessage();
             return;
-        }
 
         foreach (var (reagent, quantity) in plantChemicals.Chemicals)
         {
-            var quantityProto = _prototypeManager.Index(quantity.Id); // Persistence 14: Plant nutrient rework
+            var quantityProto = _prototypeManager.Index(quantity.Id); // Persistence 14: Use PlantChemQuantityPrototype
 
-            var amount = quantityProto.BaseAmount;
+            var amount = quantityProto.BaseAmount; // TODO: Make this not just the base amount
 
             // if (quantity.PotencyDivisor > 0f && plant.Potency > 0f)
             //     amount += plant.Potency / quantity.PotencyDivisor;

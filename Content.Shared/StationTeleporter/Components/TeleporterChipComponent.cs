@@ -36,12 +36,12 @@ public sealed partial class TeleporterChipComponent : Component
     /// <summary>
     /// The maximum distance a portal may be from the console in order to be controlled by the console.
     /// </summary>
-    [DataField]
+    [DataField("connect")]
     public float MaxConnectDistance = 512f;
 
     /// <summary>
     /// The maximum distance at which the console can locate the connected portal.
     /// </summary>
-    [DataField]
+    [DataField("locate")]
     public float MaxLocateDistance = 1024f;
 }

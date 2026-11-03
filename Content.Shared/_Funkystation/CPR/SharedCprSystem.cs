@@ -86,6 +86,7 @@ public abstract partial class SharedCprSystem : EntitySystem
 
         ent.Comp.HasCrackedRibsThisCrit = false;
         ent.Comp.PumpsThisCrit = 0;
+        ent.Comp.LastCaretaker = null; // Persistence
     }
 
     private void OnGetInteractingEntities(Entity<CprComponent> ent, ref GetInteractingEntitiesEvent args)
