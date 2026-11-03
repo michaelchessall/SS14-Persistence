@@ -25,8 +25,7 @@ research-technology-excavation = Mass Excavation
 research-technology-eva-manufacturing = EVA Manufacturing
 research-technology-specialized-eva = EVA Specialization
 research-technology-luxury-eva = Luxury EVA Manufacturing
-research-technology-advanced-industrial-welder-manufacturing = Advanced industrial welder manufacturing
-research-technology-industrial-welder-manufacturing = Industrial welder manufacturing
+
 research-technology-salvage-weapons = Salvage Weapons
 research-technology-draconic-munitions = Draconic Munitions
 research-technology-uranium-munitions = Uranium Munitions
