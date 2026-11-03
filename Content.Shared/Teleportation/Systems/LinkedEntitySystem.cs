@@ -120,8 +120,8 @@ public sealed partial class LinkedEntitySystem : EntitySystem
         if (!Resolve(second, ref secondLink))
             return false;
 
-        var success = _pid.TryGetId(first, out var firstId) && firstLink.LinkedEntities.Remove(firstId) &&
-                      _pid.TryGetId(second, out var secondId) && secondLink.LinkedEntities.Remove(secondId);
+        var success = _pid.TryGetId(first, out var firstId) && secondLink.LinkedEntities.Remove(firstId) &&
+                      _pid.TryGetId(second, out var secondId) && firstLink.LinkedEntities.Remove(secondId);
 
         _appearance.SetData(first, LinkedEntityVisuals.HasAnyLinks, firstLink.LinkedEntities.Any());
         _appearance.SetData(second, LinkedEntityVisuals.HasAnyLinks, secondLink.LinkedEntities.Any());

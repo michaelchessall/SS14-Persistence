@@ -57,6 +57,9 @@
     cost: 2
     delay: 0
     fx: EffectRCDConstruct0
+  - type: Construction
+    node: cable
+    deconstructionTarget: cable
 
 - type: entity
   parent: CableBase
@@ -97,6 +100,8 @@
     range: 2
     sound:
       path: /Audio/Ambience/Objects/emf_buzz.ogg
+  - type: Construction
+    graph: hvcable
 
 - type: entity
   id: CableHVUncuttable
@@ -141,6 +146,8 @@
   - type: CableVisualizer
     statePrefix: mvcable_
     extraLayerPrefix: mvstripes_
+  - type: Construction
+    graph: mvcable
 
 - type: entity
   id: CableMVUncuttable
@@ -185,6 +192,8 @@
             max: 1
   - type: CableVisualizer
     statePrefix: lvcable_
+  - type: Construction
+    graph: lvcable
 
 - type: entity
   id: CableApcExtensionUncuttable

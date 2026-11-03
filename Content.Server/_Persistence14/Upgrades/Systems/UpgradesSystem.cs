@@ -11,6 +11,7 @@ using Content.Server.Salvage.Magnet;
 using Content.Server.Shuttles.Systems;
 using Content.Server.Singularity.Components;
 using Content.Server.Singularity.EntitySystems;
+using Content.Server.Storage.EntitySystems;
 using Content.Server.Tools;
 using Content.Shared._Persistence14.Upgrades.Components;
 using Content.Shared._Persistence14.Upgrades.Prototypes;
@@ -72,6 +73,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     [Dependency] private ToolSystem _tool = default!;
     [Dependency] private RadiationCollectorSystem _radiationCollector = default!;
     [Dependency] private ExamineSystem _examine = default!;
+    [Dependency] private StorageSystem _storage = default!;
 
     public override void Initialize()
     {
@@ -406,6 +408,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
             var y = upgradeProto.UpgradeValues[1];
             var box = storageComp.Grid[0];
             storageComp.Grid[0] = new Box2i(box.Left, box.Bottom, box.Right + (int)x, box.Top + (int)y);
+            _storage.UpdateOccupied((uid, storageComp));
             Dirty(uid, storageComp);
         }
     }

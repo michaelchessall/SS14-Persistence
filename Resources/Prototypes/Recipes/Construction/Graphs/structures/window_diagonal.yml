@@ -59,6 +59,14 @@
             - material: ReinforcedGlass
               amount: 2
               doAfter: 2
+        
+        - to: shuttleWindowTitaniumDiagonal
+          steps:
+          - material: Titanium
+            amount: 2
+          - material: ReinforcedGlass
+            amount: 2
+            doAfter: 4
 
     - node: windowDiagonal
       entity: WindowDiagonal
@@ -258,3 +266,34 @@
               doAfter: 4
             - tool: Anchoring
               doAfter: 1
+
+    - node: shuttleWindowTitaniumDiagonal
+      entity: ShuttleWindowTitaniumDiagonal
+      edges:
+      - to: start
+        completed:
+        - !type:GivePrototype
+          prototype: SheetRGlass1
+          amount: 2
+        - !type:GivePrototype
+          prototype: SheetTitanium1
+          amount: 2
+        - !type:DeleteEntity {}
+        steps:
+        #To-Do: Add deconstruct visuals
+        - tool: Welding
+          doAfter: 6
+        - tool: Screwing
+          doAfter: 2
+        - tool: Prying
+          doAfter: 3
+        - tool: Welding
+          doAfter: 5
+        - tool: Screwing
+          doAfter: 1
+        - tool: Prying
+          doAfter: 2
+        - tool: Welding
+          doAfter: 4
+        - tool: Anchoring
+          doAfter: 1
