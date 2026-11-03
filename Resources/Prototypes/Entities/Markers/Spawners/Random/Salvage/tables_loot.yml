@@ -242,7 +242,6 @@
     children:
     - id: AdvancedMineralScanner
     - id: BlueprintFulton
-    - id: BlueprintSeismicCharge
     - id: WeaponCrusherGlaive
     - id: ClothingOuterHardsuitSalvage
     - id: ChemistryBottleOmnizine
