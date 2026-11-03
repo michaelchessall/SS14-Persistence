@@ -490,4 +490,11 @@ public enum LogType
     /// Silicon law changes.
     /// </summary>
     SiliconLaw = 105,
+
+    #region Starlight log flags
+    /// <summary>
+    /// Scent-related logs.
+    /// </summary>
+    Scent = 1004,
+    #endregion
 }
