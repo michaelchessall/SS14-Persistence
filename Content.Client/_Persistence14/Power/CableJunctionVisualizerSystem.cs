@@ -52,13 +52,14 @@ public sealed partial class CableJunctionVisualizerSystem : EntitySystem
         if (verticalState == CableJunctionVisualizerVariants.None)
         {
             _sprite.LayerSetVisible((uid, args.Sprite), CableJunctionVisualLayers.Vertical, false);
-            _sprite.LayerSetVisible((uid, args.Sprite), CableJunctionVisualLayers.VerticalStripe, false);
+            if (_sprite.TryGetLayer((uid, args.Sprite), CableJunctionVisualLayers.VerticalStripe, out _, false))
+                _sprite.LayerSetVisible((uid, args.Sprite), CableJunctionVisualLayers.VerticalStripe, false);
         }
         else
         {
             _sprite.LayerSetVisible((uid, args.Sprite), CableJunctionVisualLayers.Vertical, true);
             _sprite.LayerSetRsiState((uid, args.Sprite), CableJunctionVisualLayers.Vertical, component.GetRsiState(verticalState));
-            if (component.TryGetStripeRsiState(verticalState, out var vStripeState))
+            if (component.TryGetStripeRsiState(verticalState, out var vStripeState) && _sprite.TryGetLayer((uid, args.Sprite), CableJunctionVisualLayers.VerticalStripe, out _, false))
                 _sprite.LayerSetRsiState((uid, args.Sprite), CableJunctionVisualLayers.VerticalStripe, vStripeState);
         }
     }

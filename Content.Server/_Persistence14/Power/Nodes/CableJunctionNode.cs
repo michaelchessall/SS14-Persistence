@@ -25,6 +25,12 @@ public sealed partial class CableJunctionNode : Node
                 continue;
 
             if (node is CableNode)
+            {
+                yield return node;
+                continue;
+            }
+
+            if (node is CableJunctionNode junction && junction.MatchesAxis(dir.GetOpposite()))
                 yield return node;
         }
     }
