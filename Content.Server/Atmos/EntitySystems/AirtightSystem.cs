@@ -1,8 +1,12 @@
 using Content.Server.Atmos.Components;
+using Content.Server.Destructible;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Power;
+using Content.Shared.Repairable;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 
@@ -16,6 +20,9 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly DestructibleSystem _destructible = default!;
+        [Dependency] private readonly OccluderSystem _occluderSystem = default!;
 
         public override void Initialize()
         {
@@ -24,6 +31,8 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<AirtightComponent, AnchorStateChangedEvent>(OnAirtightPositionChanged);
             SubscribeLocalEvent<AirtightComponent, MoveEvent>(OnAirtightMoved);
             SubscribeLocalEvent<AirtightComponent, PowerChangedEvent>(OnPowerChanged);
+            SubscribeLocalEvent<AirtightComponent, RepairedEvent>(OnRepaired);
+            SubscribeLocalEvent<DamageableComponent, DamageDealtEvent>(OnDamageChanged);
         }
 
         private void OnAirtightInit(Entity<AirtightComponent> airtight, ref ComponentInit args)
@@ -108,6 +117,27 @@ namespace Content.Server.Atmos.EntitySystems
                 SetAirblocked(airtight, true, xform);
             }
 
+        }
+        private void OnDamageChanged(Entity<DamageableComponent> damage, ref DamageDealtEvent args)
+        {
+            if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
+                return;
+            if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * 0.6)
+            {
+                SetAirblocked((damage.Owner, airtight), false);
+                _occluderSystem.SetEnabled(damage.Owner, false);
+            }
+        }
+
+        private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
+        {
+            if (!_destructible.TryGetDestroyedAt(airtight.Owner, out var destroyedAt))
+                return;
+            if (_damageable.GetTotalDamage(airtight.Owner) <= destroyedAt * 0.6)
+            {
+                SetAirblocked(airtight, true);
+                _occluderSystem.SetEnabled(airtight.Owner, true);
+            }
         }
 
         public void SetAirblocked(Entity<AirtightComponent> airtight, bool airblocked, TransformComponent? xform = null)

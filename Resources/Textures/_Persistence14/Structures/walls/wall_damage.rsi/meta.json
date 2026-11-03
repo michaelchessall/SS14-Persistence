@@ -12,7 +12,8 @@
     {"name": "DamageOverlay_20", "directions": 1},
     {"name": "DamageOverlay_30", "directions": 1},
     {"name": "DamageOverlay_40", "directions": 1},
-    {"name": "DamageOverlay_50", "directions": 1},
-    {"name": "DamageOverlay_60", "directions": 1}
+    {"name": "DamageOverlay_80", "directions": 1},
+    {"name": "DamageOverlay_160", "directions": 1},
+    {"name": "DamageOverlay_200", "directions": 1}
   ]
 }

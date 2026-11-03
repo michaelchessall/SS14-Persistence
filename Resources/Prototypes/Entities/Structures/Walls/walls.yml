@@ -65,8 +65,8 @@
     fuelCost: 15
     doAfterDelay: 8
   - type: DamageVisuals # Diagonal walls need a diff texture for the damagevisuals
-    thresholds: [5, 10, 20, 30, 40, 50, 60]
-    damageDivisor: 3
+    thresholds: [5, 10, 20, 30, 40, 80, 160, 200]
+    damageDivisor: 2
     trackAllDamage: true
     damageOverlay:
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
@@ -511,7 +511,7 @@
 
 
 - type: entity
-  parent: BaseWall
+  parent: BaseStructureWall
   id: WallPlastitaniumIndestructible
   name: plastitanium wall
   suffix: indestructible
