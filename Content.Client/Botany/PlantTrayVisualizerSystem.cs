@@ -82,8 +82,5 @@ public sealed partial class PlantTrayVisualizerSystem : VisualizerSystem<PlantTr
         AppearanceSystem.SetData(ent.Owner, PlantTrayVisuals.NutritionLight, nutrition);
         AppearanceSystem.SetData(ent.Owner, PlantTrayVisuals.AlertLight, alert);
         AppearanceSystem.SetData(ent.Owner, PlantTrayVisuals.HarvestLight, harvest);
-
-        if (_ui.TryGetOpenUi(ent.Owner, PlantTrayUiKey.Key, out var bui))
-            bui.Update();
     }
 }

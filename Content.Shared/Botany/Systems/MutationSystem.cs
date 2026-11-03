@@ -3,6 +3,7 @@ using Content.Shared._Persistence14.Botany;
 using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared.Atmos;
 using Content.Shared.Botany.Components;
+using Content.Shared.Botany.Events;
 using Content.Shared.Botany.Traits.Components;
 using Content.Shared.Chemistry.Reagent;
 using Content.Shared.EntityEffects;
@@ -63,7 +64,8 @@ public sealed partial class PlantMutationSystem : EntitySystem
             }
         }
 
-        _plantAnalyzer.UpdatePlantUi(ent.Owner);
+        var ev = new PlantMutationsChangedEvent(ent.Owner);
+        RaiseLocalEvent(ref ev);
     }
 
     /// <summary>
@@ -101,7 +103,8 @@ public sealed partial class PlantMutationSystem : EntitySystem
 
         _plantTolerances.TryUpdateModifiers(newPlantUid); // Persistence
         _plant.ForceUpdate(newPlantUid);
-        _plantAnalyzer.ReplacePlantUi(oldPlant.Owner, newPlantUid, newPlantProto);
+        var ev = new PlantSpeciesChangedEvent(oldPlant.Owner, newPlantUid, newPlantProto);
+        RaiseLocalEvent(ref ev);
         QueueDel(oldPlant);
     }
 
