@@ -31,6 +31,7 @@ using System.Globalization;
 using System.Linq;
 using System.Numerics;
 using Content.Shared.Humanoid; // Scav
+using Content.Server._Persistence14.CharacterSnapshot; // PS14
 
 
 namespace Content.Server.GameTicking
@@ -244,7 +245,8 @@ namespace Content.Server.GameTicking
             if (mobMaybe != null)
             {
                 EntityUid mobSure = (EntityUid)mobMaybe;
-                _loader.TrySaveGeneric(mobSure, saveFilePath, out var category);
+                if (_loader.TrySaveGeneric(mobSure, saveFilePath, out var category)) // PS14 - snapshot for lobby preview
+                    EntityManager.System<CharacterSnapshotSystem>().SaveSnapshot(mobSure, data.UserId, character.Name); // PS14
             }
             _chatSystem.DispatchStationAnnouncement(station.Value,
             $"{MetaData(mob).EntityName} has arrived into the Threshold.",
