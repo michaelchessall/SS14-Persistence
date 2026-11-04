@@ -5,6 +5,8 @@ using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.DoAfter;
 using Content.Shared.Fluids;
 using Content.Shared.Fluids.Components;
+using Content.Shared.Forensics.Components;
+using Content.Shared.Forensics.Systems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Item;
@@ -33,6 +35,8 @@ public abstract class SharedStainSystem : EntitySystem
     [Dependency] private readonly SharedDoAfterSystem _doAfter = null!;
     [Dependency] private readonly SharedPuddleSystem _puddle = null!;
     [Dependency] private readonly SharedPopupSystem _popup = null!;
+
+    [Dependency] private ForensicsSystem _forensics = null!; // Persistence
 
     public override void Initialize()
     {
@@ -197,6 +201,9 @@ public abstract class SharedStainSystem : EntitySystem
             drainComp.Solution is not null &&
             _solution.TryAddSolution(drainComp.Solution.Value, split))
         {
+            if (TryComp<ForensicsComponent>(args.Used, out var drainForensics))
+                drainForensics.DNAs.UnionWith(_forensics.GetSolutionsDNA(split));
+
             _popup.PopupPredicted(Loc.GetString("stain-verb-wring-drain-success"), args.User, args.User);
         }
         else if (_puddle.TrySpillAt(ent.Owner, split, out _)) // Wring onto floor
