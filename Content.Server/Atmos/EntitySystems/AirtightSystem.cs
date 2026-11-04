@@ -8,6 +8,7 @@ using Content.Shared.Damage.Systems;
 using Content.Shared.Power;
 using Content.Shared.Repairable;
 using JetBrains.Annotations;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.EntitySystems
@@ -23,6 +24,7 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly DamageableSystem _damageable = default!;
         [Dependency] private readonly DestructibleSystem _destructible = default!;
         [Dependency] private readonly OccluderSystem _occluderSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         public override void Initialize()
         {
@@ -124,20 +126,21 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
             if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * 0.6)
             {
-                SetAirblocked((damage.Owner, airtight), false);
-                _occluderSystem.SetEnabled(damage.Owner, false);
+                if (airtight.AirBlocked)
+                {
+                    SetAirblocked((damage.Owner, airtight), false);
+                    _audio.PlayPvs(airtight.BreakSound, damage.Owner);
+                    _occluderSystem.SetEnabled(damage.Owner, false);
+                }
+                return;
             }
         }
 
         private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
         {
-            if (!_destructible.TryGetDestroyedAt(airtight.Owner, out var destroyedAt))
-                return;
-            if (_damageable.GetTotalDamage(airtight.Owner) <= destroyedAt * 0.6)
-            {
-                SetAirblocked(airtight, true);
-                _occluderSystem.SetEnabled(airtight.Owner, true);
-            }
+          SetAirblocked(airtight, true);
+          _occluderSystem.SetEnabled(airtight.Owner, true);
+
         }
 
         public void SetAirblocked(Entity<AirtightComponent> airtight, bool airblocked, TransformComponent? xform = null)

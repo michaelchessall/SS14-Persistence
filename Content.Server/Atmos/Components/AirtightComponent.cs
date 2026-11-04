@@ -1,5 +1,6 @@
 using Content.Server.Atmos.EntitySystems;
 using Content.Shared.Atmos;
+using Robust.Shared.Audio;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Server.Atmos.Components
@@ -49,6 +50,12 @@ namespace Content.Server.Atmos.Components
         /// </summary>
         [DataField]
         public bool NoAirWhenFullyAirBlocked { get; set; } = true;
+
+        /// <summary>
+        /// The sound played when this airtight entity is broken and no longer blocks air.
+        /// </summary>
+        [DataField]
+        public SoundSpecifier BreakSound = new SoundCollectionSpecifier("MetalBreak");
 
         [DataField("requiresPower")]
         public bool RequiresPower { get; set; } = false;

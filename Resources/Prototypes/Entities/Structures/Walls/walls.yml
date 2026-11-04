@@ -80,6 +80,14 @@
 
 - type: entity
   abstract: true
+  parent: BaseWall
+  id: BaseAsteroidWall
+  components:
+  - type: Airtight
+    breakSound: /Audio/Effects/break_stone.ogg
+
+- type: entity
+  abstract: true
   parent: BaseStructureWall
   id: WallDiagonalBase
   suffix: Diagonal
