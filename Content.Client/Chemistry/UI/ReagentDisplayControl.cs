@@ -33,6 +33,21 @@ public sealed partial class ReagentDisplayControl : StripedDisplayControl
     }
 
     /// <summary>
+    /// Persistence: Adds a reagent row using the localized reagent name and color, with a bonus amount.
+    /// </summary>
+    /// <param name="reagent">The reagent to display.</param>
+    /// <param name="quantity">The quantity of reagent to display.</param>
+    /// <param name="bonusQuantity">The maximum bonus quantity of reagent to display.</param>
+    /// <param name="trailingControls">Optional controls appended to the row.</param>
+    public void AddPlantReagent(ReagentId reagent, FixedPoint2 quantity, FixedPoint2 bonusQuantity, IEnumerable<Control>? trailingControls = null)
+    {
+        if (!_prototypeManager.Resolve(reagent.Prototype, out var prototype))
+            return;
+
+        AddRow(prototype.LocalizedName, $"{quantity}-{quantity + bonusQuantity}{Loc.GetString("units-u")}", prototype.SubstanceColor, trailingControls);
+    }
+
+    /// <summary>
     /// Adds a row for a non-reagent entity.
     /// </summary>
     /// <param name="name">The name to display.</param>
