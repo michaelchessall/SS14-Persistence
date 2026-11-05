@@ -101,7 +101,7 @@ public sealed partial class PlantMutationSystem : EntitySystem
         else
             _plant.PlantingPlant(newPlantUid);
 
-        _plantTolerances.TryUpdateModifiers(newPlantUid); // Persistence
+        _plantTolerances.TryUpdateModifiers(newPlantUid, null); // Persistence
         _plant.ForceUpdate(newPlantUid);
         var ev = new PlantSpeciesChangedEvent(oldPlant.Owner, newPlantUid, newPlantProto);
         RaiseLocalEvent(ref ev);

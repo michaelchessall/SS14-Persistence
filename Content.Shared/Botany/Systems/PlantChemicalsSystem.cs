@@ -103,7 +103,7 @@ public sealed partial class PlantChemicalsSystem : EntitySystem
         //var potencyDivisor = 100f / seedChemQuantity.Max;
         //seedChemQuantity.PotencyDivisor = (float)potencyDivisor;
 
-        _tolerances.TryUpdateModifiers(ent.Owner); // Persistence
+        _tolerances.TryUpdateModifiers(ent.Owner, null); // Persistence
 
         ent.Comp.Chemicals[chemicalId] = seedChemQuantity;
         Dirty(ent);
