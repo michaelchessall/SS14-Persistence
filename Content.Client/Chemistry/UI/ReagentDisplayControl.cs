@@ -41,6 +41,12 @@ public sealed partial class ReagentDisplayControl : StripedDisplayControl
     /// <param name="trailingControls">Optional controls appended to the row.</param>
     public void AddPlantReagent(ReagentId reagent, FixedPoint2 quantity, FixedPoint2 bonusQuantity, IEnumerable<Control>? trailingControls = null)
     {
+        if (bonusQuantity == FixedPoint2.Zero)
+        {
+            AddReagent(reagent, quantity, trailingControls);
+            return;
+        }
+
         if (!_prototypeManager.Resolve(reagent.Prototype, out var prototype))
             return;
 
