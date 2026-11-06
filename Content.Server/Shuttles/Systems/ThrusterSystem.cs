@@ -9,12 +9,8 @@ using Content.Shared.Interaction;
 using Content.Shared.Localizations;
 using Content.Shared.Maps;
 using Content.Shared.Power;
-using Content.Shared.Power.Components;
 using Content.Shared.Shuttles.Components;
 using Content.Shared.Temperature;
-using Content.Server.Construction; // Frontier
-using Content.Server.Construction.Components; // Frontier
-using Content.Shared.Construction.Components; // Frontier
 using Content.Shared.DeviceLinking.Events; // Frontier
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -23,6 +19,7 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Numerics;
+using Content.Shared.Power.EntitySystems; // Persistence
 using Robust.Shared.Physics.Events;
 using Robust.Shared.Physics.Components;
 
@@ -37,8 +34,9 @@ public sealed partial class ThrusterSystem : EntitySystem
     [Dependency] private readonly SharedPointLightSystem _light = default!;
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly TurfSystem _turf = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!; // Persistence: trail burn
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!; // Persistence: trail burn
+    [Dependency] private EntityLookupSystem _lookup = default!; // Persistence: trail burn
+    [Dependency] private SharedPhysicsSystem _physics = default!; // Persistence: trail burn
+    [Dependency] private SharedPowerReceiverSystem _power = default!; // Persistence: Power toggle
 
     [Dependency] private EntityQuery<ThrusterComponent> _thrusterQuery = default!;
     [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
@@ -83,16 +81,17 @@ public sealed partial class ThrusterSystem : EntitySystem
 
         if (!component.Enabled)
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0 && apcPower.Load != 1)
-                apcPower.Load = 1;
             DisableThruster(uid, component);
         }
         else if (CanEnable(uid, component))
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load)
-                apcPower.Load = component.OriginalLoad;
             EnableThruster(uid, component);
         }
+
+        // Persistence: Power toggle
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) &&
+                _power.IsPowered((uid, apcPower)) != component.Enabled)
+            _power.TogglePower(uid, false, apcPower);
     }
     // End Frontier: signal handler
     private void OnThrusterExamine(EntityUid uid, ThrusterComponent component, ExaminedEvent args)
@@ -199,18 +198,19 @@ public sealed partial class ThrusterSystem : EntitySystem
 
         if (!component.Enabled)
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != 0 && apcPower.Load != 1) // Frontier
-                apcPower.Load = 1;  // Frontier
             DisableThruster(uid, component);
             args.Handled = true;
         }
         else if (CanEnable(uid, component))
         {
-            if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad != apcPower.Load) // Frontier
-                apcPower.Load = component.OriginalLoad; // Frontier
             EnableThruster(uid, component);
             args.Handled = true;
         }
+
+        // Persistence: Power toggle
+        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) &&
+            _power.IsPowered((uid, apcPower)) != component.Enabled)
+            _power.TogglePower(uid, false, apcPower);
     }
 
     private void UpdatePowerLoad(Entity<ThrusterComponent> ent, ApcPowerReceiverComponent? apcPowerReceiver = null)
@@ -306,12 +306,6 @@ public sealed partial class ThrusterSystem : EntitySystem
 
     private void OnThrusterInit(EntityUid uid, ThrusterComponent component, ComponentInit args)
     {
-        // Frontier: togglable thrusters
-        if (TryComp<ApcPowerReceiverComponent>(uid, out var apcPower) && component.OriginalLoad == 0)
-        {
-            component.OriginalLoad = apcPower.Load;
-        }
-        // End Frontier: togglable thrusters
         _ambient.SetAmbience(uid, false);
 
         if (!component.Enabled)
