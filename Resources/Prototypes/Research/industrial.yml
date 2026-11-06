@@ -151,6 +151,18 @@
     EVAsuit: 3
     EVAsuitHelmet: 3
 
+- type: technology
+  id: WeldingEquipment
+  name: research-technology-industrial-welder-manufacturing
+  icon:
+    sprite: Objects/Tools/welder_industrial.rsi
+    state: icon
+  discipline: Industrial
+  tier: 1
+  cost: 3750
+  recipeUnlocks:
+    WelderIndustrialLR: 3
+
 # Tier 2
 
 - type: technology
@@ -236,6 +248,18 @@
     ExtendedEmergencyNitrogenTank: 2
   technologyPrerequisites:
   - EVAManufacturing
+
+- type: technology
+  id: AdvancedWeldingEquipment
+  name: research-technology-advanced-industrial-welder-manufacturing
+  icon:
+    sprite: Objects/Tools/welder_industrial.rsi
+    state: icon
+  discipline: Industrial
+  tier: 2
+  cost: 27500
+  recipeUnlocks:
+    WelderIndustrialAdvancedLR: 3
 
 # Tier 3
 - type: technology

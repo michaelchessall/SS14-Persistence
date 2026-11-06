@@ -105,7 +105,7 @@ public abstract partial class SharedToolSystem
 
     private void OnWelderAfterInteract(Entity<WelderComponent> entity, ref AfterInteractEvent args)
     {
-        if (args.Handled)
+        if (args.Handled || !entity.Comp.CanRefill)
             return;
 
         if (args.Target is not { Valid: true } target || !args.CanReach)
