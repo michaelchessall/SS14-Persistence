@@ -279,7 +279,7 @@
   completetime: 6
   materials:
     Steel: 800
-    Titanium: 100
+    Titanium: 100 # persi adjustment
     Silver: 100
     Plasma: 200
   unlockUses: 3
