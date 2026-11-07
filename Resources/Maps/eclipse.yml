@@ -128,15 +128,6 @@ entities:
     - type: OccluderTree
     - type: ChunkContainer
       chunkEntities: []
-    - type: TradeStation
-      levels:
-      - ILevelGeneral1
-      - ILevelGeneral2
-      - ILevelGeneral3
-      - ILevelGeneral4
-      markets:
-      - market
-      uID: 1
     - type: WorldController
     - type: BiomeSelection
       biomes:
@@ -493,6 +484,17 @@ entities:
     - type: TileHistory
       chunkHistory: {}
     - type: SpreaderGrid
+    - type: BecomesStation
+      id: Eclipse
+    - type: TradeStation
+      uID: 1
+      markets:
+      - market
+      levels:
+      - ILevelGeneral1
+      - ILevelGeneral2
+      - ILevelGeneral3
+      - ILevelGeneral4
     - type: Shuttle
       dampingModifier: 0.25
     - type: ImplicitRoof
@@ -74154,7 +74156,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1261
       receiveFrequency: 1262
-- proto: CryogenicSleepUnit
+- proto: CryogenicSleepUnitSpawner
   entities:
   - uid: 4172
     components:
@@ -196037,6 +196039,7 @@ entities:
       wireSeed: 1231803000
     - type: PersistentIdentifier
       id: 8bee2b28-9253-45f7-ab9e-5fe127d586b6
+
   - uid: 9509
     components:
     - type: Transform
@@ -198104,6 +198107,13 @@ entities:
           Blunt: 0
           Slash: 0
           Piercing: 0
+- proto: SpawnPointAnyJob
+  entities:
+  - uid: 24898
+    components:
+    - type: Transform
+      parent: 2
+      pos: -10.5,6.5
 - proto: WoodenBench
   entities:
   - uid: 425
@@ -198652,4 +198662,5 @@ entities:
       parent: 2
       rot: 3.141592653589793 rad
       pos: -0.5,-2.5
+
 ...

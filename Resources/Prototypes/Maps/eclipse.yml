@@ -5,17 +5,14 @@
   minPlayers: 0
   maxPlayers: 7
   stations:
-    Persi-Station:
-      stationProto: StandardNanotrasenStation
+    Eclipse:
+      stationProto: StandardPersistStation
       components:
         - type: StationNameSetup
           mapNameTemplate: '{0} Eclipse Station {1}'
           nameGenerator:
             !type:NanotrasenNameGenerator
             prefixCreator: 'SC'
-        - type: StationEmergencyShuttle
-          emergencyShuttlePath: /Maps/Shuttles/emergency.yml
         - type: StationJobs
-          availableJobs: # 15 jobs total w/o latejoins, 19 jobs total w/ latejoins
-            #civilian (1+)
-            Passenger: [ -1, -1 ] #infinite, not counted
+          availableJobs:
+            Passenger: [ -1, -1 ]

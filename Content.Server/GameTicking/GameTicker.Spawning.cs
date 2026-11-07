@@ -387,18 +387,32 @@ namespace Content.Server.GameTicking
 
         private List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>> FindContSpawn()
         {
-            var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
-            var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
+            var query = EntityQueryEnumerator<
+                ContainerSpawnPointComponent,
+                ContainerManagerComponent,
+                TransformComponent>();
+
+            var possibleContainers = new List<
+                Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
 
             while (query.MoveNext(out var uid, out var spawnPoint, out var container, out var xform))
             {
-                if (spawnPoint.SpawnType != SpawnPointType.LateJoin) continue;
                 possibleContainers.Add((uid, spawnPoint, container, xform));
-
             }
+
+            // Prioritize LateJoin, then unset/default, then RoundJoin.
+            possibleContainers = possibleContainers
+                .OrderBy(x => x.Comp1.SpawnType switch
+                {
+                    SpawnPointType.LateJoin => 0,
+                    SpawnPointType.Unset => 1,
+                    SpawnPointType.Job => 2,
+                    _ => 3
+                })
+                .ToList();
+
             return possibleContainers;
         }
-
 
 
 
