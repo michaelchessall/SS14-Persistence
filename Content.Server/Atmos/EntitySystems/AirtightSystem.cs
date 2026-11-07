@@ -1,9 +1,15 @@
 using Content.Server.Atmos.Components;
+using Content.Server.Destructible;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared._Persistence14.Atmos;
+using Content.Shared.Damage.Components;
+using Content.Shared.Damage.Systems;
 using Content.Shared.Power;
+using Content.Shared.Repairable;
 using JetBrains.Annotations;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
 
 namespace Content.Server.Atmos.EntitySystems
@@ -16,6 +22,10 @@ namespace Content.Server.Atmos.EntitySystems
         [Dependency] private readonly ExplosionSystem _explosionSystem = default!;
         [Dependency] private readonly SharedMapSystem _mapSystem = default!;
         [Dependency] private readonly PowerReceiverSystem _powerReceiverSystem = default!;
+        [Dependency] private readonly DamageableSystem _damageable = default!;
+        [Dependency] private readonly DestructibleSystem _destructible = default!;
+        [Dependency] private readonly OccluderSystem _occluderSystem = default!;
+        [Dependency] private readonly SharedAudioSystem _audio = default!;
 
         public override void Initialize()
         {
@@ -24,6 +34,8 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<AirtightComponent, AnchorStateChangedEvent>(OnAirtightPositionChanged);
             SubscribeLocalEvent<AirtightComponent, MoveEvent>(OnAirtightMoved);
             SubscribeLocalEvent<AirtightComponent, PowerChangedEvent>(OnPowerChanged);
+            SubscribeLocalEvent<AirtightComponent, RepairedEvent>(OnRepaired);
+            SubscribeLocalEvent<DamageableComponent, DamageDealtEvent>(OnDamageChanged);
         }
 
         private void OnAirtightInit(Entity<AirtightComponent> airtight, ref ComponentInit args)
@@ -107,6 +119,30 @@ namespace Content.Server.Atmos.EntitySystems
             {
                 SetAirblocked(airtight, true, xform);
             }
+
+        }
+        private void OnDamageChanged(Entity<DamageableComponent> damage, ref DamageDealtEvent args)
+        {
+            if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
+                return;
+            if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * airtight.LeakThreshold)
+            {
+                if (airtight.AirBlocked)
+                {
+                    SetAirblocked((damage.Owner, airtight), false);
+                    RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(damage.Owner), true));
+                    _audio.PlayPvs(airtight.BreakSound, damage.Owner);
+                    _occluderSystem.SetEnabled(damage.Owner, false);
+                }
+                return;
+            }
+        }
+
+        private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
+        {
+            SetAirblocked(airtight, true);
+            RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(airtight.Owner), false));
+            _occluderSystem.SetEnabled(airtight.Owner, true);
 
         }
 

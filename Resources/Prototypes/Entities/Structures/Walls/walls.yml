@@ -44,6 +44,7 @@
         - WallLayer
         density: 1000
   - type: Airtight
+    leakThreshold: 0.6
   - type: StaticPrice
     price: 75
   - type: RadiationBlocker
@@ -65,8 +66,7 @@
     fuelCost: 15
     doAfterDelay: 8
   - type: DamageVisuals # Diagonal walls need a diff texture for the damagevisuals
-    thresholds: [5, 10, 20, 30, 40, 50, 60]
-    damageDivisor: 3
+    thresholds: [5, 20, 40, 80]
     trackAllDamage: true
     damageOverlay:
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
@@ -77,6 +77,14 @@
     pylons:
     - Door
     - Firelock
+
+- type: entity
+  abstract: true
+  parent: BaseWall
+  id: BaseAsteroidWall
+  components:
+  - type: Airtight
+    breakSound: /Audio/Effects/break_stone.ogg
 
 - type: entity
   abstract: true
@@ -511,7 +519,7 @@
 
 
 - type: entity
-  parent: BaseWall
+  parent: BaseStructureWall
   id: WallPlastitaniumIndestructible
   name: plastitanium wall
   suffix: indestructible
@@ -987,6 +995,8 @@
   - type: Construction
     graph: Girder
     node: wall
+  - type: DamageVisuals
+    damageDivisor: 2.3
   - type: Icon
     sprite: Structures/Walls/solid.rsi
   - type: RCDDeconstructable
