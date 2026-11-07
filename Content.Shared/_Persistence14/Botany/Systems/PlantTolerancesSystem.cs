@@ -1,3 +1,4 @@
+using Content.Shared.Botany.Systems;
 using JetBrains.Annotations;
 using Robust.Shared.Prototypes;
 
@@ -11,6 +12,7 @@ using Content.Shared.Botany.Components;
 public sealed partial class PlantTolerancesSystem : EntitySystem
 {
     [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private BotanySystem _botany = default!;
 
     [Dependency] private EntityQuery<PlantAtmosphericComponent> _atmosQuery = default!;
     [Dependency] private EntityQuery<PlantChemicalsComponent> _chemQuery = default!;
@@ -23,26 +25,42 @@ public sealed partial class PlantTolerancesSystem : EntitySystem
     }
 
     [PublicAPI]
-    public bool TryUpdateModifiers(EntityUid ent)
+    public bool TryUpdateModifiers(EntityUid? ent, EntProtoId? prototypeId)
     {
-        if (!_atmosQuery.TryComp(ent, out var atmos))
+        if (!_botany.TryGetPlantComponent<PlantAtmosphericComponent>(ent, prototypeId, out var atmospheric))
+        {
             return false;
+        }
+        _botany.TryGetPlantComponent<PlantChemicalsComponent>(ent, prototypeId, out var chemical);
+        _botany.TryGetPlantComponent<PlantConsumeExudeGasComponent>(ent, prototypeId, out var gas);
+        UpdateModifiers(atmospheric, chemical, gas);
 
-        UpdateModifiers((ent, atmos));
+        if (ent.HasValue && Resolve(ent.Value, ref atmospheric)) // I'm not fully sure if i actually have to do this.
+            Dirty<PlantAtmosphericComponent>((ent.Value, atmospheric));
+
         return true;
     }
 
     [PublicAPI]
     public void UpdateModifiers(Entity<PlantAtmosphericComponent> ent)
     {
-        ent.Comp.ModifiedHeatToleranceDamage = ent.Comp.HeatToleranceDamage;
-        ent.Comp.ModifiedHighHeatTolerance = ent.Comp.HighHeatTolerance;
-        ent.Comp.ModifiedLowHeatTolerance = ent.Comp.LowHeatTolerance;
-        ent.Comp.ModifiedPressureToleranceDamage = ent.Comp.PressureToleranceDamage;
-        ent.Comp.ModifiedHighPressureTolerance = ent.Comp.HighPressureTolerance;
-        ent.Comp.ModifiedLowPressureTolerance = ent.Comp.LowPressureTolerance;
+        var chemicals = _chemQuery.CompOrNull(ent);
+        var gas = _gasQuery.CompOrNull(ent);
+        UpdateModifiers(ent.Comp, chemicals, gas);
+        Dirty(ent);
+    }
 
-        if (_chemQuery.TryComp(ent, out var chemicals))
+    [PublicAPI]
+    public void UpdateModifiers(PlantAtmosphericComponent comp, PlantChemicalsComponent? chemicals, PlantConsumeExudeGasComponent? gas)
+    {
+        comp.ModifiedHeatToleranceDamage = comp.HeatToleranceDamage;
+        comp.ModifiedHighHeatTolerance = comp.HighHeatTolerance;
+        comp.ModifiedLowHeatTolerance = comp.LowHeatTolerance;
+        comp.ModifiedPressureToleranceDamage = comp.PressureToleranceDamage;
+        comp.ModifiedHighPressureTolerance = comp.HighPressureTolerance;
+        comp.ModifiedLowPressureTolerance = comp.LowPressureTolerance;
+
+        if (chemicals != null)
         {
             foreach (var quantity in chemicals.Chemicals.Values)
             {
@@ -51,21 +69,19 @@ public sealed partial class PlantTolerancesSystem : EntitySystem
                 if (quantityProto.HeatToleranceModifier != null)
                 {
                     var modifier = quantityProto.HeatToleranceModifier.Value;
-                    ent.Comp.ModifiedHeatToleranceDamage *= modifier.DamageMultiplier;
-                    ent.Comp.ModifiedHighHeatTolerance += modifier. HighToleranceModifier;
-                    ent.Comp.ModifiedLowHeatTolerance += modifier. LowToleranceModifier;
+                    comp.ModifiedHeatToleranceDamage *= modifier.DamageMultiplier;
+                    comp.ModifiedHighHeatTolerance += modifier. HighToleranceModifier;
+                    comp.ModifiedLowHeatTolerance += modifier. LowToleranceModifier;
                 }
 
                 if (quantityProto.PressureToleranceModifier != null)
                 {
                     var modifier = quantityProto.PressureToleranceModifier.Value;
-                    ent.Comp.ModifiedPressureToleranceDamage *= modifier.DamageMultiplier;
-                    ent.Comp.ModifiedHighPressureTolerance += modifier. HighToleranceModifier;
-                    ent.Comp.ModifiedLowPressureTolerance += modifier. LowToleranceModifier;
+                    comp.ModifiedPressureToleranceDamage *= modifier.DamageMultiplier;
+                    comp.ModifiedHighPressureTolerance += modifier. HighToleranceModifier;
+                    comp.ModifiedLowPressureTolerance += modifier. LowToleranceModifier;
                 }
             }
         }
-
-        Dirty(ent);
     }
 }
