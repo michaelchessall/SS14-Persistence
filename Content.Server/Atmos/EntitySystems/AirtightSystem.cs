@@ -125,12 +125,12 @@ namespace Content.Server.Atmos.EntitySystems
         {
             if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
                 return;
-            if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * 0.75)
+            if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * airtight.LeakThreshold)
             {
                 if (airtight.AirBlocked)
                 {
                     SetAirblocked((damage.Owner, airtight), false);
-                    RaiseNetworkEvent(new WallAtmosLeakEvent(GetNetEntity(damage.Owner), true));
+                    RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(damage.Owner), true));
                     _audio.PlayPvs(airtight.BreakSound, damage.Owner);
                     _occluderSystem.SetEnabled(damage.Owner, false);
                 }
@@ -141,7 +141,7 @@ namespace Content.Server.Atmos.EntitySystems
         private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
         {
             SetAirblocked(airtight, true);
-            RaiseNetworkEvent(new WallAtmosLeakEvent(GetNetEntity(airtight.Owner), false));
+            RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(airtight.Owner), false));
             _occluderSystem.SetEnabled(airtight.Owner, true);
 
         }

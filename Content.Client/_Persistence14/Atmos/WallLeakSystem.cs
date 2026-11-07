@@ -3,7 +3,7 @@ using Content.Shared._Persistence14.Atmos;
 
 namespace Content.Client.WallLeaks;
 
-public sealed partial class WallAtmosLeakSystem : EntitySystem
+public sealed partial class WallLeakSystem : EntitySystem
 {
     [Dependency] private readonly IconSmoothSystem _smooth = default!;
 
@@ -11,10 +11,10 @@ public sealed partial class WallAtmosLeakSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<WallAtmosLeakEvent>(OnWallAtmosLeakChanged);
+        SubscribeNetworkEvent<WallLeakEvent>(OnWallAtmosLeakChanged);
     }
 
-    private void OnWallAtmosLeakChanged(WallAtmosLeakEvent args)
+    private void OnWallAtmosLeakChanged(WallLeakEvent args)
     {
         var uid = GetEntity(args.Entity);
         if (!Exists(uid) || !TryComp<IconSmoothComponent>(uid, out var iconSmooth))

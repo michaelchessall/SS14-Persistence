@@ -60,6 +60,9 @@ namespace Content.Server.Atmos.Components
         [DataField("requiresPower")]
         public bool RequiresPower { get; set; } = false;
 
+        [DataField]
+        public float LeakThreshold { get; set; } = 0.6f;
+
         /// <inheritdoc cref="CurrentAirBlockedDirection"/>
         [Access(Other = AccessPermissions.ReadWriteExecute)]
         public AtmosDirection AirBlockedDirection => (AtmosDirection)CurrentAirBlockedDirection;
