@@ -3,6 +3,7 @@ using Content.Server.Destructible;
 using Content.Server.Explosion.EntitySystems;
 using Content.Server.Power.EntitySystems;
 using Content.Shared.Atmos;
+using Content.Shared._Persistence14.Atmos;
 using Content.Shared.Damage.Components;
 using Content.Shared.Damage.Systems;
 using Content.Shared.Power;
@@ -124,11 +125,12 @@ namespace Content.Server.Atmos.EntitySystems
         {
             if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
                 return;
-            if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * 0.6)
+            if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * 0.75)
             {
                 if (airtight.AirBlocked)
                 {
                     SetAirblocked((damage.Owner, airtight), false);
+                    RaiseNetworkEvent(new WallAtmosLeakEvent(GetNetEntity(damage.Owner), true));
                     _audio.PlayPvs(airtight.BreakSound, damage.Owner);
                     _occluderSystem.SetEnabled(damage.Owner, false);
                 }
@@ -138,8 +140,9 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
         {
-          SetAirblocked(airtight, true);
-          _occluderSystem.SetEnabled(airtight.Owner, true);
+            SetAirblocked(airtight, true);
+            RaiseNetworkEvent(new WallAtmosLeakEvent(GetNetEntity(airtight.Owner), false));
+            _occluderSystem.SetEnabled(airtight.Owner, true);
 
         }
 
