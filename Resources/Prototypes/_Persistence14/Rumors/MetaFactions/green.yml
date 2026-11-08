@@ -44,6 +44,9 @@
     - HyperzinePen
     - CombatToolbox
     - AdvancedTeleporterChip
+    - GreenHardsuitERTChaplain
+    - GreenHardsuitERTSecurity
+    - GreenHardsuitERTMedical
   rewardsToOffer: 2
 
 - type: metaFactionLevel
@@ -60,4 +63,7 @@
     - EDagger
     - ChameleonProjector
     - AdvancedTeleporterChip
+    - GreenHardsuitERTEngineer
+    - GreenHardsuitERTJanitor
+    - GreenHardsuitERTLeader
   rewardsToOffer: 2
