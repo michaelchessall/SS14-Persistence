@@ -406,8 +406,9 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
         {
             var x = upgradeProto.UpgradeValues[0];
             var y = upgradeProto.UpgradeValues[1];
-            var box = storageComp.Grid[0];
-            storageComp.Grid[0] = new Box2i(box.Left, box.Bottom, box.Right + (int)x, box.Top + (int)y);
+            var largest = storageComp.Grid.Count - 1;
+            var box = storageComp.Grid[largest];
+            storageComp.Grid[largest] = new Box2i(box.Left, box.Bottom, box.Right + (int)x, box.Top + (int)y);
             _storage.UpdateOccupied((uid, storageComp));
             Dirty(uid, storageComp);
         }
