@@ -33,3 +33,57 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Back/Satchels/syndicate.rsi
+
+- type: entity
+  parent: ClothingBackpackERTChaplain
+  id: ClothingBackpackERTChaplainBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Backpack # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackERTSecurityBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Backpack # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackERTMedical
+  id: ClothingBackpackERTMedicalBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Backpack # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackERTEngineer
+  id: ClothingBackpackERTEngineerBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Backpack # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackERTJanitor
+  id: ClothingBackpackERTJanitorBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Backpack # ignore "WhitelistChameleon" tag
+
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderBundle
+  abstract: true
+  components:
+  - type: Tag
+    tags:
+    - Backpack # ignore "WhitelistChameleon" tag
