@@ -103,7 +103,7 @@ public sealed partial class MedibotSystem : EntitySystem
         if (!TryComp<DamageableComponent>(target, out var damageable)) return false;
         if (!_solutionContainer.TryGetInjectableSolution(target, out _, out _)) return false;
 
-        if (mobState.CurrentState != MobState.Alive && mobState.CurrentState != MobState.Critical)
+        if (mobState.CurrentState is MobState.Dead or MobState.Invalid)
         {
             _popup.PopupEntity(Loc.GetString("medibot-target-dead"), medibot, medibot);
             return false;
