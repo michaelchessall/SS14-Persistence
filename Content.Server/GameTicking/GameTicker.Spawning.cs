@@ -302,7 +302,7 @@ namespace Content.Server.GameTicking
                 }
             }
             var newMind = _mind.CreateMind(data!.UserId, character.Name);
-            _mind.SetUserId(newMind, data.UserId);
+            _mind.SetUserId(newMind.Owner, data.UserId, newMind.Comp);
             _mind.TransferTo(newMind, mob);
             _playerManager.SetAttachedEntity(player, mob, true);
 
