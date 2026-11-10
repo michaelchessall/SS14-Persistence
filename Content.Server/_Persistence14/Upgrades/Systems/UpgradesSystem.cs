@@ -29,6 +29,7 @@ using Content.Shared.Power.Components;
 using Content.Shared.Prayer;
 using Content.Shared.Radio.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Shared.StationTeleporter.Components;
 using Content.Shared.Storage;
 using Content.Shared.Storage.Components;
 using Content.Shared.Tools.Components;
@@ -64,6 +65,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     [Dependency] private EntityQuery<TegGeneratorComponent> _tegGeneratorQuery = default!;
     [Dependency] private EntityQuery<RadiationCollectorComponent> _radiationCollectorQuery = default!;
     [Dependency] private EntityQuery<ToolComponent> _toolQuery = default!;
+    [Dependency] private EntityQuery<TeleporterChipComponent> _chipQuery = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
     [Dependency] private SharedAudioSystem _audioSystem = default!;
     [Dependency] private RadarConsoleSystem _radar = default!;
@@ -97,7 +99,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     private string GetUpgradeableExamineText(Entity<UpgradeableComponent> ent)
     {
         string msg = "";
-        foreach(var kv in ent.Comp.Upgrades)
+        foreach (var kv in ent.Comp.Upgrades)
         {
             var upgrade = kv.Key;
             var appliedTimes = kv.Value;
@@ -111,7 +113,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
         }
         foreach (var kv in ent.Comp.ChooseOneUpgrades)
         {
-            if(ent.Comp.Chosen)
+            if (ent.Comp.Chosen)
             {
                 if (kv.Value == 0) continue;
             }
@@ -120,7 +122,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
             var upgradeProto = _protoMan.Index(upgrade);
             var moduleTypeProto = _protoMan.Index(upgradeProto.TargetModule);
             msg += $"\n\n[bold]{upgradeProto.Name} ({moduleTypeProto.Name})[/bold]:\n[color=yellow]{upgradeProto.Description}[/color] ({appliedTimes}/{upgradeProto.MaxApplications})";
-                
+
         }
 
         return msg;
@@ -144,7 +146,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                     _popupSystem.PopupEntity("You must be holding a valid upgrade module.", uid, actor.PlayerSession, PopupType.Large);
                     return;
                 }
-                if(TryApplyUpgade(uid, comp, item.Value, args.User))
+                if (TryApplyUpgade(uid, comp, item.Value, args.User))
                 {
                     _popupSystem.PopupEntity("Upgrade applied successfully.", uid, actor.PlayerSession, PopupType.Large);
                 }
@@ -163,13 +165,13 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     private bool TryApplyUpgade(EntityUid uid, UpgradeableComponent comp, EntityUid value, EntityUid user)
     {
         if (!_upgradeModuleQuery.TryComp(value, out var upgradeModuleComp)) return false;
-        foreach(var kv in comp.Upgrades)
+        foreach (var kv in comp.Upgrades)
         {
             var upgrade = kv.Key;
             var appliedTimes = kv.Value;
             var upgradeProto = _protoMan.Index(upgrade);
             if (upgradeProto == null) continue;
-            if(upgradeProto.TargetModule == upgradeModuleComp.TargetModule && appliedTimes < upgradeProto.MaxApplications)
+            if (upgradeProto.TargetModule == upgradeModuleComp.TargetModule && appliedTimes < upgradeProto.MaxApplications)
             {
                 ApplyUpgrade(uid, comp, value, upgradeModuleComp, user);
                 return true;
@@ -203,19 +205,19 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
             if (upgradeProto == null) continue;
             if (upgradeProto.TargetModule == upgradeModuleComp.TargetModule && appliedTimes < upgradeProto.MaxApplications)
             {
-                if(upgradeProto.UpgradeType == UpgradeType.Storage)
+                if (upgradeProto.UpgradeType == UpgradeType.Storage)
                 {
                     ApplyStorageUpgrade(uid, upgradeProto);
                 }
-                if(upgradeProto.UpgradeType == UpgradeType.RadarRange)
+                if (upgradeProto.UpgradeType == UpgradeType.RadarRange)
                 {
                     ApplyRadarRangeUpgrade(uid, upgradeProto);
                 }
-                if(upgradeProto.UpgradeType == UpgradeType.ApcMaxLoad)
+                if (upgradeProto.UpgradeType == UpgradeType.ApcMaxLoad)
                 {
                     ApplyApcMaxLoadUpgrade(uid, upgradeProto);
                 }
-                if(upgradeProto.UpgradeType == UpgradeType.EnttiyStorageCapacity)
+                if (upgradeProto.UpgradeType == UpgradeType.EnttiyStorageCapacity)
                 {
                     ApplyEntityStorageCapacityUpgrade(uid, upgradeProto);
                 }
@@ -263,15 +265,19 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
                 {
                     ApplyRadiationCollectorPowerUpgrade(uid, upgradeProto);
                 }
-                if(upgradeProto.UpgradeType == UpgradeType.Armor)
+                if (upgradeProto.UpgradeType == UpgradeType.Armor)
                 {
                     ApplyArmorUpgrade(uid, upgradeProto);
                 }
-                if(comp.Upgrades.ContainsKey(upgrade))
+                if (upgradeProto.UpgradeType == UpgradeType.TeleporterRange)
+                {
+                    ApplyTeleporterRangeUpgrade(uid, upgradeProto);
+                }
+                if (comp.Upgrades.ContainsKey(upgrade))
                 {
                     comp.Upgrades[upgrade] = appliedTimes + 1;
                 }
-                else if(comp.ChooseOneUpgrades.ContainsKey(upgrade))
+                else if (comp.ChooseOneUpgrades.ContainsKey(upgrade))
                 {
                     comp.ChooseOneUpgrades[upgrade] = appliedTimes + 1;
                 }
@@ -284,15 +290,15 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
 
     private void ApplyArmorUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
-        if(upgradeProto.ArmorModifiers == null) return;
+        if (upgradeProto.ArmorModifiers == null) return;
         EnsureComp<ArmorComponent>(uid, out var armorComp);
-        if(armorComp.Modifiers == null)
+        if (armorComp.Modifiers == null)
         {
             armorComp.Modifiers = new DamageModifierSet();
         }
         foreach (var damageCo in upgradeProto.ArmorModifiers.Coefficients)
         {
-            if(armorComp.Modifiers.Coefficients.ContainsKey(damageCo.Key))
+            if (armorComp.Modifiers.Coefficients.ContainsKey(damageCo.Key))
             {
                 armorComp.Modifiers.Coefficients[damageCo.Key] -= damageCo.Value;
             }
@@ -317,7 +323,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
 
     private void ApplyRadiationCollectorPowerUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
-        if(!_radiationCollectorQuery.TryComp(uid, out var radiationCollectorComp)) return;
+        if (!_radiationCollectorQuery.TryComp(uid, out var radiationCollectorComp)) return;
         _radiationCollector.SetChargeModifier(uid, radiationCollectorComp.ChargeModifier + upgradeProto.UpgradeValues[0], radiationCollectorComp);
     }
 
@@ -353,7 +359,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
 
     private void ApplyMicrowaveSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
-        if(!_microwaveQuery.TryComp(uid, out var microwaveComp)) return;
+        if (!_microwaveQuery.TryComp(uid, out var microwaveComp)) return;
         microwaveComp.CookTimeMultiplier -= upgradeProto.UpgradeValues[0];
     }
 
@@ -365,19 +371,19 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
 
     private void ApplyLatheSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
-        if(!_latheQuery.TryComp(uid, out var latheComp)) return;
+        if (!_latheQuery.TryComp(uid, out var latheComp)) return;
         latheComp.TimeMultiplier -= upgradeProto.UpgradeValues[0];
     }
 
     private void ApplyTelecomServerRangeUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
-        if(!_telecomServerQuery.TryComp(uid, out var telecomServerComp)) return;
+        if (!_telecomServerQuery.TryComp(uid, out var telecomServerComp)) return;
         telecomServerComp.MaxRange += upgradeProto.UpgradeValues[0];
     }
 
     private void ApplyBatteryCapacityUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
-        if(!_batteryQuery.TryComp(uid, out var batteryComp)) return;
+        if (!_batteryQuery.TryComp(uid, out var batteryComp)) return;
         _battery.SetMaxCharge((uid, batteryComp), batteryComp.MaxCharge + upgradeProto.UpgradeValues[0]);
     }
 
@@ -398,6 +404,14 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     {
         if (!_radarQuery.TryComp(uid, out var radarComp)) return;
         _radar.SetRange(uid, radarComp.MaxRange + upgradeProto.UpgradeValues[0], radarComp);
+    }
+
+    private void ApplyTeleporterRangeUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
+    {
+        if (!_chipQuery.TryComp(uid, out var chipComp)) return;
+        chipComp.MaxConnectDistance += upgradeProto.UpgradeValues[0];
+        chipComp.MaxLocateDistance += upgradeProto.UpgradeValues[0] * 2;
+        Dirty(uid, chipComp);
     }
 
     private void ApplyStorageUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
