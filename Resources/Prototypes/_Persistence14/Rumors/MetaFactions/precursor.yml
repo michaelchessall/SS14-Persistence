@@ -23,6 +23,7 @@
     - PrecursorCodexFragment
     - PrecursorPJs
     - PrecursorMerchCrate
+    - PrecursorRumorContract
   rewardsToOffer: 2
 
 - type: metaFactionLevel
