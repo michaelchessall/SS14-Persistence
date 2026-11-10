@@ -1,0 +1,112 @@
+- type: entity
+  id: RumorContractBase
+  abstract: true
+  parent: BaseItem
+  name: Rumor Contract
+  description: A small slip of paper containing a rumor for a specific faction. Comes printed on self-destructing paper.
+  components:
+  - type: Sprite
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+  - type: Tag
+    tags:
+    - Document
+    - Paper
+  - type: InteractionOutline
+  - type: Item
+    size: Tiny
+  - type: Flammable
+    fireSpread: true
+    alwaysCombustible: true
+    canExtinguish: true
+    damage:
+      types:
+        Heat: 1
+  - type: Reactive
+    groups:
+      Flammable: [ Touch ]
+      Extinguish: [ Touch ]
+  - type: ExtinguishableSetCollisionWake
+  - type: Damageable
+    damageModifierSet: Wood
+  - type: Injurable
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 15
+      behaviors:
+      - !type:SpawnEntitiesBehavior
+        spawn:
+          Ash:
+            min: 1
+            max: 1
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: Solution
+    solution:
+      maxVol: 2.5 # I consider paper to be like material sheets, so we divide their capacity by 12
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 1.25
+  - type: RumorContract
+
+- type: entity
+  id: RumorContractZenith
+  suffix: Zenith
+  parent: RumorContractBase
+  components:
+  - type: Sprite
+    color: Red
+  - type: RumorContract
+    faction: Zenith
+
+- type: entity
+  id: RumorContractGreen
+  suffix: Green
+  parent: RumorContractBase
+  components:
+  - type: Sprite
+    color: Green
+  - type: RumorContract
+    faction: Green
+
+- type: entity
+  id: RumorContractMarines
+  suffix: Marines
+  parent: RumorContractBase
+  components:
+  - type: Sprite
+    color: Olive
+  - type: RumorContract
+    faction: Marines
+
+- type: entity
+  id: RumorContractPrecursor
+  suffix: Precursor
+  parent: RumorContractBase
+  components:
+  - type: Sprite
+    color: Purple
+  - type: RumorContract
+    faction: Precursor
+
+- type: entity
+  id: RumorContractLuminals
+  suffix: Luminals
+  parent: RumorContractBase
+  components:
+  - type: Sprite
+    color: Yellow
+  - type: RumorContract
+    faction: Luminals
+
+- type: entity
+  id: RumorContractShadow
+  suffix: Shadow
+  parent: RumorContractBase
+  components:
+  - type: Sprite
+    color: DarkGray
+  - type: RumorContract
+    faction: Shadow
