@@ -9,7 +9,6 @@ namespace Content.Shared.StationTeleporter.Components;
 /// Stores a reference to a specific teleporter. Can be inserted into the teleporter control console so that the console can control this teleporter.
 /// </summary>
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
-[Access(typeof(SharedStationTeleporterSystem))]
 public sealed partial class TeleporterChipComponent : Component
 {
     /// <summary>

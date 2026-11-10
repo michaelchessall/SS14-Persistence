@@ -1,0 +1,19 @@
+- type: upgrade
+  id: TeleporterRangeShadow
+  name: Teleporter Range Increase
+  description: "Adds 512m to the range of a teleporter chip."
+  targetModule: Shadow
+  maxApplications: 2
+  upgradeValues:
+    - 512
+  upgradeType: TeleporterRange
+
+- type: upgrade
+  id: TeleporterRangePrecursor
+  name: Teleporter Range Increase
+  description: "Adds 512m to the range of a teleporter chip."
+  targetModule: Precursor
+  maxApplications: 2
+  upgradeValues:
+    - 512
+  upgradeType: TeleporterRange
