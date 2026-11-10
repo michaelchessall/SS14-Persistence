@@ -23,7 +23,7 @@
   id: LuminalsRumorContract
   name: Rumor Contract
   description: A slip containing one Luminals rumor.
-  price: 3500
+  price: 5000
   product: RumorContractLuminals
   icon:
     sprite: Objects/Misc/bureaucracy.rsi
