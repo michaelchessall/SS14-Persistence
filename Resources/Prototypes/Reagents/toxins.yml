@@ -489,7 +489,10 @@
       - !type:HealthChange
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Animal, Arachnid ] # Applying damage to the mobs with lower metabolism capabilities
+          type: [Animal, Arachnid] # Applying damage to the mobs with lower metabolism capabilities
+        - !type:MetabolizerTypeCondition
+          type: [Slime] # Persistence 14 - Excludes slimes from taking damage since slime stomachs are now animal organs
+          inverted: true
         damage:
           types:
             Poison: 0.4
@@ -498,6 +501,9 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Animal, Arachnid ]
+        - !type:MetabolizerTypeCondition
+            type: [Slime] # Persistence 14 - Excludes slimes from vomiting since slime stomachs are now animal organs
+            inverted: true
 
 - type: reagent
   id: TartaricAcid
@@ -516,6 +522,9 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [Animal] # Applying damage to the mobs with lower metabolism capabilities
+        - !type:MetabolizerTypeCondition
+          type: [Slime] # Persistence 14 - Excludes slimes from taking damage since slime stomachs are now animal organs
+          inverted: true
         damage:
           types:
             Poison: 1.2
@@ -524,6 +533,9 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Animal, Arachnid ]
+        - !type:MetabolizerTypeCondition
+            type: [Slime] # Persistence 14 - Excludes slimes from vomiting since slime stomachs are now animal organs
+            inverted: true
 
 - type: reagent
   id: Amatoxin
@@ -643,12 +655,6 @@
           type: [ Goblin ]
         reagent: Protein
         amount: 0.5
-      - !type:AdjustReagent
-        conditions:
-        - !type:MetabolizerTypeCondition
-          type: [ Goblin ]
-        reagent: Protein
-        amount: 0.5
       - !type:AdjustReagent # Scav
         conditions:
         - !type:MetabolizerTypeCondition
@@ -659,6 +665,9 @@
         conditions:
         - !type:MetabolizerTypeCondition
           type: [ Vox ]
+        - !type:MetabolizerTypeCondition
+          type: [ Slime ] # Persistence 14 - Prevents slimes from getting additional Protein from having Vox stomachs
+          inverted: true
         reagent: Protein
         amount: 0.25
 
@@ -680,7 +689,10 @@
           reagent: Allicin
           min: 1
         - !type:MetabolizerTypeCondition
-          type: [ Animal ]
+          type: [Animal]
+        - !type:MetabolizerTypeCondition
+          type: [Slime] # Persistence 14 - Excludes slimes from taking damage since slime stomachs are now animal organs
+          inverted: true
         damage:
           types:
             Poison: 0.1
@@ -713,6 +725,9 @@
           min: 1
         - !type:MetabolizerTypeCondition
           type: [ Animal, Arachnid ]
+        - !type:MetabolizerTypeCondition
+          type: [Slime] # Persistence 14 - Excludes slimes from taking damage since slime stomachs are now animal organs
+          inverted: true
         damage:
           types:
             Poison: 0.06
