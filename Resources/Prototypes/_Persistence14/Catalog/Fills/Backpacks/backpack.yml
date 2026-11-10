@@ -23,6 +23,20 @@
     - id: DoubleEmergencyNitrogenTankFilled
 
 - type: entity
+  parent: ClothingBackpackERTChaplain
+  id: ClothingBackpackERTPaladinHardsuitBundle
+  name: ERT paladin hardsuit bundle
+  description: "Contains Nanotrasen's ERT hardsuit built for handling potential supernatural threats."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTPaladin
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entity
   parent: ClothingBackpackERTSecurity
   id: ClothingBackpackERTSecurityHardsuitBundle
   name: ERT security hardsuit bundle

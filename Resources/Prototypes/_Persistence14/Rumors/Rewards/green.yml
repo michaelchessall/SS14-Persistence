@@ -73,13 +73,13 @@
     state: icon
 
 - type: rumorReward
-  id: GreenHardsuitERTChaplain
-  name: ERT Chaplain Hardsuit
+  id: GreenHardsuitERTPaladin
+  name: ERT Paladin Hardsuit
   description: "Contains Nanotrasen's ERT hardsuit built for handling potential supernatural threats."
   price: 12000
-  product: ClothingBackpackERTChaplainHardsuitBundle
+  product: ClothingBackpackERTPaladinHardsuitBundle
   icon:
-    sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertchaplain.rsi
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/ERTSuits/ertpaladin.rsi
     state: icon
 
 - type: rumorReward
