@@ -861,13 +861,18 @@ public sealed partial class RumorsSystem : EntitySystem
         if (newRumor == null)
         {
             newRumor = GenerateRumor(player, comp, player, factionId);
-            if (newRumor != null) newRumor.OriginalOwner = Name(player);
         }
+
         if (newRumor != null)
         {
+            // Set for every path so the original owner is never blank.
+            if (string.IsNullOrEmpty(newRumor.OriginalOwner))
+                newRumor.OriginalOwner = Name(player);
+
             comp.Rumors.Add(newRumor);
             NotifyPlayer(player, $"Your job network reports you have recieved a new rumor: {newRumor.Name}", comp.NewRumorSound);
         }
+
         _jobnet.UpdateUserInterface(player, comp.Owner);
     }
 
