@@ -67,3 +67,14 @@
   icon:
     sprite: Clothing/Shoes/Boots/magboots-ert.rsi
     state: icon
+
+- type: rumorReward
+  id: GreenRumorContract
+  name: Rumor Contract
+  description: A slip containing one Nanotrasen rumor.
+  price: 5000
+  product: RumorContractGreen
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Green

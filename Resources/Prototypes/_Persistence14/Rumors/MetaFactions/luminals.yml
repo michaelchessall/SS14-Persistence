@@ -21,6 +21,7 @@
     - TradeGood
     - LuminalCodexFragment
     - GrandLottery
+    - LuminalsRumorContract
   rewardsToOffer: 2
 
 - type: metaFactionLevel
