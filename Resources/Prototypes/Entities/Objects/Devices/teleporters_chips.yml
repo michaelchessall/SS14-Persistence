@@ -19,3 +19,4 @@
     - FitInTeleporterConsole
   - type: UseDelay #Prevent link spamming
     delay: 1.5
+  - type: Upgradeable

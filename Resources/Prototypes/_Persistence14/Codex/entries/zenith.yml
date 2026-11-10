@@ -42,7 +42,7 @@
 - type: codexEntry
   id: ThresholdCandle
   name: The Threshold Candle
-  content: "UNFILLED"
+  content: "This candle was used by the colonists of the Zenith Sector to combat the [bold]'Void Entities'[bold] in several conflicts including the [bold]AJAX Crisis[/bold]. A portion of the Luminal merged with the candle to give it an ever-burning flame which banishes away Void Entites.\n\nIt was sent into the Nexus Space where it can continue to be used as a bulwark against the Void Entities."
   order: 5
   category: Zenith
   unlockHint: "Examine the Threshold Candle"

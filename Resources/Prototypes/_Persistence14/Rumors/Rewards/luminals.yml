@@ -19,3 +19,13 @@
     sprite: _Persistence14/Objects/Specific/codex.rsi
     state: lumi
 
+- type: rumorReward
+  id: LuminalsRumorContract
+  name: Rumor Contract
+  description: A slip containing one Luminals rumor.
+  price: 5000
+  product: RumorContractLuminals
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Yellow

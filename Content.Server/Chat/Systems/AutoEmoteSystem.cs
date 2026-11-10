@@ -74,6 +74,7 @@ public sealed partial class AutoEmoteSystem : EntitySystem
         {
             autoEmote.EmoteTimers[key] += args.PausedTime;
         }
+        if (autoEmote.NextEmoteTime == TimeSpan.MaxValue) return;
         autoEmote.NextEmoteTime += args.PausedTime;
     }
 

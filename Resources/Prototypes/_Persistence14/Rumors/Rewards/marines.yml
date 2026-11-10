@@ -68,3 +68,14 @@
   icon:
     sprite: _RMC14/Objects/Weapons/Guns/m54c.rsi
     state: icon
+
+- type: rumorReward
+  id: MarineRumorContract
+  name: Rumor Contract
+  description: A slip containing one UNMC rumor.
+  price: 3500
+  product: RumorContractMarines
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Olive
