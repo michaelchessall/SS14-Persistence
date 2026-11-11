@@ -59,6 +59,14 @@
   components:
   - type: Occluder # Breaks on diagonal walls
 # PERSI change START
+  - type: Sprite
+    sprite: _Persistence14/Structures/walls/wall_damage.rsi
+    noRot: true
+    layers:
+    - state: DamageLeak
+      sprite: _Persistence14/Structures/walls/wall_damage.rsi
+      visible: false
+      map: [ "leaking" ]
   - type: Appearance # Damage visuals for normal walls
   - type: ExaminableDamage
     messages: WindowMessages
@@ -70,6 +78,13 @@
     trackAllDamage: true
     damageOverlay:
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
+  - type: StructureLeakVisuals
+  - type: GenericVisualizer
+    visuals:
+      enum.StructureLeakVisuals.DamageLeak:
+        leaking:
+          0: { state: DamageLeak, visible: false}
+          1: { state: DamageLeak, visible: true }
 # PERSI change END
   - type: PlacementReplacement
     key: walls
@@ -77,6 +92,7 @@
     pylons:
     - Door
     - Firelock
+
 
 - type: entity
   abstract: true

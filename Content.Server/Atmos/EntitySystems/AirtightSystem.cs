@@ -11,6 +11,7 @@ using Content.Shared.Repairable;
 using JetBrains.Annotations;
 using Robust.Shared.Audio.Systems;
 using Robust.Shared.Map.Components;
+using Content.Shared._Persistence14.Atmos.Components;
 
 namespace Content.Server.Atmos.EntitySystems
 {
@@ -125,6 +126,9 @@ namespace Content.Server.Atmos.EntitySystems
         {
             if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
                 return;
+            if (!TryComp<StructureLeakVisualsComponent>(damage.Owner, out var structureLeak))
+                return;
+
             if (_damageable.GetTotalDamage(damage.Owner) > destroyedAt * airtight.LeakThreshold)
             {
                 if (airtight.AirBlocked)
@@ -133,6 +137,8 @@ namespace Content.Server.Atmos.EntitySystems
                     RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(damage.Owner), true));
                     _audio.PlayPvs(airtight.BreakSound, damage.Owner);
                     _occluderSystem.SetEnabled(damage.Owner, false);
+                    structureLeak.Leaking = true;
+                    Dirty(damage.Owner, airtight);
                 }
                 return;
             }
@@ -140,6 +146,9 @@ namespace Content.Server.Atmos.EntitySystems
 
         private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
         {
+            if (!TryComp<StructureLeakVisualsComponent>(airtight.Owner, out var structureLeak))
+                return;
+            structureLeak.Leaking = false;
             SetAirblocked(airtight, true);
             RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(airtight.Owner), false));
             _occluderSystem.SetEnabled(airtight.Owner, true);
