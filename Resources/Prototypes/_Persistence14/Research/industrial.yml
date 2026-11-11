@@ -9,6 +9,7 @@
   cost: 20000
   recipeUnlocks:
     Fulton: 40
+    MedicalFulton: 20
     FultonBeacon: 2
 
 # Refill Technologies: Used to restock consumable parts of larger tech unlocks
@@ -23,6 +24,7 @@
   cost: 9000
   recipeUnlocks:
     Fulton: 20
+    MedicalFulton: 10
   technologyPrerequisites:
   - InterstellarLogistics
 
