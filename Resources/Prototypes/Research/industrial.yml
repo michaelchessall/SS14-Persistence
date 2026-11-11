@@ -259,7 +259,7 @@
   tier: 2
   cost: 27500
   recipeUnlocks:
-    WelderIndustrialAdvancedLR: 3
+    WelderIndustrialAdvancedLR: 2
 
 # Tier 3
 - type: technology

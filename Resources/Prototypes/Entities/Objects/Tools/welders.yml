@@ -105,8 +105,6 @@
   components:
   - type: Sprite
     sprite: Objects/Tools/welder.rsi
-  - type: Tool
-    speedModifier: 0.8
   - type: PhysicalComposition # gives back 90% mat used to print when recycled
     materialComposition:
       Steel: 360
@@ -133,6 +131,8 @@
       Steel: 180
       Aluminium: 180
       Copper: 180
+  - type: Tool
+    speedModifier: 1.1
   - type: Solution
     solution:
       maxVol: 500 #persi adjustment
@@ -148,7 +148,7 @@
   - type: Item
     sprite: Objects/Tools/welder_industrialadv.rsi
   - type: Tool
-    speedModifier: 1.2 # This would make the progression more marked
+    speedModifier: 1.3
   - type: Solution
     solution:
       maxVol: 750 #persi adjustment
