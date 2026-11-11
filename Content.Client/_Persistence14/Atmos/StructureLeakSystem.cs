@@ -1,7 +1,7 @@
 using Content.Client.IconSmoothing;
-using Content.Shared._Persistence14.Atmos;
 using Content.Shared._Persistence14.Atmos.Components;
 using Robust.Client.GameObjects;
+using Robust.Shared.GameStates;
 
 namespace Content.Client._Persistence14.Atmos;
 
@@ -15,43 +15,45 @@ public sealed partial class StructureLeakSystem : EntitySystem
     {
         base.Initialize();
 
-        SubscribeNetworkEvent<WallLeakEvent>(OnStructureLeak);
+        SubscribeLocalEvent<StructureLeakVisualsComponent, ComponentStartup>(OnStartup);
+        SubscribeLocalEvent<StructureLeakVisualsComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
         SubscribeLocalEvent<StructureLeakVisualsComponent, AppearanceChangeEvent>(OnAppearanceChange);
+    }
+
+    private void OnStartup(EntityUid uid, StructureLeakVisualsComponent component, ComponentStartup args)
+    {
+        UpdateAppearance(uid, component);
+    }
+
+    private void OnAfterAutoHandleState(EntityUid uid, StructureLeakVisualsComponent component, ref AfterAutoHandleStateEvent args)
+    {
+        UpdateAppearance(uid, component);
+    }
+
+    private void UpdateAppearance(EntityUid uid, StructureLeakVisualsComponent component)
+    {
+        if (!TryComp<AppearanceComponent>(uid, out var appearance))
+            return;
+
+        _appearance.SetData(uid, StructureLeakVisuals.DamageLeak, component.Leaking ? 1 : 0, appearance);
     }
 
     private void OnAppearanceChange(EntityUid uid, StructureLeakVisualsComponent component, ref AppearanceChangeEvent args)
     {
-        if (_appearance.TryGetData<int>(
-                uid,
-                StructureLeakVisuals.DamageLeak,
-                out var leaking,
-                args.Component) &&
-            TryComp<IconSmoothComponent>(uid, out var iconSmooth))
-        {
-            _smooth.SetEnabled(uid, leaking == 0, iconSmooth);
-        }
+        if (TryComp<IconSmoothComponent>(uid, out var iconSmooth))
+            _smooth.SetEnabled(uid, !component.Leaking, iconSmooth);
+
         if (args.Sprite == null)
             return;
-        if (TryComp<SpriteComponent>(uid, out var sprite))
-            MoveLeakLayerToTop(uid, sprite);
 
+        var sprite = (uid, args.Sprite);
+        if (_sprite.LayerMapTryGet(sprite, "leaking", out var layerIndex, false))
+            _sprite.LayerSetVisible(sprite, layerIndex, component.Leaking);
+
+
+        MoveLeakLayerToTop(uid, args.Sprite);
     }
 
-    private void OnStructureLeak(WallLeakEvent args)
-    {
-        var uid = GetEntity(args.Entity);
-        if (!Exists(uid) || !TryComp<IconSmoothComponent>(uid, out var iconSmooth))
-            return;
-        if (!TryComp<AppearanceComponent>(uid, out var appearance))
-            return;
-
-        if (args.Leaking)
-            _appearance.SetData(uid, StructureLeakVisuals.DamageLeak, 1, appearance);
-        else
-            _appearance.SetData(uid, StructureLeakVisuals.DamageLeak, 0, appearance);
-
-        _smooth.SetEnabled(uid, !args.Leaking, iconSmooth);
-    }
     private void MoveLeakLayerToTop(EntityUid uid, SpriteComponent sprite)
     {
         var entity = (uid, sprite);

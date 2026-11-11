@@ -134,11 +134,10 @@ namespace Content.Server.Atmos.EntitySystems
                 if (airtight.AirBlocked)
                 {
                     SetAirblocked((damage.Owner, airtight), false);
-                    RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(damage.Owner), true));
                     _audio.PlayPvs(airtight.BreakSound, damage.Owner);
                     _occluderSystem.SetEnabled(damage.Owner, false);
                     structureLeak.Leaking = true;
-                    Dirty(damage.Owner, airtight);
+                    Dirty(damage.Owner, structureLeak);
                 }
                 return;
             }
@@ -148,9 +147,10 @@ namespace Content.Server.Atmos.EntitySystems
         {
             if (!TryComp<StructureLeakVisualsComponent>(airtight.Owner, out var structureLeak))
                 return;
+
             structureLeak.Leaking = false;
+            Dirty(airtight.Owner, structureLeak);
             SetAirblocked(airtight, true);
-            RaiseNetworkEvent(new WallLeakEvent(GetNetEntity(airtight.Owner), false));
             _occluderSystem.SetEnabled(airtight.Owner, true);
 
         }
