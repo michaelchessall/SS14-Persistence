@@ -267,7 +267,7 @@
     isSpecialDigestibleExclusive: false # End Persistence 14
   - type: Metabolizer
     maxReagents: 6
-    metabolizerTypes: [ Slime, Animal, Vox, Moth ] # Persistence 14 - Allows slimes to eat and process reagents the same way Animals, Vox, and Moths do
+    metabolizerTypes: [ Slime, Animal, Vox, Moth,  ] # Persistence 14 - Allows slimes to eat and process reagents the same way Animals, Vox, Moths, and Goblins do
     stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
