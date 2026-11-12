@@ -132,7 +132,8 @@
     sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
     state: icon
  
-- id: GreenRumorContract
+- type: rumorReward
+  id: GreenRumorContract
   name: Rumor Contract
   description: A slip containing one Nanotrasen rumor.
   price: 5000
