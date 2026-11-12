@@ -1,0 +1,559 @@
+- type: constructionGraph
+  id: SignDirectional
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: atmos
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: bar
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: bridge
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: brig
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: chapel
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: chemistry
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: cryo
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: dorms
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: eng
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: evac
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: exam
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: food
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: gravity
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: hop
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: hydro
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: icu
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: janitor
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: janitor
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: library
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: med
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: salvage
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: sci
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: sec
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: solar
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: supply
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: wash
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+        - to: escapepod
+          completed:
+            - !type:SnapToGrid
+          steps:
+            - material: Steel
+              amount: 1
+              doAfter: 2
+
+    - node: atmos
+      entity: SignDirectionalAtmos
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: bar
+      entity: SignDirectionalBar
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: bridge
+      entity: SignDirectionalBridge
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: brig
+      entity: SignDirectionalBrig
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: chapel
+      entity: SignDirectionalChapel
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: chemistry
+      entity: SignDirectionalChemistry
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: cryo
+      entity: SignDirectionalCryo
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: dorms
+      entity: SignDirectionalDorms
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: eng
+      entity: SignDirectionalEng
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: evac
+      entity: SignDirectionalEvac
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: exam
+      entity: SignDirectionalExam
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: food
+      entity: SignDirectionalFood
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: gravity
+      entity: SignDirectionalGravity
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: hop
+      entity: SignDirectionalHop
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: hydro
+      entity: SignDirectionalHydro
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: icu
+      entity: SignDirectionalIcu
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: janitor
+      entity: SignDirectionalJanitor
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: library
+      entity: SignDirectionalLibrary
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: med
+      entity: SignDirectionalMed
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: salvage
+      entity: SignDirectionalSalvage
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: sci
+      entity: SignDirectionalSci
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: sec
+      entity: SignDirectionalSec
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: solar
+      entity: SignDirectionalSolar
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: supply
+      entity: SignDirectionalSupply
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: wash
+      entity: SignDirectionalWash
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
+
+    - node: escapepod
+      entity: SignDirectionalEscapePod
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 1.0
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 1
+            - !type:DeleteEntity {}
