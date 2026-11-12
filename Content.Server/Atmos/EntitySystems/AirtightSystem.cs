@@ -122,6 +122,7 @@ namespace Content.Server.Atmos.EntitySystems
             }
 
         }
+        #region Persistence 14 - Damage and Repair
         private void OnDamageChanged(Entity<DamageableComponent> damage, ref DamageDealtEvent args)
         {
             if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
@@ -154,6 +155,8 @@ namespace Content.Server.Atmos.EntitySystems
             _occluderSystem.SetEnabled(airtight.Owner, true);
 
         }
+
+        #endregion Persistence 14 - damage and Repair
 
         public void SetAirblocked(Entity<AirtightComponent> airtight, bool airblocked, TransformComponent? xform = null)
         {

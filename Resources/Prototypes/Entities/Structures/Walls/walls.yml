@@ -44,7 +44,7 @@
         - WallLayer
         density: 1000
   - type: Airtight
-    leakThreshold: 0.6
+    leakThreshold: 0.80
   - type: StaticPrice
     price: 75
   - type: RadiationBlocker
@@ -58,7 +58,7 @@
   id: BaseWall
   components:
   - type: Occluder # Breaks on diagonal walls
-# PERSI change START
+# PERSI change START - Damage visuals & leaks for walls!
   - type: Sprite
     sprite: _Persistence14/Structures/walls/wall_damage.rsi
     noRot: true
@@ -74,11 +74,12 @@
     fuelCost: 15
     doAfterDelay: 8
   - type: DamageVisuals # Diagonal walls need a diff texture for the damagevisuals
-    thresholds: [5, 20, 40, 80]
+    thresholds: [15, 30, 60, 90]
     trackAllDamage: true
     damageOverlay:
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
   - type: StructureLeakVisuals
+    messages: StructureLeakMessages
   - type: GenericVisualizer
     visuals:
       enum.StructureLeakVisuals.DamageLeak:
