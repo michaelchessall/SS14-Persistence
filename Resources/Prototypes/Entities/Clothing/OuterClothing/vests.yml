@@ -52,10 +52,10 @@
 
 #Tank Harness
 - type: entity
-  parent: [ClothingOuterBase, AllowSuitStorageClothingGasTanks]
+  parent: [ClothingOuterBase, AllowSuitStorageClothing] # Persistence 14 - Changed from AllowSuitStorageClothingGasTanks to let them carry anything on the suitstorage slot
   id: ClothingOuterVestTank
-  name: tank harness
-  description: A simple harness that can hold a gas tank.
+  name: equipment harness
+  description: A simple harness that can hold a air tanks and other useful equipment on your back. # Persistence 14 - Updated description to reflex the change to more than just airtanks
   components:
   - type: Sprite
     sprite: Clothing/OuterClothing/Vests/tankharness.rsi
