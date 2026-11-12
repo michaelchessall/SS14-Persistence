@@ -258,9 +258,16 @@
     solutions:
     - SolutionStomach
   - type: Stomach
+    specialDigestible: # Persistence 14 - Allows slimes to eat clothes, paper, pills, and trash, but doesn't prevent them from eating anything besides them
+      tags:
+        - ClothMade
+        - Paper
+        - Pill
+        - Trash
+    isSpecialDigestibleExclusive: false # End Persistence 14
   - type: Metabolizer
     maxReagents: 6
-    metabolizerTypes: [ Slime ]
+    metabolizerTypes: [ Slime, Animal, Vox, Moth,  ] # Persistence 14 - Allows slimes to eat and process reagents the same way Animals, Vox, Moths, and Goblins do
     stages: [ Digestion, Bloodstream, Metabolites ]
 
 - type: entity
