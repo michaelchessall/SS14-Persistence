@@ -304,7 +304,13 @@
       Alive:
         reagent: Tricordrazine
         quantity: 30
-      Critical:
+      Critical: # Persistence: Soft-crit
+        reagent: Inaprovaline
+        quantity: 15
+      SoftCritical: # Persistence: Soft-crit
+        reagent: Inaprovaline
+        quantity: 15
+      HardCritical: # Persistence: Soft-crit
         reagent: Inaprovaline
         quantity: 15
   - type: EmaggableMedibot
@@ -315,6 +321,12 @@
         quantity: 15
       # when you are crit, medibot will help you have fun
       Critical:
+        reagent: SpaceDrugs
+        quantity: 25
+      SoftCritical: # Persistence: Soft-crit
+        reagent: SpaceDrugs
+        quantity: 25
+      HardCritical: # Persistence: Soft-crit
         reagent: SpaceDrugs
         quantity: 25
   - type: Sprite
