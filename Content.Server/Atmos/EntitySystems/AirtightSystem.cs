@@ -35,8 +35,6 @@ namespace Content.Server.Atmos.EntitySystems
             SubscribeLocalEvent<AirtightComponent, AnchorStateChangedEvent>(OnAirtightPositionChanged);
             SubscribeLocalEvent<AirtightComponent, MoveEvent>(OnAirtightMoved);
             SubscribeLocalEvent<AirtightComponent, PowerChangedEvent>(OnPowerChanged);
-            SubscribeLocalEvent<AirtightComponent, RepairedEvent>(OnRepaired);
-            SubscribeLocalEvent<DamageableComponent, DamageDealtEvent>(OnDamageChanged);
         }
 
         private void OnAirtightInit(Entity<AirtightComponent> airtight, ref ComponentInit args)
@@ -123,7 +121,8 @@ namespace Content.Server.Atmos.EntitySystems
 
         }
         #region Persistence 14 - Damage and Repair
-        private void OnDamageChanged(Entity<DamageableComponent> damage, ref DamageDealtEvent args)
+        [SubscribeLocalEvent]
+        public void OnDamageChanged(Entity<DamageableComponent> damage, ref DamageDealtEvent args)
         {
             if (!TryComp<AirtightComponent>(damage.Owner, out var airtight) || !_destructible.TryGetDestroyedAt(damage.Owner, out var destroyedAt))
                 return;
@@ -143,8 +142,8 @@ namespace Content.Server.Atmos.EntitySystems
                 return;
             }
         }
-
-        private void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
+        [SubscribeLocalEvent]
+        public void OnRepaired(Entity<AirtightComponent> airtight, ref RepairedEvent args)
         {
             if (!TryComp<StructureLeakVisualsComponent>(airtight.Owner, out var structureLeak))
                 return;
