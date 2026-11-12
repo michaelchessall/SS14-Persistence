@@ -2,6 +2,7 @@ using System.Linq;
 using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Controls;
 using Content.Shared._Persistence14.Botany;
+using Content.Shared._Persistence14.Botany.Systems;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Botany;
 using Content.Shared.Botany.Components;
@@ -27,6 +28,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
     [Dependency] private IPrototypeManager _prototypeManager = default!; // Persistence 14
     private readonly BotanySystem _botanySystem;
     private readonly PlantSystem _plantSystem;
+    private readonly PlantTolerancesSystem _toleranceSystem; // Persistence 14
 
     public PlantAnalyzerWindow()
     {
@@ -34,6 +36,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         IoCManager.InjectDependencies(this);
         _botanySystem = _entityManager.System<BotanySystem>();
         _plantSystem = _entityManager.System<PlantSystem>();
+        _toleranceSystem = _entityManager.System<PlantTolerancesSystem>(); // Persistence 14
     }
 
     public void Update(BotanyAnalyzerState state)
@@ -127,6 +130,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         Pressure.Visible = hasAtmospheric;
         if (hasAtmospheric && atmospheric != null)
         {
+            _toleranceSystem.TryUpdateModifiers(plantEntity, prototypeId); // Persistence 14
             UpdateCondition(Temperature,
                 "botany-ui-temperature", // Persistence: Use modified tolerances
                 atmospheric.ModifiedLowHeatTolerance,
