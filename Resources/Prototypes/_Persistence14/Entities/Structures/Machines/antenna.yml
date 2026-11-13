@@ -18,6 +18,21 @@
         - GlassLayer
   - type: Physics
     canCollide: true
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: ExtensionCableReceiver
+    receptionRange: 5
+  - type: TelecomServer
+    maxRange: 512
   - type: Sprite
     sprite: _Persistence14/Structures/comm_relays.rsi
     drawdepth: FloorObjects
@@ -30,8 +45,9 @@
     - state: strip
       offset: 0, 1
       map: [ "plating1" ]
-    - state: ui
-      offset: 0, -0.7
+    - state: computer
+      sprite: Structures/Machines/computers.rsi
+      offset: 0, -1
 
     # layer 2
     - state: strut

@@ -34,7 +34,7 @@
           True: { visible: true }
           False: { visible: false }
   - type: ApcPowerReceiver
-    powerLoad: 5000 
+    powerLoad: 5000
   - type: AmbientOnPowered
   - type: AmbientSound
     volume: -9
@@ -45,7 +45,7 @@
   - type: WiresVisuals
   - type: WiresPanel
   - type: TelecomServer
-    maxRange: 1536
+    maxRange: 1024
   - type: ExtensionCableReceiver
     receptionRange: 5
   - type: Damageable
@@ -84,8 +84,9 @@
       offset: 0, 1
       map: [ "plating1" ]
       scale: 1.5, 1.5
-    - state: ui
-      offset: 0, -0.7
+    - state: computer
+      sprite: Structures/Machines/computers.rsi
+      offset: 0, -1
 
 
     # layer 2
