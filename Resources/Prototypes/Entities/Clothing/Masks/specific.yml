@@ -67,12 +67,12 @@
   - type: Tag
     tags: [] # ignore "WhitelistChameleon" tag
   - type: SelfEquipOnly
-  - type: CursedMask
-    despairDamageModifier:
-      coefficients:
-        Blunt: 0.6
-        Slash: 0.6
-        Piercing: 0.4
+#  - type: CursedMask # Persistence: Disabled for balance
+#    despairDamageModifier:
+#      coefficients:
+#        Blunt: 0.6
+#        Slash: 0.6
+#        Piercing: 0.4
   - type: HideLayerClothing
     slots:
     - Snout
