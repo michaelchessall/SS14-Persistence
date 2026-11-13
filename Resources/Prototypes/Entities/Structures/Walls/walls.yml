@@ -80,12 +80,6 @@
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
   - type: StructureLeakVisuals
     messages: StructureLeakMessages
-  - type: GenericVisualizer
-    visuals:
-      enum.StructureLeakVisuals.DamageLeak:
-        leaking:
-          0: { state: DamageLeak, visible: false}
-          1: { state: DamageLeak, visible: true }
 # PERSI change END
   - type: PlacementReplacement
     key: walls

@@ -1,5 +1,4 @@
 using Robust.Shared.GameStates;
-using Robust.Shared.Serialization;
 using Content.Shared.Dataset;
 using Robust.Shared.Prototypes;
 
@@ -16,10 +15,4 @@ public sealed partial class StructureLeakVisualsComponent : Component
     /// </summary>
     [DataField]
     public ProtoId<LocalizedDatasetPrototype>? Messages;
-}
-
-[Serializable, NetSerializable]
-public enum StructureLeakVisuals
-{
-    DamageLeak
 }

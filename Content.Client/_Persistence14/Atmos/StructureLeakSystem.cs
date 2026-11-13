@@ -14,30 +14,25 @@ public sealed partial class StructureLeakSystem : EntitySystem
     public override void Initialize()
     {
         base.Initialize();
-
-        SubscribeLocalEvent<StructureLeakVisualsComponent, ComponentStartup>(OnStartup);
-        SubscribeLocalEvent<StructureLeakVisualsComponent, AfterAutoHandleStateEvent>(OnAfterAutoHandleState);
-        SubscribeLocalEvent<StructureLeakVisualsComponent, AppearanceChangeEvent>(OnAppearanceChange);
     }
 
-    private void OnStartup(EntityUid uid, StructureLeakVisualsComponent component, ComponentStartup args)
-    {
-        UpdateAppearance(uid, component);
-    }
-
-    private void OnAfterAutoHandleState(EntityUid uid, StructureLeakVisualsComponent component, ref AfterAutoHandleStateEvent args)
+    [SubscribeLocalEvent]
+    public void OnAfterAutoHandleState(EntityUid uid, StructureLeakVisualsComponent component, ref AfterAutoHandleStateEvent args)
     {
         UpdateAppearance(uid, component);
     }
 
     private void UpdateAppearance(EntityUid uid, StructureLeakVisualsComponent component)
     {
-        if (!TryComp<AppearanceComponent>(uid, out var appearance))
+        if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
 
-        _appearance.SetData(uid, StructureLeakVisuals.DamageLeak, component.Leaking ? 1 : 0, appearance);
+        var spriteEnt = (uid, sprite);
+        if (_sprite.LayerMapTryGet(spriteEnt, "leaking", out var layerIndex, false))
+            _sprite.LayerSetVisible(spriteEnt, layerIndex, component.Leaking);
     }
 
+    [SubscribeLocalEvent]
     private void OnAppearanceChange(EntityUid uid, StructureLeakVisualsComponent component, ref AppearanceChangeEvent args)
     {
         if (TryComp<IconSmoothComponent>(uid, out var iconSmooth))
