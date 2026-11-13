@@ -1,0 +1,5 @@
+- type: entityEffect
+  id: TestSneeze
+  effects:
+  - !type:ForceEmote
+    emote: Sneeze
