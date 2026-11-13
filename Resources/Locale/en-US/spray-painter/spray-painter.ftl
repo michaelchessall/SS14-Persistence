@@ -480,6 +480,7 @@ spray-painter-style-posters-oppenhopper = Oppenhopper
 spray-painter-style-posters-tyrone = Tyrone's Guide to Space
 spray-painter-style-posters-helio = Helio Logistics Ad
 spray-painter-style-posters-botany-fear = Fear of Hydroponics
+spray-painter-style-posters-cat-ears = Safety: Cat Ears
 
 # Standard Signs
 spray-painter-style-signstandard-blank = Blank
