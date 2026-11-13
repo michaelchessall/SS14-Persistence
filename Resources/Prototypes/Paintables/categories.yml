@@ -25,6 +25,18 @@
   - WallCloset
 
 - type: paintableGroupCategory # Persistence
+  id: Posters
+  groups:
+  - Posters
+
+- type: paintableGroupCategory # Persistence
+  id: Signs
+  groups:
+  - SignStandard
+  - SignWarningMedium
+  - SignDirectional
+
+- type: paintableGroupCategory # Persistence
   id: Items
   groups:
   - ItemContainers
