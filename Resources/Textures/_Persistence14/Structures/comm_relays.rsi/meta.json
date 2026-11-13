@@ -1,0 +1,129 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by JoulesMango (github) for PS14",
+  "size": {
+    "x": 32,
+    "y": 32
+  },
+  "states": [
+    {
+      "name": "2_plates"
+    },
+    {
+      "name": "base"
+    },
+    {
+      "name": "box"
+    },
+    {
+      "name": "bridge_plate"
+    },
+    {
+      "name": "comms_radar",
+      "delays":[
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "dish"
+    },
+    {
+      "name": "extension"
+    },
+    {
+      "name": "flash",
+      "delays":[
+        [
+          2,
+          0.2
+        ]
+      ]
+    },
+    {
+      "name": "industrial_strut"
+    },
+    {
+      "name": "led"
+    },
+    {
+      "name": "light"
+    },
+    {
+      "name": "long_plate"
+    },
+    {
+      "name": "omni_antenna"
+    },
+    {
+      "name": "parabolic"
+    },
+    {
+      "name": "pole"
+    },
+    {
+      "name": "plate"
+    },
+    {
+      "name": "relay"
+    },
+    {
+      "name": "sonar"
+    },
+    {
+      "name": "strip_side"
+    },
+    {
+      "name": "strip"
+    },
+    {
+      "name": "strut"
+    },
+    {
+      "name": "top_sweeper",
+      "delays":[
+        [
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ]
+      ]
+    },
+    {
+      "name": "wide_strip"
+    },
+    {
+      "name": "wideplate"
+    }
+  ]
+}

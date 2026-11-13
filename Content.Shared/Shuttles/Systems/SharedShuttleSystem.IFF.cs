@@ -1,6 +1,7 @@
 using System.Linq;
 using Content.Shared.Station.Components;
 using Content.Shared.Shuttles.Components;
+using Content.Shared._Persistence14.Shuttles;
 using JetBrains.Annotations;
 using Robust.Shared.Physics;
 using Robust.Shared.Physics.Components;
@@ -80,6 +81,14 @@ public abstract partial class SharedShuttleSystem
 
         component.Color = color;
         Dirty(gridUid, component);
+
+        var ev = new IFFUpdateEvent
+        {
+            IffEnt = GetNetEntity(gridUid),
+            Color = color
+        };
+
+        RaiseNetworkEvent(ev);
         UpdateIFFInterfaces(gridUid, component);
     }
 
