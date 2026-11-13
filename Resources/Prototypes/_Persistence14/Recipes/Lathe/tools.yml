@@ -1,0 +1,9 @@
+- type: latheRecipe
+  id: MedicalFulton
+  result: MedicalFulton1
+  categories:
+  - Tools
+  completetime: 1
+  materials:
+    Steel: 200
+    Cloth: 500
