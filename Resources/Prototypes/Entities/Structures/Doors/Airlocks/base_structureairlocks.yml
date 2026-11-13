@@ -1,6 +1,6 @@
 ﻿- type: entity
+  parent: [ BaseStructure, StructureHealthDoor ]
   id: Airlock
-  parent: BaseStructure
   name: airlock
   description: It opens, it closes, and maybe crushes you.
   components:
@@ -104,6 +104,7 @@
   - type: Electrified
     enabled: false
     usesApcPower: true
+    onActivateInWorld: true
   - type: WiresPanel
   - type: WiresPanelSecurity
   - type: Wires
@@ -142,8 +143,7 @@
     resistance: 3
   - type: Occluder
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StrongMetallic
+    damageModifierSet: SteelMod
   - type: RCDDeconstructable
     cost: 6
     delay: 8
@@ -152,10 +152,8 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 500
+        damage: 200
       behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
       # TODO this should go to the broken node first
       - !type:PlaySoundBehavior
         sound:
@@ -186,6 +184,8 @@
     - Airlocks
     - WirePanels
     - Networking
+  - type: StructureAligner
+  - type: StructureAlignerPylon
   placement:
     mode: SnapgridCenter
 
@@ -211,7 +211,7 @@
   - type: Occluder
     enabled: false
   - type: Sprite
-    sprite: Structures/Doors/Airlocks/Glass/glass.rsi
+    sprite: Structures/Doors/Airlocks/Glass/basic.rsi # Persistence glass.rsi < basic.rsi
   - type: AnimationPlayer
   - type: Fixtures
     fixtures:

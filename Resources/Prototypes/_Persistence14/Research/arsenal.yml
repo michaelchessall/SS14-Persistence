@@ -1,0 +1,15 @@
+# Refill Technologies: Used to restock consumable parts of larger tech unlocks
+- type: technology
+  id: BasicShuttleArmamentRestock
+  name: research-technology-basic-shuttle-armament-restock
+  icon:
+    sprite: /Textures/Objects/Power/power_cages.rsi
+    state: medium
+  discipline: Arsenal
+  tier: 2
+  cost: 12500
+  recipeUnlocks:
+    PowerCageSmall: 2
+    PowerCageMedium: 2
+  technologyPrerequisites:
+  - BasicShuttleArmament

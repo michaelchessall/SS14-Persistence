@@ -17,16 +17,17 @@ namespace Content.Shared.Nutrition.EntitySystems;
 /// </summary>
 public sealed partial class OpenableSystem : EntitySystem
 {
-    [Dependency] private readonly LockSystem _lock = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
+    [Dependency] private LockSystem _lock = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
 
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<OpenableComponent, ComponentInit>(OnInit);
+        SubscribeLocalEvent<OpenableComponent, ComponentStartup>(OnStartup);
         SubscribeLocalEvent<OpenableComponent, UseInHandEvent>(OnUse);
         // always try to unlock first before opening
         SubscribeLocalEvent<OpenableComponent, ActivateInWorldEvent>(OnActivated, after: new[] { typeof(LockSystem) });
@@ -43,6 +44,8 @@ public sealed partial class OpenableSystem : EntitySystem
         SubscribeLocalEvent<OpenableComponent, MapInitEvent>(OnMapInit);
     }
 
+
+
     private void OnMapInit(Entity<OpenableComponent> ent, ref MapInitEvent args)
     {
         if (ent.Comp.Opened && _lock.IsLocked(ent.Owner))
@@ -52,6 +55,10 @@ public sealed partial class OpenableSystem : EntitySystem
     }
 #endif
 
+    private void OnStartup(Entity<OpenableComponent> ent, ref ComponentStartup args)
+    {
+        UpdateAppearance(ent, ent.Comp);
+    }
     private void OnInit(Entity<OpenableComponent> ent, ref ComponentInit args)
     {
         UpdateAppearance(ent, ent.Comp);
@@ -162,10 +169,7 @@ public sealed partial class OpenableSystem : EntitySystem
 
         if (user != null)
         {
-            if (predicted)
-                _popup.PopupClient(Loc.GetString(comp.ClosedPopup, ("owner", uid)), user.Value, user.Value);
-            else
-                _popup.PopupEntity(Loc.GetString(comp.ClosedPopup, ("owner", uid)), user.Value, user.Value);
+            _popup.PopupEntity(Loc.GetString(comp.ClosedPopup, ("owner", uid)), user.Value, user.Value);
         }
 
         return true;

@@ -1,3 +1,4 @@
+using Content.Shared.Chemistry.Components;
 using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 
@@ -43,4 +44,11 @@ public sealed partial class PrayableComponent : Component
     [DataField("verbImage")]
     [ViewVariables(VVAccess.ReadOnly)]
     public SpriteSpecifier? VerbImage = new SpriteSpecifier.Texture(new("/Textures/Interface/pray.svg.png"));
+}
+
+
+[ByRefEvent]
+public record struct PrayedEvent(EntityUid User, string Msg)
+{
+    public bool Handled;
 }

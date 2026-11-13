@@ -46,6 +46,12 @@ public sealed partial class NavScreen : BoxContainer
         DockToggle.OnToggled += OnDockTogglePressed;
         DockToggle.Pressed = NavRadar.ShowDocks;
 
+        CargoDockToggle.OnToggled += OnCargoDockTogglePressed;
+        CargoDockToggle.Pressed = NavRadar.ShowCargoDocks;
+
+        ArrivalDockToggle.OnToggled += OnArrivalDockTogglePressed;
+        ArrivalDockToggle.Pressed = NavRadar.ShowArrivalDocks;
+
         DampingModeSelector = new RadioOptions<int>(RadioOptionsLayout.Horizontal)
         {
             FirstButtonStyle = StyleClass.ButtonOpenRight,
@@ -90,6 +96,18 @@ public sealed partial class NavScreen : BoxContainer
     {
         NavRadar.ShowDocks ^= true;
         args.Button.Pressed = NavRadar.ShowDocks;
+    }
+
+    private void OnCargoDockTogglePressed(BaseButton.ButtonEventArgs args)
+    {
+        NavRadar.ShowCargoDocks ^= true;
+        args.Button.Pressed = NavRadar.ShowCargoDocks;
+    }
+
+    private void OnArrivalDockTogglePressed(BaseButton.ButtonEventArgs args)
+    {
+        NavRadar.ShowArrivalDocks ^= true;
+        args.Button.Pressed = NavRadar.ShowArrivalDocks;
     }
 
     public void UpdateState(NavInterfaceState scc)

@@ -15,6 +15,22 @@
   - type: FingerprintMask
 
 - type: entity
+  parent: [ClothingHandsBase, BaseCommandContraband]
+  id: ClothingHandsGlovesNCC
+  name: nexus central command gloves
+  description: Gorgeous purple gloves with moonlit silver trim. Fit for command.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Hands/Gloves/ncc.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Hands/Gloves/ncc.rsi
+  - type: Insulated
+  - type: Fiber
+    fiberMaterial: fibers-durathread
+    fiberColor: fibers-purple
+  - type: FingerprintMask
+
+- type: entity
   parent: ClothingHandsButcherable
   id: ClothingHandsGlovesThreshPriest
   name: threshold's embrace long gloves

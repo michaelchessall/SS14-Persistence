@@ -28,10 +28,19 @@ public sealed class CMChatSystem : EntitySystem // Persistence: SharedCMChatSyst
             return false;
 
         var repeated = false;
+        // Persistence 14: Compare the fully rendered text (which includes the channel/faction label), not just
+        // the raw spoken words, so fanned-out copies of the same message on different faction channels - e.g.
+        // two factions sharing one channel hotkey - don't get improperly merged into a single stacked line.
+        var formattedText = message.ToString();
         foreach (var old in chat.RepeatQueue)
         {
             if (!old.Message.Equals(unwrapped) ||
                 old.Channel != channel)
+            {
+                continue;
+            }
+
+            if (!old.FormattedMessage.ToString().Equals(formattedText))
             {
                 continue;
             }

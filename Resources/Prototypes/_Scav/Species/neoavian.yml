@@ -1,0 +1,15 @@
+- type: species
+  id: NeoAvian
+  name: species-name-neoavian
+  roundStart: true
+  prototype: MobNeoAvian
+  defaultSkinTone: "#252525"
+  dollPrototype: AppearanceNeoAvian
+  skinColoration: Hues
+  maleFirstNames: NamesNeoAvianMale
+  femaleFirstNames: NamesNeoAvianFemale
+  naming: First
+  minAge: 12
+  youngAge: 25
+  oldAge: 45
+  maxAge: 60

@@ -32,6 +32,9 @@ public partial class CargoBountyData
     [DataField]
     public int TradeStationUID = 0;
 
+    [DataField]
+    public float PriceMultiplier = 1f;
+
     public CargoBountyData(CargoBountyPrototype bounty, int uniqueIdentifier)
     {
         Bounty = bounty.ID;

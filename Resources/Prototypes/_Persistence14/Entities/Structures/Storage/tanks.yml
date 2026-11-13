@@ -17,10 +17,10 @@
   - type: SolutionContainerVisuals
     maxFillLevels: 7
     fillBaseName: highwatertank-2-
-  - type: SolutionContainerManager
-    solutions:
-      tank:
-        maxVol: 10000
+  - type: Solution
+    id: tank
+    solution:
+      maxVol: 10000
   #   It's pressurized...
   - type: ExaminableSolution
     solution: tank

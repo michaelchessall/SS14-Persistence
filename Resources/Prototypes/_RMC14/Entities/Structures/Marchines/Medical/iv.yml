@@ -118,10 +118,10 @@
   - type: Tag
     tags:
     - Bloodpack
-  - type: SolutionContainerManager
-    solutions:
-      pack:
-        maxVol: 100
+  - type: Solution
+    id: pack
+    solution:
+      maxVol: 100
   - type: SolutionTransfer
     canChangeTransferAmount: true
   - type: Appearance
@@ -131,8 +131,9 @@
     solution: pack
   - type: RefillableSolution
     solution: pack
-  - type: Damageable
+  - type: Injurable
     damageContainer: Inorganic
+  - type: Damageable
     damageModifierSet: Glass
   - type: DamageOnHighSpeedImpact
     minimumSpeed: 2
@@ -157,10 +158,10 @@
   name: IV bag
   suffix: CM, Full
   components:
-  - type: SolutionContainerManager
-    solutions:
-      pack:
-        maxVol: 100
-        reagents:
-        - ReagentId: Saline
-          Quantity: 100
+  - type: Solution
+    id: pack
+    solution:
+      maxVol: 100
+      reagents:
+      - ReagentId: Saline
+        Quantity: 100

@@ -3,7 +3,6 @@ using Content.Server.DeviceNetwork.Systems;
 using Content.Server.NPC.HTN;
 using Content.Server.NPC.HTN.PrimitiveTasks.Operators.Combat.Ranged;
 using Content.Server.TurretController;
-using Content.Shared.Access;
 using Content.Shared.Destructible;
 using Content.Shared.DeviceNetwork;
 using Content.Shared.DeviceNetwork.Components;
@@ -16,20 +15,19 @@ using Content.Shared.Weapons.Ranged.Events;
 using Content.Shared.Weapons.Ranged.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.Audio.Systems;
-using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
 
 namespace Content.Server.Turrets;
 
 public sealed partial class DeployableTurretSystem : SharedDeployableTurretSystem
 {
-    [Dependency] private readonly HTNSystem _htn = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly DeviceNetworkSystem _deviceNetwork = default!;
-    [Dependency] private readonly BatteryWeaponFireModesSystem _fireModes = default!;
-    [Dependency] private readonly TurretTargetSettingsSystem _turretTargetingSettings = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
+    [Dependency] private HTNSystem _htn = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private DeviceNetworkSystem _deviceNetwork = default!;
+    [Dependency] private BatteryWeaponFireModesSystem _fireModes = default!;
+    [Dependency] private TurretTargetSettingsSystem _turretTargetingSettings = default!;
+    [Dependency] private IGameTiming _timing = default!;
 
     public override void Initialize()
     {
@@ -91,12 +89,21 @@ public sealed partial class DeployableTurretSystem : SharedDeployableTurretSyste
 
         // Received a command to change access exemptions
         if (command == DeployableTurretControllerSystem.CmdSetAccessExemptions &&
-            args.Data.TryGetValue(command, out HashSet<ProtoId<AccessLevelPrototype>>? accessExemptions) &&
+            args.Data.TryGetValue(command, out HashSet<int>? assignmentExemptions) &&
             TryComp<TurretTargetSettingsComponent>(ent, out var turretTargetSettings))
         {
-            _turretTargetingSettings.SyncAccessLevelExemptions((ent, turretTargetSettings), accessExemptions);
+            _turretTargetingSettings.SyncAccessAssignmentExemptions((ent, turretTargetSettings), assignmentExemptions);
             return;
         }
+
+        if (command == DeployableTurretControllerSystem.CmdSetAccessExemptions &&
+            args.Data.TryGetValue(command, out HashSet<string>? nameExemptions) &&
+            TryComp<TurretTargetSettingsComponent>(ent, out var turretTargetSettings2))
+        {
+            _turretTargetingSettings.SyncAccessNameExemptions((ent, turretTargetSettings2), nameExemptions);
+            return;
+        }
+        //TIS check abck on this later above
 
         // Received a command to update the device network
         if (command == DeviceNetworkConstants.CmdUpdatedState)

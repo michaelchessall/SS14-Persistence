@@ -14,3 +14,18 @@
     - id: PlushieKamryn
     - id: PlushieIsolde
     - id: PlushieDies
+
+- type: entity
+  parent: MarkerBase
+  id: PlushieSpawnerPersi14
+  name: Persi 14 Plushie Spawner
+  components:
+  - type: Sprite
+    layers:
+    - state: red
+    - sprite: _Persistence14/Objects/Fun/Plushies/Llewellyn.rsi
+      state: icon
+  - type: EntityTableSpawner
+    table: !type:NestedSelector
+      tableId: AllPersistencePlushiesTable
+

@@ -1,3 +1,6 @@
+using Content.Shared._Persistence14.Resonance.Prototypes;
+using Content.Shared._Persistence14.Upgrades.Prototypes;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 
 namespace Content.Shared.Cargo.Events;
@@ -11,5 +14,25 @@ public sealed class StationModificationDefaultAccess : BoundUserInterfaceMessage
 
     public StationModificationDefaultAccess()
     {
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class StationModificationResonancePurchase : BoundUserInterfaceMessage
+{
+    public ProtoId<ResonanceProductPrototype> Prototype;
+    public StationModificationResonancePurchase(ProtoId<ResonanceProductPrototype> prototype)
+    {
+        Prototype = prototype;
+    }
+}
+
+[Serializable, NetSerializable]
+public sealed class StationModificationApplyModule : BoundUserInterfaceMessage
+{
+    public ProtoId<UpgradeModuleTypePrototype> Prototype;
+    public StationModificationApplyModule(ProtoId<UpgradeModuleTypePrototype> prototype)
+    {
+        Prototype = prototype;
     }
 }

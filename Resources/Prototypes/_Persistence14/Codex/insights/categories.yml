@@ -1,0 +1,20 @@
+- type: insightCategory
+  id: Rationalist
+  name: Rationalist
+  order: 1
+  firstTrait: AnomalySense
+  color: DarkGreen
+
+- type: insightCategory
+  id: Magician
+  name: Magician
+  order: 2
+  firstTrait: Magic1
+  color: Purple
+
+- type: insightCategory
+  id: Priest
+  name: Gods Seeker
+  order: 0
+  firstTrait: Priest1
+  color: Yellow

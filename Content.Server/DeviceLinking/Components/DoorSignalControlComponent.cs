@@ -1,27 +1,24 @@
 using Content.Shared.DeviceLinking;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.DeviceLinking.Components
 {
     [RegisterComponent]
     public sealed partial class DoorSignalControlComponent : Component
     {
-        [DataField("openPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string OpenSink = "Open";
+        [DataField]
+        public ProtoId<SinkPortPrototype> OpenPort = "Open";
 
-        [DataField("closePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string CloseSink = "Close";
+        [DataField]
+        public ProtoId<SinkPortPrototype> ClosePort = "Close";
 
-        [DataField("togglePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string ToggleSink = "Toggle";
+        [DataField]
+        public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
 
-        [DataField("boltPort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string BoltSink = "DoorBolt";
+        [DataField("boltPort")]
+        public ProtoId<SinkPortPrototype> InBolt = "DoorBolt";
 
-        [DataField("directDrivePort", customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string DirectDriveSink = "DirectDrive";
-
-        [DataField("statusPort", customTypeSerializer: typeof(PrototypeIdSerializer<SourcePortPrototype>))]
-        public string StatusSource = "DoorStatus";
+        [DataField("onOpenPort")]
+        public ProtoId<SourcePortPrototype> OutOpen = "DoorStatus";
     }
 }

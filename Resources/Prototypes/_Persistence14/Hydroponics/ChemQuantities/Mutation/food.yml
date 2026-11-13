@@ -1,0 +1,171 @@
+- type: plantChemQuantity
+  id: RandomOil
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomSlime # It's technically edible.
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomCream
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomSodaWater
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+    CarbonDioxide: # carbonated
+      bonusRequirement: 1
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: RandomIce # TODO: Make this lower heat tolerances
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+      bonusRequirement: 5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: RandomJuiceCarrot
+  baseAmount: 3
+  requirements:
+    Water:
+      requirement: 3
+    Nutrient:
+      bonusRequirement: 1
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 2.5
+    CarbonDioxide:
+      bonusRequirement: 0.25
+      bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: RandomSoySauce
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomTableSalt
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomMiscDrink
+  baseAmount: 3
+  requirements:
+    Water:
+      requirement: 3
+    Nutrient:
+      bonusRequirement: 1
+      bonusAmount: 2
+    Fertilizer:
+      bonusRequirement: 0.5
+      bonusAmount: 2.5
+    CarbonDioxide:
+      bonusRequirement: 0.25
+      bonusAmount: 2.5
+
+- type: plantChemQuantity
+  id: RandomSoda
+  baseAmount: 5
+  requirements:
+    Water:
+      requirement: 5
+    Nutrient:
+      requirement: 1
+    Sugar:
+      requirement: 1
+    CarbonDioxide: # Carbonated
+      bonusRequirement: 0.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: RandomAlcoholic
+  baseAmount: 10
+  requirements:
+    Water:
+      requirement: 6
+    Nutrient:
+      requirement: 2
+    Alcohol:
+      requirement: 2
+
+- type: plantChemQuantity
+  id: RandomEthanol
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomVinegar
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+
+- type: plantChemQuantity
+  id: RandomIceCream
+  baseAmount: 4
+  requirements: # TODO: Replace placeholder requirements, maybe make it lower heat tolerance?
+    Nutrient:
+      requirement: 4
+      bonusRequirement: 2
+      bonusAmount: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3

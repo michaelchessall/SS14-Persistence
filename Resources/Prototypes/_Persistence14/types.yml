@@ -1,0 +1,11 @@
+- type: entity
+  parent: ActionToggleWagging
+  id: ActionToggleWaggingAvali
+  components:
+  - type: Action
+    itemIconStyle: NoItem
+    useDelay: 1 # Prevents Emote Spam
+  - type: Sprite
+    sprite: _RMC14/Mobs/Avali/avali_parts.rsi
+    layers:
+    - state: tail-wag-icon

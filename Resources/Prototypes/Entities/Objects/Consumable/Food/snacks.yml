@@ -2,7 +2,7 @@
 # Base
 
 - type: entity
-  parent: FoodBase
+  parent: [SolutionTiny, FoodBaseTrash]
   id: FoodSnackBase
   abstract: true
   components:
@@ -11,17 +11,29 @@
       - FoodSnack
   - type: Sprite
     sprite: Objects/Consumable/Food/snacks.rsi
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30 # Room for extra condiments
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: packet
     size: Tiny
+
+# Scav: Grain-based base for yinglet metabolism
+- type: entity
+  parent: FoodSnackBase
+  id: FoodSnackGrainBase
+  abstract: true
+  components:
+  - type: Sprite
+    sprite: Objects/Consumable/Food/snacks.rsi
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
 # Snacks
 
 # "Snacks" means food in a packet. Down the line this stuff can have multiple
@@ -29,7 +41,7 @@
 
 - type: entity
   name: boritos
-  parent: FoodSnackBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackBoritos
   description: Crunchy, salty tortilla chips. You could probably make nachos with these.
   components:
@@ -40,6 +52,13 @@
     state: boritos
   - type: Item
     heldPrefix: boritos
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
   - type: Edible
     trash:
     - FoodPacketBoritosTrash
@@ -63,7 +82,7 @@
 
 - type: entity
   name: cheesie honkers
-  parent: FoodSnackBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackCheesie
   description: Bite sized cheesie snacks that will honk all over your mouth.
   components:
@@ -81,7 +100,7 @@
 
 - type: entity
   name: chips
-  parent: FoodSnackBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackChips
   description: Commander Riker's What-The-Crisps.
   components:
@@ -97,6 +116,15 @@
   - type: Edible
     trash:
     - FoodPacketChipsTrash
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Oil
+        Quantity: 1
+      - ReagentId: TableSalt
+        Quantity: 1
 
 - type: entity
   parent: BaseItem
@@ -139,17 +167,15 @@
     tags:
       - FoodSnack
       - ReptilianFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Theobromine
-          Quantity: 3
-        - ReagentId: CocoaPowder
-          Quantity: 1
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Theobromine
+        Quantity: 3
+      - ReagentId: CocoaPowder
+        Quantity: 2
 
 - type: entity
   parent: FoodSnackBase
@@ -170,7 +196,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  parent: FoodSnackBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackEnergyBar
   name: energy bar
   description: An energy bar with a lot of punch.
@@ -186,6 +212,13 @@
   - type: Item
     heldPrefix: energybar-open
     storedOffset: 0,-2
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: Sugar
+        Quantity: 5
 
 - type: entity
   parent: FoodSnackBase
@@ -208,18 +241,25 @@
   - type: Tag
     tags:
     - Fruit # Seed of a fruit, you can yell at me
-    - Pistachios # Added tag due to CrateFoodGetMore interaction with BountyFruit.
+    - Pistachios # Added tag due to CrateServiceGetMore interaction with BountyFruit.
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
 
 - type: entity
   name: popcorn
-  parent: FoodSnackBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackPopcorn
   description: Grown on an unknown planet, by an unknown farmer, popped by some jerk on a space station.
   components:
   - type: FlavorProfile
     flavors:
       - corn
-      - salt
+      - salty
       - butter
   - type: Sprite
     state: popcorn
@@ -228,6 +268,13 @@
   - type: Edible
     trash:
     - FoodPacketPopcornTrash
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 1
 
 - type: entity
   name: 4no raisins
@@ -305,7 +352,7 @@
 
 - type: entity
   name: syndi-cakes
-  parent: FoodSnackBase
+  parent: FoodSnackGrainBase # Scav: FoodSnackBase < FoodSnackGrainBase
   id: FoodSnackSyndi
   description: An extremely moist snack cake that tastes just as good after being nuked.
   components:
@@ -330,15 +377,13 @@
     solution: food
   - type: InjectableSolution
     solution: food
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50 #big cup
-        reagents:
-        - ReagentId: DryRamen
-          Quantity: 30
-        - ReagentId: Soysauce
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: DryRamen
+        Quantity: 20
+      - ReagentId: Soysauce
+        Quantity: 5
   - type: Sprite
     state: ramen
   - type: Edible
@@ -354,15 +399,13 @@
   name: hell ramen
   description: Super spicy flavor!
   components:
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 50
-        reagents:
-        - ReagentId: DryRamen
-          Quantity: 30
-        - ReagentId: CapsaicinOil
-          Quantity: 5
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: DryRamen
+        Quantity: 20
+      - ReagentId: CapsaicinOil
+        Quantity: 5
 
 - type: entity
   parent: FoodSnackBase
@@ -380,15 +423,15 @@
   - type: Item
     heldPrefix: chinese1
     storedOffset: 1,-2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30 # Room for extra condiments
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Soysauce
-          Quantity: 2
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain # Scav: Nutriment < Grain
+        Quantity: 10
+      - ReagentId: Soysauce
+        Quantity: 2
+      - ReagentId: Oil
+        Quantity: 1
   - type: Edible
     trash:
     - FoodPacketChowMeinTrash
@@ -409,17 +452,17 @@
   - type: Item
     heldPrefix: chinese2
     storedOffset: 0,-2
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 30 # Room for extra condiments
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: CapsaicinOil
-          Quantity: 2
-        - ReagentId: Soysauce
-          Quantity: 2
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Grain # Scav: Nutriment < Grain
+        Quantity: 10
+      - ReagentId: CapsaicinOil
+        Quantity: 2
+      - ReagentId: Soysauce
+        Quantity: 2
+      - ReagentId: Oil
+        Quantity: 1
   - type: Edible
     trash:
     - FoodPacketDanDanTrash
@@ -435,13 +478,12 @@
       - fortunecookie
   - type: Sprite
     state: cookie_fortune
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 1
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 1
+  - type: Solution
+    solution:
+      maxVol: 2.5
+      reagents:
+      - ReagentId: Grain # Scav: Nutriment < Grain
+        Quantity: 1
   - type: Item
     sprite: Objects/Consumable/Food/snacks.rsi
     heldPrefix: cookie_fortune
@@ -492,13 +534,6 @@
       - ReptilianFood
   - type: Sprite
     state: nutribrick-open
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 20
 
 - type: entity
   parent: BaseItem
@@ -524,7 +559,7 @@
       path: /Audio/Effects/unwrap.ogg
 
 - type: entity
-  parent: FoodSnackBase
+  parent: [SolutionVeryTiny, FoodSnackGrainBase]
   id: FoodSnackMREBrownieOpen
   name: brownie
   suffix: MRE
@@ -538,15 +573,13 @@
   - type: Item
     heldPrefix: mre-brownie-open
     storedOffset: -1,-1
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 15
-        reagents:
-        - ReagentId: Nutriment
-          Quantity: 10
-        - ReagentId: Theobromine
-          Quantity: 3
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 5
+      - ReagentId: Theobromine
+        Quantity: 1
 
 - type: entity
   parent: FoodSnackBase
@@ -567,13 +600,11 @@
     tags:
     - FoodSnack
     - ReptilianFood
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 20 # Room for extra condiments
-        reagents:
-        - ReagentId: Sugar
-          Quantity: 15
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Sugar
+        Quantity: 15
   - type: FlavorProfile
     flavors:
     - sweet
@@ -589,7 +620,7 @@
 
 - type: entity
   categories: [ HideSpawnMenu ]
-  parent: BaseItem
+  parent: [SolutionFood, SolutionVeryTiny, BaseItem]
   id: FoodPacketTrash
   description: This is rubbish.
   abstract: true
@@ -608,13 +639,12 @@
   - type: SpaceGarbage
   - type: StaticPrice
     price: 0
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: ToxinTrash
-          Quantity: 5
+  - type: Solution
+    solution:
+      maxVol: 7.5
+      reagents:
+      - ReagentId: ToxinTrash
+        Quantity: 7.5
   - type: Edible
     requiresSpecialDigestion: true
 
@@ -877,13 +907,11 @@
   components:
   - type: Edible
     requiresSpecialDigestion: true
-  - type: SolutionContainerManager
-    solutions:
-      food:
-        maxVol: 25
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 20
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
   - type: Tag
     tags:
     - ClothMade

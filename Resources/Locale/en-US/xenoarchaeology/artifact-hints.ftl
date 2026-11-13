@@ -53,7 +53,8 @@ xenoarch-trigger-tip-tritium = Tritium
 xenoarch-trigger-tip-ammonia = Ammonia
 xenoarch-trigger-tip-n2o = Nitrous oxide
 xenoarch-trigger-tip-frezon = Frezon
-xenoarch-trigger-tip-radiation = Radiation
+xenoarch-trigger-tip-radiation = Heavy-ion radiation
+xenoarch-trigger-tip-microwave = Microwave radiation
 xenoarch-trigger-tip-brute-damage = Physical damage
 xenoarch-trigger-tip-interaction = Physical interaction
 xenoarch-trigger-tip-wrenching = Tightening
@@ -68,17 +69,22 @@ xenoarch-trigger-tip-blood = Blood
 xenoarch-trigger-tip-throw = Being thrown
 xenoarch-trigger-tip-death = Death
 xenoarch-trigger-tip-magnet = Magnetic waves
-# _Persistence14 content: emote trigger tips
-xenoarch-trigger-tip-laugh = Laughter
-xenoarch-trigger-tip-sigh = A weary sigh
-xenoarch-trigger-tip-sneeze = A sneeze
-xenoarch-trigger-tip-cough = A cough
-xenoarch-trigger-tip-whistle = Whistling
-xenoarch-trigger-tip-cry = Tears
-xenoarch-trigger-tip-clap = Applause
-xenoarch-trigger-tip-yawn = A yawn
-xenoarch-trigger-tip-scream = A scream
-# end _Persistence14 content
+
+# the triggers should be more obvious than the effects
+# gives people an idea of what to do: don't be too specific (i.e. no "welders")
+
+xenoarch-trigger-tip-money = Bribery
+xenoarch-trigger-tip-knowledge = Knowledge Intake
+xenoarch-trigger-tip-carbs = Carbohydrate Intake
+xenoarch-trigger-tip-meat = Protein Intake
+xenoarch-trigger-tip-produce = Healthy Produce Intake
+xenoarch-trigger-tip-stamp = Bureaucratic Approval
+xenoarch-trigger-tip-shock = Electrical Shock
+xenoarch-trigger-tip-particle = Singularity-Effecting Particles
+xenoarch-trigger-tip-anomparticle = Anomaly-Effecting Particles
+xenoarch-trigger-tip-stamina-damage = Organic Exhaustion
+xenoarch-trigger-tip-laser = High-Intensity photon impacts
+
 
 ### Description hints
 xenoarch-trigger-examine-wrenching = There's a loose bit spinning around.

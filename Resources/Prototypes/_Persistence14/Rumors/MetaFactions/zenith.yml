@@ -1,0 +1,62 @@
+- type: metaFaction
+  id: Zenith
+  name: The Solar Legion
+  description: "The Solar Legion controls the Zenith Universe."
+  rumors:
+    - DrinkBasicFriendly
+    - EatBasicFriendly
+    - PrayBasicFriendly
+    - ReceiveMailFriendly
+  color: Red
+  levels:
+    Zenith2: 150
+    Zenith3: 500
+    Zenith4: 1000
+  order: 0
+
+- type: metaFactionLevel
+  id: Zenith2
+  name: Associate
+  rumorRewards:
+    - ZenithUpgradeModule
+    - TradeGood
+    - ZenithCodexFragment
+    - SoLMerchCrate
+    - GrandLottery
+    - ZenithRumorContract
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Zenith3
+  name: Officer
+  rumorRewards:
+    - ZenithUpgradeModule
+    - TradeGood
+    - ZenithCodexFragment
+    - VestArmor
+    - VestArmorElite
+    - Defib
+    - Microwave
+    - FlashCamera
+    - HyperzineKit
+    - RaidSuit
+    - Hushpup
+    - AdvancedTeleporterChip
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Zenith4
+  name: Knight
+  rumorRewards:
+    - ZenithUpgradeModule
+    - TradeGood
+    - ZenithCodexFragment
+    - ESword
+    - ScramImplanter
+    - C-20r
+    - GlovesNorthStar
+    - StealthBox
+    - ChameleonProjector
+    - AdvancedTeleporterChip
+  rewardsToOffer: 2
+

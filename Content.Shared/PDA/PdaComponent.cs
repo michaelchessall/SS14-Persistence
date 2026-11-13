@@ -1,7 +1,7 @@
+using Content.Shared.AlertLevel;
 using Content.Shared.Containers.ItemSlots;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.PDA
 {
@@ -12,22 +12,22 @@ namespace Content.Shared.PDA
         public const string PdaPenSlotId = "PDA-pen";
         public const string PdaPaiSlotId = "PDA-pai";
 
-        [DataField("idSlot")]
+        [DataField]
         public ItemSlot IdSlot = new();
 
-        [DataField("penSlot")]
+        [DataField]
         public ItemSlot PenSlot = new();
-        [DataField("paiSlot")]
+        [DataField]
         public ItemSlot PaiSlot = new();
 
         // Really this should just be using ItemSlot.StartingItem. However, seeing as we have so many different starting
         // PDA's and no nice way to inherit the other fields from the ItemSlot data definition, this makes the yaml much
         // nicer to read.
-        [DataField("id", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string? IdCard;
+        [DataField("id")]
+        public EntProtoId? IdCard;
 
+        // TODO: Fix persistence
         [DataField] public EntityUid? ContainedId;
-
         [DataField] public bool FlashlightOn;
 
         [DataField] public string? OwnerName;
@@ -36,7 +36,8 @@ namespace Content.Shared.PDA
         // as well.
         [ViewVariables(VVAccess.ReadWrite)] public EntityUid? PdaOwner;
         [ViewVariables] public string? StationName;
-        [ViewVariables] public string? StationAlertLevel;
+        [ViewVariables]
+        public ProtoId<AlertLevelPrototype>? StationAlertLevel;
         [ViewVariables] public Color StationAlertColor = Color.White;
     }
 }

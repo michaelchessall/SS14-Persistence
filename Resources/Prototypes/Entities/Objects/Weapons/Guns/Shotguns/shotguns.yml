@@ -1,6 +1,6 @@
 - type: entity
   name: BaseWeaponShotgun
-  parent: BaseItem
+  parent: [ BaseItem, BaseGunWieldClassHeavy ]
   id: BaseWeaponShotgun
   description: A rooty tooty point and shooty.
   abstract: true
@@ -29,6 +29,9 @@
       path: /Audio/Weapons/Guns/Gunshots/shotgun.ogg
     soundEmpty:
       path: /Audio/Weapons/Guns/Empty/empty.ogg
+  - type: CustomSpriteAmmoCounter
+    loadedAmmoSprite: Interface/ItemStatus/Shotgun_Shells/not_spent.png
+    spentAmmoSprite: Interface/ItemStatus/Shotgun_Shells/spent.png
   - type: BallisticAmmoProvider
     whitelist:
       tags:
@@ -67,6 +70,9 @@
     - Back
     - suitStorage
   - type: AmmoCounter
+  - type: CustomSpriteAmmoCounter
+    loadedAmmoSprite: Interface/ItemStatus/Shotgun_Shells/not_spent.png
+    spentAmmoSprite: Interface/ItemStatus/Shotgun_Shells/spent.png
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
   - type: Gun
     fireRate: 2
@@ -148,6 +154,9 @@
     sprite: Objects/Weapons/Guns/Shotguns/enforcer_inhands_64x.rsi
   - type: BallisticAmmoProvider
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: SpeedModifiedOnWield # PS14: rifle-class slowdown instead of heavy; keep in sync with BaseGunWieldClassRifle
+    walkModifier: 0.7
+    sprintModifier: 0.7
 
 - type: entity
   parent: WeaponShotgunEnforcer
@@ -170,6 +179,9 @@
   - type: Clothing
     sprite: Objects/Weapons/Guns/Shotguns/pump.rsi
   - type: GunRequiresWield #remove when inaccuracy on spreads is fixed
+  - type: SpeedModifiedOnWield # PS14: rifle-class slowdown instead of heavy; keep in sync with BaseGunWieldClassRifle
+    walkModifier: 0.7
+    sprintModifier: 0.7
   - type: Gun
     fireRate: 1
   - type: GunSpreadModifier

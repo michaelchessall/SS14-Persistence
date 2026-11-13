@@ -69,7 +69,18 @@
         },
         {
             "name": "lvcable_15"
-
+        },
+        {
+            "name": "lvcable_n"
+        },
+        {
+            "name": "lvcable_e"
+        },
+        {
+            "name": "lvcable_s"
+        },
+        {
+            "name": "lvcable_w"
         }
     ]
 }

@@ -70,6 +70,22 @@
         {
             "name": "hvcable_15"
 
+        },
+        {
+            "name": "hvcable_n"
+
+        },
+        {
+            "name": "hvcable_e"
+
+        },
+        {
+            "name": "hvcable_s"
+
+        },
+        {
+            "name": "hvcable_w"
+
         }
     ]
 }

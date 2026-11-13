@@ -7,9 +7,9 @@ using Robust.Shared.Enums;
 namespace Content.Server.Chat.Commands
 {
     [AnyCommand]
-    internal sealed class WhisperCommand : LocalizedEntityCommands
+    internal sealed partial class WhisperCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
+        [Dependency] private ChatSystem _chatSystem = default!;
         public override string Command => "whisper";
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -36,11 +36,7 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            // See the identical comment in SayCommand - same reasoning applies to whispering.
-            var rangeEv = new GetSpeechTransmitRangeEvent(ChatTransmitRange.Normal);
-            EntityManager.EventBus.RaiseLocalEvent(playerEntity, rangeEv);
-
-            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Whisper, rangeEv.Range, false, shell, player);
+            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Whisper, ChatTransmitRange.Normal, false, shell, player);
         }
     }
 }

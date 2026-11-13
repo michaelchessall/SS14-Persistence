@@ -10,6 +10,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
         public bool Dirty { get; set; }
         public bool IgnoreAlarms { get; set; } = false;
         public HashSet<Gas> FilterGases { get; set; } = new(DefaultFilterGases);
+        public Dictionary<Gas, float> FilterGasLimits { get; set; } = new(DefaultFilterGasLimits); // Persistence: Scrub above percentage
         public ScrubberPumpDirection PumpDirection { get; set; } = ScrubberPumpDirection.Scrubbing;
         public float VolumeRate { get; set; } = 200f;
         public bool WideNet { get; set; } = false;
@@ -18,6 +19,7 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
 
         public static HashSet<Gas> DefaultFilterGases = new()
         {
+            Gas.Nitrogen, // Persistence: Limited by the filter limits below, will only scrub if above 80%
             Gas.CarbonDioxide,
             Gas.Plasma,
             Gas.Tritium,
@@ -30,6 +32,12 @@ namespace Content.Shared.Atmos.Piping.Unary.Components
             Gas.Fluorine,
             Gas.ChlorineTrifluoride,
             Gas.Hydrogen
+        };
+
+        // Persistence: Scrub above percentage
+        public static Dictionary<Gas, float> DefaultFilterGasLimits = new()
+        {
+            { Gas.Nitrogen, 80 }
         };
 
         // Presets for 'dumb' air alarm modes

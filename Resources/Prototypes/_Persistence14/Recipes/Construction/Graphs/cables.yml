@@ -1,0 +1,71 @@
+- type: constructionGraph
+  id: lvcable
+  start: cable
+  graph:
+  - node: cable
+    entity: CableApcExtension
+    edges:
+    - to: junction
+      steps:
+      - material: Plastic
+        amount: 1
+  
+  - node: junction
+    entity: CableJunctionLV
+    edges:
+    - to: cable
+      steps:
+      - tool: Cutting
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: SheetPlastic1
+        amount: 1
+
+- type: constructionGraph
+  id: mvcable
+  start: cable
+  graph:
+  - node: cable
+    entity: CableMV
+    edges:
+    - to: junction
+      steps:
+      - material: Plastic
+        amount: 1
+  
+  - node: junction
+    entity: CableJunctionMV
+    edges:
+    - to: cable
+      steps:
+      - tool: Cutting
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: SheetPlastic1
+        amount: 1
+
+- type: constructionGraph
+  id: hvcable
+  start: cable
+  graph:
+  - node: cable
+    entity: CableHV
+    edges:
+    - to: junction
+      steps:
+      - material: Plastic
+        amount: 1
+  
+  - node: junction
+    entity: CableJunctionHV
+    edges:
+    - to: cable
+      steps:
+      - tool: Cutting
+        doAfter: 1
+      completed:
+      - !type:GivePrototype
+        prototype: SheetPlastic1
+        amount: 1

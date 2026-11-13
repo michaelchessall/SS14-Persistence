@@ -1,0 +1,75 @@
+- type: entity
+  abstract: true
+  parent: [ BaseCartridge, BaseMajorContraband ]
+  id: BaseCartridgeMarineRifle
+  name: cartridge (.10 rifle)
+  components:
+  - type: Tag
+    tags:
+    - CartridgeMarineRifle
+  - type: CartridgeAmmo
+    proto: BulletMarineRifle
+  - type: Sprite
+    sprite: Objects/Weapons/Guns/Ammunition/Casings/ammo_casing.rsi
+    layers:
+    - state: base
+      map: ["enum.AmmoVisualLayers.Base"]
+  - type: Appearance
+  - type: SpentAmmoVisuals
+
+- type: entity
+  parent: BaseCartridgeMarineRifle
+  id: CartridgeMarineRifle
+  name: cartridge (.10 rifle)
+  description: A light cartridge used by many UNMC weapons, oorah!
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMarineRifle
+
+- type: entity
+  parent: BaseCartridgeMarineRifle
+  id: CartridgeMarineRiflePractice
+  name: cartridge (.10 rifle practice)
+  description: A light cartridge used by many UNMC weapons, oorah! Practice ammunition fires a chalk projectile that stings a little, but otherwise causes no lasting damage.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMarineRiflePractice
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#dbdbdb"
+
+- type: entity
+  parent: BaseCartridgeMarineRifle
+  id: CartridgeMarineRifleIncendiary
+  name: cartridge (.10 rifle incendiary)
+  description: A light cartridge used by many UNMC weapons, oorah! Incendiary ammunition contains a self-igniting compound that sets targets ablaze.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMarineRifleIncendiary
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#ff6e52"
+
+- type: entity
+  parent: BaseCartridgeMarineRifle
+  id: CartridgeMarineRifleUranium
+  name: cartridge (.10 rifle uranium)
+  description: A light cartridge used by many UNMC weapons, oorah! Uranium ammunition replaces the lead core of the bullet with fissile material, irradiating targets from the inside.
+  components:
+  - type: CartridgeAmmo
+    proto: BulletMarineRifleUranium
+  - type: Sprite
+    layers:
+      - state: base
+        map: [ "enum.AmmoVisualLayers.Base" ]
+      - state: tip
+        map: [ "enum.AmmoVisualLayers.Tip" ]
+        color: "#65fe08"

@@ -1,4 +1,8 @@
+using Content.Shared._Persistence14.PersistentIdentifier;
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
+using Content.Shared.Research.Prototypes;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Research.Components;
@@ -7,40 +11,54 @@ namespace Content.Shared.Research.Components;
 public sealed partial class ResearchServerComponent : Component
 {
     /// <summary>
-    /// The name of the server
-    /// </summary>
-    [AutoNetworkedField]
-    [DataField("serverName"), ViewVariables(VVAccess.ReadWrite)]
-    public string ServerName = "RDSERVER";
-
-    /// <summary>
     /// The amount of points on the server.
     /// </summary>
     [AutoNetworkedField]
     [DataField("points"), ViewVariables(VVAccess.ReadWrite)]
     public int Points;
 
-    /// <summary>
-    /// A unique numeric id representing the server
-    /// </summary>
     [AutoNetworkedField]
-    [DataField]
-    public int Id;
+    [DataField(readOnly: true)]
+    public PersistentEntityReference LastKnownGrid = PersistentIdentifierSystem.EmptyId;
 
-    /// <summary>
-    /// Entities connected to the server
-    /// </summary>
-    /// <remarks>
-    /// This is not safe to read clientside
-    /// </remarks>
-    [ViewVariables(VVAccess.ReadOnly)]
-    public List<EntityUid> Clients = new();
+    [AutoNetworkedField]
+    [DataField(readOnly: true)]
+    public PersistentEntityReference LastKnownFaction = PersistentIdentifierSystem.EmptyId;
 
     [DataField("nextUpdateTime", customTypeSerializer: typeof(TimeOffsetSerializer))]
     public TimeSpan NextUpdateTime = TimeSpan.Zero;
 
     [DataField("researchConsoleUpdateTime"), ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan ResearchConsoleUpdateTime = TimeSpan.FromSeconds(1);
+
+    /// <summary>
+    /// A set of multipliers applied to technologies based on their tier. Used when calculating the diversity multiplier for tech costs.
+    /// </summary>
+    [DataField]
+    public float[] TierDiversityImpactMultipliers = [1, 2, 4];
+
+    /// <summary>
+    /// A set of multipliers applied to technologies as more disciplines are unlocked. Used when calculating the diversity multiplier for tech costs.
+    /// </summary>
+    [DataField]
+    public float[] BreadthDiversityImpactMultipliers = [0.0f, 0.05f, 0.25f, .7f];
+
+    [DataField]
+    public float MaxDiversityPenalty = 4f;
+
+    /// <summary>
+    /// When a server is made on a grid/faction with an existing server, this server gets parented to that one and that server gets a list of children.
+    /// </summary>
+    [DataField(readOnly: true)]
+    public PersistentEntityReference ParentServer = PersistentIdentifierSystem.EmptyId;
+
+    public bool IsMain => ParentServer != PersistentIdentifierSystem.EmptyId;
+
+    /// <summary>
+    /// Servers which have this server as a parent.
+    /// </summary>
+    [DataField(readOnly: true)]
+    public HashSet<PersistentEntityReference> ChildServers = new();
 }
 
 /// <summary>

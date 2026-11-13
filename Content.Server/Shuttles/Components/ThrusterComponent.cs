@@ -2,6 +2,7 @@ using Content.Server.Shuttles.Systems;
 using Content.Shared.Damage;
 using Content.Shared.DeviceLinking;
 using Robust.Shared.GameStates;
+using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 using System.Numerics;
@@ -25,28 +26,52 @@ namespace Content.Server.Shuttles.Components
         public bool Enabled { get; set; } = true;
 
         /// <summary>
+        /// Base power for the <see cref="ApcPowerReceiverComponent"/>, scaled by thruster setting.
+        /// </summary>
+        [DataField]
+        public float BasePowerLoad = 1500;
+
+        /// <summary>
         /// This determines whether the thruster is actually enabled for the purposes of thrust
         /// </summary>
         public bool IsOn;
 
         // Need to serialize this because RefreshParts isn't called on Init and this will break post-mapinit maps!
         [ViewVariables(VVAccess.ReadWrite), DataField("thrust")]
-        public float Thrust = 100f;
+        public float Thrust = 160000f;
+
+        /// <summary>
+        /// Throttles the influence of gyroscopes on small shuttles. The default value is roughly half the inertia of the standard 4-door cargo shuttle.
+        /// </summary>
+        [DataField]
+        public float InertiaThreshold = 850000f;
 
         [DataField("thrusterType")]
         public ThrusterType Type = ThrusterType.Linear;
 
+        /// HULLROTPORT:
+        /// Shape of the exhaust trail, in the thruster's local frame, where +Y points out of the nozzle.
+        /// Persistence: defaults to a 1x3 trail so anything sitting behind the nozzle cooks.
+        /// Must be convex; a hull is taken over these points.
+        ///
         [DataField("burnShape")]
         public List<Vector2> BurnPoly = new()
         {
-            new Vector2(-0.4f, 0.5f),
-            new Vector2(-0.1f, 1.2f),
-            new Vector2(0.1f, 1.2f),
-            new Vector2(0.4f, 0.5f)
+            new Vector2(-0.45f, 0.5f),
+            new Vector2(-0.45f, 3.45f),
+            new Vector2(0.45f, 3.45f),
+            new Vector2(0.45f, 0.5f)
         };
 
         /// <summary>
-        /// How much damage is done per second to anything colliding with our thrust.
+        /// Persistence: whether the trail also burns entities anchored to the thruster's own grid.
+        /// Turn this off for ships that are meant to survive their own exhaust.
+        /// </summary>
+        [DataField]
+        public bool BurnOwnGrid = true;
+
+        /// <summary>
+        /// How much damage is done per <see cref="FireCooldown"/> to anything inside our exhaust trail.
         /// </summary>
         [DataField("damage")] public DamageSpecifier? Damage = new();
 
@@ -54,8 +79,6 @@ namespace Content.Server.Shuttles.Components
         public bool RequireSpace = true;
 
         // Used for burns
-
-        public List<EntityUid> Colliding = new();
 
         public bool Firing = false;
 
@@ -72,21 +95,16 @@ namespace Content.Server.Shuttles.Components
         public TimeSpan NextFire = TimeSpan.Zero;
 
         /// <summary>
-        /// Load on the power network, in watts.
-        /// </summary>
-        public float OriginalLoad { get; set; } = 0;
-
-        /// <summary>
         /// Togglable thrusters
         /// </summary>
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string OnPort = "On";
+        [DataField]
+        public ProtoId<SinkPortPrototype> OnPort = "On";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string OffPort = "Off";
+        [DataField]
+        public ProtoId<SinkPortPrototype> OffPort = "Off";
 
-        [DataField(customTypeSerializer: typeof(PrototypeIdSerializer<SinkPortPrototype>))]
-        public string TogglePort = "Toggle";
+        [DataField]
+        public ProtoId<SinkPortPrototype> TogglePort = "Toggle";
     }
 
     public enum ThrusterType

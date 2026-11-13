@@ -1,6 +1,6 @@
 - type: entity
   abstract: true
-  parent: Clothing
+  parent: [SolutionFood, SolutionToolNormal, Clothing]
   id: ClothingShoesBase
   components:
   - type: Clothing
@@ -12,15 +12,14 @@
     size: Normal
   - type: Edible
     requiresSpecialDigestion: true
-  - type: SolutionContainerManager
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 15
+  - type: SolutionManager
     solutions:
-      food:
-        maxVol: 10
-        reagents:
-        - ReagentId: Fiber
-          Quantity: 10
-      stain: # Funky: Footprints & Stains
-        maxVol: 5
+    - SolutionStain
   - type: Tag
     tags:
     - ClothMade
@@ -34,20 +33,19 @@
   - type: Stainable # Funky: Footprints & Stains
     clothingVisuals:
       shoes:
-      - sprite: _Funkystation/Effects/blood.rsi
+      - sprite: /Textures/_Funkystation/Effects/blood.rsi
         state: shoeblood
     iconVisuals:
-    - sprite: _Funkystation/Effects/blood.rsi
+    - sprite: /Textures/_Funkystation/Effects/blood.rsi
       state: shoebloodicon
 
 - type: entity
   abstract: true
-  parent: ClothingShoesBase
+  parent: [ClothingShoesBase, BaseSlicingRefinable]
   id: ClothingShoesBaseButcherable
   components:
-  - type: Butcherable
-    butcheringType: Knife
-    spawned:
+  - type: ToolRefinable
+    refineResult:
     - id: MaterialCloth1
       amount: 1
   - type: PhysicalComposition # 50% of the amount of cloth you'd obtain upon butchering
@@ -66,6 +64,7 @@
       item:
         name: clothing-boots-sidearm
         priority: 4
+        ejectOnBreak: true
         whitelist:
           tags:
           - Knife
@@ -83,10 +82,6 @@
 
 - type: entity
   abstract: true
-  parent: ClothingShoesBaseButcherable
+  parent: [ ClothingShoesBaseButcherable, TemperatureProtectionMinimal ]
   id: ClothingShoesBaseWinterBoots
   description: Fluffy boots to help survive even the coldest of winters.
-  components:
-  - type: TemperatureProtection
-    heatingCoefficient: 1.025
-    coolingCoefficient: 0.5

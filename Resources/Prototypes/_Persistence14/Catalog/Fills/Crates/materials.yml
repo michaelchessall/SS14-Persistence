@@ -1,0 +1,26 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMaterialTextiles
+  name: textiles crate
+  description: 60 pieces of cloth and 30 pieces of durathread.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialCloth
+          amount: 2
+        - id: MaterialDurathread
+
+- type: entity
+  parent: CrateCommandSecure
+  id: CrateMaterialPhoron10
+  name: phoron crate
+  description: 10 sheets of Phoron brought to you by Nanotrasen.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: MaterialPhoron10
+

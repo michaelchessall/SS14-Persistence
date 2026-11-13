@@ -1,3 +1,5 @@
+using Content.Shared._Persistence14.PersistentIdentifier;
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
 using Content.Shared.Teleportation.Components;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
@@ -9,9 +11,10 @@ namespace Content.Shared.Teleportation.Systems;
 ///     This does not do anything on its own (outside of deleting entities that have 0 links, if that option is true)
 ///     Systems can do whatever they please with the linked entities, such as <see cref="SharedPortalSystem"/>.
 /// </summary>
-public sealed class LinkedEntitySystem : EntitySystem
+public sealed partial class LinkedEntitySystem : EntitySystem
 {
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
+    [Dependency] private SharedAppearanceSystem _appearance = default!;
+    [Dependency] private PersistentIdentifierSystem _pid = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -24,11 +27,14 @@ public sealed class LinkedEntitySystem : EntitySystem
     private void OnLinkShutdown(EntityUid uid, LinkedEntityComponent component, ComponentShutdown args)
     {
         // Remove any links to this entity when deleted.
-        foreach (var ent in component.LinkedEntities.ToArray())
+        foreach (var entPid in component.LinkedEntities.ToArray())
         {
+            if (!_pid.TryResolveId(entPid, out var ent))
+                component.LinkedEntities.Remove(entPid);
+
             if (!Deleted(ent) && LifeStage(ent) < EntityLifeStage.Terminating && TryComp<LinkedEntityComponent>(ent, out var link))
             {
-                TryUnlink(uid, ent, component, link);
+                TrySever((ent, link), uid);
             }
         }
     }
@@ -48,6 +54,9 @@ public sealed class LinkedEntitySystem : EntitySystem
         var firstLink = EnsureComp<LinkedEntityComponent>(first);
         var secondLink = EnsureComp<LinkedEntityComponent>(second);
 
+        var firstPid = _pid.EnsureId(first);
+        var secondPid = _pid.EnsureId(second);
+
         firstLink.DeleteOnEmptyLinks = deleteOnEmptyLinks;
         secondLink.DeleteOnEmptyLinks = deleteOnEmptyLinks;
 
@@ -57,8 +66,16 @@ public sealed class LinkedEntitySystem : EntitySystem
         Dirty(first, firstLink);
         Dirty(second, secondLink);
 
-        return firstLink.LinkedEntities.Add(second)
-            && secondLink.LinkedEntities.Add(first);
+        if (firstLink.LinkedEntities.Add(secondPid) && secondLink.LinkedEntities.Add(firstPid))
+        {
+            var firstEv = new LinkedEntityChangedEvent(firstLink.LinkedEntities);
+            RaiseLocalEvent(first, ref firstEv);
+            var secondEv = new LinkedEntityChangedEvent(secondLink.LinkedEntities);
+            RaiseLocalEvent(second, ref secondEv);
+            return true;
+        }
+
+        return false;
     }
 
     /// <summary>
@@ -74,7 +91,15 @@ public sealed class LinkedEntitySystem : EntitySystem
 
         Dirty(source, firstLink);
 
-        return firstLink.LinkedEntities.Add(target);
+        if (firstLink.LinkedEntities.Add(_pid.EnsureId(target)))
+        {
+            var ev = new LinkedEntityChangedEvent(firstLink.LinkedEntities);
+            RaiseLocalEvent(source, ref ev);
+            return true;
+        }
+
+        return false;
+
     }
 
     /// <summary>
@@ -95,14 +120,19 @@ public sealed class LinkedEntitySystem : EntitySystem
         if (!Resolve(second, ref secondLink))
             return false;
 
-        var success = firstLink.LinkedEntities.Remove(second)
-                      && secondLink.LinkedEntities.Remove(first);
+        var success = _pid.TryGetId(first, out var firstId) && secondLink.LinkedEntities.Remove(firstId) &&
+                      _pid.TryGetId(second, out var secondId) && firstLink.LinkedEntities.Remove(secondId);
 
         _appearance.SetData(first, LinkedEntityVisuals.HasAnyLinks, firstLink.LinkedEntities.Any());
         _appearance.SetData(second, LinkedEntityVisuals.HasAnyLinks, secondLink.LinkedEntities.Any());
 
         Dirty(first, firstLink);
         Dirty(second, secondLink);
+
+        var firstEv = new LinkedEntityChangedEvent(firstLink.LinkedEntities);
+        RaiseLocalEvent(first, ref firstEv);
+        var secondEv = new LinkedEntityChangedEvent(secondLink.LinkedEntities);
+        RaiseLocalEvent(second, ref secondEv);
 
         if (firstLink.LinkedEntities.Count == 0 && firstLink.DeleteOnEmptyLinks)
             QueueDel(first);
@@ -114,10 +144,79 @@ public sealed class LinkedEntitySystem : EntitySystem
     }
 
     /// <summary>
+    /// Severs the connections of a given target node in a one-sided way. In general, you should really use TryUnlink.
+    /// Raises no events on any of the removed connections, only rases events on the target.
+    /// </summary>
+    public bool TrySever(Entity<LinkedEntityComponent?> target, params EntityUid[] connectionsToRemove)
+    {
+        if (!Resolve(target, ref target.Comp))
+            return false;
+
+        if (connectionsToRemove.Length <= 0)
+        {
+            connectionsToRemove = target.Comp.LinkedEntities.Select(x =>
+            {
+                if (!_pid.TryResolveId(x, out var val))
+                    return default;
+                return val.Owner;
+            }).ToArray();
+        }
+
+        var any = false;
+        foreach (var connection in connectionsToRemove)
+        {
+            if (!_pid.TryGetId(connection, out var pid) || !target.Comp.LinkedEntities.Remove(pid))
+                continue;
+
+            Dirty(target);
+        }
+
+        if (!any)
+            return false;
+
+        var ev = new LinkedEntityChangedEvent(target.Comp.LinkedEntities);
+        RaiseLocalEvent(target, ref ev);
+
+        if (target.Comp.LinkedEntities.Count == 0 && target.Comp.DeleteOnEmptyLinks)
+            QueueDel(target);
+
+        return true;
+    }
+
+    public bool TrySever(Entity<LinkedEntityComponent?> target, params PersistentEntityReference[] idsToRemove)
+    {
+        if (!Resolve(target, ref target.Comp))
+            return false;
+
+        if (idsToRemove.Length <= 0)
+            idsToRemove = target.Comp.LinkedEntities.ToArray();
+
+        var any = false;
+        foreach (var id in idsToRemove)
+        {
+            if (!target.Comp.LinkedEntities.Remove(id))
+                continue;
+
+            Dirty(target);
+        }
+
+        if (!any)
+            return false;
+
+        var ev = new LinkedEntityChangedEvent(target.Comp.LinkedEntities);
+        RaiseLocalEvent(target, ref ev);
+
+        if (target.Comp.LinkedEntities.Count == 0 && target.Comp.DeleteOnEmptyLinks)
+            QueueDel(target);
+
+        return true;
+    }
+
+    /// <summary>
     /// Get the first entity this entity is linked to.
     /// If multiple are linked only the first one is picked.
     /// </summary>
-    public bool GetLink(EntityUid uid, [NotNullWhen(true)] out EntityUid? dest, LinkedEntityComponent? comp = null)
+    public bool GetLink(EntityUid uid, [NotNullWhen(true)] out PersistentEntityReference? dest, LinkedEntityComponent? comp = null)
     {
         dest = null;
         if (!Resolve(uid, ref comp, false))
@@ -135,3 +234,6 @@ public sealed class LinkedEntitySystem : EntitySystem
 
     #endregion
 }
+
+[ByRefEvent]
+public readonly record struct LinkedEntityChangedEvent(HashSet<PersistentEntityReference> NewLinks);

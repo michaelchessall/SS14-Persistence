@@ -1,0 +1,34 @@
+- type: rumor
+  id: PrayBasicFriendly
+  name: Voice from the Gods
+  description: "The Threshold hears every prayer."
+  cashReward: 0
+  reputationReward: 10
+  completionType: Pray
+  rewardRumors: 1
+  possibleFollowups:
+    - ExterminateLuminal
+    - DiscoverSmallShadow
+    - DiscoverSmallScience
+    - PowerLuminal
+    - PowerGreen
+    - RescueMarine
+    - ArtifactNodeBasic
+
+- type: rumor
+  id: PrayBasicEvil
+  name: Dark Whispers
+  description: "First beckon the knowledge at an altar."
+  cashReward: 0
+  reputationReward: 10
+  completionType: Pray
+  rewardRumors: 1
+  possibleFollowups:
+    - ExterminateCult
+    - DiscoverSmallShadow
+    - DiscoverSmallCriminal
+    - RescuePrecursor
+    - PowerPrecursor
+    - RescueShadow
+  targetTag: "Evil"
+

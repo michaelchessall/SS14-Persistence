@@ -188,6 +188,7 @@
     Cloth: 500
     Glass: 200
 
+#Persistence 14 handy flag recipes
 - type: latheRecipe
   abstract: true
   id: BaseHandyFlag
@@ -1109,6 +1110,22 @@
   id: ClothingUniformJumpskirtWarden
   result: ClothingUniformJumpskirtWarden
 
+## Tram Driver
+- type: latheRecipe
+  parent: BaseJumpsuitRecipe
+  id: ClothingUniformJumpsuitTramDriver
+  result: ClothingUniformJumpsuitTramDriver
+
+- type: latheRecipe
+  parent: BaseCoatRecipe
+  id: ClothingOuterSuitTramDriver
+  result: ClothingOuterSuitTramDriver
+
+- type: latheRecipe
+  parent: BaseHatRecipe
+  id: ClothingHeadHatTramDriver
+  result: ClothingHeadHatTramDriver
+
 - type: latheRecipe
   parent: BaseJumpsuitRecipe
   id: ClothingUniformJumpsuitCossack
@@ -1876,6 +1893,11 @@
   parent: BaseNeckClothingRecipe
   id: ClothingNeckTieSci
   result: ClothingNeckTieSci
+
+- type: latheRecipe
+  parent: BaseNeckClothingRecipe
+  id: ClothingNeckTieSerious
+  result: ClothingNeckTieSerious
 
 # Scarfs
 - type: latheRecipe
@@ -3199,7 +3221,7 @@
     Glass: 100
     Plastic: 100
 
-#Handy Flags
+#Persistence 14 handy flag recipes
 
 - type: latheRecipe
   parent: BaseHandyFlag
@@ -3220,6 +3242,11 @@
   parent: BaseHandyFlag
   id: PirateHandyFlag
   result: PirateHandyFlag
+
+- type: latheRecipe
+  parent: BaseHandyFlag
+  id: NTHandyFlag
+  result: NTHandyFlag
 
 # Bandanas
 

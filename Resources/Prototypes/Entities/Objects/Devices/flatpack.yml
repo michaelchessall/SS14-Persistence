@@ -52,6 +52,26 @@
 
 - type: entity
   parent: BaseFlatpack
+  id: AmeControllerFlatpack
+  name: AME controller flatpack
+  description: A flatpack used for constructing the terminal that controls the antimatter engine.
+  components:
+  - type: Sprite
+    layers:
+    - state: ame-part
+    - state: overlay
+      color: "#EFB341"
+  - type: Flatpack
+    entity: AmeController
+  - type: StaticPrice
+    price: 1000
+  - type: GuideHelp
+    guides:
+    - AME
+    - Power
+
+- type: entity
+  parent: BaseFlatpack
   id: AmePartFlatpack
   name: AME flatpack
   description: A flatpack used for constructing an antimatter engine reactor.
@@ -275,8 +295,8 @@
 - type: entity
   parent: BaseFlatpack
   id: ComputerStationModificationFlatpack
-  name: faction modifcation computer flatpack
-  description: A flatpack used for constructing a faction modifcation computer.
+  name: faction modification computer flatpack
+  description: A flatpack used for constructing a faction modification computer.
   components:
   - type: Flatpack
     entity: ComputerStationModification
@@ -379,6 +399,44 @@
   - type: GuideHelp
     guides:
     - FoodRecipes
+
+- type: entity
+  parent: [ BaseFlatpack, BaseXenoborgContraband ]
+  id: XenoborgExtractorFlatpack
+  name: xenoborg extractor flatpack
+  description: A flatpack used for constructing a xenoborg extractor.
+  components:
+  - type: Sprite
+    layers:
+    - state: base-xenoborg
+    - state: overlay
+      color: "#452dfa"
+    - state: icon-xenoborg-extractor
+  - type: Item
+    size: Normal
+  - type: Flatpack
+    entity: XenoborgExtractor
+#  - type: GuideHelp
+#    guides:
+#    - Xenoborgs
+
+- type: entity
+  parent: BaseFlatpack
+  id: MachineAnomalyVesselFlatpack
+  name: anomaly vessel flatpack
+  description: A flatpack used for constructing an anomaly vessel.
+  components:
+  - type: Flatpack
+    entity: MachineAnomalyVessel
+  - type: GuideHelp
+    guides:
+    - ScannersAndVessels
+  - type: Sprite
+    layers:
+    - state: base
+    - state: overlay
+      color: "#D381C9"
+    - state: icon-default
 #IV!
 - type: entity
   parent: BaseFlatpack
@@ -392,3 +450,21 @@
     - state: flatpack
   - type: Flatpack
     entity: CMIV
+
+- type: entity
+  parent: BaseFlatpack
+  id: ComputerInvoicePrinterFlatpack
+  name: invoice printer computer flatpack
+  description: A flatpack used for constructing an invoice printer computer.
+  components:
+  - type: Flatpack
+    entity: ComputerInvoicePrinter
+
+- type: entity
+  parent: BaseFlatpack
+  id: HolopadLongRangeFlatpack
+  name: long-range holopad flatpack
+  description: A flatpack used for constructing a long-range holopad.
+  components:
+  - type: Flatpack
+    entity: HolopadLongRange

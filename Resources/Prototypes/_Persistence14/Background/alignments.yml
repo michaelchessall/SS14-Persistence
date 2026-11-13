@@ -1,0 +1,62 @@
+- type: alignment
+  id: LawfulGood
+  name: Lawful Good
+  description: "[bold]'Justice'[/bold]\n\nBanish evil through higher authority.\nYou believe law and order is the best way to help others."
+  effects:
+    - TraitLawfulGood
+
+- type: alignment
+  id: Good
+  name: Good
+  description: "[bold]'Temperance'[/bold]\n\nHeal the universe through kindness.\nYou have a strong conviction towards helping others, no matter the cost."
+  effects:
+    - TraitGood
+
+- type: alignment
+  id: ChaoticGood
+  name: Chaotic Good
+  description: "[bold]'Strength'[/bold]\n\nSet others free from evil.\nYou believe freedom from tyranny is the best way to help others."
+  effects:
+    - TraitChaoticGood
+
+- type: alignment
+  id: Lawful
+  name: Lawful
+  description: "[bold]'The Chariot'[/bold]\n\nBring the universe into order.\nYou value law and well ordered society above all else."
+  effects:
+    - TraitLawful
+
+- type: alignment
+  id: TrueNeutral
+  name: True Neutral
+  description: "[bold]'The Hermit'[/bold]\n\nIn all things, the middle way.\nYou have no strong preference between law and freedom and do not go out of your way to help or harm others."
+  effects:
+    - TraitNeutral
+
+- type: alignment
+  id: Chaotic
+  name: Chaotic
+  description: "[bold]'The Moon'[/bold]\n\nUntether yourself from all obligations.\nYou value your own personal freedom above all else."
+  effects:
+    - TraitChaotic
+
+- type: alignment
+  id: LawfulEvil
+  name: Lawful Evil
+  description: "[bold]'The Emperor'[/bold]\n\nRule others with an iron first.\nYou believe order and hierarchy are tools to personally benefit you."
+  effects:
+    - TraitLawfulEvil
+
+- type: alignment
+  id: Evil
+  name: Evil
+  description: "[bold]'Death'[/bold]\n\nPut yourself before all others.\nYou have no true regard for others and act only to benefit yourself."
+  effects:
+    - TraitEvil
+
+- type: alignment
+  id: ChaoticEvil
+  name: Chaotic Evil
+  description: "[bold]'The Devil'[/bold]\n\nFreedom at any cost.\nYou hate authority and will seek freedom and personal gratification even when it harms others."
+  effects:
+    - TraitChaoticEvil

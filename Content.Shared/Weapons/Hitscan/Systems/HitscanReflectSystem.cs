@@ -5,7 +5,7 @@ using Content.Shared.Weapons.Reflect;
 
 namespace Content.Shared.Weapons.Hitscan.Systems;
 
-public sealed class HitscanReflectSystem : EntitySystem
+public sealed partial class HitscanReflectSystem : EntitySystem
 {
     public override void Initialize()
     {

@@ -69,6 +69,11 @@ air-alarm-ui-widget-copy-tooltip = Copies the settings of this device to all dev
 air-alarm-ui-widget-ignore = Ignore
 air-alarm-ui-atmos-net-device-label = {$address}
 
+# Persistence: Scrub above percentage
+air-alarm-ui-atmos-gas-filter-percentage-tooltip = Scrub this gas only if the percentage of this gas is higher than this amount. Zero is default behavior.
+air-alarm-ui-atmos-gas-filter-above = when above (%)
+phrase-scrub = scrub
+
 ### Vent pumps
 
 air-alarm-ui-vent-pump-label = Vent direction

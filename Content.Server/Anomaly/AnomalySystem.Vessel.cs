@@ -55,12 +55,12 @@ public sealed partial class AnomalySystem
     {
         if (component.Anomaly != null ||
             !TryComp<AnomalyScannerComponent>(args.Used, out var scanner) ||
-            scanner.ScannedAnomaly is not { } anomaly)
-        {
+            scanner.ScannedAnomaly is not { } anomaly ||
+            !TryComp<AnomalyComponent>(anomaly, out var anomalyComponent) ||
+            anomalyComponent.ConnectedVessel != null)
             return;
-        }
 
-        if (!TryComp<AnomalyComponent>(anomaly, out var anomalyComponent) || anomalyComponent.ConnectedVessel != null)
+        if (!_access.IsAllowed(args.User, uid))
             return;
 
         component.Anomaly = scanner.ScannedAnomaly;
@@ -72,7 +72,10 @@ public sealed partial class AnomalySystem
 
     private void OnVesselGetPointsPerSecond(EntityUid uid, AnomalyVesselComponent component, ref ResearchServerGetPointsPerSecondEvent args)
     {
-        if (!this.IsPowered(uid, EntityManager) || component.Anomaly is not { } anomaly)
+        if (!this.IsPowered(uid, EntityManager) ||
+            component.Anomaly is not { } anomaly ||
+            !_research.TryGetClientServer(uid, out var server) ||
+            server.Owner != args.Server)
             return;
 
         args.Points += (int)(GetAnomalyPointValue(anomaly) * component.PointMultiplier);

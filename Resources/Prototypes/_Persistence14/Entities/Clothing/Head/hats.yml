@@ -85,6 +85,24 @@
     - CorgiWearable
 
 - type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatBeretExecSecNCC
+  name: first officer's beret
+  description: An NCC colored beret with a purple crest on the front. Worn by the First Officer of Eclipse.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/beret_nccfirstoff.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/beret_nccfirstoff.rsi
+  - type: Tag
+    tags:
+    - ClothMade
+    - HamsterWearable
+    - WhitelistChameleon
+    - PetWearable
+    - CorgiWearable
+
+- type: entity
   parent: [ClothingHeadBase, BaseCommandContraband]
   id: ClothingHeadHatBeretMDSOL
   name: solar legion medical director's beret
@@ -156,7 +174,79 @@
   - type: SentienceTarget
     flavorKind: station-event-random-sentience-flavor-inanimate
     weight: 0.0002 # 5,000 times less likely than 1 regular animal
-  
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatExeccapNCC
+  name: nexus central council captains's cap
+  description: A regal cap, worn by the Eclipse Station Captain. Shows the station who's in charge.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/ncccap.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/ncccap.rsi
+  - type: Item
+    sprite: _Persistence14/Clothing/Head/Hats/ncccap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatCOSNCC
+  name: nexus central council chief of staff's cap
+  description: A wool beanie worn by the Eclipse Station Chief of Staff. Cozy.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/cosbeanie.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/cosbeanie.rsi
+  - type: Item
+    sprite: _Persistence14/Clothing/Head/Hats/cosbeanie.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+
+- type: entity
+  parent: ClothingHeadBase
+  id: ClothingHeadHatDEPCOSNCC
+  name: nexus central council deputy chief of staff's cap
+  description: An adorned cap worn by the Eclipse Station Deputy Chief of Staff. Elegant.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Hats/ncccoscap.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Head/Hats/ncccoscap.rsi
+  - type: Item
+    sprite: _Persistence14/Clothing/Head/Hats/ncccoscap.rsi
+  - type: Tag
+    tags:
+    - PetWearable
+    - CorgiWearable
+    - ClothMade
+    - Recyclable
+    - WhitelistChameleon
+    - HamsterWearable
+  - type: SentienceTarget
+    flavorKind: station-event-random-sentience-flavor-inanimate
+    weight: 0.0002 # 5,000 times less likely than 1 regular animal
+
 - type: entity
   parent: ClothingHeadBase
   id: ClothingHeadHatHatCosSOL

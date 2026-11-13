@@ -1,0 +1,69 @@
+- type: metaFaction
+  id: Shadow
+  name: The Elders
+  description: "Unknown Entities control the Shadow Universe."
+  rumors:
+    - DrinkBasicEvil
+    - EatBasicEvil
+    - PrayBasicEvil
+    - ReceiveMailEvil
+  color: DarkGray
+  levels:
+    Shadow2: 150
+    Shadow3: 500
+    Shadow4: 1000
+  order: 4
+
+- type: metaFactionLevel
+  id: Shadow2
+  name: Neophyte
+  rumorRewards:
+    - ShadowUpgradeModule
+    - TradeGood
+    - ShadowCodexFragment
+    - ShadowMerchCrate
+    - GrandLottery
+    - ShadowRumorContract
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Shadow3
+  name: Truth Seeker
+  rumorRewards:
+    - ShadowUpgradeModule
+    - TradeGood
+    - ShadowCodexFragment
+    - ShadowKnifeKit
+    - ChemKit
+    - VestArmor
+    - VestArmorElite
+    - HyperzineKit
+    - Cobra
+    - FreedomImplanter
+    - Jaws
+    - KnuckleDusters
+    - IchorCigarettes
+    - RaidSuit
+    - CombatToolbox
+    - AdvancedTeleporterChip
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Shadow4
+  name: Knowledge Keeper
+  rumorRewards:
+    - ShadowUpgradeModule
+    - TradeGood
+    - ShadowCodexFragment
+    - EDagger
+    - VoiceMaskImplanter
+    - StorageImplanter
+    - ESword
+    - EShield
+    - ECrossbow
+    - RadioJammer
+    - Chameleon
+    - AdvancedTeleporterChip
+  rewardsToOffer: 2
+
+

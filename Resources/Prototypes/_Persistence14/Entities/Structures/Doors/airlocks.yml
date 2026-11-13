@@ -1,0 +1,7 @@
+- type: entity
+  parent: AirlockGlass
+  id: AirlockFancyGlass
+  suffix: Fancy Glass
+  components:
+  - type: Sprite
+    sprite: Structures/Doors/Airlocks/Glass/glass.rsi

@@ -10,10 +10,10 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations;
 
 namespace Content.Client.Items.Systems;
 
-public sealed class ItemSystem : SharedItemSystem
+public sealed partial class ItemSystem : SharedItemSystem
 {
-    [Dependency] private readonly IResourceCache _resCache = default!;
-    [Dependency] private readonly SpriteSystem _sprite = default!;
+    [Dependency] private IResourceCache _resCache = default!;
+    [Dependency] private SpriteSystem _sprite = default!;
 
     public override void Initialize()
     {
@@ -102,7 +102,12 @@ public sealed class ItemSystem : SharedItemSystem
             : $"{item.HeldPrefix}-{defaultKey}";
 
         if (!rsi.TryGetState(state, out var _))
-            return false;
+        {
+            // No sprite for the prefixed state (e.g. a wielded gun without wielded sprites): use the normal in-hand sprite.
+            state = defaultKey;
+            if (item.HeldPrefix == null || !rsi.TryGetState(state, out var _))
+                return false;
+        }
 
         var layer = new PrototypeLayerData();
         layer.RsiPath = rsi.Path.ToString();

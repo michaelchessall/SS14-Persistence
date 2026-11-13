@@ -9,12 +9,12 @@ using Robust.Shared.Timing;
 
 namespace Content.Server.Research.TechnologyDisk.Systems;
 
-public sealed class DiskConsoleSystem : EntitySystem
+public sealed partial class DiskConsoleSystem : EntitySystem
 {
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly AudioSystem _audio = default!;
-    [Dependency] private readonly ResearchSystem _research = default!;
-    [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private AudioSystem _audio = default!;
+    [Dependency] private ResearchSystem _research = default!;
+    [Dependency] private UserInterfaceSystem _ui = default!;
 
     /// <inheritdoc/>
     public override void Initialize()
@@ -47,13 +47,13 @@ public sealed class DiskConsoleSystem : EntitySystem
         if (HasComp<DiskConsolePrintingComponent>(uid))
             return;
 
-        if (!_research.TryGetClientServer(uid, out var server, out var serverComp))
+        if (!_research.TryGetClientServer(uid, out var server))
             return;
 
-        if (serverComp.Points < component.PricePerDisk)
+        if (server.Comp1.Points < component.PricePerDisk)
             return;
 
-        _research.ModifyServerPoints(server.Value, -component.PricePerDisk, serverComp);
+        _research.ModifyServerPoints(server, -component.PricePerDisk, server.Comp1);
         _audio.PlayPvs(component.PrintSound, uid);
 
         var printing = EnsureComp<DiskConsolePrintingComponent>(uid);
@@ -82,9 +82,9 @@ public sealed class DiskConsoleSystem : EntitySystem
             return;
 
         var totalPoints = 0;
-        if (_research.TryGetClientServer(uid, out _, out var server))
+        if (_research.TryGetClientServer(uid, out var server))
         {
-            totalPoints = server.Points;
+            totalPoints = server.Comp1.Points;
         }
 
         var canPrint = !(TryComp<DiskConsolePrintingComponent>(uid, out var printing) && printing.FinishTime >= _timing.CurTime) &&

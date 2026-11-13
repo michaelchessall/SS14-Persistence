@@ -1,0 +1,144 @@
+- type: rumorReward
+  id: GreenUpgradeModule
+  name: Upgrade Module (Nanotrasen Pattern)
+  description: "Can be applied to a variety of items and machines."
+  price: 2500
+  product: GreenUpgradeModule
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: nanotrasen-full
+
+- type: rumorReward
+  id: GreenCodexFragment
+  name: Codex Fragment (Nanotrasen)
+  description: "Will unlock a codex entry when used."
+  price: 2000
+  product: GreenCodexFragment
+  icon:
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+    state: nt-codex
+
+- type: rumorReward
+  id: GreenPlasmaCrate
+  name: Plasma Shipment
+  description: "NT runs on plasma its only natural they have some to spare... for a price."
+  price: 9000
+  product: CrateMaterialPlasma
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: plasma_3
+
+- type: rumorReward
+  id: GreenMerchCrate
+  name: Marketing Shipment
+  description: "A crate of Nanotrasen themed merch for you to wear or give out."
+  price: 1500
+  product: CrateNTMerch
+  icon:
+    sprite: Objects/Misc/Handy_Flags/NT_handy_flag.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenFlippoWelder
+  name: Gilded CentComm Flippo
+  description: "A bluespace powered flippo lighter with auto refueling and locking mechanism you'll be the talk of the town when you pull this out at a party. In dire straits it also doubles as a welder."
+  price: 5000
+  product: CentCommFlippo
+  icon:
+    sprite: Objects/Tools/Lighters/centcomm.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenPhoronCrate
+  name: Phoron Shipment
+  description: "Phoron the material of tomorrow. You seem trustworthy enough for a small amount of it."
+  price: 10000
+  product: CrateMaterialPhoron10
+  icon:
+    sprite: Objects/Materials/Sheets/other.rsi
+    state: phoron_2
+
+
+
+#ERT Equipment
+
+- type: rumorReward
+  id: GreenMagBoots
+  name: ERT Mag Boots
+  description: "A pair of boots that when turned on prevent slipping and, in zero gravity, allow you to move normally, at the cost of a slight slowdown. Additionally, they have jetpack functionality and come fueled, but don't last for long."
+  price: 13000
+  product: ClothingShoesBootsMagERT
+  icon:
+    sprite: Clothing/Shoes/Boots/magboots-ert.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenHardsuitERTPaladin
+  name: ERT Paladin Hardsuit
+  description: "Contains Nanotrasen's ERT hardsuit built for handling potential supernatural threats."
+  price: 12000
+  product: ClothingBackpackERTPaladinHardsuitBundle
+  icon:
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/ERTSuits/ertpaladin.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenHardsuitERTSecurity
+  name: ERT Security Hardsuit
+  description: "Contains Nanotrasen's ERT hardsuit built for company security."
+  price: 12000
+  product: ClothingBackpackERTSecurityHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertsecurity.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenHardsuitERTMedical
+  name: ERT Medical Hardsuit
+  description: "Contains Nanotrasen's ERT hardsuit built for providing medical aid under heavy duress."
+  price: 12000
+  product: ClothingBackpackERTMedicalHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertmedical.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenHardsuitERTEngineer
+  name: ERT Engineer Hardsuit
+  description: "Contains Nanotrasen's elite ERT hardsuit built for repairing stations. Rumors of sapping operations are heavily denied."
+  price: 18000
+  product: ClothingBackpackERTEngineerHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertengineer.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenHardsuitERTJanitor
+  name: ERT Janitor Hardsuit
+  description: "Contains Nanotrasen's elite ERT hardsuit built for handling all of your cleaning needs, emphasis on the word all."
+  price: 18000
+  product: ClothingBackpackERTJanitorHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertjanitor.rsi
+    state: icon
+
+- type: rumorReward
+  id: GreenHardsuitERTLeader
+  name: ERT Leader Hardsuit
+  description: "Contains Nanotrasen's heavy duty ERT hardsuit built for commanding a squad of professionals."
+  price: 24000 #Not as powerful as the Jug suit, obviously, so I'm aiming for a lower price- but it's still potentially a little better than the Engineer and Janitor suits.
+  product: ClothingBackpackERTLeaderHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/ERTSuits/ertleader.rsi
+    state: icon
+ 
+- type: rumorReward
+  id: GreenRumorContract
+  name: Rumor Contract
+  description: A slip containing one Nanotrasen rumor.
+  price: 5000
+  product: RumorContractGreen
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Green

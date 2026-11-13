@@ -13,29 +13,8 @@ public abstract partial class SharedHandsSystem
         if (!Resolve(uid, ref handsComp, false))
             return false;
 
-        string? hand;
-
-        if (entity == null)
-        {
-            // Looking for ANY empty hand (see TrySelectEmptyHand) - IsHolding always returns
-            // false for a null entity, so it can't be reused here; search directly instead.
-            hand = null;
-            foreach (var handId in handsComp.Hands.Keys)
-            {
-                if (!HandIsEmpty((uid, handsComp), handId))
-                    continue;
-
-                hand = handId;
-                break;
-            }
-
-            if (hand == null)
-                return false;
-        }
-        else if (!IsHolding((uid, handsComp), entity, out hand))
-        {
+        if (!IsHolding((uid, handsComp), entity, out var hand))
             return false;
-        }
 
         SetActiveHand((uid, handsComp), hand);
         return true;

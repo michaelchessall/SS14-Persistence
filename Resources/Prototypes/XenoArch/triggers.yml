@@ -42,6 +42,17 @@
     TriggerThrow: 1
     TriggerDeath: 1
     TriggerMagnet: 1
+    TriggerConsumeMoney: 1
+    TriggerConsumeKnowledge: 0.25
+    TriggerConsumeCarbs: 1
+    TriggerConsumeMeat: 0.5
+    TriggerConsumeProduce: 0.5
+    TriggerInteractStamp: 1
+    TriggerInteractShock: 1
+    TriggerAttackParticleEngine: 0.1
+    TriggerAttackParticleAnomaly: 1
+    TriggerAttackStaminaDamage: 1
+    TriggerAttackLaser: 0.5
     TriggerChemBrute: 1
     TriggerChemBurn: 1
     TriggerChemToxin: 1
@@ -92,7 +103,8 @@
   tip: xenoarch-trigger-tip-no-oxygen
   components:
   - type: XATGas
-    targetGas: Oxygen
+    gases:
+    - Oxygen
     moles: 10
     shouldBePresent: false
 
@@ -101,70 +113,84 @@
   tip: xenoarch-trigger-tip-water
   components:
   - type: XATGas
-    targetGas: WaterVapor
+    gases:
+    - WaterVapor
   - type: XATReactive
-    reagents:
-    - Water
+    whitelist:
+      reagents:
+      - Water
 
 - type: xenoArchTrigger
   id: TriggerCO2
   tip: xenoarch-trigger-tip-co2
   components:
   - type: XATGas
-    targetGas: CarbonDioxide
-  - type: XATReactive
-    reagents:
+    gases:
     - CarbonDioxide
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - CarbonDioxide
 
 - type: xenoArchTrigger
   id: TriggerPlasma
   tip: xenoarch-trigger-tip-plasma
   components:
   - type: XATGas
-    targetGas: Plasma
-  - type: XATReactive
-    reagents:
+    gases:
     - Plasma
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Plasma
 
 - type: xenoArchTrigger
   id: TriggerTritium
   tip: xenoarch-trigger-tip-tritium
   components:
   - type: XATGas
-    targetGas: Tritium
+    gases:
+    - Plasma
   - type: XATReactive
-    reagents:
-    - Tritium
+    whitelist:
+      reagents:
+      - Tritium
 
 - type: xenoArchTrigger
   id: TriggerAmmonia
   tip: xenoarch-trigger-tip-ammonia
   components:
   - type: XATGas
-    targetGas: Ammonia
-  - type: XATReactive
-    reagents:
+    gases:
     - Ammonia
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Ammonia
 
 - type: xenoArchTrigger
   id: TriggerN2O
   tip: xenoarch-trigger-tip-n2o
   components:
   - type: XATGas
-    targetGas: NitrousOxide
-  - type: XATReactive
-    reagents:
+    gases:
     - NitrousOxide
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - NitrousOxide
 
 - type: xenoArchTrigger
   id: TriggerFrezon
   tip: xenoarch-trigger-tip-frezon
   components:
   - type: XATGas
-    targetGas: Frezon
-  - type: XATReactive
-    reagents:
+    gases:
     - Frezon
+  - type: XATReactive
+    whitelist:
+      reagents:
+      - Frezon
 
 - type: xenoArchTrigger
   id: TriggerRadiation
@@ -173,7 +199,15 @@
   - type: XATDamageThresholdReached
     typesNeeded:
       Radiation: 20
-  # TODO: legendary microwave trigger
+
+- type: xenoArchTrigger
+  id: TriggerMicrowave
+  tip: xenoarch-trigger-tip-microwave
+  whitelist:
+    components:
+    - Item
+  components:
+  - type: XATMicrowave
 
 - type: xenoArchTrigger
   id: TriggerPressureHigh
@@ -194,107 +228,6 @@
   tip: xenoarch-trigger-tip-examine
   components:
   - type: XATExamine
-
-# _Persistence14 content
-# Emote triggers. Each is its own trigger keyed to a single emote via XATEmote's `emotes` list.
-# To add another, copy one of these with a new id + emote + a matching tip loc string.
-- type: xenoArchTrigger
-  id: TriggerLaugh
-  tip: xenoarch-trigger-tip-laugh
-  components:
-  - type: XATEmote
-    emotes:
-    - Laugh
-
-- type: xenoArchTrigger
-  id: TriggerSigh
-  tip: xenoarch-trigger-tip-sigh
-  components:
-  - type: XATEmote
-    emotes:
-    - Sigh
-
-- type: xenoArchTrigger
-  id: TriggerSneeze
-  tip: xenoarch-trigger-tip-sneeze
-  components:
-  - type: XATEmote
-    emotes:
-    - Sneeze
-
-- type: xenoArchTrigger
-  id: TriggerCough
-  tip: xenoarch-trigger-tip-cough
-  components:
-  - type: XATEmote
-    emotes:
-    - Cough
-
-- type: xenoArchTrigger
-  id: TriggerWhistle
-  tip: xenoarch-trigger-tip-whistle
-  components:
-  - type: XATEmote
-    emotes:
-    - Whistle
-
-- type: xenoArchTrigger
-  id: TriggerCry
-  tip: xenoarch-trigger-tip-cry
-  components:
-  - type: XATEmote
-    emotes:
-    - Crying
-
-- type: xenoArchTrigger
-  id: TriggerClap
-  tip: xenoarch-trigger-tip-clap
-  components:
-  - type: XATEmote
-    emotes:
-    - Clap
-
-- type: xenoArchTrigger
-  id: TriggerYawn
-  tip: xenoarch-trigger-tip-yawn
-  components:
-  - type: XATEmote
-    emotes:
-    - Yawn
-
-- type: xenoArchTrigger
-  id: TriggerScream
-  tip: xenoarch-trigger-tip-scream
-  components:
-  - type: XATEmote
-    emotes:
-    - Scream
-# end _Persistence14 content
-
-- type: xenoArchTrigger
-  id: TriggerBruteDamage
-  tip: xenoarch-trigger-tip-blunt-damage
-  components:
-  - type: XATDamageThresholdReached
-    groupsNeeded:
-      Brute: 20
-
-- type: xenoArchTrigger
-  id: TriggerBluntDamage
-  tip: xenoarch-trigger-tip-blunt-damage
-  components:
-  - type: XATDamageThresholdReached
-    typesNeeded:
-      Blunt: 20
-
-
-- type: xenoArchTrigger
-  id: TriggerPierceDamage
-  tip: xenoarch-trigger-tip-pierce-damage
-  components:
-  - type: XATDamageThresholdReached
-    typesNeeded:
-      Piercing: 20
 
 - type: xenoArchTrigger
   id: TriggerInteraction
@@ -362,23 +295,23 @@
   - type: XATExaminableText
     examineText: xenoarch-trigger-examine-cutting
 
-- type: xenoArchTrigger
-  id: TriggerRolling
-  tip: xenoarch-trigger-tip-rolling
-  components:
-  - type: XATToolUse
-    requiredTool: Rolling
-  - type: XATExaminableText
-    examineText: xenoarch-trigger-examine-rolling
+#- type: xenoArchTrigger
+#  id: TriggerRolling
+#  tip: xenoarch-trigger-tip-rolling
+#  components:
+#  - type: XATToolUse
+#    requiredTool: Rolling
+#  - type: XATExaminableText
+#    examineText: xenoarch-trigger-examine-rolling
 
-- type: xenoArchTrigger
-  id: TriggerBrushing
-  tip: xenoarch-trigger-tip-brushing
-  components:
-  - type: XATToolUse
-    requiredTool: Brushing
-  - type: XATExaminableText
-    examineText: xenoarch-trigger-examine-brushing
+#- type: xenoArchTrigger
+#  id: TriggerBrushing
+#  tip: xenoarch-trigger-tip-brushing
+#  components:
+#  - type: XATToolUse
+#    requiredTool: Brushing
+#  - type: XATExaminableText
+#    examineText: xenoarch-trigger-examine-brushing
 
 - type: xenoArchTrigger
   id: TriggerTimer
@@ -394,18 +327,19 @@
   tip: xenoarch-trigger-tip-blood
   components:
   - type: XATReactive
-    reagents:
-    - Blood
-    - CopperBlood
-    - InsectBlood
-    - Slime
-    - AmmoniaBlood
-    - ZombieBlood
-    - Sap
-    - SulfurBlood
-    - Saline
+    whitelist:
+      reagents:
+      - Blood
+      - CopperBlood
+      - InsectBlood
+      - Slime
+      - AmmoniaBlood
+      - ZombieBlood
+      - Sap
+      - SulfurBlood
+      - Saline
   - type: XATItemInteract
-    reduceStackBy: 1
+    use: 1
     whitelist:
      tags:
      - Bloodpack
@@ -432,129 +366,279 @@
   - type: XATMagnet
 
 - type: xenoArchTrigger
-  id: TriggerChemBrute
-  tip: xenoarch-trigger-tip-chem-brute
+  id: TriggerConsumeMoney
+  tip: xenoarch-trigger-tip-money
   components:
-  - type: XATReactive
-    reagents:
-    - Bicaridine
-    - Bruizine
-    - Lacerinol
-    - Puncturase
-    - PolypyryliumOligomers
-    - Omnizine
-    - Tricordrazine
+  - type: XATInteractWith
+    interactionCount:
+      min: 100
+      max: 200
+    destroyAfter: true
+    interactionTime: 1.5
+    successTriggerSound: /Audio/Machines/machine_vend.ogg
+    whitelist:
+      components:
+      - Cash
 
 - type: xenoArchTrigger
-  id: TriggerChemBurn
-  tip: xenoarch-trigger-tip-chem-burn
+  id: TriggerConsumeKnowledge
+  tip: xenoarch-trigger-tip-knowledge
   components:
-  - type: XATReactive
-    reagents:
-    - Kelotane
-    - Dermaline
-    - Pyrazine
-    - Insuzine
-    - Leporazine
-    - Aloe
-    - Sigynate
-    - Siderlac
-    - Omnizine
-    - Tricordrazine
-
+  - type: XATInteractWith
+    destroyAfter: true
+    interactionTime: 1.5
+    successTriggerSound: /Audio/Machines/machine_vend.ogg
+    whitelist:
+      components:
+      - TechnologyDisk
+      tags:
+      - Book
 
 - type: xenoArchTrigger
-  id: TriggerChemToxin
-  tip: xenoarch-trigger-tip-chem-toxin
+  id: TriggerConsumeCarbs
+  tip: xenoarch-trigger-tip-carbs
   components:
-  - type: XATReactive
-    reagents:
-    - Dylovene
-    - Hyronalin
-    - Arithrazine
-    - Diphenhydramine
-    - Tricordrazine
-    - Omnizine
+  - type: XATInteractWith
+    destroyAfter: true
+    interactionTime: 1.5
+    successTriggerSound:
+      collection: eating
+      params:
+        volume: 5
+    whitelist:
+      tags:
+      - Bread
+      - Cake
+      - DonkPocket
+      - Donut
+      - Pie
+      - Pizza
 
 - type: xenoArchTrigger
-  id: TriggerChemGenetic
-  tip: xenoarch-trigger-tip-chem-genetic
+  id: TriggerConsumeMeat
+  tip: xenoarch-trigger-tip-meat
   components:
+  - type: XATInteractWith
+    destroyAfter: true
+    interactionTime: 1.5
+    successTriggerSound:
+      collection: eating
+      params:
+        volume: 5
+    whitelist:
+      tags:
+      - Meat
   - type: XATReactive
-    reagents:
-    - Phalanximine
-    - Omnizine
+    whitelist:
+      reagents:
+      - Protein
+      - UncookedAnimalProteins
 
 - type: xenoArchTrigger
-  id: TriggerChemCryo
-  tip: xenoarch-trigger-tip-chem-cryo
+  id: TriggerConsumeProduce
+  tip: xenoarch-trigger-tip-produce
   components:
-  - type: XATReactive
-    reagents:
-    - Cryoxadone
-    - Arcryox
-    - Doxarubixadone
-    - Aloxadone
-    - Opporozidone
+  - type: XATInteractWith
+    destroyAfter: true
+    interactionTime: 1.5
+    successTriggerSound:
+      collection: eating
+      params:
+        volume: 5
+    whitelist:
+      tags:
+      - Fruit
+      - Vegetable
+      - CottonBoll
+      - Ambrosia
+      - Mushroom
 
 - type: xenoArchTrigger
-  id: TriggerChemNarcotic
-  tip: xenoarch-trigger-tip-chem-narcotic
+  id: TriggerInteractStamp
+  tip: xenoarch-trigger-tip-stamp
   components:
-  - type: XATReactive
-    reagents:
-    - Desoxyephedrine
-    - Ephedrine
-    - Stimulants
-    - THC
-    - Nicotine
-    - Impedrezene
-    - SpaceDrugs
-    - Bananadine
-    - Nocturine
-    - MuteToxin
-    - NorepinephricAcid
-    - TearGas
+  - type: XATInteractWith
+    interactionTime: 0.5
+    successTriggerSound:
+      path: /Audio/Items/Stamp/thick_stamp_sub.ogg
+      params:
+        volume: -2
+        maxDistance: 5
+    whitelist:
+      components:
+      - Stamp
 
 - type: xenoArchTrigger
-  id: TriggerChemAcidic
-  tip: xenoarch-trigger-tip-chem-acidic
+  id: TriggerInteractShock
+  tip: xenoarch-trigger-tip-shock
   components:
-  - type: XATReactive
-    reagents:
-    - TranexamicAcid
-    - NorepinephricAcid
-    - TearGas
-    - PolytrinicAcid
-    - FerrochromicAcid
-    - FluorosulfuricAcid
-    - SulfuricAcid
-    - TartaricAcid
+  - type: XATShock
+  - type: XATDamageThresholdReached
+    typesNeeded:
+      Shock: 5
 
 - type: xenoArchTrigger
-  id: TriggerChemCleaning
-  tip: xenoarch-trigger-tip-cleaning
+  id: TriggerAttackParticleEngine
+  tip: xenoarch-trigger-tip-particle
   components:
-  - type: XATReactive
-    reagents:
-    - SpaceCleaner
-    - Bleach
-    - SoapReagent
+  - type: XATInteractAttack
+    whitelist:
+      components:
+      - ParticleProjectile
 
 - type: xenoArchTrigger
-  id: TriggerChemSticky
-  tip: xenoarch-trigger-tip-sticky
+  id: TriggerAttackParticleAnomaly
+  tip: xenoarch-trigger-tip-anomparticle
   components:
-  - type: XATReactive
-    reagents:
-    - SpaceGlue
-    - ArtifactGlue
+  - type: XATInteractAttack
+    whitelist:
+      components:
+      - AnomalousParticle
 
 - type: xenoArchTrigger
-  id: TriggerChemSlippery
-  tip: xenoarch-trigger-tip-slippery
+  id: TriggerAttackStaminaDamage
+  tip: xenoarch-trigger-tip-stamina-damage
   components:
-  - type: XATReactive
-    reagents:
-    - SpaceLube
-    - SoapReagent
+  - type: XATStaminaDamageThresholdReached
+    damageNeeded: 8 # half a practice disabler capacity
+
+- type: xenoArchTrigger
+  id: TriggerAttackLaser
+  tip: xenoarch-trigger-tip-laser
+  components:
+  - type: XATInteractAttack
+    interactionCount:
+      max: 3
+    whitelist:
+      components:
+      - LaserProjectile
+      tags:
+      - EmitterBolt
+
+#- type: xenoArchTrigger
+#  id: TriggerChemBrute
+#  tip: xenoarch-trigger-tip-chem-brute
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - Bicaridine
+#    - Bruizine
+#    - Lacerinol
+#    - Puncturase
+#    - PolypyryliumOligomers
+#    - Omnizine
+#    - Tricordrazine
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemBurn
+#  tip: xenoarch-trigger-tip-chem-burn
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - Kelotane
+#    - Dermaline
+#    - Pyrazine
+#    - Insuzine
+#    - Leporazine
+#    - Aloe
+#    - Sigynate
+#    - Siderlac
+#    - Omnizine
+#    - Tricordrazine
+#
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemToxin
+#  tip: xenoarch-trigger-tip-chem-toxin
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - Dylovene
+#    - Hyronalin
+#    - Arithrazine
+#    - Diphenhydramine
+#    - Tricordrazine
+#    - Omnizine
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemGenetic
+#  tip: xenoarch-trigger-tip-chem-genetic
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - Phalanximine
+#    - Omnizine
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemCryo
+#  tip: xenoarch-trigger-tip-chem-cryo
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - Cryoxadone
+#    - Arcryox
+#    - Doxarubixadone
+#    - Aloxadone
+#    - Opporozidone
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemNarcotic
+#  tip: xenoarch-trigger-tip-chem-narcotic
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - Desoxyephedrine
+#    - Ephedrine
+#    - Stimulants
+#    - THC
+#    - Nicotine
+#    - Impedrezene
+#    - SpaceDrugs
+#    - Bananadine
+#    - Nocturine
+#    - MuteToxin
+#    - NorepinephricAcid
+#    - TearGas
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemAcidic
+#  tip: xenoarch-trigger-tip-chem-acidic
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - TranexamicAcid
+#    - NorepinephricAcid
+#    - TearGas
+#    - PolytrinicAcid
+#    - FerrochromicAcid
+#    - FluorosulfuricAcid
+#    - SulfuricAcid
+#    - TartaricAcid
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemCleaning
+#  tip: xenoarch-trigger-tip-cleaning
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - SpaceCleaner
+#    - Bleach
+#    - SoapReagent
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemSticky
+#  tip: xenoarch-trigger-tip-sticky
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - SpaceGlue
+#    - ArtifactGlue
+#
+#- type: xenoArchTrigger
+#  id: TriggerChemSlippery
+#  tip: xenoarch-trigger-tip-slippery
+#  components:
+#  - type: XATReactive
+#    reagents:
+#    - SpaceLube
+#    - SoapReagent

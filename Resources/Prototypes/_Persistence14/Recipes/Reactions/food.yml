@@ -33,3 +33,22 @@
   effects:
   - !type:SpawnEntity
       entity: FoodDoughCottonPasta
+
+- type: reaction
+  id: CreateDoughPastry
+  impact: Low
+  quantized: true
+  conserveEnergy: false
+  reactants:
+    Flour:
+      amount: 5
+    Egg:
+      amount: 2
+    Sugar:
+      amount: 1
+    Water:
+      amount: 1
+  group: Precipitate
+  effects:
+  - !type:SpawnEntity
+      entity: FoodDoughPastryBaseRaw

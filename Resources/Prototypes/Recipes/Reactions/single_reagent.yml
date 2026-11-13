@@ -59,24 +59,17 @@
   products:
     Holywater: 1
 
-# Persistence: Make ice reagent obtainable
 - type: reaction
-  id: WatertoIce
-  impact: Low
-  maxTemp: 273.15
+  id: Hivarol
+  requiredMixerCategories:
+  - Electrolysis
+  minTemp: 370
   reactants:
-    Water:
+    LivingTissue:
+      amount: 1
+    Licoxide:
+      amount: 1
+    Impedrezene:
       amount: 1
   products:
-    Ice: 1
-
-# Persistence: Inverse of WaterToIce
-- type: reaction
-  id: IceToWater
-  impact: Low
-  minTemp: 273.15
-  reactants:
-    Ice:
-      amount: 1
-  products:
-    Water: 1
+    Hivarol: 1

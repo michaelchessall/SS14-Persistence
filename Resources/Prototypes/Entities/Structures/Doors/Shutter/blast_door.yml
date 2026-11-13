@@ -1,6 +1,6 @@
 ﻿- type: entity
+  parent: [ BaseShutter, StructureHealthDoorStrong ]
   id: BlastDoor
-  parent: BaseShutter
   name: blast door
   description: This one says 'BLAST DONGER'.
   components:
@@ -33,8 +33,16 @@
   - type: RadiationBlocker
     resistance: 8
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StrongMetallic
+    damageModifierSet: PlasteelMod
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 350
+      behaviors:
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: ContainerFill
     containers:
       board: [ DoorElectronics ]
@@ -52,8 +60,8 @@
       path: /Audio/Effects/glass_knock.ogg
 
 - type: entity
-  id: BlastDoorOpen
   parent: BlastDoor
+  id: BlastDoorOpen
   suffix: Open
   components:
   - type: Door
@@ -68,8 +76,8 @@
     enabled: false
 
 - type: entity
+  parent: [ BaseStructureDynamic, StructureHealthDoor ]
   id: BlastDoorFrame
-  parent: BaseStructureDynamic
   name: blast door frame
   description: This one says 'BLAST DONGER'.
   components:
@@ -78,16 +86,16 @@
     state: assembly
   - type: InteractionOutline
   - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
+    damageModifierSet: PlasteelMod
   - type: Destructible
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 300
+        damage: 200
       behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
   - type: Physics
     bodyType: Static
   - type: Fixtures
@@ -107,8 +115,6 @@
   - type: Construction
     graph: BlastDoor
     node: frame1
-  placement:
-    mode: SnapgridCenter
 
 - type: entity
   parent: BlastDoor
@@ -153,7 +159,7 @@
     enabled: false
 
 - type: entity
-  parent: BaseStructureDynamic
+  parent: BlastDoorFrame
   id: BlastDoorXenoFrame
   name: xeno blast door frame
   description: This one says 'BLAST DONGER'.
@@ -161,39 +167,6 @@
   - type: Sprite
     sprite: Structures/Doors/Shutters/xeno_blastdoor.rsi
     state: assembly
-  - type: InteractionOutline
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
-  - type: Destructible
-    thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 300
-      behaviors:
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
-  - type: Physics
-    bodyType: Static
-  - type: Fixtures
-    fixtures:
-      fix1:
-        shape:
-          !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
-        density: 55
-        mask:
-        - Impassable
-        - HighImpassable
-        layer:
-        - HighImpassable
-  - type: Transform
-    noRot: true
-  - type: Construction
-    graph: BlastDoor
-    node: frame1
-  placement:
-    mode: SnapgridCenter
 
 - type: entity
   parent: BlastDoor

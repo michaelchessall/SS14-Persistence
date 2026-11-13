@@ -1,0 +1,37 @@
+- type: plantChemQuantity
+  id: VestineRandomNocturine
+  baseAmount: 0.05
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 0.5
+- type: plantChemQuantity
+  id: VestineRandomMuteToxin
+  baseAmount: 0.05
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 0.5
+- type: plantChemQuantity
+  id: VestineRandomLead
+  baseAmount: 0.05
+  requirements: # TODO: Replace placeholder requirements. Maybe gold?
+    Nutrient:
+      requirement: 0.5
+
+- type: plantChemQuantity
+  id: VestineRandomTazinide
+  baseAmount: 1
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 1
+- type: plantChemQuantity
+  id: VestineRandomStimulants
+  baseAmount: 1
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 1
+- type: plantChemQuantity
+  id: VestineRandomLexorin
+  baseAmount: 1
+  requirements: # TODO: Replace placeholder requirements
+    Nutrient:
+      requirement: 1

@@ -1,12 +1,12 @@
+using System.Linq;
+using System.Numerics;
 using Content.Shared.ActionBlocker;
 using Content.Shared.Destructible;
 using Content.Shared.Explosion;
 using Content.Shared.Foldable;
 using Content.Shared.Hands.Components;
 using Content.Shared.Interaction;
-using Content.Shared.Item;
 using Content.Shared.Lock;
-using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Events;
 using Content.Shared.Popups;
 using Content.Shared.Storage.Components;
@@ -22,12 +22,10 @@ using Robust.Shared.Physics;
 using Robust.Shared.Physics.Systems;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
-using System.Linq;
-using System.Numerics;
 
 namespace Content.Shared.Storage.EntitySystems;
 
-public abstract class SharedEntityStorageSystem : EntitySystem
+public abstract partial class SharedEntityStorageSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -111,7 +109,8 @@ public abstract class SharedEntityStorageSystem : EntitySystem
 
     private void OnRelayMovement(EntityUid uid, EntityStorageComponent component, ref ContainerRelayMovementEntityEvent args)
     {
-        if (!HasComp<HandsComponent>(args.Entity))
+        if (!component.Contents.Contains(args.Entity) &&
+            !HasComp<HandsComponent>(args.Entity))
             return;
 
         if (!_actionBlocker.CanMove(args.Entity))
@@ -220,76 +219,76 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         }
     }
 
-    public void OpenStorage(EntityUid uid, EntityStorageComponent? component = null)
+    public void OpenStorage(Entity<EntityStorageComponent?> target, EntityUid? user = null)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(target, ref target.Comp))
             return;
 
-        if (component.Open)
+        if (target.Comp.Open)
             return;
 
-        var beforeev = new StorageBeforeOpenEvent();
-        RaiseLocalEvent(uid, ref beforeev);
-        component.Open = true;
-        Dirty(uid, component);
-        EmptyContents(uid, component);
-        ModifyComponents(uid, component);
-        if (_net.IsClient && _timing.IsFirstTimePredicted)
-            _audio.PlayPvs(component.OpenSound, uid);
-        ReleaseGas(uid, component);
-        var afterev = new StorageAfterOpenEvent();
-        RaiseLocalEvent(uid, ref afterev);
+        var beforeev = new StorageBeforeOpenEvent(user);
+        RaiseLocalEvent(target, ref beforeev);
+        target.Comp.Open = true;
+        Dirty(target);
+        EmptyContents(target, target.Comp);
+        ModifyComponents(target, target.Comp);
+        _audio.PlayLocal(target.Comp.OpenSound, target, user);
+        ReleaseGas(target, target.Comp);
+        var afterev = new StorageAfterOpenEvent(user);
+        RaiseLocalEvent(target, ref afterev);
     }
 
-    public void CloseStorage(EntityUid uid, EntityStorageComponent? component = null)
+    public void CloseStorage(Entity<EntityStorageComponent?> target, EntityUid? user = null)
     {
-        if (!Resolve(uid, ref component))
+        if (!Resolve(target, ref target.Comp))
             return;
 
-        if (!component.Open)
+        if (!target.Comp.Open)
             return;
 
         // Prevent the container from closing if it is queued for deletion. This is so that the container-emptying
         // behaviour of DestructionEventArgs is respected. This exists because malicious players were using
         // destructible boxes to delete entities by having two players simultaneously destroy and close the box in
         // the same tick.
-        if (EntityManager.IsQueuedForDeletion(uid))
+        if (EntityManager.IsQueuedForDeletion(target))
             return;
 
-        component.Open = false;
-        Dirty(uid, component);
+        target.Comp.Open = false;
+        Dirty(target);
 
         var entities = _lookup.GetEntitiesInRange(
-            new EntityCoordinates(uid, component.EnteringOffset),
-            component.EnteringRange,
+            new EntityCoordinates(target, target.Comp.EnteringOffset),
+            target.Comp.EnteringRange,
             LookupFlags.Approximate | LookupFlags.Dynamic | LookupFlags.Sundries
         );
 
         // Don't insert the container into itself.
-        entities.Remove(uid);
+        entities.Remove(target);
 
-        var ev = new StorageBeforeCloseEvent(entities, []);
-        RaiseLocalEvent(uid, ref ev);
+        var ev = new StorageBeforeCloseEvent(user, entities, []);
+        RaiseLocalEvent(target, ref ev);
 
         foreach (var entity in ev.Contents)
         {
-            if (!ev.BypassChecks.Contains(entity) && !CanInsert(entity, uid, component))
+            if (!ev.BypassChecks.Contains(entity) && !CanInsert(entity, target, target.Comp))
                 continue;
 
-            if (!AddToContents(entity, uid, component))
+            if (!AddToContents(entity, target, target.Comp))
                 continue;
 
-            if (component.Contents.ContainedEntities.Count >= component.Capacity)
+            if (target.Comp.Contents.ContainedEntities.Count >= target.Comp.Capacity)
                 break;
         }
 
-        TakeGas(uid, component);
-        ModifyComponents(uid, component);
-        if (_net.IsClient && _timing.IsFirstTimePredicted)
-            _audio.PlayPvs(component.CloseSound, uid);
+        if (LifeStage(target) >= EntityLifeStage.MapInitialized) // stop mappers from serializing air in locker
+            TakeGas(target, target.Comp);
 
-        var afterev = new StorageAfterCloseEvent();
-        RaiseLocalEvent(uid, ref afterev);
+        ModifyComponents(target, target.Comp);
+        _audio.PlayLocal(target.Comp.CloseSound, target, user);
+
+        var afterev = new StorageAfterCloseEvent(user);
+        RaiseLocalEvent(target, ref afterev);
     }
 
     public bool Insert(EntityUid toInsert, EntityUid container, EntityStorageComponent? component = null)
@@ -322,12 +321,21 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (!Resolve(container, ref component))
             return false;
 
-        _container.Remove(toRemove, component.Contents);
+        // Get our new parent: either the grid the entity is on, or the
+        var newParent = xform.GridUid ?? xform.MapUid;
+        if (!TryComp(newParent, out TransformComponent? parentXform))
+            return false;
+
+        // Reparent the removed entity to our grid, or the map!
+        var (pos, rot) = TransformSystem.GetWorldPositionRotation(xform);
+        pos += rot.RotateVec(component.EnteringOffset);
+        pos = Vector2.Transform(pos, TransformSystem.GetInvWorldMatrix(parentXform));
+        if (!_container.Remove(toRemove, component.Contents, destination: new(newParent.Value, pos)))
+            return false;
 
         if (_container.IsEntityInContainer(container)
             && _container.TryGetOuterContainer(container, Transform(container), out var outerContainer))
         {
-
             var attemptEvent = new EntityStorageIntoContainerAttemptEvent(outerContainer);
             RaiseLocalEvent(outerContainer.Owner, ref attemptEvent);
             if (!attemptEvent.Cancelled)
@@ -338,9 +346,6 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         }
 
         RemComp<InsideEntityStorageComponent>(toRemove);
-
-        var pos = TransformSystem.GetWorldPosition(xform) + TransformSystem.GetWorldRotation(xform).RotateVec(component.EnteringOffset);
-        TransformSystem.SetWorldPosition(toRemove, pos);
         return true;
     }
 
@@ -373,12 +378,8 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (containerAttemptEvent.Cancelled)
             return false;
 
-        // Consult the whitelist. The whitelist ignores the default assumption about how entity storage works.
-        if (component.Whitelist != null)
-            return _whitelistSystem.IsValid(component.Whitelist, toInsert);
-
-        // The inserted entity must be a mob or an item.
-        return HasComp<MobStateComponent>(toInsert) || HasComp<ItemComponent>(toInsert);
+        // Check the whitelist/blacklist.
+        return _whitelistSystem.CheckBoth(toInsert, component.Blacklist, component.Whitelist);
     }
 
     public bool TryOpenStorage(EntityUid user, EntityUid target, bool silent = false)
@@ -386,7 +387,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (!CanOpen(user, target, silent))
             return false;
 
-        OpenStorage(target);
+        OpenStorage(target, user);
         return true;
     }
 
@@ -397,7 +398,7 @@ public abstract class SharedEntityStorageSystem : EntitySystem
             return false;
         }
 
-        CloseStorage(target);
+        CloseStorage(target, user);
         return true;
     }
 
@@ -414,13 +415,14 @@ public abstract class SharedEntityStorageSystem : EntitySystem
         if (!Resolve(target, ref component))
             return false;
 
-        if (!HasComp<HandsComponent>(user))
+        if (!component.Contents.Contains(user) &&
+            !HasComp<HandsComponent>(user))
             return false;
 
         if (_weldable.IsWelded(target))
         {
             if (!silent && !component.Contents.Contains(user))
-                Popup.PopupClient(Loc.GetString("entity-storage-component-welded-shut-message"), target, user);
+                Popup.PopupEntity(Loc.GetString("entity-storage-component-welded-shut-message"), target, user);
 
             return false;
         }

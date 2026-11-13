@@ -1,0 +1,23 @@
+- type: upgradeModuleType
+  id: Zenith
+  name: "Zenith-Pattern"
+
+- type: upgradeModuleType
+  id: Green
+  name: "Nanotrasen-Pattern"
+
+- type: upgradeModuleType
+  id: Marine
+  name: "Marine-Pattern"
+
+- type: upgradeModuleType
+  id: Shadow
+  name: "Elder-Pattern"
+
+- type: upgradeModuleType
+  id: Luminal
+  name: "Lumina-Pattern"
+
+- type: upgradeModuleType
+  id: Precursor
+  name: "Cybersun-Pattern"

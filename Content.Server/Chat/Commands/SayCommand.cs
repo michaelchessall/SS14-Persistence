@@ -7,9 +7,9 @@ using Robust.Shared.Enums;
 namespace Content.Server.Chat.Commands
 {
     [AnyCommand]
-    internal sealed class SayCommand : LocalizedEntityCommands
+    internal sealed partial class SayCommand : LocalizedEntityCommands
     {
-        [Dependency] private readonly ChatSystem _chatSystem = default!;
+        [Dependency] private ChatSystem _chatSystem = default!;
         public override string Command => "say";
 
         public override void Execute(IConsoleShell shell, string argStr, string[] args)
@@ -36,13 +36,7 @@ namespace Content.Server.Chat.Commands
             if (string.IsNullOrEmpty(message))
                 return;
 
-            // Lets any system override the transmit range for this specific speaker (e.g. to
-            // suppress the visible bubble for something whose speech is meant to be
-            // heard/relayed some other way instead) without this file needing to know why.
-            var rangeEv = new GetSpeechTransmitRangeEvent(ChatTransmitRange.Normal);
-            EntityManager.EventBus.RaiseLocalEvent(playerEntity, rangeEv);
-
-            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, rangeEv.Range, false, shell, player);
+            _chatSystem.TrySendInGameICMessage(playerEntity, message, InGameICChatType.Speak, ChatTransmitRange.Normal, false, shell, player);
         }
     }
 }

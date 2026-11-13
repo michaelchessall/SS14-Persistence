@@ -45,12 +45,12 @@
       Aluminium: 10
   - type: Extractable
     grindableSolutionName: grindable
-  - type: SolutionContainerManager
-    solutions:
-      grindable:
-        reagents:
-        - ReagentId: Aluminium
-          Quantity: 3
+  - type: Solution
+    id: grindable
+    solution:
+      reagents:
+      - ReagentId: Aluminium
+        Quantity: 3
   - type: Storage
     whitelist:
       tags:

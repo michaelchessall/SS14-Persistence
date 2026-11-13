@@ -9,7 +9,6 @@
     stateBaseClosed: cabinet
     stateDoorOpen: cabinet_open
     stateDoorClosed: cabinet_door
-
   - type: AccessReader
     access: [["Bar"]]
   - type: EntityStorage
@@ -23,7 +22,7 @@
 # Basic
 - type: entity
   id: LockerSteel
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: secure closet
   components:
   - type: Appearance
@@ -35,7 +34,7 @@
 # Cargo
 - type: entity
   id: LockerQuarterMaster
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: quartermaster's locker
   components:
   - type: Appearance
@@ -63,7 +62,7 @@
 # Command
 - type: entity
   id: LockerCaptain
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: captain's locker
   components:
   - type: Appearance
@@ -76,7 +75,7 @@
 
 - type: entity
   id: LockerHeadOfPersonnel
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: head of personnel's locker
   components:
   - type: Appearance
@@ -90,7 +89,7 @@
 # CE
 - type: entity
   id: LockerChiefEngineer
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: chief engineer's locker
   components:
   - type: Appearance
@@ -279,7 +278,7 @@
 # CMO
 - type: entity
   id: LockerChiefMedicalOfficer
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: chief medical officer's locker
   components:
   - type: Appearance
@@ -320,7 +319,7 @@
 # HoS
 - type: entity
   id: LockerHeadOfSecurity
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: head of security's locker
   components:
   - type: Appearance
@@ -334,7 +333,7 @@
 # Warden
 - type: entity
   id: LockerWarden
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: warden's locker
   components:
   - type: Appearance
@@ -348,7 +347,7 @@
 # Brigmedic
 - type: entity
   id: LockerBrigmedic
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: brigmedic locker
   components:
   - type: Appearance
@@ -362,7 +361,7 @@
 # Security Officer
 - type: entity
   id: LockerSecurity
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: security officer's locker
   components:
   - type: Appearance
@@ -375,7 +374,7 @@
 
 - type: entity
   id: GunSafe
-  parent: LockerBaseSecure
+  parent: LockerBase
   name: gun safe
   components:
   - type: Appearance
@@ -427,7 +426,7 @@
     isPlaceable: True
 
 - type: entity
-  parent: [ GenpopBase , LockerBaseSecure ]
+  parent: [ GenpopBase , LockerBase ]
   id: LockerPrisoner
   name: prisoner closet
   description: It's a secure locker for an inmate's personal belongings during their time in prison.
@@ -454,6 +453,7 @@
         hard: True
         restitution: 0
         friction: 0.4
+  - type: EntityStorage
   - type: Construction
     graph: ClosetPrisonerSecure
     node: closetprisonersecure
@@ -537,7 +537,7 @@
 - type: entity
   id: LockerSyndicatePersonal
   name: blood-red locker
-  parent: LockerBaseSecure
+  parent: LockerBase
   description: It's a personal storage unit with a blood-red design.
   suffix: "Locked"
   components:
@@ -551,36 +551,41 @@
 
 # Bluespace
 - type: entity
+  parent: LockerBase
   id: LockerBluespaceStation
   name: bluespace locker
-  suffix: once to station
-  parent: LockerSyndicatePersonal
   description: Advanced locker technology.
+  suffix: once to station
   components:
-    - type: ArrivalsBlacklist
-    - type: BluespaceLocker
-      minBluespaceLinks: 1
-      behaviorProperties:
-        delay: 1
-        actOnOpen: false
-        bluespaceEffectOnInit: true
-        bluespaceEffectOnTeleportSource: true
-        bluespaceEffectOnTeleportTarget: true
-        destroyAfterUses: 1
-        destroyAfterUsesMinItemsToCountUse: 1
-        destroyType: Delete
-      autoLinksUseProperties: true
-      autoLinkProperties:
-        actOnOpen: false
-        actOnClose: false
-        destroyAfterUses: 2
-        destroyType: DeleteComponent
+  - type: Appearance
+  - type: EntityStorageVisuals
+    stateBaseClosed: syndicate
+    stateDoorOpen: syndicate_open
+    stateDoorClosed: syndicate_door
+  - type: ArrivalsBlacklist
+  - type: BluespaceLocker
+    minBluespaceLinks: 1
+    behaviorProperties:
+      delay: 1
+      actOnOpen: false
+      bluespaceEffectOnInit: true
+      bluespaceEffectOnTeleportSource: true
+      bluespaceEffectOnTeleportTarget: true
+      destroyAfterUses: 1
+      destroyAfterUsesMinItemsToCountUse: 1
+      destroyType: Delete
+    autoLinksUseProperties: true
+    autoLinkProperties:
+      actOnOpen: false
+      actOnClose: false
+      destroyAfterUses: 2
+      destroyType: DeleteComponent
 
 # Clown
 - type: entity
   id: LockerClown
   name: clown locker
-  parent: LockerBaseSecure
+  parent: LockerBase
   components:
   - type: Appearance
   - type: AccessReader
@@ -594,7 +599,7 @@
 - type: entity
   id: LockerMime
   name: mime locker
-  parent: LockerBaseSecure
+  parent: LockerBase
   components:
   - type: Appearance
   - type: AccessReader
@@ -608,7 +613,7 @@
 - type: entity
   id: LockerRepresentative
   name: representative locker
-  parent: LockerBaseSecure
+  parent: LockerBase
   components:
   - type: Appearance
   - type: AccessReader

@@ -14,7 +14,7 @@ namespace Content.Shared.Chemistry.EntitySystems;
 /// <summary>
 /// This handles <see cref="SolutionContainerMixerComponent"/>
 /// </summary>
-public abstract class SharedSolutionContainerMixerSystem : EntitySystem
+public abstract partial class SharedSolutionContainerMixerSystem : EntitySystem
 {
     [Dependency] private readonly IGameTiming _timing = default!;
     [Dependency] private readonly INetManager _net = default!;
@@ -88,7 +88,7 @@ public abstract class SharedSolutionContainerMixerSystem : EntitySystem
         if (!HasPower(entity))
         {
             if (user != null)
-                _popup.PopupClient(Loc.GetString("solution-container-mixer-no-power"), entity, user.Value);
+                _popup.PopupEntity(Loc.GetString("solution-container-mixer-no-power"), entity, user.Value);
             return;
         }
 
@@ -103,7 +103,7 @@ public abstract class SharedSolutionContainerMixerSystem : EntitySystem
         if (insertedContainers == 0)
         {
             if (user != null)
-                _popup.PopupClient(Loc.GetString("solution-container-mixer-popup-nothing-to-mix"), entity, user.Value);
+                _popup.PopupEntity(Loc.GetString("solution-container-mixer-popup-nothing-to-mix"), entity, user.Value);
             return;
         }
 

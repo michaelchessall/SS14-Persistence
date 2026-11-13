@@ -1,6 +1,6 @@
 # inspired by "Probably stolen" great game! made for Persistence 14
 
-- type: entity 
+- type: entity
   parent: [ DrinkBaseMaterialPlastic, DrinkBase, DrinkBaseOpenable, DrinkVisualsAll] #I wanna make it recyclable sooo not gonna use DrinkBottlePlasticSmallBaseFull
   id: BasePlasticBottle
   abstract: true
@@ -24,7 +24,7 @@
 
 # tiny empty bottle
 
-- type: entity 
+- type: entity
   parent: BasePlasticBottle
   id: TinyPlasticBottle
   name: Tiny bottle
@@ -34,10 +34,9 @@
     size: Tiny
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/tiny-plastic-bottle.rsi
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 30
+  - type: Solution
+    solution:
+      maxVol: 30
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 3
@@ -47,7 +46,7 @@
 
 # Empty small plastic bottle
 
-- type: entity 
+- type: entity
   parent: BasePlasticBottle
   id: SmallPlasticBottle
   name: Small bottle
@@ -57,10 +56,9 @@
     size: Small
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/small-plastic-bottle.rsi
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 60
+  - type: Solution
+    solution:
+      maxVol: 60
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 3
@@ -80,10 +78,9 @@
     size: Small
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/plastic-bottle.rsi
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 120
+  - type: Solution
+    solution:
+      maxVol: 120
   - type: PhysicalComposition
     materialComposition:
       Plastic: 180
@@ -100,10 +97,9 @@
     size: Normal
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/large-plastic-bottle.rsi
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 240
+  - type: Solution
+    solution:
+      maxVol: 240
   - type: SolutionContainerVisuals
     maxFillLevels: 6
     inHandsMaxFillLevels: 5
@@ -121,10 +117,9 @@
     size: Ginormous
   - type: Sprite
     sprite: _Persistence14/Objects/Consumable/Drinks/waterbottles/water-jug.rsi
-  - type: SolutionContainerManager
-    solutions:
-      drink:
-        maxVol: 500
+  - type: Solution
+    solution:
+      maxVol: 500
   - type: MultiHandedItem
   - type: SolutionContainerVisuals
     maxFillLevels: 6

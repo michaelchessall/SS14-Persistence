@@ -5,6 +5,7 @@ using Content.Shared.Radio;
 using Content.Shared.Salvage.Magnet;
 using Robust.Shared.Exceptions;
 using Robust.Shared.Map;
+using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
 using System.Numerics;
@@ -14,20 +15,17 @@ namespace Content.Server.Salvage;
 
 public sealed partial class SalvageSystem
 {
-    [Dependency] private readonly IRuntimeLog _runtimeLog = default!;
+    [Dependency] private IRuntimeLog _runtimeLog = default!;
+
+    [Dependency] private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery = default!;
+    [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery = default!;
 
     private static readonly ProtoId<RadioChannelPrototype> MagnetChannel = "Supply";
-
-    private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery;
-    private EntityQuery<MobStateComponent> _mobStateQuery;
 
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new();
 
     private void InitializeMagnet()
     {
-        _salvMobQuery = GetEntityQuery<SalvageMobRestrictionsComponent>();
-        _mobStateQuery = GetEntityQuery<MobStateComponent>();
-
         SubscribeLocalEvent<SalvageMagnetDataComponent, MapInitEvent>(OnMagnetDataMapInit);
 
         SubscribeLocalEvent<SalvageMagnetTargetComponent, GridSplitEvent>(OnMagnetTargetSplit);
@@ -39,9 +37,8 @@ public sealed partial class SalvageSystem
 
     private void OnMagnetClaim(EntityUid uid, SalvageMagnetComponent component, ref MagnetClaimOfferEvent args)
     {
-        var station = _station.GetOwningStation(uid);
 
-        if (!TryComp(station, out SalvageMagnetDataComponent? dataComp) ||
+        if (!TryComp(uid, out SalvageMagnetDataComponent? dataComp) ||
             dataComp.EndTime != null)
         {
             return;
@@ -52,7 +49,7 @@ public sealed partial class SalvageSystem
         {
             try
             {
-                await TakeMagnetOffer((station.Value, dataComp), index, (uid, component));
+                await TakeMagnetOffer((uid, dataComp), index, (uid, component));
             }
             catch (Exception e)
             {
@@ -179,7 +176,8 @@ public sealed partial class SalvageSystem
             // Go and cleanup the active ents.
             foreach (var ent in data.Comp.ActiveEntities)
             {
-                Del(ent);
+                _transform.DetachEntity(ent);
+                QueueDel(ent);
             }
 
             foreach (var entity in _detachEnts)
@@ -239,9 +237,8 @@ public sealed partial class SalvageSystem
 
     private void UpdateMagnetUI(Entity<SalvageMagnetComponent> entity, TransformComponent xform)
     {
-        var station = _station.GetOwningStation(entity, xform);
 
-        if (!TryComp(station, out SalvageMagnetDataComponent? dataComp))
+        if (!TryComp(entity, out SalvageMagnetDataComponent? dataComp))
             return;
 
         _ui.SetUiState(entity.Owner, SalvageMagnetUiKey.Key,
@@ -257,25 +254,9 @@ public sealed partial class SalvageSystem
 
     private void UpdateMagnetUIs(Entity<SalvageMagnetDataComponent> data)
     {
-        var query = AllEntityQuery<SalvageMagnetComponent, TransformComponent>();
-
-        while (query.MoveNext(out var magnetUid, out var magnet, out var xform))
-        {
-            var station = _station.GetOwningStation(magnetUid, xform);
-
-            if (station != data.Owner)
-                continue;
-
-            _ui.SetUiState(magnetUid, SalvageMagnetUiKey.Key,
-                new SalvageMagnetBoundUserInterfaceState(data.Comp.Offered)
-                {
-                    Cooldown = data.Comp.OfferCooldown,
-                    Duration = data.Comp.ActiveTime,
-                    EndTime = data.Comp.EndTime,
-                    NextOffer = data.Comp.NextOffer,
-                    ActiveSeed = data.Comp.ActiveSeed,
-                });
-        }
+        if (!TryComp(data, out SalvageMagnetComponent? dataComp))
+            return;
+        UpdateMagnetUI((data.Owner, dataComp), Transform(data.Owner));
     }
 
     private async Task TakeMagnetOffer(Entity<SalvageMagnetDataComponent> data, int index, Entity<SalvageMagnetComponent> magnet)
@@ -295,12 +276,12 @@ public sealed partial class SalvageSystem
         switch (offering)
         {
             case AsteroidOffering asteroid:
-                var grid = _mapManager.CreateGridEntity(salvMap);
+                var grid = _mapSystem.CreateGridEntity(salvMap);
                 await _dungeon.GenerateDungeonAsync(asteroid.DungeonConfig, grid.Owner, grid.Comp, Vector2i.Zero, seed);
                 break;
             case DebrisOffering debris:
-                var debrisProto = _prototypeManager.Index<DungeonConfigPrototype>(debris.Id);
-                var debrisGrid = _mapManager.CreateGridEntity(salvMap);
+                var debrisProto = ProtoMan.Index<DungeonConfigPrototype>(debris.Id);
+                var debrisGrid = _mapSystem.CreateGridEntity(salvMap);
                 await _dungeon.GenerateDungeonAsync(debrisProto, debrisGrid.Owner, debrisGrid.Comp, Vector2i.Zero, seed);
                 break;
             case SalvageOffering wreck:
@@ -345,7 +326,7 @@ public sealed partial class SalvageSystem
             }
         }
 
-        var magnetXform = _xformQuery.GetComponent(magnet.Owner);
+        var magnetXform = Transform(magnet.Owner);
         var magnetGridUid = magnetXform.GridUid;
         var attachedBounds = new Box2Rotated();
         var mapId = MapId.Nullspace;
@@ -353,7 +334,7 @@ public sealed partial class SalvageSystem
 
         if (magnetGridUid != null)
         {
-            var magnetGridXform = _xformQuery.GetComponent(magnetGridUid.Value);
+            var magnetGridXform = Transform(magnetGridUid.Value);
             var (gridPos, gridRot) = _transform.GetWorldPositionRotation(magnetGridXform);
             var gridAABB = _gridQuery.GetComponent(magnetGridUid.Value).LocalAABB;
 
@@ -385,7 +366,7 @@ public sealed partial class SalvageSystem
         // It worked, move it into position and cleanup values.
         while (mapChildren.MoveNext(out var mapChild))
         {
-            var salvXForm = _xformQuery.GetComponent(mapChild);
+            var salvXForm = Transform(mapChild);
             var localPos = salvXForm.LocalPosition;
 
             _transform.SetParent(mapChild, salvXForm, spawnUid.Value);
@@ -425,6 +406,7 @@ public sealed partial class SalvageSystem
         var magnetPos = _transform.GetWorldPosition(magnet) + worldAngle.ToVec() * bounds.MaxDimension;
         var origin = attachedAABB.ClosestPoint(magnetPos);
         var fraction = 0.50f;
+        var grids = new List<Entity<MapGridComponent>>();
 
         // Thanks 20kdc
         for (var i = 0; i < 20; i++)
@@ -440,7 +422,9 @@ public sealed partial class SalvageSystem
 
             // This doesn't stop it from spawning on top of random things in space
             // Might be better like this, ghosts could stop it before
-            if (_mapManager.FindGridsIntersecting(finalCoords.MapId, box2Rot).Any())
+            grids.Clear();
+            _mapSystem.FindGridsIntersecting(finalCoords.MapId, box2Rot, ref grids);
+            if (grids.Count > 0)
             {
                 // Bump it further and further just in case.
                 fraction += 0.1f;

@@ -30,6 +30,8 @@
     - 0,0,7,1
   - type: Item
     size: Ginormous
+    shape:
+    - 0,0,7,1
   - type: ContainerContainer
     containers:
       storagebase: !type:Container
@@ -38,6 +40,10 @@
     interfaces:
       enum.StorageUiKey.Key:
         type: StorageBoundUserInterface
+  - type: Upgradeable
+    upgrades:
+      BasicMarine : 0
+      BasicPrecursor : 0
 
 - type: entity
   abstract: true

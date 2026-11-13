@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: ToolSpeedGreen
+  name: Speed Increase
+  description: "Increases tool speed by 10%"
+  targetModule: Green
+  maxApplications: 2
+  upgradeValues:
+    - 0.1
+  upgradeType: ToolSpeed

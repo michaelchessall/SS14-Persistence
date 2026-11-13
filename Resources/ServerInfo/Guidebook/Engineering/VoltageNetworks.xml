@@ -92,4 +92,13 @@
 
   Energized [color=Orange]High Voltage[/color] and [color=Yellow]Medium Voltage[/color] cabling hurts, so be sure to wear insulated gloves when working with it.
 
+
+  ## Crossing Streams
+  Sometimes it may be useful to cross a set of cables or run two cables side by side. For this we need the use of a cable junction! Just apply some plastic to any cable and it will turn into a junction. These junctions allow power to flow between the north-south and east-west channels, but not between them.
+
+  You can also deconstruct these junctions simply by using a pair of wirecutters!
+
+  <Box>
+    <GuideEntityEmbed Entity="CableJunctionHV"/>
+  </Box>
 </Document>

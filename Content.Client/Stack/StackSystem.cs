@@ -12,7 +12,7 @@ namespace Content.Client.Stack
 {
     /// <inheritdoc />
     [UsedImplicitly]
-    public sealed class StackSystem : SharedStackSystem
+    public sealed partial class StackSystem : SharedStackSystem
     {
         [Dependency] private readonly AppearanceSystem _appearanceSystem = default!;
         [Dependency] private readonly ItemCounterSystem _counterSystem = default!;
@@ -79,7 +79,7 @@ namespace Content.Client.Stack
         /// <param name="actual">The actual number of items in the stack. Altered depending on the function to run.</param>
         /// <param name="maxCount">The maximum number of items in the stack. Altered depending on the function to run.</param>
         /// <returns>True if a function was applied.</returns>
-        private bool ApplyLayerFunction(Entity<StackComponent> ent, ref int actual, ref int maxCount)
+        public bool ApplyLayerFunction(Entity<StackComponent> ent, ref int actual, ref int maxCount)
         {
             switch (ent.Comp.LayerFunction)
             {

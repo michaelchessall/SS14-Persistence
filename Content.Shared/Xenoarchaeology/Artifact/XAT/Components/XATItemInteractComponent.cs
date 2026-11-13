@@ -14,7 +14,7 @@ public sealed partial class XATItemInteractComponent : Component
     [DataField, AutoNetworkedField]
     public TimeSpan UseTime = TimeSpan.FromSeconds(2);
 
-    [DataField, AutoNetworkedField]
+    [DataField("use"), AutoNetworkedField]
     public int ReduceStackBy = 0;
 }
 

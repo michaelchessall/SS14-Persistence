@@ -4,11 +4,8 @@
   parent: BaseStorageItem
   id: ConstructionBag
   name: construction bag
-  description: |-
-    A robust bag for construction specialists and engineers alike to carry large amounts of construction stuff.
-    Magnetises any nearby board, cabling, construction material, LightBulbs or power cell when attached to a belt.
+  description: A robust bag for construction specialists and engineers alike to carry large amounts of construction stuff.
   components:
-  - type: MagnetPickup
   - type: Sprite
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     layers:
@@ -62,8 +59,6 @@
   name: construction bag of holding
   description: A robust bag of holding for rich construction specialists and engineers alike to carry large amounts of construction materials. Magnetises any nearby construction materials when attached to a belt.
   components:
-  - type: MagnetPickup
-    range: 2
   - type: Sprite
     sprite: _NF/Objects/Specific/Engineering/construction_bag.rsi
     layers:

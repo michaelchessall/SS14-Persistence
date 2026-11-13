@@ -9,12 +9,41 @@
   id: BaseMech # Identifies all mechs.
 
 ## C ##
+- type: Tag
+  id: CableJunctionHV # Prevents HV wires from being placed on an HV Junction
+- type: Tag
+  id: CableJunctionMV # Prevents HV wires from being placed on an HV Junction
+- type: Tag
+  id: CableJunctionLV # Prevents HV wires from being placed on an HV Junction
+
 
 ## D ##
+- type: Tag
+  id: Drink # Marks a reagent as a drink
 
 ## E ##
 
 ## F ##
+
+# Food reagents for classifying food items.
+- type: Tag
+  id: FoodDairy
+- type: Tag
+  id: FoodEgg
+- type: Tag
+  id: FoodFlour
+- type: Tag
+  id: FoodMeat
+- type: Tag
+  id: FoodVeggie
+- type: Tag
+  id: FoodFruit
+- type: Tag
+  id: FoodRice
+- type: Tag
+  id: FoodOats
+- type: Tag
+  id: FoodCotton
 
 ## G ##
 
@@ -51,6 +80,8 @@
 ## V ##
 
 ## W ##
+#- type: Tag
+#  id: Wall
 
 ## X ##
 

@@ -1,7 +1,6 @@
+using System.Runtime.CompilerServices;
 using Content.Shared._Persistence14.RandomTable.Count;
 using JetBrains.Annotations;
-using Robust.Shared.Prototypes;
-using Robust.Shared.Random;
 
 namespace Content.Shared._Persistence14.RandomTable;
 
@@ -12,7 +11,7 @@ public abstract partial class RandomTableSelector
     /// Weight used when picking between selectors.
     /// </summary>
     [DataField]
-    public float Weight = 1f;
+    protected float Weight = 1f;
 
     /// <summary>
     /// The set of conditions which must be true for the selector to activate.
@@ -60,7 +59,23 @@ public abstract partial class RandomTableSelector
     /// <summary>
     /// Provides a simple list of all items in the table ignoring rolls and conditions.
     /// </summary>
-    public abstract IEnumerable<(RandomTableValueDefinition value, float prob)> List(RandomTableContext ctx, float probabilityMultiplier = 1f);
+    public abstract IEnumerable<(RandomTableValueDefinition value, float prob)> ListImplementation(RandomTableContext ctx, float probabilityMultiplier = 1f);
+
+    /// <summary>
+    /// Calculates a condensed list of items, combining like items from children tables.
+    /// </summary>
+    public Dictionary<RandomTableValueDefinition, float> List(RandomTableContext ctx, float probabilityMultipler = 1f)
+    {
+        var list = ListImplementation(ctx, probabilityMultipler);
+        Dictionary<RandomTableValueDefinition, float> dict = new();
+
+        foreach (var (value, prob) in list)
+        {
+            dict[value] = dict.GetValueOrDefault(value) + prob;
+        }
+
+        return dict;
+    }
 
     public bool CheckConditions(RandomTableContext ctx)
     {
@@ -88,5 +103,7 @@ public abstract partial class RandomTableSelector
                 throw new NotImplementedException();
         }
     }
+
+    public virtual float GetWeight(RandomTableContext ctx) => Weight;
 }
 

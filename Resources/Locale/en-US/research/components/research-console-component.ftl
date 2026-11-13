@@ -19,3 +19,6 @@ research-console-prereqs-list-entry = - [color=orchid]{$text}[/color]
 
 research-console-no-access-popup = No access!
 research-console-unlock-technology-radio-broadcast = Unlocked [bold]{$technology}[/bold] for [bold]{$amount}[/bold] research by [bold]{$approver}[/bold].
+
+## Added for Persistence14
+research-console-menu-multiplier = Entropy Multiplier: [color=orchid]{$multiplier}[/color]

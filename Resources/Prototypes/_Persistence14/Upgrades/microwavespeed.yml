@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: MicrowaveSpeedPrecursor
+  name: Speed Increase
+  description: "Increases cooking speed by 10%"
+  targetModule: Precursor
+  maxApplications: 2
+  upgradeValues:
+    - 0.1
+  upgradeType: MicrowaveSpeed

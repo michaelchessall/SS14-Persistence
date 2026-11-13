@@ -101,30 +101,6 @@
     FoodTomato: 1
     FoodOnionSlice: 2
 
-- type: microwaveMealRecipe
-  id: RecipeBloodredBurger
-  name: bloodred_burger_recipe
-  result: FoodBurgerBloodred
-  time: 15
-  group: Savory
-  reagents:
-    Ketchup: 10
-  solids:
-    FoodBreadBun: 1
-    FoodMeat: 2
-    FoodCabbage: 1
-
-- type: microwaveMealRecipe
-  id: RecipeWeedChicken
-  name: weed_chicken_recipe
-  result: FoodWeedChicken
-  time: 10
-  group: Savory
-  solids:
-    FoodMeatChickenCutlet: 1
-    LeavesCannabis: 1
-
-
 - type: microwaveMealRecipe #Added to metamorph recipes
   id: RecipeBrainBurger
   name: brain_burger_recipe
@@ -221,7 +197,7 @@
   time: 10
   group: Savory
   reagents:
-    Mayo: 5
+    Mayo: 2
   solids:
     FoodBreadBun: 1
     FoodMeatChicken: 1
@@ -353,7 +329,7 @@
   time: 10
   group: Savory
   reagents:
-    Egg: 12
+    Egg: 6
   solids:
     FoodBreadBun: 1
     FoodCheeseSlice: 1
@@ -367,7 +343,7 @@
   solids:
     FoodBreadBun: 1
     FoodMealRibs: 1
-    FoodOnionSlice: 1
+    FoodOnionSlice: 5
 
 - type: microwaveMealRecipe
   id: RecipeMimeBurger
@@ -418,7 +394,7 @@
   group: Savory
   solids:
     FoodBreadBun: 1
-    FoodCheeseSlice: 2
+    FoodCheeseSlice: 1
     FoodSoybeans: 2 #replace with soylent green when those become craftable
 
 - type: microwaveMealRecipe
@@ -438,12 +414,13 @@
   time: 25
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 1
+    Blackpepper: 1
     Egg: 12
   solids:
     FoodBreadBun: 1
     FoodMeat: 2
-    FoodCheeseSlice: 2
+    FoodCheeseSlice: 1
     FoodTomato: 2
 
 - type: microwaveMealRecipe
@@ -506,7 +483,7 @@
     Milk: 5
   solids:
     FoodDough: 1
-    FoodCheeseSlice: 2
+    FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeMeatBread
@@ -517,7 +494,7 @@
   solids:
     FoodDough: 1
     FoodMeatCutlet: 2
-    FoodCheeseSlice: 2
+    FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeMimanaBread
@@ -529,7 +506,7 @@
     Nothing: 5
   solids:
     FoodDough: 1
-    FoodMimana: 1
+    FoodMimana: 2
 
 - type: microwaveMealRecipe
   id: RecipeBread
@@ -568,7 +545,7 @@
   solids:
     FoodDough: 1
     FoodMeatSpiderCutlet: 2
-    FoodCheeseSlice: 2
+    FoodCheeseSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeTofuBread
@@ -578,7 +555,7 @@
   group: Breads
   solids:
     FoodDough: 1
-    FoodTofu: 1
+    FoodTofuSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeXenoMeatBread
@@ -600,8 +577,8 @@
   time: 15
   group: Breads
   reagents:
-    TableSalt: 5
-    Blackpepper: 5
+    TableSalt: 1
+    Blackpepper: 1
   solids:
     FoodDough: 1
 
@@ -612,8 +589,8 @@
   time: 15
   group: Moth
   reagents:
-    TableSalt: 5
-    Blackpepper: 5
+    TableSalt: 1
+    Blackpepper: 1
   solids:
     FoodDoughCotton: 1
 
@@ -625,8 +602,8 @@
   time: 15
   group: Secret
   reagents:
-    TableSalt: 5
-    Blackpepper: 5
+    TableSalt: 1
+    Blackpepper: 1
   solids:
     FoodDough: 1
     PartRodMetal1: 1
@@ -649,7 +626,7 @@
   group: Breakfast
   reagents:
     Milk: 5
-    Egg: 12
+    Egg: 6
   solids:
     FoodBreadPlainSlice: 1
 
@@ -857,7 +834,7 @@
   group: Pasta
   solids:
     FoodNoodlesBoiled: 1
-    FoodMeatMeatball: 2
+    FoodMeatMeatball: 1
 
 - type: microwaveMealRecipe
   id: RecipeButterNoodles
@@ -867,7 +844,7 @@
   group: Pasta
   solids:
     FoodNoodlesBoiled: 1
-    FoodButter: 1
+    FoodButterSlice: 2
 
 - type: microwaveMealRecipe
   id: RecipeChowMein
@@ -890,8 +867,8 @@
   time: 15
   group: Savory
   reagents:
-    Oats: 15
-    Water: 10
+    Oats: 20
+    Water: 20
   solids:
     FoodBowlBig: 1
 
@@ -902,8 +879,8 @@
   time: 15
   group: Savory
   reagents:
-    Rice: 15
-    Water: 10
+    Rice: 20
+    Water: 20
   solids:
     FoodBowlBig: 1
 
@@ -914,8 +891,9 @@
   time: 15
   group: Dessert
   reagents:
-    Rice: 15
-    Milk: 10
+    Rice: 10
+    Milk: 30
+    Egg: 6
     Sugar: 5
   solids:
     FoodBowlBig: 1
@@ -938,7 +916,7 @@
   group: Savory
   solids:
     FoodRiceBoiled: 1
-    FoodMeatCutlet: 3
+    FoodMeatCutlet: 2
     FoodChiliPepper: 2
 
 - type: microwaveMealRecipe
@@ -985,7 +963,7 @@
   time: 10
   group: Soup
   reagents:
-    Water: 10
+    Water: 20
   solids:
     FoodBowlBig: 1
     FoodMeatMeatball: 1
@@ -1004,6 +982,7 @@
   solids:
     FoodBowlBig: 1
     Nettle: 1
+    FoodAmbrosiaDeus: 1
     FoodPotato: 1
 
 - type: microwaveMealRecipe
@@ -1106,10 +1085,10 @@
   time: 10
   group: Soup
   reagents:
-    Soysauce: 5
+    Soysauce: 10
   solids:
     FoodBowlBig: 1
-    FoodMeatXenoCutlet: 2
+    FoodMeatXenoCutlet: 5
 
 - type: microwaveMealRecipe
   id: RecipeWingFangChuSoupSpider
@@ -1149,6 +1128,7 @@
   solids:
     FoodBowlBig: 1
     FoodBanana: 1
+    MaterialBananium: 1
     ShardGlass: 1
     #idk probably replace shard with someting bananium when #14663 merged
 
@@ -1189,7 +1169,7 @@
   reagents:
     Water: 10
   solids:
-    FoodMeatSnail: 1
+    MobSnail: 1
 
 - type: microwaveMealRecipe
   id: RecipeEscargotSoup
@@ -1202,7 +1182,8 @@
   solids:
     FoodBowlBig: 1
     FoodOnionSlice: 1
-    FoodButter: 1
+    FoodGarlic: 1
+    FoodButterSlice: 2
     FoodMeatSnailCooked: 1
 
 #Pies
@@ -1395,7 +1376,7 @@
   time: 15
   group: Savory
   solids:
-    FoodDough: 1
+    FoodDoughSlice: 1
     FoodCheeseSlice: 2
     FoodChiliPepper: 1
     FoodMeatFish: 2
@@ -1409,7 +1390,7 @@
   reagents:
     TableSalt: 1
   solids:
-    FoodMeatFish: 2
+    FoodMeatFish: 1
 
 - type: microwaveMealRecipe
   id: RecipeMisoColaSoup
@@ -1439,7 +1420,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 2
   solids:
     FoodPotato: 1
 
@@ -1450,7 +1431,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 2
   solids:
     FoodPotato: 1
     FoodCheeseSlice: 1
@@ -1462,7 +1443,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 2
   solids:
     FoodCarrot: 1
 
@@ -1586,18 +1567,6 @@
   solids:
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
-  id: RecipeNukeCookie
-  name: nuke_cookie_recipe
-  result: FoodBakedCookieNuke
-  time: 5
-  group: BarsAndCookies
-  reagents:
-    Flour: 5
-    Sugar: 5
-    Milk: 5
-  solids:
-    FoodButterSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeRaisinCookie
@@ -1680,7 +1649,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodCarrot: 3
+    FoodCarrot: 2
 
 - type: microwaveMealRecipe
   id: RecipeLemonCake
@@ -1700,7 +1669,7 @@
   group: Cake
   solids:
     FoodCakePlain: 1
-    FoodLemoon: 2
+    FoodLemoon: 1
     FoodBerries: 1 #dark colouring
 
 - type: microwaveMealRecipe
@@ -1863,9 +1832,9 @@
   group: Savory
   reagents:
     Water: 10
-    UncookedAnimalProteins: 6
+    UncookedAnimalProteins: 2
   solids:
-    FoodDoughSlice: 3
+    FoodDoughSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeBrownies
@@ -1878,7 +1847,7 @@
     Sugar: 30
     Egg: 18
   solids:
-    FoodButter: 2
+    FoodButter: 1
     FoodSnackChocolateBar: 2
 
 #Donks i guess
@@ -1964,17 +1933,6 @@
     FoodDonkpocketCarp: 1
 
 - type: microwaveMealRecipe
-  id: RecipeFoodPaste
-  name: food_paste_recipe
-  result: FoodPaste
-  time: 15
-  group: Savory
-  solids:
-    FoodOnionSlice: 1
-    FoodMeat: 1
-    DrinkGlass: 1
-
-- type: microwaveMealRecipe
   id: RecipeDonkpocketMoth
   name: warm_moth-pocket_recipe
   result: FoodDonkpocketMothWarm
@@ -2002,7 +1960,7 @@
   time: 5
   group: Soup
   reagents:
-    Nitrogen: 5
+    FrostOil: 10
   solids:
     FoodSoupChiliHot: 1
 
@@ -2052,7 +2010,7 @@
   time: 15
   group: Savory
   reagents:
-    BbqSauce: 5
+    BbqSauce: 10
   solids:
     FoodMeat: 2
     FoodKebabSkewer: 1
@@ -2064,9 +2022,9 @@
   time: 20
   group: Savory
   solids:
-    FoodChiliPepper: 2
-    FoodMeatCutlet: 1
-    FoodCorn: 1
+    FoodChiliPepper: 1
+    FoodMeatCutlet: 2
+    FoodDoughTortillaFlat: 1
 
 # SALADS: These should be moved out of the microwave as soon as possible
 - type: microwaveMealRecipe
@@ -2088,7 +2046,7 @@
   group: Salad
   solids:
     FoodBowlBig: 1
-    FoodAmbrosiaVulgaris: 3
+    FoodAmbrosiaVulgaris: 2
     FoodPotato: 1
     FoodMeatMeatball: 1
 
@@ -2102,8 +2060,8 @@
     Vinaigrette: 5
   solids:
     FoodBowlBig: 1
-    FoodOnionRed: 1
-    FoodCabbage: 1
+    FoodOnionRed: 2
+    FoodCabbage: 2
 
 - type: microwaveMealRecipe
   id: RecipeCaesarSalad
@@ -2143,7 +2101,7 @@
   solids:
     FoodBowlBig: 1
     FoodCarrot: 1
-    FoodCabbage: 1
+    FoodCabbage: 2
     FoodGarlic: 1
 
 - type: microwaveMealRecipe
@@ -2157,7 +2115,7 @@
     FoodOrange: 1
     FoodApple: 1
     FoodGrape: 1
-    FoodWatermelonSlice: 2
+    FoodWatermelonSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeJungleSalad
@@ -2170,7 +2128,7 @@
     FoodBanana: 1
     FoodApple: 1
     FoodGrape: 1
-    FoodWatermelonSlice: 2
+    FoodWatermelonSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipeWatermelonFruitBowlSalad
@@ -2337,7 +2295,7 @@
   time: 15
   solids:
     FoodButter: 1
-    LeavesCannabis: 6
+    LeavesCannabis: 1
 
 - type: microwaveMealRecipe
   id: RecipeCannabisBrownies
@@ -2350,7 +2308,7 @@
     Sugar: 30
     Egg: 18
   solids:
-    FoodCannabisButter: 2
+    FoodCannabisButter: 1
     FoodSnackChocolateBar: 2
 
 - type: microwaveMealRecipe
@@ -2362,7 +2320,7 @@
   solids:
     FoodCorn: 1
     FoodPlate: 1
-    FoodButter: 1
+    FoodButterSlice: 1
 
 - type: microwaveMealRecipe
   id: RecipePeaSoup
@@ -2371,10 +2329,10 @@
   time: 10
   group: Soup
   solids:
-    FoodPeaPod: 2
+    FoodPeaPod: 3
     FoodBowlBig: 1
   reagents:
-    Water: 10
+    Water: 20
 
 - type: microwaveMealRecipe
   id: RecipeTacoShell
@@ -2383,7 +2341,7 @@
   time: 5
   group: Breads
   solids:
-    FoodDoughTortillaFlat: 1 # one third of a standard bread dough recipe
+    FoodDoughTortillaFlat: 1 # one eighth a standard bread dough recipe
 
 - type: microwaveMealRecipe
   id: RecipeTacoBeef
@@ -2601,3 +2559,189 @@
     Fiber: 10
   solids:
     FoodCakePlain: 1
+
+
+
+#Persistence 14 added recipes and foods
+
+
+- type: microwaveMealRecipe
+  id: RecipeBloodredBurger
+  name: bloodred_burger_recipe
+  result: FoodBurgerBloodred
+  time: 15
+  group: Savory
+  reagents:
+    Ketchup: 10
+  solids:
+    FoodBreadBun: 1
+    FoodMeat: 2
+    FoodCabbage: 1
+
+- type: microwaveMealRecipe
+  id: RecipeWeedChicken
+  name: weed_chicken_recipe
+  result: FoodWeedChicken
+  time: 10
+  group: Savory
+  solids:
+    FoodMeatChickenCutlet: 1
+    LeavesCannabis: 1
+
+- type: microwaveMealRecipe
+  id: RecipeFoodPaste
+  name: food_paste_recipe
+  result: FoodPaste
+  time: 15
+  group: Savory
+  solids:
+    FoodOnionSlice: 1
+    FoodMeat: 1
+    DrinkGlass: 1
+
+- type: microwaveMealRecipe
+  id: RecipeNukeCookie
+  name: nuke_cookie_recipe
+  result: FoodBakedCookieNuke
+  time: 5
+  group: BarsAndCookies
+  reagents:
+    Flour: 5
+    Sugar: 5
+    Milk: 5
+  solids:
+    FoodButterSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketPlain
+  name: donk_pocket_recipe
+  result: FoodDonkpocket
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketDank
+  name: donk_pocket_recipe_dank
+  result: FoodDonkpocketDank
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    LeavesCannabis: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketSpicy
+  name: donk_pocket_recipe_spicy
+  result: FoodDonkpocketSpicy
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodChiliPepper: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketTeriyaki
+  name: donk_pocket_recipe_teriyaki
+  result: FoodDonkpocketTeriyaki
+  secretRecipe: true
+  time: 20
+  group: Secret
+  reagents:
+    Soysauce: 5
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodMeatCutlet: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketPizza
+  name: donk_pocket_recipe_pizza
+  result: FoodDonkpocketPizza
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodTomato: 1
+    FoodCheeseSlice: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketHonk
+  name: donk_pocket_recipe_honk
+  result: FoodDonkpocketHonk
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodBanana: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketBerry
+  name: donk_pocket_recipe_berry
+  result: FoodDonkpocketBerry
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodBerries: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketStonk
+  name: donk_pocket_recipe_stonk
+  result: FoodDonkpocketStonk
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    SpaceCash: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketCarp
+  name: donk_pocket_recipe_carp
+  result: FoodDonkpocketCarp
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodMeatFish: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketDink
+  name: donk_pocket_recipe_dink
+  result: FoodDonkpocketDink
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughSlice: 1
+    FoodCarrot: 1
+
+- type: microwaveMealRecipe
+  id: RecipeDonkPocketMoth
+  name: donk_pocket_recipe_moth
+  result: FoodDonkpocketMoth
+  secretRecipe: true
+  time: 20
+  group: Secret
+  solids:
+    FoodAmbrosiaDeus: 1
+    FoodDoughCottonSlice: 1
+

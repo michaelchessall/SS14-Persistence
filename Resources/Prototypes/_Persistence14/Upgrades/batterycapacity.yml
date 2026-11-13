@@ -1,0 +1,11 @@
+
+- type: upgrade
+  id: BatteryCapacityZenith
+  name: Storage Capacity Increase
+  description: "Adds to the 6 MJ to the battery capacity."
+  targetModule: Zenith
+  maxApplications: 2
+  upgradeValues:
+    - 6000000
+  upgradeType: BatteryCapacity
+

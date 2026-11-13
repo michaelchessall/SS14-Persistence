@@ -195,7 +195,7 @@
         - to: altarClear
           completed:
           - !type:SpawnPrototype
-                prototype: PlushieSlime 
+                prototype: PlushieSlime
                 amount: 1
           steps:
             - tool: Prying

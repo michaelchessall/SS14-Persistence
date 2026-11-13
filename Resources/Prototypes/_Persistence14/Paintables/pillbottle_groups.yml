@@ -1,0 +1,15 @@
+- type: paintableGroup
+  id: PillBottle
+  cost: 1
+  defaultStyle: PillCanisterOrange
+  styles:
+    basic: PillCanister
+    crimson: PillCanisterCrimson
+    red: PillCanisterRed
+    orange: PillCanisterOrange
+    yellow: PillCanisterYellow
+    lime: PillCanisterLime
+    green: PillCanisterGreen
+    cyan: PillCanisterCyan
+    blue: PillCanisterBlue
+    purple: PillCanisterPurple

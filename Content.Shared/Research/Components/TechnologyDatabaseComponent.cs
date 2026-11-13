@@ -3,20 +3,12 @@ using Content.Shared.Research.Prototypes;
 using Content.Shared.Research.Systems;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Shared.Research.Components;
 
 [RegisterComponent, NetworkedComponent, Access(typeof(SharedResearchSystem), typeof(SharedLatheSystem)), AutoGenerateComponentState]
 public sealed partial class TechnologyDatabaseComponent : Component
 {
-    /// <summary>
-    /// A main discipline that locks out other discipline technology past a certain tier.
-    /// </summary>
-    [AutoNetworkedField]
-    [DataField("mainDiscipline", customTypeSerializer: typeof(PrototypeIdSerializer<TechDisciplinePrototype>))]
-    public string? MainDiscipline;
-
     [AutoNetworkedField]
     [DataField("currentTechnologyCards")]
     public List<ProtoId<TechnologyPrototype>> CurrentTechnologyCards = new();
@@ -33,16 +25,7 @@ public sealed partial class TechnologyDatabaseComponent : Component
     /// </summary>
     [AutoNetworkedField]
     [DataField]
-    public List<ProtoId<TechnologyPrototype>> UnlockedTechnologies = new();
-
-    /// <summary>
-    /// The ids of all the lathe recipes which have been unlocked.
-    /// This is maintained alongside the TechnologyIds
-    /// </summary>
-    /// todo: if you unlock all the recipes in a tech, it doesn't count as unlocking the tech. sadge
-    [AutoNetworkedField]
-    [DataField]
-    public Dictionary<ProtoId<LatheRecipePrototype>, int> UnlockedRecipes = new();
+    public Dictionary<ProtoId<TechDisciplinePrototype>, List<ProtoId<TechnologyPrototype>>> UnlockedTechnologies = new();
 }
 
 /// <summary>

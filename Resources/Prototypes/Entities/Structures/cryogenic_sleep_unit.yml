@@ -78,6 +78,11 @@
     board: PersonalCryoMachineCircuitboard
   - type: Cryostorage
     personalMode: true
+  - type: PointLight
+    color: Magenta
+    radius: 1.5
+    energy: 0.5
+    castShadows: false
   - type: ContainerContainer
     containers:
       storage: !type:ContainerSlot
@@ -106,8 +111,9 @@
         node: machineFrame
       - !type:DoActsBehavior
         acts: ["Destruction"]
-  - type: Damageable
+  - type: Injurable
     damageContainer: StructuralInorganic
+  - type: Damageable
     damageModifierSet: StructuralMetallicStrong
   - type: EmptyOnMachineDeconstruct
     containers:

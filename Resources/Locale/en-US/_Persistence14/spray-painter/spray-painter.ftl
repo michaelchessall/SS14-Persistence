@@ -1,0 +1,1 @@
+spray-painter-style-airlockglass-fancy = Fancy

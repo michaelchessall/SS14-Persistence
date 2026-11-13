@@ -7,6 +7,7 @@ using Content.Server.Popups;
 using Content.Server.Power.EntitySystems;
 using Content.Server.Radio.EntitySystems;
 using Content.Server.Stack;
+using Content.Shared._Persistence14.Research.RecipeRelay;
 using Content.Shared.Atmos;
 using Content.Shared.Chemistry.Components;
 using Content.Shared.Chemistry.EntitySystems;
@@ -34,25 +35,25 @@ using System.Linq;
 namespace Content.Server.Lathe
 {
     [UsedImplicitly]
-    public sealed class LatheSystem : SharedLatheSystem
+    public sealed partial class LatheSystem : SharedLatheSystem
     {
-        [Dependency] private readonly IGameTiming _timing = default!;
-        [Dependency] private readonly IPrototypeManager _proto = default!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly AtmosphereSystem _atmosphere = default!;
-        [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
-        [Dependency] private readonly SharedAudioSystem _audio = default!;
-        [Dependency] private readonly ContainerSystem _container = default!;
-        [Dependency] private readonly EmagSystem _emag = default!;
-        [Dependency] private readonly UserInterfaceSystem _uiSys = default!;
-        [Dependency] private readonly MaterialStorageSystem _materialStorage = default!;
-        [Dependency] private readonly PopupSystem _popup = default!;
-        [Dependency] private readonly PuddleSystem _puddle = default!;
-        [Dependency] private readonly ReagentSpeedSystem _reagentSpeed = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-        [Dependency] private readonly StackSystem _stack = default!;
-        [Dependency] private readonly TransformSystem _transform = default!;
-        [Dependency] private readonly RadioSystem _radio = default!;
+        [Dependency] private IGameTiming _timing = default!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
+        [Dependency] private AtmosphereSystem _atmosphere = default!;
+        [Dependency] private SharedAppearanceSystem _appearance = default!;
+        [Dependency] private SharedAudioSystem _audio = default!;
+        [Dependency] private ContainerSystem _container = default!;
+        [Dependency] private EmagSystem _emag = default!;
+        [Dependency] private UserInterfaceSystem _uiSys = default!;
+        [Dependency] private MaterialStorageSystem _materialStorage = default!;
+        [Dependency] private PopupSystem _popup = default!;
+        [Dependency] private PuddleSystem _puddle = default!;
+        [Dependency] private ReagentSpeedSystem _reagentSpeed = default!;
+        [Dependency] private SharedSolutionContainerSystem _solution = default!;
+        [Dependency] private StackSystem _stack = default!;
+        [Dependency] private TransformSystem _transform = default!;
+        [Dependency] private RadioSystem _radio = default!;
+        [Dependency] private SharedRecipeRelaySystem _recipeRelay = default!;
 
         /// <summary>
         /// Per-tick cache
@@ -77,7 +78,7 @@ namespace Content.Server.Lathe
 
             SubscribeLocalEvent<LatheComponent, BeforeActivatableUIOpenEvent>((u, c, _) => UpdateUserInterfaceState(u, c));
             SubscribeLocalEvent<LatheComponent, MaterialAmountChangedEvent>(OnMaterialAmountChanged);
-            SubscribeLocalEvent<TechnologyDatabaseComponent, LatheGetRecipesEvent>(OnGetRecipes);
+            SubscribeLocalEvent<RecipeContainerComponent, LatheGetRecipesEvent>(OnGetRecipes);
             SubscribeLocalEvent<EmagLatheRecipesComponent, LatheGetRecipesEvent>(GetEmagLatheRecipes);
             SubscribeLocalEvent<LatheHeatProducingComponent, LatheStartPrintingEvent>(OnHeatStartPrinting);
         }
@@ -134,7 +135,7 @@ namespace Content.Server.Lathe
             var recipes = GetAvailableRecipes(uid, component, true);
             foreach (var id in recipes)
             {
-                if (!_proto.Resolve(id.Key, out var proto))
+                if (!ProtoMan.Resolve(id.Key, out var proto))
                     continue;
                 foreach (var (mat, _) in proto.Materials)
                 {
@@ -167,16 +168,15 @@ namespace Content.Server.Lathe
             return ev.Recipes;
         }
 
-        public void TakeRecipeUses(EntityUid uid, LatheRecipePrototype recipe, TechnologyDatabaseComponent component, int uses)
+        public void TakeRecipeUses(EntityUid uid, LatheRecipePrototype recipe, RecipeContainerComponent component, int uses)
         {
             if (component.UnlockedRecipes.ContainsKey(recipe.ID))
             {
                 component.UnlockedRecipes[recipe.ID] = int.Max(component.UnlockedRecipes[recipe.ID] - uses, 0);
             }
             Dirty(uid, component);
-            var ev = new TechnologyDatabaseModifiedEvent();
-            RaiseLocalEvent(uid, ref ev);
         }
+
         public bool TryAddToQueue(EntityUid uid, LatheRecipePrototype recipe, int quantity, LatheComponent? component = null)
         {
             if (!Resolve(uid, ref component))
@@ -185,21 +185,15 @@ namespace Content.Server.Lathe
             if (quantity <= 0)
                 return false;
             quantity = int.Min(quantity, MaxItemsPerRequest);
-            if (TryComp<ResearchClientComponent>(uid, out var researchClient))
+
+            if (_recipeRelay.TryGetRecipeContainer(uid, out var container))
             {
-                if (researchClient.Server != null)
+                if (container.Comp.UnlockedRecipes.ContainsKey(recipe.ID))
                 {
-                    if (TryComp<TechnologyDatabaseComponent>(researchClient.Server, out var database))
-                    {
-                        if (database.UnlockedRecipes.ContainsKey(recipe.ID))
-                        {
-                            quantity = int.Min(quantity, database.UnlockedRecipes[recipe.ID]);
-                            TakeRecipeUses(researchClient.Server.Value, recipe, database, quantity);
-                        }
-                    }
+                    quantity = int.Min(quantity, container.Comp.UnlockedRecipes[recipe.ID]);
+                    TakeRecipeUses(container.Owner, recipe, container.Comp, quantity);
                 }
             }
-
 
             if (quantity <= 0)
                 return false;
@@ -228,7 +222,7 @@ namespace Content.Server.Lathe
             batch.ItemsPrinted++;
             if (batch.ItemsPrinted >= batch.ItemsRequested || batch.ItemsPrinted < 0) // Rollover sanity check
                 component.Queue.RemoveFirst();
-            var recipe = _proto.Index(batch.Recipe);
+            var recipe = ProtoMan.Index(batch.Recipe);
 
             var time = _reagentSpeed.ApplySpeed(uid, recipe.CompleteTime) * component.TimeMultiplier;
 
@@ -258,8 +252,7 @@ namespace Content.Server.Lathe
 
             if (comp.CurrentRecipe != null)
             {
-
-                var currentRecipe = _proto.Index(comp.CurrentRecipe.Value);
+                var currentRecipe = ProtoMan.Index(comp.CurrentRecipe.Value);
                 if (currentRecipe.Result is { } resultProto)
                 {
                     var result = Spawn(resultProto, Transform(uid).Coordinates);
@@ -316,19 +309,21 @@ namespace Content.Server.Lathe
         /// <summary>
         /// Adds every unlocked recipe from each pack to the recipes list.
         /// </summary>
-        public void AddRecipesFromDynamicPacks(ref LatheGetRecipesEvent args, TechnologyDatabaseComponent database, IEnumerable<ProtoId<LatheRecipePackPrototype>> packs)
+        public void AddRecipesFromDynamicPacks(ref LatheGetRecipesEvent args, IEnumerable<ProtoId<LatheRecipePackPrototype>> packs)
         {
+            if (!_recipeRelay.TryGetRecipeContainer(args.Lathe, out var container))
+                return;
             foreach (var id in packs)
             {
-                var pack = _proto.Index(id);
+                var pack = ProtoMan.Index(id);
                 foreach (var recipe in pack.Recipes)
                 {
-                    if (args.GetUnavailable || database.UnlockedRecipes.ContainsKey(recipe))
+                    if (args.GetUnavailable || container.Comp.UnlockedRecipes.ContainsKey(recipe))
                     {
                         if (args.Recipes.ContainsKey(recipe)) continue;
-                        if (database.UnlockedRecipes.ContainsKey(recipe))
+                        if (container.Comp.UnlockedRecipes.ContainsKey(recipe))
                         {
-                            args.Recipes.Add(recipe, database.UnlockedRecipes[recipe]);
+                            args.Recipes.Add(recipe, container.Comp.UnlockedRecipes[recipe]);
                         }
                         else
                         {
@@ -342,10 +337,10 @@ namespace Content.Server.Lathe
             }
         }
 
-        private void OnGetRecipes(EntityUid uid, TechnologyDatabaseComponent component, LatheGetRecipesEvent args)
+        private void OnGetRecipes(EntityUid uid, RecipeContainerComponent component, LatheGetRecipesEvent args)
         {
             if (uid == args.Lathe)
-                AddRecipesFromDynamicPacks(ref args, component, args.Comp.DynamicPacks);
+                AddRecipesFromDynamicPacks(ref args, args.Comp.DynamicPacks);
         }
 
         private void GetEmagLatheRecipes(EntityUid uid, EmagLatheRecipesComponent component, LatheGetRecipesEvent args)
@@ -358,8 +353,7 @@ namespace Content.Server.Lathe
 
             AddRecipesFromPacks(args.Recipes, component.EmagStaticPacks);
 
-            if (TryComp<TechnologyDatabaseComponent>(uid, out var database))
-                AddRecipesFromDynamicPacks(ref args, database, component.EmagDynamicPacks);
+            AddRecipesFromDynamicPacks(ref args, component.EmagDynamicPacks);
         }
 
         private void OnHeatStartPrinting(EntityUid uid, LatheHeatProducingComponent component, LatheStartPrintingEvent args)
@@ -424,7 +418,7 @@ namespace Content.Server.Lathe
                 if (!potentialRecipes.ContainsKey(new(recipeId)))
                     continue;
 
-                if (!_proto.TryIndex(recipeId, out LatheRecipePrototype? recipe))
+                if (!ProtoMan.TryIndex(recipeId, out LatheRecipePrototype? recipe))
                     continue;
 
                 var itemName = GetRecipeName(recipe!);
@@ -484,7 +478,7 @@ namespace Content.Server.Lathe
         /// </summary>
         private void RefundCurrentRecipe(EntityUid uid, LatheComponent lathe)
         {
-            _proto.Resolve(lathe.CurrentRecipe, out var recipe);
+            ProtoMan.Resolve(lathe.CurrentRecipe, out var recipe);
 
             foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
                 _materialStorage.TryChangeMaterialAmount(uid, mat, amount);
@@ -498,7 +492,7 @@ namespace Content.Server.Lathe
         {
             var delta = batch.ItemsRequested - batch.ItemsPrinted;
 
-            _proto.Resolve(batch.Recipe, out var recipe);
+            ProtoMan.Resolve(batch.Recipe, out var recipe);
 
             foreach (var (mat, amount) in GetAdjustedAmount(lathe, recipe!))
                 _materialStorage.TryChangeMaterialAmount(uid, mat, amount * delta);
@@ -538,7 +532,7 @@ namespace Content.Server.Lathe
 
         private void OnLatheQueueRecipeMessage(EntityUid uid, LatheComponent component, LatheQueueRecipeMessage args)
         {
-            if (_proto.TryIndex(args.ID, out LatheRecipePrototype? recipe))
+            if (ProtoMan.TryIndex(args.ID, out LatheRecipePrototype? recipe))
             {
                 if (TryAddToQueue(uid, recipe, args.Quantity, component))
                 {

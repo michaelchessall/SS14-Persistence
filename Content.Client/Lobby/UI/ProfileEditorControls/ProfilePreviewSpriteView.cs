@@ -8,8 +8,8 @@ namespace Content.Client.Lobby.UI.ProfileEditorControls;
 
 public sealed partial class ProfilePreviewSpriteView : SpriteView
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly ISharedPlayerManager _playerManager = default!;
+    [Dependency] private IPrototypeManager _prototypeManager = default!;
+    [Dependency] private ISharedPlayerManager _playerManager = default!;
 
     /// <summary>
     /// Entity used for the profile editor preview
@@ -32,7 +32,8 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;
 
-        LoadHumanoidEntity(profile, jobOverride, showClothes);
+        if (!TryLoadSnapshotEntity(profile, showClothes)) // PS14 - last seen preview
+            LoadHumanoidEntity(profile, jobOverride, showClothes);
 
         SetEntity(PreviewDummy);
         SetName(profile.Name);

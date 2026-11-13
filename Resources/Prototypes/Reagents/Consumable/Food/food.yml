@@ -5,15 +5,17 @@
   group: Foods
   desc: reagent-desc-nutriment
   physicalDesc: reagent-physical-desc-opaque
-  flavor: nutriment
+  flavor:
   color: "#24591F"
   metabolisms:
     Metabolites:
       effects:
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
   plantMetabolism:
-  - !type:PlantAdjustNutrition
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 1.5
+    nutrient: Nutrient
   - !type:PlantAdjustHealth
     amount: 0.75
   pricePerUnit: 2
@@ -24,7 +26,7 @@
   group: Foods
   desc: reagent-desc-vitamin
   physicalDesc: reagent-physical-desc-chalky
-  flavor: vitamin
+  flavor:
   color: "#D3D3D3"
   metabolisms:
     Metabolites: #This makes it not compete with medicines, a large bonus for something that can heal
@@ -37,11 +39,13 @@
       # Helps you stop bleeding to an extent.
       - !type:ModifyBleed
         amount: -0.25
-      - !type:SatiateHunger #Numbers are balanced with this in mind + it helps limit how much healing you can get from food
+      - !type:Satiate #Numbers are balanced with this in mind + it helps limit how much healing you can get from food
+        satiationType: Hunger
   # Lets plants benefit too
   plantMetabolism:
-  - !type:PlantAdjustNutrition
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 0.5
+    nutrient: Nutrient
   - !type:PlantAdjustHealth
     amount: 1.5
   pricePerUnit: 2.5
@@ -52,7 +56,7 @@
   group: Foods
   desc: reagent-desc-protein
   physicalDesc: reagent-physical-desc-clumpy
-  flavor: protein
+  flavor:
   color: "#FFFFE5"
   metabolisms:
     Metabolites:
@@ -63,7 +67,12 @@
           Brute: -0.4
       - !type:ModifyBloodLevel
         amount: 1 # weaker than iron but pretty good all things considered
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: Protein
   pricePerUnit: 3
 
 - type: reagent
@@ -91,19 +100,22 @@
         conditions:
           - !type:MetabolizerTypeCondition
             type: [Goblin]  # Goblins vomit when eating sugar
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         conditions:
         - !type:ReagentCondition #Only satiates when eaten with nutriment
           reagent: Nutriment
           min: 0.1
         factor: 1
   plantMetabolism:
-  - !type:PlantAdjustNutrition
-    amount: 0.1
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 1
+    nutrient: Sugar
   - !type:PlantAdjustWeeds
     amount: 2
-  - !type:PlantAdjustPests
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: 2
+    nutrient: Pest
   metamorphicSprite:
     sprite: Objects/Consumable/Drinks/sugarglass.rsi
     state: icon_empty

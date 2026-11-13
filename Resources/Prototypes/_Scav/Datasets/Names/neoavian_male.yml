@@ -1,0 +1,5 @@
+- type: localizedDataset
+  id: NamesNeoAvianMale
+  values:
+    prefix: names-neoavian-male-dataset-
+    count: 9

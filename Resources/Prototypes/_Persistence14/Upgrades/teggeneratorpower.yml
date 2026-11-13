@@ -1,0 +1,10 @@
+
+- type: upgrade
+  id: TegGeneratorPowerZenith
+  name: Increase Power Generation
+  description: "Increases the power generated"
+  targetModule: Zenith
+  maxApplications: 2
+  upgradeValues:
+    - 0.1
+  upgradeType: TegGeneratorPower

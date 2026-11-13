@@ -1,4 +1,3 @@
-using Content.Server.Anomaly.Effects.Components;
 using Content.Server.NPC.Components;
 using Content.Shared.CombatMode;
 using Content.Shared.Interaction;
@@ -7,20 +6,19 @@ using Content.Shared.Weapons.Ranged.Components;
 using Content.Shared.Weapons.Ranged.Events;
 using Robust.Shared.Map;
 using Robust.Shared.Physics.Components;
-using static Content.Shared.Interaction.SharedInteractionSystem;
 
 namespace Content.Server.NPC.Systems;
 
 public sealed partial class NPCCombatSystem
 {
-    [Dependency] private readonly SharedCombatModeSystem _combat = default!;
-    [Dependency] private readonly RotateToFaceSystem _rotate = default!;
+    [Dependency] private SharedCombatModeSystem _combat = default!;
+    [Dependency] private RotateToFaceSystem _rotate = default!;
 
-    private EntityQuery<CombatModeComponent> _combatQuery;
-    private EntityQuery<NPCSteeringComponent> _steeringQuery;
-    private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery;
-    private EntityQuery<PhysicsComponent> _physicsQuery;
-    private EntityQuery<TransformComponent> _xformQuery;
+    [Dependency] private EntityQuery<CombatModeComponent> _combatQuery = default!;
+    [Dependency] private EntityQuery<NPCSteeringComponent> _steeringQuery = default!;
+    [Dependency] private EntityQuery<RechargeBasicEntityAmmoComponent> _rechargeQuery = default!;
+    [Dependency] private EntityQuery<PhysicsComponent> _physicsQuery = default!;
+    [Dependency] private EntityQuery<TransformComponent> _xformQuery = default!;
 
     // TODO: Don't predict for hitscan
     private const float ShootSpeed = 20f;
@@ -32,12 +30,6 @@ public sealed partial class NPCCombatSystem
 
     private void InitializeRanged()
     {
-        _combatQuery = GetEntityQuery<CombatModeComponent>();
-        _physicsQuery = GetEntityQuery<PhysicsComponent>();
-        _rechargeQuery = GetEntityQuery<RechargeBasicEntityAmmoComponent>();
-        _steeringQuery = GetEntityQuery<NPCSteeringComponent>();
-        _xformQuery = GetEntityQuery<TransformComponent>();
-
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentStartup>(OnRangedStartup);
         SubscribeLocalEvent<NPCRangedCombatComponent, ComponentShutdown>(OnRangedShutdown);
     }
@@ -138,18 +130,7 @@ public sealed partial class NPCCombatSystem
 
                 // For consistency with NPC steering.
                 var collisionGroup = comp.UseOpaqueForLOSChecks ? CollisionGroup.Opaque : (CollisionGroup.Impassable | CollisionGroup.InteractImpassable);
-
-                // An Eye-possessed thrall's own anomaly anchor is a static, Opaque-flagged fixture
-                // it constantly stands near/fights around - ignore ONLY that entity for a
-                // thrall's own LOS check, so its own tether anchor can't block its shots.
-                Ignored? ignore = null;
-                if (TryComp<TetheredByEyeComponent>(uid, out var tetherComp) && _pid.TryResolveId(tetherComp.Eye, out var eyeEnt))
-                {
-                    var eyeAnomaly = eyeEnt.Owner;
-                    ignore = entity => entity == eyeAnomaly;
-                }
-
-                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup, ignore);
+                comp.TargetInLOS = _interaction.InRangeUnobstructed(uid, comp.Target, distance + 0.1f, collisionGroup);
             }
 
             if (!comp.TargetInLOS)
@@ -198,13 +179,11 @@ public sealed partial class NPCCombatSystem
             // TODO: Check if we can face
 
             if (!Enabled || !_gun.CanShoot(gun))
-            {
                 continue;
-            }
 
             EntityCoordinates targetCordinates;
 
-            if (_mapManager.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
+            if (_map.TryFindGridAt(xform.MapID, targetPos, out var gridUid, out var mapGrid))
             {
                 targetCordinates = new EntityCoordinates(gridUid, _map.WorldToLocal(gridUid, mapGrid, targetSpot));
             }
@@ -217,7 +196,7 @@ public sealed partial class NPCCombatSystem
 
             if (gun.Comp.NextFire > _timing.CurTime)
             {
-                continue;
+                return;
             }
 
             _gun.AttemptShoot(uid, gun, targetCordinates, comp.Target);

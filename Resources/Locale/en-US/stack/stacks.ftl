@@ -96,6 +96,14 @@ stack-artifact-fragment = artifact {$amount ->
     [1] fragment
     *[other] fragments
 }
+stack-conveyor-belt = {$amount ->
+    [1] conveyor belt
+    *[other] conveyor belts
+}
+stack-xenoborg-crystal = xenoborg {$amount ->
+    [1] crystal
+    *[other] crystals
+}
 
 # best materials
 stack-ground-tobacco = ground tobacco
@@ -184,6 +192,9 @@ stack-white-steel-slats-tile-continuous = white steel continuous slat tile
 stack-steel-dark-checker-tile = steel dark checker tile
 stack-steel-light-checker-tile = steel light checker tile
 stack-steel-tile = steel tile
+stack-plastic-tile = plastic tile
+stack-plastic-dark-tile = dark plastic tile
+stack-plastic-white-tile = white plastic tile
 stack-wood-floor = wood floor
 stack-techmaint-floor = techmaint floor
 stack-techmaint-floor-dark = dark techmaint floor

@@ -13,24 +13,34 @@ using Robust.Shared.Utility;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using Content.Server.Worldgen;
+using Content.Server.Worldgen.Components;
+using Content.Server.Worldgen.Systems;
+using Robust.Server.GameObjects;
 
 namespace Content.Server.NPC.HTN;
 
-public sealed class HTNSystem : EntitySystem
+public sealed partial class HTNSystem : EntitySystem
 {
-    [Dependency] private readonly IAdminManager _admin = default!;
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly NPCSystem _npc = default!;
-    [Dependency] private readonly NPCUtilitySystem _utility = default!;
+    [Dependency] private IAdminManager _admin = default!;
+    [Dependency] private NPCSystem _npc = default!;
+    [Dependency] private NPCUtilitySystem _utility = default!;
+    [Dependency] private readonly WorldControllerSystem _world = default!;
+    [Dependency] private readonly TransformSystem _transform = default!;
 
     private readonly JobQueue _planQueue = new(0.004);
 
     private readonly HashSet<ICommonSession> _subscribers = new();
+    private EntityQuery<WorldControllerComponent> _mapQuery;
+    private EntityQuery<LoadedChunkComponent> _loadedQuery;
 
     // Hierarchical Task Network
     public override void Initialize()
     {
         base.Initialize();
+
+        _mapQuery = GetEntityQuery<WorldControllerComponent>();
+        _loadedQuery = GetEntityQuery<LoadedChunkComponent>();
         SubscribeLocalEvent<HTNComponent, MobStateChangedEvent>(_npc.OnMobStateChange);
         SubscribeLocalEvent<HTNComponent, MapInitEvent>(_npc.OnNPCMapInit);
         SubscribeLocalEvent<HTNComponent, ComponentStartup>(_npc.OnNPCStartup);
@@ -78,7 +88,7 @@ public sealed class HTNSystem : EntitySystem
 
         // Add dependencies for all operators.
         // We put code on operators as I couldn't think of a clean way to put it on systems.
-        foreach (var compound in _prototypeManager.EnumeratePrototypes<HTNCompoundPrototype>())
+        foreach (var compound in ProtoMan.EnumeratePrototypes<HTNCompoundPrototype>())
         {
             UpdateCompound(compound);
         }
@@ -203,6 +213,12 @@ public sealed class HTNSystem : EntitySystem
             if (!comp.Enabled)
                 continue;
 
+            if (!IsNPCActive(uid))
+            {
+                PauseHTN(comp);
+                continue;
+            }
+
             if (comp.PlanningJob != null)
             {
                 if (comp.PlanningJob.Exception != null)
@@ -314,7 +330,7 @@ public sealed class HTNSystem : EntitySystem
 
         if (task is HTNCompoundTask compTask)
         {
-            var compound = _prototypeManager.Index<HTNCompoundPrototype>(compTask.Task);
+            var compound = ProtoMan.Index<HTNCompoundPrototype>(compTask.Task);
             level++;
             text.AppendLine(compound.ID);
             var branches = compound.Branches;
@@ -487,7 +503,7 @@ public sealed class HTNSystem : EntitySystem
 
         var job = new HTNPlanJob(
             0.02,
-            _prototypeManager,
+            ProtoMan,
             component.RootTask,
             component.Blackboard.ShallowClone(), branchTraversal, cancelToken.Token);
 
@@ -517,7 +533,7 @@ public sealed class HTNSystem : EntitySystem
         }
         else if (task is HTNCompoundTask compTask)
         {
-            var compound = _prototypeManager.Index<HTNCompoundPrototype>(compTask.Task);
+            var compound = ProtoMan.Index<HTNCompoundPrototype>(compTask.Task);
             builder.AppendLine(buffer + $"Compound: {task}");
 
             for (var i = 0; i < compound.Branches.Count; i++)
@@ -535,6 +551,41 @@ public sealed class HTNSystem : EntitySystem
                 indent--;
             }
         }
+    }
+
+    // skips abandoned NPC's far away form loaders re implimented and removed edge case errors
+    private bool IsNPCActive(EntityUid entity)
+    {
+        var transform = Transform(entity);
+
+        if (transform.MapUid == null)
+            return false;
+
+        if (!_mapQuery.TryGetComponent(transform.MapUid.Value, out var worldComponent))
+            return true;
+
+        var chunk = _world.GetOrCreateChunk(
+            WorldGen.WorldToChunkCoords(
+                _transform.GetWorldPosition(transform)).Floored(),
+            transform.MapUid.Value,
+            worldComponent);
+
+        var active = _loadedQuery.TryGetComponent(chunk, out var loaded)
+                     && loaded.Loaders is { Count: > 0 };
+
+        return active;
+    }
+
+    /// <summary>
+    /// Pauses HTN processing while the entity is in an unloaded chunk.
+    /// The current plan is preserved and can resume when the chunk becomes active.
+    /// </summary>
+    private static void PauseHTN(HTNComponent component)
+    {
+        component.PlanningToken?.Cancel();
+        component.PlanningToken = null;
+
+        // Keep the job reference so UpdateNPC can wait for cancellation to finish.
     }
 }
 

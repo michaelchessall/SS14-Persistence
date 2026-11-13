@@ -109,6 +109,18 @@
   unlockUses: 4
 
 - type: latheRecipe
+  id: TeleporterChipBlank
+  result: TeleporterChipBlank
+  categories:
+  - Tools
+  - Research
+  completetime: 2
+  materials:
+    Steel: 50
+    Plastic: 50
+    Plasma: 25
+
+- type: latheRecipe
   parent: BaseToolRecipe
   id: AnomalyScanner
   result: AnomalyScanner
@@ -185,7 +197,7 @@
 
 - type: latheRecipe
   id: WeaponForceGun
-  result: WeaponForceGun
+  result: WeaponForceGunEmpty
   categories:
   - Tools
   completetime: 5
@@ -194,16 +206,6 @@
     Glass: 400
     Silver: 200
   unlockUses: 3
-
-- type: latheRecipe
-  id: DeviceQuantumSpinInverter
-  result: DeviceQuantumSpinInverter
-  completetime: 5
-  materials:
-    Steel: 700
-    Glass: 100
-    Uranium: 100
-  unlockUses: 2 # These are a pair so uh, two.
 
 - type: latheRecipe
   id: DeviceDesynchronizer
@@ -228,7 +230,7 @@
 
 - type: latheRecipe
   id: WeaponTetherGun
-  result: WeaponTetherGun
+  result: WeaponTetherGunEmpty
   categories:
   - Tools
   completetime: 5

@@ -1,0 +1,258 @@
+- type: rumorReward
+  id: PrecursorUpgradeModule
+  name: Upgrade Module (Cybersun Pattern)
+  description: "Can be applied to a variety of items and machines."
+  price: 2500
+  product: PrecursorUpgradeModule
+  icon:
+    sprite: _Persistence14/Objects/Specific/Upgrades/modules.rsi
+    state: syndicate-full
+
+
+- type: rumorReward
+  id: PrecursorCodexFragment
+  name: Codex Fragment (Syndicate)
+  description: "Will unlock a codex entry when used."
+  price: 2000
+  product: PrecursorCodexFragment
+  icon:
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+    state: syndi-codex
+
+#Decoration
+- type: rumorReward
+  id: PrecursorMerchCrate
+  name: Syndicate Merch
+  description: "One thing the Syndicate prides itself in is looking its best."
+  price: 1200
+  product: CrateSyndicateMerch
+  icon:
+    sprite: Objects/Misc/Handy_Flags/syndie_handy_flag.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorPJs
+  name: Syndicate Pyjama Duffel Bag
+  description: "Contains 3 pairs of syndicate pyjamas and 4 plushies for the ultimate sleepover."
+  price: 1000
+  product: ClothingBackpackDuffelSyndicatePyjamaBundle
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorCarpSuitBag
+  name: Carp Suit Duffel Bag
+  description: "Contains a carp suit and some friends to play with."
+  price: 1500
+  product: ClothingBackpackDuffelSyndicateCarpSuit
+  icon:
+    sprite: Clothing/Back/Duffels/syndicate.rsi
+    state: icon
+
+#Weapons
+
+
+
+- type: rumorReward
+  id: PrecursorRiggedBoxingGloves
+  name: Rigged Boxing Gloves
+  description: "Float like a butterfly, sting like a bee. Hits harder than you'd expect."
+  price: 200
+  product: GlovesBoxingRiggedRandomSpawner
+  icon:
+    sprite: Clothing/Hands/Gloves/Boxing/boxingblue.rsi
+    state: icon
+
+
+#Medical
+- type: rumorReward
+  id: PrecursorDefib
+  name: Advanced Defibrillator Kit
+  description: "A fast and compact defibrillator. Some say Nanotrasen is known as the best with their advancements in medical science, Interdyne would disagree"
+  price: 6000
+  product: DefibrillatorSyndicate
+  icon:
+    sprite: Objects/Specific/Medical/defibsyndi.rsi
+    state: icon
+
+- type: rumorReward
+  id: SyndiCigarettes
+  name: Interdyne Herbals Packet
+  description: "Elite cigarettes for elite agents. Infused with ichor for when you need to do more than calm your nerves."
+  price: 3000
+  product: CigPackSyndicate
+  icon:
+    sprite: Objects/Consumable/Smokeables/Cigarettes/Packs/syndicate.rsi
+    state: closed
+
+
+
+#Tools
+- type: rumorReward
+  id: PrecursorAccessBreaker
+  name: Authentication Disruptor
+  description: "A hacked access configurator and a good friend of the emag. This device is able to force airlocks open as well as erase access requirements from station equipment. Recharges automatically."
+  price: 4000
+  product: AccessBreaker
+  icon:
+    sprite: Objects/Tools/access_breaker.rsi
+    state: syndi-icon
+
+
+- type: rumorReward
+  id: PrecursorDecoy
+  name: Decoy Kit
+  description: "State-of-the-art distraction technology straight from RND. Comes with five realistic balloons, four decoy grenades, and some snap poppers!"
+  price: 1200
+  product: ClothingBackpackDuffelSyndicateDecoyKitFilled
+  icon:
+    sprite: Objects/Tools/Decoys/operative_decoy.rsi
+    state: folded
+
+- type: rumorReward
+  id: PrecursorSoapSyndie
+  name: Soap
+  description: "An untrustworthy bar of soap. Smells of fear."
+  price: 800
+  product: SoapSyndie
+  icon:
+    sprite: Objects/Specific/Janitorial/soap.rsi
+    state: syndie-4
+
+- type: rumorReward
+  id: PrecursorSoapSyndieCluster
+  name: Slipocalypse Clustersoap
+  description: "Scatters arounds small pieces of syndicate-brand soap after being thrown, these pieces of soap evaporate after 60 seconds."
+  price: 1000
+  product: SlipocalypseClusterSoap
+  icon:
+    sprite: Objects/Specific/Janitorial/soap.rsi
+    state: syndie-4
+
+- type: rumorReward
+  id: PrecursorCameraBug
+  name: Camera Bug
+  description: "A portable device that allows you to view the station through the lens of the station's camera systems."
+  price: 1200
+  product: CameraBug
+  icon:
+    sprite: Objects/Devices/camera_bug.rsi
+    state: camera_bug
+
+
+# # Implants
+
+
+- type: rumorReward
+  id: PrecursorFakeMindshield
+  name: Fake Mindshield
+  description: "An implant which can be toggled to trick Heads-up displays into thinking you are mindshielded (Nanotrasen brand implanter not provided.) The cornerstone of a successful Command or Security disguise."
+  price: 1000
+  product: FakeMindShieldImplanter
+  icon:
+    sprite: Interface/Actions/actions_fakemindshield.rsi
+    state: icon-on
+
+
+
+#Wearables
+
+
+
+
+
+- type: rumorReward
+  id: PrecursorNoSlips
+  name: No-slip Shoes
+  description: "Chameleon shoes that protect you from slips. Almost a must-buy for Nuclear Operatives. Don't want to lose that expensive gun you bought do you?"
+  price: 2000
+  product: ClothingShoesChameleonNoSlips
+  icon:
+    sprite: Clothing/Shoes/color.rsi
+    state: icon
+
+
+
+#Space Gear
+
+- type: rumorReward
+  id: PrecursorHardsuitSyndie
+  name: Blood Red Hardsuit Bundle
+  description: "The Syndicate's well known armored blood red hardsuit, capable of space walks and bullet resistant."
+  price: 12000
+  product: ClothingBackpackDuffelSyndicateHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/syndicate.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorMedHardsuitSyndie
+  name: Blood Red Medic Hardsuit Bundle
+  description: "The Syndicate's well known armored blood red hardsuit, Now with medical stylings."
+  price: 12000
+  product: ClothingBackpackDuffelSyndicateMedHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/syndiemedic.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorMagBoots
+  name: BloodRed Mag Boots
+  description: "A pair of boots that when turned on prevent slipping and, in zero gravity, allow you to move normally, at the cost of a slight slowdown. Additionally, they have jetpack functionality and come fueled, but don't last for long."
+  price: 8000
+  product: ClothingShoesBootsMagSyndie
+  icon:
+    sprite: Clothing/Shoes/Boots/magboots-syndicate.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorSyndieEva
+  name: Syndicate EVA Suit
+  description: "A simple EVA suit that offers no protection other than what's needed to survive in space."
+  price: 5000
+  product: ClothingBackpackDuffelSyndicateEVABundle
+  icon:
+    sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorCarpHardsuit
+  name: Carp Hardsuit
+  description: "Looks like an ordinary carp suit, except fully spaceproof and tricks space carp into thinking you are one of them."
+  price: 3500
+  product: ClothingOuterHardsuitCarp
+  icon:
+    sprite: Clothing/OuterClothing/Suits/carpsuit.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorHardsuitSyndieElite
+  name: Syndicate Elite Hardsuit
+  description: "A modified version of the blood-red hardsuit trading some ballistic protection for strong resistance to explosives, energy weapons and the most intense of atmospheric conditions. Used by the truly elite."
+  price: 18000
+  product: ClothingBackpackDuffelSyndicateEliteHardsuitBundle
+  icon:
+    sprite: Clothing/OuterClothing/Hardsuits/syndieelite.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorHardsuitSyndieJug
+  name: Cybersun Juggernaut Suit
+  description: "Hyper resilient armor made of materials tested in the Tau chromosphere facility. The only thing that's going to be slowing you down is this suit... and disablers."
+  price: 30000
+  product: CrateCybersunJuggernautBundle
+  icon:
+    sprite: Structures/Storage/Crates/syndicate.rsi
+    state: icon
+
+- type: rumorReward
+  id: PrecursorRumorContract
+  name: Rumor Contract
+  description: A slip containing one CyberSun rumor.
+  price: 3500
+  product: RumorContractPrecursor
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Purple

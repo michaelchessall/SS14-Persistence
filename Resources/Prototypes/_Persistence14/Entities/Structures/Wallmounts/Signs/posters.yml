@@ -1,0 +1,10 @@
+# Legit
+- type: entity
+  parent: PosterBase
+  id: PosterLegitSafetyCatEars
+  name: "Safety: Cat Ears"
+  description: "A poster instructing the viewer to wear their ...safety cat ears... What?"
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Wallmounts/posters.rsi
+    state: poster67_legit

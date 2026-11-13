@@ -47,6 +47,13 @@
       - !type:CleanBloodstream
         excluded: Charcoal
         cleanseRate: 3
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: -0.5
+    nutrient: Toxin
+  - !type:PlantAdjustNutrient
+    amount: 0.5
+    nutrient: Carbon
 
 - type: reagent
   id: Ash
@@ -186,7 +193,8 @@
   metabolisms:
     Bloodstream:
       effects:
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: -5 # This is basically industrial dessicant
       - !type:PopupMessage
         visualType: MediumCaution
@@ -217,7 +225,6 @@
       - !type:EvenHealthChange
         damage:
           Brute: -4
-      - !type:GenericStatusEffect
-        key: Adrenaline
-        component: IgnoreSlowOnDamage
+      - !type:ModifyStatusEffect
+        effectProto: StatusEffectAdrenaline
         time: 120

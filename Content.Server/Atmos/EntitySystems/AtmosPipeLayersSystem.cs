@@ -15,10 +15,10 @@ namespace Content.Server.Atmos.EntitySystems;
 /// </summary>
 public sealed partial class AtmosPipeLayersSystem : SharedAtmosPipeLayersSystem
 {
-    [Dependency] private readonly NodeGroupSystem _nodeGroup = default!;
-    [Dependency] private readonly PipeRestrictOverlapSystem _pipeRestrictOverlap = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedTransformSystem _xform = default!;
+    [Dependency] private NodeGroupSystem _nodeGroup = default!;
+    [Dependency] private PipeRestrictOverlapSystem _pipeRestrictOverlap = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _xform = default!;
 
     public override void Initialize()
     {
@@ -49,9 +49,10 @@ public sealed partial class AtmosPipeLayersSystem : SharedAtmosPipeLayersSystem
             if (node is not PipeNode { } pipeNode)
                 continue;
 
-            if (pipeNode.CurrentPipeLayer == ent.Comp.CurrentPipeLayer)
+            if (pipeNode.OriginalPipeLayer == ent.Comp.CurrentPipeLayer)
                 continue;
 
+            pipeNode.OriginalPipeLayer = ent.Comp.CurrentPipeLayer;
             pipeNode.CurrentPipeLayer = ent.Comp.CurrentPipeLayer;
 
             if (pipeNode.NodeGroup != null)

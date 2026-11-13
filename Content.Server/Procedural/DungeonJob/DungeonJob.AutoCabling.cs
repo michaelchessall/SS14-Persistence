@@ -1,9 +1,9 @@
+using System.Linq;
+using System.Threading.Tasks;
 using Content.Shared.NodeContainer;
 using Content.Shared.Procedural;
 using Content.Shared.Procedural.PostGeneration;
 using Robust.Shared.Random;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace Content.Server.Procedural.DungeonJob;
 
@@ -12,7 +12,7 @@ public sealed partial class DungeonJob
     /// <summary>
     /// <see cref="AutoCablingDunGen"/>
     /// </summary>
-    private async Task PostGen(AutoCablingDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, Random random)
+    private async Task PostGen(AutoCablingDunGen gen, Dungeon dungeon, HashSet<Vector2i> reservedTiles, IRobustRandom random)
     {
         // There's a lot of ways you could do this.
         // For now we'll just connect every LV cable in the dungeon.
@@ -26,7 +26,7 @@ public sealed partial class DungeonJob
         // Gather existing nodes
         foreach (var tile in allTiles)
         {
-            var anchored = _maps.GetAnchoredEntitiesEnumerator(_gridUid, _grid, tile);
+            var anchored = _maps.GetAnchoredEntities(_gridUid, _grid, tile);
 
             while (anchored.MoveNext(out var anc))
             {
@@ -65,6 +65,8 @@ public sealed partial class DungeonJob
             {
                 var newStart = remaining.First();
                 frontier.Enqueue(newStart, 0f);
+                if (!costSoFar.ContainsKey(newStart))
+                    costSoFar[newStart] = 0f;
                 lastDirection[newStart] = Direction.Invalid;
             }
 
@@ -132,7 +134,7 @@ public sealed partial class DungeonJob
             if (reservedTiles.Contains(tile))
                 continue;
 
-            var anchored = _maps.GetAnchoredEntitiesEnumerator(_gridUid, _grid, tile);
+            var anchored = _maps.GetAnchoredEntities(_gridUid, _grid, tile);
             var found = false;
 
             while (anchored.MoveNext(out var anc))

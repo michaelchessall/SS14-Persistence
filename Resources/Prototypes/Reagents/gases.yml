@@ -1,5 +1,6 @@
 # TODO: Reagent Args which allow more selective scaling.
 # Currently all Gas metabolisms scale by reagent quantity metabolized, where other Metabolisms are modified by metabolism rate!
+# Persistence 14: Add PlantAdjustNutrient
 
 - type: reagent
   id: Oxygen
@@ -16,7 +17,16 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Goblin ]
+          type:
+          - Human
+          - Animal
+          - Rat
+          - Plant
+          - Arachnid
+          - Goblin
+          - Avali # Persistence
+          - Yinglet # Scav
+          - NeoAvian # Scav
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -47,7 +57,17 @@
       - !type:Oxygenate
         conditions:
         - !type:MetabolizerTypeCondition
-          type: [ Human, Animal, Rat, Plant, Arachnid, Moth, Goblin ]
+          type:
+          - Human
+          - Animal
+          - Rat
+          - Plant
+          - Arachnid
+          - Moth
+          - Goblin
+          - Avali # Persistence
+          - Yinglet # Scav
+          - NeoAvian # Scav
       # Convert Oxygen into CO2.
       - !type:ModifyLungGas
         conditions:
@@ -112,6 +132,10 @@
         minScale: 1.5
         clear: True
         time: 5
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Plasma
   reactiveEffects:
     Flammable:
       methods: [ Touch ]
@@ -158,6 +182,10 @@
         minScale: 1.5
         clear: True
         time: 5
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Radiation
 
 - type: reagent
   id: CarbonDioxide
@@ -282,7 +310,6 @@
           type: [ Slime ]
           inverted: true
         emote: Laugh
-        showInChat: true
         probability: 0.1
       - !type:Emote
         minScale: 0.2
@@ -291,7 +318,6 @@
           type: [ Slime ]
           inverted: true
         emote: Scream
-        showInChat: true
         probability: 0.01
       - !type:PopupMessage
         minScale: 0.5
@@ -399,6 +425,10 @@
         messages: [ "frezon-euphoric" ]
         probability: 0.1
         minScale: 1
+  plantMetabolism:
+    - !type:PlantAdjustNutrient
+      amount: 1
+      nutrient: Frezon
 
 - type: reagent
   id: Methane

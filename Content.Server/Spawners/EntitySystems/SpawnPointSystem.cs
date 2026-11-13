@@ -1,21 +1,38 @@
 using Content.Server.GameTicking;
 using Content.Server.Spawners.Components;
 using Content.Server.Station.Systems;
+using Robust.Shared.Containers;
 using Robust.Shared.Map;
+using Robust.Shared.Physics;
 using Robust.Shared.Random;
 
 namespace Content.Server.Spawners.EntitySystems;
 
-public sealed class SpawnPointSystem : EntitySystem
+public sealed partial class SpawnPointSystem : EntitySystem
 {
-    [Dependency] private readonly GameTicker _gameTicker = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly StationSpawningSystem _stationSpawning = default!;
+    [Dependency] private GameTicker _gameTicker = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private StationSpawningSystem _stationSpawning = default!;
 
     public override void Initialize()
     {
         SubscribeLocalEvent<PlayerSpawningEvent>(OnPlayerSpawning);
+    }
+
+
+    private List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>> FindContSpawn()
+    {
+        var query = EntityQueryEnumerator<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>();
+        var possibleContainers = new List<Entity<ContainerSpawnPointComponent, ContainerManagerComponent, TransformComponent>>();
+
+        while (query.MoveNext(out var uid, out var spawnPoint, out var container, out var xform))
+        {
+            if (spawnPoint.SpawnType != SpawnPointType.LateJoin) continue;
+            possibleContainers.Add((uid, spawnPoint, container, xform));
+
+        }
+        return possibleContainers;
     }
 
     private void OnPlayerSpawning(PlayerSpawningEvent args)
@@ -26,6 +43,23 @@ public sealed class SpawnPointSystem : EntitySystem
         // TODO: Cache all this if it ends up important.
         var points = EntityQueryEnumerator<SpawnPointComponent, TransformComponent>();
         var possiblePositions = new List<EntityCoordinates>();
+
+        var possibleContainers = FindContSpawn();
+        if (possibleContainers.Count > 0)
+        {
+            _random.Shuffle(possibleContainers);
+            foreach (var (uid, spawnPoint, manager, xform) in possibleContainers)
+            {
+                var spawnLoc2 = xform.Coordinates;
+                args.SpawnResult = _stationSpawning.SpawnPlayerMob(
+                    spawnLoc2,
+                    args.Job,
+                    args.HumanoidCharacterProfile,
+                    args.Station);
+                return;
+            }
+        }
+
 
         while (points.MoveNext(out var uid, out var spawnPoint, out var xform))
         {

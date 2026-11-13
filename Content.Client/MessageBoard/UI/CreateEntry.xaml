@@ -2,6 +2,10 @@
                xmlns:customControls="clr-namespace:Content.Client.Administration.UI.CustomControls"
             Title="Create Entry">
     <BoxContainer Orientation="Vertical" MinSize="550 350">
+        <BoxContainer Orientation="Horizontal" >
+            <Label Text="Category:" StyleClasses="LabelKeyText" />
+            <OptionButton Name="CategoryButton" Access="Public" HorizontalExpand="True"/>
+        </BoxContainer>
         <BoxContainer Orientation="Horizontal">
             <Label Text ="Title:"></Label>
             <LineEdit Name="MainTitleLabel" PlaceHolder="Title Label" Access="Public" HorizontalExpand="True"/>

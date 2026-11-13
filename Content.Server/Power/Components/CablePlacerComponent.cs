@@ -1,7 +1,6 @@
 using Content.Shared.Power;
 using Content.Shared.Whitelist;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
 
 namespace Content.Server.Power.Components
 {
@@ -11,8 +10,8 @@ namespace Content.Server.Power.Components
         /// <summary>
         /// The structure prototype for the cable coil to place.
         /// </summary>
-        [DataField("cablePrototypeID", customTypeSerializer: typeof(PrototypeIdSerializer<EntityPrototype>))]
-        public string? CablePrototypeId = "CableHV";
+        [DataField("cablePrototypeID", required: true)]
+        public EntProtoId CablePrototypeId;
 
         /// <summary>
         /// What kind of wire prevents placing this wire over it as CableType.

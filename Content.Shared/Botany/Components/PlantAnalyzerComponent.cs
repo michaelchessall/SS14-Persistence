@@ -1,43 +1,50 @@
-using Content.Shared.AbstractAnalyzer;
-using Content.Shared.Paper;
+using Content.Shared.Botany.Systems;
 using Robust.Shared.Audio;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 
 namespace Content.Shared.Botany.Components;
 
-/// <inheritdoc/>
-[RegisterComponent, NetworkedComponent, AutoGenerateComponentPause]
-public sealed partial class PlantAnalyzerComponent : AbstractAnalyzerComponent
+/// <summary>
+/// Stores the active scan and update state for a plant analyzer.
+/// </summary>
+[RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
+[Access(typeof(PlantAnalyzerSystem))]
+public sealed partial class PlantAnalyzerComponent : Component
 {
-    /// <inheritdoc/>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
-    public override TimeSpan NextUpdate { get; set; } = TimeSpan.Zero;
-
     /// <summary>
-    /// When will the analyzer be ready to print again?
-    /// </summary>
-    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer))]
-    [AutoPausedField]
-    public TimeSpan PrintReadyAt = TimeSpan.Zero;
-
-    /// <summary>
-    /// How often can the analyzer print?
+    /// The delay before an analyzer finishes scanning a plant.
     /// </summary>
     [DataField]
-    public TimeSpan PrintCooldown = TimeSpan.FromSeconds(5);
+    public TimeSpan ScanDelay = TimeSpan.FromSeconds(0.5);
 
     /// <summary>
-    /// The sound that's played when the analyzer prints off a report.
+    /// Sound played when scanning finishes.
     /// </summary>
     [DataField]
-    public SoundSpecifier SoundPrint = new SoundPathSpecifier("/Audio/Machines/short_print_and_rip.ogg");
+    public SoundSpecifier ScanningEndSound = new SoundPathSpecifier("/Audio/Items/Medical/healthscanner.ogg");
 
     /// <summary>
-    /// What the machine will print.
+    /// The plant currently being analyzed.
     /// </summary>
-    [DataField]
-    public EntProtoId<PaperComponent> MachineOutput = "PlantAnalyzerReportPaper";
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? Target;
+
+    /// <summary>
+    /// The entity containing the plant data used for the current analysis.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? Plant;
+
+    /// <summary>
+    /// The prototype ID of the plant used for the current analysis.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntProtoId? PlantProtoId;
+
+    /// <summary>
+    /// The user who started the current analysis.
+    /// </summary>
+    [ViewVariables, AutoNetworkedField]
+    public EntityUid? User;
 }

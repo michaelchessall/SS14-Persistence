@@ -1,5 +1,8 @@
 using Content.Server.Power.Components;
 using Content.Shared.Power;
+using Content.Shared.DeviceLinking;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom.Prototype;
+using Robust.Shared.Prototypes;
 
 namespace Content.Server.Power.SMES;
 
@@ -35,6 +38,42 @@ public sealed partial class SmesComponent : Component
     /// </summary>
     [ViewVariables]
     public int ChargeLevel = 0;
+
+    /// <summary>
+    /// The port that gets set to high when the battery is at chargelevel0.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> ChargeLevel0Port = "PowerChargeLevel0";
+
+    /// <summary>
+    /// The port that gets set to high when the battery is at chargelevel1.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> ChargeLevel1Port = "PowerChargeLevel1";
+
+    /// <summary>
+    /// The port that gets set to high when the battery is at chargelevel2.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> ChargeLevel2Port = "PowerChargeLevel2";
+
+     /// <summary>
+    /// The port that gets set to high when the battery is at chargelevel3.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> ChargeLevel3Port = "PowerChargeLevel3";
+
+    /// <summary>
+    /// The port that gets set to high when the battery is at chargelevel4.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> ChargeLevel4Port = "PowerChargeLevel4";
+
+    /// <summary>
+    /// The port that gets set to high when the battery is at chargelevel5.
+    /// </summary>
+    [DataField]
+    public ProtoId<SourcePortPrototype> ChargeLevel5Port = "PowerChargeLevel5";
 
     /// <summary>
     /// Whether the SMES is being charged/discharged/neither.

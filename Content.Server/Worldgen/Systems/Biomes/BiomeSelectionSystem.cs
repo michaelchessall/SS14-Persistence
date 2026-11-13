@@ -2,6 +2,7 @@ using Content.Server.Worldgen.Components;
 using Content.Server.Worldgen.Prototypes;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization.Manager;
+using Serilog;
 using System.Linq;
 
 namespace Content.Server.Worldgen.Systems.Biomes;

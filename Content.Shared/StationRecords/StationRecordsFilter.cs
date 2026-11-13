@@ -6,8 +6,8 @@ namespace Content.Shared.StationRecords;
 [Serializable, NetSerializable]
 public sealed partial class StationRecordsFilter
 {
-    public StationRecordFilterType Type = StationRecordFilterType.Name;
-    public string Value = "";
+    public StationRecordFilterType Type;
+    public string Value;
 
     public StationRecordsFilter(StationRecordFilterType filterType, string newValue = "")
     {

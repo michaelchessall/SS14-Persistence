@@ -51,6 +51,7 @@
 - type: entity
   parent: BaseSpeciesAppearance
   id: AppearanceMoth
+  categories: [ HideSpawnMenu ]
   name: moth appearance
   # persistance edit
 
@@ -81,6 +82,8 @@
     - map: ["enum.HumanoidVisualLayers.RFoot"]
     - map: ["enum.HumanoidVisualLayers.LHand"]
     - map: ["enum.HumanoidVisualLayers.RHand"]
+    - map: ["enum.HumanoidVisualLayers.LHandOverlay"] # Scav: Things that go on top of hands
+    - map: ["enum.HumanoidVisualLayers.RHandOverlay"] # Scav
 
     # Stuff that goes over the body but below equipment
     - map: ["enum.HumanoidVisualLayers.Overlay"]
@@ -219,11 +222,15 @@
     allowedEmotes: ['Chitter', 'Squeak', 'Flap']
   - type: TypingIndicator
     proto: moth
+  - type: CreamPied
+    sprite:
+      sprite: Effects/creampie.rsi
+      state: creampie_moth
   - type: Bloodstream
     bloodReferenceSolution:
       reagents:
       - ReagentId: InsectBlood
-        Quantity: 300
+        Quantity: 600
   - type: DamageVisuals
     damageOverlayGroups:
       Brute:
@@ -233,10 +240,7 @@
         sprite: Mobs/Effects/burn_damage.rsi
   - type: MothAccent
   - type: Vocal
-    sounds:
-      Male: UnisexMoth
-      Female: UnisexMoth
-      Unsexed: UnisexMoth
+    emoteSounds: UnisexMoth
   - type: BodyEmotes
     soundsId: MothBodyEmotes
   - type: MovementSpeedModifier
@@ -247,11 +251,8 @@
     damage:
       types:
         Heat: 2.5 # moths burn more easily
-  - type: Temperature
-    currentTemperature: 310.15
-    specificHeat: 46
   - type: TemperatureDamage # Moths hate the heat and thrive in the cold.
-    heatDamageThreshold: 320
+    heatDamageThreshold: 314.15
     coldDamageThreshold: 230
     coldDamage:
       types:
@@ -266,7 +267,7 @@
       250: 0.7
 
 - type: entity
-  parent: OrganBase
+  parent: OrganBaseOrganic
   id: OrganMoth
   abstract: true
   suffix: Moth

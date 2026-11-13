@@ -24,19 +24,20 @@ using System.Numerics;
 
 namespace Content.Shared.Anomaly;
 
-public abstract class SharedAnomalySystem : EntitySystem
+public abstract partial class SharedAnomalySystem : EntitySystem
 {
-    [Dependency] protected readonly IGameTiming Timing = default!;
-    [Dependency] private readonly INetManager _net = default!;
-    [Dependency] protected readonly IRobustRandom Random = default!;
-    [Dependency] protected readonly ISharedAdminLogManager AdminLog = default!;
-    [Dependency] protected readonly SharedAudioSystem Audio = default!;
-    [Dependency] protected readonly SharedAppearanceSystem Appearance = default!;
-    [Dependency] private readonly SharedPhysicsSystem _physics = default!;
-    [Dependency] protected readonly SharedPopupSystem Popup = default!;
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly SharedMapSystem _map = default!;
+    [Dependency] protected IGameTiming Timing = default!;
+    [Dependency] private INetManager _net = default!;
+    [Dependency] protected IRobustRandom Random = default!;
+    [Dependency] protected ISharedAdminLogManager AdminLog = default!;
+    [Dependency] protected SharedAudioSystem Audio = default!;
+    [Dependency] protected SharedAppearanceSystem Appearance = default!;
+    [Dependency] private SharedPhysicsSystem _physics = default!;
+    [Dependency] protected SharedPopupSystem Popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private SharedMapSystem _map = default!;
+
+    [Dependency] private EntityQuery<PhysicsComponent> _physQuery = default!;
 
     public override void Initialize()
     {
@@ -103,7 +104,7 @@ public abstract class SharedAnomalySystem : EntitySystem
         var powerMod = 1f;
         if (component.CurrentBehavior != null)
         {
-            var beh = _prototype.Index<AnomalyBehaviorPrototype>(component.CurrentBehavior);
+            var beh = ProtoMan.Index<AnomalyBehaviorPrototype>(component.CurrentBehavior);
             powerMod = beh.PulsePowerModifier;
         }
         var ev = new AnomalyPulseEvent(uid, component.Stability, component.Severity, powerMod);
@@ -132,16 +133,6 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return;
 
-        // don't restart it if it's already happened once before and this anomaly opted into
-        // never repeating it (normally impossible to reach for a stock anomaly, since it would
-        // already be deleted - only relevant for one that survives via DeleteEntity: false)
-        if (ent.Comp.PreventRepeatedSupercritical &&
-            Appearance.TryGetData<bool>(ent, AnomalyVisuals.Supercritical, out var alreadyWent) &&
-            alreadyWent)
-        {
-            return;
-        }
-
         AdminLog.Add(LogType.Anomaly, LogImpact.High, $"Anomaly {ToPrettyString(ent.Owner)} began to go supercritical.");
         if (_net.IsServer)
             Log.Info($"Anomaly is going supercritical. Entity: {ToPrettyString(ent.Owner)}");
@@ -151,12 +142,8 @@ public abstract class SharedAnomalySystem : EntitySystem
         var super = AddComp<AnomalySupercriticalComponent>(ent);
         super.EndTime = Timing.CurTime + ent.Comp.SupercriticalDuration;
         Appearance.SetData(ent, AnomalyVisuals.Supercritical, true);
-        ent.Comp.SupercriticalStartedAt = Timing.CurTime;
         SetScannerSupercritical((ent, ent.Comp), true);
         Dirty(ent, super);
-
-        var startedEv = new AnomalySupercriticalStartedEvent(ent);
-        RaiseLocalEvent(ent, ref startedEv, true);
     }
 
     /// <summary>
@@ -183,14 +170,14 @@ public abstract class SharedAnomalySystem : EntitySystem
         var powerMod = 1f;
         if (component.CurrentBehavior != null)
         {
-            var beh = _prototype.Index<AnomalyBehaviorPrototype>(component.CurrentBehavior);
+            var beh = ProtoMan.Index<AnomalyBehaviorPrototype>(component.CurrentBehavior);
             powerMod = beh.PulsePowerModifier;
         }
 
-        var ev = new AnomalySupercriticalEvent(uid, powerMod) { SpawnCore = !component.SuppressCoreOnSupercritical };
+        var ev = new AnomalySupercriticalEvent(uid, powerMod);
         RaiseLocalEvent(uid, ref ev, true);
 
-        EndAnomaly(uid, component, true, spawnCore: ev.SpawnCore, logged: true);
+        EndAnomaly(uid, component, true, logged: true);
     }
 
     /// <summary>
@@ -324,7 +311,7 @@ public abstract class SharedAnomalySystem : EntitySystem
         //Apply behavior modifier
         if (component.CurrentBehavior != null)
         {
-            var behavior = _prototype.Index(component.CurrentBehavior.Value);
+            var behavior = ProtoMan.Index(component.CurrentBehavior.Value);
             lenght *= behavior.PulseFrequencyModifier;
         }
         return lenght;
@@ -359,30 +346,7 @@ public abstract class SharedAnomalySystem : EntitySystem
             var secondsUntilNextPulse = (anomaly.NextPulseTime - Timing.CurTime).TotalSeconds;
             if (secondsUntilNextPulse < 0)
             {
-                if (anomaly.StopPulsingAfterSupercritical &&
-                    Appearance.TryGetData<bool>(ent, AnomalyVisuals.Supercritical, out var wentSupercritical) &&
-                    wentSupercritical)
-                {
-                    continue;
-                }
-
                 DoAnomalyPulse(ent, anomaly);
-            }
-
-            // Server-authoritative "has this settled from its custom crit animation yet" check -
-            // deliberately NOT client-tracked, so any client (including one that connects or
-            // comes back into view long after the fact) can immediately show the correct settled
-            // state via the AnomalyVisuals.SupercriticalSettled appearance flag, with no risk of
-            // ever replaying the transition animation from its own local perspective.
-            if (_net.IsServer &&
-                anomaly is { SupercriticalStartedAt: { } startedAt, SupercriticalAnimationDuration: { } animDuration } &&
-                Timing.CurTime - startedAt >= animDuration &&
-                (!Appearance.TryGetData<bool>(ent, AnomalyVisuals.SupercriticalSettled, out var alreadySettled) || !alreadySettled))
-            {
-                Appearance.SetData(ent, AnomalyVisuals.SupercriticalSettled, true);
-
-                var settledEv = new AnomalySupercriticalSettledEvent(ent);
-                RaiseLocalEvent(ent, ref settledEv, true);
             }
         }
 
@@ -446,7 +410,6 @@ public abstract class SharedAnomalySystem : EntitySystem
         if (tilerefs.Count == 0)
             return null;
 
-        var physQuery = GetEntityQuery<PhysicsComponent>();
         var resultList = new List<TileRef>();
         while (resultList.Count < amount)
         {
@@ -474,7 +437,7 @@ public abstract class SharedAnomalySystem : EntitySystem
                 var valid = true;
                 foreach (var ent in _map.GetAnchoredEntities(xform.GridUid.Value, grid, tileref.GridIndices))
                 {
-                    if (!physQuery.TryGetComponent(ent, out var body))
+                    if (!_physQuery.TryGetComponent(ent, out var body))
                         continue;
 
                     if (body.BodyType != BodyType.Static ||

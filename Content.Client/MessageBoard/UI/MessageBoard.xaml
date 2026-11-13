@@ -5,34 +5,24 @@
                            MinSize="600 690">
     <BoxContainer Orientation="Vertical">
         <ScrollContainer VerticalExpand="True">
-            <TabContainer Name="BoardTabContainer">
+            <TabContainer Name="BoardTabContainer"  Access="Public">
                 <BoxContainer Orientation="Vertical" Name="PublicBoard">
-                    <Button Text="Create A New Entry" Name="CreateEntryPublicButton" Access="Public" />
-                    <PanelContainer VerticalExpand="True"
-                                    HorizontalExpand="True"
-                               SizeFlagsStretchRatio="1"
-                               Name="PublicBoardEntriesPC">
-                        <PanelContainer.PanelOverride>
-                            <gfx:StyleBoxFlat BackgroundColor="#000000" />
-                        </PanelContainer.PanelOverride>
-                        <ScrollContainer VerticalExpand="True">
-                            <BoxContainer Orientation="Vertical" Margin="5" MinHeight ="10">
-                                <BoxContainer Name="PublicBoardEntriesBC"
-                                              Orientation="Vertical"
-                                              VerticalExpand="True"
-                                              Access="Public">
-                                </BoxContainer>
-                            </BoxContainer>
-                        </ScrollContainer>
-                    </PanelContainer>
+                    <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
+                        <Button Text="Create A New Entry" Name="CreateEntryPublicButton" Access="Public" HorizontalExpand="True" />
+                        <Button Name="MuteButton" Text="Mute Notifications" Access="Public" ToggleMode="True" />
+                    </BoxContainer>
+                    <TabContainer Name="PublicCategories" VerticalExpand="True" HorizontalExpand="True" Access="Public"/>
                 </BoxContainer>
-                <!--<BoxContainer Orientation="Vertical" Name="DirectMessages">
+                <BoxContainer Orientation="Vertical" Name="DirectMessages">
                     <Label Text="Send Message: " StyleClasses="LabelKeyText"/>
                     <BoxContainer Orientation="Horizontal" HorizontalExpand="True">
-                        <LineEdit Name="SendMessageLE" PlaceHolder="Recipient Name" HorizontalExpand="True"/>
+                        <LineEdit Name="SendMessageLE" PlaceHolder="Recipient Name" HorizontalExpand="True" Access="Public"/>
                         <Button Text="Compose Message" Name="SendMessageButton" Access="Public" />
                     </BoxContainer>
-                </BoxContainer>-->
+                    <Label Text="Conversations:" StyleClasses="LabelKeyText"/>
+                    <BoxContainer Access="Public" Orientation="Vertical" Name="ActiveConversations">
+                    </BoxContainer>
+                </BoxContainer>
             </TabContainer>
         </ScrollContainer> 
     </BoxContainer>

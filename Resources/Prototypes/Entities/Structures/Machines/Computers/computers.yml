@@ -34,10 +34,6 @@
           2: { state: alert-1 }
           3: { state: alert-2 }
           4: { state: alert-2 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
   - type: AtmosAlertsComputer
   - type: ActivatableUI
     singleUser: true
@@ -52,6 +48,7 @@
     guides:
     - AtmosphericAlertsComputer
     - DeviceMonitoringAndControl
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -123,8 +120,6 @@
   - type: ShuttleConsole
   - type: ActivatableUI
     key: enum.ShuttleConsoleUiKey.Key
-  - type: ActivatableUIRequiresAccess
-  - type: AccessReader
   - type: UserInterface
     interfaces:
         enum.ShuttleConsoleUiKey.Key:
@@ -132,6 +127,8 @@
         enum.WiresUiKey.Key:
           type: WiresBoundUserInterface
   - type: RadarConsole
+  - type: ActivatableUIRequiresAccess
+  - type: AccessReader
   - type: WorldLoader
     radius: 512
   - type: PointLight
@@ -157,6 +154,9 @@
   - type: GuideHelp
     guides:
     - ShuttleCraft
+  - type: Upgradeable
+    upgrades:
+      RangeLuminal : 0
 
 - type: entity
   parent: BaseComputerShuttle
@@ -338,6 +338,7 @@
         type: PowerMonitoringConsoleBoundUserInterface
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -363,6 +364,7 @@
     color: "#1f8c28"
   - type: Computer
     board: MedicalRecordsComputerCircuitboard
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -466,6 +468,107 @@
     receiveFrequencyId: CrewMonitor
   - type: WirelessNetworkConnection
     range: 1200
+  - type: AmbientMusicMarkerMedical
+
+- type: entity
+  parent: BaseComputerAiAccess
+  id: ComputerStationTeleportersControl
+  name: station teleporters control console
+  description: Used to monitor station teleport system operations.
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: teleporters_station
+    - map: ["computerLayerKeys"]
+      state: telesci_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    radius: 1.5
+    energy: 1.6
+    color: "#3493c2"
+  - type: Computer
+    board: StationTeleportersControlCircuitboard
+  - type: ActivatableUIRequiresAccess
+  - type: ActivatableUI
+    key: enum.StationTeleporterConsoleUIKey.Key
+  - type: UserInterface
+    interfaces:
+      enum.StationTeleporterConsoleUIKey.Key:
+        type: StationTeleporterConsoleBoundUserInterface
+      enum.StorageUiKey.Key:
+        type: StorageBoundUserInterface
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: StationTeleporterConsole
+    portalColor: "#81ddeb"
+  - type: Storage
+    grid:
+    - 0,0,4,2
+    maxItemSize: Small
+    openOnActivate: false
+    storageOpenSound: /Audio/Machines/door_lock_off.ogg
+    storageCloseSound: /Audio/Machines/door_lock_on.ogg
+    storageInsertSound: /Audio/Machines/id_insert.ogg
+    storageRemoveSound: /Audio/Machines/id_swipe.ogg
+    whitelist:
+      tags:
+      - FitInTeleporterConsole
+  - type: ContainerContainer
+    containers:
+      storagebase: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+      board: !type:Container
+        showEnts: False
+        occludes: True
+        ents: []
+  - type: AccessReader
+    access: [["Command"]]
+  - type: Lock
+    unlockOnClick: false
+
+- type: entity
+  parent: ComputerStationTeleportersControl
+  id: ComputerStationTeleportersControlFilled
+  categories: [ HideSpawnMenu ]
+  suffix: Autofilled, Nanotrasen Network
+  components:
+  - type: StationTeleporterConsole
+    autoLinkKey: Nanotrasen
+
+- type: entity
+  parent: ComputerStationTeleportersControl
+  id: ComputerSyndicateTeleportersControl
+  categories: [ HideSpawnMenu ]
+  name: syndicate teleporters control console
+  components:
+  - type: Sprite
+    layers:
+    - map: ["computerLayerBody"]
+      state: computer
+    - map: ["computerLayerKeyboard"]
+      state: generic_keyboard
+    - map: ["computerLayerScreen"]
+      state: teleporters_syndicate
+    - map: ["computerLayerKeys"]
+      state: syndie_key
+    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
+      state: generic_panel_open
+  - type: PointLight
+    color: "#c61414"
+  - type: Computer
+    board: SyndicateTeleportersControlCircuitboard
+  - type: AccessReader
+    access: [["SyndicateAgent"]]
+  - type: StationTeleporterConsole
+    portalColor: "#c61414"
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -569,6 +672,8 @@
   - type: GuideHelp
     guides:
     - AnalysisConsole
+  - type: AccessReader
+  - type: ActivatableUIRequiresAccess
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -647,6 +752,7 @@
     radius: 1.5
     energy: 4.0
     color: "#1f8c28"
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   parent: BaseComputerAiAccess
@@ -687,9 +793,6 @@
     radius: 1.5
     energy: 4.0
     color: "#3c5eb5"
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
 
 - type: entity
   parent: ComputerComms
@@ -863,192 +966,9 @@
     radius: 1.5
     energy: 4.0
     color: "#e6e227"
-
-- type: entity
-  id: ComputerGridControl
-  parent: BaseComputerAiAccess
-  name: grid control computer
-  description: Used to prevent a grid from being unclaimed.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm_syndie
-    - map: ["computerLayerKeys"]
-      state: syndie_key
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: Computer
-    board: GridControlComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 4.0
-    color: "#f71713"
-  - type: AccessReader
-    access: []
-  - type: GridControlConsole
-  - type: ActivatableUI
-    key: enum.GridControlConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.GridControlConsoleUiKey.Key:
-        type: GridControlConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-
-- type: entity
-  id: ComputerMessageBoard
-  parent: BaseComputerAiAccess
-  name: Message Board Console
-  description: Used to communicate across the Sector.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: explosive
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: MessageBoard
-  - type: ActivatableUI
-    key: enum.MessageBoardUiKey.Main
-  - type: UserInterface
-    interfaces:
-      enum.MessageBoardUiKey.Main:
-        type: MessageBoardBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: StationModComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#00FF00"
-
-- type: entity
-  id: ComputerStationModification
-  parent: BaseComputerAiAccess
-  name: faction modification computer
-  description: Used to structure assignments and access.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: explosive
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: StationModificationConsole
-  - type: ActivatableUI
-    key: enum.StationModUiKey.StationMod
-  - type: UserInterface
-    interfaces:
-      enum.StationModUiKey.StationMod:
-        type: StationModificationConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: StationModComputerCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#00FF00"
-  - type: AccessReader
-    access: []
-
-- type: entity
-  id: ComputerIdPrinter
-  parent: BaseComputerAiAccess
-  name: ID printer computer
-  description: Prints out replacement IDs.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm_logs
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: IdPrinterConsole
-  - type: ActivatableUI
-    key: enum.IdPrinterConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.IdPrinterConsoleUiKey.Key:
-        type: IdPrinterConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: IdPrinterCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#00FF00"
-
-
-- type: entity
-  id: ComputerInvoicePrinter
-  parent: BaseComputerAiAccess
-  name: Invoice printer computer
-  description: Prints out payable invoices.
-  components:
-  - type: Sprite
-    layers:
-    - map: ["computerLayerBody"]
-      state: computer
-    - map: ["computerLayerKeyboard"]
-      state: generic_keyboard
-    - map: ["computerLayerScreen"]
-      state: comm_logs
-    - map: ["computerLayerKeys"]
-      state: generic_keys
-    - map: [ "enum.WiresVisualLayers.MaintenancePanel" ]
-      state: generic_panel_open
-  - type: InvoicePrinterConsole
-    privilegedIdSlot:
-      name: id-card-console-privileged-id
-      ejectSound: /Audio/Machines/id_swipe.ogg
-      insertSound: /Audio/Weapons/Guns/MagIn/batrifle_magin.ogg
-      ejectOnBreak: true
-      swap: false
-      whitelist:
-        components:
-        - IdCard
-  - type: ActivatableUI
-    key: enum.InvoicePrinterConsoleUiKey.Key
-  - type: UserInterface
-    interfaces:
-      enum.InvoicePrinterConsoleUiKey.Key:
-        type: InvoicePrinterConsoleBoundUserInterface
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Computer
-    board: InvoicePrinterCircuitboard
-  - type: PointLight
-    radius: 1.5
-    energy: 1.6
-    color: "#00FF00"
-
-
+  - type: Upgradeable
+    upgrades:
+      RangeLuminal : 0
 
 - type: entity
   id: ComputerCargoOrders
@@ -1134,6 +1054,7 @@
     color: "#c9c042"
   - type: AccessReader
     access: [["Engineering"]]
+  - type: AmbientMusicMarkerEngineering
 
 - type: entity
   id: ComputerCargoOrdersMedical
@@ -1167,6 +1088,7 @@
     color: "#41e0fc"
   - type: AccessReader
     access: [["Medical"]]
+  - type: AmbientMusicMarkerMedical
 
 - type: entity
   id: ComputerCargoOrdersScience
@@ -1388,9 +1310,6 @@
   - type: Speech
     speechVerb: Robotic
     speechSounds: Pai
-  - type: Damageable
-    damageContainer: StructuralInorganic
-    damageModifierSet: StructuralMetallicStrong
   - type: GuideHelp
     guides:
     - Cloning
@@ -1458,10 +1377,6 @@
             False: { visible: false }
           computerLayerKeys:
             True: { visible: true, shader: unshaded }
-            False: { visible: true }
-        enum.WiresVisuals.MaintenancePanelState:
-          enum.WiresVisualLayers.MaintenancePanel:
-            True: { visible: false }
             False: { visible: true }
     - type: SalvageExpeditionConsole
     - type: ActivatableUI
@@ -1888,10 +1803,6 @@
           Occupied: { state: ai-fixer-full }
           Rebooting: { state: ai-fixer-404 }
           Dead: { state: ai-fixer-404 }
-      enum.WiresVisuals.MaintenancePanelState:
-        enum.WiresVisualLayers.MaintenancePanel:
-          True: { visible: false }
-          False: { visible: true }
   - type: ApcPowerReceiver
     powerLoad: 50
   - type: PowerState

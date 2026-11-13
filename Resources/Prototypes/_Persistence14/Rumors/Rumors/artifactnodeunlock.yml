@@ -1,0 +1,13 @@
+- type: rumor
+  id: ArtifactNodeBasic
+  name: Artifact Research
+  description: "There is a Xeno-Artifact of particular interest that we'd like you to look into."
+  eventGrids:
+    - /Maps/Rumors/Salvage/Medium/medium-library-tech1g1art.yml
+    - /Maps/Rumors/Salvage/Medium/outpost-arm-1art1anom.yml
+    - /Maps/Rumors/Salvage/Medium/displaced_telescience-1anom1art.yml
+    - /Maps/Rumors/Salvage/Small/cargo-1-1e1art.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionTarget: 5
+  completionType: ArtifactNodesUnlock

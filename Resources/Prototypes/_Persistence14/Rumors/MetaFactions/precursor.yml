@@ -1,0 +1,71 @@
+- type: metaFaction
+  id: Precursor
+  name: Syndicate
+  description: "The Syndicate controls the Precursor Universe."
+  rumors:
+    - DrinkBasicEvil
+    - EatBasicEvil
+    - PrayBasicEvil
+    - ReceiveMailEvil
+  color: Purple
+  levels:
+    Precursor2: 150
+    Precursor3: 500
+    Precursor4: 1000
+  order: 2
+
+- type: metaFactionLevel
+  id: Precursor2
+  name: Associate
+  rumorRewards:
+    - PrecursorUpgradeModule
+    - TradeGood
+    - PrecursorCodexFragment
+    - PrecursorPJs
+    - PrecursorMerchCrate
+    - PrecursorRumorContract
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Precursor3
+  name: Agent
+  rumorRewards:
+    - PrecursorUpgradeModule
+    - TradeGood
+    - PrecursorCodexFragment
+    - Microwave
+    - ChemKit
+    - PrecursorDefib
+    - HyperzinePen
+    - SyndiCigarettes
+    - PrecursorDecoy
+    - PrecursorSoapSyndie
+    - PrecursorMagBoots
+    - PrecursorSyndieEva
+    - Cobra
+    - Hushpup
+    - Hypopen
+    - PrecursorSoapSyndieCluster
+    - FreedomImplanter
+    - PrecursorNoSlips
+    - PrecursorHardsuitSyndie
+    - PrecursorMedHardsuitSyndie
+  rewardsToOffer: 2
+
+- type: metaFactionLevel
+  id: Precursor4
+  name: Master Agent
+  rumorRewards:
+    - PrecursorUpgradeModule
+    - TradeGood
+    - PrecursorCodexFragment
+    - ECrossbow
+    - RadioJammer
+    - ChameleonProjector
+    - VoiceMaskImplanter
+    - Chameleon
+    - PrecursorHardsuitSyndieElite
+    - PrecursorHardsuitSyndieJug
+    - StealthBox
+  rewardsToOffer: 2
+

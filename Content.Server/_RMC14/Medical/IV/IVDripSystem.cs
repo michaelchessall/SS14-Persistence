@@ -18,13 +18,13 @@ using Robust.Shared.Timing;
 
 namespace Content.Server._RMC14.Medical.IV;
 
-public sealed class IVDripSystem : SharedIVDripSystem
+public sealed partial class IVDripSystem : SharedIVDripSystem
 {
-    [Dependency] private readonly ChatSystem _chat = default!;
-    [Dependency] private readonly ItemSlotsSystem _itemSlots = default!;
-    [Dependency] private readonly IGameTiming _timing = default!;
-    [Dependency] private readonly SharedBloodstreamSystem _bloodstreamSystem = default!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solutionContainer = default!;
+    [Dependency] private ChatSystem _chat = default!;
+    [Dependency] private ItemSlotsSystem _itemSlots = default!;
+    [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private BloodstreamSystem _bloodstreamSystem = default!;
+    [Dependency] private SharedSolutionContainerSystem _solutionContainer = default!;
 
     private bool TryGetBloodstream(
         EntityUid attachedTo,

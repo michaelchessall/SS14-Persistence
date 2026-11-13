@@ -79,7 +79,7 @@
   description: A fluffy cotton pancake.
   components:
   - type: Stack
-    stackType: Pancake
+    stackType: CottonPancake
     count: 1
     composite: true
     layerStates:

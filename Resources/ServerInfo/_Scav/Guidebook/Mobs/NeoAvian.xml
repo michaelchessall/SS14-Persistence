@@ -1,0 +1,26 @@
+<Document>
+  # Neo-Avians
+
+  <Box>
+    <GuideEntityEmbed Entity="AppearanceNeoAvian" Caption=""/>
+  </Box>
+
+  Avian species, largely crows, magpies and other corvids, were among the first sophonts uplifted to aid in colonizing Mars.
+  These days they are more commonly found pursuing their own careers and goals on the fringes of human space or around their adopted homeworld of Hyperion.
+  Neo-avian naming conventions tend to be a chosen name followed by the species of the person, followed by their clutch number and the location they were hatched.
+  
+  Neo-avians form a loose coalition of family and flock groupings, and are usually in an extreme minority in human settlements.
+  They tend to cope poorly with confined, crowded spaces like human habs, and often make their homes in hab domes or other spacious facilities.
+  
+  Due to their status as an early example of genetic engineering, the neo-avian genome is fairly unstable. 
+  Neo-avian eggs suffer an over 99% unviability rate without genetic engineering, meaning doing so is all but necessary. While most neo-avians choose to keep their genome relatively close to the original plan, a minority engage in more elaborate engineering of their offspring. This can include the reintroduction of scales, sharp teeth, slender tails, and other clear visible features of the the dinosaur heritage shared by all avians. That said, the majority of neo-avians consider this practice unusual.
+  Neo-avians also retain the instinct for flight, but not the ability to do so. As such, many avians find zero-gravity to be a euphoric experience.
+
+  Mechanically, Neo-Avians have the following effects:
+  - They are significantly smaller than average, approximately 1/7th the mass, and have 1/3rd the blood volume when compared to most species.
+  - They have far less durability in general, entering a [color=#ffa500]critical state at 75 total damage[/color], and [color=#ffa500]dying at 125 total damage[/color].
+  - They are slightly more mobile than other species in zero-gravity, though not as much as Moths
+  - They are completely immune to the effects of [color=#FF0000]Capsaicin Oil[/color], meaning they can eat spicy foods with no effect.
+  - Due to their hand structure and wings, small items held in hand may be more easily concealable.
+
+</Document>

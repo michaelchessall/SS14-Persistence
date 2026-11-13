@@ -1,0 +1,28 @@
+- type: latheRecipe
+  id: CoolingUnitRecipe
+  result: CoolingUnit
+  # Powercell Medium time is 6
+  # Added time for charging ontop of that is ~3
+  # Time to make the actual cooling unit is ~5
+  # Leading to a complete time of 14
+  completetime: 14
+  materials:
+    Steel: 800
+    Glass: 400
+    Plastic: 500
+    Gold: 10
+    Plasma: 100
+  unlockUses: 5
+
+- type: latheRecipe
+  id: EmergencyCoolingUnitRecipe
+  result: EmergencyCoolingUnit
+  completetime: 8
+  materials:
+    Steel: 500
+    Glass: 200
+    Plastic: 100
+    Plasma: 50
+  unlockUses: 12
+
+

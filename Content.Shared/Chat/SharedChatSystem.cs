@@ -43,13 +43,12 @@ public abstract partial class SharedChatSystem : EntitySystem
     public static readonly string DefaultChannelPrefix = $"{RadioChannelPrefix}{DefaultChannelKey}";
     public static readonly ProtoId<SpeechVerbPrototype> DefaultSpeechVerb = "Default";
 
-    [Dependency] private readonly IPrototypeManager _prototypeManager = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly EntityWhitelistSystem _whitelist = default!;
-    [Dependency] private readonly ActionBlockerSystem _actionBlocker = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _net = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private EntityWhitelistSystem _whitelist = default!;
+    [Dependency] private ActionBlockerSystem _actionBlocker = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private INetManager _net = default!;
 
     /// <summary>
     /// Cache of the keycodes for faster lookup.
@@ -60,7 +59,7 @@ public abstract partial class SharedChatSystem : EntitySystem
     {
         base.Initialize();
 
-        DebugTools.Assert(_prototypeManager.HasIndex(CommonChannel));
+        DebugTools.Assert(ProtoMan.HasIndex(CommonChannel));
 
         SubscribeLocalEvent<PrototypesReloadedEventArgs>(OnPrototypeReload);
         CacheRadios();
@@ -78,7 +77,7 @@ public abstract partial class SharedChatSystem : EntitySystem
 
     private void CacheRadios()
     {
-        _keyCodes = _prototypeManager.EnumeratePrototypes<RadioChannelPrototype>()
+        _keyCodes = ProtoMan.EnumeratePrototypes<RadioChannelPrototype>()
             .ToFrozenDictionary(x => x.KeyCode);
     }
 
@@ -89,13 +88,13 @@ public abstract partial class SharedChatSystem : EntitySystem
     public SpeechVerbPrototype GetSpeechVerb(EntityUid source, string message, SpeechComponent? speech = null)
     {
         if (!Resolve(source, ref speech, false))
-            return _prototypeManager.Index(DefaultSpeechVerb);
+            return ProtoMan.Index(DefaultSpeechVerb);
 
         // check for a suffix-applicable speech verb
         SpeechVerbPrototype? current = null;
         foreach (var (str, id) in speech.SuffixSpeechVerbs)
         {
-            var proto = _prototypeManager.Index(id);
+            var proto = ProtoMan.Index(id);
             if (message.EndsWith(Loc.GetString(str)) && proto.Priority >= (current?.Priority ?? 0))
             {
                 current = proto;
@@ -103,7 +102,7 @@ public abstract partial class SharedChatSystem : EntitySystem
         }
 
         // if no applicable suffix verb return the normal one used by the entity
-        return current ?? _prototypeManager.Index(speech.SpeechVerb);
+        return current ?? ProtoMan.Index(speech.SpeechVerb);
     }
 
     /// <summary>
@@ -128,8 +127,16 @@ public abstract partial class SharedChatSystem : EntitySystem
         if (!input.StartsWith(RadioChannelPrefix))
             return;
 
-        if (!_keyCodes.TryGetValue(char.ToLower(input[1]), out _))
-            return;
+        // Persistence 14: Preserve custom faction radio prefixes through emote sanitization so hotkeys like :d still route to radio when a faction channel owns that key.
+        var key = char.ToLowerInvariant(input[1]);
+        if (!_keyCodes.ContainsKey(key))
+        {
+            var customEv = new ResolveCustomRadioChannelEvent(key);
+            RaiseLocalEvent(source, customEv);
+            if (customEv.Channel == null)
+                return;
+        }
+        // End Persistence 14
 
         prefix = input[..2];
         output = input[2..];
@@ -150,10 +157,12 @@ public abstract partial class SharedChatSystem : EntitySystem
         string input,
         out string output,
         out RadioChannelPrototype? channel,
+        out int? encryptionID,
         bool quiet = false)
     {
         output = input.Trim();
         channel = null;
+        encryptionID = null;
 
         if (input.Length == 0)
             return false;
@@ -161,7 +170,7 @@ public abstract partial class SharedChatSystem : EntitySystem
         if (input.StartsWith(RadioCommonPrefix))
         {
             output = SanitizeMessageCapital(input[1..].TrimStart());
-            channel = _prototypeManager.Index<RadioChannelPrototype>(CommonChannel);
+            channel = ProtoMan.Index<RadioChannelPrototype>(CommonChannel);
             return true;
         }
 
@@ -186,9 +195,19 @@ public abstract partial class SharedChatSystem : EntitySystem
             RaiseLocalEvent(source, ev);
 
             if (ev.Channel != null)
-                _prototypeManager.TryIndex(ev.Channel, out channel);
+                ProtoMan.TryIndex(ev.Channel, out channel);
             return true;
         }
+
+        // Persistence 14: Resolve faction-scoped custom radio hotkeys before falling back to global prototype keycodes so each headset can target its configured faction channels.
+        var customEv = new ResolveCustomRadioChannelEvent(channelKey);
+        RaiseLocalEvent(source, customEv);
+        if (customEv.Channel != null && ProtoMan.TryIndex(customEv.Channel, out channel))
+        {
+            encryptionID = customEv.EncryptionID;
+            return true;
+        }
+        // End Persistence 14
 
         if (!_keyCodes.TryGetValue(channelKey, out channel) && !quiet)
         {

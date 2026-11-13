@@ -48,3 +48,11 @@
 - type: metabolizerType
   id: Goblin
   name: metabolizer-type-goblin
+
+- type: metabolizerType
+  id: Changeling
+  name: metabolizer-type-changeling
+
+- type: metabolizerType
+  id: Avali
+  name: metabolizer-type-avali

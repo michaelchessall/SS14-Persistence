@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace Content.Server.Discord;
 
-public sealed class DiscordWebhook : IPostInjectInit
+public sealed partial class DiscordWebhook : IPostInjectInit
 {
     private static readonly JsonSerializerOptions JsonOptions = new JsonSerializerOptions
     { DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull };
 
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private const string BaseUrl = "https://discord.com/api/v10/webhooks";
     private readonly HttpClient _http = new();
@@ -77,6 +77,37 @@ public sealed class DiscordWebhook : IPostInjectInit
 
         return response;
     }
+
+    ///Persistence14 start
+    /// <summary>
+    ///     Creates a new webhook message with file attachments.
+    /// </summary>
+    /// <param name="identifier">The identifier for the webhook url.</param>
+    /// <param name="payload">The payload to create the message from.</param>
+    /// <param name="files">List of files to upload as attachments.</param>
+    /// <returns>The response from Discord's API.</returns>
+    public async Task<HttpResponseMessage> CreateMessageWithFiles(WebhookIdentifier identifier, WebhookPayload payload, List<_Persistence14.WebhookFile> files)
+    {
+        var url = $"{GetUrl(identifier)}?wait=true";
+
+        using var content = new MultipartFormDataContent();
+
+        var json = JsonSerializer.Serialize(payload, JsonOptions);
+        content.Add(new StringContent(json), "payload_json");
+
+        for (var i = 0; i < files.Count; i++)
+        {
+            var file = files[i];
+            var fileContent = new ByteArrayContent(file.Data);
+            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/octet-stream");
+            content.Add(fileContent, $"files[{i}]", file.Filename);
+        }
+
+        var response = await _http.PostAsync(url, content);
+        LogResponse(response, "CreateWithFiles");
+        return response;
+    }
+    ///Persistence14 end
 
     /// <summary>
     ///     Deletes a webhook message with the given identifier and message id.

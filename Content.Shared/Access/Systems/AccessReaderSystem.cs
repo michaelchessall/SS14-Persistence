@@ -5,7 +5,7 @@ using Content.Shared.CrewRecords.Components;
 using Content.Shared.DeviceLinking.Events;
 using Content.Shared.Emag.Systems;
 using Content.Shared.Examine;
-using Content.Shared.GameTicking;
+// using Content.Shared.GameTicking;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Inventory;
@@ -22,24 +22,25 @@ using Robust.Shared.Containers;
 using Robust.Shared.GameStates;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
-using Robust.Shared.Timing;
+// using Robust.Shared.Timing;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
+using Content.Shared.StationRecords.Components;
+using Content.Shared.StationRecords.Systems;
 
 namespace Content.Shared.Access.Systems;
 
-public sealed class AccessReaderSystem : EntitySystem
+public sealed partial class AccessReaderSystem : EntitySystem
 {
-    [Dependency] private readonly IPrototypeManager _prototype = default!;
-    [Dependency] private readonly InventorySystem _inventorySystem = default!;
-    [Dependency] private readonly IGameTiming _gameTiming = default!;
-    [Dependency] private readonly EmagSystem _emag = default!;
-    [Dependency] private readonly SharedGameTicker _gameTicker = default!;
-    [Dependency] private readonly SharedHandsSystem _handsSystem = default!;
-    [Dependency] private readonly SharedContainerSystem _containerSystem = default!;
-    [Dependency] private readonly SharedStationRecordsSystem _recordsSystem = default!;
-    [Dependency] private readonly SharedStationSystem _station = default!;
+    [Dependency] private InventorySystem _inventorySystem = default!;
+    // [Dependency] private IGameTiming _gameTiming = default!;
+    [Dependency] private EmagSystem _emag = default!;
+    // [Dependency] private SharedGameTicker _gameTicker = default!;
+    [Dependency] private SharedHandsSystem _handsSystem = default!;
+    [Dependency] private SharedContainerSystem _containerSystem = default!;
+    [Dependency] private StationRecordsSystem _recordsSystem = default!;
+    [Dependency] private SharedStationSystem _station = default!;
     private static readonly ProtoId<TagPrototype> PreventAccessLoggingTag = "PreventAccessLogging";
 
     public override void Initialize()
@@ -615,6 +616,99 @@ public sealed class AccessReaderSystem : EntitySystem
 
         return (ICollection<ProtoId<AccessLevelPrototype>>?)tags ?? Array.Empty<ProtoId<AccessLevelPrototype>>();
     }
+    public ICollection<int> FindAccessTagsAssignments(EntityUid targetUID, EntityUid owningStationUID)
+    {
+        HashSet<EntityUid>? items = null;
+        HashSet<int>? ids = null;
+        // var owned = false;
+
+        //owning person redundant for now but couldnt find an altentive function and maybe it could possible be used with personalacces
+        _station.GetOwning(owningStationUID, out var station, out var owningPerson);
+        if (!TryComp<CrewAssignmentsComponent>(owningStationUID, out var crewAssignments)) return (ICollection<int>?)ids ?? Array.Empty<int>();
+        if (!TryComp<CrewRecordsComponent>(owningStationUID, out var crewRecords)) return (ICollection<int>?)ids ?? Array.Empty<int>();
+
+        items ??= FindPotentialAccessItems(targetUID);
+
+        foreach (var ent in items)
+        {
+            if (TryComp<IdCardComponent>(ent, out var idComp))
+            {
+                if (!crewRecords.TryGetRecord(idComp.FullName ?? "", out var record) || record == null) continue;
+                if (crewAssignments.TryGetAssignment(record.AssignmentID, out var assignment) && assignment != null)
+                {
+                    if (ids == null) ids = new HashSet<int>();
+                    ids.Add(record.AssignmentID);
+                }
+            }
+            else if (TryComp<PdaComponent>(ent, out var pdaComp))
+            {
+                if (pdaComp != null && pdaComp.ContainedId != null)
+                {
+                    if (TryComp<IdCardComponent>(pdaComp.ContainedId, out var idComp2))
+                    {
+                        if (!crewRecords.TryGetRecord(idComp2.FullName ?? "", out var record) || record == null) continue;
+                        if (crewAssignments.TryGetAssignment(record.AssignmentID, out var assignment) && assignment != null)
+                        {
+                            if (ids == null) ids = new HashSet<int>();
+                            ids.Add(record.AssignmentID);
+                        }
+                    }
+                }
+            }
+        }
+
+        return (ICollection<int>?)ids ?? Array.Empty<int>();
+    }
+
+    public string GetAssignmentNameFromId(EntityUid entityUID, int assignmentId)
+    {
+        string assignmentName = "Invalid";
+        var stationUID = _station.GetOwningStation(entityUID);
+        if (!TryComp<CrewAssignmentsComponent>(stationUID, out var crewAssignments)) return assignmentName;
+
+
+        crewAssignments.TryGetAssignment(assignmentId, out var assignment);
+        if (assignment == null) return assignmentName;
+        assignmentName = assignment.Name;
+
+        return assignmentName;
+    }
+
+    public ICollection<string> FindAccessTagsNames(EntityUid targetUID)
+    {
+        HashSet<EntityUid>? items = null;
+        HashSet<string>? names = null;
+
+        items ??= FindPotentialAccessItems(targetUID);
+
+        foreach (var ent in items)
+        {
+            if (TryComp<IdCardComponent>(ent, out var idComp))
+            {
+                if (idComp.FullName != null)
+                {
+                    if (names == null) names = new HashSet<string>();
+                    names.Add(idComp.FullName);
+                }
+            }
+            else if (TryComp<PdaComponent>(ent, out var pdaComp))
+            {
+                if (pdaComp != null && pdaComp.ContainedId != null)
+                {
+                    if (TryComp<IdCardComponent>(pdaComp.ContainedId, out var idComp2))
+                    {
+                        if (idComp2.FullName != null)
+                        {
+                            if (names == null) names = new HashSet<string>();
+                            names.Add(idComp2.FullName);
+                        }
+                    }
+                }
+            }
+        }
+
+        return (ICollection<string>?)names ?? Array.Empty<string>();
+    }
 
     /// <summary>
     /// Finds any station record keys on an entity.
@@ -1141,7 +1235,7 @@ public sealed class AccessReaderSystem : EntitySystem
     private bool FindAccessTagsItem(EntityUid uid, out HashSet<ProtoId<AccessLevelPrototype>> tags)
     {
         tags = new();
-        var ev = new GetAccessTagsEvent(tags, _prototype);
+        var ev = new GetAccessTagsEvent(tags, ProtoMan);
         RaiseLocalEvent(uid, ref ev);
 
         return tags.Count != 0;
@@ -1238,7 +1332,7 @@ public sealed class AccessReaderSystem : EntitySystem
             {
                 var accessName = Loc.GetString("access-reader-unknown-id");
 
-                if (_prototype.Resolve(access, out var accessProto) && !string.IsNullOrWhiteSpace(accessProto.Name))
+                if (ProtoMan.Resolve(access, out var accessProto) && !string.IsNullOrWhiteSpace(accessProto.Name))
                     accessName = Loc.GetString(accessProto.Name);
 
                 sb.Append(Loc.GetString("access-reader-access-label", ("access", accessName)));

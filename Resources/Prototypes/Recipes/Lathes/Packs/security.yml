@@ -34,6 +34,7 @@
   - ClothingShoesBootsCowboyBlack
   - ClothingShoesBootsCowboyWhite
   - ClothingShoesBootsCowboyFancy
+  - SecurityBola
 
 # Practice ammo/mags and practice weapons
 - type: latheRecipePack
@@ -44,12 +45,15 @@
   - MagazineBoxMagnumPractice
   - MagazineBoxPistolPractice
   - MagazineBoxRiflePractice
+  - MagazineBoxCaselessRiflePracticeRecipe
   - WeaponDisablerPractice
   - WeaponLaserCarbinePractice
   - MagazineLightRiflePractice
   - MagazineRiflePractice
   - MagazinePistolPractice
+  - MagazinePistolCaselessRiflePracticeRecipe
   - SpeedLoaderMagnumPractice
+  - MagazineMarineRiflePractice
   - MagazinePistolSubMachineGunPractice
   - WeaponFlareGunSecurity
 
@@ -62,10 +66,12 @@
   - MagazineBoxLightRifle
   - MagazineBoxMagnum
   - MagazineBoxPistol
+  - MagazineBoxCaselessRifleRecipe
   - MagazineBoxRifle
   - MagazineLightRifle
   - MagazineLightRifleEmpty
   - MagazinePistol
+  - MagazinePistolCaselessRifleRecipe
   - MagazinePistolEmpty
   - MagazinePistolSubMachineGun
   - MagazinePistolSubMachineGunEmpty
@@ -75,6 +81,8 @@
   - MagazineRifleEmpty
   - SpeedLoaderMagnum
   - SpeedLoaderMagnumEmpty
+  - MagazineMarineRifle
+  - MagazineMarineRifleEmpty
 
 - type: latheRecipePack
   id: SecurityWeaponsStatic
@@ -150,6 +158,8 @@
   - MagazineShotgunIncendiary
   - SpeedLoaderMagnumIncendiary
   - SpeedLoaderMagnumUranium
+  - MagazineMarineRifleIncendiary
+  - MagazineMarineRifleUranium
 
 - type: latheRecipePack
   id: SecurityWeapons

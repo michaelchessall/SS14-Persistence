@@ -27,7 +27,7 @@ flavor_text = true
 punctuation = false
 
 [lore]
-year_offset = 200
+year_offset = 220
 
 [tips]
 enabled = false
@@ -38,3 +38,6 @@ max_explosion_range = 4
 [admin]
 new_player_threshold = 600
 alert.min_players_sharing_connection = 2
+
+[afk]
+automatic_checks = false

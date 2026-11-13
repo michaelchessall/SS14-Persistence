@@ -11,11 +11,10 @@ using Robust.Shared.Prototypes;
 
 namespace Content.Client._Funkystation.Stains;
 
-public sealed class StainSystem : SharedStainSystem
+public sealed partial class StainSystem : SharedStainSystem
 {
-    [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
-    [Dependency] private readonly SharedSolutionContainerSystem _solution = null!;
-    [Dependency] private readonly SpriteSystem _sprite = null!;
+    [Dependency] private SharedSolutionContainerSystem _solution = null!;
+    [Dependency] private SpriteSystem _sprite = null!;
 
     public override void Initialize()
     {
@@ -67,7 +66,7 @@ public sealed class StainSystem : SharedStainSystem
         if (!_solution.TryGetSolution(ent.Owner, ent.Comp.SolutionName, out _, out var sol) || sol.Volume <= FixedPoint2.Zero)
             yield break;
 
-        var color = sol.GetColor(_prototypeManager);
+        var color = sol.GetColor(ProtoMan);
         for (var i = 0; i < templates.Count; i++)
         {
             var layer = templates[i];

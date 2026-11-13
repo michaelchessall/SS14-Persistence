@@ -1,0 +1,119 @@
+- type: entity
+  id: BaseCodexFragment
+  parent: BaseItem
+  name: codex fragment
+  description: Using this will unlock a codex entry.
+  abstract: true
+  components:
+  - type: Item
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/codex.rsi
+  - type: StaticPrice
+    price: 100
+  - type: CodexFragment
+
+- type: entity
+  id: MarineCodexFragment
+  parent: BaseCodexFragment
+  name: codex fragment (UNMC Remnant)
+  description: A collection of reports and debriefs in a camo folder with the UNMC logo on it. (Unlocks codex entries related to the UNMC.)
+  components:
+  - type: Sprite
+    layers:
+    - state: unmc-codex
+  - type: CodexFragment
+    possibleEntries:
+      - Marine101
+      - Marine102
+      - Marine103
+      - Marine104
+      - Marine105
+
+- type: entity
+  id: ShadowCodexFragment
+  parent: BaseCodexFragment
+  name: codex fragment (The Elders)
+  description: A worn scroll written in some kind of red ink with many stains. (Unlocks codex entries related to the Elders.)
+  components:
+  - type: Sprite
+    layers:
+    - state: shadow-codex
+  - type: CodexFragment
+    possibleEntries:
+      - Shadow101
+      - Shadow102
+      - Shadow103
+      - Shadow104
+      - Shadow105
+
+- type: entity
+  id: ZenithCodexFragment
+  parent: BaseCodexFragment
+  name: codex fragment (Solar Legion)
+  description: The minimal amount of paperwork for a solar legion worker. (Unlocks codex entries related to the Solar Legion.)
+  components:
+  - type: Sprite
+    layers:
+    - state: sl-codex
+  - type: CodexFragment
+    possibleEntries:
+      - Zenith101
+      - Zenith102
+      - Zenith103
+      - Zenith104
+      - Zenith105
+
+- type: entity
+  id: GreenCodexFragment
+  parent: BaseCodexFragment
+  name: codex fragment (Nanotrasen)
+  description: A futuristic holographic data device capable of storing up to 2 digital documents. (Unlocks codex entries related to Nanotrasen.)
+  components:
+  - type: Sprite
+    layers:
+    - state: nt-codex
+  - type: CodexFragment
+    possibleEntries:
+      - Green101
+      - Green102
+      - Green103
+      - Green104
+      - Green105
+
+
+- type: entity
+  id: PrecursorCodexFragment
+  parent: BaseCodexFragment
+  name: codex fragment (Syndicate)
+  description: A futuristic holographic data device capable of storing up to 3 digital documents. (Unlocks codex entries related to the Syndicate.)
+  components:
+  - type: Sprite
+    layers:
+    - state: syndi-codex
+  - type: CodexFragment
+    possibleEntries:
+      - Precursor101
+      - Precursor102
+      - Precursor103
+      - Precursor104
+      - Precursor105
+
+
+- type: entity
+  id: LuminalCodexFragment
+  parent: BaseCodexFragment
+  name: codex fragment (Luminal)
+  description:  strange dark slate with glowing rocks growing out of it. The surface looks like its covered in stars. (Unlocks codex entries related to the Luminals.)
+  components:
+  - type: Sprite
+    layers:
+    - state: lumi
+  - type: CodexFragment
+    possibleEntries:
+      - Luminal101
+      - Luminal102
+      - Luminal103
+      - Luminal104
+      - Luminal105
+
+

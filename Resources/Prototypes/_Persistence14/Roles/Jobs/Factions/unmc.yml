@@ -1,0 +1,12 @@
+
+- type: startingGear
+  id: UNMCFootSoldierGear
+  equipment:
+    jumpsuit: ClothingUniformJumpsuitBattleDressUniformWoodlandTShirt
+    back: ClothingBackpackMerc
+    shoes: ClothingShoesBootsMercFilled
+    id: PassengerPDA
+    ears: ClothingHeadsetService
+  storage:
+    back:
+    - BoxSurvival

@@ -1,0 +1,46 @@
+- type: entity
+  abstract: true
+  id: BasePlant
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape:
+          !type:PhysShapeCircle
+          radius: 0.5
+        density: 190
+        hard: true
+        layer:
+        - BulletImpassable
+  - type: Sprite
+    sprite: Objects/Specific/Hydroponics/wheat.rsi
+    snapCardinals: true
+  - type: Appearance
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Physics
+  - type: Damageable
+  - type: Injurable
+    damageContainer: Biological
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 75
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+  - type: RequireProjectileTarget
+  - type: Plant
+  - type: PlantData
+  - type: PlantHolder
+  - type: PlantHarvest
+  - type: PlantChemicals
+#  - type: PlantToxins # Persistence: Made obsolete by plant nutrient rework
+  - type: PlantVisuals
+  - type: PlantWeedPest
+  - type: PlantAtmospheric
+  - type: PlantGrowth
+  - type: PlantConsumeExudeGas
+
+# Persistence: Moved all plants to files in _Persistence14/Hydroponics/Plants

@@ -7,11 +7,11 @@ using Robust.Shared.Player;
 
 namespace Content.Server.Audio;
 
-public sealed class ServerGlobalSoundSystem : SharedGlobalSoundSystem
+public sealed partial class ServerGlobalSoundSystem : SharedGlobalSoundSystem
 {
-    [Dependency] private readonly IConsoleHost _conHost = default!;
-    [Dependency] private readonly StationSystem _stationSystem = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
+    [Dependency] private IConsoleHost _conHost = default!;
+    [Dependency] private StationSystem _stationSystem = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
 
     public override void Shutdown()
     {
@@ -39,6 +39,13 @@ public sealed class ServerGlobalSoundSystem : SharedGlobalSoundSystem
         RaiseNetworkEvent(msg, filter);
     }
 
+    public void PlayLocalSound(SoundSpecifier specifier, ActorComponent comp, AudioParams? audioParams = null)
+    {
+        if (comp.PlayerSession == null) return;
+        var msg = new LocalSoundEvent(specifier, audioParams);
+        RaiseNetworkEvent(msg, comp.PlayerSession);
+    }
+
     public void StopStationEventMusic(EntityUid source, StationEventMusicType type)
     {
         // TODO REPLAYS
@@ -57,7 +64,7 @@ public sealed class ServerGlobalSoundSystem : SharedGlobalSoundSystem
 
     public void DispatchStationEventMusic(EntityUid source, ResolvedSoundSpecifier specifier, StationEventMusicType type)
     {
-        var audio = AudioParams.Default.WithVolume(-8);
+        var audio = AudioParams.Default.AddVolume(-8);
         var msg = new StationEventMusicEvent(specifier, type, audio);
 
         var filter = GetStationAndPvs(source);

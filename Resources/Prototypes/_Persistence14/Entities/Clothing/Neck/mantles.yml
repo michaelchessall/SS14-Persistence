@@ -11,6 +11,39 @@
 
 - type: entity
   parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleNCC
+  name: nexus central council's mantle
+  description: Well adorned mantle with eclipse imagery. Fit for a captain.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/nccmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/nccmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleCOSNCC
+  name: chief of staff's mantle
+  description: Well adorned mantle with a full moon. Worn by the Chief of Staff.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/cosnccmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/cosnccmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
+  id: ClothingNeckMantleCOSNCCXO
+  name: deputy chief of staff's mantle
+  description: Well adorned mantle with a full moon. Worn by the Deputy Chief of Staff.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Neck/mantles/depcosnccmantle.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Neck/mantles/depcosnccmantle.rsi
+
+- type: entity
+  parent: [ClothingNeckBase, BaseCommandContraband]
   id: ClothingNeckMantleCESOL
   name: solar legion chief engineer's mantle
   description: A dark orange mantle with Solar Legion colors and symbols emblazoned across it. Features silver trim denoting the rank of the wearer.

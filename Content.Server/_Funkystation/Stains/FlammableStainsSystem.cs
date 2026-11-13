@@ -15,15 +15,14 @@ using Content.Shared._Funkystation.CCVar;
 
 namespace Content.Server._Funkystation.Stains
 {
-    public sealed class FlammableStainsSystem : EntitySystem
+    public sealed partial class FlammableStainsSystem : EntitySystem
     {
-        [Dependency] private readonly FlammableSystem _flammable = null!;
-        [Dependency] private readonly InventorySystem _inventory = null!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = null!;
-        [Dependency] private readonly IPrototypeManager _prototypeManager = null!;
-        [Dependency] private readonly EntityLookupSystem _lookup = null!;
-        [Dependency] private readonly IConfigurationManager _cfg = null!;
-        [Dependency] private readonly IAdminLogManager _adminLogger = default!;
+        [Dependency] private FlammableSystem _flammable = null!;
+        [Dependency] private InventorySystem _inventory = null!;
+        [Dependency] private SharedSolutionContainerSystem _solution = null!;
+        [Dependency] private EntityLookupSystem _lookup = null!;
+        [Dependency] private IConfigurationManager _cfg = null!;
+        [Dependency] private IAdminLogManager _adminLogger = default!;
 
         // Fraction of a stain's flammable reagents consumed per second while on fire
         private const float StainBurnRatePerSecond = 0.2f;
@@ -116,7 +115,7 @@ namespace Content.Server._Funkystation.Stains
                     !_solution.TryGetSolution(slotEnt.Value, stain.SolutionName, out var soln, out var solution))
                     continue;
 
-                if (solution.GetSolutionFlammability(_prototypeManager) <= 0)
+                if (solution.GetSolutionFlammability(ProtoMan) <= 0)
                     continue;
 
                 _solution.BurnFlammableReagents(soln.Value, StainBurnRatePerSecond * frameTime);
@@ -137,7 +136,7 @@ namespace Content.Server._Funkystation.Stains
                 if (TryComp<StainableComponent>(slotEnt, out var stain) &&
                     _solution.TryGetSolution(slotEnt.Value, stain.SolutionName, out _, out var solution))
                 {
-                    total += solution.GetSolutionFlammability(_prototypeManager);
+                    total += solution.GetSolutionFlammability(ProtoMan);
                 }
             }
             return total;
@@ -175,7 +174,7 @@ namespace Content.Server._Funkystation.Stains
                 {
                     foreach (var (reagentId, _) in solution.Contents)
                     {
-                        if (_prototypeManager.TryIndex<ReagentPrototype>(reagentId.Prototype, out var proto) && proto.Flammability > 0)
+                        if (ProtoMan.TryIndex<ReagentPrototype>(reagentId.Prototype, out var proto) && proto.Flammability > 0)
                         {
                             names.Add(proto.LocalizedName);
                         }

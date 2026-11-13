@@ -1,0 +1,129 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateMousetrapBoxes
+  name: mousetraps crate
+  description: Mousetraps, for when all of service is being haunted by an entire horde of rats. Use sparingly... or not.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage:
+        id: BoxMousetrap
+
+- type: entity
+  parent: CrateCommandSecure
+  id: CrateNTMerch
+  name: Nanotrasen paraphernalia crate
+  description: A secured Nanotrasen crate.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BalloonNT
+          amount: 2
+        - id: NanotrasenFlippo
+        - id: NTHandyFlag
+        - id: TowelColorNT
+        - id: PlayingCardDeckBoxNanotrasen
+        - id: ClothingUniformJumpsuitNanotrasen
+        - id: ClothingNeckCloakNanotrasen
+
+- type: entity
+  parent: CrateSyndicate
+  id: CrateSyndicateMerch
+  name: Syndicate paraphernalia crate
+  description: A dark steel crate with red bands and a letter S embossed on the front.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: BalloonSyn
+          amount: 2
+        - id: SyndicateFlippo
+        - id: SyndieHandyFlag
+        - id: TowelColorSyndicate
+        - id: PlayingCardDeckBoxSyndicate
+        - id: ClothingUniformJumpsuitOperative
+        - id: ClothingNeckScarfStripedSyndieRed
+        - id: ClothingNeckScarfStripedSyndieGreen
+        - id: SyndicateBusinessCard
+          amount: 3
+        - id: ClothingOuterWinterSyndie
+
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateShadowMerch
+  name: Occult paraphernalia crate
+  description: A dark steel crate filled with occult goodies.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: PlushieSnake
+          amount: 3
+        - id: PlushieNar
+        - id: ClothingShoesCult
+        - id: ClothingOuterRobesCult
+        - id: ClothingHeadHatHoodCulthood
+        - id: ClothingNeckCloakHerald
+        - id: TowelColorBlack
+        - id: PlayingCardDeckBoxBlack
+        - id: ClothingOuterHoodieChaplain
+        - !type:NestedSelector
+          tableId: MeatTable
+        - !type:NestedSelector
+          tableId: MeatTable
+        - !type:NestedSelector
+          tableId: MeatTable
+
+
+- type: entity
+  parent: CrateSolarLegion
+  id: CrateSoLMerch
+  name: Solar Legion paraphernalia crate
+  description: A Red and Yellow crate filled with Solar Legion Merch.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: FoodBakedCookieCandle
+          amount: 3
+        - id: CandlePurple
+          amount: 3
+        - id: BannerSolarLegion
+        - id: ClothingNeckMilitiaCloak
+        - id: BibleEmbrace
+        - id: TowelColorOrange
+        - id: NunoCardDeckBox
+        - id: BookThresholdHandbook
+        - !type:NestedSelector
+          tableId: AllPersistencePlushiesTable
+        - id: SolarLegionFlippo
+
+- type: entity
+  parent: CratePrivateSecure
+  id: CrateUNMCMerch
+  name: UNMC paraphernalia crate
+  description: A secure crate filled with UNMC Merch. Hoo Rah!
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      entity_storage: !type:AllSelector
+        children:
+        - id: ClothingUniformJumpsuitBattleDressUniformWoodland
+        - id: ClothingMaskBandMerc
+        - id: PlayingCardDeckBoxBlack
+        - id: ClothingNeckScarfStripedGreen
+        - id: PlushieXeno
+        - id: TowelColorDarkGreen
+        - id: CigCartonBlack
+        - id: ClothingHandsGlovesMercFingerless
+        - id: ClothingHeadHatCorpsoft
+        - id: ClothingShoesBootsMerc
+        - id: FlippoLighter
+        - id: FoodSnackNutribrick
+
+

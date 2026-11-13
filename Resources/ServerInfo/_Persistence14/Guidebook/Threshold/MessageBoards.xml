@@ -1,0 +1,30 @@
+<Document>
+  # Message Boards
+  This guide will explain how Message Boards and Direct Messages can be used to communicate across the entire sector.
+  <Box>
+    <GuideEntityEmbed Entity="ComputerMessageBoard" Caption="Message Board Console"/>
+  </Box>
+
+  ## Message Board Consoles
+  Message Board Consoles are used to communicate across the sector. Every console shows the same message board, so a thread posted at one console can be read from any other.
+  Message Board Consoles can be built with a machine board from a circuit imprinter.
+
+  ## Threads
+  Press 'Create A New Entry' to post a new thread with a title, a message and a category.
+  The categories are [bold]General[/bold], [bold]Faction Recruiting[/bold], [bold]Buy Requests[/bold], [bold]Sell Offers[/bold] and [bold]Events[/bold].
+
+  [bold]Each character can only create one thread every 4 hours[/bold], so make it count.
+
+  Press 'View' on a thread to read it and add comments. Comments can be posted once every 5 seconds.
+  You can delete your own threads and comments at any time.
+
+  ### Notifications
+  Message Board Consoles will announce out loud whenever a new thread or comment is posted.
+  Press 'Mute Notifications' to silence a console.
+
+  ## Direct Messages
+  Direct messages can be sent to any character by name from a Message Board Console using 'Compose Message'.
+  The recipient is notified immediately wherever they are.
+
+  Your conversations can be read at any time through the 'Messages' tab of the [bold]Job Network Menu[/bold], but replying requires a Message Board Console.
+</Document>

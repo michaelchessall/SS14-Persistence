@@ -129,9 +129,11 @@
   metabolisms:
     Digestion:
       effects:
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         factor: 0.5
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: -0.5 # high salt content
 
 - type: reagent
@@ -146,23 +148,28 @@
   boilingPoint: 1465.0
   meltingPoint: 800.7
   plantMetabolism:
-  - !type:PlantAdjustWater
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: -3
-  - !type:PlantAdjustNutrition
+    nutrient: Water
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: -0.3
-  - !type:PlantAdjustToxins
-    amount: 8
+    nutrient: Nutrient
+  - !type:PlantAdjustNutrient # Persistence 14
+    amount: 0.8
+    nutrient: Toxin
   - !type:PlantAdjustWeeds
     amount: -2
-  - !type:PlantAdjustPests
+  - !type:PlantAdjustNutrient # Persistence 14
     amount: -1
+    nutrient: Pest
   - !type:PlantAdjustHealth
     amount: -2
   metabolisms:
     Digestion:
       effects:
       # eating salt on its own kinda sucks, kids
-      - !type:SatiateThirst
+      - !type:Satiate
+        satiationType: Thirst
         factor: -0.5
 
 - type: reagent
@@ -181,8 +188,16 @@
     Digestion:
       # 12 diona blood for 1 unit of syrup, this stuff better be worthwhile.
       effects:
-      - !type:SatiateHunger
+      - !type:Satiate
+        satiationType: Hunger
         factor: 6.0 #Stronger than cookedramen
+  plantMetabolism: # Persistence 14
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Sugar
+  - !type:PlantAdjustNutrient
+    amount: 2
+    nutrient: Pest
   footstepSound:
     collection: FootstepSlime
     params:

@@ -1,4 +1,5 @@
 ﻿construction-category-all = All
+construction-category-atmospherics = Atmospherics
 construction-category-furniture = Furniture
 construction-category-storage = Storage
 construction-category-tools = Tools
@@ -13,3 +14,5 @@ construction-category-clothing = Clothing
 construction-category-favorites = Favorites
 construction-add-favorite-button = Add to favorites
 construction-remove-from-favorite-button = Remove from favorites
+# _PSurvival
+construction-category-signs = Signs

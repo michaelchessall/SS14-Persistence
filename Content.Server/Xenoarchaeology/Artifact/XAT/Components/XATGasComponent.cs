@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Content.Shared.Atmos;
 
 namespace Content.Server.Xenoarchaeology.Artifact.XAT.Components;
@@ -9,10 +10,10 @@ namespace Content.Server.Xenoarchaeology.Artifact.XAT.Components;
 public sealed partial class XATGasComponent : Component
 {
     /// <summary>
-    /// The gas that is related to trigger.
+    /// The gases that are related to the trigger. Any one of them satisfying the threshold is enough.
     /// </summary>
     [DataField]
-    public Gas TargetGas;
+    public HashSet<Gas> Gases = new();
 
     /// <summary>
     /// The amount of gas needed.

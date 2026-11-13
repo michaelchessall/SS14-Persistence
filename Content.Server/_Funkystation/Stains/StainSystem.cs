@@ -9,10 +9,12 @@ public sealed class StainSystem : SharedStainSystem
 {
     [Dependency] private readonly TagSystem _tag = null!;
 
+    public const string DNASolutionScannableTag = "DNASolutionScannable";
+
     protected override void OnStained(Entity<StainableComponent> ent, Entity<SolutionComponent> solution)
     {
         base.OnStained(ent, solution);
 
-        _tag.AddTag(ent.Owner, "DNASolutionScannable");
+        _tag.AddTag(ent.Owner, DNASolutionScannableTag);
     }
 }

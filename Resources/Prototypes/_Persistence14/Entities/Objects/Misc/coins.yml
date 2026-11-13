@@ -5,16 +5,29 @@
   name: coin
   description: A flat bit of metal. If it was still in circulation, inflation would've made it worthless. Since it isn't, it's worth enough to keep in a book.
   components:
-  - type: Appearance
-  - type: Sprite
-    state: coin_1
-    layers:
-    - state: coin_1
-      map: ["base"]
   - type: Item
     size: Tiny
   - type: StackPrice
     price: 0
+  - type: NFCoin # So it can go in wallets
+  - type: Dice
+    sides: 2
+    currentValue: 1
+    sound: !type:SoundCollectionSpecifier
+      collection: Coin
+    values: CoinFaces
+    examineLandedOnText: dice-component-roll-specific
+    examineObjectText: null # no need to show how many sides it has, it's a coin
+  - type: Tag
+    tags:
+    - Dice
+  - type: UseDelay
+
+- type: entity
+  abstract: true
+  id: BaseCoinStackable
+  parent: BaseCoin
+  components:
   - type: Stack
     count: 1
     baseLayer: base
@@ -23,15 +36,18 @@
     - coin_2
     - coin_3
     - coin_4
-  - type: NFCoin # So it can go in wallets
 
 - type: entity
   id: CoinIron
-  parent: BaseCoin
+  parent: BaseCoinStackable
   name: iron coin
   components:
   - type: Sprite
     sprite: Objects/Misc/Coins/coin_iron.rsi
+    state: coin_1
+    layers:
+    - state: coin_1
+      map: ["base"]
   - type: PhysicalComposition
     materialComposition:
       Steel: 10
@@ -66,11 +82,15 @@
 
 - type: entity
   id: CoinSilver
-  parent: BaseCoin
+  parent: BaseCoinStackable
   name: silver coin
   components:
   - type: Sprite
     sprite: Objects/Misc/Coins/coin_silver.rsi
+    state: coin_1
+    layers:
+    - state: coin_1
+      map: ["base"]
   - type: PhysicalComposition
     materialComposition:
       Silver: 10
@@ -105,11 +125,15 @@
 
 - type: entity
   id: CoinGold
-  parent: BaseCoin
+  parent: BaseCoinStackable
   name: gold coin
   components:
   - type: Sprite
     sprite: Objects/Misc/Coins/coin_gold.rsi
+    state: coin_1
+    layers:
+    - state: coin_1
+      map: ["base"]
   - type: PhysicalComposition
     materialComposition:
       Gold: 10
@@ -144,11 +168,15 @@
 
 - type: entity
   id: CoinDiamond
-  parent: BaseCoin
+  parent: BaseCoinStackable
   name: diamond coin
   components:
   - type: Sprite
     sprite: Objects/Misc/Coins/coin_diamond.rsi
+    state: coin_1
+    layers:
+    - state: coin_1
+      map: ["base"]
   - type: PhysicalComposition
     materialComposition:
       Diamond: 10
@@ -183,11 +211,15 @@
 
 - type: entity
   id: CoinAdamantine
-  parent: BaseCoin
+  parent: BaseCoinStackable
   name: adamantine coin
   components:
   - type: Sprite
     sprite: Objects/Misc/Coins/coin_adamantine.rsi
+    state: coin_1
+    layers:
+    - state: coin_1
+      map: ["base"]
   - type: PhysicalComposition
     materialComposition:
       Bananium: 5

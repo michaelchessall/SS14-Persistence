@@ -106,7 +106,7 @@
                             </PanelContainer>
 
                             <!-- Access configuration -->
-                            <access:GroupedAccessLevelChecklist Name="AccessConfiguration"/>
+                            <access:GroupedAccessEntryChecklist Name="AccessConfiguration"/>
 
                         </BoxContainer>
                     </PanelContainer>

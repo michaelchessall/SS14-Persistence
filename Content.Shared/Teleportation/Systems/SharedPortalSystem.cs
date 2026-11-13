@@ -1,8 +1,9 @@
-using Content.Shared.Ghost;
+using System.Linq;
 using Content.Shared.Movement.Pulling.Components;
 using Content.Shared.Movement.Pulling.Systems;
 using Content.Shared.Popups;
 using Content.Shared.Projectiles;
+using Content.Shared.Tag;
 using Content.Shared.Teleportation.Components;
 using Content.Shared.Verbs;
 using Content.Shared.Weapons.Misc;
@@ -15,7 +16,8 @@ using Robust.Shared.Physics.Systems;
 using Robust.Shared.Player;
 using Robust.Shared.Random;
 using Robust.Shared.Utility;
-using System.Linq;
+using Robust.Shared.Prototypes;
+using Content.Shared._Persistence14.PersistentIdentifier;
 
 namespace Content.Shared.Teleportation.Systems;
 
@@ -24,19 +26,24 @@ namespace Content.Shared.Teleportation.Systems;
 /// Uses <see cref="LinkedEntitySystem"/> to get linked portals.
 /// </summary>
 /// <seealso cref="PortalComponent"/>
-public abstract class SharedPortalSystem : EntitySystem
+public abstract partial class SharedPortalSystem : EntitySystem
 {
-    [Dependency] private readonly IRobustRandom _random = default!;
-    [Dependency] private readonly INetManager _netMan = default!;
-    [Dependency] private readonly EntityLookupSystem _lookup = default!;
-    [Dependency] private readonly SharedAudioSystem _audio = default!;
-    [Dependency] private readonly SharedTransformSystem _transform = default!;
-    [Dependency] private readonly PullingSystem _pulling = default!;
-    [Dependency] private readonly SharedPopupSystem _popup = default!;
-    [Dependency] private readonly SharedJointSystem _joints = default!;
+    [Dependency] private INetManager _netMan = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private EntityLookupSystem _lookup = default!;
+    [Dependency] private PullingSystem _pulling = default!;
+    [Dependency] private SharedAudioSystem _audio = default!;
+    [Dependency] private SharedJointSystem _joints = default!;
+    [Dependency] private SharedPopupSystem _popup = default!;
+    [Dependency] private SharedTransformSystem _transform = default!;
+    [Dependency] private TagSystem _tag = default!;
+    [Dependency] private PersistentIdentifierSystem _pid = default!;
+    [Dependency] private LinkedEntitySystem _link = default!;
 
     private const string PortalFixture = "portalFixture";
     private const string ProjectileFixture = "projectile";
+    private static readonly ProtoId<TagPrototype> ShowTraverseVerbTag = "AllowPortalTraversal";
+    private static readonly ProtoId<TagPrototype> PreventCollisionTag = "PreventPortalCollision";
 
     private const int MaxRandomTeleportAttempts = 20;
 
@@ -52,7 +59,7 @@ public abstract class SharedPortalSystem : EntitySystem
     private void OnGetVerbs(Entity<PortalComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
     {
         // Traversal altverb for ghosts to use that bypasses normal functionality
-        if (!args.CanAccess || !HasComp<GhostComponent>(args.User))
+        if (!args.CanAccess || !_tag.HasTag(args.User, ShowTraverseVerbTag))
             return;
 
         // Don't use the verb with unlinked or with multi-output portals
@@ -73,8 +80,10 @@ public abstract class SharedPortalSystem : EntitySystem
                     return;
 
                 var destination = link.LinkedEntities.First();
+                if (!_pid.TryResolveId(destination, out var destEnt))
+                    return;
 
-                TeleportEntity(ent, subject, Transform(destination).Coordinates, destination, false);
+                TeleportEntity(ent, subject, Transform(destEnt.Owner).Coordinates, destEnt.Owner, false);
             },
             Disabled = disabled,
             Text = Loc.GetString("portal-component-ghost-traverse"),
@@ -91,6 +100,9 @@ public abstract class SharedPortalSystem : EntitySystem
             return;
 
         var subject = args.OtherEntity;
+
+        if (_tag.HasTag(args.OtherEntity, PreventCollisionTag))
+            return;
 
         // best not.
         if (Transform(subject).Anchored)
@@ -117,19 +129,21 @@ public abstract class SharedPortalSystem : EntitySystem
             return;
         }
 
-        if (TryComp<LinkedEntityComponent>(ent, out var link))
+        if (TryComp<LinkedEntityComponent>(ent, out var link) && link.LinkedEntities.Count != 0)
         {
-            if (link.LinkedEntities.Count == 0)
-                return;
-
             // check prediction
             if (_netMan.IsClient && !CanPredictTeleport((ent, link)))
                 return;
 
             // pick a target and teleport there
             var target = _random.Pick(link.LinkedEntities);
+            if (!_pid.TryResolveId(target, out var targetEnt))
+            {
+                _link.TrySever(ent.Owner, target);
+                return; // TODO: It would make more sense to pick another...
+            }
 
-            if (HasComp<PortalComponent>(target))
+            if (HasComp<PortalComponent>(targetEnt.Owner))
             {
                 // if target is a portal, signal that they shouldn't be immediately teleported back
                 var timeout = EnsureComp<PortalTimeoutComponent>(subject);
@@ -137,7 +151,7 @@ public abstract class SharedPortalSystem : EntitySystem
                 Dirty(subject, timeout);
             }
 
-            TeleportEntity(ent, subject, Transform(target).Coordinates, target);
+            TeleportEntity(ent, subject, Transform(targetEnt.Owner).Coordinates, targetEnt.Owner);
             return;
         }
 
@@ -186,11 +200,11 @@ public abstract class SharedPortalSystem : EntitySystem
     private bool CanPredictTeleport(Entity<LinkedEntityComponent> portal)
     {
         var first = portal.Comp.LinkedEntities.First();
-        var exists = Exists(first);
+        var exists = _pid.TryResolveId(first, out var firstEnt);
 
         if (!exists ||
             portal.Comp.LinkedEntities.Count != 1 || // 0 and >1 use RNG
-            exists && Transform(first).MapID == MapId.Nullspace) // The linked entity is most likely outside PVS
+            exists && Transform(firstEnt.Owner).MapID == MapId.Nullspace) // The linked entity is most likely outside PVS
             return false;
 
         return true;
@@ -234,14 +248,6 @@ public abstract class SharedPortalSystem : EntitySystem
 
         var arrivalSound = CompOrNull<PortalComponent>(targetEntity)?.ArrivalSound ?? ent.Comp.ArrivalSound;
         var departureSound = ent.Comp.DepartureSound;
-
-        // Some special cased stuff: projectiles should stop ignoring shooter when they enter a portal, to avoid
-        // stacking 500 bullets in between 2 portals and instakilling people--you'll just hit yourself instead
-        // (as expected)
-        if (TryComp<ProjectileComponent>(subject, out var projectile))
-        {
-            projectile.IgnoreShooter = false;
-        }
 
         LogTeleport(ent, subject, Transform(subject).Coordinates, target);
 

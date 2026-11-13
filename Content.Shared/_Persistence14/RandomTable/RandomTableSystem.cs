@@ -9,7 +9,6 @@ public sealed partial class RandomTableSystem : EntitySystem
 {
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IPrototypeManager _protoMan = default!;
-    [Dependency] private IEntityManager _entMan = default!;
 
     public override void Initialize()
     {
@@ -184,8 +183,9 @@ public sealed partial class RandomTableSystem : EntitySystem
             Random = _random,
             PrototypeManager = _protoMan,
             RandomTableSystem = this,
-            EntityManager = _entMan,
+            EntityManager = EntityManager,
             State = state,
+            LogManager = LogManager
         };
 
         return ctx;

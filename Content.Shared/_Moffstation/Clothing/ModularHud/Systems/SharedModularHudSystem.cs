@@ -53,7 +53,6 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly BlurryVisionSystem _blurryVision = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly SharedFlashSystem _flash = default!;
     [Dependency] private readonly SharedHandsSystem _hands = default!;
     [Dependency] private readonly InventorySystem _inventory = default!;
     [Dependency] private readonly SharedPopupSystem _popup = default!;
@@ -102,8 +101,6 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowJobIconsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowHealthBarsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowHealthIconsComponent>>();
-        SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowHungerIconsComponent>>();
-        SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowThirstIconsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowMindShieldIconsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowSyndicateIconsComponent>>();
         SubscribeRelaysForEffectEvents<RefreshEquipmentHudEvent<ShowCriminalRecordIconsComponent>>();
@@ -118,7 +115,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
         bool requiresActiveSlots = true,
         Func<Entity<ModularHudModuleComponent>, bool>? predicate = null
     ) where TArgs : notnull => Subs.SubscribeWithRelay(
-        delegate(Entity<ModularHudComponent> entity, ref TArgs args)
+        delegate (Entity<ModularHudComponent> entity, ref TArgs args)
         {
             // Only relay if we're in the slots which this HUD is active in.
             if (requiresActiveSlots && !_inventory.InSlotWithAnyFlags(entity.Owner, entity.Comp.ActiveSlots))
@@ -170,7 +167,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
 
             if (entity.Comp.NumContainedModules >= entity.Comp.MaximumContainedModules)
             {
-                _popup.PopupPredictedCursor(
+                _popup.PopupCursor(
                     Loc.GetString(
                         entity.Comp.ModuleSlotsFullErrorText,
                         ("hud", Name(entity))
@@ -183,7 +180,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             var moduleFailureReqs = GetRequirementFailures(entity, (args.Used, moduleComp)).ToList();
             if (moduleFailureReqs.Count != 0)
             {
-                _popup.PopupPredictedCursor(
+                _popup.PopupCursor(
                     string.Join(", ", moduleFailureReqs),
                     args.User
                 );
@@ -208,7 +205,7 @@ public abstract partial class SharedModularHudSystem : EntitySystem
 
             if (!usedHasQuality)
             {
-                _popup.PopupPredictedCursor(
+                _popup.PopupCursor(
                     Loc.GetString(
                         entity.Comp.MissingToolQualityErrorText,
                         ("quality", Loc.GetString(toolQuality?.Name ?? "Unknown")),
@@ -369,12 +366,12 @@ public abstract partial class SharedModularHudSystem : EntitySystem
 
     private void OnGotEquipped(Entity<ModularHudComponent> entity, ref GotEquippedEvent args)
     {
-        RefreshEffectsForWearerForContainedModules(entity, args.Equipee);
+        RefreshEffectsForWearerForContainedModules(entity, args.EquipTarget);
     }
 
     private void OnGotUneqipped(Entity<ModularHudComponent> entity, ref GotUnequippedEvent args)
     {
-        RefreshEffectsForWearerForContainedModules(entity, args.Equipee);
+        RefreshEffectsForWearerForContainedModules(entity, args.EquipTarget);
     }
 
     /// This function contains a functional grab-bag of whatever function calls / event raisings need to happen to cause

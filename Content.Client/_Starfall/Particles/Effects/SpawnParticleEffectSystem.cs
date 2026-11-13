@@ -9,12 +9,11 @@ namespace Content.Client._Starfall.Particles.Effects;
 /// </summary>
 public sealed partial class SpawnParticleEffectSystem : EntityEffectSystem<TransformComponent, SpawnParticleEffect>
 {
-    [Dependency] private readonly ParticleSystem _particles = default!;
-    [Dependency] private readonly IPrototypeManager _proto = default!;
+    [Dependency] private ParticleSystem _particles = default!;
 
     protected override void Effect(Entity<TransformComponent> entity, ref EntityEffectEvent<SpawnParticleEffect> args)
     {
-        if (!_proto.TryIndex(args.Effect.Effect, out var proto))
+        if (!ProtoMan.TryIndex(args.Effect.Effect, out var proto))
         {
             Log.Error($"SpawnParticleEffect references unknown particle effect '{args.Effect.Effect}'");
             return;

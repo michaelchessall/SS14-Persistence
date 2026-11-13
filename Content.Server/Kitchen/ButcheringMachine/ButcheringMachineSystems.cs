@@ -1,10 +1,10 @@
-using Content.Server.Botany.Components;
 using Content.Server.Fluids.EntitySystems;
 using Content.Server.Materials;
 using Content.Server.Power.Components;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Audio;
 using Content.Shared.Body.Components;
+using Content.Shared.Botany.Items.Components;
 using Content.Shared.CCVar;
 using Content.Shared.Chemistry.EntitySystems;
 using Content.Shared.Climbing.Events;
@@ -32,28 +32,29 @@ using Robust.Shared.Physics.Components;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
 using System.Numerics;
+using Content.Shared.Tools.Components;
 
 namespace Content.Server.Kitchen.ButcheringMachine
 {
-    public sealed class ButcheringMachineSystem : EntitySystem
+    public sealed partial class ButcheringMachineSystem : EntitySystem
     {
-        [Dependency] private readonly IConfigurationManager _configManager = default!;
-        [Dependency] private readonly SharedTransformSystem _transform = default!;
-        [Dependency] private readonly MobStateSystem _mobState = default!;
-        [Dependency] private readonly SharedJitteringSystem _jitteringSystem = default!;
-        [Dependency] private readonly SharedAudioSystem _sharedAudioSystem = default!;
-        [Dependency] private readonly SharedAmbientSoundSystem _ambientSoundSystem = default!;
-        [Dependency] private readonly SharedPopupSystem _popup = default!;
-        [Dependency] private readonly PuddleSystem _puddleSystem = default!;
-        [Dependency] private readonly SharedSolutionContainerSystem _solution = default!;
-        [Dependency] private readonly ThrowingSystem _throwing = default!;
-        [Dependency] private readonly IRobustRandom _robustRandom = default!;
-        [Dependency] private readonly ISharedAdminLogManager _adminLogger = default!;
-        [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
-        [Dependency] private readonly IPlayerManager _playerManager = default!;
-        [Dependency] private readonly MaterialStorageSystem _material = default!;
-        [Dependency] private readonly SharedMindSystem _minds = default!;
-        [Dependency] private readonly InventorySystem _inventory = default!;
+        [Dependency] private IConfigurationManager _configManager = default!;
+        [Dependency] private SharedTransformSystem _transform = default!;
+        [Dependency] private MobStateSystem _mobState = default!;
+        [Dependency] private SharedJitteringSystem _jitteringSystem = default!;
+        [Dependency] private SharedAudioSystem _sharedAudioSystem = default!;
+        [Dependency] private SharedAmbientSoundSystem _ambientSoundSystem = default!;
+        [Dependency] private SharedPopupSystem _popup = default!;
+        [Dependency] private PuddleSystem _puddleSystem = default!;
+        [Dependency] private SharedSolutionContainerSystem _solution = default!;
+        [Dependency] private ThrowingSystem _throwing = default!;
+        [Dependency] private IRobustRandom _robustRandom = default!;
+        [Dependency] private ISharedAdminLogManager _adminLogger = default!;
+        [Dependency] private SharedDoAfterSystem _doAfterSystem = default!;
+        [Dependency] private IPlayerManager _playerManager = default!;
+        [Dependency] private MaterialStorageSystem _material = default!;
+        [Dependency] private SharedMindSystem _minds = default!;
+        [Dependency] private InventorySystem _inventory = default!;
 
         public static readonly ProtoId<MaterialPrototype> BiomassPrototype = "Biomass";
 
@@ -135,7 +136,7 @@ namespace Content.Server.Kitchen.ButcheringMachine
         private void OnInit(EntityUid uid, ActiveButcheringMachineComponent component, ComponentInit args)
         {
             _jitteringSystem.AddJitter(uid, -10, 100);
-            _sharedAudioSystem.PlayPvs("/Audio/Machines/reclaimer_startup.ogg", uid);
+            _sharedAudioSystem.PlayPvs(component.SoundEffect, uid);
             _ambientSoundSystem.SetAmbience(uid, true);
         }
 
@@ -218,11 +219,18 @@ namespace Content.Server.Kitchen.ButcheringMachine
                 _solution.ResolveSolution(toProcess, stream.BloodSolutionName, ref stream.BloodSolution, out var solution))
             {
                 component.BloodReagents = solution.Clone();
-                component.BloodReagents.ScaleSolution(50 / component.BloodReagents.Volume);
+                if (component.BloodReagents.Volume != 0)
+                {
+                    component.BloodReagents.ScaleSolution(50 / component.BloodReagents.Volume);
+                }
             }
             if (TryComp<ButcherableComponent>(toProcess, out var butcherableComponent))
             {
                 component.SpawnedEntities = butcherableComponent.SpawnedEntities;
+            }
+            else if (TryComp<ToolRefinableComponent>(toProcess, out var refinable))
+            {
+                component.SpawnedEntities = refinable.RefineResult;
             }
 
             component.ProcessingTimer = physics.FixturesMass * component.ProcessingTimePerUnitMass;

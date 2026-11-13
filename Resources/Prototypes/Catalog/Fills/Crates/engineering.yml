@@ -179,21 +179,6 @@
         - id: DoorElectronics
           amount: 6
 
-- type: entity
-  parent: CrateCommandSecure
-  id: CrateEvaKit
-  name: EVA kit
-  description: A set consisting of two prestigious EVA suits and helmets.
-  components:
-  - type: EntityTableContainerFill
-    containers:
-      entity_storage: !type:AllSelector
-        children:
-        - id: ClothingHeadHelmetEVA
-          amount: 2
-        - id: ClothingOuterHardsuitEVA
-          amount: 2
-
 #Persistence 14
 
 - type: entity

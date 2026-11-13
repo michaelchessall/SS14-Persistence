@@ -1,0 +1,12 @@
+- type: rumor
+  id: AnomalyStabilizeBasic
+  name: Anomaly-Keeper
+  description: "We've detected an anomaly that's trending towards super-criticality! Stabilize it."
+  eventGrids:
+    - /Maps/Rumors/Salvage/Medium/outpost-arm-1art1anom.yml
+    - /Maps/Rumors/Salvage/Medium/displaced_telescience-1anom1art.yml
+    - /Maps/Rumors/Salvage/Medium/wrecklaimer-1anomcult2t1g.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionTarget: 5
+  completionType: AnomalyStabilize

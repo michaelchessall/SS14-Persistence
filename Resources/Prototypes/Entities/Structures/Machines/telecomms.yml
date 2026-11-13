@@ -1,5 +1,5 @@
 - type: entity
-  parent: [ BaseMachinePowered, ConstructibleMachine ]
+  parent: [ BaseMachinePowered, ConstructibleMachine, BaseConstructibleMachineDestructible ]
   id: TelecomServer
   name: telecommunication server
   description: When powered and filled with encryption keys it allows radio headset communication.
@@ -96,7 +96,7 @@
     color: "#39b8ee"
   - type: LitOnPowered
   - type: ApcPowerReceiver
-    powerLoad: 5000 
+    powerLoad: 5000
   - type: GenericVisualizer
     visuals:
       enum.PowerDeviceVisuals.Powered:
@@ -143,7 +143,7 @@
     range: 5
     enabled: false
     sound:
-      path: /Audio/Ambience/Objects/server_fans.ogg
+      collection: ServerFans
   - type: WiresVisuals
   - type: Physics
     bodyType: Static
@@ -160,17 +160,15 @@
         - MachineLayer
   - type: Destructible
     thresholds:
-    - trigger:
-        !type:DamageTrigger
-        damage: 100
+    - trigger: !type:DamageTrigger
+        damage: 175
       behaviors:
       - !type:PlaySoundBehavior
         sound:
           collection: MetalBreak
-      - !type:ChangeConstructionNodeBehavior
-        node: machineFrame
-      - !type:DoActsBehavior
-        acts: ["Destruction"]
+      - !type:EmptyContainersBehaviour
+        containers:
+        - key_slots
   - type: Machine
     board: TelecomServerCircuitboard
   - type: WiresPanel
@@ -181,15 +179,21 @@
     keysExtractionMethod: Prying
     keySlots: 10
   - type: TelecomServer
+    maxRange: 1024 # Increased from 512 for Persistence14
   - type: ContainerContainer
     containers:
       key_slots: !type:Container
       machine_board: !type:Container
       machine_parts: !type:Container
+  - type: Upgradeable
+    upgrades:
+      TelecomServerRangeLuminal : 0
+      TelecomServerRangeShadow : 0
 
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilled
+  categories: [ HideSpawnMenu ]
   suffix: Filled All
   components:
   - type: ContainerFill
@@ -207,6 +211,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCommon
+  categories: [ HideSpawnMenu ]
   suffix: Common
   components:
   - type: ContainerFill
@@ -217,6 +222,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCargo
+  categories: [ HideSpawnMenu ]
   suffix: Cargo
   components:
   - type: ContainerFill
@@ -227,6 +233,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledEngineering
+  categories: [ HideSpawnMenu ]
   suffix: Engineering
   components:
   - type: ContainerFill
@@ -237,6 +244,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledMedical
+  categories: [ HideSpawnMenu ]
   suffix: Medical
   components:
   - type: ContainerFill
@@ -247,6 +255,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledScience
+  categories: [ HideSpawnMenu ]
   suffix: Science
   components:
   - type: ContainerFill
@@ -257,6 +266,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledSecurity
+  categories: [ HideSpawnMenu ]
   suffix: Security
   components:
   - type: ContainerFill
@@ -267,6 +277,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledService
+  categories: [ HideSpawnMenu ]
   suffix: Service
   components:
   - type: ContainerFill
@@ -277,6 +288,7 @@
 - type: entity
   parent: TelecomServer
   id: TelecomServerFilledCommand
+  categories: [ HideSpawnMenu ]
   suffix: Command
   components:
   - type: ContainerFill
@@ -287,12 +299,12 @@
 
 - type: entity
   parent: TelecomServer
-  id: TelecomServer1k
+  id: AdvancedTelecomServer
   name: high tech telecommunication server
   components:
   - type: TelecomServer
-    maxRange: 1024
+    maxRange: 2048 # Increased from 1024
   - type: ApcPowerReceiver
-    powerLoad: 10000 
+    powerLoad: 15000
   - type: Machine
-    board: TelecomServer1kCircuitboard
+    board: TelecomServerAdvancedCircuitboard

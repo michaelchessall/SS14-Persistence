@@ -1,5 +1,5 @@
-using Content.Client._RMC14.Chat; // Persistence: Chat stacking from RMC14 - pull/7587
 using Content.Client.UserInterface.Systems.Chat.Controls;
+using Content.Client._RMC14.Chat; // Persistence: Chat stacking from RMC14 - pull/7587
 using Content.Shared.Chat;
 using Content.Shared.Input;
 using Robust.Client.Audio;
@@ -19,17 +19,17 @@ namespace Content.Client.UserInterface.Systems.Chat.Widgets;
 [Virtual]
 public partial class ChatBox : UIWidget
 {
-    [Dependency] private readonly IEntityManager _entManager = default!;
-    [Dependency] private readonly ILogManager _log = default!;
+    [Dependency] private IEntityManager _entManager = default!;
+    [Dependency] private ILogManager _log = default!;
 
     private readonly ISawmill _sawmill;
     private readonly ChatUIController _controller;
 
+    public readonly Queue<RepeatedMessage> RepeatQueue = new(); // Persistence: Chat stacking from RMC14 - pull/7587
+
     public bool Main { get; set; }
 
     public ChatSelectChannel SelectedChannel => ChatInput.ChannelSelector.SelectedChannel;
-
-    public readonly Queue<RepeatedMessage> RepeatQueue = new(); // Persistence: Chat stacking from RMC14 - pull/7587
 
     public ChatBox()
     {
@@ -64,13 +64,13 @@ public partial class ChatBox : UIWidget
         }
 
         if (msg is { Read: false, AudioPath: { } })
-            _entManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.WithVolume(msg.AudioVolume));
+            _entManager.System<AudioSystem>().PlayGlobal(msg.AudioPath, Filter.Local(), false, AudioParams.Default.AddVolume(msg.AudioVolume));
 
         msg.Read = true;
 
         var color = msg.MessageColorOverride ?? msg.Channel.TextColor();
 
-        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender); // Persistence: Chat stacking from RMC14 - pull/7587
+        AddLine(msg.WrappedMessage, color, msg.SenderEntity, msg.Message, msg.Channel, msg.RepeatCheckSender);
     }
 
     private void OnHighlightsUpdated(string highlights)
@@ -113,14 +113,22 @@ public partial class ChatBox : UIWidget
         _controller.UpdateHighlights(highlighs);
     }
 
-    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender) // Persistence: Chat stacking from RMC14 - pull/7587
+    public void AddLine(string message, Color color)
+    {
+        var formatted = new FormattedMessage(3);
+        formatted.PushColor(color);
+        formatted.AddMarkupOrThrow(message);
+        formatted.Pop();
+        Contents.AddMessage(formatted, tagsAllowed: null);
+    }
+
+    public void AddLine(string message, Color color, NetEntity sender, string unwrapped, ChatChannel channel, bool repeatCheckSender)
     {
         var formatted = new FormattedMessage(3);
         formatted.PushColor(color);
         formatted.AddMarkupOrThrow(message);
         formatted.Pop();
 
-        // Persistence: Chat stacking from RMC14 - pull/7587
         if (_entManager.System<CMChatSystem>().TryRepetition(this, Contents, formatted, sender, unwrapped, channel, repeatCheckSender))
             return;
 

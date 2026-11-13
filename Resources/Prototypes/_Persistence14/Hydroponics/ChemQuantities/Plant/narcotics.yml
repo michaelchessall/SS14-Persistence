@@ -1,0 +1,113 @@
+- type: plantChemQuantity
+  id: BasicSmokable # THC and nicotine
+  baseAmount: 3
+  requirements:
+    Nutrient:
+      requirement: 3
+    Fertilizer:
+      bonusRequirement: 0.6
+      bonusAmount: 3
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: GlassthleDesoxyephedrine
+  baseAmount: 2
+  requirements: # Placeholder values
+    Nutrient:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.4
+      bonusAmount: 4
+
+- type: plantChemQuantity
+  id: RainbowCannabisSpaceMirage
+  baseAmount: 2
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.8
+      bonusAmount: 4
+    CarbonDioxide:
+      bonusRequirement: 0.5
+      bonusAmount: 5
+
+- type: plantChemQuantity
+  id: RainbowCannabisMindbreaker
+  baseAmount: 2
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: RainbowCannabisHappiness
+  baseAmount: 2
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 2
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: AmbrosiaDuesSpaceMirage
+  baseAmount: 1
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.4
+      bonusAmount: 2
+    CarbonDioxide:
+      bonusRequirement: 0.2
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: AmbrosiaDuesNectar
+  baseAmount: 1
+  requirements:
+    Water:
+      requirement: 2
+    Nutrient:
+      requirement: 1
+    Radiation:
+      requirement: 1
+      bonusRequirement: 9
+      bonusAmount: 2
+
+- type: plantChemQuantity
+  id: WorldPeaHappiness
+  baseAmount: 1
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1
+    CarbonDioxide:
+      bonusRequirement: 0.1
+      bonusAmount: 1
+
+- type: plantChemQuantity
+  id: WorldPeaPax
+  baseAmount: 1
+  requirements: # Placeholder requirements
+    Nutrient:
+      requirement: 1
+    Fertilizer:
+      bonusRequirement: 0.2
+      bonusAmount: 1

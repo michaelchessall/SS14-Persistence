@@ -35,20 +35,20 @@
     - ReinforcedLattice
   - type: Extractable
     grindableSolutionName: rod
-  - type: SolutionContainerManager
-    solutions:
-      rod:
-        reagents:
-        - ReagentId: Titanium
-          Quantity: 5.0
+  - type: Solution
+    id: rod
+    solution:
+      reagents:
+      - ReagentId: Titanium
+        Quantity: 5.0
   - type: PhysicalComposition
     materialComposition:
       Titanium: 50 #Half of a regular titanium sheet to reflect the crafting recipe
   - type: GuideHelp
-    guides: 
+    guides:
     - ExpandingRepairingStation
   - type: Tag
-    tags: 
+    tags:
     - ConstructionMaterial
 
 - type: entity

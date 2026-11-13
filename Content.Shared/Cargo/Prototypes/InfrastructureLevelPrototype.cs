@@ -18,6 +18,8 @@ public sealed partial class InfrastructureLevelPrototype : IPrototype
 
     [DataField]
     public string Name = "";
+    [DataField]
+    public float BountyPriceMult = 0.6f;
 
     [DataField]
     public List<ProtoId<CargoMarketPrototype>> Markets = new()
