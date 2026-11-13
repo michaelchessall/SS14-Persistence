@@ -89,7 +89,7 @@
           Bounty: { state: bounty }
           CaptainsPaper: { state: captains_paper }
           Invoice: { state: invoice }
-  - type: PaintableVisualizer
+  - type: PaintableVisualizer # Persistence: GasCanisterVisualizer < PaintableVisualizer
   - type: ActivatableUI
     key: enum.GasCanisterUiKey.Key
   - type: UIRequiresLock

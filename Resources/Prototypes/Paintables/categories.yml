@@ -24,12 +24,12 @@
   - WallLocker
   - WallCloset
 
-- type: paintableGroupCategory
+- type: paintableGroupCategory # Persistence
   id: Posters
   groups:
   - Posters
 
-- type: paintableGroupCategory
+- type: paintableGroupCategory # Persistence
   id: Signs
   groups:
   - SignStandard

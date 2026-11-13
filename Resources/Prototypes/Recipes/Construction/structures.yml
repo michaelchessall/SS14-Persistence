@@ -1833,6 +1833,7 @@
   canRotate: false
   canBuildInImpassable: true
 
+# Persistence
 - type: construction
   id: PosterBlank
   graph: PosterGraph
@@ -1844,6 +1845,7 @@
   canRotate: false
   canBuildInImpassable: true
 
+# Persistence
 - type: construction
   id: SignBlank
   graph: SignGraph
@@ -1855,6 +1857,7 @@
   canRotate: false
   canBuildInImpassable: true
 
+# Persistence
 - type: construction
   id: SignWarningBlank
   graph: SignWarningGraph
@@ -1866,6 +1869,7 @@
   canRotate: false
   canBuildInImpassable: true
 
+# Persistence
 - type: construction
   id: SignDirectionalBlank
   graph: SignDirectionalGraph
