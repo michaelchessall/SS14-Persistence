@@ -644,7 +644,7 @@ public sealed partial class RumorsSystem : EntitySystem
             if (bank == null) return;
             if (bank.TryGetAccount(name, out var account) && account != null)
             {
-                account.Balance += rumor.CashReward;
+                account.Balance += finalCashReward;
             }
 
         }
