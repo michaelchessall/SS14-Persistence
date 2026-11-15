@@ -58,6 +58,8 @@
 ## L ##
 
 ## M ##
+- type: Tag
+  id: MedFultonable # Marks items which can be fultoned by the Medical Fulton
 
 ## N ##
 
