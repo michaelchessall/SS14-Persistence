@@ -235,6 +235,9 @@
     - ModularHudFrames
     - ModularHudModules
     # Moffstation - End
+    # Persistence14 - Start
+    - MedicalFultonPack
+    # Persistence14 - End
   - type: EmagLatheRecipes
     emagDynamicPacks:
     - SecurityAmmo
@@ -514,6 +517,9 @@
     - ModularHudFrames
     - MedicalModularHudModules
     # Moffstation - End
+    # Persistence 14 - Start
+    - MedicalFultonPack
+    # Persistence 14 - End
   - type: Machine
     board: MedicalTechFabCircuitboard
   - type: StealTarget

@@ -62,3 +62,16 @@
   - type: Construction
     graph: BannerGraph
     node: bannerNexus
+
+- type: entity
+  id: BannerAegis
+  parent: BannerBase
+  name: aegis arms and armor banner
+  description: A banner embodying the spirit to arm and protect those in a dangerous world.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Structures/Decoration/banner.rsi
+    state: banner_aegis
+  - type: Construction
+    graph: BannerGraph
+    node: bannerAegis

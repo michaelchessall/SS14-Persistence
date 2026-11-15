@@ -19,6 +19,7 @@
     quickEquip: false
     slots:
     - back
+    - suitStorage # Persistence 14 - Allows the Portable Recharger to be worn on the suitStorage slot
   - type: Charger
     slotId: charger_slot
     portable: true
@@ -34,10 +35,11 @@
     allowSmartEquip: true
     slots:
       charger_slot:
-        ejectOnInteract: true
+        # ejectOnInteract: true # Persistence 14 - Disabling this allows you to alt+click to take an item out of it
         whitelist:
           components:
           - BatteryAmmoProvider
+          - PowerCell # Persistence 14 - Allows the Portable Recharger to also charge battery cells
   - type: PhysicalComposition
     materialComposition:
       Steel: 800

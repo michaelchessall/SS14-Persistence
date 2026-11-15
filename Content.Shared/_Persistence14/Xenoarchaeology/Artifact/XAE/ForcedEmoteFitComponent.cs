@@ -1,8 +1,10 @@
-using Content.Server.Xenoarchaeology.Artifact.XAE;
+using System.Linq;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Serialization.TypeSerializers.Implementations.Generic;
+using Robust.Shared.Timing;
 
-namespace Content.Server.Xenoarchaeology.Artifact.XAE.Components;
+namespace Content.Shared.Xenoarchaeology.Artifact.XAE.Components;
 
 /// <summary>
 /// Tracks the ongoing forced-emote "fits" applied to a mob by <see cref="XAEForcedEmoteComponent"/>.
@@ -11,7 +13,7 @@ namespace Content.Server.Xenoarchaeology.Artifact.XAE.Components;
 /// single emote would let a second fit overwrite the first, orphaning it so it never stops. The
 /// component is removed once no fits remain.
 /// </summary>
-[RegisterComponent, Access(typeof(XAEForcedEmoteSystem))]
+[RegisterComponent]
 public sealed partial class ForcedEmoteFitComponent : Component
 {
     /// <summary>

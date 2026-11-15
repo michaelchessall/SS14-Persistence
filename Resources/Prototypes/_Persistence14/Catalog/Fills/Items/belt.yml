@@ -24,3 +24,13 @@
     containers:
       item:
       - ExecutiveSpatha
+
+- type: entity
+  id: ClothingBeltSheathBroadswordFilled
+  parent: ClothingBeltSheathBroadsword
+  suffix: Filled
+  components:
+  - type: ContainerFill
+    containers:
+      item:
+      - CaptainBroadsword

@@ -28,6 +28,7 @@
     tags:
     - BodyBag
     - HighRiskItem # Able to delete people... not good.
+    - MedFultonable
   - type: Clickable
   - type: InteractionOutline
   - type: MovedByPressure

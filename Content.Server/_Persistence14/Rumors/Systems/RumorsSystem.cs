@@ -460,7 +460,7 @@ public sealed partial class RumorsSystem : EntitySystem
     private void OnBatteryChargeChanged(Entity<RumorPowerTargetComponent> ent, ref ChargeChangedEvent args)
     {
         if (!TryComp<BatteryComponent>(ent, out var batteryComp)) return;
-        if (args.CurrentCharge == batteryComp.MaxCharge)
+        if (args.CurrentCharge >= batteryComp.MaxCharge-10)
         {
             var query = EntityQueryEnumerator<RumorGetterComponent>();
             if (!TryComp<PersistentIdentifierComponent>(ent, out var pid)) return;
@@ -486,7 +486,7 @@ public sealed partial class RumorsSystem : EntitySystem
                                 if (target == pid.Id) continue;
                                 if (!_pid.TryResolveId(target, out var sister)) return;
                                 if (!TryComp<BatteryComponent>(sister, out var sisterBattery) || sisterBattery == null) return;
-                                if (sisterBattery.LastCharge < sisterBattery.MaxCharge)
+                                if (sisterBattery.LastCharge < sisterBattery.MaxCharge-10)
                                 {
                                     pass = false;
                                     break;
@@ -644,7 +644,7 @@ public sealed partial class RumorsSystem : EntitySystem
             if (bank == null) return;
             if (bank.TryGetAccount(name, out var account) && account != null)
             {
-                account.Balance += rumor.CashReward;
+                account.Balance += finalCashReward;
             }
 
         }
@@ -869,6 +869,8 @@ public sealed partial class RumorsSystem : EntitySystem
             // Bad. Very Bad. Failed to generate rumor.
             return false;
         }
+        if (string.IsNullOrEmpty(newRumor.OriginalOwner))
+            newRumor.OriginalOwner = Name(player);
         comp.Rumors.Add(newRumor);
         NotifyPlayer(player, $"Your job network reports you have recieved a new rumor: {newRumor.Name}", comp.NewRumorSound);
         _jobnet.UpdateUserInterface(player, comp.Owner);

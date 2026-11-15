@@ -721,9 +721,10 @@
   description: An experimental high-energy laser pistol with a self-charging nuclear battery.
   components:
   - type: Item
-    size: Normal
+    size: Small # Persistence 14 - Lets them fit in boots and pockets
     shape:
-    - 0,0,1,1
+    - 0,0,1,0 # Persistence 14 - Trangle :)
+    - 0,1,0,1 # Persistence 14
   - type: Sprite
     sprite: Objects/Weapons/Guns/Battery/advancedlasergun.rsi
     layers:

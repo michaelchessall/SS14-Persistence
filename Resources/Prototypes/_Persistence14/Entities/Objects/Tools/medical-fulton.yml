@@ -1,0 +1,44 @@
+- type: entity
+  parent: [ Fulton ]
+  id: MedicalFulton
+  name: medical extraction fulton
+  suffix: Full
+  description: A small label reads "For Emergency Medical Use Only", whatever that means. Strap to a bodybag to get out of dodge!
+  components:
+  - type: Fulton
+    duration: 15s
+    applyDuration: 2s
+    whitelist: 
+      tags:
+      - MedFultonable
+  - type: Item
+    size: Normal
+    inhandVisuals:
+      left:
+      - state: inhand-left
+      right:
+      - state: inhand-right
+  - type: Stack
+    stackType: FultonMedical
+    count: 10
+  - type: Sprite
+    drawdepth: SmallObjects
+    sprite: _Persistence14/Objects/Tools/fulton-medical.rsi
+    state: icon
+
+- type: entity
+  parent: [ MedicalFulton ]
+  id: MedicalFulton1
+  suffix: 1
+  components:
+  - type: Stack
+    count: 1
+
+
+- type: stack
+  id: FultonMedical
+  parent: Fulton
+  icon: 
+    sprite: _Persistence14/Objects/Tools/fulton-medical.rsi
+    state: icon
+  spawn: MedicalFulton

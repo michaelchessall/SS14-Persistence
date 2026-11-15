@@ -31,6 +31,38 @@
   - type: Appearance
 
 - type: entity
+  parent: [ClothingBeltBase, ClothingSlotBase, BaseCommandContraband]
+  id: ClothingBeltSheathBroadsword
+  name: NCC captain's broadsword sheath
+  description: An ornate sheath designed to represent the NCC and hold an officer's broadsword. An extremely rare sight.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Belt/nccsheath.rsi
+    state: sheath
+  - type: Clothing
+    sprite: _Persistence14/Clothing/Belt/nccsheath.rsi
+  - type: Item
+    size: Ginormous
+  - type: ItemSlots
+    slots:
+      item:
+        name: CaptainBroadsword
+        insertVerbText: sheath-insert-verb
+        ejectVerbText: sheath-eject-verb
+        insertSound: /Audio/Items/sheath.ogg
+        ejectSound: /Audio/Items/unsheath.ogg
+        whitelist:
+          tags:
+          - CaptainBroadsword
+  - type: ItemMapper
+    mapLayers:
+      sheath-broadsword:
+        whitelist:
+          tags:
+          - CaptainBroadsword
+  - type: Appearance
+
+- type: entity
   parent: BaseClothingBeltEngineering
   id: ClothingBeltChiefEngineerSOL
   name: solar legion chief engineer's toolbelt

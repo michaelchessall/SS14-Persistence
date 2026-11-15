@@ -302,3 +302,16 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+#ERT Suit Helmet Customized - Could be done with partial prototypes, but I've struggled getting them to work.
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingHeadHelmetHardsuitSyndie ]
+  id: ClothingHeadHelmetHardsuitERTPaladin
+  name: ERT paladin hardsuit helmet
+  description: A special hardsuit helmet worn by members of an emergency response team.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/ERThelmets/ertpaladin.rsi
+  - type: PointLight
+    color: "#ffffff"
