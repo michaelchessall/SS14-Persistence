@@ -6,7 +6,7 @@
   description: "A poster instructing the viewer to wear their ...safety cat ears... What?"
   components:
   - type: Sprite
-    sprite: _Persistence14/Structures/Wallmounts/posters.rsi
+    sprite: Structures/Wallmounts/posters.rsi
     state: poster67_legit
 
 - type: entity
@@ -16,7 +16,7 @@
   description: "An informational poster reminding medical staff of the proper procedures for pyrotherapy, almost all important information is burned off"
   components:
   - type: Sprite
-    sprite: _Persistence14/Structures/Wallmounts/posters.rsi
+    sprite: Structures/Wallmounts/posters.rsi
     state: poster68_legit
 
 - type: entity
@@ -26,5 +26,5 @@
   description: "A reminder to Eclipse faculty that an event is tonight, this night, and not any other night."
   components:
   - type: Sprite
-    sprite: _Persistence14/Structures/Wallmounts/posters.rsi
+    sprite: Structures/Wallmounts/posters.rsi
     state: poster69_legit
