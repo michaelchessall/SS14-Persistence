@@ -460,7 +460,7 @@ public sealed partial class RumorsSystem : EntitySystem
     private void OnBatteryChargeChanged(Entity<RumorPowerTargetComponent> ent, ref ChargeChangedEvent args)
     {
         if (!TryComp<BatteryComponent>(ent, out var batteryComp)) return;
-        if (args.CurrentCharge == batteryComp.MaxCharge)
+        if (args.CurrentCharge >= batteryComp.MaxCharge-10)
         {
             var query = EntityQueryEnumerator<RumorGetterComponent>();
             if (!TryComp<PersistentIdentifierComponent>(ent, out var pid)) return;
@@ -486,7 +486,7 @@ public sealed partial class RumorsSystem : EntitySystem
                                 if (target == pid.Id) continue;
                                 if (!_pid.TryResolveId(target, out var sister)) return;
                                 if (!TryComp<BatteryComponent>(sister, out var sisterBattery) || sisterBattery == null) return;
-                                if (sisterBattery.LastCharge < sisterBattery.MaxCharge)
+                                if (sisterBattery.LastCharge < sisterBattery.MaxCharge-10)
                                 {
                                     pass = false;
                                     break;
