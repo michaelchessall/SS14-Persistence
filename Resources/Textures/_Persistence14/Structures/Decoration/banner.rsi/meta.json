@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "banner_sl and banner_nexus sprited and banner_wd edited by JetBalrog (Discord) | banner_foe edited Holy Luna Lux | banner_preg edited by TylerBack (Discord)",
+  "copyright": "banner_sl, banner_nexus, and banner_aegis sprited and banner_wd edited by JetBalrog (Discord/Github) | banner_foe edited Holy Luna Lux | banner_preg edited by TylerBack (Discord)",
   "size": {
     "x": 32,
     "y": 32
@@ -21,6 +21,9 @@
     },
     {
       "name": "banner_nexus"
-    }
+    },
+	{
+	  "name": "banner_aegis"
+	}
   ]
 }
