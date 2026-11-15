@@ -1,0 +1,107 @@
+#ERT Suit Bundles
+- type: entity
+  parent: ClothingBackpackERTChaplain
+  id: ClothingBackpackERTChaplainHardsuitBundle
+  name: ERT chaplain hardsuit bundle
+  description: "Contains Nanotrasen's ERT hardsuit built for handling potential supernatural threats."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTChaplain
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entityTable
+  id: ERTHardsuitExtrasEntityTable
+  table: !type:AllSelector
+    children:
+    - id: ClothingMaskGasERT
+    - id: ClothingHandsGlovesCombat
+    - id: DoubleEmergencyOxygenTankFilled
+    - id: DoubleEmergencyNitrogenTankFilled
+
+- type: entity
+  parent: ClothingBackpackERTChaplain
+  id: ClothingBackpackERTPaladinHardsuitBundle
+  name: ERT paladin hardsuit bundle
+  description: "Contains Nanotrasen's ERT hardsuit built for handling potential supernatural threats."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTPaladin
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entity
+  parent: ClothingBackpackERTSecurity
+  id: ClothingBackpackERTSecurityHardsuitBundle
+  name: ERT security hardsuit bundle
+  description: "Contains Nanotrasen's ERT hardsuit built for company security."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTSecurity
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entity
+  parent: ClothingBackpackERTMedical
+  id: ClothingBackpackERTMedicalHardsuitBundle
+  name: ERT medical hardsuit bundle
+  description: "Contains Nanotrasen's ERT hardsuit built for providing medical aid under heavy duress."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTMedical
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entity
+  parent: ClothingBackpackERTEngineer
+  id: ClothingBackpackERTEngineerHardsuitBundle
+  name: ERT engineer hardsuit bundle
+  description: "Contains Nanotrasen's elite ERT hardsuit built for repairing stations. Rumors of sapping operations are heavily denied."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTEngineer
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entity
+  parent: ClothingBackpackERTJanitor
+  id: ClothingBackpackERTJanitorHardsuitBundle
+  name: ERT janitor hardsuit bundle
+  description: "Contains Nanotrasen's elite ERT hardsuit built for handling all of your cleaning needs, emphasis on the word all."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTJanitor
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable
+
+- type: entity
+  parent: ClothingBackpackERTLeader
+  id: ClothingBackpackERTLeaderHardsuitBundle
+  name: ERT leader hardsuit bundle
+  description: "Contains Nanotrasen's heavy duty ERT hardsuit built for commanding a squad of professionals."
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: ClothingOuterHardsuitERTLeader
+        - !type:NestedSelector
+          tableId: ERTHardsuitExtrasEntityTable

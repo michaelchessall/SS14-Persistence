@@ -15,6 +15,8 @@
   id: CableJunctionMV # Prevents HV wires from being placed on an HV Junction
 - type: Tag
   id: CableJunctionLV # Prevents HV wires from being placed on an HV Junction
+- type: Tag
+  id: CaptainBroadsword # Storage whitelist: ClothingBeltSheathBroadsword. ItemMapper: ClothingBeltSheathBroadsword.
 
 
 ## D ##
@@ -58,6 +60,8 @@
 ## L ##
 
 ## M ##
+- type: Tag
+  id: MedFultonable # Marks items which can be fultoned by the Medical Fulton
 
 ## N ##
 

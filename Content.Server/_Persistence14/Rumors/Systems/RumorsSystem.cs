@@ -644,7 +644,7 @@ public sealed partial class RumorsSystem : EntitySystem
             if (bank == null) return;
             if (bank.TryGetAccount(name, out var account) && account != null)
             {
-                account.Balance += rumor.CashReward;
+                account.Balance += finalCashReward;
             }
 
         }
@@ -869,6 +869,8 @@ public sealed partial class RumorsSystem : EntitySystem
             // Bad. Very Bad. Failed to generate rumor.
             return false;
         }
+        if (string.IsNullOrEmpty(newRumor.OriginalOwner))
+            newRumor.OriginalOwner = Name(player);
         comp.Rumors.Add(newRumor);
         NotifyPlayer(player, $"Your job network reports you have recieved a new rumor: {newRumor.Name}", comp.NewRumorSound);
         _jobnet.UpdateUserInterface(player, comp.Owner);

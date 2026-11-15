@@ -20,6 +20,8 @@
       # TODO: Combine all the directional guide signs in to some modular prototype so it's easier to map and remove the overlap when rotating the camera
     - type: Transform
       anchored: false
+    - type: Construction
+      graph: SignDirectional
 
 - type: entity
   parent: BaseSignDirectional
@@ -29,6 +31,8 @@
   components:
   - type: Sprite
     state: direction_atmos
+  - type: Construction
+    node: atmos
 
 - type: entity
   parent: BaseSignDirectional
@@ -38,6 +42,8 @@
   components:
   - type: Sprite
     state: direction_bar
+  - type: Construction
+    node: bar
 
 - type: entity
   parent: BaseSignDirectional
@@ -47,6 +53,8 @@
   components:
   - type: Sprite
     state: direction_bridge
+  - type: Construction
+    node: bridge
 
 - type: entity
   parent: BaseSignDirectional
@@ -56,6 +64,8 @@
   components:
   - type: Sprite
     state: direction_brig
+  - type: Construction
+    node: brig
 
 - type: entity
   parent: BaseSignDirectional
@@ -65,6 +75,8 @@
   components:
   - type: Sprite
     state: direction_chapel
+  - type: Construction
+    node: chapel
 
 - type: entity
   parent: BaseSignDirectional
@@ -74,6 +86,8 @@
   components:
   - type: Sprite
     state: direction_chemistry
+  - type: Construction
+    node: chemistry
 
 - type: entity
   parent: BaseSignDirectional
@@ -83,6 +97,8 @@
   components:
   - type: Sprite
     state: direction_cryo
+  - type: Construction
+    node: cryo
 
 - type: entity
   parent: BaseSignDirectional
@@ -92,6 +108,8 @@
   components:
   - type: Sprite
     state: direction_dorms
+  - type: Construction
+    node: dorms
 
 - type: entity
   parent: BaseSignDirectional
@@ -101,6 +119,8 @@
   components:
   - type: Sprite
     state: direction_eng
+  - type: Construction
+    node: eng
 
 - type: entity
   parent: BaseSignDirectional
@@ -118,6 +138,8 @@
       #This is a neat trick I found to sort of "hack" an emissive map into ss14. Basically, the direction_evac_glow texture has an alpha channel.
       #Alpha doesn't work for unshaded, but for *shaded* it does, and by putting a shaded texture infront of the unshaded, we can dim the unshaded texture, effectively allowing brightness control.
       #I am re-using this from my high-vis vest PR, where I go further into detail, https://github.com/space-wizards/space-station-14/pull/37869
+  - type: Construction
+    node: evac
 
 - type: entity
   parent: BaseSignDirectional
@@ -127,6 +149,8 @@
   components:
   - type: Sprite
     state: direction_exam
+  - type: Construction
+    node: exam
 
 - type: entity
   parent: BaseSignDirectional
@@ -136,6 +160,8 @@
   components:
   - type: Sprite
     state: direction_food
+  - type: Construction
+    node: food
 
 - type: entity
   parent: BaseSignDirectional
@@ -145,6 +171,8 @@
   components:
   - type: Sprite
     state: direction_gravity
+  - type: Construction
+    node: gravity
 
 - type: entity
   parent: BaseSignDirectional
@@ -154,6 +182,8 @@
   components:
   - type: Sprite
     state: direction_hop
+  - type: Construction
+    node: hop
 
 - type: entity
   parent: BaseSignDirectional
@@ -163,6 +193,8 @@
   components:
   - type: Sprite
     state: direction_hydro
+  - type: Construction
+    node: hydro
 
 - type: entity
   parent: BaseSignDirectional
@@ -172,6 +204,8 @@
   components:
   - type: Sprite
     state: direction_icu
+  - type: Construction
+    node: icu
 
 - type: entity
   parent: BaseSignDirectional
@@ -181,6 +215,8 @@
   components:
   - type: Sprite
     state: direction_janitor
+  - type: Construction
+    node: janitor
 
 - type: entity
   parent: BaseSignDirectional
@@ -190,6 +226,8 @@
   components:
   - type: Sprite
     state: direction_library
+  - type: Construction
+    node: library
 
 - type: entity
   parent: BaseSignDirectional
@@ -199,6 +237,8 @@
   components:
   - type: Sprite
     state: direction_med
+  - type: Construction
+    node: med
 
 - type: entity
   parent: BaseSignDirectional
@@ -208,6 +248,8 @@
   components:
   - type: Sprite
     state: direction_salvage
+  - type: Construction
+    node: salvage
 
 - type: entity
   parent: BaseSignDirectional
@@ -217,6 +259,8 @@
   components:
   - type: Sprite
     state: direction_sci
+  - type: Construction
+    node: sci
 
 - type: entity
   parent: BaseSignDirectional
@@ -226,6 +270,8 @@
   components:
   - type: Sprite
     state: direction_sec
+  - type: Construction
+    node: sec
 
 - type: entity
   parent: BaseSignDirectional
@@ -235,6 +281,8 @@
   components:
   - type: Sprite
     state: direction_solar
+  - type: Construction
+    node: solar
 
 - type: entity
   parent: BaseSignDirectional
@@ -244,6 +292,8 @@
   components:
   - type: Sprite
     state: direction_supply
+  - type: Construction
+    node: supply
 
 - type: entity
   parent: BaseSignDirectional
@@ -253,6 +303,8 @@
   components:
   - type: Sprite
     state: direction_wash
+  - type: Construction
+    node: wash
 
 - type: entity
   parent: BaseSignDirectional
@@ -262,6 +314,8 @@
   components:
   - type: Sprite
     state: direction_pods
+  - type: Construction
+    node: escapepod
 
 # Regular Signs
 
