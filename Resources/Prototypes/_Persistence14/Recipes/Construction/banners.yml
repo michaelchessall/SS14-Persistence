@@ -8,3 +8,14 @@
   placementMode: SnapgridCenter
   canRotate: false
   canBuildInImpassable: true
+
+- type: construction
+  id: BannerAegis
+  graph: BannerGraph
+  startNode: start
+  targetNode: bannerAegis
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canRotate: false
+  canBuildInImpassable: true
