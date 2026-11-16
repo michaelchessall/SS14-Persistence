@@ -12,7 +12,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("locked")]
         public bool IsLocked { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             if (!entityManager.TryGetComponent(uid, out LockComponent? lockcomp))
                 return true;

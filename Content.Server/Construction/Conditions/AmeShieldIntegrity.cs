@@ -19,7 +19,7 @@ public sealed partial class AmeShieldIntegrity : IGraphCondition
     [DataField]
     public bool CheckAbove = true;
 
-    public bool Condition(EntityUid uid, IEntityManager entityManager)
+    public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
     {
         if (!entityManager.TryGetComponent<AmeShieldComponent>(uid, out var shield))
             return true;

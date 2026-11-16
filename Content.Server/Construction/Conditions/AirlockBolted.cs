@@ -12,7 +12,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("value")]
         public bool Value { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             if (!entityManager.TryGetComponent(uid, out DoorBoltComponent? airlock))
                 return true;

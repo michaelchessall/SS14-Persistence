@@ -5,3 +5,11 @@
   graph: StorageCanisterGraph
   startNode: start
   targetNode: canister
+
+- type: construction
+  parent: BaseUtility
+  id: CargoPallet
+  objectType: Structure
+  graph: CargoPalletGraph
+  startNode: start
+  targetNode: pallet

@@ -37,7 +37,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("component")]
         public string Component { get; private set; } = string.Empty;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             if (string.IsNullOrEmpty(Component)) return false;
 

@@ -32,6 +32,9 @@
   - type: GuideHelp
     guides:
     - Cargo
+  - type: Construction
+    graph: CargoPalletGraph
+    node: pallet
 
 - type: entity
   parent: [ BaseCargoPallet, StructureHealthMachineWeak ]
@@ -71,6 +74,8 @@
   - type: AnchorChangeRequiresAccess
     flags:
     - Unanchorable
+  - type: Construction
+    node: sell
 
 - type: entity
   id: CargoPalletBuy
@@ -92,3 +97,5 @@
   - type: AnchorChangeRequiresAccess
     flags:
     - Unanchorable
+  - type: Construction
+    node: buy
