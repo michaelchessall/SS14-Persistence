@@ -4,8 +4,8 @@ meta:
   engineVersion: 295.0.1
   forkId: ""
   forkVersion: ""
-  time: 11/15/2026 06:01:17
-  entityCount: 3821
+  time: 11/16/2026 17:17:41
+  entityCount: 3829
 maps:
 - 23
 grids:
@@ -14,14 +14,6 @@ grids:
 - 2869
 orphans: []
 nullspace:
-- 3806
-- 3807
-- 3808
-- 3809
-- 3810
-- 3811
-- 3812
-- 3813
 - 3814
 - 3815
 - 3816
@@ -30,6 +22,14 @@ nullspace:
 - 3819
 - 3820
 - 3821
+- 3822
+- 3823
+- 3824
+- 3825
+- 3826
+- 3827
+- 3828
+- 3829
 tilemap:
   0: Space
   24: FloorAstroGrass
@@ -95,6 +95,14 @@ entities:
       - ILevelGeneral2
       - ILevelGeneral3
       - ILevelGeneral4
+    - type: RumorServiceStation
+    - type: RumorPrayerStation
+    - type: StationCargoBountyDatabase
+      groups:
+        StationBounty: 4
+        ServiceBounty: 2
+      checkedBounties: []
+      bounties: []
     - type: MapGrid
       chunks:
         0,0:
@@ -263,14 +271,14 @@ entities:
           volume: 2500
           moles:
             Oxygen: 6666.982
+        - temperature: 293.15
+          volume: 2500
+          moles:
+            Plasma: 6666.982
         - temperature: 5000
           volume: 2500
           moles:
             Oxygen: 6666.982
-            Plasma: 6666.982
-        - temperature: 293.15
-          volume: 2500
-          moles:
             Plasma: 6666.982
         tiles:
           1,3:
@@ -742,7 +750,7 @@ entities:
           23,3:
             2: 63479
             1: 8
-            7: 2048
+            6: 2048
           23,8:
             0: 9
             1: 65520
@@ -766,18 +774,18 @@ entities:
           21,0:
             2: 7936
             0: 24576
-            6: 32768
+            7: 32768
           21,1:
             2: 65297
             0: 98
-            6: 136
+            7: 136
           21,2:
             2: 65535
           22,0:
             2: 18176
-            6: 12288
+            7: 12288
           22,1:
-            6: 51
+            7: 51
             2: 65484
           22,2:
             2: 65535
@@ -795,7 +803,7 @@ entities:
           24,3:
             1: 1
             2: 4112
-            7: 256
+            6: 256
           20,9:
             2: 63351
           19,8:
@@ -962,14 +970,6 @@ entities:
       chunkHistory: {}
     - type: ChunkContainer
       chunkEntities:
-      - 3806
-      - 3807
-      - 3808
-      - 3809
-      - 3810
-      - 3811
-      - 3812
-      - 3813
       - 3814
       - 3815
       - 3816
@@ -978,6 +978,14 @@ entities:
       - 3819
       - 3820
       - 3821
+      - 3822
+      - 3823
+      - 3824
+      - 3825
+      - 3826
+      - 3827
+      - 3828
+      - 3829
   - uid: 23
     components:
     - type: MetaData
@@ -1152,7 +1160,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: AIR-7E0A-5724
+      address: AIR-199D-B5B3
     - type: Wires
       wireSeed: 354288440
     - type: DeviceList
@@ -1168,7 +1176,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: AIR-404D-EC52
+      address: AIR-2CCC-5347
     - type: Wires
       wireSeed: 1733070025
     - type: DeviceList
@@ -1182,7 +1190,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: AIR-561B-E4FF
+      address: AIR-330E-48A4
     - type: DeviceList
       devices:
       - 778
@@ -1197,7 +1205,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: AIR-7EEE-DF04
+      address: AIR-781B-F3D0
     - type: Wires
       wireSeed: 1963026189
 - proto: AirCanister
@@ -1218,7 +1226,7 @@ entities:
       wireSeed: 1649815091
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 70DB-8676
+      address: 309C-6D4E
 - proto: AirlockAssemblyHighSec
   entities:
   - uid: 2694
@@ -1244,7 +1252,7 @@ entities:
       wireSeed: 234860555
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1ECB-D6C0
+      address: 15D3-E6CB
 - proto: AirlockCommandGlass
   entities:
   - uid: 765
@@ -1261,7 +1269,7 @@ entities:
       node: medSecurity
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5639-B50F
+      address: 0B4E-1A56
 - proto: AirlockFreezer
   entities:
   - uid: 964
@@ -1273,7 +1281,7 @@ entities:
       wireSeed: 855945934
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 65B6-CAD1
+      address: 4755-441D
 - proto: AirlockGlassShuttle
   entities:
   - uid: 233
@@ -1285,7 +1293,7 @@ entities:
       wireSeed: 407235101
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 009F-C559
+      address: 2F3C-5DAC
   - uid: 2204
     components:
     - type: Transform
@@ -1296,7 +1304,7 @@ entities:
       wireSeed: 55184029
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1DE5-FF5E
+      address: 33F0-F8EE
   - uid: 2711
     components:
     - type: Transform
@@ -1306,7 +1314,7 @@ entities:
       wireSeed: 421837834
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1CFB-61A5
+      address: 5832-9031
 - proto: AirlockHydroponicsGlass
   entities:
   - uid: 1062
@@ -1318,7 +1326,7 @@ entities:
       wireSeed: 1164889970
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 6192-C026
+      address: 1242-8F07
 - proto: AirlockMedical
   entities:
   - uid: 1217
@@ -1330,7 +1338,7 @@ entities:
       wireSeed: 625706590
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 4B5B-7567
+      address: 33FA-E887
 - proto: AirlockMedicalLocked
   entities:
   - uid: 2695
@@ -1342,7 +1350,7 @@ entities:
       wireSeed: 1287924873
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7180-48E5
+      address: 5BE2-B654
 - proto: AirlockSalvage
   entities:
   - uid: 1301
@@ -1355,7 +1363,7 @@ entities:
       wireSeed: 478225595
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 3FC8-1184
+      address: 2532-6393
   - uid: 1305
     components:
     - type: Transform
@@ -1366,7 +1374,7 @@ entities:
       wireSeed: 1733176294
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 2789-3F2D
+      address: 6466-0D24
 - proto: AirlockScienceGlass
   entities:
   - uid: 127
@@ -1378,7 +1386,7 @@ entities:
       wireSeed: 1563543621
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 6709-14FD
+      address: 2F18-702C
   - uid: 799
     components:
     - type: Transform
@@ -1388,7 +1396,7 @@ entities:
       wireSeed: 912288624
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 6251-116A
+      address: 10DF-3D49
 - proto: AirSensor
   entities:
   - uid: 1538
@@ -1399,7 +1407,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SNS-6754-26A6
+      address: SNS-3875-7905
   - uid: 1712
     components:
     - type: Transform
@@ -1410,7 +1418,7 @@ entities:
       receiveFrequency: 1621
       deviceLists:
       - 1680
-      address: SNS-3A67-2575
+      address: SNS-637F-9891
 - proto: AlwaysPoweredLightSodium
   entities:
   - uid: 1911
@@ -3639,7 +3647,7 @@ entities:
       pos: 63.5,27.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 752E-0CDF
+      address: 07EB-26E2
   - uid: 852
     components:
     - type: Transform
@@ -3647,7 +3655,7 @@ entities:
       pos: 63.5,26.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1D7A-C7B7
+      address: 24C2-0FEA
   - uid: 853
     components:
     - type: Transform
@@ -3655,7 +3663,7 @@ entities:
       pos: 63.5,25.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5D65-8B91
+      address: 7A25-8BE0
   - uid: 1579
     components:
     - type: Transform
@@ -3663,7 +3671,7 @@ entities:
       pos: 86.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 2BEC-2EC9
+      address: 7BC3-BB69
 - proto: BoozeDispenser
   entities:
   - uid: 925
@@ -9681,7 +9689,7 @@ entities:
       pos: 59.5,65.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 3332-EC1C
+      address: 4D07-79C7
   - uid: 3263
     components:
     - type: Transform
@@ -9689,7 +9697,7 @@ entities:
       pos: 61.5,65.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 11FA-DA20
+      address: 0767-7FE3
 - proto: CarpetBlack
   entities:
   - uid: 426
@@ -10668,7 +10676,7 @@ entities:
       pos: 53.5,44.5
 - proto: ChunkEntity
   entities:
-  - uid: 3806
+  - uid: 3814
     components:
     - type: ChunkEntity
       root: 1
@@ -10866,7 +10874,7 @@ entities:
           decals:
             161: 36,39
             162: 37,39
-  - uid: 3807
+  - uid: 3815
     components:
     - type: ChunkEntity
       root: 1
@@ -10892,7 +10900,7 @@ entities:
             color: '#FFFFFFFF'
           decals:
             201: 31,46
-  - uid: 3808
+  - uid: 3816
     components:
     - type: ChunkEntity
       root: 1
@@ -10946,7 +10954,7 @@ entities:
             color: '#FFFFFFFF'
           decals:
             539: 63,64
-  - uid: 3809
+  - uid: 3817
     components:
     - type: ChunkEntity
       root: 1
@@ -10988,7 +10996,7 @@ entities:
           decals:
             540: 64,64
             541: 65,64
-  - uid: 3810
+  - uid: 3818
     components:
     - type: ChunkEntity
       root: 1
@@ -11175,7 +11183,7 @@ entities:
           decals:
             546: 64,56
             547: 65,56
-  - uid: 3811
+  - uid: 3819
     components:
     - type: ChunkEntity
       root: 1
@@ -11465,7 +11473,7 @@ entities:
             color: '#FFFFFFFF'
           decals:
             146: 57,21
-  - uid: 3812
+  - uid: 3820
     components:
     - type: ChunkEntity
       root: 1
@@ -11629,7 +11637,7 @@ entities:
             color: '#FFFFFFFF'
           decals:
             545: 63,56
-  - uid: 3813
+  - uid: 3821
     components:
     - type: ChunkEntity
       root: 1
@@ -11959,7 +11967,7 @@ entities:
             210: 54,42
             211: 55,42
             261: 49,41
-  - uid: 3814
+  - uid: 3822
     components:
     - type: ChunkEntity
       root: 1
@@ -12049,7 +12057,7 @@ entities:
             color: '#FFFFFFFF'
           decals:
             323: 78,14
-  - uid: 3815
+  - uid: 3823
     components:
     - type: ChunkEntity
       root: 1
@@ -12139,7 +12147,7 @@ entities:
             color: '#FFFFFFFF'
           decals:
             336: 71,33
-  - uid: 3816
+  - uid: 3824
     components:
     - type: ChunkEntity
       root: 1
@@ -12277,7 +12285,7 @@ entities:
             color: '#EFB34196'
           decals:
             375: 47,55
-  - uid: 3817
+  - uid: 3825
     components:
     - type: ChunkEntity
       root: 1
@@ -12306,7 +12314,7 @@ entities:
             0: 31,21
             1: 31,22
             2: 31,23
-  - uid: 3818
+  - uid: 3826
     components:
     - type: ChunkEntity
       root: 1
@@ -12407,7 +12415,7 @@ entities:
             656: 39,16
             657: 39,17
             658: 39,18
-  - uid: 3819
+  - uid: 3827
     components:
     - type: ChunkEntity
       root: 1
@@ -12429,7 +12437,7 @@ entities:
           decals:
             334: 75,16
             335: 75,17
-  - uid: 3820
+  - uid: 3828
     components:
     - type: ChunkEntity
       root: 1
@@ -12456,7 +12464,7 @@ entities:
             653: 40,15
             654: 41,15
             655: 42,15
-  - uid: 3821
+  - uid: 3829
     components:
     - type: ChunkEntity
       root: 1
@@ -12541,7 +12549,7 @@ entities:
       pos: 46.5,40.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7A79-CCCD
+      address: 2C65-5B01
 - proto: ClosetChefFilled
   entities:
   - uid: 944
@@ -12669,7 +12677,7 @@ entities:
       pos: 56.850586,38.50306
     - type: DeviceNetwork
       transmitFrequency: 1262
-      address: 4577-0A20
+      address: 1327-5E9C
 - proto: CMBloodPack
   entities:
   - uid: 3691
@@ -12732,7 +12740,7 @@ entities:
       parent: 1
       pos: 58.5,28.5
     - type: DeviceNetwork
-      address: 5319-DDBB
+      address: 5547-8F9D
     - type: Wires
       wireSeed: 197907409
     - type: DeviceLinkSource
@@ -12746,7 +12754,7 @@ entities:
       parent: 1
       pos: 49.5,61.5
     - type: DeviceNetwork
-      address: 07E8-CA47
+      address: 6C0B-BBB7
     - type: Wires
       wireSeed: 167081119
 - proto: ComputerAtmosMonitoring
@@ -12826,7 +12834,7 @@ entities:
       pos: 68.5,59.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 751F-20E7
+      address: 5BFB-7F43
     - type: Wires
       wireSeed: 1901684598
   - uid: 2257
@@ -12836,7 +12844,7 @@ entities:
       pos: 47.5,57.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5D55-4E6A
+      address: 3B29-1B99
     - type: Wires
       wireSeed: 1151931091
   - uid: 3208
@@ -12846,7 +12854,7 @@ entities:
       pos: 60.5,65.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 22A0-EDBB
+      address: 1D34-8E37
     - type: Wires
       wireSeed: 1407567628
     - type: DeviceLinkSource
@@ -12865,7 +12873,7 @@ entities:
       pos: 58.5,59.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1679-EDF8
+      address: 6603-8241
     - type: Wires
       wireSeed: 1289973300
 - proto: ComputerCloningConsole
@@ -12877,7 +12885,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: 46.5,39.5
     - type: DeviceNetwork
-      address: 5D04-26DF
+      address: 006F-8E79
     - type: Wires
       wireSeed: 723971619
     - type: DeviceLinkSource
@@ -12894,7 +12902,7 @@ entities:
       parent: 1
       pos: 47.5,61.5
     - type: DeviceNetwork
-      address: 47E4-1A25
+      address: 7C4B-1C38
     - type: Wires
       wireSeed: 1736128663
 - proto: ComputerComms
@@ -12906,7 +12914,7 @@ entities:
       pos: 47.5,53.5
     - type: DeviceNetwork
       transmitFrequency: 2450
-      address: 2A54-BDBF
+      address: 2EA1-1297
     - type: Wires
       wireSeed: 1888023799
 - proto: ComputerCrewMonitoring
@@ -12918,7 +12926,7 @@ entities:
       pos: 46.5,61.5
     - type: DeviceNetwork
       receiveFrequency: 1261
-      address: 31EF-FD14
+      address: 17DF-3CBD
     - type: Wires
       wireSeed: 2090971524
   - uid: 3310
@@ -12928,7 +12936,7 @@ entities:
       pos: 57.5,40.5
     - type: DeviceNetwork
       receiveFrequency: 1261
-      address: 545C-B33A
+      address: 0BC4-4751
     - type: Wires
       wireSeed: 1309784685
 - proto: ComputerCriminalRecords
@@ -13107,7 +13115,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1292
       receiveFrequency: 1291
-      address: 4B4C-2567
+      address: 3DDA-9D4A
     - type: Wires
       wireSeed: 1983519286
   - uid: 2610
@@ -13118,7 +13126,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1292
       receiveFrequency: 1291
-      address: 3655-ED96
+      address: 17F9-3162
     - type: Wires
       wireSeed: 1229956429
 - proto: ComputerSalvageExpedition
@@ -13270,7 +13278,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1926
-      address: 4390-7B6D
+      address: 6107-4ACB
     - type: Wires
       wireSeed: 1404170938
 - proto: ComputerSurveillanceWirelessCameraMonitor
@@ -13283,7 +13291,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1926
-      address: 19ED-7BF9
+      address: 7D84-528C
     - type: Wires
       wireSeed: 26110782
 - proto: ComputerTechnologyDiskTerminal
@@ -13305,7 +13313,7 @@ entities:
       pos: 37.5,60.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 468C-2861
+      address: 75B2-D82B
   - uid: 1651
     components:
     - type: Transform
@@ -13314,7 +13322,7 @@ entities:
       pos: 38.5,58.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 2632-51D6
+      address: 2C29-502B
   - uid: 1652
     components:
     - type: Transform
@@ -13323,7 +13331,7 @@ entities:
       pos: 38.5,53.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 65EB-A856
+      address: 35C4-C25D
   - uid: 1653
     components:
     - type: Transform
@@ -13331,7 +13339,7 @@ entities:
       pos: 41.5,55.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7717-E134
+      address: 058E-1E09
   - uid: 1654
     components:
     - type: Transform
@@ -13340,7 +13348,7 @@ entities:
       pos: 38.5,55.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5629-8BB8
+      address: 025E-7B92
   - uid: 2535
     components:
     - type: Transform
@@ -13349,7 +13357,7 @@ entities:
       pos: 39.5,59.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 296E-93B5
+      address: 3E63-70A0
   - uid: 2536
     components:
     - type: Transform
@@ -13358,7 +13366,7 @@ entities:
       pos: 38.5,60.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7067-8717
+      address: 2CCF-7F70
   - uid: 2539
     components:
     - type: Transform
@@ -13367,7 +13375,7 @@ entities:
       pos: 40.5,56.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 671C-2E90
+      address: 429C-E388
   - uid: 2540
     components:
     - type: Transform
@@ -13376,7 +13384,7 @@ entities:
       pos: 36.5,54.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 0620-E657
+      address: 6E45-534A
   - uid: 2561
     components:
     - type: Transform
@@ -13384,7 +13392,7 @@ entities:
       pos: 36.5,55.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 25EA-4AEF
+      address: 3645-557E
   - uid: 3313
     components:
     - type: Transform
@@ -13393,7 +13401,7 @@ entities:
       pos: 41.5,53.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 3E01-E5E9
+      address: 4803-53BE
   - uid: 3465
     components:
     - type: Transform
@@ -13402,7 +13410,7 @@ entities:
       pos: 38.5,56.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 2E0C-0797
+      address: 567D-3BC8
   - uid: 3466
     components:
     - type: Transform
@@ -13410,7 +13418,7 @@ entities:
       pos: 41.5,54.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7C20-5C9C
+      address: 3B3A-EDCA
   - uid: 3467
     components:
     - type: Transform
@@ -13419,7 +13427,7 @@ entities:
       pos: 40.5,58.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 04F7-5AE3
+      address: 60C5-5712
   - uid: 3471
     components:
     - type: Transform
@@ -13428,7 +13436,7 @@ entities:
       pos: 39.5,53.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5528-DEFF
+      address: 10F0-6A5B
   - uid: 3483
     components:
     - type: Transform
@@ -13436,7 +13444,7 @@ entities:
       pos: 40.5,59.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 3A2D-B79F
+      address: 1F73-8A6A
   - uid: 3621
     components:
     - type: Transform
@@ -13444,7 +13452,7 @@ entities:
       pos: 39.5,60.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5539-BCCD
+      address: 121B-DB01
   - uid: 3623
     components:
     - type: Transform
@@ -13453,7 +13461,7 @@ entities:
       pos: 40.5,53.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 0A0E-B6DA
+      address: 185E-E4AC
   - uid: 3624
     components:
     - type: Transform
@@ -13462,7 +13470,7 @@ entities:
       pos: 37.5,58.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7FAE-AE37
+      address: 599A-4D1E
   - uid: 3625
     components:
     - type: Transform
@@ -13470,7 +13478,7 @@ entities:
       pos: 41.5,56.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1979-2FB2
+      address: 6292-7C67
   - uid: 3626
     components:
     - type: Transform
@@ -13479,7 +13487,7 @@ entities:
       pos: 39.5,56.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 773A-A7A8
+      address: 183E-D536
   - uid: 3627
     components:
     - type: Transform
@@ -13488,7 +13496,7 @@ entities:
       pos: 38.5,54.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5F27-9E4A
+      address: 006E-C546
   - uid: 3632
     components:
     - type: Transform
@@ -13497,7 +13505,7 @@ entities:
       pos: 39.5,58.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1AEB-0611
+      address: 5953-2D1C
   - uid: 3633
     components:
     - type: Transform
@@ -13506,7 +13514,7 @@ entities:
       pos: 36.5,58.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7A17-A34D
+      address: 6804-5041
   - uid: 3634
     components:
     - type: Transform
@@ -13515,7 +13523,7 @@ entities:
       pos: 37.5,59.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 462C-1138
+      address: 56D8-F8E3
   - uid: 3635
     components:
     - type: Transform
@@ -13524,7 +13532,7 @@ entities:
       pos: 36.5,59.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 2620-FA6C
+      address: 2991-7B8A
   - uid: 3664
     components:
     - type: Transform
@@ -13533,7 +13541,7 @@ entities:
       pos: 80.5,36.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 64F1-01F6
+      address: 6408-7A31
     missingComponents:
     - Destructible
   - uid: 3665
@@ -13544,7 +13552,7 @@ entities:
       pos: 81.5,36.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 759A-05DC
+      address: 767A-A6E8
     missingComponents:
     - Destructible
   - uid: 3666
@@ -13555,7 +13563,7 @@ entities:
       pos: 81.5,37.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 09EB-5D4D
+      address: 4C94-DF4D
     missingComponents:
     - Destructible
   - uid: 3667
@@ -13566,7 +13574,7 @@ entities:
       pos: 81.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 39A3-5826
+      address: 1384-869B
     missingComponents:
     - Destructible
   - uid: 3668
@@ -13577,7 +13585,7 @@ entities:
       pos: 81.5,39.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 2D6E-0042
+      address: 4C50-42CF
     missingComponents:
     - Destructible
   - uid: 3669
@@ -13588,7 +13596,7 @@ entities:
       pos: 81.5,40.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 119C-F79A
+      address: 425E-353E
     missingComponents:
     - Destructible
   - uid: 3670
@@ -13599,7 +13607,7 @@ entities:
       pos: 81.5,41.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 592E-42D0
+      address: 2D76-690D
     missingComponents:
     - Destructible
   - uid: 3671
@@ -13610,7 +13618,7 @@ entities:
       pos: 81.5,42.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5DEE-43E6
+      address: 13DC-B0D6
     missingComponents:
     - Destructible
   - uid: 3672
@@ -13620,7 +13628,7 @@ entities:
       pos: 80.5,42.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 14F7-96B6
+      address: 0B80-4791
     missingComponents:
     - Destructible
   - uid: 3673
@@ -13630,7 +13638,7 @@ entities:
       pos: 80.5,41.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 6086-83CF
+      address: 0A8E-CF01
     missingComponents:
     - Destructible
   - uid: 3674
@@ -13640,7 +13648,7 @@ entities:
       pos: 80.5,40.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 1C96-640A
+      address: 14A1-73E9
     missingComponents:
     - Destructible
   - uid: 3675
@@ -13650,7 +13658,7 @@ entities:
       pos: 80.5,39.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 338D-8BFB
+      address: 7778-B30E
     missingComponents:
     - Destructible
   - uid: 3676
@@ -13660,7 +13668,7 @@ entities:
       pos: 80.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7921-07DF
+      address: 1292-A607
     missingComponents:
     - Destructible
   - uid: 3677
@@ -13670,7 +13678,7 @@ entities:
       pos: 80.5,37.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 4F86-AD5C
+      address: 0D66-B8E5
     missingComponents:
     - Destructible
 - proto: CrateArtifactContainer
@@ -14250,7 +14258,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SMS-1273-5C3B
+      address: SMS-2DDB-D18E
   - uid: 3755
     components:
     - type: Transform
@@ -14259,7 +14267,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SMS-7A52-2056
+      address: SMS-05EB-70D3
   - uid: 3756
     components:
     - type: Transform
@@ -14268,7 +14276,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SMS-377F-F134
+      address: SMS-240C-00D3
   - uid: 3757
     components:
     - type: Transform
@@ -14277,7 +14285,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SMS-1959-EA8E
+      address: SMS-4820-D062
 - proto: DebugSubstationRecharging
   entities:
   - uid: 984
@@ -14320,6 +14328,41 @@ entities:
     - type: Transform
       parent: 1
       pos: 42.5,32.5
+- proto: DefaultStationBeacon
+  entities:
+  - uid: 3812
+    components:
+    - type: Transform
+      parent: 1
+      pos: 38.5,58.5
+- proto: DefaultStationBeaconAtmospherics
+  entities:
+  - uid: 3813
+    components:
+    - type: Transform
+      parent: 1
+      pos: 90.5,23.5
+- proto: DefaultStationBeaconBridge
+  entities:
+  - uid: 3810
+    components:
+    - type: Transform
+      parent: 1
+      pos: 47.5,55.5
+- proto: DefaultStationBeaconCargoBay
+  entities:
+  - uid: 3807
+    components:
+    - type: Transform
+      parent: 1
+      pos: 64.5,60.5
+- proto: DefaultStationBeaconEngineering
+  entities:
+  - uid: 3809
+    components:
+    - type: Transform
+      parent: 1
+      pos: 77.5,16.5
 - proto: DefaultStationBeaconMedical
   entities:
   - uid: 2882
@@ -14334,6 +14377,13 @@ entities:
     - type: Transform
       parent: 1
       pos: 55.5,25.5
+- proto: DefaultStationBeaconSecurity
+  entities:
+  - uid: 3808
+    components:
+    - type: Transform
+      parent: 1
+      pos: 70.5,39.5
 - proto: DefaultStationBeaconServerRoom
   entities:
   - uid: 1635
@@ -14362,6 +14412,13 @@ entities:
     - type: Transform
       parent: 1
       pos: 86.5,10.5
+- proto: DefaultStationBeaconTelecoms
+  entities:
+  - uid: 3811
+    components:
+    - type: Transform
+      parent: 1
+      pos: 47.5,67.5
 - proto: DefibrillatorCabinetFilled
   entities:
   - uid: 579
@@ -14573,7 +14630,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 2640
       receiveFrequency: 2640
-      address: 38CF-AB92
+      address: 3729-B4B3
 - proto: filingCabinet
   entities:
   - uid: 1640
@@ -15761,7 +15818,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: FZR-1F29-73EE
+      address: FZR-3F71-79F7
 - proto: GasValve
   entities:
   - uid: 1510
@@ -15790,7 +15847,7 @@ entities:
       receiveFrequency: 1621
       deviceLists:
       - 3740
-      address: VNT-2BE4-7D9C
+      address: VNT-7CA9-CAB8
     - type: AtmosPipeColor
       color: '#0055CCFF'
 - proto: GasVentScrubber
@@ -15805,7 +15862,7 @@ entities:
       receiveFrequency: 1621
       deviceLists:
       - 1270
-      address: SCR-3257-47BA
+      address: SCR-2B26-FB94
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 1269
@@ -15818,7 +15875,7 @@ entities:
       receiveFrequency: 1621
       deviceLists:
       - 1270
-      address: SCR-74D8-7FA4
+      address: SCR-097C-EC3D
     - type: AtmosPipeColor
       color: '#FF0000FF'
   - uid: 2877
@@ -15832,7 +15889,7 @@ entities:
       receiveFrequency: 1621
       deviceLists:
       - 3740
-      address: SCR-44CB-0B65
+      address: SCR-613D-FBF9
     - type: AtmosPipeColor
       color: '#990000FF'
   - uid: 3736
@@ -15843,7 +15900,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SCR-2C8F-242A
+      address: SCR-22C0-6896
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 3737
@@ -15854,7 +15911,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SCR-1A5F-C877
+      address: SCR-462F-D7B8
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 3738
@@ -15866,7 +15923,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SCR-4191-0060
+      address: SCR-24BC-B442
     - type: AtmosPipeLayers
       pipeLayer: Secondary
   - uid: 3739
@@ -15878,7 +15935,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SCR-13C6-9CF6
+      address: SCR-31A7-76A4
     - type: AtmosPipeLayers
       pipeLayer: Secondary
 - proto: GeneratorWallmountAPU
@@ -16223,7 +16280,7 @@ entities:
       pos: -0.5,0.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 09EB-0F90
+      address: 5C7B-1283
 - proto: Handcuffs
   entities:
   - uid: 1005
@@ -16361,7 +16418,7 @@ entities:
       pos: 88.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 46C0-635F
+      address: 239E-7C63
 - proto: IngotGold
   entities:
   - uid: 750
@@ -16406,9 +16463,16 @@ entities:
     - type: UseDelay
       delays:
         gasTank:
-          startTime: 157.4210802
+          startTime: 4202.3522282
           length: 1
-          endTime: 158.4210802
+          endTime: 4203.3522282
+- proto: JobNetworkImplanter
+  entities:
+  - uid: 3806
+    components:
+    - type: Transform
+      parent: 1
+      pos: 30.604609,19.291061
 - proto: KitchenElectricGrill
   entities:
   - uid: 935
@@ -16432,7 +16496,7 @@ entities:
       pos: 28.5,41.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 274D-37E3
+      address: 2A61-2E88
 - proto: KitchenReagentGrinderBeakerLarge
   entities:
   - uid: 979
@@ -16634,7 +16698,7 @@ entities:
       pos: 61.5,26.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7FFA-B07F
+      address: 5F60-A5EE
 - proto: MachineCentrifuge
   entities:
   - uid: 1123
@@ -17302,7 +17366,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 2300
       receiveFrequency: 2300
-      address: 475B-FDB3
+      address: 2009-B854
     - type: MailingUnit
       tag: GUA
     - type: Configuration
@@ -17316,7 +17380,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 2300
       receiveFrequency: 2300
-      address: 7BDA-EFA2
+      address: 0EFC-EE25
     - type: MailingUnit
       tag: MEOW
     - type: Configuration
@@ -17330,7 +17394,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 2300
       receiveFrequency: 2300
-      address: 59A4-C521
+      address: 6CA4-6EA8
     - type: MailingUnit
       tag: WAWA
     - type: Configuration
@@ -17437,7 +17501,7 @@ entities:
       pos: 46.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7DA5-7378
+      address: 12E2-8B32
 - proto: MedicalTechFab
   entities:
   - uid: 1212
@@ -17530,9 +17594,9 @@ entities:
     - type: UseDelay
       delays:
         gasTank:
-          startTime: 157.4210802
+          startTime: 4202.3522282
           length: 1
-          endTime: 158.4210802
+          endTime: 4203.3522282
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -17594,9 +17658,9 @@ entities:
     - type: UseDelay
       delays:
         gasTank:
-          startTime: 157.4210802
+          startTime: 4202.3522282
           length: 1
-          endTime: 158.4210802
+          endTime: 4203.3522282
     - type: Physics
       canCollide: False
     - type: InsideEntityStorage
@@ -17826,7 +17890,7 @@ entities:
       pos: 33.5,15.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0DA5-7C5D
+      address: 7D6A-D4DF
   - uid: 584
     components:
     - type: Transform
@@ -17834,7 +17898,7 @@ entities:
       pos: 33.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 20E1-D5E0
+      address: 6728-2978
   - uid: 585
     components:
     - type: Transform
@@ -17842,7 +17906,7 @@ entities:
       pos: 27.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4524-F070
+      address: 3531-E831
   - uid: 586
     components:
     - type: Transform
@@ -17851,7 +17915,7 @@ entities:
       pos: 24.5,10.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0DF8-08A2
+      address: 6975-6001
   - uid: 587
     components:
     - type: Transform
@@ -17860,7 +17924,7 @@ entities:
       pos: 24.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1188-C475
+      address: 2D74-ECA4
   - uid: 588
     components:
     - type: Transform
@@ -17869,7 +17933,7 @@ entities:
       pos: 27.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 011D-06FF
+      address: 73C4-218A
   - uid: 589
     components:
     - type: Transform
@@ -17878,7 +17942,7 @@ entities:
       pos: 33.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1FDF-F86A
+      address: 025D-CDBF
   - uid: 590
     components:
     - type: Transform
@@ -17887,7 +17951,7 @@ entities:
       pos: 39.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5FC5-3680
+      address: 2EBF-3B60
   - uid: 591
     components:
     - type: Transform
@@ -17896,7 +17960,7 @@ entities:
       pos: 42.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 459A-046A
+      address: 70C3-C9FC
   - uid: 592
     components:
     - type: Transform
@@ -17905,7 +17969,7 @@ entities:
       pos: 42.5,10.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1E15-BAA6
+      address: 70F0-4C8B
   - uid: 593
     components:
     - type: Transform
@@ -17913,7 +17977,7 @@ entities:
       pos: 39.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5F31-A0DF
+      address: 21E6-53B6
   - uid: 594
     components:
     - type: Transform
@@ -17921,7 +17985,7 @@ entities:
       pos: 30.5,19.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4717-89FE
+      address: 7945-C220
   - uid: 595
     components:
     - type: Transform
@@ -17929,7 +17993,7 @@ entities:
       pos: 36.5,19.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 3277-1A92
+      address: 39A8-E0D6
   - uid: 598
     components:
     - type: Transform
@@ -17937,7 +18001,7 @@ entities:
       pos: 47.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 60C4-5A62
+      address: 24B6-F68E
   - uid: 599
     components:
     - type: Transform
@@ -17945,7 +18009,7 @@ entities:
       pos: 53.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 093C-A372
+      address: 57CF-3A4B
   - uid: 600
     components:
     - type: Transform
@@ -17953,7 +18017,7 @@ entities:
       pos: 59.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 010A-1377
+      address: 797F-A3FB
   - uid: 601
     components:
     - type: Transform
@@ -17962,7 +18026,7 @@ entities:
       pos: 62.5,10.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 204F-922B
+      address: 59CD-35A0
   - uid: 602
     components:
     - type: Transform
@@ -17971,7 +18035,7 @@ entities:
       pos: 62.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 6EA0-F729
+      address: 20F6-37DD
   - uid: 603
     components:
     - type: Transform
@@ -17980,7 +18044,7 @@ entities:
       pos: 59.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 74B8-5866
+      address: 0CF4-EAEF
   - uid: 604
     components:
     - type: Transform
@@ -17989,7 +18053,7 @@ entities:
       pos: 53.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 42ED-003B
+      address: 2F84-577E
   - uid: 605
     components:
     - type: Transform
@@ -17998,7 +18062,7 @@ entities:
       pos: 47.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 6630-C690
+      address: 75B2-BCC2
   - uid: 606
     components:
     - type: Transform
@@ -18007,7 +18071,7 @@ entities:
       pos: 44.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 3B1E-D8F1
+      address: 641E-D76D
   - uid: 607
     components:
     - type: Transform
@@ -18016,7 +18080,7 @@ entities:
       pos: 44.5,10.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 581F-E19B
+      address: 5061-02BC
   - uid: 842
     components:
     - type: Transform
@@ -18025,7 +18089,7 @@ entities:
       pos: 29.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 3A58-7C85
+      address: 228A-ED9C
   - uid: 843
     components:
     - type: Transform
@@ -18034,7 +18098,7 @@ entities:
       pos: 49.5,25.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 735B-9FBA
+      address: 2E48-8461
   - uid: 845
     components:
     - type: Transform
@@ -18043,7 +18107,7 @@ entities:
       pos: 57.5,21.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0B33-E520
+      address: 4063-3965
   - uid: 846
     components:
     - type: Transform
@@ -18052,7 +18116,7 @@ entities:
       pos: 51.5,21.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1AEB-90AD
+      address: 069E-027A
   - uid: 847
     components:
     - type: Transform
@@ -18061,7 +18125,7 @@ entities:
       pos: 52.5,24.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4104-4B1D
+      address: 77A7-04D4
   - uid: 848
     components:
     - type: Transform
@@ -18070,7 +18134,7 @@ entities:
       pos: 56.5,24.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4D01-024C
+      address: 6EE2-DF9A
   - uid: 849
     components:
     - type: Transform
@@ -18078,7 +18142,7 @@ entities:
       pos: 52.5,28.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5DF6-EE78
+      address: 0039-EACC
   - uid: 850
     components:
     - type: Transform
@@ -18086,7 +18150,7 @@ entities:
       pos: 56.5,28.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 782E-81C2
+      address: 35D8-D8CA
   - uid: 1027
     components:
     - type: Transform
@@ -18094,7 +18158,7 @@ entities:
       pos: 29.5,41.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 41E8-78AE
+      address: 6C53-6106
   - uid: 1028
     components:
     - type: Transform
@@ -18102,7 +18166,7 @@ entities:
       pos: 37.5,41.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 713B-BBDD
+      address: 0A7C-1423
   - uid: 1029
     components:
     - type: Transform
@@ -18111,7 +18175,7 @@ entities:
       pos: 37.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5B90-B58A
+      address: 4E80-2438
   - uid: 1059
     components:
     - type: Transform
@@ -18119,7 +18183,7 @@ entities:
       pos: 31.5,47.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 62FF-6412
+      address: 4599-21A8
   - uid: 1065
     components:
     - type: Transform
@@ -18127,7 +18191,7 @@ entities:
       pos: 35.5,47.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 32B5-591B
+      address: 5342-5182
   - uid: 1066
     components:
     - type: Transform
@@ -18136,7 +18200,7 @@ entities:
       pos: 36.5,44.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 15D3-582A
+      address: 3B8D-3E93
   - uid: 1067
     components:
     - type: Transform
@@ -18145,7 +18209,7 @@ entities:
       pos: 30.5,44.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 7F57-1CFC
+      address: 5679-577D
   - uid: 1259
     components:
     - type: Transform
@@ -18153,7 +18217,7 @@ entities:
       pos: 51.5,40.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 7FCF-E7DD
+      address: 3826-3DC7
   - uid: 1260
     components:
     - type: Transform
@@ -18161,7 +18225,7 @@ entities:
       pos: 57.5,40.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 3222-3AD3
+      address: 4CF6-5518
   - uid: 1261
     components:
     - type: Transform
@@ -18170,7 +18234,7 @@ entities:
       pos: 46.5,39.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5469-0789
+      address: 5E12-FD2F
   - uid: 1262
     components:
     - type: Transform
@@ -18179,7 +18243,7 @@ entities:
       pos: 49.5,37.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 439B-7C29
+      address: 2242-A8E7
   - uid: 1263
     components:
     - type: Transform
@@ -18187,7 +18251,7 @@ entities:
       pos: 49.5,42.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1998-E563
+      address: 3DD5-D65A
   - uid: 1264
     components:
     - type: Transform
@@ -18195,7 +18259,7 @@ entities:
       pos: 54.5,44.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2CDC-5685
+      address: 3540-6134
   - uid: 1265
     components:
     - type: Transform
@@ -18204,7 +18268,7 @@ entities:
       pos: 60.5,39.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 36F8-DC80
+      address: 01FC-7C05
   - uid: 1539
     components:
     - type: Transform
@@ -18213,7 +18277,7 @@ entities:
       pos: 38.5,24.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 276F-E670
+      address: 0B41-4E8C
   - uid: 1718
     components:
     - type: Transform
@@ -18222,7 +18286,7 @@ entities:
       pos: 96.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 64A1-7CA5
+      address: 6648-4B46
   - uid: 1719
     components:
     - type: Transform
@@ -18231,7 +18295,7 @@ entities:
       pos: 81.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 7998-E06E
+      address: 6A8D-0A56
   - uid: 1720
     components:
     - type: Transform
@@ -18240,7 +18304,7 @@ entities:
       pos: 96.5,21.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4665-5236
+      address: 5D68-6AAD
   - uid: 1721
     components:
     - type: Transform
@@ -18249,7 +18313,7 @@ entities:
       pos: 81.5,21.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1E62-0E94
+      address: 6A48-5AD1
   - uid: 1722
     components:
     - type: Transform
@@ -18258,7 +18322,7 @@ entities:
       pos: 96.5,17.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0F51-31B3
+      address: 7673-A17E
   - uid: 1723
     components:
     - type: Transform
@@ -18267,7 +18331,7 @@ entities:
       pos: 88.5,13.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2ABB-3C33
+      address: 5172-9012
     - type: Stealth
     - type: StealthOnMove
   - uid: 1724
@@ -18278,7 +18342,7 @@ entities:
       pos: 93.5,5.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 6F4D-1D91
+      address: 4889-9B09
   - uid: 1725
     components:
     - type: Transform
@@ -18287,7 +18351,7 @@ entities:
       pos: 81.5,25.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4B0B-F496
+      address: 6F0B-AB0B
   - uid: 1726
     components:
     - type: Transform
@@ -18295,7 +18359,7 @@ entities:
       pos: 85.5,29.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 32AE-B5FD
+      address: 2D6B-02E0
   - uid: 1727
     components:
     - type: Transform
@@ -18304,7 +18368,7 @@ entities:
       pos: 88.5,21.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 49EC-9AE1
+      address: 4070-7922
     - type: Stealth
     - type: StealthOnMove
   - uid: 1728
@@ -18314,7 +18378,7 @@ entities:
       pos: 90.5,29.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 6F2C-1C8C
+      address: 5A4F-B852
   - uid: 1729
     components:
     - type: Transform
@@ -18323,7 +18387,7 @@ entities:
       pos: 98.5,8.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5A4C-00F3
+      address: 68F2-DC6C
   - uid: 1730
     components:
     - type: Transform
@@ -18332,7 +18396,7 @@ entities:
       pos: 81.5,8.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2850-468B
+      address: 56F4-A924
   - uid: 1731
     components:
     - type: Transform
@@ -18341,7 +18405,7 @@ entities:
       pos: 96.5,25.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 20F5-520E
+      address: 27DE-7FED
   - uid: 1732
     components:
     - type: Transform
@@ -18350,7 +18414,7 @@ entities:
       pos: 83.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 7AD1-509D
+      address: 6980-D74F
   - uid: 1733
     components:
     - type: Transform
@@ -18359,7 +18423,7 @@ entities:
       pos: 87.5,2.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0B4F-15DF
+      address: 526B-A023
   - uid: 1734
     components:
     - type: Transform
@@ -18368,7 +18432,7 @@ entities:
       pos: 91.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 35C4-218D
+      address: 6BFD-3E7F
   - uid: 1935
     components:
     - type: Transform
@@ -18377,7 +18441,7 @@ entities:
       pos: 76.5,18.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0A3D-11F9
+      address: 2A9E-9F58
   - uid: 1936
     components:
     - type: Transform
@@ -18386,7 +18450,7 @@ entities:
       pos: 78.5,18.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2897-7FB8
+      address: 313F-1EB1
   - uid: 2206
     components:
     - type: Transform
@@ -18395,7 +18459,7 @@ entities:
       pos: 66.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1D9A-2897
+      address: 443C-C1BE
   - uid: 2209
     components:
     - type: Transform
@@ -18404,7 +18468,7 @@ entities:
       pos: 84.5,43.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 6DB5-1516
+      address: 2F99-8068
     missingComponents:
     - Destructible
   - uid: 2211
@@ -18415,7 +18479,7 @@ entities:
       pos: 83.5,35.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 57B3-C8D2
+      address: 44DE-99EE
     missingComponents:
     - Destructible
   - uid: 2214
@@ -18426,7 +18490,7 @@ entities:
       pos: 75.5,35.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4748-7D91
+      address: 3BF1-D0A6
     missingComponents:
     - Destructible
   - uid: 2216
@@ -18437,7 +18501,7 @@ entities:
       pos: 67.5,35.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2FE5-04D9
+      address: 3229-7DB5
   - uid: 2218
     components:
     - type: Transform
@@ -18446,7 +18510,7 @@ entities:
       pos: 79.5,35.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2504-1D5D
+      address: 539C-C647
     missingComponents:
     - Destructible
   - uid: 2219
@@ -18456,7 +18520,7 @@ entities:
       pos: 75.5,45.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2BFC-5A20
+      address: 21AF-632A
     missingComponents:
     - Destructible
   - uid: 2220
@@ -18466,7 +18530,7 @@ entities:
       pos: 83.5,45.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 591F-10E9
+      address: 61ED-3E02
     missingComponents:
     - Destructible
   - uid: 2221
@@ -18476,7 +18540,7 @@ entities:
       pos: 79.5,45.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1AF1-A15F
+      address: 3CF0-9401
     missingComponents:
     - Destructible
   - uid: 2222
@@ -18486,7 +18550,7 @@ entities:
       pos: 68.5,47.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 751F-46AC
+      address: 47FD-DA9D
   - uid: 2223
     components:
     - type: Transform
@@ -18495,7 +18559,7 @@ entities:
       pos: 84.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 6608-6B1F
+      address: 4ACB-8424
     missingComponents:
     - Destructible
   - uid: 2224
@@ -18506,7 +18570,7 @@ entities:
       pos: 66.5,43.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 78C5-ADCC
+      address: 0663-B3B9
   - uid: 2226
     components:
     - type: Transform
@@ -18514,7 +18578,7 @@ entities:
       pos: 72.5,47.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 72A0-F3B8
+      address: 56F7-8AEC
   - uid: 2524
     components:
     - type: Transform
@@ -18523,7 +18587,7 @@ entities:
       pos: 35.5,55.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 796F-9386
+      address: 5159-B3D2
   - uid: 2525
     components:
     - type: Transform
@@ -18532,7 +18596,7 @@ entities:
       pos: 38.5,52.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 106E-78B1
+      address: 793C-ED07
   - uid: 2526
     components:
     - type: Transform
@@ -18541,7 +18605,7 @@ entities:
       pos: 48.5,52.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5B53-1943
+      address: 2123-C1DB
   - uid: 2527
     components:
     - type: Transform
@@ -18550,7 +18614,7 @@ entities:
       pos: 35.5,65.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 52D6-C699
+      address: 2EAB-4B40
   - uid: 2528
     components:
     - type: Transform
@@ -18559,7 +18623,7 @@ entities:
       pos: 35.5,60.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4A41-5F23
+      address: 0AE5-3FA3
   - uid: 2532
     components:
     - type: Transform
@@ -18568,7 +18632,7 @@ entities:
       pos: 51.5,65.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0864-C684
+      address: 21FB-02BB
   - uid: 2533
     components:
     - type: Transform
@@ -18577,7 +18641,7 @@ entities:
       pos: 51.5,60.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 7182-4AD4
+      address: 43A0-91E6
   - uid: 2534
     components:
     - type: Transform
@@ -18586,7 +18650,7 @@ entities:
       pos: 51.5,55.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0FC4-B627
+      address: 5B86-81A2
   - uid: 2629
     components:
     - type: Transform
@@ -18595,7 +18659,7 @@ entities:
       pos: 28.5,24.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 240B-0716
+      address: 3B6E-1241
   - uid: 2776
     components:
     - type: Transform
@@ -18604,7 +18668,7 @@ entities:
       pos: -2.5,-1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 48B2-6EA0
+      address: 6AB1-4878
   - uid: 2777
     components:
     - type: Transform
@@ -18613,7 +18677,7 @@ entities:
       pos: 3.5,-1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 3BCA-9CFB
+      address: 3859-4FC7
   - uid: 2778
     components:
     - type: Transform
@@ -18622,7 +18686,7 @@ entities:
       pos: 0.5,1.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 02BE-19D6
+      address: 12AC-28A9
     - type: PointLight
       offset: 0,-0.25
   - uid: 3137
@@ -18632,7 +18696,7 @@ entities:
       pos: 77.5,11.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 69F3-09E7
+      address: 2864-2FC2
 - proto: PoweredlightCyan
   entities:
   - uid: 1030
@@ -18643,7 +18707,7 @@ entities:
       pos: 24.5,39.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 00BB-5259
+      address: 5719-DDB6
   - uid: 1934
     components:
     - type: Transform
@@ -18651,7 +18715,7 @@ entities:
       pos: 77.5,24.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 178F-1E10
+      address: 0EE2-C3C3
 - proto: PoweredLightPostSmall
   entities:
   - uid: 408
@@ -18661,7 +18725,7 @@ entities:
       pos: 12.5,19.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 77B7-B69C
+      address: 240D-06CF
   - uid: 409
     components:
     - type: Transform
@@ -18669,7 +18733,7 @@ entities:
       pos: 4.5,15.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0D9D-000B
+      address: 5AA9-8980
   - uid: 410
     components:
     - type: Transform
@@ -18677,7 +18741,7 @@ entities:
       pos: 14.5,10.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1C95-E0A8
+      address: 44D0-AEF3
   - uid: 411
     components:
     - type: Transform
@@ -18685,7 +18749,7 @@ entities:
       pos: 4.5,34.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5E5F-1519
+      address: 7562-B324
   - uid: 412
     components:
     - type: Transform
@@ -18693,7 +18757,7 @@ entities:
       pos: 26.5,34.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 4EF2-2E06
+      address: 0024-056B
   - uid: 413
     components:
     - type: Transform
@@ -18701,7 +18765,7 @@ entities:
       pos: 4.5,27.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 0B53-1762
+      address: 140D-FA32
   - uid: 414
     components:
     - type: Transform
@@ -18709,7 +18773,7 @@ entities:
       pos: 26.5,27.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 18A8-FFD5
+      address: 4572-5C93
   - uid: 415
     components:
     - type: Transform
@@ -18717,7 +18781,7 @@ entities:
       pos: 15.5,34.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 58A5-6700
+      address: 404C-8FDC
   - uid: 416
     components:
     - type: Transform
@@ -18725,7 +18789,7 @@ entities:
       pos: 4.5,19.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 79EB-57E0
+      address: 157A-80EE
   - uid: 417
     components:
     - type: Transform
@@ -18733,7 +18797,7 @@ entities:
       pos: 16.5,10.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 2E30-83A1
+      address: 458E-082A
   - uid: 418
     components:
     - type: Transform
@@ -18741,7 +18805,7 @@ entities:
       pos: 18.5,19.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 61D9-894A
+      address: 0BFF-FD17
   - uid: 419
     components:
     - type: Transform
@@ -18749,7 +18813,7 @@ entities:
       pos: 27.5,15.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 376F-EB1C
+      address: 324D-7EF7
   - uid: 420
     components:
     - type: Transform
@@ -18757,7 +18821,7 @@ entities:
       pos: 27.5,19.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 34EB-07AA
+      address: 0588-3DF6
   - uid: 608
     components:
     - type: Transform
@@ -18765,7 +18829,7 @@ entities:
       pos: 33.5,7.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 1782-EEDD
+      address: 128E-7950
   - uid: 609
     components:
     - type: Transform
@@ -18773,7 +18837,7 @@ entities:
       pos: 53.5,7.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 231D-131F
+      address: 7B4B-FC4D
   - uid: 1268
     components:
     - type: Transform
@@ -18781,7 +18845,7 @@ entities:
       pos: 73.5,11.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 7FC1-24DE
+      address: 0E26-80E0
   - uid: 1381
     components:
     - type: Transform
@@ -18789,7 +18853,7 @@ entities:
       pos: 71.5,11.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5593-A16D
+      address: 7F39-E1F1
 - proto: PoweredSmallLight
   entities:
   - uid: 1266
@@ -18800,7 +18864,7 @@ entities:
       pos: 57.5,35.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 3BC3-8485
+      address: 2504-9FCA
 - proto: PoweredStrobeLightPolice
   entities:
   - uid: 2779
@@ -18810,7 +18874,7 @@ entities:
       pos: 0.5,4.5
     - type: DeviceNetwork
       receiveFrequency: 1173
-      address: 5CC6-D41A
+      address: 6984-8140
 - proto: Protolathe
   entities:
   - uid: 762
@@ -19879,7 +19943,7 @@ entities:
       pos: 2.5,0.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 3708-EDD3
+      address: 773E-C95D
 - proto: ShuttleGunFriendship
   entities:
   - uid: 2782
@@ -19890,7 +19954,7 @@ entities:
       pos: -3.5,-0.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 40BC-003A
+      address: 4663-3E7E
 - proto: ShuttleGunPerforator
   entities:
   - uid: 2783
@@ -19901,7 +19965,7 @@ entities:
       pos: -1.5,0.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7033-E2AC
+      address: 6765-971D
 - proto: ShuttleGunSvalinnMachineGun
   entities:
   - uid: 2784
@@ -19912,7 +19976,7 @@ entities:
       pos: 4.5,-0.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 0A54-62B8
+      address: 5C08-665F
 - proto: ShuttleWindow
   entities:
   - uid: 2785
@@ -19976,7 +20040,7 @@ entities:
       parent: 1
       pos: 28.5,14.5
     - type: DeviceNetwork
-      address: 14DD-2FD7
+      address: 438C-913B
     - type: DeviceLinkSource
       linkedPorts:
         585:
@@ -20020,7 +20084,7 @@ entities:
       parent: 1
       pos: 52.5,14.5
     - type: DeviceNetwork
-      address: 77D4-31E0
+      address: 09D0-EE98
     - type: DeviceLinkSource
       linkedPorts:
         598:
@@ -20065,7 +20129,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 59.5,27.5
     - type: DeviceNetwork
-      address: 16D7-47C4
+      address: 259D-5EB5
     - type: DeviceLinkSource
       linkedPorts:
         596:
@@ -20086,7 +20150,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 91.5,4.5
     - type: DeviceNetwork
-      address: 41E2-8AC8
+      address: 60F3-B903
     - type: DeviceLinkSource
       linkedPorts:
         1597:
@@ -20101,7 +20165,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 86.5,6.5
     - type: DeviceNetwork
-      address: 4556-F5B1
+      address: 54D2-08D5
     - type: DeviceLinkSource
       linkedPorts:
         1579:
@@ -20116,7 +20180,7 @@ entities:
       rot: 1.5707963267948966 rad
       pos: -0.5,2.5
     - type: DeviceNetwork
-      address: 3095-D700
+      address: 11DF-1AC9
     - type: DeviceLinkSource
       linkedPorts:
         2783:
@@ -20148,7 +20212,7 @@ entities:
       rot: -1.5707963267948966 rad
       pos: 1.5,2.5
     - type: DeviceNetwork
-      address: 210D-8D0A
+      address: 48F9-7A31
     - type: DeviceLinkSource
       linkedPorts:
         2779:
@@ -20160,7 +20224,7 @@ entities:
       parent: 2709
       pos: 2.5,0.5
     - type: DeviceNetwork
-      address: 1868-8736
+      address: 7A44-4474
     - type: DeviceLinkSource
       linkedPorts:
         2781:
@@ -20174,7 +20238,7 @@ entities:
       parent: 2709
       pos: 4.5,-0.5
     - type: DeviceNetwork
-      address: 0891-8F13
+      address: 2760-D6EA
     - type: DeviceLinkSource
       linkedPorts:
         2784:
@@ -20188,7 +20252,7 @@ entities:
       parent: 2709
       pos: -1.5,0.5
     - type: DeviceNetwork
-      address: 54EE-062C
+      address: 4DEC-6854
     - type: DeviceLinkSource
       linkedPorts:
         2783:
@@ -20202,7 +20266,7 @@ entities:
       parent: 2709
       pos: -3.5,-0.5
     - type: DeviceNetwork
-      address: 001B-A92F
+      address: 2802-150F
     - type: DeviceLinkSource
       linkedPorts:
         2782:
@@ -20221,7 +20285,7 @@ entities:
       rot: 3.141592653589793 rad
       pos: 33.5,14.5
     - type: DeviceNetwork
-      address: 7C20-CE02
+      address: 48A0-1964
     - type: DeviceLinkSource
       linkedPorts:
         2641:
@@ -20286,7 +20350,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SMS-4C6D-847C
+      address: SMS-1B02-89CB
 - proto: SMESBasicEmpty
   entities:
   - uid: 3089
@@ -20297,7 +20361,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: SMS-2B3B-23F4
+      address: SMS-1C45-D432
 - proto: SmokeGrenade
   entities:
   - uid: 2188
@@ -21114,7 +21178,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1938
-      address: 1030-6E4D
+      address: 665B-B778
     - type: Wires
       wireSeed: 2007875671
   - uid: 2677
@@ -21126,7 +21190,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1938
-      address: 5FEC-4C21
+      address: 0029-F827
     - type: Wires
       wireSeed: 1370278434
   - uid: 2839
@@ -21138,7 +21202,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1938
-      address: 6D4A-28DE
+      address: 0577-70DC
     - type: Wires
       wireSeed: 675872517
 - proto: SurveillanceCameraMedical
@@ -21152,7 +21216,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1937
-      address: 1127-AA96
+      address: 45FF-04BF
     - type: Wires
       wireSeed: 1275616197
 - proto: SurveillanceCameraRouterGeneral
@@ -21165,7 +21229,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1926
-      address: 15F2-A7C2
+      address: 5C97-A299
 - proto: SurveillanceCameraRouterMedical
   entities:
   - uid: 2623
@@ -21176,7 +21240,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1926
-      address: 2D31-0FA0
+      address: 6918-00E9
 - proto: SurveillanceCameraRouterScience
   entities:
   - uid: 3687
@@ -21187,7 +21251,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1926
-      address: 686D-F307
+      address: 1AEE-173F
 - proto: SurveillanceCameraScience
   entities:
   - uid: 2675
@@ -21199,7 +21263,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1926
       receiveFrequency: 1933
-      address: 5ACC-9102
+      address: 5313-2910
     - type: Wires
       wireSeed: 2069157604
 - proto: SyndicateMicrowave
@@ -21211,7 +21275,7 @@ entities:
       pos: 29.5,38.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7631-274F
+      address: 3F49-D2D7
 - proto: Table
   entities:
   - uid: 430
@@ -21655,7 +21719,7 @@ entities:
     - type: DeviceNetwork
       transmitFrequency: 1621
       receiveFrequency: 1621
-      address: TEG-1E10-4225
+      address: TEG-4001-18CF
 - proto: TegCirculator
   entities:
   - uid: 1507
@@ -21764,7 +21828,7 @@ entities:
       pos: -2.5,2.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 7735-7050
+      address: 5055-F062
   - uid: 2803
     components:
     - type: Transform
@@ -21772,7 +21836,7 @@ entities:
       pos: 3.5,2.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 4E08-10EF
+      address: 059E-2BDD
   - uid: 2804
     components:
     - type: Transform
@@ -21781,7 +21845,7 @@ entities:
       pos: 5.5,-1.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 3827-5A7C
+      address: 11C1-6A82
   - uid: 2805
     components:
     - type: Transform
@@ -21790,7 +21854,7 @@ entities:
       pos: 4.5,-3.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 32F3-2158
+      address: 1C8D-247B
   - uid: 2806
     components:
     - type: Transform
@@ -21799,7 +21863,7 @@ entities:
       pos: -3.5,-3.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 5D67-91F3
+      address: 07F5-D3EB
   - uid: 2807
     components:
     - type: Transform
@@ -21808,7 +21872,7 @@ entities:
       pos: -4.5,-1.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 4057-A67C
+      address: 7EFD-F843
 - proto: TimerTrigger
   entities:
   - uid: 2861
@@ -21873,7 +21937,7 @@ entities:
       parent: 1
       pos: 36.5,53.5
     - type: DeviceNetwork
-      address: 54B1-4559
+      address: 1B7C-782A
     - type: DeviceLinkSource
       linkedPorts:
         2540:
@@ -21896,7 +21960,7 @@ entities:
       parent: 1
       pos: 38.5,57.5
     - type: DeviceNetwork
-      address: 1E69-2A79
+      address: 6A4D-BB11
     - type: DeviceLinkSource
       linkedPorts:
         3624:
@@ -21989,7 +22053,7 @@ entities:
       parent: 1
       pos: 40.5,52.5
     - type: DeviceNetwork
-      address: 074D-66D2
+      address: 411E-5D1A
     - type: DeviceLinkSource
       linkedPorts:
         3313:
@@ -22082,7 +22146,7 @@ entities:
       parent: 1
       pos: 75.5,39.5
     - type: DeviceNetwork
-      address: 24A9-96B3
+      address: 06B9-7A33
     - type: DeviceLinkSource
       linkedPorts:
         3675:
@@ -26765,7 +26829,7 @@ entities:
       pos: 50.5,27.5
     - type: DeviceNetwork
       receiveFrequency: 1280
-      address: 456E-A611
+      address: 3E33-9954
     - type: Wires
       wireSeed: 34686146
 - proto: Window
