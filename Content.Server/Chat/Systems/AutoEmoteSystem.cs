@@ -1,3 +1,4 @@
+using Content.Shared._Persistence14.EntityEffects;
 using Content.Shared.Chat;
 using Content.Shared.Chat.Prototypes;
 using Robust.Shared.Random;
@@ -74,6 +75,7 @@ public sealed partial class AutoEmoteSystem : EntitySystem
         {
             autoEmote.EmoteTimers[key] += args.PausedTime;
         }
+        if (autoEmote.NextEmoteTime == TimeSpan.MaxValue) return;
         autoEmote.NextEmoteTime += args.PausedTime;
     }
 

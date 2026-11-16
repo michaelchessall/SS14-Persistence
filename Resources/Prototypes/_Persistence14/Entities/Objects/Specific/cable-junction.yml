@@ -1,0 +1,141 @@
+- type: entity
+  id: CableJunctionBase
+  abstract: true
+  name: cable junction
+  description: Allows power cables to cross without electrically connecting.
+  placement:
+    mode: SnapgridCenter
+  components:
+  - type: Transform
+    anchored: true
+    noRot: true
+  - type: Clickable
+  - type: InteractionOutline
+  - type: SubFloorHide
+  - type: Sprite
+    sprite: _Persistence14/Objects/Specific/junction.rsi
+  - type: Appearance
+  - type: CableJunctionVisualizer
+    directions: 
+      Center: 0
+      North: n
+      South: s
+      East: e
+      West: w
+      Vertical: 3
+      Horizontal: 12
+  - type: CableJunctionVis
+    nodes: [ horizontal, vertical ]
+  - type: Construction
+    node: junction
+    deconstructionTarget: cable
+      
+
+- type: entity
+  id: CableJunctionLV
+  parent: CableJunctionBase
+  suffix: LV
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Power/Cables/lv_cable.rsi
+      color: Green
+      state: lvcable_0
+      map: [ "enum.CableJunctionVisualLayers.Horizontal"]
+    - sprite: Structures/Power/Cables/lv_cable.rsi
+      color: Green
+      state: lvcable_0
+      map: [ "enum.CableJunctionVisualLayers.Vertical"]
+      visible: false
+    - state: lv
+      map: [ "enum.CableJunctionVisualLayers.Junction"]
+  - type: NodeContainer
+    nodes: 
+      vertical: !type:CableJunctionNode
+        nodeGroupID: Apc
+        axis: NorthSouth
+      horizontal: !type:CableJunctionNode
+        nodeGroupID: Apc
+        axis: EastWest
+  - type: CableJunctionVisualizer
+    prefix: lvcable_
+  - type: Tag
+    tags: 
+    - CableJunctionLV
+  - type: Construction
+    graph: lvcable
+
+- type: entity
+  id: CableJunctionMV
+  parent: CableJunctionBase
+  suffix: MV
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Power/Cables/mv_cable.rsi
+      color: Yellow
+      state: mvcable_0
+      map: [ "enum.CableJunctionVisualLayers.Horizontal"]
+    - sprite: Structures/Power/Cables/mv_cable.rsi
+      state: mvcable_0
+      map: [ "enum.CableJunctionVisualLayers.HorizontalStripe"]
+    - sprite: Structures/Power/Cables/mv_cable.rsi
+      color: Yellow
+      state: mvstripes_0
+      visible: false
+      map: [ "enum.CableJunctionVisualLayers.Vertical" ]
+    - sprite: Structures/Power/Cables/mv_cable.rsi
+      state: mvstripes_0
+      visible: false
+      map: [ "enum.CableJunctionVisualLayers.VerticalStripe"]
+    - state: mv
+      map: [ "enum.CableJunctionVisualLayers.Junction"]
+  - type: NodeContainer
+    nodes: 
+      vertical: !type:CableJunctionNode
+        nodeGroupID: MVPower
+        axis: NorthSouth
+      horizontal: !type:CableJunctionNode
+        nodeGroupID: MVPower
+        axis: EastWest
+  - type: CableJunctionVisualizer
+    prefix: mvcable_
+    stripePrefix: mvstripes_
+  - type: Tag
+    tags: 
+    - CableJunctionMV
+  - type: Construction
+    graph: mvcable
+  
+
+- type: entity
+  id: CableJunctionHV
+  parent: CableJunctionBase
+  suffix: HV
+  components:
+  - type: Sprite
+    layers:
+    - sprite: Structures/Power/Cables/hv_cable.rsi
+      state: hvcable_0
+      map: [ "enum.CableJunctionVisualLayers.Horizontal"]
+    - sprite: Structures/Power/Cables/hv_cable.rsi
+      state: hvcable_0
+      visible: false
+      map: [ "enum.CableJunctionVisualLayers.Vertical"]
+    - state: hv
+      map: [ "enum.CableJunctionVisualLayers.Junction"]
+  - type: NodeContainer
+    nodes: 
+      vertical: !type:CableJunctionNode
+        nodeGroupID: HVPower
+        axis: NorthSouth
+      horizontal: !type:CableJunctionNode
+        nodeGroupID: HVPower
+        axis: EastWest
+  - type: CableJunctionVisualizer
+    prefix: hvcable_
+  - type: Tag
+    tags: 
+    - CableJunctionHV
+  - type: Construction
+    graph: hvcable

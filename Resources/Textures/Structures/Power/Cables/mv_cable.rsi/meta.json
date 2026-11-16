@@ -72,6 +72,22 @@
 
         },
         {
+            "name": "mvcable_n"
+
+        },
+        {
+            "name": "mvcable_e"
+
+        },
+        {
+            "name": "mvcable_s"
+
+        },
+        {
+            "name": "mvcable_w"
+
+        },
+        {
             "name": "mvstripes_0"
 
         },
@@ -133,7 +149,22 @@
         },
         {
             "name": "mvstripes_15"
-
+        }
+        ,
+        {
+            "name": "mvstripes_n"
+        }
+        ,
+        {
+            "name": "mvstripes_e"
+        }
+        ,
+        {
+            "name": "mvstripes_s"
+        }
+        ,
+        {
+            "name": "mvstripes_w"
         }
     ]
 }

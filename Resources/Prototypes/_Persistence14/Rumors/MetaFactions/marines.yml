@@ -23,6 +23,7 @@
     - MarineCodexFragment
     - UNMCMerchCrate
     - MarineWebbing
+    - MarineRumorContract
   rewardsToOffer: 2
 
 - type: metaFactionLevel

@@ -67,3 +67,21 @@
   canBuildInImpassable: false
   conditions:
     - !type:TileNotBlocked
+
+- type: construction
+  parent: BaseWindow
+  id: ShuttleWindowTitanium
+  startNode: start
+  targetNode: shuttleWindowTitanium
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter
+
+- type: construction
+  parent: BaseWindowDiagonal
+  id: ShuttleWindowTitaniumDiagonal
+  startNode: start
+  targetNode: shuttleWindowTitaniumDiagonal
+  category: construction-category-structures
+  objectType: Structure
+  placementMode: SnapgridCenter

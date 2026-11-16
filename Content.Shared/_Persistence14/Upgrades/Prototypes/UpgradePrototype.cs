@@ -44,5 +44,6 @@ public enum UpgradeType
     TegGeneratorPower,
     ToolSpeed,
     RadiationCollectorPower,
-    Armor
+    Armor,
+    TeleporterRange,
 }

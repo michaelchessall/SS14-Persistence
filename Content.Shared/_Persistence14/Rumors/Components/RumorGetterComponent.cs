@@ -14,6 +14,9 @@ public sealed partial class RumorGetterComponent : Component
     [DataField]
     public List<ActiveRumor> Rumors = new();
     [DataField]
+    public int MaxRumorCount = 4;
+
+    [DataField]
     public TimeSpan NextReward = TimeSpan.FromMinutes(0);
     [DataField]
     public TimeSpan RewardCooldownLength = TimeSpan.FromMinutes(150);

@@ -53,7 +53,7 @@ public abstract partial class SharedPlantConsumeExudeGasSystem : EntitySystem
         // if (!gasses.TryAdd(gas, amount)) // Persistence: Replace with above
         //     gasses[gas] += amount;
 
-        _tolerances.TryUpdateModifiers(ent.Owner); // Persistence
+        _tolerances.TryUpdateModifiers(ent.Owner, null); // Persistence
 
         DirtyField(ent, nameof(ent.Comp.ExudeGasses));
     }

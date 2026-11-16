@@ -136,6 +136,20 @@ public sealed partial class WashingMachineSystem : SharedWashingMachineSystem
                     _solution.RemoveAllSolution(sol.Value);
                     _stains.UpdateVisuals((item, stain));
                 }
+
+                if (TryComp<ToggleableClothingComponent>(item, out var toggleableClothing) &&
+                    TryComp<StainableComponent>(toggleableClothing.ClothingUid, out var toggleableStain) &&
+                    toggleableClothing.ClothingUid.HasValue &&
+                    _solution.TryGetSolution(toggleableClothing.ClothingUid.Value,
+                        toggleableStain.SolutionName,
+                        out var toggleableSolution))
+                {
+                    if (TryComp<ForensicsComponent>(uid, out var machineForensics))
+                        machineForensics.DNAs.UnionWith(_forensics.GetSolutionsDNA(toggleableSolution.Value.Comp.Solution));
+
+                    _solution.RemoveAllSolution(toggleableSolution.Value);
+                    _stains.UpdateVisuals((toggleableClothing.ClothingUid.Value, toggleableStain));
+                }
             }
         }
 

@@ -395,3 +395,22 @@
     clothingPrototype: ClothingHeadHelmetHardsuitDonkMicrowave
   - type: StaticPrice
     price: 750
+
+#ERT Suit Customized - Could be done with partial prototypes, but I've struggled getting them to work.
+
+- type: entity
+  parent: [ BaseCentcommContraband, ClothingOuterHardsuitSyndie ]
+  id: ClothingOuterHardsuitERTPaladin
+  name: ERT paladin's hardsuit
+  description: A protective hardsuit worn by the paladins of an Emergency Response Team.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/ERTSuits/ertpaladin.rsi #if you change this, please update the humanoid.yml with a better markers sprite.
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Hardsuits/ERTSuits/ertpaladin.rsi
+  - type: Item
+    size: Huge
+    shape:
+    - 0,0,3,3
+  - type: ToggleableClothing
+    clothingPrototype: ClothingHeadHelmetHardsuitERTPaladin

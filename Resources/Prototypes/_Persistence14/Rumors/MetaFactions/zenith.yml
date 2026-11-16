@@ -23,6 +23,7 @@
     - ZenithCodexFragment
     - SoLMerchCrate
     - GrandLottery
+    - ZenithRumorContract
   rewardsToOffer: 2
 
 - type: metaFactionLevel

@@ -246,4 +246,13 @@
     sprite: Structures/Storage/Crates/syndicate.rsi
     state: icon
 
-
+- type: rumorReward
+  id: PrecursorRumorContract
+  name: Rumor Contract
+  description: A slip containing one CyberSun rumor.
+  price: 3500
+  product: RumorContractPrecursor
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Purple

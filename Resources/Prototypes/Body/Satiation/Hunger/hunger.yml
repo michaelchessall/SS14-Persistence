@@ -1,12 +1,12 @@
 - type: satiation
   id: NormalSatiationHunger
-  baseChangeRate: -0.01666666666
+  baseChangeRate: -0.008 # Adjustment to make it slower, PS14
   maximumValue: 200
-  thresholds:
+  thresholds: 
     Overfed: 200
-    Okay: 150
-    Peckish: 100
-    Starving: 50
+    Okay: 100
+    Peckish: 60
+    Starving: 30
     Dead: 0
   startingValueMinimum: Peckish
   startingValueMaximum: Okay

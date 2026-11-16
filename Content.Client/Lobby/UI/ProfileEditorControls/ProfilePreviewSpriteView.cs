@@ -32,7 +32,8 @@ public sealed partial class ProfilePreviewSpriteView : SpriteView
         EntMan.DeleteEntity(PreviewDummy);
         PreviewDummy = EntityUid.Invalid;
 
-        LoadHumanoidEntity(profile, jobOverride, showClothes);
+        if (!TryLoadSnapshotEntity(profile, showClothes)) // PS14 - last seen preview
+            LoadHumanoidEntity(profile, jobOverride, showClothes);
 
         SetEntity(PreviewDummy);
         SetName(profile.Name);

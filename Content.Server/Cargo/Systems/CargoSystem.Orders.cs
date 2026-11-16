@@ -368,6 +368,12 @@ namespace Content.Server.Cargo.Systems
                 }
 
                 var cost = product.Cost * order.OrderQuantity;
+                if (!_accessReaderSystem.CanSpend(player, uid, null, cost))
+                {
+                    _popup.PopupCursor("Insufficent Spending Limit", args.Actor);
+                    PlayDenySound(uid, component);
+                    return;
+                }
                 var taxRate = order.Tax;
 
                 var oStation = GetTradeStationByID(order.TradeStation);

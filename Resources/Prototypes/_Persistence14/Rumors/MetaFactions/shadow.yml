@@ -23,6 +23,7 @@
     - ShadowCodexFragment
     - ShadowMerchCrate
     - GrandLottery
+    - ShadowRumorContract
   rewardsToOffer: 2
 
 - type: metaFactionLevel

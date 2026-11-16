@@ -48,9 +48,30 @@ public sealed class WorldControllerSystem : EntitySystem
     public override void Initialize()
     {
         _sawmill = _logManager.GetSawmill("world");
+
         SubscribeLocalEvent<LoadedChunkComponent, ComponentStartup>(OnChunkLoadedCore);
         SubscribeLocalEvent<LoadedChunkComponent, ComponentShutdown>(OnChunkUnloadedCore);
         SubscribeLocalEvent<WorldChunkComponent, ComponentShutdown>(OnChunkShutdown);
+        SubscribeLocalEvent<WorldLoaderComponent, ComponentShutdown>(OnWorldLoaderShutdown);
+    }
+    // Clenses  loaders list as it some times isnt cleaned up and we use this for NPC checks
+    private void OnWorldLoaderShutdown(
+        EntityUid uid,
+        WorldLoaderComponent component,
+        ComponentShutdown args)
+    {
+        var loadedEnum = EntityQueryEnumerator<LoadedChunkComponent>();
+
+        while (loadedEnum.MoveNext(out _, out var loadedChunk))
+        {
+            if (loadedChunk.Loaders is null)
+                continue;
+
+            loadedChunk.Loaders.Remove(uid);
+
+            if (loadedChunk.Loaders.Count == 0)
+                loadedChunk.Loaders = null;
+        }
     }
 
     /// <summary>
@@ -105,8 +126,27 @@ public sealed class WorldControllerSystem : EntitySystem
     /// <inheritdoc />
     public override void Update(float frameTime)
     {
+        RemoveInvalidLoaders();
         CheckChunksToLoad();
         UpdateLoadedChunks();
+    }
+    // Agressively Remove Bad loaders so they dont break NPC's in some edge cases, TODO: remove this probably
+    private void RemoveInvalidLoaders()
+    {
+        var loadedEnum = EntityQueryEnumerator<LoadedChunkComponent>();
+
+        while (loadedEnum.MoveNext(out _, out var loadedChunk))
+        {
+            if (loadedChunk.Loaders is null)
+                continue;
+
+            loadedChunk.Loaders.RemoveAll(loader =>
+                TerminatingOrDeleted(loader) ||
+                !HasComp<WorldLoaderComponent>(loader));
+
+            if (loadedChunk.Loaders.Count == 0)
+                loadedChunk.Loaders = null;
+        }
     }
 
     private void CheckChunksToLoad()

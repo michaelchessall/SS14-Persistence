@@ -33,6 +33,7 @@ using Content.Shared.StationRecords.Components;
 using Content.Shared.StationRecords.Systems;
 using Robust.Shared.Audio.Systems;
 using Robust.Server.GameObjects;
+using Content.Server._Persistence14.CharacterSnapshot; // PS14
 
 namespace Content.Server.Bed.Cryostorage;
 
@@ -185,7 +186,8 @@ public sealed partial class CryostorageSystem : SharedCryostorageSystem
         if (userId != null)
         {
             var saveFilePath = new ResPath($"{userId}]{name}");
-            _loader.TrySaveGeneric(ent.Owner, saveFilePath, out var use);
+            if (_loader.TrySaveGeneric(ent.Owner, saveFilePath, out var use)) // PS14 - snapshot for lobby preview
+                EntityManager.System<CharacterSnapshotSystem>().SaveSnapshot(ent.Owner, userId.Value, name); // PS14
             if (TryComp<ActorComponent>(ent.Owner, out var actor))
                 _ticker.PlayerJoinLobby(actor.PlayerSession);
             _transform.DetachEntity(ent, Transform(ent));

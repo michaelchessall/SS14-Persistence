@@ -47,3 +47,14 @@
   icon:
     sprite: Objects/Weapons/Melee/e_dagger.rsi
     state: icon
+
+- type: rumorReward
+  id: ShadowRumorContract
+  name: Rumor Contract
+  description: A slip containing one Elders rumor.
+  price: 3500
+  product: RumorContractShadow
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: DarkGray

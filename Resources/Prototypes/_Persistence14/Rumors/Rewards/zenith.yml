@@ -27,3 +27,14 @@
   icon:
     sprite: _Persistence14/Structures/Decoration/banner.rsi
     state: banner_sl
+
+- type: rumorReward
+  id: ZenithRumorContract
+  name: Rumor Contract
+  description: A slip containing one Solar Legion rumor.
+  price: 5000
+  product: RumorContractZenith
+  icon:
+    sprite: Objects/Misc/bureaucracy.rsi
+    state: paper_dotmatrix_words
+    color: Red

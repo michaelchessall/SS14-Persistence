@@ -34,12 +34,14 @@
   Members of your faction will not be able to reassign themselves or anyone with an equal or higher command level than themselves.
   For example, if a "Captain" assignment has a command level of 100 and a "HoP" assignment has a command level of 90 then someone holding the HoP assignment will not be able to reassign the Captain or any other HoP and will only be able to reassign those with an assignment that has command level 89 or lower.
 
+  ### Spending Limit
+  Members of your faction will not be able to spend more than this amount of credits at a time.
+  You can reset this at a ID console per person
+  
   ### Core Functions
   Core functions control specific functions that the assignment holder may be able to perform.
 
   The "REASSIGN" core function allows those with the assignment to reassign those with a lower command level through the ID card computer.
-
-  The "SPEND" core function allows those with the assignment to spend funds out of the faction account.
 
   The "CLAIM" core function allows those with the assignment to claim and unclaim grids for the faction.
 

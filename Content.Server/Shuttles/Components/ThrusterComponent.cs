@@ -95,11 +95,6 @@ namespace Content.Server.Shuttles.Components
         public TimeSpan NextFire = TimeSpan.Zero;
 
         /// <summary>
-        /// Load on the power network, in watts.
-        /// </summary>
-        public float OriginalLoad { get; set; } = 0;
-
-        /// <summary>
         /// Togglable thrusters
         /// </summary>
         [DataField]

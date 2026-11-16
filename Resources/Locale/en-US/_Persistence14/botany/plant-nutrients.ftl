@@ -1,7 +1,7 @@
 ## All nutrient descriptions except for nutrient and copper written by pwzysk
 
-nutrient-name-nutrient = nutrients
-nutrient-desc-nutrient = Nutrient description! Add this to your plant! (Legal Disclaimer: This currently can be added to plants)
+nutrient-name-nutrient = compost
+nutrient-desc-nutrient = A mixture of various organic compounds that most plants need.
 
 nutrient-name-water = water
 nutrient-desc-water = A pitiful imitation of rainfall.
