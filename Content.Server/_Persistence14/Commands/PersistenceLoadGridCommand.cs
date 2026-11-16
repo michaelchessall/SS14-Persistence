@@ -1,18 +1,22 @@
+using System.Linq;
+using System.Numerics;
+using Content.Server.Administration;
 using Content.Server.Persistence.Systems;
 using Content.Shared.Administration;
 using Robust.Shared.Console;
+using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization;
 using Robust.Shared.Map;
 using Robust.Shared.Utility;
-using System.Numerics;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Persistence14.Commands;
 
 [AdminCommand(AdminFlags.Server)]
 public sealed class PersistenceLoadGridCommand : LocalizedEntityCommands
 {
     [Dependency] private readonly IEntitySystemManager _system = default!;
     [Dependency] private readonly PersistenceSystem _persistence = default!;
+    [Dependency] private IResourceManager _resource = default!;
 
     public override string Command => "persistenceloadgrid";
 
@@ -98,5 +102,28 @@ public sealed class PersistenceLoadGridCommand : LocalizedEntityCommands
         {
             shell.WriteLine($"Grid successfuly loaded with id '{grid}' on Map {mapId} {offset} ({rot.Degrees}º) ");
         }
+    }
+
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    {
+        switch (args.Length)
+        {
+            case 1:
+                return CompletionResult.FromHint(Loc.GetString("cmd-hint-savemap-id"));
+            case 2:
+                var opts = CompletionHelper.UserFilePath(args[1], _resource.UserData)
+                    .Concat(CompletionHelper.ContentFilePath(args[1], _resource));
+                return CompletionResult.FromHintOptions(opts, Loc.GetString("cmd-hint-savemap-path"));
+            case 3:
+                return CompletionResult.FromHint(Loc.GetString("cmd-hint-loadmap-x-position"));
+            case 4:
+                return CompletionResult.FromHint(Loc.GetString("cmd-hint-loadmap-y-position"));
+            case 5:
+                return CompletionResult.FromHint(Loc.GetString("cmd-hint-loadmap-rotation"));
+            case 6:
+                return CompletionResult.FromHint(Loc.GetString("cmd-hint-savemap-force"));
+        }
+
+        return CompletionResult.Empty;
     }
 }
