@@ -88,7 +88,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatBeretExecSecNCC
   name: first officer's beret
-  description: An NCC colored beret with a purple crest on the front. Worn by the First Officer of Eclipse.
+  description: An NCC colored beret with a purple crest on the front. Worn by the First Officer of NCC.
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Hats/beret_nccfirstoff.rsi
@@ -179,7 +179,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatExeccapNCC
   name: nexus central council captains's cap
-  description: A regal cap, worn by the Eclipse Station Captain. Shows the station who's in charge.
+  description: A regal cap, worn by an NCC Captain. Shows the station who's in charge.
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Hats/ncccap.rsi
@@ -203,7 +203,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatCOSNCC
   name: nexus central council chief of staff's cap
-  description: A wool beanie worn by the Eclipse Station Chief of Staff. Cozy.
+  description: A wool beanie worn by the NCC Chief of Staff. Cozy.
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Hats/cosbeanie.rsi
@@ -227,7 +227,7 @@
   parent: ClothingHeadBase
   id: ClothingHeadHatDEPCOSNCC
   name: nexus central council deputy chief of staff's cap
-  description: An adorned cap worn by the Eclipse Station Deputy Chief of Staff. Elegant.
+  description: An adorned cap worn by the NCC Deputy Chief of Staff. Elegant.
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Head/Hats/ncccoscap.rsi
