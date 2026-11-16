@@ -9,6 +9,7 @@
   - type: Anchorable
     flags:
     - Anchorable
+    - Unanchorable
   - type: CollideOnAnchor
   - type: Physics
     canCollide: false
@@ -66,6 +67,10 @@
   - type: IconSmooth
     key: cargo_pallet_sell
     base: cargo_pallet_sell_
+  - type: AccessReader
+  - type: AnchorChangeRequiresAccess
+    flags:
+    - Unanchorable
 
 - type: entity
   id: CargoPalletBuy
@@ -83,3 +88,7 @@
   - type: IconSmooth
     key: cargo_pallet_buy
     base: cargo_pallet_buy_
+  - type: AccessReader
+  - type: AnchorChangeRequiresAccess
+    flags:
+    - Unanchorable
