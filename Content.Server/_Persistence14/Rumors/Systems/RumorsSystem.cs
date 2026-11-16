@@ -52,6 +52,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Tag;
 
 #pragma warning disable IDE1006 // Naming Styles
 namespace Content.Shared._Persistence14.Rumors.Systems;
@@ -91,7 +92,10 @@ public sealed partial class RumorsSystem : EntitySystem
     [Dependency] private ServerGlobalSoundSystem _globalsound = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private DeliverySystem _delivery = default!;
+    [Dependency] private TagSystem _tag = default!;
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new();
+
+    private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib";
     public override void Initialize()
     {
         base.Initialize();
@@ -366,6 +370,8 @@ public sealed partial class RumorsSystem : EntitySystem
             }
 
         }
+
+        _tag.RemoveTag(ent.Owner, NoGibTag);
     }
 
     private void OnPrayed(Entity<PrayableComponent> ent, ref PrayedEvent args)
