@@ -22,6 +22,7 @@
   - type: Tool
     qualities:
       - Prying
+    powerUsage: 5
     useSound: !type:SoundPathSpecifier
       path: /Audio/Items/jaws_pry.ogg
       params:
@@ -72,7 +73,19 @@
       Steel: 500
       Glass: 100
       Plasma: 100
-
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: Upgradeable
+    chooseOneUpgrades:
+      ToolSpeedGreen : 0
 - type: entity
   name: syndicate jaws of death
   parent: [ JawsOfLife, BaseSyndicateContraband]

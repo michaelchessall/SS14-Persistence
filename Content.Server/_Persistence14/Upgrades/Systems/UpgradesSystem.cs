@@ -330,7 +330,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     private void ApplyToolSpeedUpgrade(EntityUid uid, UpgradePrototype upgradeProto)
     {
         if (!_toolQuery.TryComp(uid, out var toolComp)) return;
-        _tool.SetToolSpeedModifier(uid, toolComp, toolComp.SpeedModifier + upgradeProto.UpgradeValues[0]);
+        _tool.SetToolSpeedModifier((uid, toolComp), toolComp.SpeedModifier + upgradeProto.UpgradeValues[0]);
     }
 
     private void ApplyTegGeneratorPowerUpgrade(EntityUid uid, UpgradePrototype upgradeProto)

@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.PowerCell; // Persistence
 
 namespace Content.Shared.Tools.Systems;
 
@@ -34,6 +35,7 @@ public abstract partial class SharedToolSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private TileSystem _tiles = default!;
     [Dependency] private TurfSystem _turfs = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!; // Persistence
 
     public const string CutQuality = "Cutting";
     public const string PulseQuality = "Pulsing";
@@ -47,9 +49,9 @@ public abstract partial class SharedToolSystem : EntitySystem
         SubscribeLocalEvent<ToolComponent, ExaminedEvent>(OnExamine);
     }
 
-    public void SetToolSpeedModifier(EntityUid uid, ToolComponent tool, float speedModifier)
+    public void SetToolSpeedModifier(Entity<ToolComponent> ent, float speedModifier)
     {
-        tool.SpeedModifier = speedModifier;
+        ent.Comp.SpeedModifier = speedModifier;
     }
 
     private void OnDoAfter(EntityUid uid, ToolComponent tool, ToolDoAfterEvent args)
@@ -157,6 +159,9 @@ public abstract partial class SharedToolSystem : EntitySystem
             return false;
 
         if (!CanStartToolUse(tool, user, target, fuel, toolQualitiesNeeded, toolComponent))
+            return false;
+
+        if (!TryComp<ToolComponent>(tool, out var toolComp) || toolComp.PowerUsage is { } usage && !_powerCell.TryUseCharge(tool, usage))
             return false;
 
         string examineText;

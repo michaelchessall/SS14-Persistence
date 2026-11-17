@@ -20,6 +20,12 @@ public sealed partial class ToolComponent : Component
 
     [DataField]
     public SoundSpecifier? UseSound;
+
+    [DataField]
+    public float? PowerUsage = null;
+
+    [DataField]
+    public bool UsesPowerCell = false;
 }
 
 /// <summary>

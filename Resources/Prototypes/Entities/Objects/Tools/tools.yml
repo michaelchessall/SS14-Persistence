@@ -271,6 +271,7 @@
   - type: Tool
     qualities:
       - Screwing
+    powerUsage: 5
     speedModifier: 1.5
     useSound: !type:SoundPathSpecifier
       path: /Audio/Items/drill_use.ogg
@@ -319,6 +320,19 @@
       path: "/Audio/Items/drill_hit.ogg"
   - type: Upgradeable
     upgrades:
+      ToolSpeedGreen : 0
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  - type: Upgradeable
+    chooseOneUpgrades:
       ToolSpeedGreen : 0
 
 - type: entity
