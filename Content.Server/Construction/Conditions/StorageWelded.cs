@@ -13,7 +13,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("welded")]
         public bool Welded { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             return entityManager.System<WeldableSystem>().IsWelded(uid) == Welded;
         }

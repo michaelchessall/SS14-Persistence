@@ -11,7 +11,7 @@ namespace Content.Server.Construction.Conditions
     {
         [DataField("anchored")] public bool Anchored { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             var transform = entityManager.GetComponent<TransformComponent>(uid);
             return transform.Anchored && Anchored || !transform.Anchored && !Anchored;

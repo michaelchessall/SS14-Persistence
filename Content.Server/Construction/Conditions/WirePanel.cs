@@ -11,7 +11,7 @@ namespace Content.Server.Construction.Conditions
     {
         [DataField("open")] public bool Open { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             //if it doesn't have a wire panel, then just let it work.
             if (!entityManager.TryGetComponent<WiresPanelComponent>(uid, out var wires))

@@ -18,6 +18,10 @@
 - type: Tag
   id: CaptainBroadsword # Storage whitelist: ClothingBeltSheathBroadsword. ItemMapper: ClothingBeltSheathBroadsword.
 
+- type: Tag
+  id: CargoPalletUpgradeTemplateSell # Identifies a sell upgrade template for the construction graph
+- type: Tag
+  id: CargoPalletUpgradeTemplateBuy # Identifies a buy upgrade template for the construction graph
 
 ## D ##
 - type: Tag
