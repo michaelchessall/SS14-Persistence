@@ -32,8 +32,10 @@
       - Cash
       - Paper
       - NFCoin
-#      - Card # Single playing card # Persistence: playing cards are not implemented
+      - PlayingCard # Single playing card
       - Invoice # Persistence: digital invoices in wallets
+      - Photograph # Persistence
+      - Snapshot # Persistence
     blacklist:
       tags:
       - Book
@@ -50,7 +52,7 @@
           components:
           - Paper
           - Invoice # Persistence: invoices inside wallets cause wallets to show paper inside
-#          - Card # Persistence: playing cards are not implemented
+          - PlayingCard
       closed-cash:
         whitelist:
           components:
@@ -78,3 +80,5 @@
           Open: { state: open-coin }
           Closed: { state: closed-coin }
   - type: Fireproof
+  - type: ExplosionResistance
+    damageCoefficient: 0.4
