@@ -6,7 +6,6 @@ using Content.Shared.Power;
 using JetBrains.Annotations;
 using Robust.Shared.Map.Components;
 
-
 namespace Content.Server.Atmos.EntitySystems
 {
     [UsedImplicitly]
