@@ -108,7 +108,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     {
         if (Capture(args.User, args.Center, ent.Comp.HalfExtents) is not { } data)
             return;
-        
+
         if (args.Focus is { } focus && _captured.ContainsKey(focus))
         {
             data.SubjectNameText = Loc.GetString(
@@ -123,7 +123,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
         var snapshot = Spawn(ent.Comp.Snapshot, Transform(ent).Coordinates);
         EnsureComp<SnapshotComponent>(snapshot).Data = data;
-        
+
         // Start Starlight
         if (!_snapshotPersistence.SetData(snapshot, data))
         {
@@ -133,8 +133,6 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         }
         // End Starlight
 
-        _hands.PickupOrDrop(args.User, snapshot, dropNear: true);
-        
         _hands.PickupOrDrop(args.User, snapshot, dropNear: true);
     }
 
