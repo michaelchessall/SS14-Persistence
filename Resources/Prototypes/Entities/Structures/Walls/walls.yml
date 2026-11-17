@@ -44,7 +44,6 @@
         - WallLayer
         density: 1000
   - type: Airtight
-    leakThreshold: 0.80
   - type: StaticPrice
     price: 75
   - type: RadiationBlocker
@@ -61,7 +60,6 @@
 # PERSI change START - Damage visuals & leaks for walls!
   - type: Sprite
     sprite: _Persistence14/Structures/walls/wall_damage.rsi
-    noRot: true
     layers:
     - state: DamageLeak
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
@@ -71,14 +69,16 @@
   - type: ExaminableDamage
     messages: WindowMessages
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 8
+    fuelCost: 2
+    damageValue: -40
+    doAfterDelay: 2
   - type: DamageVisuals # Diagonal walls need a diff texture for the damagevisuals
     thresholds: [15, 30, 60, 90]
     trackAllDamage: true
     damageOverlay:
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
-  - type: StructureLeakVisuals
+  - type: StructureLeak
+    leakThreshold: 0.50
     messages: StructureLeakMessages
 # PERSI change END
   - type: PlacementReplacement
@@ -94,7 +94,7 @@
   parent: BaseWall
   id: BaseAsteroidWall
   components:
-  - type: Airtight
+  - type: StructureLeak
     breakSound: /Audio/Effects/break_stone.ogg
 
 - type: entity

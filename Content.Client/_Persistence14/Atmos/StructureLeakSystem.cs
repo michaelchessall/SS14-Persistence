@@ -1,14 +1,12 @@
 using Content.Client.IconSmoothing;
 using Content.Shared._Persistence14.Atmos.Components;
 using Robust.Client.GameObjects;
-using Robust.Shared.GameStates;
 
 namespace Content.Client._Persistence14.Atmos;
 
 public sealed partial class StructureLeakSystem : EntitySystem
 {
     [Dependency] private readonly IconSmoothSystem _smooth = default!;
-    [Dependency] private readonly SharedAppearanceSystem _appearance = default!;
     [Dependency] private readonly SpriteSystem _sprite = default!;
 
     public override void Initialize()
@@ -17,12 +15,12 @@ public sealed partial class StructureLeakSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    public void OnAfterAutoHandleState(EntityUid uid, StructureLeakVisualsComponent component, ref AfterAutoHandleStateEvent args)
+    public void OnAfterAutoHandleState(EntityUid uid, StructureLeakComponent component, ref AfterAutoHandleStateEvent args)
     {
         UpdateAppearance(uid, component);
     }
 
-    private void UpdateAppearance(EntityUid uid, StructureLeakVisualsComponent component)
+    private void UpdateAppearance(EntityUid uid, StructureLeakComponent component)
     {
         if (!TryComp<SpriteComponent>(uid, out var sprite))
             return;
@@ -33,7 +31,7 @@ public sealed partial class StructureLeakSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    private void OnAppearanceChange(EntityUid uid, StructureLeakVisualsComponent component, ref AppearanceChangeEvent args)
+    public void OnAppearanceChange(EntityUid uid, StructureLeakComponent component, ref AppearanceChangeEvent args)
     {
         if (TryComp<IconSmoothComponent>(uid, out var iconSmooth))
             _smooth.SetEnabled(uid, !component.Leaking, iconSmooth);

@@ -18,7 +18,10 @@
         mask:
         - MachineMask
         layer:
-        - GlassAirlockLayer
+        - HighImpassable
+        - MidImpassable
+        - InteractImpassable
+  - type: Climbable
   - type: InteractionOutline
 
 - type: entity
@@ -80,7 +83,8 @@
         mask:
         - FullTileMask
         layer:
-        - GlassLayer
+        - MidImpassable
+        - InteractImpassable
   - type: Construction
     graph: GirderDiagonal
     node: girder
@@ -160,7 +164,8 @@
         mask:
         - FullTileMask
         layer:
-        - GlassLayer
+        - MidImpassable
+        - InteractImpassable
   - type: Construction
     graph: GirderDiagonal
     node: reinforcedGirder

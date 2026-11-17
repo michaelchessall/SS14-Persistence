@@ -13,7 +13,7 @@ public sealed partial class ExaminableAirtightSystem : EntitySystem
     }
 
     [SubscribeLocalEvent]
-    public void OnExamine(Entity<StructureLeakVisualsComponent> ent, ref ExaminedEvent args)
+    public void OnExamine(Entity<StructureLeakComponent> ent, ref ExaminedEvent args)
     {
         if (!ProtoMan.Resolve(ent.Comp.Messages, out var proto))
             return;
