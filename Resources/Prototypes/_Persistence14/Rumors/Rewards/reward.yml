@@ -73,9 +73,9 @@
   name: Travel Camera
   description: "Stun people with your photography skills and the conveniently legal camera flash. Makes you look like a tourist."
   price: 3000
-  product: TravelCamera
+  product: PhotoCamera
   icon:
-    sprite: Objects/Devices/travel_camera.rsi
+    sprite: _Moffstation/Objects/Devices/snapshot_camera.rsi
     state: icon
 
 - type: rumorReward
@@ -340,6 +340,6 @@
   description: An advanced version of the teleporter chip with significantly extended range.
   price: 7500
   product: TeleporterChipBlankAdvanced
-  icon: 
+  icon:
     sprite: Objects/Misc/teleporter_chips.rsi
     state: icon
