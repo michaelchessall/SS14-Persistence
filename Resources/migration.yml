@@ -1076,4 +1076,4 @@ TelecomServer1k: AdvancedTelecomServer
 TelecomServer1kCircuitboard: TelecomServerAdvancedCircuitboard
 
 # 2026-11-17 - Persistence 14: Port PhotoCamera from Moff/Starlight
-TravelCamera: PhotoCamera
+#TravelCamera: PhotoCamera
