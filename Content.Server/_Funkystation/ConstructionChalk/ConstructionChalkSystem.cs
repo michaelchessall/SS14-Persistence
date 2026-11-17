@@ -175,6 +175,9 @@ public sealed partial class ConstructionChalkSystem : SharedConstructionChalkSys
 
                 if (recipe.AlternativePrototypes.Any(alt => alt == constructionPrototype))
                     return true;
+
+                if (recipe.Mirror is { } mirror)
+                    return true;
             }
         }
 
