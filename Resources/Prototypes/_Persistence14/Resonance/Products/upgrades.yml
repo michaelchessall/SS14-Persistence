@@ -3,6 +3,9 @@
   name: Trade Station Pallet Upgrade
   description: A crate containing two pallet upgrade templates for cargo pallets. Templates may be reconfigured between buy and sell with a screwdriver.
   price: 1000
+  shared: false
+  unique: false
+  productType: Product
   product: TradeStationPalletUpgradeCrate
   icon:
     sprite: _Persistence14/Objects/Specific/cargo-pallet-upgrade.rsi
@@ -10,13 +13,14 @@
 
 - type: entity
   id: TradeStationPalletUpgradeCrate
-  parent: CrateCommandSecure
+  parent: NFPouchUtility
   name: trade station pallet upgrade kit
-  description: A crate containing two pallet upgrade templates for cargo pallets. Templates may be reconfigured between buy and sell with a screwdriver.
+  description: A pouch containing two pallet upgrade templates for cargo pallets. Templates may be reconfigured between buy and sell with a screwdriver.
   components:
   - type: EntityTableContainerFill
     containers:
-      entity_storage: !type:AllSelector
+      storagebase: !type:AllSelector
         children:
         - id: CargoPalletUpgradeTemplateBuy
         - id: CargoPalletUpgradeTemplateSell
+        - id: Screwdriver
