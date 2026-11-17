@@ -12,6 +12,12 @@
         },
         {
             "name": "icon-buy"
+        },
+        {
+            "name": "ui-icon-sell"
+        },
+        {
+            "name": "ui-icon-buy"
         }
     ]
 }
