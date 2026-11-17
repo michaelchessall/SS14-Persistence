@@ -76,6 +76,13 @@
     - Unanchorable
   - type: Construction
     node: sell
+  - type: ContainerContainer
+    containers: 
+      upgrade-template: !type:Container
+  - type: ContainerFill
+    containers: 
+      upgrade-template:
+      - CargoPalletUpgradeTemplateSell
 
 - type: entity
   id: CargoPalletBuy
@@ -99,3 +106,10 @@
     - Unanchorable
   - type: Construction
     node: buy
+  - type: ContainerContainer
+    containers: 
+      upgrade-template: !type:Container
+  - type: ContainerFill
+    containers: 
+      upgrade-template: 
+      - CargoPalletUpgradeTemplateBuy
