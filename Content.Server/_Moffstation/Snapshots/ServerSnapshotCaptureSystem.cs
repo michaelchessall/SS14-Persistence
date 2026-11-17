@@ -20,6 +20,9 @@ using Content.Shared.Parallax;
 using Content.Shared.Photography;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
+using Robust.Server.GameObjects;
+using Robust.Shared;
+using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
@@ -44,6 +47,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private InventorySystem _inventory = default!;
     [Dependency] private SharedHandsSystem _hands = default!;
     [Dependency] private ITileDefinitionManager _tileDef = default!;
+    [Dependency] private IConfigurationManager _cfg = default!;
+    [Dependency] private SnapshotPersistenceSystem _snapshotPersistence = default!;
 
     [Dependency] private EntityQuery<EyeCursorOffsetComponent> _cursorOffsetQuery = default!;
     [Dependency] private EntityQuery<EyeComponent> _eyeQuery = default!;
@@ -60,9 +65,11 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private EntityQuery<VirtualItemComponent> _virtualItemQuery = default!;
     [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
     [Dependency] private EntityQuery<MapTextComponent> _mapTextQuery = default!;
-    [Dependency] private SnapshotPersistenceSystem _snapshotPersistence = default!;
+    [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
 
     private const int MaxEntities = 256;
+
+    private const int MaxNearbyLights = 64;
 
     private const int MaxOccluders = 512;
 
@@ -92,6 +99,12 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     private readonly HashSet<EntityUid> _found = new();
 
     private readonly Dictionary<EntityUid, int> _captured = new();
+
+    private readonly HashSet<EntityUid> _supportCaptured = new();
+
+    private readonly HashSet<Entity<PointLightComponent>> _nearbyLights = [];
+
+    private readonly HashSet<Vector2i> _supportTiles = [];
 
     /// <summary>
     /// The viewfinder's extended view needs a larger PVS range, like binoculars.
@@ -187,12 +200,16 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
 
         _found.Clear();
         _captured.Clear();
-        var frameBox = new Box2(centerTile - halfExtents, centerTile + halfExtents + Vector2i.One);
+        _supportCaptured.Clear();
+        var shotBounds = new Box2(centerTile - snapshot.HalfExtents, centerTile + snapshot.HalfExtents + Vector2i.One);
+        var frameBox = shotBounds.Enlarged(1f);
         if (grid is { } lookupGrid)
             _lookup.GetLocalEntitiesIntersecting(lookupGrid, frameBox, _found, LookupFlags.Uncontained);
         else
             _found.UnionWith(_lookup.GetEntitiesIntersecting(mapId, frameBox, LookupFlags.Uncontained));
 
+        var supportTiles = _supportTiles;
+        supportTiles.Clear();
         foreach (var uid in _found)
         {
             if (snapshot.Entities.Count >= MaxEntities)
@@ -227,6 +244,11 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 Humanoid = GetHumanoid(uid, visMask),
             });
         }
+
+        var worldCenter = Vector2.Transform(center, frameToWorld);
+
+        CaptureNearbyLights(snapshot, mapId, worldCenter, centerTile, shotBounds, worldToFrame,
+            frameRotation, viewerCoords, visMask, supportTiles);
 
         foreach (var (uid, index) in _captured)
         {
@@ -268,7 +290,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             }
         }
 
-        snapshot.WorldCenter = Vector2.Transform(center, frameToWorld);
+        snapshot.WorldCenter = worldCenter;
         snapshot.Parallax = _parallaxQuery.TryComp(_map.GetMapOrInvalid(mapId), out var parallax)
             ? parallax.Parallax
             : null;
@@ -279,6 +301,100 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             AddSeenOccluders(snapshot, occluderGrid, viewerCoords, viewerLocal, centerTile, frameToWorld, worldToFrame);
 
         return snapshot;
+    }
+
+    /// <summary>
+    /// Captures off-frame lights that still illuminate the frame as support-only entities.
+    /// Reuses <see cref="_nearbyLights"/> instead of allocating a fresh lookup list per shot.
+    /// </summary>
+    private void CaptureNearbyLights(
+        SnapshotData snapshot,
+        MapId mapId,
+        Vector2 worldCenter,
+        Vector2i centerTile,
+        Box2 frameBox,
+        Matrix3x2 worldToFrame,
+        Angle frameRotation,
+        MapCoordinates _,
+        int visMask,
+        HashSet<Vector2i> supportTiles)
+    {
+        var maxLightRadius = _cfg.GetCVar(CVars.MaxLightRadius);
+        if (!float.IsFinite(maxLightRadius) || maxLightRadius <= 0f)
+            return;
+
+        var frameRadius = new Vector2(snapshot.HalfExtents.X + 0.5f, snapshot.HalfExtents.Y + 0.5f).Length();
+        _nearbyLights.Clear();
+        _lookup.GetEntitiesInRange(new MapCoordinates(worldCenter, mapId),
+            frameRadius + maxLightRadius + 1f,
+            _nearbyLights);
+
+        var center = Vector2.Transform(worldCenter, worldToFrame);
+        var capturedCount = 0;
+        foreach (var incompleteLight in _nearbyLights)
+        {
+            var uid = incompleteLight.Owner;
+            if (capturedCount >= MaxNearbyLights)
+            {
+                if (capturedCount == MaxNearbyLights)
+                    Log.Warning($"Snapshot capture truncated at {MaxNearbyLights} nearby lights.");
+                break;
+            }
+
+            if (!_transformQuery.TryComp(uid, out var transform))
+                continue;
+
+            Entity<PointLightComponent,TransformComponent> light = (incompleteLight.Owner, incompleteLight.Comp, transform);
+
+            if (_captured.ContainsKey(uid) || _supportCaptured.Contains(uid))
+                continue;
+
+            var entityWorldPosition = TransformSystem.GetWorldPosition(light.Comp2);
+            var worldRotation = TransformSystem.GetWorldRotation(light.Comp2);
+            var lightWorldPosition = entityWorldPosition + worldRotation.RotateVec(light.Comp1.Offset);
+            var lightLocalPosition = Vector2.Transform(lightWorldPosition, worldToFrame);
+            var closest = Vector2.Clamp(lightLocalPosition, frameBox.BottomLeft, frameBox.TopRight);
+            var radius = Math.Min(light.Comp1.Radius, maxLightRadius);
+            if (!float.IsFinite(radius)
+                || radius <= 0f
+                || Vector2.DistanceSquared(lightLocalPosition, closest) > radius * radius)
+            {
+                continue;
+            }
+
+            if (!ShouldInclude(uid, visMask, null)
+                || MetaData(uid).EntityPrototype is not { } proto)
+            {
+                continue;
+            }
+
+            // Support-only lights do not need to be directly visible to the viewer: they are rebuilt as
+            // invisible illumination sources, so a partition that hides the lamp itself does not prevent it
+            // from contributing light to the visible frame.Expand commentComment on lines R843 to R845Resolved
+
+            snapshot.Entities.Add(new SnapshotEntity
+            {
+                Prototype = proto.ID,
+                Offset = Vector2.Transform(entityWorldPosition, worldToFrame) - center,
+                Rotation = worldRotation + frameRotation,
+                SupportOnly = true,
+                Light = new SnapshotLight(
+                    light.Comp1.Enabled,
+                    light.Comp1.Color,
+                    light.Comp1.Radius,
+                    light.Comp1.Energy,
+                    light.Comp1.Softness,
+                    light.Comp1.Falloff,
+                    light.Comp1.CurveFactor,
+                    light.Comp1.CastShadows,
+                    light.Comp1.Offset),
+            });
+
+            _supportCaptured.Add(uid);
+            supportTiles.Add(TileOf(Vector2.Transform(entityWorldPosition, worldToFrame)) - centerTile);
+
+            capturedCount++;
+        }
     }
 
     /// <summary>
@@ -441,7 +557,9 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             light.Energy,
             light.Softness,
             light.Falloff,
-            light.CurveFactor);
+            light.CurveFactor,
+            light.CastShadows,
+            light.Offset);
     }
 
     private bool CanSeeAnyOfTile(MapCoordinates viewer, Vector2i index, Matrix3x2 frameToWorld, Matrix3x2 worldToFrame, MapId mapId)

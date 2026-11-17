@@ -52,7 +52,7 @@ public sealed class SnapshotData
     /// the middle tile.
     /// </summary>
     public List<Vector2i> Occluders = new();
-    
+
     /// <summary>
     /// Name text for the subject clicked through the viewfinder, if that entity was included in the shot.
     /// </summary>
@@ -81,6 +81,11 @@ public sealed class SnapshotEntity
     public Vector2 Offset;
 
     public Angle Rotation;
+
+    /// <summary>
+    /// This entity is outside the frame and only exists to provide nearby illumination.
+    /// </summary>
+    public bool SupportOnly;
 
     /// <summary>
     /// Copy Apperance so the Rebuild view matches
@@ -114,7 +119,9 @@ public record struct SnapshotLight(
     float Energy,
     float Softness,
     float Falloff,
-    float CurveFactor);
+    float CurveFactor,
+    bool CastShadows,
+    Vector2 Offset = default);
 
 /// <summary>
 /// To ensure Character Items Inhand items ETC is carried over aswell as markings and such
