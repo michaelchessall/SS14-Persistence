@@ -99,6 +99,19 @@
   - name: chalk-entry-pipe-manifold
     icon: /Textures/_Persistence14/Interface/Radial/RPD/manifold.png
     constructionPrototype: GasPipeManifold
+  - name: chalk-entry-pipe-manifold
+    icon: /Textures/_Persistence14/Interface/Radial/RPD/manifold.png
+    constructionPrototype: GasPipeManifold
+  - name: chalk-entry-pipe-manifold
+    icon: /Textures/_Persistence14/Interface/Radial/RPD/manifold.png
+    constructionPrototype: GasPipeManifold
+  - name: chalk-entry-pipe-interchange-long
+    icon: /Textures/_Persistence14/Interface/Radial/RPD/interchange-long.png
+    constructionPrototype: PipeInterchangeSecondaryTertiaryFlipped
+  - name: chalk-entry-pipe-interchange-long
+    icon: /Textures/_Persistence14/Interface/Radial/RPD/interchange-short.png
+    constructionPrototype: PipeInterchangePrimarySecondary
+
 
 - type: chalkCategory
   id: ChalkCategoryPumpsValves

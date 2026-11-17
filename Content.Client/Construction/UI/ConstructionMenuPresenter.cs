@@ -775,7 +775,7 @@ namespace Content.Client.Construction.UI
 
         private void SystemFlipConstructionPrototype(object? sender, EventArgs eventArgs)
         {
-            if (!_placementManager.IsActive || _placementManager.Eraser)
+            if (!_placementManager.IsActive || _placementManager.Eraser || _placementManager is PlacementManager pm && pm.Hijack is null)
             {
                 return;
             }
