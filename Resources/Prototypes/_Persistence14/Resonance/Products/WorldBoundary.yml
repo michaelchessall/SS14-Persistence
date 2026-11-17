@@ -6,6 +6,7 @@
   shared: true
   productType: MainWorldBoundary
   radiusExpansion: 500
+  broadcastMessage: resonance-product-message-expansion
   icon:
     sprite: Structures/Specific/anomaly.rsi
     state: anom4
@@ -19,6 +20,7 @@
   productType: MainWorldBoundary
   radiusExpansion: 1000
   requires: WorldBoundary1
+  broadcastMessage: resonance-product-message-expansion
   icon:
     sprite: Structures/Specific/anomaly.rsi
     state: anom4

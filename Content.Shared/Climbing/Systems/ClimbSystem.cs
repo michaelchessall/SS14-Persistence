@@ -5,6 +5,7 @@ using Content.Shared.Climbing.Events;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.DragDrop;
+using Content.Shared.Examine;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
 using Content.Shared.Interaction;
@@ -68,6 +69,17 @@ public sealed partial class ClimbSystem : VirtualController
 
         SubscribeLocalEvent<GlassTableComponent, ClimbedOnEvent>(OnGlassClimbed);
     }
+
+    // Start Persistence: Provide examine text to climbable things.
+    [SubscribeLocalEvent]
+    private void OnExamined(Entity<ClimbableComponent> ent, ref ExaminedEvent args)
+    {
+        if (!args.IsInDetailsRange)
+            return;
+
+        args.PushMarkup(Loc.GetString("climbable-component-examinable"));
+    }
+    // End Persistence
 
     public override void UpdateBeforeSolve(bool prediction, float frameTime)
     {

@@ -15,7 +15,7 @@ namespace Content.Server.Construction.Conditions
     {
         [DataField("value")] public bool Value { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             if (!entityManager.TryGetComponent(uid, out WiresComponent? wires))
                 return true;
@@ -35,7 +35,7 @@ namespace Content.Server.Construction.Conditions
 
         public bool DoExamine(ExaminedEvent args)
         {
-            if (Condition(args.Examined, IoCManager.Resolve<IEntityManager>()))
+            if (Condition(args.Examined, null, IoCManager.Resolve<IEntityManager>()))
                 return false;
 
             args.PushMarkup(Loc.GetString(Value
