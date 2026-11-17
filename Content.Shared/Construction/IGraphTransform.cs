@@ -1,6 +1,7 @@
 namespace Content.Shared.Construction;
 
-public interface IGraphTransform
+[ImplicitDataDefinitionForInheritors]
+public partial interface IGraphTransform
 {
     public void Transform(EntityUid oldUid, EntityUid newUid, EntityUid? userUid, GraphTransformArgs args);
 }

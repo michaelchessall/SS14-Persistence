@@ -113,7 +113,8 @@ public abstract partial class SharedPuddleSystem : EntitySystem
         _standoutReagents = [.. ProtoMan.EnumeratePrototypes<ReagentPrototype>().Where(x => x.Standsout).Select(x => x.ID)];
     }
 
-    private void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
+    // Funky edit - Make protected virtual so that it can be overriden server side
+    protected virtual void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
     {
         // The changes are already networked as part of the same game state.
         if (_timing.ApplyingState)

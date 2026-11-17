@@ -1,0 +1,77 @@
+- type: constructionGraph
+  id: SignGraph
+  start: start
+
+  graph:
+  - node: start
+    edges:
+    - to: sign
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2
+
+  - node: sign
+    entity: SignBlank
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+
+- type: constructionGraph
+  id: SignWarningGraph
+  start: start
+
+  graph:
+  - node: start
+    edges:
+    - to: sign_warning
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2
+
+  - node: sign_warning
+    entity: SignBlankMed
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
+
+- type: constructionGraph
+  id: SignDirectionalGraph
+  start: start
+
+  graph:
+  - node: start
+    edges:
+    - to: sign_directional
+      steps:
+      - material: Steel
+        amount: 2
+        doAfter: 2
+
+  - node: sign_directional
+    entity: SignDirectionalBlank
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity

@@ -9,6 +9,7 @@
   - type: Anchorable
     flags:
     - Anchorable
+    - Unanchorable
   - type: CollideOnAnchor
   - type: Physics
     canCollide: false
@@ -31,6 +32,9 @@
   - type: GuideHelp
     guides:
     - Cargo
+  - type: Construction
+    graph: CargoPalletGraph
+    node: pallet
 
 - type: entity
   parent: [ BaseCargoPallet, StructureHealthMachineWeak ]
@@ -66,6 +70,19 @@
   - type: IconSmooth
     key: cargo_pallet_sell
     base: cargo_pallet_sell_
+  - type: AccessReader
+  - type: AnchorChangeRequiresAccess
+    flags:
+    - Unanchorable
+  - type: Construction
+    node: sell
+  - type: ContainerContainer
+    containers: 
+      upgrade-template: !type:Container
+  - type: ContainerFill
+    containers: 
+      upgrade-template:
+      - CargoPalletUpgradeTemplateSell
 
 - type: entity
   id: CargoPalletBuy
@@ -83,3 +100,16 @@
   - type: IconSmooth
     key: cargo_pallet_buy
     base: cargo_pallet_buy_
+  - type: AccessReader
+  - type: AnchorChangeRequiresAccess
+    flags:
+    - Unanchorable
+  - type: Construction
+    node: buy
+  - type: ContainerContainer
+    containers: 
+      upgrade-template: !type:Container
+  - type: ContainerFill
+    containers: 
+      upgrade-template: 
+      - CargoPalletUpgradeTemplateBuy

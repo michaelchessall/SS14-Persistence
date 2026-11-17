@@ -52,6 +52,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Tag;
 
 #pragma warning disable IDE1006 // Naming Styles
 namespace Content.Shared._Persistence14.Rumors.Systems;
@@ -91,7 +92,10 @@ public sealed partial class RumorsSystem : EntitySystem
     [Dependency] private ServerGlobalSoundSystem _globalsound = default!;
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private DeliverySystem _delivery = default!;
+    [Dependency] private TagSystem _tag = default!;
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new();
+
+    private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib";
     public override void Initialize()
     {
         base.Initialize();
@@ -366,6 +370,8 @@ public sealed partial class RumorsSystem : EntitySystem
             }
 
         }
+
+        _tag.RemoveTag(ent.Owner, NoGibTag);
     }
 
     private void OnPrayed(Entity<PrayableComponent> ent, ref PrayedEvent args)
@@ -460,7 +466,7 @@ public sealed partial class RumorsSystem : EntitySystem
     private void OnBatteryChargeChanged(Entity<RumorPowerTargetComponent> ent, ref ChargeChangedEvent args)
     {
         if (!TryComp<BatteryComponent>(ent, out var batteryComp)) return;
-        if (args.CurrentCharge == batteryComp.MaxCharge)
+        if (args.CurrentCharge >= batteryComp.MaxCharge-10)
         {
             var query = EntityQueryEnumerator<RumorGetterComponent>();
             if (!TryComp<PersistentIdentifierComponent>(ent, out var pid)) return;
@@ -486,7 +492,7 @@ public sealed partial class RumorsSystem : EntitySystem
                                 if (target == pid.Id) continue;
                                 if (!_pid.TryResolveId(target, out var sister)) return;
                                 if (!TryComp<BatteryComponent>(sister, out var sisterBattery) || sisterBattery == null) return;
-                                if (sisterBattery.LastCharge < sisterBattery.MaxCharge)
+                                if (sisterBattery.LastCharge < sisterBattery.MaxCharge-10)
                                 {
                                     pass = false;
                                     break;
@@ -644,7 +650,7 @@ public sealed partial class RumorsSystem : EntitySystem
             if (bank == null) return;
             if (bank.TryGetAccount(name, out var account) && account != null)
             {
-                account.Balance += rumor.CashReward;
+                account.Balance += finalCashReward;
             }
 
         }
@@ -869,6 +875,8 @@ public sealed partial class RumorsSystem : EntitySystem
             // Bad. Very Bad. Failed to generate rumor.
             return false;
         }
+        if (string.IsNullOrEmpty(newRumor.OriginalOwner))
+            newRumor.OriginalOwner = Name(player);
         comp.Rumors.Add(newRumor);
         NotifyPlayer(player, $"Your job network reports you have recieved a new rumor: {newRumor.Name}", comp.NewRumorSound);
         _jobnet.UpdateUserInterface(player, comp.Owner);
