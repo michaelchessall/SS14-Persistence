@@ -7,6 +7,7 @@
   unique: false
   productType: Product
   product: TradeStationPalletUpgradeCrate
+  broadcastMessage: resonance-product-message-upgrade
   icon:
     sprite: _Persistence14/Objects/Specific/cargo-pallet-upgrade.rsi
     state: ui-icon-sell
