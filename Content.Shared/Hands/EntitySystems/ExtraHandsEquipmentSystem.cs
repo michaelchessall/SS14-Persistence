@@ -28,7 +28,7 @@ public sealed partial class ExtraHandsEquipmentSystem : EntitySystem
         foreach (var (handName, hand) in ent.Comp.Hands)
         {
             var handId = $"{handName}";
-            _hands.AddHand((args.Equipee, handsComp), handId, hand.Location);
+            _hands.AddHand((args.EquipTarget, handsComp), handId, hand.Location);
         }
     }
 
@@ -36,14 +36,14 @@ public sealed partial class ExtraHandsEquipmentSystem : EntitySystem
     {
         if (_timing.ApplyingState)
             return; // The changes are already networked as part of the same game state.
-
+        if (TerminatingOrDeleted(args.EquipTarget)) return;
         if (!TryComp<HandsComponent>(args.EquipTarget, out var handsComp))
             return;
 
         foreach (var handName in ent.Comp.Hands.Keys)
         {
             var handId = $"{handName}";
-            _hands.RemoveHand((args.Equipee, handsComp), handId);
+            _hands.RemoveHand((args.EquipTarget, handsComp), handId);
         }
     }
 }
