@@ -14,4 +14,11 @@ Entries:
   id: 2
   time: '2026-11-18T17:38:18.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/997
+- author: stinkiestdog
+  changes:
+  - message: Rescue-rumor corpses must be revived to be considered completed. (In addition to being healed)
+    type: Fix
+  id: 3
+  time: '2026-11-18T18:05:20.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/994
 Order: 0
