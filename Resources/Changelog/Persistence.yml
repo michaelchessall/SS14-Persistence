@@ -21,4 +21,11 @@ Entries:
   id: 3
   time: '2026-11-18T18:05:20.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/994
+- author: nathan736
+  changes:
+  - message: Prescription glasses module works now
+    type: Fix
+  id: 4
+  time: '2026-11-18T18:31:22.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/995
 Order: 0
