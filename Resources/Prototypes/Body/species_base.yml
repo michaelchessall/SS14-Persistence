@@ -276,3 +276,4 @@
   - type: StunVisuals
   - type: FootprintOwner # Funky: Footprints & Stains
   - type: GuideActionGranter
+  - type: Scent # Starlight - smell system
