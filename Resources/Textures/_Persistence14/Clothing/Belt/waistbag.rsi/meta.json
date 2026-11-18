@@ -8,15 +8,6 @@
   },
   "states": [
     {
-      "name": "icon"
-    },
-    {
-      "name": "waistbag"
-    },
-    {
-      "name": "waistbag-trinkets"
-    },
-    {
       "name": "equipped-BELT",
       "directions": 4
     },
