@@ -35,4 +35,21 @@ Entries:
   id: 5
   time: '2026-11-18T18:42:15.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1001
+- author: JoulesMango
+  changes:
+  - message: industrial welder & advanced industrial welders can be researched and crafted
+    type: Add
+  - message: welder, industrial welder and advanced industrial welder fuel tank capacity increased
+    type: Tweak
+  - message: welders now can be recycled for a 90% material return
+    type: Tweak
+  - message: experimental welder nerf to Regen rate.
+    type: Tweak
+  - message: emergency welder can't be refueled & fuel tank increase.
+    type: Tweak
+  - message: all non-emergency welders print empty. pre-existing welders on the save will be emptied, apologies.
+    type: Tweak
+  id: 6
+  time: '2026-11-18T21:29:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/930
 Order: 0
