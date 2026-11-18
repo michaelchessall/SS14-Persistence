@@ -1745,5 +1745,12 @@ Entries:
   id: 234
   time: '2026-08-08T22:59:23.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/34166
+- author: stinkiestdog
+  changes:
+  - message: Adjustments to changelogs for persistence fork.
+    type: Tweak
+  id: 235
+  time: '2026-11-18T17:15:48.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/998
 Name: Admin
 Order: 3
