@@ -232,7 +232,7 @@
     - id: SheetUranium1
     - id: IngotGold1
     - id: IngotSilver1
-    - id: SheetTitanium
+    - id: SheetTitanium10
 
 ## Cables
 - type: entityTable
