@@ -24,6 +24,7 @@
   description: "Three humanoids need to be retrieved and revived from this location."
   eventGrids:
     - /Maps/Rumors/Rescue/Medium/ChurchMeat.yml
+    - /Maps/Rumors/Rescue/Medium/elder-rescue.yml
   cashReward: 5000
   reputationReward: 70
   completionType: Rescue
