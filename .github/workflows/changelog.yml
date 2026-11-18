@@ -1,0 +1,38 @@
+name: Update Changelog
+
+on:
+  push:
+    branches: [staging-stable]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: changelog
+
+jobs:
+  changelog:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # the tool walks git history
+
+      - name: Install changelog tool
+        run: dotnet tool install --global SpaceWizards.ChangelogTool
+
+      - name: Update changelog
+        env:
+          REPO: ${{ github.repository }}
+          CHANGELOG_REPO_PATH: Resources/Changelog
+          PRIMARY_CHANGELOG: Persistence
+          EXTRA_CATEGORIES: Admin,Rules
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ss14-changelog update -d Resources/Changelog -s ${{ github.event.before }}
+
+      - name: Commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add Resources/Changelog
+          git diff --cached --quiet || (git commit -m "Automatic changelog update" && git push)

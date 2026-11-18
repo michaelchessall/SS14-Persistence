@@ -53,6 +53,15 @@ namespace Content.Client.Changelog
             var changelogs = await LoadChangelog();
             UpdateChangelogs(changelogs);
             _configManager.OnValueChanged(CCVars.ServerId, OnServerIdCVarChanged);
+
+            var versionPath = new ResPath("/BuildVersion.txt");
+            if (_resource.ContentFileExists(versionPath))
+            {
+                var releaseVersion = _resource.ContentFileReadAllText(versionPath).Trim();
+                if (!string.IsNullOrEmpty(releaseVersion))
+                    _configManager.SetCVar(CVars.BuildVersion, releaseVersion);
+
+            }
         }
 
         private void UpdateChangelogs(List<Changelog> changelogs)

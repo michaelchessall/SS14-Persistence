@@ -41,6 +41,8 @@
       Dead:
         Base: dead
         BaseUnshaded: dead-unshaded
+  - type: Damageable
+    damageModifierSet: Infernal
   - type: MobThresholds
     thresholds:
       0: Alive
