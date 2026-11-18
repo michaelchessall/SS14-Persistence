@@ -1,10 +1,17 @@
 AdminOnly: false
-Order: 0
 Entries:
 - author: bnnuybun
   changes:
-      - message: NCC command clothing part 2! (Bags and Carapace)
-        type: Add
+  - message: NCC command clothing part 2! (Bags and Carapace)
+    type: Add
   id: 1
   time: '2026-11-18T16:16:54.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/983
+- author: Zetaplx
+  changes:
+  - message: Research server connections should persist between saves.
+    type: Fix
+  id: 2
+  time: '2026-11-18T17:38:18.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/997
+Order: 0
