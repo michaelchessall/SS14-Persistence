@@ -496,6 +496,8 @@ entities:
       - ILevelGeneral3
       - ILevelGeneral4
     - type: StationCargoBountyDatabase
+    - type: RumorServiceStation
+    - type: RumorPrayerStation
     - type: Shuttle
       dampingModifier: 0.25
     - type: ImplicitRoof
