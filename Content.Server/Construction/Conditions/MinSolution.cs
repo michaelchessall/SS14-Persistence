@@ -31,7 +31,7 @@ public sealed partial class MinSolution : IGraphCondition
     [DataField]
     public FixedPoint2 Quantity = 1;
 
-    public bool Condition(EntityUid uid, IEntityManager entMan)
+    public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entMan)
     {
         var containerSys = entMan.System<SharedSolutionContainerSystem>();
         if (!containerSys.TryGetSolution(uid, Solution, out _, out var solution))

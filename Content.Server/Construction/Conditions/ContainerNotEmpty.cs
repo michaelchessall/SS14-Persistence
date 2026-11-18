@@ -16,7 +16,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("guideText")] public string? GuideText { get; private set; }
         [DataField("guideIcon")] public SpriteSpecifier? GuideIcon { get; private set; }
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             var containerSystem = entityManager.EntitySysManager.GetEntitySystem<ContainerSystem>();
             if (!containerSystem.TryGetContainer(uid, Container, out var container))
