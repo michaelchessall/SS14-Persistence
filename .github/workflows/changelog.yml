@@ -25,8 +25,8 @@ jobs:
         env:
           REPO: ${{ github.repository }}
           CHANGELOG_REPO_PATH: Resources/Changelog
-          PRIMARY_CHANGELOG: Changelog
-          EXTRA_CATEGORIES: Admin,Maps,Rules
+          PRIMARY_CHANGELOG: Persistence
+          EXTRA_CATEGORIES: Admin,Rules
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ss14-changelog update -d Resources/Changelog -s ${{ github.event.before }}
 
