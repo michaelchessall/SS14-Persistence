@@ -25,10 +25,10 @@ public sealed partial class ConveyorComponent : Component
     /// <summary>
     ///     The current state of this conveyor
     /// </summary>
-    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField]
+    [ViewVariables(VVAccess.ReadWrite), AutoNetworkedField, DataField] // Persistence: Add DataField
     public ConveyorState State;
 
-    [ViewVariables, AutoNetworkedField]
+    [ViewVariables, AutoNetworkedField] // Persistence: Add DataField
     public bool Powered;
 
     [DataField]
