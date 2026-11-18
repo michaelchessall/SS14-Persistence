@@ -28,4 +28,11 @@ Entries:
   id: 4
   time: '2026-11-18T18:31:22.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/995
+- author: tishaak
+  changes:
+  - message: fixed harmpacks arms duplicating
+    type: Fix
+  id: 5
+  time: '2026-11-18T18:42:15.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1001
 Order: 0
