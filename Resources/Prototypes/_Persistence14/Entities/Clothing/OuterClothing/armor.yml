@@ -11,3 +11,17 @@
   - type: Tag
     tags:
     - WhitelistChameleon
+
+- type: entity
+  parent: [ClothingOuterArmorBaseCarapace, BaseCommandContraband]
+  id: ClothingOuterArmorNCCCarapace
+  name: nexus central council's carapace
+  description: Incredibly durable chest armor with very slick edges. NCC's preferred choice for less than desirable encounters.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/OuterClothing/Armor/ncccarapace.rsi
+  - type: Clothing
+    sprite: _Persistence14/Clothing/OuterClothing/Armor/ncccarapace.rsi
+  - type: Tag
+    tags:
+    - WhitelistChameleon
