@@ -7,7 +7,7 @@
   cashReward: 2500
   reputationReward: 50
   completionType: Power
-  descriptionAddon: "Power all SMES on board the grid."
+  descriptionAddon: "Power all SMES and substations on board the grid."
 
 - type: rumor
   id: PowerLuminal
@@ -18,7 +18,7 @@
   cashReward: 5000
   reputationReward: 50
   completionType: Power
-  descriptionAddon: "Power all SMES on board the grid."
+  descriptionAddon: "Power all SMES and substations on board the grid."
 
 - type: rumor
   id: PowerPrecursor
@@ -29,7 +29,18 @@
   cashReward: 5000
   reputationReward: 50
   completionType: Power
-  descriptionAddon: "Power all SMES on board the grid."
+  descriptionAddon: "Power all SMES and substations on board the grid."
+
+- type: rumor
+  id: PowerElder
+  name: Other Worldly Power
+  description: "A great amount of power is required to call forth a servant of the Elders, power the devices within the temple and we shall reward you handsomely."
+  eventGrids:
+    - /Maps/Rumors/Charge/elder-charge.yml
+  cashReward: 5000
+  reputationReward: 50
+  completionType: Power
+  descriptionAddon: "Power all SMES and substations on board the grid."
 
 - type: rumor
   id: PowerGreen
@@ -40,4 +51,4 @@
   cashReward: 5000
   reputationReward: 50
   completionType: Power
-  descriptionAddon: "Power all SMES on board the grid."
+  descriptionAddon: "Power all SMES and substations on board the grid."
