@@ -1759,5 +1759,12 @@ Entries:
   id: 236
   time: '2026-11-18T18:02:51.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/947
+- author: Zetaplx
+  changes:
+  - message: Changelog now contains GH version number
+    type: Tweak
+  id: 237
+  time: '2026-11-18T18:21:42.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/999
 Name: Admin
 Order: 3
