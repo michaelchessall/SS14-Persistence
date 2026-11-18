@@ -1,11 +1,14 @@
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
 public sealed partial class BlurryVisionSystem : EntitySystem
 {
+    [Dependency] private EntityQuery<BlindableComponent> _blindableQuery;
+
     public override void Initialize()
     {
         base.Initialize();
@@ -13,6 +16,13 @@ public sealed partial class BlurryVisionSystem : EntitySystem
         SubscribeLocalEvent<VisionCorrectionComponent, GotEquippedEvent>(OnGlassesEquipped);
         SubscribeLocalEvent<VisionCorrectionComponent, GotUnequippedEvent>(OnGlassesUnequipped);
         Subs.SubscribeWithRelay<VisionCorrectionComponent, GetBlurEvent>(OnGetBlur, held: false); // Moffstation - Modular HUDs need to handle both the basic event and the inventory relayed one
+    }
+
+    [SubscribeLocalEvent]
+    private void OnStartup(Entity<VisionCorrectionComponent> ent, ref ComponentStartup args)
+    {
+        if (_blindableQuery.TryComp(ent, out var blindable))
+            UpdateBlurMagnitude((ent, blindable));
     }
 
     // Moffstation - Begin - Modular HUDs need this to be base + relayed
