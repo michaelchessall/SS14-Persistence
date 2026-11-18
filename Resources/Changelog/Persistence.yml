@@ -1,0 +1,38 @@
+AdminOnly: false
+Entries:
+- author: bnnuybun
+  changes:
+  - message: NCC command clothing part 2! (Bags and Carapace)
+    type: Add
+  id: 1
+  time: '2026-11-18T16:16:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/983
+- author: Zetaplx
+  changes:
+  - message: Research server connections should persist between saves.
+    type: Fix
+  id: 2
+  time: '2026-11-18T17:38:18.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/997
+- author: stinkiestdog
+  changes:
+  - message: Rescue-rumor corpses must be revived to be considered completed. (In addition to being healed)
+    type: Fix
+  id: 3
+  time: '2026-11-18T18:05:20.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/994
+- author: nathan736
+  changes:
+  - message: Prescription glasses module works now
+    type: Fix
+  id: 4
+  time: '2026-11-18T18:31:22.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/995
+- author: tishaak
+  changes:
+  - message: fixed harmpacks arms duplicating
+    type: Fix
+  id: 5
+  time: '2026-11-18T18:42:15.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1001
+Order: 0

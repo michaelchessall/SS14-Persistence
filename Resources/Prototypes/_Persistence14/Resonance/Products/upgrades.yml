@@ -1,0 +1,27 @@
+- type: resonanceProduct
+  id: TradeStationPalletUpgrade
+  name: Trade Station Pallet Upgrade
+  description: A crate containing two pallet upgrade templates for cargo pallets. Templates may be reconfigured between buy and sell with a screwdriver.
+  price: 1000
+  shared: false
+  unique: false
+  productType: Product
+  product: TradeStationPalletUpgradeCrate
+  broadcastMessage: resonance-product-message-upgrade
+  icon:
+    sprite: _Persistence14/Objects/Specific/cargo-pallet-upgrade.rsi
+    state: ui-icon-sell
+
+- type: entity
+  id: TradeStationPalletUpgradeCrate
+  parent: NFPouchUtility
+  name: trade station pallet upgrade kit
+  description: A pouch containing two pallet upgrade templates for cargo pallets. Templates may be reconfigured between buy and sell with a screwdriver.
+  components:
+  - type: EntityTableContainerFill
+    containers:
+      storagebase: !type:AllSelector
+        children:
+        - id: CargoPalletUpgradeTemplateBuy
+        - id: CargoPalletUpgradeTemplateSell
+        - id: Screwdriver

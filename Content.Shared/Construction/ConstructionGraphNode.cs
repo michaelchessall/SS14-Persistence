@@ -24,7 +24,7 @@ namespace Content.Shared.Construction
         [ViewVariables]
         public IReadOnlyList<IGraphAction> Actions => _actions;
 
-        [DataField("transform")]
+        [DataField("transform", serverOnly: true)]
         public IGraphTransform[] TransformLogic = Array.Empty<IGraphTransform>();
 
         [DataField(customTypeSerializer: typeof(GraphNodeEntitySerializer))]

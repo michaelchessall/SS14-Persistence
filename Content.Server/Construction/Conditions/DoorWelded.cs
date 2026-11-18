@@ -12,7 +12,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("welded")]
         public bool Welded { get; private set; } = true;
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             if (!entityManager.TryGetComponent(uid, out DoorComponent? doorComponent))
                 return false;

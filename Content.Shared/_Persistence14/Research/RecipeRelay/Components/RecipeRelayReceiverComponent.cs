@@ -10,7 +10,7 @@ public sealed partial class RecipeRelayReceiverComponent : Component
     /// <summary>
     /// The Recipe Relay Source this receiver is getting data from.
     /// </summary>
-    [DataField(readOnly: true), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public PersistentEntityReference Source = new();
 
     [ViewVariables(VVAccess.ReadOnly)]

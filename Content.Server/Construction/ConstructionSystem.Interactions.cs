@@ -46,6 +46,19 @@ namespace Content.Server.Construction
         }
 
         /// <summary>
+        /// Gets the user from the triggering event so we can pass it to conditions.
+        /// </summary>
+        private EntityUid? GetEventUser(object ev)
+        {
+            return ev switch
+            {
+                InteractUsingEvent iu => iu.User,
+                ConstructionInteractDoAfterEvent constructionDoAfter => constructionDoAfter.User,
+                _ => null
+            };
+        }
+
+        /// <summary>
         ///     Takes in an entity with <see cref="ConstructionComponent"/> and an object event, and handles any
         ///     possible construction interactions, depending on the construction's state.
         /// </summary>
@@ -151,11 +164,13 @@ namespace Content.Server.Construction
                 return HandleResult.False;
             }
 
+            var user = GetEventUser(ev);
+
             // We need to ensure we currently satisfy any and all edge conditions.
-            if (!CheckConditions(uid, edge.Conditions))
+            if (!CheckConditions(uid, user, edge.Conditions))
                 return HandleResult.False;
 
-            var handle = HandleStep(uid, ev, step, validation, out var user, construction);
+            var handle = HandleStep(uid, ev, step, validation, out _, construction);
             if (handle is not HandleResult.True)
                 return handle;
 
@@ -450,11 +465,11 @@ namespace Content.Server.Construction
         /// <param name="conditions">The conditions to evaluate.</param>
         /// <remarks>This method is short-circuiting; if a condition evaluates to false, we stop checking the rest of conditions.</remarks>
         /// <returns>Whether all conditions evaluate to true for the given entity.</returns>
-        public bool CheckConditions(EntityUid uid, IEnumerable<IGraphCondition> conditions)
+        public bool CheckConditions(EntityUid uid, EntityUid? user, IEnumerable<IGraphCondition> conditions)
         {
             foreach (var condition in conditions)
             {
-                if (!condition.Condition(uid, EntityManager))
+                if (!condition.Condition(uid, user, EntityManager))
                     return false;
             }
 

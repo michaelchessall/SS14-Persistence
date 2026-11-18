@@ -1,4 +1,5 @@
 AdminOnly: false
+Order: 2 # Persistence
 Entries:
 - author: AffleWaffle
   changes:

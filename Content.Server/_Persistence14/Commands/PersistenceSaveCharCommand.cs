@@ -1,17 +1,21 @@
+using Content.Server.Administration;
 using Content.Shared.Administration;
 using Content.Shared.CCVar;
+using Content.Shared.Mind.Components;
 using Robust.Shared.Configuration;
 using Robust.Shared.Console;
+using Robust.Shared.ContentPack;
 using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Utility;
 
-namespace Content.Server.Administration.Commands;
+namespace Content.Server._Persistence14.Commands;
 
 [AdminCommand(AdminFlags.Server)]
 public sealed class PersistenceSaveCharCommand : LocalizedEntityCommands
 {
     [Dependency] private readonly IConfigurationManager _config = default!;
     [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
+    [Dependency] private IResourceManager _resource = default!;
 
     public override string Command => "persistencesavechar";
 
@@ -41,5 +45,18 @@ public sealed class PersistenceSaveCharCommand : LocalizedEntityCommands
 
         bool save_stat = _mapLoader.TrySaveGeneric(entId, new ResPath(saveFilePath), out var category);
         shell.WriteLine(Loc.GetString("Did the map save? ") + $"{save_stat}");
+    }
+
+    public override CompletionResult GetCompletion(IConsoleShell shell, string[] args)
+    {
+        switch (args.Length)
+        {
+            case 1:
+                return CompletionResult.FromHintOptions(CompletionHelper.Components<MindContainerComponent>(args[0], entManager: EntityManager), Loc.GetString("cmd-hint-savechar-id"));
+            case 2:
+                var opts = CompletionHelper.UserFilePath(args[1], _resource.UserData);
+                return CompletionResult.FromHintOptions(opts, Loc.GetString("cmd-hint-savemap-path"));
+        }
+        return CompletionResult.Empty;
     }
 }
