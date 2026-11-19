@@ -152,6 +152,10 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         if (Resolve(uid, ref component, false) && component.Gestating)
             return false;
 
+        // Persistence
+        if (!CooldownFinished(uid, component))
+            return false;
+
         if (HasComp<InfantComponent>(uid))
             return false;
 
@@ -233,6 +237,7 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
 
         component.Gestating = false;
         component.GestationEndTime = null;
+        component.CooldownFinishedAt = _timing.CurTime + component.CooldownDuration; // Persistence
     }
 
     public override void Update(float frameTime)
@@ -276,5 +281,28 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
             // Make sure the name prefix gets removed
             _nameMod.RefreshNameModifiers(uid);
         }
+    }
+
+    /// <summary>
+    /// Check if the reproduction cooldown is finished. Nulls-out CooldownFinishedAt if the cooldown has completed.>
+    /// </summary>
+    /// <param name="ent"></param>
+    /// <param name="component"></param>
+    /// <returns>True if the cooldown is finished, false if there is still an active cooldown.</returns>
+    public bool CooldownFinished(EntityUid ent, ReproductiveComponent? component = null)
+    {
+        if (!Resolve(ent, ref component, false))
+            return true;
+
+        if (component.CooldownFinishedAt == null)
+            return true;
+
+        if (_timing.CurTime >= component.CooldownFinishedAt)
+        {
+            component.CooldownFinishedAt = null;
+            return true;
+        }
+
+        return false;
     }
 }
