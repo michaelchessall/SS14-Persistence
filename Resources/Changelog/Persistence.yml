@@ -89,4 +89,11 @@ Entries:
   id: 11
   time: '2026-11-19T21:15:37.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1007
+- author: Zetaplx
+  changes:
+  - message: Topicals now only consider relevant damage types when checking if they may be used.
+    type: Tweak
+  id: 12
+  time: '2026-11-19T21:54:16.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1002
 Order: 0
