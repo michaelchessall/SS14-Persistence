@@ -74,3 +74,6 @@ nutrient-desc-plasma = Despite being called plasma, it's actually a (solid/liqui
 
 nutrient-name-frezon = frezon
 nutrient-desc-frezon = brrrr!
+
+nutrient-name-carp-teeth = carp enamel
+nutrient-desc-carp-teeth = Grinding carp teeth and putting them in your plants is a fun activity for all ages!
