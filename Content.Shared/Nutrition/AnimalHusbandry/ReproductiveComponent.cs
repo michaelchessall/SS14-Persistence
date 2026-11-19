@@ -70,7 +70,7 @@ public sealed partial class ReproductiveComponent : Component
     /// When gestation will end.
     /// Null if <see cref="Gestating"/> is false
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)] // Persistence: Add TimeOffsetSerializer
     public TimeSpan? GestationEndTime;
 
     /// <summary>
@@ -123,6 +123,7 @@ public sealed partial class ReproductiveComponent : Component
     /// <summary>
     /// How long after a birth until reproduction attempts can be allowed again.
     /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
     public TimeSpan CooldownDuration = TimeSpan.FromMinutes(45);
 
     /// <summary>
