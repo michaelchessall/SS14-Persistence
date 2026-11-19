@@ -9,10 +9,9 @@ using Content.Shared.Prayer;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Content.Shared.Bible.Components;
-using Robust.Shared.Random;
-using Robust.Shared;
-using Content.Shared._Persistence14.PersistenceCVars;
-using Robust.Shared.Configuration;
+using Robust.Shared.Random; // Persistence
+using Content.Shared._Persistence14.CVars; // Persistence
+using Robust.Shared.Configuration; // Persistence
 
 namespace Content.Server.Prayer;
 /// <summary>
@@ -27,8 +26,8 @@ public sealed partial class PrayerSystem : EntitySystem
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private QuickDialogSystem _quickDialog = default!;
-    [Dependency] private IRobustRandom _random = default!;
-    [Dependency] private IConfigurationManager _config = default!;
+    [Dependency] private IRobustRandom _random = default!; // Persistence
+    [Dependency] private IConfigurationManager _config = default!; // Persistence
 
     public override void Initialize()
     {
@@ -51,7 +50,7 @@ public sealed partial class PrayerSystem : EntitySystem
         {
             Text = Loc.GetString(comp.Verb),
             Icon = comp.VerbImage,
-            Act = () => DoPrayerAction(uid, comp, args.User),
+            Act = () => DoPrayerAction(uid, comp, args.User), // Persistence: Move to separate function
             Impact = LogImpact.Low,
 
         };
@@ -59,6 +58,7 @@ public sealed partial class PrayerSystem : EntitySystem
         args.Verbs.Add(prayerVerb);
     }
 
+    // Persistence: Prayer verb action moved here as separate function
     private void DoPrayerAction(EntityUid uid, PrayableComponent comp, EntityUid user)
     {
         if (!TryComp(user, out ActorComponent? actor))
@@ -74,7 +74,7 @@ public sealed partial class PrayerSystem : EntitySystem
         {
             // Make sure the player's entity and the Prayable entity+component still exist
             if (actor?.PlayerSession != null && HasComp<PrayableComponent>(uid))
-                Pray(user, actor.PlayerSession, comp, message);
+                Pray(actor.PlayerSession, comp, message);
         });
     }
 
@@ -99,6 +99,8 @@ public sealed partial class PrayerSystem : EntitySystem
 
     /// <summary>
     /// Sends a message to the admin channel with a message and username
+    /// Persistence: Prayers reaching admins requires random chance based on the presence of BibleUserComponent
+    ///     & configuration of CVar ps14.normal_prayer_chance or ps14.insight_prayer_chance
     /// </summary>
     /// <param name="sender">The IPlayerSession who sent the original message</param>
     /// <param name="comp">Prayable component used to make the prayer</param>
@@ -107,23 +109,25 @@ public sealed partial class PrayerSystem : EntitySystem
     /// You may be wondering, "Why the admin chat, specifically? Nobody even reads it!"
     /// Exactly.
     ///  </remarks>
-    public void Pray(EntityUid prayer, ICommonSession sender, PrayableComponent comp, string message)
+    public void Pray(ICommonSession sender, PrayableComponent comp, string message)
     {
         if (sender.AttachedEntity == null)
             return;
 
         _popupSystem.PopupEntity(Loc.GetString(comp.SentMessage), sender.AttachedEntity.Value, sender, PopupType.Medium);
 
+        // Persistence Start: Separate chance for bibleuser vs non-bibleuser for message to be routed to adminchat.
         bool adminAnnounce;
-        if (HasComp<BibleUserComponent>(prayer))
-            adminAnnounce = _random.Prob(_config.GetCVar(PersiCVars.InsightPrayerMessageChance));
+        if (HasComp<BibleUserComponent>(sender.AttachedEntity))
+            adminAnnounce = _random.Prob(_config.GetCVar(PersistenceCVars.InsightPrayerMessageChance));
         else
-            adminAnnounce = _random.Prob(_config.GetCVar(PersiCVars.NormalPrayerMessageChance));
+            adminAnnounce = _random.Prob(_config.GetCVar(PersistenceCVars.NormalPrayerMessageChance));
 
         if (adminAnnounce)
             _chatManager.SendAdminAnnouncement($"{Loc.GetString(comp.NotificationPrefix)} <{Name(sender.AttachedEntity.Value)} ({sender.Name})>: {message}");
+        // Persistence End
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(sender.AttachedEntity.Value):player} sent prayer ({Loc.GetString(comp.NotificationPrefix)}): {message}");
         PrayedEvent ev = new(sender.AttachedEntity.Value, message);
-        RaiseLocalEvent(prayer, ref ev);
+        RaiseLocalEvent(sender.AttachedEntity.Value, ref ev); // Persistence: comp.Owner -> sender.AttachedEntity.Value
     }
 }

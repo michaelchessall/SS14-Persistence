@@ -1,10 +1,10 @@
 using Robust.Shared;
 using Robust.Shared.Configuration;
 
-namespace Content.Shared._Persistence14.PersistenceCVars;
+namespace Content.Shared._Persistence14.CVars;
 
 [CVarDefs]
-public sealed partial class PersiCVars : CVars
+public sealed partial class PersistenceCVars
 {
     /// <summary>
     ///     The probability that a normal player's prayer is heard by the admins
