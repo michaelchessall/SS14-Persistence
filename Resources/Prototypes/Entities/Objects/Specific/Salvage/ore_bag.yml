@@ -32,14 +32,6 @@
       - OreBox
       - OreProcessor
 # Start Persistence: add magnet toggle to ore bag
-  - type: ItemToggle
-    soundActivate: &soundActivate
-      collection: sparks
-      params:
-        variation: 0.25
-    soundDeactivate: *soundActivate
-    onActivate: true
-    onUse: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
