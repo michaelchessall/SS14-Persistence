@@ -47,6 +47,15 @@ public sealed partial class AnimalHusbandrySystem : EntitySystem
         SubscribeLocalEvent<InfantComponent, RefreshNameModifiersEvent>(OnRefreshNameModifiers);
     }
 
+    // Persistence
+    [SubscribeLocalEvent]
+    private void OnStartup(Entity<ReproductiveComponent> entity, ref ComponentStartup args)
+    {
+        // Prevent negative overflow from TimeOffsetSerializer for lonely livestock
+        if (entity.Comp.CooldownFinishedAt <= TimeSpan.Zero)
+            entity.Comp.CooldownFinishedAt = TimeSpan.Zero;
+    }
+
     // we express EZ-pass terminate the pregnancy if a player takes the role
     private void OnMindAdded(EntityUid uid, ReproductiveComponent component, MindAddedMessage args)
     {
