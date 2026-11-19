@@ -54,6 +54,7 @@ namespace Content.Client.Changelog
             UpdateChangelogs(changelogs);
             _configManager.OnValueChanged(CCVars.ServerId, OnServerIdCVarChanged);
 
+            // Persistence Start: Release version from text file
             var versionPath = new ResPath("/BuildVersion.txt");
             if (_resource.ContentFileExists(versionPath))
             {
@@ -62,6 +63,7 @@ namespace Content.Client.Changelog
                     _configManager.SetCVar(CVars.BuildVersion, releaseVersion);
 
             }
+            // Persistence End
         }
 
         private void UpdateChangelogs(List<Changelog> changelogs)
