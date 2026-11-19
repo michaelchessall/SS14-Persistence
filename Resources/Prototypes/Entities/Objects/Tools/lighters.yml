@@ -169,7 +169,7 @@
 
 - type: entity
   abstract: true
-  parent: [SolutionToolWelderMini, BaseLighter]
+  parent: [SolutionToolTiny, BaseLighter, SolutionWelder]
   id: BaseBrandedLighter
   components:
   - type: ItemToggle
@@ -219,6 +219,13 @@
         shader: unshaded
   - type: PointLight
     radius: 1.5 #slightly stronger than the other lighters
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 15 # persi adjustment
+  - type: RefillableSolution #Persi change
+    solution: welder
 
 - type: entity
   parent: BaseBrandedLighter
@@ -357,7 +364,7 @@
         Quantity: 15
 
 - type: entity
-  parent: [SolutionToolWelderExperimental, BaseBrandedLighter, BaseCentcommContraband]
+  parent: [SolutionToolGinormous, SolutionWelder, BaseBrandedLighter, BaseCentcommContraband]
   id: CentCommFlippo
   name: Gilded CentComm Flippo
   description: An Ornate, jade embossed and gilded flippo frame containing a bluespace powered jet. The latch is secured by a miniature access reader that only responds to CentComm officials. The nicest lighter known to man.
@@ -372,7 +379,7 @@
   - type: Welder
     fuelConsumption: 0.0
     fuelLitCost: 10
-    fuelReagent: Plasma
+    fuelReagent: WeldingFuel
   - type: PointLight
     radius: 4 #Excessively powerful
     color: Gold
@@ -383,6 +390,11 @@
   - type: Lock
   - type: AccessReader
     access: [["CentralCommand"]]
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: WeldingFuel
+        Quantity: 480 # persi adjustment
 
 - type: entity
   parent: [BaseBrandedLighter, BaseMajorContraband]

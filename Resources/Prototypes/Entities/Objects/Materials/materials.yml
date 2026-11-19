@@ -676,6 +676,11 @@
   - type: Tag
     tags:
     - ToothSpaceCarp
+  - type: Solution # Persistence 14: grindable carp teeth
+    solution:
+      reagents:
+      - ReagentId: CarpTeeth
+        Quantity: 2
 
 - type: entity
   parent: MaterialToothSpaceCarp
@@ -719,6 +724,11 @@
     tags:
     - Knife
     - ToothSharkminnow
+  - type: Solution # Persistence 14: grindable carp teeth
+    solution:
+      reagents:
+      - ReagentId: CarpTeeth
+        Quantity: 6
 
 - type: entity
   parent: MaterialToothSharkminnow

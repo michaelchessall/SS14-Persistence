@@ -1,0 +1,22 @@
+- type: entity
+  parent: CrateGenericSteel
+  id: CrateFakeBottom
+  suffix: Fake Bottom
+  components:
+  - type: EntityStorage
+    capacity: 15
+  - type: FalseBottom
+    capacity: 10
+    maxSize: 0.7
+    pryTime: 1.5
+  - type: ContainerContainer
+    containers:
+      entity_storage: !type:Container
+      paper_label: !type:ContainerSlot
+      false_bottom_storage: !type:Container
+  - type: Construction
+    graph: CrateFakeBottom
+    node: cratefakebottom
+    containers:
+    - entity_storage
+    - false_bottom_storage

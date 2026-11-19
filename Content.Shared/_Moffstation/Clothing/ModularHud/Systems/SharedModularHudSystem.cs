@@ -326,14 +326,18 @@ public abstract partial class SharedModularHudSystem : EntitySystem
             if (!modules.MoveNext())
             {
                 args.PushMarkup(Loc.GetString(entity.Comp.NoModulesExamineText));
-                return;
+            }
+            else
+            {
+                args.PushMarkup(Loc.GetString(entity.Comp.HeaderExamineText));
+                do
+                {
+                    args.PushMarkup(Loc.GetString(entity.Comp.ModuleItemExamineText, ("module", modules.Current)));
+                } while (modules.MoveNext());
             }
 
-            args.PushMarkup(Loc.GetString(entity.Comp.HeaderExamineText));
-            do
-            {
-                args.PushMarkup(Loc.GetString(entity.Comp.ModuleItemExamineText, ("module", modules.Current)));
-            } while (modules.MoveNext());
+            args.PushMarkup(Loc.GetString(entity.Comp.CapacityExamineText,
+                ("capacity", entity.Comp.MaximumContainedModules)));
         }
     }
 
@@ -357,10 +361,17 @@ public abstract partial class SharedModularHudSystem : EntitySystem
     ) where TArgs : ContainerModifiedMessage
     {
         if (args.Container.ID != entity.Comp.ModuleContainerId ||
-            !TryComp<ModularHudModuleComponent>(args.Entity, out var moduleComp))
+            !HasComp<ModularHudModuleComponent>(args.Entity))
             return;
 
-        RefreshEffectsForModules([(args.Entity, moduleComp)]);
+        var parentUid = Transform(entity).ParentUid;
+        if (HasComp<InventoryComponent>(parentUid) &&
+            _inventory.InSlotWithAnyFlags(entity.Owner, entity.Comp.ActiveSlots))
+        {
+            _blurryVision.UpdateBlurMagnitude(parentUid);
+        }
+
+        RefreshEffectsForModules(GetModules(entity));
         SyncVisuals(entity);
     }
 
