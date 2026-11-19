@@ -9,6 +9,10 @@ using Content.Shared.Prayer;
 using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Content.Shared.Bible.Components;
+using Robust.Shared.Random;
+using Robust.Shared;
+using Content.Shared._Persistence14.PersistenceCVars;
+using Robust.Shared.Configuration;
 
 namespace Content.Server.Prayer;
 /// <summary>
@@ -23,6 +27,8 @@ public sealed partial class PrayerSystem : EntitySystem
     [Dependency] private PopupSystem _popupSystem = default!;
     [Dependency] private IChatManager _chatManager = default!;
     [Dependency] private QuickDialogSystem _quickDialog = default!;
+    [Dependency] private IRobustRandom _random = default!;
+    [Dependency] private IConfigurationManager _config = default!;
 
     public override void Initialize()
     {
@@ -45,26 +51,31 @@ public sealed partial class PrayerSystem : EntitySystem
         {
             Text = Loc.GetString(comp.Verb),
             Icon = comp.VerbImage,
-            Act = () =>
-            {
-                if (comp.BibleUserOnly && !HasComp<BibleUserComponent>(args.User))
-                {
-                    _popupSystem.PopupEntity(Loc.GetString("prayer-popup-notify-pray-locked"), uid, actor.PlayerSession, PopupType.Large);
-                    return;
-                }
-
-                _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString(comp.Verb), Loc.GetString("prayer-popup-notify-pray-ui-message"), (string message) =>
-                {
-                    // Make sure the player's entity and the Prayable entity+component still exist
-                    if (actor?.PlayerSession != null && HasComp<PrayableComponent>(uid))
-                        Pray(actor.PlayerSession, comp, message);
-                });
-            },
+            Act = () => DoPrayerAction(uid, comp, args.User),
             Impact = LogImpact.Low,
 
         };
         prayerVerb.Impact = LogImpact.Low;
         args.Verbs.Add(prayerVerb);
+    }
+
+    private void DoPrayerAction(EntityUid uid, PrayableComponent comp, EntityUid user)
+    {
+        if (!TryComp(user, out ActorComponent? actor))
+            return;
+
+        if (comp.BibleUserOnly && !HasComp<BibleUserComponent>(user))
+        {
+            _popupSystem.PopupEntity(Loc.GetString("prayer-popup-notify-pray-locked"), uid, actor.PlayerSession, PopupType.Large);
+            return;
+        }
+
+        _quickDialog.OpenDialog(actor.PlayerSession, Loc.GetString(comp.Verb), Loc.GetString("prayer-popup-notify-pray-ui-message"), (string message) =>
+        {
+            // Make sure the player's entity and the Prayable entity+component still exist
+            if (actor?.PlayerSession != null && HasComp<PrayableComponent>(uid))
+                Pray(user, actor.PlayerSession, comp, message);
+        });
     }
 
     /// <summary>
@@ -96,16 +107,23 @@ public sealed partial class PrayerSystem : EntitySystem
     /// You may be wondering, "Why the admin chat, specifically? Nobody even reads it!"
     /// Exactly.
     ///  </remarks>
-    public void Pray(ICommonSession sender, PrayableComponent comp, string message)
+    public void Pray(EntityUid prayer, ICommonSession sender, PrayableComponent comp, string message)
     {
         if (sender.AttachedEntity == null)
             return;
-        
+
         _popupSystem.PopupEntity(Loc.GetString(comp.SentMessage), sender.AttachedEntity.Value, sender, PopupType.Medium);
 
-        _chatManager.SendAdminAnnouncement($"{Loc.GetString(comp.NotificationPrefix)} <{Name(sender.AttachedEntity.Value)} ({sender.Name})>: {message}");
+        bool adminAnnounce;
+        if (HasComp<BibleUserComponent>(prayer))
+            adminAnnounce = _random.Prob(_config.GetCVar(PersiCVars.InsightPrayerMessageChance));
+        else
+            adminAnnounce = _random.Prob(_config.GetCVar(PersiCVars.NormalPrayerMessageChance));
+
+        if (adminAnnounce)
+            _chatManager.SendAdminAnnouncement($"{Loc.GetString(comp.NotificationPrefix)} <{Name(sender.AttachedEntity.Value)} ({sender.Name})>: {message}");
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(sender.AttachedEntity.Value):player} sent prayer ({Loc.GetString(comp.NotificationPrefix)}): {message}");
         PrayedEvent ev = new(sender.AttachedEntity.Value, message);
-        RaiseLocalEvent(comp.Owner, ref ev);
+        RaiseLocalEvent(prayer, ref ev);
     }
 }
