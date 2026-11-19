@@ -59,4 +59,11 @@ Entries:
   id: 7
   time: '2026-11-19T15:13:32.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1006
+- author: Sugarlord32
+  changes:
+  - message: Added a craftable false-bottom crate (10 Steel) with a crowbar-accessible hidden compartment, have fun smuggling!
+    type: Add
+  id: 8
+  time: '2026-11-19T16:09:17.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1005
 Order: 0
