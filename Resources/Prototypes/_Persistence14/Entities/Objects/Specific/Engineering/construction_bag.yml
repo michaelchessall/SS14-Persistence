@@ -38,10 +38,13 @@
   - type: Appearance
   - type: GenericVisualizer
     visuals:
-      enum.ToggleableVisuals.Enabled:
+      enum.MagnetPickupVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
           True: { state: icon-on }
           False: { state: icon }
+  - type: MagnetPickup
+    slotFlags: null
+    requireActiveHand: false
 
 # not making crafting recipe for it, seems a lil OP
 
@@ -87,7 +90,7 @@
     - 0,0,19,9
   - type: GenericVisualizer
     visuals:
-      enum.ToggleableVisuals.Enabled:
+      enum.MagnetPickupVisuals.Enabled:
         enum.ToggleableVisuals.Layer:
           True: { state: icon-on } # use icon-on-bluespace if you want the active indicator to appear on the top of the bag sprite
           False: { state: icon-bluespace-overlay-unshaded }
