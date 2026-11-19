@@ -80,4 +80,13 @@ Entries:
   id: 10
   time: '2026-11-19T20:37:15.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1009
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Carp and sharkminnow teeth can now be grinded into carp enamel!
+    type: Add
+  - message: Koibeans now contain more carpotoxin, and have new nutrient requirements.
+    type: Tweak
+  id: 11
+  time: '2026-11-19T21:15:37.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1007
 Order: 0
