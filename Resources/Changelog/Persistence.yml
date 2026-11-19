@@ -52,4 +52,11 @@ Entries:
   id: 6
   time: '2026-11-18T21:29:54.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/930
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Plants can now absorb radiation from the environment.
+    type: Add
+  id: 7
+  time: '2026-11-19T15:13:32.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1006
 Order: 0
