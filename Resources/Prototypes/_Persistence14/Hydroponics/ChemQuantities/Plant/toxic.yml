@@ -91,10 +91,10 @@
 
 - type: plantChemQuantity
   id: Carpotoxin
-  baseAmount: 4
+  baseAmount: 3
   requirements:
     Toxin:
-      requirement: 4
+      requirement: 3
     CarpTeeth:
       bonusRequirement: 1
       bonusAmount: 5
