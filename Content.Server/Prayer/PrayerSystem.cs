@@ -10,7 +10,7 @@ using Content.Shared.Verbs;
 using Robust.Shared.Player;
 using Content.Shared.Bible.Components;
 using Robust.Shared.Random; // Persistence
-using Content.Shared._Persistence14.CVars; // Persistence
+using Content.Shared._Persistence14.CCVars; // Persistence
 using Robust.Shared.Configuration; // Persistence
 
 namespace Content.Server.Prayer;
