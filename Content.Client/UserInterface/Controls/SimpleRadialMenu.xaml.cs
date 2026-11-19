@@ -64,8 +64,8 @@ public sealed partial class SimpleRadialMenu : RadialMenu
         };
         rootControlChildren.Add(rootContainer);
 
-        var sorted = SortOptions(models);
-        foreach (var model in sorted)
+        // var sorted = SortOptions(models); // Persistence: Stop sorting by tooltip
+        foreach (var model in models) // Persistence: Stop sorting by tooltip
         {
             if (model is RadialMenuNestedLayerOption nestedMenuModel)
             {
@@ -86,13 +86,13 @@ public sealed partial class SimpleRadialMenu : RadialMenu
         switch (models)
         {
             case RadialMenuOptionBase[] asArray:
-                Array.Sort(asArray, CompareByTooltip);
+                // Array.Sort(asArray, CompareByTooltip); // Persistence: Stop sorting by tooltip
                 return asArray;
             case List<RadialMenuOptionBase> asList:
-                asList.Sort(CompareByTooltip);
+                // asList.Sort(CompareByTooltip); // Persistence: Stop sorting by tooltip
                 return asList;
             default:
-                return models.OrderBy(x => x.ToolTip);
+                return models; //.OrderBy(x => x.ToolTip); // Persistence: Stop sorting by tooltip
         }
     }
 
