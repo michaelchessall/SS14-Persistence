@@ -66,4 +66,11 @@ Entries:
   id: 8
   time: '2026-11-19T16:09:17.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1005
+- author: stinkiestdog
+  changes:
+  - message: Conveyors now save & load their state properly.
+    type: Fix
+  id: 9
+  time: '2026-11-19T16:47:34.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1004
 Order: 0
