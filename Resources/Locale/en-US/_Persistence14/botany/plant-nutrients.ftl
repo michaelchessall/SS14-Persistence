@@ -25,7 +25,7 @@ nutrient-name-pest = pests
 nutrient-desc-pest = Tiny little bugs that eat your plants. Not really a nutrient.
 
 nutrient-name-radiation = radiation
-nutrient-desc-radiation = Ionizing rays of light. Watch out for mutation.
+nutrient-desc-radiation = Ionizing rays of light. Watch out for mutation. Can be absorbed from the environment.
 
 nutrient-name-acid = acids
 nutrient-desc-acid = Various acidic compounds. Just as bad for most plants as it is for you.
