@@ -73,4 +73,11 @@ Entries:
   id: 9
   time: '2026-11-19T16:47:34.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1004
+- author: Zetaplx
+  changes:
+  - message: Ore and Construction bags default to opening instead of magnet toggling
+    type: Tweak
+  id: 10
+  time: '2026-11-19T20:37:15.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1009
 Order: 0
