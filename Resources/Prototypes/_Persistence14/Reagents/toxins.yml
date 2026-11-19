@@ -1,0 +1,31 @@
+- type: reagent
+  id: CarpTeeth
+  name: reagent-name-carp-teeth
+  group: Toxins
+  desc: reagent-desc-carp-teeth
+  physicalDesc: reagent-physical-desc-reflective
+  flavor: sharp
+  color: "#ffcccc"
+  plantMetabolism:
+  - !type:PlantAdjustNutrient
+    amount: 1
+    nutrient: CarpTeeth
+  metabolisms:
+    Bloodstream:
+      metabolismRate : 3.00
+      effects:
+      - !type:HealthChange
+        damage:
+          types:
+            Slash : 8
+      - !type:PopupMessage
+        type: Local
+        visualType: LargeCaution
+        messages: [ "generic-reagent-effect-slicing-insides"]
+        probability: 0.33
+      - !type:Emote
+        emote: Scream
+        probability: 0.3
+      - !type:AdjustReagent
+        reagent: CarpoToxin
+        amount: 1.5
