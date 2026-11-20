@@ -8,6 +8,11 @@ comp-window-damaged-4 = [color=yellow]It has several big cracks running along it
 comp-window-damaged-5 = [color=orange]It has deep cracks across multiple layers.[/color]
 comp-window-damaged-6 = [color=red]It's extremely cracked and on the verge of shattering.[/color]
 
+# Shown when examining a structure. whether its airtight or leaking
+comp-structure-airtight-1 = It looks airtight
+comp-structure-airtight-2 = [color=red]It's leaking atmosphere[/color]
+
+
 ### Interaction Messages
 
 # Shown when knocking on a window
