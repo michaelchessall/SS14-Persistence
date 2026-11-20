@@ -158,7 +158,7 @@
   id: UplinkTravelCamera
   name: uplink-travel-camera-name
   description: uplink-travel-camera-desc
-  productEntity: TravelCamera
+  productEntity: PhotoCamera # Persistence: TravelCamera < PhotoCamera
   cost:
     Telecrystal: 1
   categories:
