@@ -103,4 +103,11 @@ Entries:
   id: 13
   time: '2026-11-19T22:02:06.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1003
+- author: stinkiestdog
+  changes:
+  - message: Animal husbandry has been made significantly slower to align with a persistent setting.
+    type: Tweak
+  id: 14
+  time: '2026-11-20T17:19:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1010
 Order: 0
