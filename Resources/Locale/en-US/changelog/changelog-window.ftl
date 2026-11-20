@@ -11,7 +11,11 @@ changelog-version-tag = { $fork }/{ $version }
 changelog-button = Changelog
 changelog-button-new-entries = Changelog (new!)
 
-changelog-tab-title-Changelog = Changelog
+# Persistence Start
+changelog-tab-title-Persistence = Persistence
+changelog-tab-title-Changelog = Upstream
+# Persistence End
+
 changelog-tab-title-Admin = Admin
 changelog-tab-title-Maps = Maps
 changelog-tab-title-Rules = Rules

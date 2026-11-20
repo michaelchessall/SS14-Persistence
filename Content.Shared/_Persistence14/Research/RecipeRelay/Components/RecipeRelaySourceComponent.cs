@@ -15,6 +15,6 @@ public sealed partial class RecipeRelaySourceComponent : Component
     /// <summary>
     /// A list of all currently connected receivers.
     /// </summary>
-    [DataField(readOnly: true), AutoNetworkedField]
+    [DataField, AutoNetworkedField]
     public HashSet<PersistentEntityReference> Receivers = new();
 }

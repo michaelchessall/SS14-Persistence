@@ -53,6 +53,24 @@ jobs:
     - name: Install dependencies
       run: dotnet restore
 
+    - name: Write displayed release version
+      shell: bash
+      run: |
+        set -euo pipefail
+
+        VERSION=$(
+          git tag --merged HEAD --list '[0-9]*.*.*' --sort=-version:refname |
+          awk '/^[0-9]+\.[0-9]+\.[0-9]+$/ && !found { print; found=1 }'
+        )
+
+        if [[ -z "$VERSION" ]]; then
+          echo "::error::No release version found in this branch's history."
+          exit 1
+        fi
+
+        printf '%s\n' "$VERSION" > Resources/BuildVersion.txt
+        echo "Displayed release version: $VERSION"
+
     - name: Build Packaging
       run: dotnet build Content.Packaging --configuration Release --no-restore /m
 

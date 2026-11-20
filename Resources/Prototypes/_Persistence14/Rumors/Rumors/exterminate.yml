@@ -49,3 +49,15 @@
   reputationReward: 70
   completionType: Exterminate
   descriptionAddon: "Kill all hostile creatures aboard!"
+
+- type: rumor
+  id: ExterminateElder
+  name: Summoning Breach!
+  description: "Elder summonings have escaped their control, where they'll wreak havoc, no doubt."
+  eventGrids:
+    - /Maps/Rumors/Exterminate/Medium/elder-exterminate.yml
+    - /Maps/Rumors/Exterminate/Medium/meatball.yml
+  cashReward: 5000
+  reputationReward: 70
+  completionType: Exterminate
+  descriptionAddon: "Kill all hostile creatures aboard!"

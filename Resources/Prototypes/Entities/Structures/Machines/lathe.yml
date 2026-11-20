@@ -235,6 +235,10 @@
     - ModularHudFrames
     - ModularHudModules
     # Moffstation - End
+    # Persi - Start
+    - IndustrialTools
+    - AdvancedIndustrialTools
+    # Persi - end
     # Persistence14 - Start
     - MedicalFultonPack
     # Persistence14 - End

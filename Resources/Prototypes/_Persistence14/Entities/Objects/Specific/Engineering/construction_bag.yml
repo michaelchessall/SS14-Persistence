@@ -35,14 +35,6 @@
       - PowerCell
       - LightBulb
   - type: Dumpable
-  - type: ItemToggle
-    soundActivate: &soundActivate
-      collection: sparks
-      params:
-        variation: 0.25
-    soundDeactivate: *soundActivate
-    onActivate: true
-    onUse: false
   - type: Appearance
   - type: GenericVisualizer
     visuals:
