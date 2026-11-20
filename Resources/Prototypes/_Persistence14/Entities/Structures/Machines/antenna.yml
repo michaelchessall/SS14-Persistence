@@ -1,0 +1,185 @@
+- type: entity
+  parent: BaseWallmount
+  id: Antenna
+  name: Antenna
+  description: test
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.2,-0.25,0.2,6"
+        layer:
+        - GlassLayer
+      fix2:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,4.5,0.5,6"
+        layer:
+        - GlassLayer
+  - type: Physics
+    canCollide: true
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: ExtensionCableReceiver
+    receptionRange: 5
+  - type: TelecomServer
+    maxRange: 512
+  - type: Sprite
+    sprite: _Persistence14/Structures/comm_relays.rsi
+    drawdepth: FloorObjects
+    layers:
+    # layer 1
+    - state: base
+    - state: industrial_strut
+      offset: 0, 1
+      color: "#808080"
+    - state: strip
+      offset: 0, 1
+      map: [ "plating1" ]
+    - state: computer
+      sprite: Structures/Machines/computers.rsi
+      offset: 0, -1
+
+    # layer 2
+    - state: strut
+      offset: 0, 2
+    - state: strip
+      offset: 0, 2
+      map: [ "plating2" ]
+
+    - state: strut
+      offset: 0.15, 2
+      map: [ "greebles2_right" ]
+      rotation: 180
+    - state: strut
+      offset: -0.15, 2
+      map: [ "greebles2_left" ]
+
+    # layer 3
+    - state: strut
+      offset: 0, 3
+    - state: strut
+      offset: 0.15, 3
+      map: [ "greebles3_right" ]
+      rotation: 180
+    - state: strut
+      offset: -0.15, 3
+      map: [ "greebles3_left" ]
+
+
+    # layer 4
+    - state: strut
+      offset: 0, 4
+    - state: light
+      offset: 0, 4.3
+      shader: unshaded
+      map: [ "light" ]
+
+    # layer 5
+    - state: strut
+      offset: 0, 5
+    - state: extension
+      offset: -0.15, 5
+    - state: extension
+      offset: 0.15, 5
+      rotation: 180
+    - state: strut
+      offset: 0, 5
+      map: [ "platingtop" ]
+
+    - state: relay #left bottom
+      offset: -0.55, 4.7
+      map: [ "commsLeftBottom" ]
+    - state: relay #right bottom
+      offset: 0.55, 4.7
+      rotation: 180
+      map: [ "commsRightBottom" ]
+    - state: relay #left top
+      offset: -0.55, 5.32
+      map: [ "commsLeftTop" ]
+    - state: relay #right top
+      offset: 0.55, 5.32
+      rotation: 180
+      map: [ "commsRightTop" ]
+
+    # layer 6
+    - state: pole
+      offset: 0, 6
+    - state: led
+      offset: 0, 6.4
+      color: "#DE3A3A"
+      shader: unshaded
+    - state: omni_antenna
+      offset: 0, 5.75
+      rotation: -90
+    - state: flash
+      offset: 0, 6.4
+      shader: unshaded
+      color: "#DE3A3A"
+  - type: IFFVisualizer
+    layers:
+    - relay
+    - light
+  - type: RandomSprite
+    getAllGroups: true
+    available:
+      - plating1:
+          2_plates: ""
+          long_plate: ""
+          strip: ""
+          wide_strip: ""
+          bridge_plate: ""
+      - plating2:
+          2_plates: ""
+          long_plate: ""
+          strip: ""
+
+
+      - greebles2_right:
+          plate: ""
+          wide_strip: ""
+      - greebles2_left:
+          plate: ""
+          wide_strip: ""
+
+      - greebles3_left:
+          plate: ""
+          wideplate: ""
+          sonar: ""
+          wide_strip: ""
+          box: ""
+      - greebles3_right:
+          plate: ""
+          wideplate: ""
+          wide_strip: ""
+          box: ""
+
+      - platingtop:
+          industrial_strut: PremiumGreyPallete
+          strip: ""
+
+      - commsLeftBottom:
+          relay: ""
+          omni_antenna: ""
+          sonar: ""
+      - commsRightBottom:
+          relay: ""
+          omni_antenna: ""
+          sonar: ""
+      - commsLeftTop:
+          relay: ""
+          omni_antenna: ""
+          sonar: ""
+      - commsRightTop:
+          relay: ""
+          omni_antenna: ""
+          sonar: ""

@@ -1,0 +1,17 @@
+- type: palette
+  id: IndustrialOrangePallete
+  name: Industrial orange
+  colors:
+    engineeringlight: "#FFA647"
+    engineeringmedium: "#FF9821"
+    engineeringdark: "#d57e1a"
+
+- type: palette
+  id: PremiumGreyPallete
+  name: Industrial orange
+  colors:
+    lightgrey: "#808080"
+    lightishgrey: "#6c6c6c"
+    grey: "#5a5a5a"
+    darkishgrey: "#4b4b4b"
+    darkgrey: "#3c3c3c"

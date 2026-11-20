@@ -1,0 +1,203 @@
+- type: entity
+  parent: BaseWallmount
+  id: PremiumAntenna
+  name: Antenna premium
+  description: test
+  components:
+  - type: Fixtures
+    fixtures:
+      fix1:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.2,-0.25,0.2,4"
+        density: 190
+        layer:
+        - MachineLayer
+      fix2:
+        shape: !type:PhysShapeAabb
+          bounds: "-0.5,2.5,0.5,3.5"
+        density: 190
+        layer:
+        - MachineLayer
+  - type: Physics
+    canCollide: true
+  - type: Appearance
+  - type: GenericVisualizer
+    visuals:
+      enum.PowerDeviceVisuals.Powered:
+        topSweeper:
+          True: { visible: true }
+          False: { visible: false }
+        flash:
+          True: { visible: true }
+          False: { visible: false }
+        led:
+          True: { visible: true }
+          False: { visible: false }
+  - type: ApcPowerReceiver
+    powerLoad: 5000
+  - type: AmbientOnPowered
+  - type: AmbientSound
+    volume: -9
+    range: 5
+    enabled: false
+    sound:
+      path: /Audio/Ambience/Objects/server_fans.ogg
+  - type: WiresVisuals
+  - type: WiresPanel
+  - type: TelecomServer
+    maxRange: 1024
+  - type: ExtensionCableReceiver
+    receptionRange: 5
+  - type: Damageable
+    damageContainer: StructuralInorganic
+    damageModifierSet: StructuralMetallic
+  - type: Destructible
+    thresholds:
+    - trigger:
+        !type:DamageTrigger
+        damage: 200
+      behaviors:
+        - !type:DoActsBehavior
+          acts: [ "Destruction" ]
+    - trigger:
+        !type:DamageTrigger
+        damage: 100
+      behaviors:
+      - !type:DoActsBehavior
+        acts: ["Destruction"]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+  - type: EncryptionKeyHolder
+    keysExtractionMethod: Prying
+    keySlots: 10
+  - type: Sprite
+    sprite: _Persistence14/Structures/comm_relays.rsi
+    drawdepth: FloorObjects
+    layers:
+    # layer 1
+    - state: base
+    - state: industrial_strut
+      offset: 0, 1
+      color: "#808080"
+    - state: strip
+      offset: 0, 1
+      map: [ "plating1" ]
+      scale: 1.5, 1.5
+    - state: computer
+      sprite: Structures/Machines/computers.rsi
+      offset: 0, -1
+
+
+    # layer 2
+    - state: industrial_strut
+      offset: 0, 2
+      color: "#808080"
+    - state: industrial_strut
+      offset: -0.15, 2
+      color: "#808080"
+      map: [ "greebles2_right"]
+    - state: industrial_strut
+      offset: 0.15, 2
+      color: "#808080"
+      map: [ "greebles2_left"]
+      rotation: 180
+
+    # layer 3
+    - state: strut
+      offset: 0, 3
+    - state: extension
+      offset: -0.15, 3
+    - state: extension
+      offset: 0.15, 3
+      rotation: 180
+    - state: strut
+      offset: 0, 3
+      map: [ "platingtop" ]
+
+    - state: relay #left bottom
+      offset: -0.55, 2.7
+      map: [ "commsLeftBottom" ]
+    - state: relay #right bottom
+      offset: 0.55, 2.7
+      rotation: 180
+      map: [ "commsRightBottom" ]
+    - state: relay #left top
+      offset: -0.55, 3.32
+      map: [ "commsLeftTop" ]
+    - state: relay #right top
+      offset: 0.55, 3.32
+      rotation: 180
+      map: [ "commsRightTop" ]
+
+    # layer 4
+    - state: pole
+      offset: 0, 4
+    - state: led
+      offset: 0, 4.4
+      color: "#DE3A3A"
+      shader: unshaded
+      map: [ "led" ]
+    - state: top_sweeper
+      offset: 0, 3.75
+      color: "#464545"
+      map: [ "topSweeper" ]
+    - state: flash
+      offset: 0, 4.4
+      shader: unshaded
+      color: "#DE3A3A"
+      map: [ "flash" ]
+  - type: IFFVisualizer
+    layers:
+    - relay
+  - type: RandomSprite
+    getAllGroups: true
+    available:
+      - plating1:
+          2_plates: PremiumGreyPallete
+          long_plate: PremiumGreyPallete
+          strip: PremiumGreyPallete
+          wide_strip: PremiumGreyPallete
+          bridge_plate: PremiumGreyPallete
+
+      - greebles2_left:
+          plate: PremiumGreyPallete
+          wideplate: PremiumGreyPallete
+          sonar: PremiumGreyPallete
+          wide_strip: PremiumGreyPallete
+          box: PremiumGreyPallete
+      - greebles2_right:
+          plate: PremiumGreyPallete
+          wideplate: PremiumGreyPallete
+          wide_strip: PremiumGreyPallete
+          box: PremiumGreyPallete
+
+      - platingtop:
+          2_plates: PremiumGreyPallete
+          long_plate: PremiumGreyPallete
+          strip: PremiumGreyPallete
+          bridge_plate: PremiumGreyPallete
+      - commsLeftBottom:
+          relay: PremiumGreyPallete
+          dish: PremiumGreyPallete
+          comms_radar: PremiumGreyPallete
+          omni_antenna: PremiumGreyPallete
+          parabolic: PremiumGreyPallete
+      - commsRightBottom:
+          relay: PremiumGreyPallete
+          dish: PremiumGreyPallete
+          comms_radar: PremiumGreyPallete
+          omni_antenna: PremiumGreyPallete
+          parabolic: PremiumGreyPallete
+      - commsLeftTop:
+          relay: PremiumGreyPallete
+          dish: PremiumGreyPallete
+          comms_radar: PremiumGreyPallete
+          omni_antenna: PremiumGreyPallete
+          parabolic: PremiumGreyPallete
+      - commsRightTop:
+          relay: PremiumGreyPallete
+          dish: PremiumGreyPallete
+          comms_radar: PremiumGreyPallete
+          omni_antenna: PremiumGreyPallete
+          parabolic: PremiumGreyPallete
