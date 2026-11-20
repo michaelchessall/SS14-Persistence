@@ -24,13 +24,13 @@ public sealed partial class ReproductiveComponent : Component
     /// Minimum length between each attempt to breed.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan MinBreedAttemptInterval = TimeSpan.FromSeconds(45);
+    public TimeSpan MinBreedAttemptInterval = TimeSpan.FromMinutes(2); // Persistence: FromSeconds(45) -> FromMinutes(2)
 
     /// <summary>
     /// Maximum length between each attempt to breed.
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan MaxBreedAttemptInterval = TimeSpan.FromSeconds(60);
+    public TimeSpan MaxBreedAttemptInterval = TimeSpan.FromMinutes(12); // Persistence: FromSeconds(60) -> FromMinutes(12)
 
     /// <summary>
     /// How close to a partner an entity must be in order to breed.
@@ -70,7 +70,7 @@ public sealed partial class ReproductiveComponent : Component
     /// When gestation will end.
     /// Null if <see cref="Gestating"/> is false
     /// </summary>
-    [DataField, ViewVariables(VVAccess.ReadWrite)]
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)] // Persistence: Add TimeOffsetSerializer
     public TimeSpan? GestationEndTime;
 
     /// <summary>
@@ -78,7 +78,7 @@ public sealed partial class ReproductiveComponent : Component
     /// to produce offspring
     /// </summary>
     [DataField, ViewVariables(VVAccess.ReadWrite)]
-    public TimeSpan GestationDuration = TimeSpan.FromMinutes(1.5);
+    public TimeSpan GestationDuration = TimeSpan.FromMinutes(120); // Persistence: 1.5 -> 120
 
     /// <summary>
     /// How much hunger is consumed when an entity
@@ -91,13 +91,13 @@ public sealed partial class ReproductiveComponent : Component
     /// If the entity's hunger satiation is below this value, it cannot reproduce.
     /// </summary>
     [DataField]
-    public SatiationValue? MinHungerThreshold;
+    public SatiationValue? MinHungerThreshold = "Peckish"; // Persistence: Add default "Peckish"
 
     /// <summary>
     /// If the entity's thirst satiation is below this value, it cannot reproduce.
     /// </summary>
     [DataField]
-    public SatiationValue? MinThirstThreshold;
+    public SatiationValue? MinThirstThreshold = "Parched"; // Persistence: Add default "Parched"
 
     /// <summary>
     /// Popup shown when an entity gives birth.
@@ -118,4 +118,18 @@ public sealed partial class ReproductiveComponent : Component
     /// </summary>
     [DataField(required: true)]
     public EntityWhitelist PartnerWhitelist = default!;
+
+    // Persistence Start: Reproduction cooldown
+    /// <summary>
+    /// How long after a birth until reproduction attempts can be allowed again.
+    /// </summary>
+    [ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan CooldownDuration = TimeSpan.FromMinutes(45);
+
+    /// <summary>
+    /// When the cooldown period will end. Null when cooldown is finished.
+    /// </summary>
+    [DataField(customTypeSerializer: typeof(TimeOffsetSerializer)), ViewVariables(VVAccess.ReadWrite)]
+    public TimeSpan? CooldownFinishedAt;
+    // Persistence End
 }
