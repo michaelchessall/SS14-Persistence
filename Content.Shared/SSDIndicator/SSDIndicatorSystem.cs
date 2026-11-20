@@ -36,6 +36,13 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
         _cfg.OnValueChanged(CCVars.ICSSDSleepTime, obj => _icSsdSleepTime = obj, true);
     }
 
+    // Persistence: Show SSD indicators for any characters on the map at startup
+    [SubscribeLocalEvent]
+    private void OnStartup(Entity<SSDIndicatorComponent> ent, ref ComponentStartup args)
+    {
+        StartSSD(ent.Owner, ent.Comp);
+    }
+
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args)
     {
         // Persistence: SSD Command
