@@ -133,4 +133,11 @@ Entries:
   id: 17
   time: '2026-11-21T19:26:54.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1017
+- author: JoulesMango
+  changes:
+  - message: Particle accelerator now works
+    type: Fix
+  id: 18
+  time: '2026-11-21T20:04:38.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1016
 Order: 0
