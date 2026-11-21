@@ -440,7 +440,7 @@
   - type: DamageStateVisuals
     states:
       Alive:
-        Base: space_sheep_harvested
+        Base: space_sheep_bare
       Critical:
         Base: space_sheep_dead
       Dead:

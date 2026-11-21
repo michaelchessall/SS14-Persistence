@@ -1766,5 +1766,12 @@ Entries:
   id: 237
   time: '2026-11-18T18:21:42.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/999
+- author: Zetaplx
+  changes:
+  - message: Admins now only hear prayers based on a configurable chance (0% for normal players, 100% for bible users, by default)
+    type: Tweak
+  id: 238
+  time: '2026-11-21T01:08:27.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1008
 Name: Admin
 Order: 3
