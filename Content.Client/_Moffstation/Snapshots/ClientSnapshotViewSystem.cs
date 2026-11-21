@@ -2,9 +2,12 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Numerics;
 using Content.Client.MapText;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
+using Content.Shared.Clothing.Components;
+using Content.Shared.Clothing.EntitySystems;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Light.Components;
@@ -17,6 +20,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Graphics;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Reflection;
 using Robust.Shared.Timing;
 
 namespace Content.Client._Moffstation.Snapshots;
@@ -43,6 +47,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
     [Dependency] private IPrototypeManager _proto = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private SharedUserInterfaceSystem _ui = default!;
+    [Dependency] private ClothingSystem _clothing = default!;
+    [Dependency] private IReflectionManager _reflection = default!;
 
     [Dependency] private EntityQuery<StrapComponent> _strapQuery = default!;
     [Dependency] private EntityQuery<SpriteComponent> _spriteQuery = default!;
@@ -323,7 +329,8 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
 
         // This Ensures the Drawn Prototypes get their correct Rotation otherwise they stop midway and appear crooked
         _transform.SetLocalRotationNoLerp(uid.Value, entity.Rotation);
-        ApplyAppearance(uid.Value, entity.Appearance);
+        ApplyAppearance(uid.Value, entity.Appearance?.Data); // Persistence: Add ?.Data
+        ApplyFootprint(uid.Value, entity.Footprint);
 
         if (entity.Light is { } snapshotLight)
             ApplyLight(uid.Value, snapshotLight);
@@ -386,8 +393,56 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
             return null;
 
         var uid = Spawn(item.Prototype, MapCoordinates.Nullspace);
-        ApplyAppearance(uid, item.Appearance);
+        ApplyAppearance(uid, item.Appearance?.Data); // Persistence: Add ?.Data
+        ApplyRandomSprite(uid, item.RandomSprite);
         return uid;
+    }
+
+    /// <summary>
+    /// Applies a captured RandomSprite selection (greyscale tinting) the same way <c>RandomSpriteSystem</c> does.
+    /// </summary>
+    private void ApplyRandomSprite(EntityUid uid, Dictionary<string, SpriteSelection>? selected) // Persistence: string State, Color? Color) -> SpriteSelection
+    {
+        if (selected is not { Count: > 0 }
+            || !TryComp<RandomSpriteComponent>(uid, out var component)
+            || !_spriteQuery.TryComp(uid, out var sprite))
+        {
+            return;
+        }
+
+        component.Selected.Clear();
+        foreach (var (key, value) in selected)
+            component.Selected.Add(key, (value.State, value.Color)); // Persistence: value -> (value.State, value.Color)
+
+        foreach (var (key, value) in component.Selected)
+        {
+            int index;
+            if (_reflection.TryParseEnumReference(key, out var @enum))
+            {
+                if (!_sprite.LayerMapTryGet((uid, sprite), @enum, out index, logMissing: true))
+                    continue;
+            }
+            else if (!_sprite.LayerMapTryGet((uid, sprite), key, out index, false))
+            {
+                if (!int.TryParse(key, out index))
+                    continue;
+            }
+
+            _sprite.LayerSetRsiState((uid, sprite), index, value.State);
+            _sprite.LayerSetColor((uid, sprite), index, value.Color ?? Color.White);
+        }
+
+        if (TryComp<ClothingComponent>(uid, out var clothing))
+        {
+            foreach (var slotPair in clothing.ClothingVisuals)
+            {
+                foreach (var keyColorPair in component.Selected)
+                {
+                    _clothing.SetLayerColor(clothing, slotPair.Key, keyColorPair.Key, keyColorPair.Value.Color);
+                    _clothing.SetLayerState(clothing, slotPair.Key, keyColorPair.Key, keyColorPair.Value.State);
+                }
+            }
+        }
     }
 
     private void ApplyAppearance(EntityUid uid, Dictionary<Enum, object>? appearance)
@@ -403,6 +458,18 @@ public sealed partial class ClientSnapshotViewSystem : EntitySystem
         // Character height lives in ScaleVisuals, which only applies with its component present.
         if (appearance.TryGetValue(ScaleVisuals.Scale, out var scale) && scale is Vector2 scaleVector)
             _scaleVisuals.SetSpriteScale(uid, scaleVector);
+    }
+
+    /// <summary>
+    /// Applies captured footprint layers and tint.
+    /// </summary>
+    private void ApplyFootprint(EntityUid uid, FootprintState? state) // Persistence: FootprintComponent.FootprintComponent_AutoState -> FootprintState
+    {
+        if (state == null || !TryComp<FootprintComponent>(uid, out var footprint))
+            return;
+
+        var handleState = new ComponentHandleState(state.Value.Value, null); // Persistence: Add .Value.Value
+        EntityManager.EventBus.RaiseComponentEvent(uid, footprint, ref handleState);
     }
 
     private void ApplyLight(EntityUid uid, SnapshotLight snapshotLight)

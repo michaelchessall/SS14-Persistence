@@ -1,7 +1,10 @@
+using System.IO;
 using System.Numerics;
-using Content.Server._Starlight.Snapshots;
+using Content.Server._Persistence14.Snapshots;
 using Content.Server.MapText;
+using Content.Server.Mind;
 using Content.Server.Movement.Components;
+using Content.Shared._Funkystation.Footprints;
 using Content.Shared._Moffstation.Snapshots;
 using Content.Shared.Body;
 using Content.Shared.Buckle.Components;
@@ -16,14 +19,17 @@ using Content.Shared.Inventory.VirtualItem;
 using Content.Shared.Light.Components;
 using Content.Shared.Light.EntitySystems;
 using Content.Shared.MapText;
+using Content.Shared.Mind;
 using Content.Shared.Parallax;
 using Content.Shared.Photography;
+using Content.Shared.Sprite;
 using Content.Shared.Stealth;
 using Content.Shared.Stealth.Components;
 using Robust.Server.GameObjects;
 using Robust.Shared;
 using Robust.Shared.Configuration;
 using Robust.Shared.Containers;
+using Robust.Shared.EntitySerialization.Systems;
 using Robust.Shared.Map;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Timing;
@@ -49,6 +55,8 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private ITileDefinitionManager _tileDef = default!;
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private SnapshotPersistenceSystem _snapshotPersistence = default!;
+    [Dependency] private MindSystem _mindSystem = default!;
+    [Dependency] private readonly MapLoaderSystem _mapLoader = default!;
 
     [Dependency] private EntityQuery<EyeCursorOffsetComponent> _cursorOffsetQuery = default!;
     [Dependency] private EntityQuery<EyeComponent> _eyeQuery = default!;
@@ -66,6 +74,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     [Dependency] private EntityQuery<AppearanceComponent> _appearanceQuery = default!;
     [Dependency] private EntityQuery<MapTextComponent> _mapTextQuery = default!;
     [Dependency] private EntityQuery<TransformComponent> _transformQuery = default!;
+    [Dependency] private EntityQuery<MindComponent> _mindQuery = default!;
 
     private const int MaxEntities = 256;
 
@@ -135,16 +144,15 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         }
 
         var snapshot = Spawn(ent.Comp.Snapshot, Transform(ent).Coordinates);
-        EnsureComp<SnapshotComponent>(snapshot).Data = data;
+        EnsureComp<SnapshotComponent>(snapshot, out var comp);
+        comp.Data = data;
 
-        // Start Starlight
-        if (!_snapshotPersistence.SetData(snapshot, data))
+        if (!_mindSystem.TryGetMind(args.User, out var mind, out _) || !_mindQuery.TryComp(mind, out var mindComp) || !_snapshotPersistence.SaveData((snapshot, comp), data, (mind, mindComp)))
         {
             Del(snapshot);
-            _popup.PopupClient(Loc.GetString("snapshot-capture-failed"), args.User, args.User);
+            _popup.PopupEntity(Loc.GetString("snapshot-capture-failed"), args.User, args.User);
             return;
         }
-        // End Starlight
 
         _hands.PickupOrDrop(args.User, snapshot, dropNear: true);
     }
@@ -242,6 +250,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 Light = GetLight(uid),
                 MapText = GetMapText(uid),
                 Humanoid = GetHumanoid(uid, visMask),
+                Footprint = GetFootprint(uid),
             });
         }
 
@@ -362,7 +371,7 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
                 continue;
             }
 
-            if (!ShouldInclude(uid, visMask, null)
+            if (!ShouldIncludeSupportLight(uid, visMask)
                 || MetaData(uid).EntityPrototype is not { } proto)
             {
                 continue;
@@ -445,6 +454,16 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
     }
 
     /// <summary>
+    /// Support-only lights may be inside non-occluding containers, such as a PDA flashlight held in hand.
+    /// The illumination index already drops lights hidden in occluding containers, so only the visibility
+    /// mask matters here.
+    /// </summary>
+    private bool ShouldIncludeSupportLight(EntityUid uid, int visMask)
+        => !_mapQuery.HasComp(uid)
+           && !_gridQuery.HasComp(uid)
+           && IsVisibleTo(uid, visMask);
+
+    /// <summary>
     /// PVS layer rules to not accidentily capture ghosts and such
     /// </summary>
     private bool IsVisibleTo(EntityUid uid, int visMask)
@@ -518,13 +537,31 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
         if (!IsVisibleTo(uid, visMask) || MetaData(uid).EntityPrototype is not { } proto)
             return null;
 
-        return new SnapshotItem(proto.ID, GetAppearance(uid));
+        return new SnapshotItem(proto.ID, GetAppearance(uid), GetRandomSprite(uid));
+    }
+
+    /// <summary>
+    /// Copies the RandomSprite selection so greyscale tints (tools etc.) rebuild with the same color.
+    /// </summary>
+    private Dictionary<string, SpriteSelection>? GetRandomSprite(EntityUid uid) // Persistence: (string State, Color? Color) -> SpriteSelection
+    {
+        if (!TryComp<RandomSpriteComponent>(uid, out var component) || component.Selected.Count == 0)
+            return null;
+
+        // Persistence Start
+        var dict = new Dictionary<string, SpriteSelection>(component.Selected.Count);
+        foreach (var (key, value) in component.Selected)
+        {
+            dict[key] = new SpriteSelection(value.State, value.Color);
+        }
+        return dict;
+        // Persistence End
     }
 
     /// <summary>
     /// Copies the appearance data the server already networks
     /// </summary>
-    private Dictionary<Enum, object>? GetAppearance(EntityUid uid)
+    private AppearanceData? GetAppearance(EntityUid uid) // Persistence: Dictionary<Enum, object> -> AppearanceData
     {
         if (!_appearanceQuery.TryComp(uid, out var appearance) || !appearance.NetSyncEnabled)
             return null;
@@ -535,7 +572,27 @@ public sealed partial class ServerSnapshotCaptureSystem : SnapshotCaptureSystem
             return null;
         }
 
-        return new Dictionary<Enum, object>(state.Data);
+        return new AppearanceData(new Dictionary<Enum, object>(state.Data)); // Persistence: Add AppearanceData(new
+    }
+
+    /// <summary>
+    /// Copies the footprint layers and tint.
+    /// </summary>
+    private FootprintState? GetFootprint(EntityUid uid) // Persistence: FootprintComponent.FootprintComponent_AutoState -> FootprintState
+    {
+        if (!TryComp<FootprintComponent>(uid, out var footprint))
+            return null;
+
+        // Persistence Start
+        var state = EntityManager.GetComponentState(EntityManager.EventBus, footprint, null, GameTick.Zero);
+
+        if (state is FootprintComponent.FootprintComponent_AutoState footprintState)
+        {
+            return new FootprintState(footprintState);
+        }
+
+        return null;
+        // Persistence End
     }
 
     private MapTextComponentState? GetMapText(EntityUid uid)
