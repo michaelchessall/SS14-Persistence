@@ -63,3 +63,30 @@
       steps:
       - tool: Screwing
         doAfter: 5
+
+- type: constructionGraph
+  id: TroughGraph
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: trough
+          steps:
+            - material: Steel
+              amount: 5
+              doAfter: 5
+    - node: trough
+      entity: Trough
+      edges:
+        - to: start
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 5
+            - !type:DeleteEntity {}
+          conditions:
+            - !type:EntityAnchored
+              anchored: false
+          steps:
+            - tool: Screwing
+              doAfter: 5
