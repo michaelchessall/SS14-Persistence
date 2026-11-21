@@ -124,4 +124,13 @@ Entries:
   id: 16
   time: '2026-11-21T18:51:27.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1014
+- author: JetBalrog
+  changes:
+  - message: Asteroid Magnets have been adjusted to pull in asteroids including Aluminum, Copper, Tin, and Titanium. Seems they were miscalibrated. This has been adjusted.
+    type: Tweak
+  - message: We have managed to track down the salesman replacing all sandstone asteroid floors with Real Fake Floors. In other news, Real Fake Floors has gone out of business. They will not be missed.
+    type: Fix
+  id: 17
+  time: '2026-11-21T19:26:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1017
 Order: 0
