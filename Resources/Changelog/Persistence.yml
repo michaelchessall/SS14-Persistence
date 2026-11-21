@@ -117,4 +117,11 @@ Entries:
   id: 15
   time: '2026-11-20T17:38:13.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1012
+- author: Beridot
+  changes:
+  - message: Added Troughs which can be crafted for five steel, you can properly start a farm!
+    type: Add
+  id: 16
+  time: '2026-11-21T18:51:27.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1014
 Order: 0
