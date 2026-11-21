@@ -16,7 +16,7 @@ public sealed partial class SolutionEmpty : IGraphCondition
     [DataField]
     public string Solution;
 
-    public bool Condition(EntityUid uid, IEntityManager entMan)
+    public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entMan)
     {
         var containerSys = entMan.System<SharedSolutionContainerSystem>();
         if (!containerSys.TryGetSolution(uid, Solution, out _, out var solution))

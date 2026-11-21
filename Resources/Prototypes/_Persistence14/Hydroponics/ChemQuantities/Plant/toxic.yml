@@ -91,18 +91,13 @@
 
 - type: plantChemQuantity
   id: Carpotoxin
-  baseAmount: 1
-  requirements: # Placeholder values
-    Nutrient:
-      requirement: 1
+  baseAmount: 3
+  requirements:
+    Toxin:
+      requirement: 3
+    CarpTeeth:
       bonusRequirement: 1
-      bonusAmount: 1
-    Fertilizer:
-      bonusRequirement: 0.2
-      bonusAmount: 1
-    CarbonDioxide:
-      bonusRequirement: 0.1
-      bonusAmount: 1
+      bonusAmount: 5
 
 - type: plantChemQuantity
   id: PyrottonPhlogiston

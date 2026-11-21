@@ -248,6 +248,23 @@
         - material: FloorCarpetRed
           amount: 1
           doAfter: 1
+      - to: bannerAegis
+        steps:
+        - material: Steel
+          amount: 1
+          doAfter: 1
+        - material: MetalRod
+          amount: 2
+          doAfter: 1
+        - material: FloorCarpetBlue
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetSkyBlue
+          amount: 1
+          doAfter: 1
+        - material: FloorCarpetPurple
+          amount: 1
+          doAfter: 1
 
     - node: bannerNT
       entity: BannerNanotrasen
@@ -489,6 +506,23 @@
           amount: 1
         - !type:GivePrototype
           prototype: FloorCarpetItemRed
+          amount: 1
+        steps:
+        - tool: Cutting
+          doAfter: 1
+    - node: bannerAegis
+      entity: BannerAegis
+      edges:
+      - to: start
+        completed:
+        - !type:GivePrototype
+          prototype: FloorCarpetItemBlue
+          amount: 1
+        - !type:GivePrototype
+          prototype: FloorCarpetItemSkyBlue
+          amount: 1
+        - !type:GivePrototype
+          prototype: FloorCarpetItemPurple
           amount: 1
         steps:
         - tool: Cutting

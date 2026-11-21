@@ -1,0 +1,83 @@
+# This file is a sanitized copy of the server_config.toml from our official US server, this config is passed
+#   to the executable with `--config-file <path>`. This is provided as an example/reference for downstreams.
+# These values correspond to CVars, they often have docs in the comments, if you need clarification search
+#   the codebase for <section-name.key-name>, for example `config.presets` or `net.tickrate`
+
+# Welcome to the official Persistence US server config.
+# Remember that if this is in bin/Content.Server or such, it may be overwritten on build.
+# Consider copying it and using the --config-file and --data-dir options.
+
+[config]
+# This is stored at Resources/ConfigPresets/Persistence/persistenceOfficial.toml
+# Anything that isn't server-specific should probably be configured there
+presets = "persistenceOfficial"
+
+[game]
+hostname = "[EN][HRP] Persistence SS14 [ECLIPSE] | Fully Persistent Universe"
+desc = "Create ships and entire space stations from scratch in an evolving player-driven economy. Write your characters own destiny in the ultimate collaborative storytelling experience."
+
+# This is the address and port the status server binds to.
+# The port is by default set based on net.port so it will follow what you set there.
+bind = "*:1212"
+
+# This is the address of the SS14 server as the launcher uses it.
+# This is only needed if you're proxying the status HTTP server -
+#  by default the launcher will assume the address and port match that of the status server.
+# connectaddress = "udp://localhost:1212"
+
+[net]
+tickrate = 30
+port = 1212
+verbose = true
+bindto = "0.0.0.0"
+max_connections = 256
+
+[console]
+# Grant +HOST privileges to user with this username
+# Keep in mind the dangers of +HOST when assigning it.
+# https://github.com/space-wizards/docs/blob/master/src/en/general-development/setup/server-hosting-tutorial.md#admin-privileges
+login_host_user = "YourHostsSS14UsernameHere"
+
+[hub]
+# Comma-separated list of tags, useful for categorizing your server.
+# See https://docs.spacestation14.io/hosts/hub-rules for more details on this when it becomes relevant.
+tags = "rp:high,region:am_n_w,lang:en"
+
+# URL of your server. Fill this in if you have a domain name,
+# want to use HTTPS (with a reverse proxy), or other advanced scenarios.
+# Must be in the form of an ss14:// or ss14s:// URI pointing to the status API.
+# server_url = ""
+
+# You should probably never EVER need to touch this, but if you need a custom auth server,
+# (the auth server being the one which manages Space Station 14 accounts), you change it here.
+# server=
+
+[log]
+path = "logs"
+format = "log_%(date)s-%(time)s.txt"
+level = 1
+enabled = true
+
+[metrics]
+enabled = true
+# Address to bind the metrics server to, use "*" for all local interfaces
+host = "localhost"
+# Port to bind the metrics server to
+port = 44880
+
+[database]
+# Database type to use. Can be "sqlite" or "postgres" currently.
+engine = "postgres"
+
+# PostgreSQL database configuration, should be self explanatory.
+pg_host = "localhost"
+pg_port = 5432
+pg_database = "ss14"
+pg_username = "postgres"
+pg_password = ""
+
+# [discord]
+# ahelp_webhook = "<webhook URL>"
+# news_webhook = "<webhook URL>"
+# news_webhook_send_during_round = true
+# news_webhook_embed_color = "0x285dc3"

@@ -33,11 +33,11 @@ public sealed class CprCVars
     /// number of CPR pumps before ribs crack
     /// </summary>
     public static readonly CVarDef<int> RibCrackPump =
-        CVarDef.Create("funkystation.cpr.rib_crack_pump", 6, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("funkystation.cpr.rib_crack_pump", 10, CVar.SERVER | CVar.REPLICATED);
 
     /// <summary>
     /// blunt damage dealt when a patient's ribs crack from CPR
     /// </summary>
     public static readonly CVarDef<float> RibCrackDamage =
-        CVarDef.Create("funkystation.cpr.rib_crack_damage", 35f, CVar.SERVER | CVar.REPLICATED);
+        CVarDef.Create("funkystation.cpr.rib_crack_damage", 20f, CVar.SERVER | CVar.REPLICATED);
 }

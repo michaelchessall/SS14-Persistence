@@ -9,6 +9,7 @@
   cost: 20000
   recipeUnlocks:
     Fulton: 40
+    MedicalFulton: 20
     FultonBeacon: 2
 
 # Refill Technologies: Used to restock consumable parts of larger tech unlocks
@@ -23,6 +24,7 @@
   cost: 9000
   recipeUnlocks:
     Fulton: 20
+    MedicalFulton: 10
   technologyPrerequisites:
   - InterstellarLogistics
 
@@ -39,6 +41,33 @@
     PowerCellHigh: 4
   technologyPrerequisites:
   - AdvancedPowercells
+
+- type: technology
+  id: WeldingEquipment
+  name: research-technology-industrial-welder-manufacturing
+  icon:
+    sprite: Objects/Tools/welder_industrial.rsi
+    state: icon
+  discipline: Industrial
+  tier: 1
+  cost: 3750
+  recipeUnlocks:
+    WelderIndustrialLR: 3
+
+
+- type: technology
+  id: AdvancedWeldingEquipment
+  name: research-technology-advanced-industrial-welder-manufacturing
+  icon:
+    sprite: Objects/Tools/welder_industrial.rsi
+    state: icon
+  discipline: Industrial
+  tier: 1
+  cost: 6000
+  recipeUnlocks:
+    WelderIndustrialAdvancedLR: 2
+  technologyPrerequisites:
+  - WeldingEquipment
 
 
 - type: technology

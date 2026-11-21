@@ -11,11 +11,11 @@ namespace Content.Server.Construction.Conditions
         [DataField("conditions")]
         public IGraphCondition[] Conditions { get; private set; } = Array.Empty<IGraphCondition>();
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             foreach (var condition in Conditions)
             {
-                if (!condition.Condition(uid, entityManager))
+                if (!condition.Condition(uid, user, entityManager))
                     return false;
             }
 

@@ -8,7 +8,7 @@ public sealed partial class CCVars
     ///     Whether tips being shown is enabled at all.
     /// </summary>
     public static readonly CVarDef<bool> TipsEnabled =
-        CVarDef.Create("tips.enabled", true);
+        CVarDef.Create("tips.enabled", false);
 
     /// <summary>
     ///     The dataset prototype to use when selecting a random tip.

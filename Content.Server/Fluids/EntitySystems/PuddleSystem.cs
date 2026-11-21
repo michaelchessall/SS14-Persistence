@@ -1,3 +1,4 @@
+using Content.Server._Funkystation.ReagentFires.Systems;
 using Content.Server.Fluids.Components;
 using Content.Server.Spreader;
 using Content.Shared.Chemistry;
@@ -38,6 +39,7 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private TurfSystem _turf = default!;
     [Dependency] private InventorySystem _inventory = default!; // Funky: Footprints & Stains
+    [Dependency] private ReagentFireSystem _fireSystem = default!; // Funky: Reagent Fire
 
     [Dependency] private EntityQuery<PuddleComponent> _puddleQuery = default!;
     [Dependency] private EntityQuery<EvaporationSparkleComponent> _evaporationSparklesQuery = default!;
@@ -645,4 +647,12 @@ public sealed partial class PuddleSystem : SharedPuddleSystem
 
         return false;
     }
+
+    // Funky edit - handle reagent fire
+    protected override void OnSolutionUpdate(Entity<PuddleComponent> entity, ref SolutionChangedEvent args)
+    {
+        base.OnSolutionUpdate(entity, ref args);
+        _fireSystem.UpdateFire(entity);
+    }
+    // Funky edit end
 }

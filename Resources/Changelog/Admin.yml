@@ -1745,5 +1745,33 @@ Entries:
   id: 234
   time: '2026-08-08T22:59:23.0000000+00:00'
   url: https://github.com/space-wizards/space-station-14/pull/34166
+- author: stinkiestdog
+  changes:
+  - message: Adjustments to changelogs for persistence fork.
+    type: Tweak
+  id: 235
+  time: '2026-11-18T17:15:48.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/998
+- author: nathan736
+  changes:
+  - message: Eclipse improvements
+    type: Fix
+  id: 236
+  time: '2026-11-18T18:02:51.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/947
+- author: Zetaplx
+  changes:
+  - message: Changelog now contains GH version number
+    type: Tweak
+  id: 237
+  time: '2026-11-18T18:21:42.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/999
+- author: Zetaplx
+  changes:
+  - message: Admins now only hear prayers based on a configurable chance (0% for normal players, 100% for bible users, by default)
+    type: Tweak
+  id: 238
+  time: '2026-11-21T01:08:27.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1008
 Name: Admin
 Order: 3

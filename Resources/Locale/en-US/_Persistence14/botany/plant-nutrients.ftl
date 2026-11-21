@@ -1,7 +1,7 @@
 ## All nutrient descriptions except for nutrient and copper written by pwzysk
 
-nutrient-name-nutrient = nutrients
-nutrient-desc-nutrient = Nutrient description! Add this to your plant! (Legal Disclaimer: This currently can be added to plants)
+nutrient-name-nutrient = compost
+nutrient-desc-nutrient = A mixture of various organic compounds that most plants need.
 
 nutrient-name-water = water
 nutrient-desc-water = A pitiful imitation of rainfall.
@@ -25,7 +25,7 @@ nutrient-name-pest = pests
 nutrient-desc-pest = Tiny little bugs that eat your plants. Not really a nutrient.
 
 nutrient-name-radiation = radiation
-nutrient-desc-radiation = Ionizing rays of light. Watch out for mutation.
+nutrient-desc-radiation = Ionizing rays of light. Watch out for mutation. Can be absorbed from the environment.
 
 nutrient-name-acid = acids
 nutrient-desc-acid = Various acidic compounds. Just as bad for most plants as it is for you.
@@ -74,3 +74,6 @@ nutrient-desc-plasma = Despite being called plasma, it's actually a (solid/liqui
 
 nutrient-name-frezon = frezon
 nutrient-desc-frezon = brrrr!
+
+nutrient-name-carp-teeth = carp enamel
+nutrient-desc-carp-teeth = Grinding carp teeth and putting them in your plants is a fun activity for all ages!

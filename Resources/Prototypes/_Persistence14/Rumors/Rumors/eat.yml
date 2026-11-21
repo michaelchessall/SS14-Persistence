@@ -19,7 +19,6 @@
     - DiscoverSmallSalvage
     - BountyBasicGeneral
     - BountyBasicScience
-    - PowerLuminal
     - PowerGreen
     - ExterminateGreen
     - RescueMarine
@@ -44,6 +43,7 @@
     - DiscoverSmallCriminal
     - DiscoverSmallShadow
     - ExterminateCult
+    - PowerElder
     - BountyBasicCriminal
     - BountyBasicWeapon
     - RescuePrecursor

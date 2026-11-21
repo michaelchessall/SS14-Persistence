@@ -100,6 +100,7 @@
     guides:
     - Botany
     - Chemicals
+  - type: RadiationReceiver
 
 - type: entity
   parent: hydroponicsTray

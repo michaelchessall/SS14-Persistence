@@ -18,7 +18,7 @@ namespace Content.Server.Construction.Conditions
         [DataField("tag")]
         public string Tag { get; private set; }
 
-        public bool Condition(EntityUid uid, IEntityManager entityManager)
+        public bool Condition(EntityUid uid, EntityUid? user, IEntityManager entityManager)
         {
             if (!entityManager.TrySystem<TagSystem>(out var tagSystem))
                 return false;

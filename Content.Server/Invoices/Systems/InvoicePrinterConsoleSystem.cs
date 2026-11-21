@@ -378,6 +378,21 @@ public sealed class InvoicePrinterConsoleSystem : SharedInvoicePrinterConsoleSys
             //        }
             //    }
             //}
+            if (station != null
+                && TryComp<StationDataComponent>(station, out var sD) && sD != null)
+            {
+                if (sD.StationName != null) stationName = sD.StationName;
+                if (_station.CanSpend(userName, station.Value, component.InvoiceCost))
+                    valid = true;
+            }
+
+            if (!valid)
+            {
+                ConsolePopup(args.Actor, "You aren't authorized to spend from that account."); // todo : localize
+                _audio.PlayEntity(component.ErrorSound, args.Actor, uid);
+                return;
+            }
+
             if (valid && station != null)
             {
                 var accountBalance = 0;
