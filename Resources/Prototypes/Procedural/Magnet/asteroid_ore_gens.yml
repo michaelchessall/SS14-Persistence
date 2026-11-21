@@ -11,6 +11,12 @@
     OreUranium: 0.20
     OreArtifactFragment: 0.10
     OreBananium: 0.10
+    #Persistence 14 Changes
+    OreAluminum: 0.50
+    OreCopper: 0.33
+    OreTin: 0.33
+    OreTitanium: 0.15
+    #Persistence14 Changes End
 
 - type: oreDunGen
   id: OreIron
@@ -91,5 +97,39 @@
   count: 5
   minGroupSize: 1
   maxGroupSize: 2
+
+#Persistence 14 Changes
+- type: oreDunGen
+  id: OreAluminum
+  replacement: AsteroidRock
+  entity: WallRockAluminum
+  count: 4
+  minGroupSize: 3
+  maxGroupSize: 5
+
+- type: oreDunGen
+  id: OreCopper
+  replacement: AsteroidRock
+  entity: WallRockCopper
+  count: 4
+  minGroupSize: 3
+  maxGroupSize: 5
+
+- type: oreDunGen
+  id: OreTin
+  replacement: AsteroidRock
+  entity: WallRockTin
+  count: 4
+  minGroupSize: 3
+  maxGroupSize: 5
+
+- type: oreDunGen
+  id: OreTitanium
+  replacement: AsteroidRock
+  entity: WallRockTitanium
+  count: 6
+  minGroupSize: 3
+  maxGroupSize: 7
+#Persistence 14 Changes End
 
 
