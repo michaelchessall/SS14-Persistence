@@ -22,6 +22,13 @@ public sealed partial class ResonanceProductPrototype : IPrototype
     public int Price = 0;
     [DataField]
     public bool Shared = false;
+
+    /// <summary>
+    /// The message to be broadcast when the product is purchased.
+    /// </summary>
+    [DataField]
+    public LocId BroadcastMessage;
+
     [DataField]
     public ResonanceProductType ProductType = ResonanceProductType.MainWorldBoundary;
     [DataField]

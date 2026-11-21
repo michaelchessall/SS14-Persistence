@@ -2,6 +2,7 @@ using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Inventory;
 using Content.Shared.Item.ItemToggle.Components; // Persistence: add for construction bag
 using Content.Shared.Storage.Components;
+using Content.Shared.Verbs;
 using Content.Shared.Whitelist;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
@@ -45,9 +46,27 @@ public sealed partial class MagnetPickupSystem : EntitySystem
         entity.Comp.Active = args.Activated;
         Dirty(entity);
     }
+
     private void OnMagnetMapInit(EntityUid uid, MagnetPickupComponent component, MapInitEvent args)
     {
         component.NextScan = _timing.CurTime;
+    }
+
+    [SubscribeLocalEvent]
+    private void GetAltVerbs(Entity<MagnetPickupComponent> ent, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Message = ent.Comp.Active ? "Toggle Magnet Off" : "Toggle Magnet On",
+
+            Act = () => ToggleMagnet(ent)
+        });
+    }
+
+    private void ToggleMagnet(Entity<MagnetPickupComponent> ent)
+    {
+        ent.Comp.Active = !ent.Comp.Active;
+        Dirty(ent);
     }
 
     public override void Update(float frameTime)

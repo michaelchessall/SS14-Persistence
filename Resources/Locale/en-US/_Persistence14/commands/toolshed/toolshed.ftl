@@ -3,5 +3,5 @@ command-description-entityeffect-prototype = Applies an entity effect prototype 
 
 command-description-entitycondition-where = Filters a list of entities by an EntityCondition defined by a yaml string.
 command-description-entitycondition-wherenot = Filters a list of entities so that none meet an EntityCondition defined by a yaml string.
-command-description-entitycondition-where = Filters a list of entities by an EntityCondition defined by an EntityConditionPrototype.
-command-description-entitycondition-wherenot = Filters a list of entities so that none meet an EntityCondition defined by an EntityConditionPrototype.
+command-description-entitycondition-whereprototype = Filters a list of entities by an EntityCondition defined by an EntityConditionPrototype.
+command-description-entitycondition-wherenotprototype = Filters a list of entities so that none meet an EntityCondition defined by an EntityConditionPrototype.

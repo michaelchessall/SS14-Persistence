@@ -6,6 +6,7 @@
   shared: false
   productType: Product
   product: ResonanceArtifactSalvationShard
+  broadcastMessage: resonance-product-message-artifact
   icon:
     sprite: Structures/Specific/Anomalies/Cores/bluespace_core.rsi
     state: core
@@ -18,6 +19,7 @@
   shared: false
   productType: Product
   product: CandleThresholdInfiniteArtifact
+  broadcastMessage: resonance-product-message-artifact
   icon:
     sprite: _Persistence14/Objects/Specific/Chapel/thresholdcandle.rsi
     state: icon

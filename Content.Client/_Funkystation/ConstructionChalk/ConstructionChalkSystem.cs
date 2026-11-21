@@ -36,6 +36,14 @@ public sealed partial class ConstructionChalkSystem : SharedConstructionChalkSys
         SubscribeLocalEvent<ConstructionChalkMarkComponent, AfterAutoHandleStateEvent>(OnMarkState);
 
         Subs.ItemStatus<ConstructionChalkComponent>(ent => new ConstructionChalkStatusControl(ent));
+
+        _construction.FlipConstructionPrototype += OnFlipConstructionPrototype;
+    }
+
+    public override void Shutdown()
+    {
+        _construction.FlipConstructionPrototype -= OnFlipConstructionPrototype;
+        base.Shutdown();
     }
 
     private void OnChalkState(Entity<ConstructionChalkComponent> ent, ref AfterAutoHandleStateEvent args)
@@ -175,5 +183,30 @@ public sealed partial class ConstructionChalkSystem : SharedConstructionChalkSys
         }
 
         _sprite.SetColor((ent.Owner, sprite), new Color(65, 200, 50, 140)); // Persistence: 200 < 65 & 200 < 50
+    }
+
+    private void OnFlipConstructionPrototype(object? sender, EventArgs eventArgs)
+    {
+        if (_placementManager is not PlacementManager placementManager ||
+            !placementManager.IsActive ||
+            placementManager.Eraser ||
+            placementManager.Hijack is not ChalkPlacementHijack hijack ||
+            hijack.CurrentPrototype.Mirror is not { } mirrorId ||
+            !_proto.TryIndex(mirrorId, out var mirror))
+            return;
+
+        var permission = placementManager.CurrentPermission;
+
+        var placementMode = mirror.PlacementMode == nameof(SnapgridCenter) ? nameof(ChalkSnapgridCenter) : mirror.PlacementMode;
+
+        var newHijack = new ChalkPlacementHijack(_entMan, _proto, hijack.Chalk, mirror, RequestPlaceMark);
+
+        placementManager.BeginPlacing(new PlacementInformation
+        {
+            IsTile = false,
+            PlacementOption = placementMode,
+            Range = permission?.Range ?? 0,
+            UseEditorContext = permission?.UseEditorContext ?? true
+        }, newHijack);
     }
 }

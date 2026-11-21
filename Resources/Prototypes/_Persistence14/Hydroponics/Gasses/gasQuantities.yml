@@ -1,10 +1,16 @@
+#NOTE: Gas nutrient requirements are currently not implemented. Only the BaseAmount is currently used.
+
 - type: plantGasQuantity
   id: GasOxygen
   baseAmount: 5 # 5 mols of gas per 15 seconds. Should be a similar amount to what a 50 potency gas generating plant made before.
+  requirements: # What else would it be?
+    CarbonDioxide:
+      requirement: 5 # This should probably have a low base amount and a bonus amount, once gas requirements are implemented.
 
 - type: plantGasQuantity
   id: GasNitrogen
   baseAmount: 5
+
 - type: plantGasQuantity
   id: GasCarbonDioxide
   baseAmount: 5
@@ -12,14 +18,25 @@
 - type: plantGasQuantity
   id: GasPlasma
   baseAmount: 5
+  requirements: # Converts liquid plasma into plasma gas for cheaper than mixing phlogiston. Condensing it back into a liquid loses 0.2 units.
+    Plasma:
+      requirement: 1.25
 
 - type: plantGasQuantity
   id: GasTritium
   baseAmount: 5
+  requirements:
+    Hydrogen:
+      requirement: 7.5
+    Radiation:
+      requirement: 2.5
 
 - type: plantGasQuantity
   id: GasWaterVapor
   baseAmount: 5
+  requirements: # Plant boil water? Maybe this should also require high heat.
+    Water:
+      requirement: 2
 
 - type: plantGasQuantity
   id: GasAmmonia
@@ -31,7 +48,7 @@
 
 - type: plantGasQuantity
   id: GasFrezon
-  baseAmount: 5
+  baseAmount: 5 # Might just set this to zero and remove it from randomGas.yml
 
 - type: plantGasQuantity
   id: GasHydrogen

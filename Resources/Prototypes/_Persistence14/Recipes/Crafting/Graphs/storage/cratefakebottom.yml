@@ -1,0 +1,28 @@
+- type: constructionGraph
+  id: CrateFakeBottom
+  start: start
+  graph:
+    - node: start
+      edges:
+        - to: cratefakebottom
+          steps:
+            - material: Steel
+              amount: 10
+              doAfter: 5
+
+    - node: cratefakebottom
+      entity: CrateFakeBottom
+      edges:
+        - to: start
+          steps:
+            - tool: Screwing
+              doAfter: 5
+          conditions:
+            - !type:StorageWelded
+              welded: false
+          completed:
+            - !type:SpawnPrototype
+              prototype: SheetSteel1
+              amount: 10
+            - !type:EmptyAllContainers
+            - !type:DeleteEntity

@@ -1,0 +1,120 @@
+AdminOnly: false
+Entries:
+- author: bnnuybun
+  changes:
+  - message: NCC command clothing part 2! (Bags and Carapace)
+    type: Add
+  id: 1
+  time: '2026-11-18T16:16:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/983
+- author: Zetaplx
+  changes:
+  - message: Research server connections should persist between saves.
+    type: Fix
+  id: 2
+  time: '2026-11-18T17:38:18.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/997
+- author: stinkiestdog
+  changes:
+  - message: Rescue-rumor corpses must be revived to be considered completed. (In addition to being healed)
+    type: Fix
+  id: 3
+  time: '2026-11-18T18:05:20.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/994
+- author: nathan736
+  changes:
+  - message: Prescription glasses module works now
+    type: Fix
+  id: 4
+  time: '2026-11-18T18:31:22.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/995
+- author: tishaak
+  changes:
+  - message: fixed harmpacks arms duplicating
+    type: Fix
+  id: 5
+  time: '2026-11-18T18:42:15.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1001
+- author: JoulesMango
+  changes:
+  - message: industrial welder & advanced industrial welders can be researched and crafted
+    type: Add
+  - message: welder, industrial welder and advanced industrial welder fuel tank capacity increased
+    type: Tweak
+  - message: welders now can be recycled for a 90% material return
+    type: Tweak
+  - message: experimental welder nerf to Regen rate.
+    type: Tweak
+  - message: emergency welder can't be refueled & fuel tank increase.
+    type: Tweak
+  - message: all non-emergency welders print empty. pre-existing welders on the save will be emptied, apologies.
+    type: Tweak
+  id: 6
+  time: '2026-11-18T21:29:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/930
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Plants can now absorb radiation from the environment.
+    type: Add
+  id: 7
+  time: '2026-11-19T15:13:32.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1006
+- author: Sugarlord32
+  changes:
+  - message: Added a craftable false-bottom crate (10 Steel) with a crowbar-accessible hidden compartment, have fun smuggling!
+    type: Add
+  id: 8
+  time: '2026-11-19T16:09:17.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1005
+- author: stinkiestdog
+  changes:
+  - message: Conveyors now save & load their state properly.
+    type: Fix
+  id: 9
+  time: '2026-11-19T16:47:34.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1004
+- author: Zetaplx
+  changes:
+  - message: Ore and Construction bags default to opening instead of magnet toggling
+    type: Tweak
+  id: 10
+  time: '2026-11-19T20:37:15.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1009
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Carp and sharkminnow teeth can now be grinded into carp enamel!
+    type: Add
+  - message: Koibeans now contain more carpotoxin, and have new nutrient requirements.
+    type: Tweak
+  id: 11
+  time: '2026-11-19T21:15:37.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1007
+- author: Zetaplx
+  changes:
+  - message: Topicals now only consider relevant damage types when checking if they may be used.
+    type: Tweak
+  id: 12
+  time: '2026-11-19T21:54:16.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1002
+- author: Beridot
+  changes:
+  - message: Added some firelocks, airlocks, and walls to HCD.
+    type: Add
+  id: 13
+  time: '2026-11-19T22:02:06.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1003
+- author: stinkiestdog
+  changes:
+  - message: Animal husbandry has been made significantly slower to align with a persistent setting.
+    type: Tweak
+  id: 14
+  time: '2026-11-20T17:19:54.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1010
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Ambrosia dues leaves now contain 3-5 units of nectar, instead of 1-3.
+    type: Tweak
+  id: 15
+  time: '2026-11-20T17:38:13.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1012
+Order: 0

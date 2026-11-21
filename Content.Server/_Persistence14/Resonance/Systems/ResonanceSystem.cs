@@ -69,12 +69,12 @@ public sealed partial class ResonanceSystem : EntitySystem
         {
             if (!_mapBoundsQuery.TryComp(_crewMeta.MetaRecords.Owner, out var mapBounds)) return false;
             mapBounds.Radius += proto.RadiusExpansion;
-            _chat.DispatchGlobalAnnouncement($"A sector expansion has been triggered; The Sector Boundary has grown by {proto.RadiusExpansion}m!", "Sector News");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString(proto.BroadcastMessage, ("expansionRadius", proto.RadiusExpansion)), "Sector News");
         }
         if(proto.ProductType == ResonanceProductType.MainWorldAwakening)
         {
             _crewMeta.MetaRecords.SectorAwoke = true;
-            _chat.DispatchGlobalAnnouncement($"Surges of electricity crackle through space! The Sector has AWOKE; Tier 3 Insights are now available!", "Sector News");
+            _chat.DispatchGlobalAnnouncement(Loc.GetString(proto.BroadcastMessage), "Sector News");
             var parallax = EnsureComp<ParallaxComponent>(_crewMeta.MetaRecords.Owner);
             parallax.Parallax = "Wizard";
         }
@@ -90,7 +90,7 @@ public sealed partial class ResonanceSystem : EntitySystem
             }
             else
             {
-                _chat.DispatchGlobalAnnouncement($"A truly unique artifact has appeared in the Sector. {proto.Name} has been delivered to {Name(tradeStation.Value)}", "Sector News");
+                _chat.DispatchGlobalAnnouncement(Loc.GetString(proto.BroadcastMessage, ("itemName", proto.Name), ("stationName", Name(tradeStation.Value))), "Sector News");
             }
         }
         if (proto.Unique)

@@ -17,6 +17,15 @@
     sprite: _Persistence14/Clothing/Back/Duffels/exec.rsi
 
 - type: entity
+  parent: [ClothingBackpackDuffel, BaseCommandContraband]
+  id: ClothingBackpackDuffelNCC
+  name: nexus central council's duffel bag
+  description: Robust duffel bag, made to hold a plethora of items, including a *lot* of trade nodes.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Back/Duffels/ncc.rsi
+
+- type: entity
   parent: [ClothingBackpackSatchel, BaseCommandContraband]
   id: ClothingBackpackSatchelExec
   name: executive's satchel
@@ -24,6 +33,15 @@
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Back/Satchels/exec.rsi
+
+- type: entity
+  parent: [ClothingBackpackSatchel, BaseCommandContraband]
+  id: ClothingBackpackSatchelNCC
+  name: nexus central council's satchel
+  description: A satchel with a modern yet regal design, tailored for the NCC.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Back/Satchels/ncc.rsi
 
 - type: entity
   parent: [ClothingBackpackSatchel, BaseSyndicateContraband]

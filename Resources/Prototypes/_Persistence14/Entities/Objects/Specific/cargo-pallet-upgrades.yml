@@ -1,0 +1,64 @@
+- type: entity  
+  parent: BaseItem
+  id: CargoPalletUpgradeBase
+  name: cargo pallet upgrade template
+  abstract: true
+  components:
+  - type: InteractionOutline
+  - type: Sprite
+    sprite: Objects/Specific/Robotics/borgmodule.rsi
+  - type: Item
+    storedRotation: -90
+    inhandVisuals:
+      left:
+      - state: base-icon-inhand-left
+        color: "#cbaf8f"
+      - state: base-module-inhand-left
+        color: "#A1A1A1"
+      - state: base-part-inhand-left
+      - state: base-stripes-inhand-left
+        color: "#7D7D7D"
+      right:
+      - state: base-icon-inhand-right
+        color: "#cbaf8f"
+      - state: base-module-inhand-right
+        color: "#A1A1A1"
+      - state: base-part-inhand-right
+      - state: base-stripes-inhand-right
+        color: "#7D7D7D"
+  - type: Construction
+    graph: CargoPalletUpgradeGraph
+  
+- type: entity
+  parent: CargoPalletUpgradeBase
+  id: CargoPalletUpgradeTemplateSell
+  suffix: sell
+  description: An upgrade template for a cargo pallet, allowing use as a cargo sell pallet. Looks like it can be reconfigured with a screwdriver.
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - sprite: _Persistence14/Objects/Specific/cargo-pallet-upgrade.rsi
+      state: icon-sell
+  - type: Tag
+    tags: 
+    - CargoPalletUpgradeTemplateSell
+  - type: Construction
+    node: sell
+
+- type: entity
+  parent: CargoPalletUpgradeBase
+  id: CargoPalletUpgradeTemplateBuy
+  suffix: buy
+  description: An upgrade template for a cargo pallet, allowing use as a cargo buy pallet. Looks like it can be reconfigured with a screwdriver.
+  components:
+  - type: Sprite
+    layers:
+    - state: cargo
+    - sprite: _Persistence14/Objects/Specific/cargo-pallet-upgrade.rsi
+      state: icon-buy
+  - type: Tag
+    tags: 
+    - CargoPalletUpgradeTemplateBuy
+  - type: Construction
+    node: buy

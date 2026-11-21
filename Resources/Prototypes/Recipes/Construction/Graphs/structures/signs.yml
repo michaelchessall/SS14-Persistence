@@ -13,6 +13,16 @@
 
   - node: sign
     entity: SignBlank
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
 
 - type: constructionGraph
   id: SignWarningGraph
@@ -29,6 +39,16 @@
 
   - node: sign_warning
     entity: SignBlankMed
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
 
 - type: constructionGraph
   id: SignDirectionalGraph
@@ -45,3 +65,13 @@
 
   - node: sign_directional
     entity: SignDirectionalBlank
+    edges:
+    - to: start
+      steps:
+      - tool: Screwing
+        doAfter: 5
+      completed:
+      - !type:SpawnPrototype
+        prototype: SheetSteel1
+        amount: 2
+      - !type:DeleteEntity
