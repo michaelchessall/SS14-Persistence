@@ -22,7 +22,7 @@
   - BioGenRobustHarvest
   - BioGenDiseaseSwab
   - BioGenCompostAmmonia
-  - BioGenUristekCube
+  - BioGenUristekCube # Persistence
 
 - type: latheRecipePack
   id: BioGenMaterialsStatic
