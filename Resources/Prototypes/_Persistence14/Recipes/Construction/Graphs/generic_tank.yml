@@ -21,6 +21,8 @@
           conditions:
             - !type:EntityAnchored
               anchored: false
+            - !type:SolutionEmpty
+              solution: tank
           steps:
             - tool: Screwing
               doAfter: 5
