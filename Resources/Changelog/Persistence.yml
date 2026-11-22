@@ -140,4 +140,11 @@ Entries:
   id: 18
   time: '2026-11-21T20:04:38.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1016
+- author: stinkiestdog
+  changes:
+  - message: Characters saved on the map now properly have an SSD indicator when the map loads.
+    type: Fix
+  id: 19
+  time: '2026-11-22T16:50:50.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1015
 Order: 0
