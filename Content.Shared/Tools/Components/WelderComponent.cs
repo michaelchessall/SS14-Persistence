@@ -69,6 +69,12 @@ public sealed partial class WelderComponent : Component
     public SoundSpecifier WelderRefill = new SoundPathSpecifier("/Audio/Effects/refill.ogg");
 
     /// <summary>
+    /// Whether this welder can be refilled directly from fuel tanks.
+    /// </summary>
+    [DataField]
+    public bool CanRefill = true;
+
+    /// <summary>
     /// Whether the item is safe to refill while lit without exploding the tank.
     /// </summary>
     [DataField]

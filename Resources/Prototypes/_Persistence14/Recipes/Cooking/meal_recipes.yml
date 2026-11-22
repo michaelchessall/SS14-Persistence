@@ -526,3 +526,99 @@
   solids:
     FoodDoughPastryBase: 1
     FoodLaughinPeaPod: 1
+
+
+#jerkies
+
+- type: microwaveMealRecipe
+  id: RecipeJerky
+  name: jerky_recipe
+  result: FoodMealJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeat: 1
+
+- type: microwaveMealRecipe
+  id: RecipeJerkyHuman
+  name: human_jerky_recipe
+  result: FoodMealJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatHuman: 1
+
+#bear
+- type: microwaveMealRecipe
+  id: RecipeJerkyBear
+  name: bear_jerky_recipe
+  result: FoodMealBearJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatBear: 1
+
+#carp
+- type: microwaveMealRecipe
+  id: RecipeJerkyCarp
+  name: carp_jerky_recipe
+  result: FoodMealCarpJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatFish: 1
+
+#cloth
+- type: microwaveMealRecipe
+  id: RecipeJerkyCloth
+  name: cloth_jerky_recipe
+  result: FoodMealClothJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+    Fiber: 30
+
+#snake
+- type: microwaveMealRecipe
+  id: RecipeJerkySnake
+  name: snake_jerky_recipe
+  result: FoodMealSnakeJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatSnake: 2
+
+#spider
+- type: microwaveMealRecipe
+  id: RecipeJerkySpider
+  name: spider_jerky_recipe
+  result: FoodMealSpiderJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatSpider: 1
+
+#xeno
+- type: microwaveMealRecipe
+  id: RecipeJerkyXeno
+  name: xeno_jerky_recipe
+  result: FoodMealXenoJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatXeno: 1

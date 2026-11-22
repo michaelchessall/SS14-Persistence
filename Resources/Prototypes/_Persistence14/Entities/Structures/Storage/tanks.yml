@@ -32,3 +32,53 @@
   - type: Construction
     graph: GenericHighCapacityTankGraph
     node: generictankhigh
+ 
+# Trough PR (Its a tank but you eat from it) 
+- type: entity 
+  id: Trough
+  parent: [ GenericTank ]
+  name: trough
+  placement:
+    mode: SnapgridCenter
+  description: A defunct refurbished hydrophonic tray now used to hold water or slop for animals.
+  components:
+  - type: Transform
+    noRot: false
+    anchored: true
+  - type: StaticPrice
+    price: 150
+  - type: Fixtures
+  - type: Sprite
+    sprite: _Persistence14/Structures/storage/Tanks/trough.rsi
+    noRot: false
+    layers:
+    - state: trough
+    - state: fill-1
+      map: ["enum.SolutionContainerLayers.Fill"]
+      visible: false
+  - type: Appearance
+  - type: SolutionContainerVisuals
+    maxFillLevels: 3
+    fillBaseName: fill-
+  - type: Solution
+    id: tank
+    solution:
+      maxVol: 960
+  - type: ExaminableSolution
+    solution: tank
+  - type: ReagentTank
+    transferAmount: 100
+  - type: Icon
+    sprite: _Persistence14/Structures/storage/Tanks/trough.rsi
+    state: "trough"
+  - type: Construction
+    graph: TroughGraph
+    node: trough
+  - type: Edible
+    edible: Drink
+    solution: tank
+    destroyOnEmpty: false
+  - type: Rotatable
+  - type: Tag
+    tags:
+    - MessyDrinkerImmune

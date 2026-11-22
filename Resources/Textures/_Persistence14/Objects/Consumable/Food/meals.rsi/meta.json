@@ -1,7 +1,7 @@
 {
   "version": 1,
   "license": "CC-BY-SA-3.0",
-  "copyright": "raviolis by @SilverSS14 (YouTube) and scrambled-egg modified from friedegg by @SilverSS14 (YouTube)",
+  "copyright": "raviolis by @SilverSS14 (YouTube) and scrambled-egg modified from friedegg by @SilverSS14 (YouTube), Jerky textures by Cluckers1 (github),",
   "size": {
     "x": 32,
     "y": 32
@@ -15,6 +15,83 @@
     },
     {
       "name": "scrambled-egg"
+    },
+    {
+      "name": "jerky"
+    },
+    {
+      "name": "jerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "jerky-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "bearjerky"
+    },
+    {
+      "name": "bearjerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "bearjerky-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "carpjerky"
+    },
+    {
+      "name": "carpjerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "carpjerky-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "clothjerky"
+    },
+    {
+      "name": "clothjerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "clothjerky-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "snakejerky"
+    },
+    {
+      "name": "snakejerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "snakejerky-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "spiderjerky"
+    },
+    {
+      "name": "spiderjerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "spiderjerky-inhand-left",
+      "directions": 4
+    },
+    {
+      "name": "xenojerky"
+    },
+    {
+      "name": "xenojerky-inhand-right",
+      "directions": 4
+    },
+    {
+      "name": "xenojerky-inhand-left",
+      "directions": 4
     }
   ]
 }

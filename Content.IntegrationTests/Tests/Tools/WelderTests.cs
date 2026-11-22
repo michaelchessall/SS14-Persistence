@@ -19,7 +19,7 @@ public sealed class WelderTests : GameTest
     [TestPrototypes]
     private const string Prototypes = $@"
 - type: entity
-  parent: [SolutionToolWelderMiniEmergency, Welder]
+  parent: Welder
   id: {Welder}
   components:
   - type: Solution

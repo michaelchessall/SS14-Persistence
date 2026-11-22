@@ -78,7 +78,7 @@
 
 - type: plantChemQuantity
   id: AmbrosiaDuesNectar
-  baseAmount: 1
+  baseAmount: 3
   requirements:
     Water:
       requirement: 2
