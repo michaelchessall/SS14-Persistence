@@ -148,31 +148,6 @@
 
 - type: entity
   parent: FoodMealJerky
-  id: FoodMealBearJerky
-  name: bear jerky
-  description: Dried bear meat with salt, tough and satiating.
-  components:
-  - type: Item
-    storedOffset: 0,-1
-    inhandVisuals:
-      left:
-      - state: bearjerky-inhand-left
-      right:
-      - state: bearjerky-inhand-right
-  - type: FlavorProfile
-    flavors:
-      - meaty
-      - salty
-  - type: Sprite
-    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
-    state: bearjerky
-  - type: Tag
-    tags:
-    - Meat
-    - BearMeat
-
-- type: entity
-  parent: FoodMealJerky
   id: FoodMealCarpJerky
   name: carp jerky
   description: Dried carp meat with salt, dont worry the carpotoxin has denatured.
@@ -290,7 +265,6 @@
       - state: xenojerky-inhand-right
   - type: FlavorProfile
     flavors:
-      - acidic
       - meaty
       - salty
       - slimy
