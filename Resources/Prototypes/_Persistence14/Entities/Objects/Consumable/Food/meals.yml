@@ -115,7 +115,7 @@
       - ReagentId: Protein
         Quantity: 10
       - ReagentId: TableSalt
-        Quantity: 5
+        Quantity: 3
   - type: Tag
     tags:
     - Meat
@@ -218,7 +218,7 @@
       - ReagentId: Fiber
         Quantity: 30
       - ReagentId: TableSalt
-        Quantity: 5
+        Quantity: 3
   - type: Edible
     requiresSpecialDigestion: true
   - type: Tag

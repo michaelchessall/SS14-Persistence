@@ -537,7 +537,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeat: 1
 
@@ -548,7 +548,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeatHuman: 1
 
@@ -560,7 +560,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeatBear: 1
 
@@ -572,7 +572,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeatFish: 1
 
@@ -584,7 +584,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
     Fiber: 30
 
 #snake
@@ -595,7 +595,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeatSnake: 2
 
@@ -607,7 +607,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeatSpider: 1
 
@@ -619,6 +619,6 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 5
+    TableSalt: 3
   solids:
     FoodMeatXeno: 1
