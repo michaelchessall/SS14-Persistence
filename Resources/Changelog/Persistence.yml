@@ -161,4 +161,11 @@ Entries:
   id: 21
   time: '2026-11-23T01:38:50.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1023
+- author: Beridot
+  changes:
+  - message: Chickens can now eat food again!
+    type: Fix
+  id: 22
+  time: '2026-11-23T20:45:43.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1024
 Order: 0
