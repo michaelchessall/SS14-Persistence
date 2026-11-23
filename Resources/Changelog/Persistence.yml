@@ -186,4 +186,13 @@ Entries:
   id: 24
   time: '2026-11-23T20:48:12.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1026
+- author: Zetaplx
+  changes:
+  - message: T-Ray Scanners can now see under walls
+    type: Tweak
+  - message: Spray Painters can paint pipes under walls and tiles with an Alternative Verb (alt-click)
+    type: Tweak
+  id: 25
+  time: '2026-11-23T20:51:07.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1028
 Order: 0
