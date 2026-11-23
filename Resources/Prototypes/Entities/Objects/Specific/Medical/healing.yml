@@ -96,7 +96,7 @@
       - !type:DamageThreshold
         ranges: # Persistence: Topical thresholds apply only to their damage types
         - damageTypes: [ Heat, Cold, Shock, Caustic ]
-          max: 90
+          min: 90
     healingBeginSound:
       path: "/Audio/Items/Medical/ointment_begin.ogg"
       params:
@@ -201,7 +201,7 @@
       - !type:DamageThreshold
         ranges: # Persistence: Topical thresholds apply only to their damage types
         - damageTypes: [ Blunt, Piercing, Slash]
-          max: 90
+          min: 90
     bloodlossModifier: -10 # a suture should stop ongoing bleeding
     healingBeginSound:
       path: "/Audio/Items/Medical/brutepack_begin.ogg"
