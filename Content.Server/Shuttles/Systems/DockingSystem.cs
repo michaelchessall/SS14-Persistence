@@ -393,6 +393,8 @@ public sealed partial class DockingSystem : SharedDockingSystem
             door.ChangeAirtight = true;
     }
 
+    // Persistence: Undock All
+    [SubscribeLocalEvent]
     private void OnRequestUndockAll(EntityUid uid, ShuttleConsoleComponent component, UndockAllRequestMessage args)
     {
         var gridUid = Transform(uid).GridUid;
