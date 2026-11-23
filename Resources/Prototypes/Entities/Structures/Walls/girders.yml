@@ -20,6 +20,7 @@
         layer:
         - HighImpassable
         - MidImpassable
+        - InteractImpassable
   - type: InteractionOutline
   - type: Climbable
 
