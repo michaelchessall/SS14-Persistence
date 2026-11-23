@@ -47,6 +47,26 @@
 
 - type: latheRecipe
   parent: BaseHardsuitRecipe
+  id: SyndieEVAsuit
+  result: ClothingOuterEVASuitSyndicate
+  materials:
+    Plasteel: 1000
+    Durathread: 700
+  unlockUses: 3
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
+  id: SyndieEVAsuitHelmet
+  result: ClothingHeadHelmetSyndicate
+  completetime: 5
+  materials:
+    Glass: 500
+    Plasteel: 500
+    Durathread: 300
+  unlockUses: 3
+
+- type: latheRecipe
+  parent: BaseHardsuitRecipe
   id: Spationautsuit
   result: ClothingOuterHardsuitSpatio
   materials:
