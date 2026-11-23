@@ -168,4 +168,15 @@ Entries:
   id: 22
   time: '2026-11-23T20:45:43.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1024
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Growing ammonia from blue pumpkins produces 5-15 units, instead of 10-15, and requires slightly less water.
+    type: Tweak
+  - message: When added to hydroponics tray, ammonia is converted into fertilizer instead compost.
+    type: Tweak
+  - message: Weed killer no longer adds 10 times the amount of toxins to plants as it's supposed to.
+    type: Fix
+  id: 23
+  time: '2026-11-23T20:47:08.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1025
 Order: 0
