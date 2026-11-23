@@ -154,4 +154,11 @@ Entries:
   id: 20
   time: '2026-11-23T01:31:40.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1022
+- author: stinkiestdog
+  changes:
+  - message: SSD indicators are trustworthy again.
+    type: Tweak
+  id: 21
+  time: '2026-11-23T01:38:50.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1023
 Order: 0
