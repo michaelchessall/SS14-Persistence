@@ -92,8 +92,8 @@ public sealed partial class TrayScannerSystem : SharedTrayScannerSystem
 
                 inRange.Add((uid, comp));
 
-                if (comp.IsUnderCover || _trayScanReveal.IsUnderRevealingEntity(uid))
-                    EnsureComp<TrayRevealedComponent>(uid);
+                //if (comp.IsUnderCover || _trayScanReveal.IsUnderRevealingEntity(uid))
+                EnsureComp<TrayRevealedComponent>(uid);
             }
         }
 
