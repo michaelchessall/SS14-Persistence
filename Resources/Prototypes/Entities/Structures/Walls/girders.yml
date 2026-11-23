@@ -13,13 +13,15 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.3,-0.3,0.3,0.3"
         density: 60
         mask:
         - MachineMask
         layer:
-        - GlassAirlockLayer
+        - HighImpassable
+        - MidImpassable
   - type: InteractionOutline
+  - type: Climbable
 
 - type: entity
   parent: [ BaseGirder, StructureHealthBarrier ]

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "license": "CC-BY-SA-3.0",
+  "copyright": "made by JoulesMango (github) for PS14",
+  "size": {
+    "x": 128,
+    "y": 128
+  },
+  "states": [
+    {
+      "name": "cable"
+    }
+  ]
+}
