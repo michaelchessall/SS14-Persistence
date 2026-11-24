@@ -4,10 +4,10 @@ using Robust.Shared.Serialization.TypeSerializers.Implementations.Custom;
 namespace Content.Server.Kitchen.Components;
 
 /// <summary>
-/// Attached to a microwave that is currently in the process of cooking
+/// Attached to a device that is currently in the process of cooking. Modified by Persi14 for cooking rework.
 /// </summary>
 [RegisterComponent, AutoGenerateComponentPause]
-public sealed partial class ActiveMicrowaveComponent : Component
+public sealed partial class ActiveCookingDeviceComponent : Component
 {
     [ViewVariables(VVAccess.ReadWrite)]
     public float CookTimeRemaining;

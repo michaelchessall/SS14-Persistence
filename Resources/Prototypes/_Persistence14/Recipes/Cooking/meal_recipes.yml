@@ -1,7 +1,7 @@
-﻿
+
 #Other
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCandleCookie
   name: candle_cookie_recipe
   result: FoodBakedCookieCandle
@@ -16,7 +16,7 @@
 
 #Eggs
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeScrambledEgg
   name: scrambled_egg_recipe
   result: FoodMealScrambledEgg
@@ -27,7 +27,7 @@
     Milk: 5
     TableSalt: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFriedEgg
   name: fried_egg_recipe
   result: FoodMealFriedegg
@@ -38,7 +38,7 @@
     TableSalt: 2
     Blackpepper: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeOmelette
   name: omelette_recipe
   result: FoodMealOmelette
@@ -55,7 +55,7 @@
 
 #Pasta
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMacaroniCheese
   name: macaroni_cheese_recipe
   result: FoodMacaroniCheese
@@ -68,7 +68,7 @@
     FoodBowlBig: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRavioli
   name: ravioli_recipe
   result: FoodMealRavioli
@@ -79,7 +79,7 @@
     FoodCheeseSlice: 2
     FoodButterSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBoiledNoodles
   name: boiled_noodles_recipe
   result: FoodNoodlesBoiled
@@ -90,7 +90,7 @@
   solids:
     FoodDoughPastaRope: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBoiledFettuccine
   name: boiled_fettuccine_recipe
   result: FoodNoodlesBoiledFlat
@@ -101,7 +101,7 @@
   solids:
     FoodDoughPastaStrip: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonMacaroniCheese
   name: cotton_macaroni_cheese_recipe
   result: FoodCottonMacaroniCheese
@@ -114,7 +114,7 @@
     FoodBowlBig: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonRavioli
   name: cotton_ravioli_recipe
   result: FoodMealCottonRavioli
@@ -125,7 +125,7 @@
     FoodCheeseSlice: 2
     FoodButterSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBoiledCottonFettuccine
   name: boiled_cotton_fettuccine_recipe
   result: FoodNoodlesCottonBoiledFlat
@@ -138,7 +138,7 @@
 
 # Moffins
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMoffin
   name: moffin_recipe
   result: FoodBakedMoffin
@@ -150,7 +150,7 @@
   reagents:
     Sugar: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMoffinBerry
   name: berry_moffin_recipe
   result: FoodBakedMoffinBerry
@@ -165,7 +165,7 @@
 
 #Pancakes
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonPancake
   name: cotton_pancake_recipe
   result: FoodBakedCottonPancake
@@ -178,7 +178,7 @@
 
 #Toasts
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonButteredToast
   name: cotton_buttered_toast_recipe
   result: FoodBreadCottonButteredToast
@@ -188,7 +188,7 @@
     FoodBreadCottonSlice: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonFrenchToast
   name: cotton_french_toast_recipe
   result: FoodBreadCottonFrenchToast
@@ -202,7 +202,7 @@
 
 #Pastry dough
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePastryDough
   name: pastry_recipe
   result: FoodDoughPastryBase
@@ -215,7 +215,7 @@
 
 #plain
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutPlain
   name: plain_donut_recipe
   result: FoodDonutPlain
@@ -224,7 +224,7 @@
   solids:
     FoodDoughPastryBase: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutPlainJelly
   name: plain_jelly_donut_recipe
   result: FoodDonutJellyPlain
@@ -237,7 +237,7 @@
 
 #apple
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutApple
   name: apple_donut_recipe
   result: FoodDonutApple
@@ -247,7 +247,7 @@
     FoodDoughPastryBase: 1
     FoodApple: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutAppleJelly
   name: apple_jelly_donut_recipe
   result: FoodDonutJellyApple
@@ -261,7 +261,7 @@
 
 #blue pumkin
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutBluePumkin
   name: blue_pumkin_donut_recipe
   result: FoodDonutBluePumpkin
@@ -271,7 +271,7 @@
     FoodDoughPastryBase: 1
     FoodBluePumpkin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutBluePumkinJelly
   name: blue_pumkin_jelly_donut_recipe
   result: FoodDonutJellyBluePumpkin
@@ -285,7 +285,7 @@
 
 #bungo
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutBungo
   name: bungo_donut_recipe
   result: FoodDonutBungo
@@ -295,7 +295,7 @@
     FoodDoughPastryBase: 1
     FoodBungo: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutBungoJelly
   name: bungo_jelly_donut_recipe
   result: FoodDonutJellyBungo
@@ -309,7 +309,7 @@
 
 #caramel
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutCaramel
   name: caramel_donut_recipe
   result: FoodDonutCaramel
@@ -320,7 +320,7 @@
   solids:
     FoodDoughPastryBase: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutCaramelJelly
   name: caramel_jelly_donut_recipe
   result: FoodDonutJellyCaramel
@@ -334,7 +334,7 @@
 
 #chaos
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutChaos
   name: chaos_donut_recipe
   result: FoodDonutChaos
@@ -346,7 +346,7 @@
 
 #chocolate
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutChocolate
   name: chocolate_donut_recipe
   result: FoodDonutChocolate
@@ -356,7 +356,7 @@
     FoodDoughPastryBase: 1
     FoodSnackChocolateBar: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutChocolateJelly
   name: chocolate_jelly_donut_recipe
   result: FoodDonutJellyChocolate
@@ -370,7 +370,7 @@
 
 #homer
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutHomer
   name: homer_donut_recipe
   result: FoodDonutHomer
@@ -380,7 +380,7 @@
     FoodDoughPastryBase: 1
     FoodEgg: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutHomerJelly
   name: homer_jelly_donut_recipe
   result: FoodDonutJellyHomer
@@ -394,7 +394,7 @@
 
 #pink
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutPink
   name: pink_donut_recipe
   result: FoodDonutPink
@@ -405,7 +405,7 @@
   solids:
     FoodDoughPastryBase: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutPoison
   name: pink_poison_donut_recipe
   result: FoodDonutPoison
@@ -416,7 +416,7 @@
   solids:
     FoodDoughPastryBase: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutPinkJelly
   name: pink_jelly_donut_recipe
   result: FoodDonutJellyPink
@@ -430,7 +430,7 @@
 
 #matcha
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutMatcha
   name: matcha_donut_recipe
   result: FoodDonut
@@ -440,7 +440,7 @@
     FoodDoughPastryBase: 1
     LeavesTea: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutMatchaelly
   name: matcha_jelly_donut_recipe
   result: FoodDonutJelly
@@ -454,7 +454,7 @@
 
 #meat
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutMeat
   name: meat_donut_recipe
   result: FoodDonutMeat
@@ -466,7 +466,7 @@
 
 #apple
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutScurret
   name: wawa_donut_recipe
   result: FoodDonutJellyScurret
@@ -481,7 +481,7 @@
 
 #spacemans
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutSpacemans
   name: spacemans_donut_recipe
   result: FoodDonutSpaceman
@@ -491,7 +491,7 @@
     FoodDoughPastryBase: 1
     FoodSpacemansTrumpet: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutSpacemansJelly
   name: spacemans_jelly_donut_recipe
   result: FoodDonutJellySpaceman
@@ -505,7 +505,7 @@
 
 #sweetpea
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutSweetpea
   name: sweet_pea_donut_recipe
   result: FoodDonutSweetpea
@@ -515,7 +515,7 @@
     FoodDoughPastryBase: 1
     FoodLaughinPeaPod: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonutSweetpeaJelly
   name: sweet_pea_jelly_donut_recipe
   result: FoodDonutJellySweetpea
@@ -526,3 +526,98 @@
   solids:
     FoodDoughPastryBase: 1
     FoodLaughinPeaPod: 1
+
+#jerkies
+
+- type: foodRecipe
+  id: RecipeJerky
+  name: jerky_recipe
+  result: FoodMealJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeat: 1
+
+- type: foodRecipe
+  id: RecipeJerkyHuman
+  name: human_jerky_recipe
+  result: FoodMealJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatHuman: 1
+
+#bear
+- type: foodRecipe
+  id: RecipeJerkyBear
+  name: bear_jerky_recipe
+  result: FoodMealBearJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatBear: 1
+
+#carp
+- type: foodRecipe
+  id: RecipeJerkyCarp
+  name: carp_jerky_recipe
+  result: FoodMealCarpJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatFish: 1
+
+#cloth
+- type: foodRecipe
+  id: RecipeJerkyCloth
+  name: cloth_jerky_recipe
+  result: FoodMealClothJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+    Fiber: 30
+
+#snake
+- type: foodRecipe
+  id: RecipeJerkySnake
+  name: snake_jerky_recipe
+  result: FoodMealSnakeJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatSnake: 2
+
+#spider
+- type: foodRecipe
+  id: RecipeJerkySpider
+  name: spider_jerky_recipe
+  result: FoodMealSpiderJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatSpider: 1
+
+#xeno
+- type: foodRecipe
+  id: RecipeJerkyXeno
+  name: xeno_jerky_recipe
+  result: FoodMealXenoJerky
+  time: 15
+  group: Savory
+  reagents:
+    TableSalt: 3
+  solids:
+    FoodMeatXeno: 1

@@ -13,3 +13,5 @@ guidebook-microwave-reagent-quantity-display = × {$amount}u
 
 guidebook-microwave-solid-name-display = [bold]{$ingredient}[/bold]
 guidebook-microwave-solid-quantity-display = × {$amount}
+# Persi14: Cooking Rework
+guidebook-microwave-cook-device-header = [bold]Device[/bold]

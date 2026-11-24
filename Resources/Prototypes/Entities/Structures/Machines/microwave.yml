@@ -4,7 +4,7 @@
   name: microwave
   description: It's magic.
   components:
-  - type: Microwave
+  - type: CookingDevice # Persi14: Renamed
     capacity: 10
   - type: Appearance
   - type: GenericVisualizer
@@ -163,7 +163,7 @@
   name: donk co. microwave
   description: So advanced, it can cook donk-pockets in a mere 2.5 seconds!
   components:
-  - type: Microwave
+  - type: CookingDevice # Persi14: Renamed
     cookTimeMultiplier: 0.5
     baseHeatMultiplier: 200
     capacity: 10

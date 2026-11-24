@@ -12,14 +12,15 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Utility;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using System.Numerics;
 
 namespace Content.Client.Guidebook.Controls;
 
 /// <summary>
-/// Control for embedding a microwave recipe into a guidebook.
+/// Control for embedding a cooking recipe into a guidebook.
 /// </summary>
 [UsedImplicitly, GenerateTypedNameReferences]
-public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, ISearchableControl, IPrototypeRepresentationControl
+public sealed partial class GuideCookingDeviceEmbed : PanelContainer, IDocumentTag, ISearchableControl, IPrototypeRepresentationControl
 {
     [Dependency] private IPrototypeManager _prototype = default!;
     [Dependency] private ILogManager _logManager = default!;
@@ -28,7 +29,7 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
 
     public IPrototype? RepresentedPrototype { get; private set; }
 
-    public GuideMicrowaveEmbed()
+    public GuideCookingDeviceEmbed()
     {
         RobustXamlLoader.Load(this);
         IoCManager.InjectDependencies(this);
@@ -37,12 +38,12 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
         _sawmill = _logManager.GetSawmill("guidebook.microwave");
     }
 
-    public GuideMicrowaveEmbed(string recipe) : this()
+    public GuideCookingDeviceEmbed(string recipe) : this()
     {
         GenerateControl(_prototype.Index<FoodRecipePrototype>(recipe));
     }
 
-    public GuideMicrowaveEmbed(FoodRecipePrototype recipe) : this()
+    public GuideCookingDeviceEmbed(FoodRecipePrototype recipe) : this()
     {
         GenerateControl(recipe);
     }
@@ -180,10 +181,20 @@ public sealed partial class GuideMicrowaveEmbed : PanelContainer, IDocumentTag, 
         CookTimeLabel.SetMessage(msg);
     }
 
+    private void GenerateDeviceView(FoodRecipePrototype recipe) // Persi14: Cooking Refactor
+    {
+        var entity = _prototype.Index<EntityPrototype>(recipe.CookingDevice);
+        var embed = new GuideEntityEmbed(recipe.CookingDevice, true, false);
+        embed.Scale = new Vector2(2, 2); // Why isn't this a param??
+
+        DeviceContainer.AddChild(embed);
+    }
+
     private void GenerateControl(FoodRecipePrototype recipe)
     {
         GenerateHeader(recipe);
         GenerateIngredients(recipe);
         GenerateCookTime(recipe);
+        GenerateDeviceView(recipe);
     }
 }

@@ -1,4 +1,6 @@
-- type: microwaveMealRecipe
+# Persi14: Replace all prototypes with foodRecipe because it was renamed.
+
+- type: foodRecipe
   id: RecipeAloeCream
   name: aloe_cream_recipe
   result: AloeCream
@@ -7,7 +9,7 @@
   solids:
     FoodAloe: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMedicatedSuture
   name: medicated_suture_recipe
   result: MedicatedSuture
@@ -21,7 +23,7 @@
     TranexamicAcid: 20
     Cryptobiolin: 20
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRegenerativeMesh
   name: regenerative_mesh_recipe
   result: RegenerativeMesh
