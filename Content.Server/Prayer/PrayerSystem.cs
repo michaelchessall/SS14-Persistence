@@ -128,6 +128,6 @@ public sealed partial class PrayerSystem : EntitySystem
         // Persistence End
         _adminLogger.Add(LogType.AdminMessage, LogImpact.Low, $"{ToPrettyString(sender.AttachedEntity.Value):player} sent prayer ({Loc.GetString(comp.NotificationPrefix)}): {message}");
         PrayedEvent ev = new(sender.AttachedEntity.Value, message);
-        RaiseLocalEvent(sender.AttachedEntity.Value, ref ev); // Persistence: comp.Owner -> sender.AttachedEntity.Value
+        RaiseLocalEvent(comp.Owner, ref ev);
     }
 }
