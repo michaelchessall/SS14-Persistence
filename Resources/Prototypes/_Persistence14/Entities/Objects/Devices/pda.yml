@@ -146,6 +146,7 @@
         - id: NewsReaderCartridge
         - id: WantedListCartridge
         - id: LogProbeCartridge
+        - id: AstroNavCartridge
   - type: CartridgeLoader
     
 
@@ -181,5 +182,6 @@
         - id: NotekeeperCartridge
         - id: NanoTaskCartridge
         - id: NewsReaderCartridge
+        - id: AstroNavCartridge
   - type: CartridgeLoader
     
