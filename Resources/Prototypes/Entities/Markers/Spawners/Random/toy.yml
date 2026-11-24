@@ -19,6 +19,7 @@
       tableId: AllToySoundMakerTable
 
 # Soft friends to play with, cut open with a knife, and throw away when you need space
+# added avalis to this table
 - type: entityTable # size ginormous  # price 5
   id: AllPlushiesTable
   table: !type:GroupSelector
@@ -43,6 +44,7 @@
     - id: PlushieVulp
     - id: PlushieSheep
     - id: PlushieSpaceSheep
+    - id: PlushieAvali
     - !type:GroupSelector
       children:
       - id: PlushieBee

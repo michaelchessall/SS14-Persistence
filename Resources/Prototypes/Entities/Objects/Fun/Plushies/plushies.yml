@@ -1298,6 +1298,49 @@
 
 - type: entity
   parent: BasePlushie
+  id: PlushieAvali
+  name: avali plushie
+  description: A small stuffed avali plushie, hold them gently like hamburger.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Avali.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieAvaliSound
+      path: /Audio/_Starlight/Voice/Resomi/resomi_squawk_1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_chirp2.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnActivate
+    sound: *PlushieAvaliSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieAvaliSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cry_3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit: *PlushieAvaliSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Avali.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAvali
+
+- type: entity
+  parent: BasePlushie
   id: PlushieMeera
   name: Meera plushie
   description: Meera is always happy to help whether thats killing monkeys fixing the TEG or murder shes willing to put in the hours.
