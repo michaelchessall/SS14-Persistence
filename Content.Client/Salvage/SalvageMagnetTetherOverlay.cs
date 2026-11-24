@@ -26,7 +26,8 @@ public sealed class SalvageMagnetTetherOverlay : Overlay
     {
         IoCManager.InjectDependencies(this);
         _sprites = _entities.System<SpriteSystem>();
-        _shader = _prototypes.Index<ShaderPrototype>("unshaded").Instance();
+        var shader = "unshaded";
+        _shader = _prototypes.Index<ShaderPrototype>(shader).Instance();
     }
 
     protected override void Draw(in OverlayDrawArgs args)
