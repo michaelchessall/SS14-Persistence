@@ -18,9 +18,8 @@
         mask:
         - MachineMask
         layer:
-        - HighImpassable
+        - LowImpassable
         - MidImpassable
-        - InteractImpassable
   - type: InteractionOutline
   - type: Climbable
 
