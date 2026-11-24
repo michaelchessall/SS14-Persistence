@@ -1864,6 +1864,60 @@
 
 - type: entity
   parent: BasePlushie
+  id: PlushieRuby
+  name: Ruby plushie
+  description: Eclipse Station's own Medical Director, Ruby Whitewitch! It smells like something is burning...
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Ruby.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieRubySound
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: EmitSoundOnLand
+    sound: *PlushieRubySound
+  - type: EmitSoundOnActivate
+    sound: *PlushieRubySound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieRubySound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+      params:
+        volume: -5
+    transferAmount: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 5
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+      - ReagentId: Dermaline
+        Quantity: 5
+
+  - type: MeleeWeapon
+    soundHit: *PlushieRubySound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Ruby.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieRuby
+
+
+- type: entity
+  parent: BasePlushie
   id: ToyIan
   name: ian toy
   description: Unable to eat, but just as fluffy as the real guy!

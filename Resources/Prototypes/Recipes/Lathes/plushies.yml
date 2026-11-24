@@ -290,6 +290,16 @@
     Plasma: 50
 
 - type: latheRecipe
+  id: PlushieRuby
+  parent: BasePlushieRecipe
+  result: PlushieRuby
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Plasma: 100
+
+- type: latheRecipe
   id: PlushieKamryn
   parent: BasePlushieRecipe
   result: PlushieKamryn
