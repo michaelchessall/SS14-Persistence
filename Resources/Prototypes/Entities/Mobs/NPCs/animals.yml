@@ -295,7 +295,9 @@
   - type: NpcFactionMember
     factions:
     - Passive
-
+  - type: HTN
+    rootTask:
+      task: RuminantCompound
 - type: entity
   parent: MobChicken
   id: MobChicken1
