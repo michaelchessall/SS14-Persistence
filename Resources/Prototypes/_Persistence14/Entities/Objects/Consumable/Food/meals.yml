@@ -83,3 +83,195 @@
   - type: Tag
     tags:
       - ClothMade
+
+
+#Jerkies
+
+- type: entity
+  parent: FoodMealBase
+  id: FoodMealJerky
+  name: jerky
+  description: Dried meat with salt, simple and satiating.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: jerky-inhand-left
+      right:
+      - state: jerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: jerky
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Nutriment
+        Quantity: 20
+      - ReagentId: Protein
+        Quantity: 10
+      - ReagentId: TableSalt
+        Quantity: 3
+  - type: Tag
+    tags:
+    - Meat
+
+
+- type: entity
+  parent: FoodMealJerky
+  id: FoodMealBearJerky
+  name: bear jerky
+  description: Dried bear meat with salt, tough and satiating.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: bearjerky-inhand-left
+      right:
+      - state: bearjerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: bearjerky
+  - type: Tag
+    tags:
+    - Meat
+    - BearMeat
+
+- type: entity
+  parent: FoodMealJerky
+  id: FoodMealCarpJerky
+  name: carp jerky
+  description: Dried carp meat with salt, dont worry the carpotoxin has denatured.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: carpjerky-inhand-left
+      right:
+      - state: carpjerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - fishy
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: carpjerky
+
+- type: entity
+  parent: FoodMealJerky
+  id: FoodMealClothJerky
+  name: cloth jerky
+  description: Cloth and salt, the meal for the desperate moth.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: clothjerky-inhand-left
+      right:
+      - state: clothjerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - cotton
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: clothjerky
+  - type: Solution
+    solution:
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 30
+      - ReagentId: TableSalt
+        Quantity: 3
+  - type: Edible
+    requiresSpecialDigestion: true
+  - type: Tag
+    tags:
+    - ClothMade
+
+- type: entity
+  parent: FoodMealJerky
+  id: FoodMealSnakeJerky
+  name: snake jerky
+  description: Dried snake meat with salt, anything is edible with salt.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: snakejerky-inhand-left
+      right:
+      - state: snakejerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: snakejerky
+  - type: Tag
+    tags:
+    - SnakeMeat
+    - Meat
+
+- type: entity
+  parent: FoodMealJerky
+  id: FoodMealSpiderJerky
+  name: spider jerky
+  description: Dried spider meat with salt, Kafkaesque and satiating.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: spiderjerky-inhand-left
+      right:
+      - state: spiderjerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - salty
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: spiderjerky
+  - type: Tag
+    tags:
+    - Meat
+    - SpiderMeat
+
+- type: entity
+  parent: FoodMealJerky
+  id: FoodMealXenoJerky
+  name: xeno jerky
+  description: Dried xeno meat with salt, slimy and satiating.
+  components:
+  - type: Item
+    storedOffset: 0,-1
+    inhandVisuals:
+      left:
+      - state: xenojerky-inhand-left
+      right:
+      - state: xenojerky-inhand-right
+  - type: FlavorProfile
+    flavors:
+      - meaty
+      - salty
+      - slimy
+  - type: Sprite
+    sprite: _Persistence14/Objects/Consumable/Food/meals.rsi
+    state: xenojerky
+  - type: Tag
+    tags:
+    - Meat
+    - XenoMeat

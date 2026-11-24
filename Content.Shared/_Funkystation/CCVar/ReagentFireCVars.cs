@@ -15,7 +15,7 @@ public sealed class ReagentFireCVars
     /// Multiplier for the structural and heat damage dealt by reagent puddle fires
     /// </summary>
     public static readonly CVarDef<float> PuddleFireDamageMultiplier =
-        CVarDef.Create("funkystation.reagent_fire.puddle_damage_multiplier", 1.0f, CVar.SERVERONLY);
+        CVarDef.Create("funkystation.reagent_fire.puddle_damage_multiplier", 0.1f, CVar.SERVERONLY);
 
     /// <summary>
     /// Defines whether footprints are flammable.

@@ -1842,13 +1842,13 @@
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
-      - FloorAstroAsteroidSand
+      - FloorAsteroidSand
       blobDrawProb: .66
       radius: 7
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorAstroAsteroidSand:
+        FloorAsteroidSand:
           - id: WallRockSand
             prob: 0.7
             orGroup: rock
@@ -1920,13 +1920,13 @@
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
-      - FloorAstroAsteroidSand
+      - FloorAsteroidSand
       blobDrawProb: .66
       radius: 7
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorAstroAsteroidSand:
+        FloorAsteroidSand:
           - id: WallRockSand
             prob: 0.8
             orGroup: rock
@@ -1994,13 +1994,13 @@
     - type: MapGrid
     - type: BlobFloorPlanBuilder
       floorTileset:
-      - FloorAstroAsteroidSand
+      - FloorAsteroidSand
       blobDrawProb: .66
       radius: 7
       floorPlacements: 16
     - type: SimpleFloorPlanPopulator
       entries:
-        FloorAstroAsteroidSand:
+        FloorAsteroidSand:
           - id: WallRockSand
             prob: 0.5
             orGroup: rock

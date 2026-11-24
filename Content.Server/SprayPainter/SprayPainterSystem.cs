@@ -3,6 +3,7 @@ using Content.Server.Atmos.Piping.EntitySystems;
 using Content.Server.Charges;
 using Content.Server.Decals;
 using Content.Server.Destructible;
+using Content.Server.Hands.Systems;
 using Content.Server.Popups;
 using Content.Shared.Atmos.Piping.Unary.Components;
 using Content.Shared.Charges.Components;
@@ -11,11 +12,14 @@ using Content.Shared.Database;
 using Content.Shared.Decals;
 using Content.Shared.DoAfter;
 using Content.Shared.Interaction;
+using Content.Shared.Inventory;
 using Content.Shared.SprayPainter;
 using Content.Shared.SprayPainter.Components;
+using Content.Shared.Verbs;
 using Robust.Server.Audio;
 using Robust.Server.GameObjects;
 using Robust.Shared.Prototypes;
+using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
 
@@ -34,6 +38,9 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
     [Dependency] private ChargesSystem _charges = default!;
     [Dependency] private TransformSystem _transform = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
+    [Dependency] private HandsSystem _hands = default!;
+
+    const float PipeSpraypaintMaxDist = 3.0f;
 
     public override void Initialize()
     {
@@ -41,7 +48,7 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
 
         SubscribeLocalEvent<SprayPainterComponent, SprayPainterPipeDoAfterEvent>(OnPipeDoAfter);
         SubscribeLocalEvent<SprayPainterComponent, AfterInteractEvent>(OnFloorAfterInteract);
-        SubscribeLocalEvent<AtmosPipeColorComponent, InteractUsingEvent>(OnPipeInteract);
+        SubscribeLocalEvent<AtmosPipeColorComponent, AfterInteractUsingEvent>(OnPipeInteract);
         SubscribeLocalEvent<GasCanisterComponent, EntityPaintedEvent>(OnCanisterPainted);
         SubscribeLocalEvent<PaintableNameComponent, EntityPaintedEvent>(OnNamePainted);
     }
@@ -176,42 +183,48 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         args.Handled = true;
     }
 
-    private void OnPipeInteract(Entity<AtmosPipeColorComponent> ent, ref InteractUsingEvent args)
+    private void OnPipeInteract(Entity<AtmosPipeColorComponent> ent, ref AfterInteractUsingEvent args)
     {
         if (args.Handled)
             return;
 
-        if (!TryComp<SprayPainterComponent>(args.Used, out var painter) ||
-            painter.PickedColor is not { } colorName)
-            return;
+        args.Handled = TryPaintPipe(ent, args.Used, args.User);
+    }
 
-        if (!painter.ColorPalette.TryGetValue(colorName, out var color))
-            return;
+    private bool TryPaintPipe(Entity<AtmosPipeColorComponent> ent, EntityUid painter, EntityUid user)
+    {
+        if (!TryComp<SprayPainterComponent>(painter, out var painterComp) ||
+            painterComp.PickedColor is not { } colorName ||
+            !painterComp.ColorPalette.TryGetValue(colorName, out var color))
+            return false;
 
-        if (TryComp<LimitedChargesComponent>(args.Used, out var charges)
-            && _charges.GetCurrentCharges((args.Used, charges)) < painter.PipeChargeCost)
+        if (TryComp<LimitedChargesComponent>(painter, out var chargesComp) &&
+            _charges.GetCurrentCharges((painter, chargesComp)) < painterComp.PipeChargeCost)
         {
             var msg = Loc.GetString("spray-painter-interact-no-charges");
-            _popup.PopupEntity(msg, args.User, args.User);
-            return;
+            _popup.PopupEntity(msg, user, user);
+            return false;
         }
 
         var doAfterEventArgs = new DoAfterArgs(EntityManager,
-            args.User,
-            painter.PipeSprayTime,
+            user,
+            painterComp.PipeSprayTime,
             new SprayPainterPipeDoAfterEvent(color),
-            args.Used,
+            painter,
             target: ent,
-            used: args.Used)
+            used: painter)
         {
             BreakOnMove = true,
             BreakOnDamage = true,
             // multiple pipes can be sprayed at once just not the same one
             DuplicateCondition = DuplicateConditions.SameTarget,
             NeedHand = true,
+            RequireCanInteract = false,
+            DistanceThreshold = null,
+            AttemptFrequency = AttemptFrequency.StartAndEnd
         };
 
-        args.Handled = DoAfter.TryStartDoAfter(doAfterEventArgs);
+        return DoAfter.TryStartDoAfter(doAfterEventArgs);
     }
 
     private void PickColor(Entity<SprayPainterComponent> ent, ref AfterInteractEvent args)
@@ -234,5 +247,39 @@ public sealed partial class SprayPainterSystem : SharedSprayPainterSystem
         ent.Comp.SelectedDecalColor = closestDecal.Color;
         ent.Comp.ColorPickerEnabled = false;
         Dirty(ent);
+    }
+
+    [SubscribeLocalEvent]
+    private void OnGetAltVerbs(EntityUid uid, AtmosPipeColorComponent pipe, ref GetVerbsEvent<AlternativeVerb> args)
+    {
+        var active = _hands.GetActiveItem(args.User);
+        if (active is not { } item || !TryComp<SprayPainterComponent>(item, out var painterComp))
+            return;
+
+        if (!Transform(args.User).Coordinates.TryDistance(EntityManager, Transform(args.Target).Coordinates, out var distance) ||
+            distance > PipeSpraypaintMaxDist)
+            return;
+
+        var user = args.User;
+
+        args.Verbs.Add(new AlternativeVerb
+        {
+            Icon = new SpriteSpecifier.Texture(new ResPath("/Textures/Interface/palette.svg.png")),
+            Text = Loc.GetString("paint-verb-text"),
+
+            Act = () => TryPaintPipe((uid, pipe), item, user)
+        });
+    }
+
+    [SubscribeLocalEvent]
+    private void OnPipePaintAttempt(Entity<SprayPainterComponent> ente, ref DoAfterAttemptEvent<SprayPainterPipeDoAfterEvent> args)
+    {
+        var user = args.DoAfter.Args.User;
+        var target = args.DoAfter.Args.Target;
+
+        if (target == null ||
+            !Transform(user).Coordinates.TryDistance(EntityManager, Transform(target.Value).Coordinates, out var distance) ||
+            distance > PipeSpraypaintMaxDist)
+            args.Cancel();
     }
 }

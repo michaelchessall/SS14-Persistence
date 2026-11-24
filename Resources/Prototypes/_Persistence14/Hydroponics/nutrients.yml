@@ -147,3 +147,9 @@
   name: nutrient-name-frezon
   desc: nutrient-desc-frezon
   color: "#3a758c"
+
+- type: plantNutrient
+  id: CarpTeeth
+  name: nutrient-name-carp-teeth
+  desc: nutrient-desc-carp-teeth
+  color: "#ffcccc"

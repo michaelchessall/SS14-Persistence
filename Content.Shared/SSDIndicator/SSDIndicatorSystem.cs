@@ -3,6 +3,7 @@ using Content.Shared.Movement.Events; // Persistence: SSD Command
 using Content.Shared.StatusEffectNew;
 using Content.Shared.Verbs; // Persistence: SSD Verb
 using Robust.Shared.Configuration;
+using Robust.Shared.Network; // Persistence: SSD on startup
 using Robust.Shared.Player;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Timing;
@@ -20,6 +21,7 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
     [Dependency] private IConfigurationManager _cfg = default!;
     [Dependency] private IGameTiming _timing = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private INetManager _net = default!;
 
     private bool _icSsdSleep;
     private float _icSsdSleepTime;
@@ -34,6 +36,14 @@ public sealed partial class SSDIndicatorSystem : EntitySystem
 
         _cfg.OnValueChanged(CCVars.ICSSDSleep, obj => _icSsdSleep = obj, true);
         _cfg.OnValueChanged(CCVars.ICSSDSleepTime, obj => _icSsdSleepTime = obj, true);
+    }
+
+    // Persistence: Show SSD indicators for any characters on the map at startup
+    [SubscribeLocalEvent]
+    private void OnStartup(Entity<SSDIndicatorComponent> ent, ref ComponentStartup args)
+    {
+        if (_net.IsServer)
+            StartSSD(ent.Owner, ent.Comp);
     }
 
     private void OnPlayerAttached(EntityUid uid, SSDIndicatorComponent component, PlayerAttachedEvent args)

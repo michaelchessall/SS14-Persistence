@@ -143,7 +143,6 @@
     prototypes:
       - MobUNMCDead
 
-
 - type: entity
   name: Cultist Leader Corpse Spawner
   id: CultistLeaderCorpseSpawner
@@ -169,3 +168,16 @@
   - type: ConditionalSpawner
     prototypes:
       - MobCultistDead
+
+- type: entity
+  name: Syndi Civilian Corpse Spawner
+  id: CivSyndiCorpseSpawner
+  parent: MarkerBase
+  components:
+  - type: Sprite
+    sprite: Markers/jobs.rsi
+    layers:
+      - state: green
+  - type: ConditionalSpawner
+    prototypes:
+      - MobSyndicateDeadCivilian

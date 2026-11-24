@@ -5,7 +5,6 @@ using Content.Shared.Machines.EntitySystems;
 using Robust.Client.GameObjects;
 using Robust.Shared.Map;
 using Robust.Shared.Prototypes;
-using Robust.Shared.Serialization.Manager;
 using Robust.Shared.Spawners;
 
 namespace Content.Client.Machines.EntitySystems;
@@ -22,7 +21,6 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
 
     [Dependency] private SpriteSystem _sprite = default!;
     [Dependency] private MetaDataSystem _metaData = default!;
-    [Dependency] private ISerializationManager _serialization = default!;
 
     public override void Initialize()
     {
@@ -65,12 +63,17 @@ public sealed partial class MultipartMachineSystem : SharedMultipartMachineSyste
                 continue;
 
             var entProto = ProtoMan.Index(part.GhostProto.Value);
-            if (!entProto.Components.TryGetComponent("Sprite", out var s) || s is not SpriteComponent protoSprite)
-                return;
+            // Persi fix - START, inspired by how the ConstructionSystem spawns ghosts
+            if (!entProto.Components.TryGetComponent("Sprite", out var s) || s is not SpriteComponent)
+                continue;
 
+            var dummy = Spawn(part.GhostProto.Value, MapCoordinates.Nullspace);
+            var targetSprite = Comp<SpriteComponent>(dummy);
+            EntityManager.System<AppearanceSystem>().OnChangeData(dummy, targetSprite);
             var ghostSprite = EnsureComp<SpriteComponent>(ghostEnt);
-            _serialization.CopyTo(protoSprite, ref ghostSprite, notNullableOverride: true);
-
+            _sprite.CopySprite((dummy, targetSprite), (ghostEnt, ghostSprite));
+            Del(dummy);
+            // Persi fix - END
             _sprite.SetColor((ghostEnt, ghostSprite), _partiallyTransparent);
 
             _metaData.SetEntityName(ghostEnt, entProto.Name);

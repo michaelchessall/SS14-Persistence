@@ -156,6 +156,17 @@
     count: 1
 
 - type: entity
+  parent: IngotCopper
+  id: IngotCopper10
+  name: copper bar
+  suffix: Single
+  components:
+  - type: Sprite
+    state: copper
+  - type: Stack
+    count: 10
+
+- type: entity
   parent: IngotBase
   id: IngotTin
   name: tin bar
