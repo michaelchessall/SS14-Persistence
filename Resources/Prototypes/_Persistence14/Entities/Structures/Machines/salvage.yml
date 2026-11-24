@@ -39,6 +39,7 @@
   - type: ActivatableUIRequiresAccess
   - type: AccessReader
   - type: SalvageMagnet
+    tractorCordProto: SalvageMagnetBeamCord
   - type: SalvageMagnetData
   - type: IntrinsicRadioReceiver
   - type: ActiveRadio

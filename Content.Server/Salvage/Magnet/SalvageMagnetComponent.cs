@@ -1,3 +1,7 @@
+using Content.Shared._Persistence14.Cord;
+using Content.Shared._Persistence14.PersistentIdentifier.Reference;
+using Robust.Shared.Prototypes;
+
 namespace Content.Server.Salvage.Magnet;
 
 [RegisterComponent]
@@ -15,4 +19,10 @@ public sealed partial class SalvageMagnetComponent : Component
     /// </summary>
     [DataField]
     public float LateralOffset = 16f;
+
+    /// <summary>
+    /// The tractor beam to be spawned connected to the magent and any spawned grid.
+    /// </summary>
+    [DataField]
+    public EntProtoId<CordComponent> TractorCordProto = default!;
 }

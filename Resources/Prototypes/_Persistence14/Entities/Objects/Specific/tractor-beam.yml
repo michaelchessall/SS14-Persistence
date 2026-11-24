@@ -1,0 +1,16 @@
+- type: entity
+  id: SalvageMagnetBeamCord
+  name: salvage tractor beam
+  description: It's no rainbow, but there may still be gold at the end of this thing.
+  components:
+  - type: Transform
+    gridTraversal: false
+  - type: Sprite
+    drawdepth: Puddles
+    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    state: field
+    color: "#ffb2b2"
+  - type: Cord
+    mode: Tile
+  - type: Clickable
+  - type: InteractionOutline

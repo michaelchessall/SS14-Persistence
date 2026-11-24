@@ -1,4 +1,6 @@
+using Content.Server._Persistence14.Cord;
 using Content.Server.Salvage.Magnet;
+using Content.Shared._Persistence14.PersistentIdentifier;
 using Content.Shared.Mobs.Components;
 using Content.Shared.Procedural;
 using Content.Shared.Radio;
@@ -16,6 +18,8 @@ namespace Content.Server.Salvage;
 public sealed partial class SalvageSystem
 {
     [Dependency] private IRuntimeLog _runtimeLog = default!;
+    [Dependency] private CordSystem _cord = default!;
+    [Dependency] private PersistentIdentifierSystem _pid = default!;
 
     [Dependency] private EntityQuery<SalvageMobRestrictionsComponent> _salvMobQuery = default!;
     [Dependency] private EntityQuery<MobStateComponent> _mobStateQuery = default!;
@@ -363,6 +367,8 @@ public sealed partial class SalvageSystem
         data.Comp.ActiveEntities = null;
         mapChildren = salvMapXform.ChildEnumerator;
 
+        bool cordDrawn = false;
+
         // It worked, move it into position and cleanup values.
         while (mapChildren.MoveNext(out var mapChild))
         {
@@ -374,6 +380,18 @@ public sealed partial class SalvageSystem
 
             data.Comp.ActiveEntities ??= new List<EntityUid>();
             data.Comp.ActiveEntities?.Add(mapChild);
+
+            if (!cordDrawn && _gridQuery.HasComponent(mapChild) && _cord.TrySpawnCord(magnet.Owner, mapChild, magnet.Comp.TractorCordProto, out var cord, true, true))
+            {
+                data.Comp.ActiveEntities?.Add(cord.Owner);
+                var cordXform = Transform(cord.Owner);
+                if (cordXform.MapUid is { } mapUid)
+                {
+                    cordXform.GridTraversal = false;
+                    _transform.SetParent(cord.Owner, cordXform, mapUid);
+                }
+                cordDrawn = true;
+            }
 
             // Handle mob restrictions
             var children = salvXForm.ChildEnumerator;

@@ -12,18 +12,22 @@
   - type: Clickable
   - type: InteractionOutline
   - type: DebugStick
-    table: !type:RandomTableGroupSelector
-      children:
-      - !type:ReagentQuantityValueDefinition
-        value:
-          ReagentId: Fluorine
-          Quantity: 10
-      - !type:ReagentQuantityValueDefinition
-        value:
-          ReagentId: Water
-          Quantity: 10
-      - !type:ReagentQuantityValueDefinition
-        value:
-          ReagentId: Oxygen
-          Quantity: 10
+    cord: ContainmentFieldCord
+
+- type: entity
+  id: ContainmentFieldCord
+  name: containment field cord
+  categories: [ HideSpawnMenu ]
+  components:
+  - type: Sprite
+    drawdepth: BelowMobs
+    enableOverrideDir: true
+    overrideDir: east
+    sprite: Structures/Power/Generation/Singularity/containment_field.rsi
+    state: field
+  - type: Clickable
+  - type: InteractionOutline
+  - type: Appearance
+  - type: Cord
+    mode: Tile
 

@@ -7,7 +7,6 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
 {
     [Dependency] private IEntityManager _entMan = default!;
     [Dependency] private ILogManager _log = default!;
-    [Dependency] private IComponentFactory _factory = default!;
 
     private Entity<PersistentIdRegisterComponent>? _globalRegister;
 
@@ -105,7 +104,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
 
         if (IsEmptyId(id))
         {
-            _log.GetSawmill(Sawmill).Warning("Unable to override ID to empty. Use ClearId instead.");
+            //_log.GetSawmill(Sawmill).Warning("Unable to override ID to empty. Use ClearId instead.");
             return false;
         }
 
@@ -246,7 +245,7 @@ public sealed partial class PersistentIdentifierSystem : EntitySystem
         out Entity<PersistentIdentifierComponent> ent,
         Func<Entity<PersistentIdentifierComponent>, bool>? conditional = null,
         PersistentIdRegisterComponent? registry = null,
-        bool sendLogs = true)
+        bool sendLogs = false)
     {
         ent = default!;
         conditional ??= _ => true;
