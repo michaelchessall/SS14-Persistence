@@ -63,6 +63,9 @@ using System.Linq;
 using System.Numerics;
 using System.Threading;
 using Timer = Robust.Shared.Timing.Timer;
+using Content.Server.Mind.Toolshed;
+using Content.Shared.Mind;
+using Content.Server._Persistence14.Admin;
 
 namespace Content.Server.Administration.Systems;
 
@@ -103,6 +106,7 @@ public sealed partial class AdminVerbSystem
     [Dependency] private DamageableSystem _damageable = default!;
     [Dependency] private AtmosDeviceSystem _atmosDevice = default!;
     [Dependency] private StatusEffectsSystem _statusEffects = default!;
+    [Dependency] private LoocMuteSystem _loocMute = default!;
 
     private readonly EntProtoId _actionViewLawsProtoId = "ActionViewLaws";
     private readonly ProtoId<SiliconLawsetPrototype> _crewsimovLawset = "Crewsimov";
@@ -1104,6 +1108,67 @@ public sealed partial class AdminVerbSystem
             Message = string.Join(": ", makeStinkyName, Loc.GetString("admin-smite-make-stinky-description"))
         };
         args.Verbs.Add(makeStinky);
+
+
+        if (_mindSystem.TryGetMind(args.Target, out _, out var targetMind) && targetMind.UserId is { } userId)
+        {
+            if (_loocMute.IsPlayerMuted(userId, false))
+            {
+                var loocUnmuteName = Loc.GetString("admin-smite-looc-unmute-name").ToLowerInvariant();
+                Verb loocUnmute = new()
+                {
+                    Text = loocUnmuteName,
+                    Category = VerbCategory.Smite,
+                    Icon = new SpriteSpecifier.Texture(new("/Textures/Interface/Actions/scream.png")),
+
+                    Act = () => _loocMute.UnmutePlayer(userId),
+                    Impact = LogImpact.Extreme,
+                    Message = string.Join(": ", loocUnmuteName, Loc.GetString("admin-smite-looc-unmute-description"))
+                };
+                args.Verbs.Add(loocUnmute);
+            }
+            else
+            {
+                var loocMute10name = Loc.GetString("admin-smite-looc-mute-10-name").ToLowerInvariant();
+                Verb loocMute10 = new()
+                {
+                    Text = loocMute10name,
+                    Category = VerbCategory.Smite,
+                    Icon = new SpriteSpecifier.Rsi(new("Objects/Devices/timer.rsi"), "timer"),
+
+                    Act = () => _loocMute.MutePlayer(userId, TimeSpan.FromMinutes(10)),
+                    Impact = LogImpact.Extreme,
+                    Message = string.Join(": ", loocMute10name, Loc.GetString("admin-smite-looc-mute-10-description"))
+                };
+                args.Verbs.Add(loocMute10);
+
+                var loocMute60Name = Loc.GetString("admin-smite-looc-mute-60-name").ToLowerInvariant();
+                Verb loocMute60 = new()
+                {
+                    Text = loocMute60Name,
+                    Category = VerbCategory.Smite,
+                    Icon = new SpriteSpecifier.Rsi(new("Objects/Devices/timer.rsi"), "timer"),
+
+                    Act = () => _loocMute.MutePlayer(userId, TimeSpan.FromMinutes(60)),
+                    Impact = LogImpact.Extreme,
+                    Message = string.Join(": ", loocMute60Name, Loc.GetString("admin-smite-looc-mute-60-description"))
+                };
+                args.Verbs.Add(loocMute60);
+
+                var loocMutePermaName = Loc.GetString("admin-smite-looc-mute-perma-name").ToLowerInvariant();
+                Verb loocMutePerma = new()
+                {
+                    Text = loocMutePermaName,
+                    Category = VerbCategory.Smite,
+                    Icon = new SpriteSpecifier.Rsi(new("Clothing/Mask/muzzle.rsi"), "icon"),
+
+                    Act = () => _loocMute.MutePlayer(userId, null),
+                    Impact = LogImpact.Extreme,
+                    Message = string.Join(": ", loocMutePermaName, Loc.GetString("admin-smite-looc-mute-perma-description"))
+                };
+                args.Verbs.Add(loocMutePerma);
+            }
+        }
     }
 
     public void HomingLaunchSequence(EntityUid target, EntProtoId proto, float distance, float speed)
