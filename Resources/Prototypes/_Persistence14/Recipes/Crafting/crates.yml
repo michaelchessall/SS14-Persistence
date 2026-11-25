@@ -1,0 +1,6 @@
+- type: construction
+  parent: BaseCrate
+  id: CrateFakeBottom
+  name: construction-recipe-crate-fake-bottom
+  graph: CrateFakeBottom
+  targetNode: cratefakebottom

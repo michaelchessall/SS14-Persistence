@@ -120,7 +120,7 @@
     containers:
       entity_storage: !type:AllSelector
         children:
-        - id: FoodCondimentPacketSalt
+        - id: FoodShakerSalt
           amount: 15
 
 - type: entity

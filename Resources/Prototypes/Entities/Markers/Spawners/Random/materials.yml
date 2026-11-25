@@ -223,6 +223,7 @@
     - id: CableApcStack10
     - id: CableMVStack10
     - id: CableHVStack10
+    - id: IngotCopper10
 
 - type: entityTable
   id: RandomRareSurplusMaterialTable
@@ -231,6 +232,7 @@
     - id: SheetUranium1
     - id: IngotGold1
     - id: IngotSilver1
+    - id: SheetTitanium10
 
 ## Cables
 - type: entityTable

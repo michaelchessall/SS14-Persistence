@@ -215,8 +215,8 @@
       - !type:GroupSelector
         weight: 2
         children:
-        - id: CrateEngineeringSingularityGenerator
-        - id: CrateEngineeringTeslaGenerator
+#        - id: CrateEngineeringSingularityGenerator # Persistence
+#        - id: CrateEngineeringTeslaGenerator # Persistence
         - id: CrateEngineeringTeslaGroundingRod
         - id: CrateEngineeringParticleAccelerator
         - id: CrateRCD

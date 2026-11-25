@@ -1,0 +1,68 @@
+# Configuration preset for the official Persistence SS14 servers.
+# Related docs https://docs.spacestation14.com/en/general-development/tips/config-file-reference.html
+
+# If you are running a downstream that plans to keep parity with official, you can load this preset directly.
+# If you are running a downstream that plans to diverge from official, create a new configpreset & either use
+#   this file as a reference, or load this file into your configpreset using the example below & override
+#   the configurations that you want changed, then load your custom configpreset in your server's config.
+# To load a configpreset, add the following to your server_config.toml (or equivalent)
+# [config]
+# presets = "persistenceOfficial" # (or any other configpreset's name)
+
+[game]
+soft_max_players = 150
+autosaveenabled = true
+autosaveinterval = 60
+panic_bunker.show_reason = true
+panic_bunker.custom_reason = "The server is not accepting new connections at this time."
+
+[hub]
+advertise = true
+tags = "rp:high,lang:en"
+hub_urls="https://hub.spacestation14.com/"
+
+[server]
+rules_file = "PersistRuleset"
+id = "Persistence14"
+
+[infolinks]
+bug_report = "https://github.com/michaelchessall/SS14-Persistence/issues/new/choose"
+discord    = "https://discord.gg/YdAaaC56KH"
+github     = "https://github.com/michaelchessall/SS14-Persistence"
+
+[ooc]
+enable_during_round = false
+
+[looc]
+enabled_dead = true
+enabled_crit = true
+
+[ic]
+flavor_text = true
+punctuation = false
+
+[lore]
+year_offset = 220
+
+[tips]
+enabled = false
+
+[atmos]
+max_explosion_range = 4
+
+[admin]
+admins_count_in_playercount = true
+new_player_threshold = 600
+alert.min_players_sharing_connection = 2
+
+[afk]
+automatic_checks = false
+
+[worldgen]
+enabled = true
+
+[status]
+enabled = true
+
+[auth]
+mode = 1

@@ -13,7 +13,7 @@ namespace Content.Shared.DrawDepth
 
         // various entity types that require different
         // draw depths, as to avoid hiding
-        // If updating this set, update the gaps above Puddles and Overdoors.
+        // If updating this set, update the gap above Overdoors.
         #region SubfloorEntities
         ThickPipe = DrawDepthTag.Default - 21,
         ThickWire = DrawDepthTag.Default - 20,
@@ -43,8 +43,6 @@ namespace Content.Shared.DrawDepth
         //     Discrete drawdepth to avoid z-fighting with other FloorObjects but also above floor entities.
         /// </summary>
         Puddles = DrawDepthTag.Default - 12,
-
-        // NOTE: There's a gap for subfloor entities to retain relative draw depth when revealed by a t-ray scanner (need 6 layers in between).
 
         /// <summary>
         //     Objects that are on the floor, but should render above puddles. This includes kudzu, holopads, telepads and levers.
@@ -114,7 +112,7 @@ namespace Content.Shared.DrawDepth
         /// </summary>
         Overdoors = DrawDepthTag.Default + 10,
 
-        // NOTE: There's a gap here for subfloor layers in mapping mode (need 6 layers in between)
+        // NOTE: There's a gap here for subfloor layers in mapping mode and t-ray scans (need 6 layers in between).
 
         /// <summary>
         ///     Visible atmos gas.

@@ -2044,11 +2044,11 @@
         Quantity: 4
   - type: Produce
     plantId: KoibeanPlants
-  - type: Extractable
-    juiceSolution:
-      reagents:
-      - ReagentId: CarpoToxin
-        Quantity: 2
+#  - type: Extractable # Persistence: Comment this out, to prevent nutrient requirements from being skipped by juicing modified produce.
+#    juiceSolution:
+#      reagents:
+#      - ReagentId: CarpoToxin
+#        Quantity: 2
   - type: Tag
     tags:
     - Vegetable

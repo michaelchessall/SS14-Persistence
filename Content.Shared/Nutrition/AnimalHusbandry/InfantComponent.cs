@@ -15,7 +15,7 @@ public sealed partial class InfantComponent : Component
     /// How long the entity remains an infant.
     /// </summary>
     [DataField("infantDuration")]
-    public TimeSpan InfantDuration = TimeSpan.FromMinutes(3);
+    public TimeSpan InfantDuration = TimeSpan.FromMinutes(300); // Persistence: 3 -> 300
 
     /// <summary>
     /// The base scale of the entity

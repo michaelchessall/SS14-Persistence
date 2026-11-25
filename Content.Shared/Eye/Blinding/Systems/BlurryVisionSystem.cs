@@ -1,25 +1,37 @@
 using Content.Shared.Eye.Blinding.Components;
 using Content.Shared.Inventory;
 using Content.Shared.Inventory.Events;
+using Robust.Shared.Timing;
 
 namespace Content.Shared.Eye.Blinding.Systems;
 
 public sealed partial class BlurryVisionSystem : EntitySystem
 {
+    [Dependency] private EntityQuery<BlindableComponent> _blindableQuery;
+
     public override void Initialize()
     {
         base.Initialize();
 
         SubscribeLocalEvent<VisionCorrectionComponent, GotEquippedEvent>(OnGlassesEquipped);
         SubscribeLocalEvent<VisionCorrectionComponent, GotUnequippedEvent>(OnGlassesUnequipped);
-        SubscribeLocalEvent<VisionCorrectionComponent, InventoryRelayedEvent<GetBlurEvent>>(OnGetBlur);
+        Subs.SubscribeWithRelay<VisionCorrectionComponent, GetBlurEvent>(OnGetBlur, held: false); // Moffstation - Modular HUDs need to handle both the basic event and the inventory relayed one
     }
 
-    private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref InventoryRelayedEvent<GetBlurEvent> args)
+    [SubscribeLocalEvent]
+    private void OnStartup(Entity<VisionCorrectionComponent> ent, ref ComponentStartup args)
     {
-        args.Args.Blur += glasses.Comp.VisionBonus;
-        args.Args.CorrectionPower *= glasses.Comp.CorrectionPower;
+        if (_blindableQuery.TryComp(ent, out var blindable))
+            UpdateBlurMagnitude((ent, blindable));
     }
+
+    // Moffstation - Begin - Modular HUDs need this to be base + relayed
+    private void OnGetBlur(Entity<VisionCorrectionComponent> glasses, ref GetBlurEvent args)
+    {
+        args.Blur += glasses.Comp.VisionBonus;
+        args.CorrectionPower *= glasses.Comp.CorrectionPower;
+    }
+    // Moffstation - End
 
     /// <summary>
     /// Update a blurry vision component according to a blindable component.

@@ -52,6 +52,7 @@ using Robust.Shared.Timing;
 using Robust.Shared.Utility;
 using System.Linq;
 using System.Numerics;
+using Content.Shared.Mobs.Systems;
 using Content.Shared.Tag;
 
 #pragma warning disable IDE1006 // Naming Styles
@@ -93,6 +94,8 @@ public sealed partial class RumorsSystem : EntitySystem
     [Dependency] private EntityTableSystem _entityTable = default!;
     [Dependency] private DeliverySystem _delivery = default!;
     [Dependency] private TagSystem _tag = default!;
+    [Dependency] private MobStateSystem _mobState = default!;
+
     private List<(Entity<TransformComponent> Entity, EntityUid MapUid, Vector2 LocalPosition)> _detachEnts = new();
 
     private static readonly ProtoId<TagPrototype> NoGibTag = "NoGib";
@@ -267,6 +270,7 @@ public sealed partial class RumorsSystem : EntitySystem
         var grid = xform.GridUid;
         if (grid == null) return;
         if (!TryComp<PersistentIdentifierComponent>(grid, out var gridPID) || gridPID == null) return;
+        if (_mobState.IsDead(ent.Owner)) return;
         if (!TryComp<DamageableComponent>(ent, out var damageable) || damageable == null) return;
         if (_damageable.TryGetDamageGreaterThan((ent.Owner, damageable), 10, out _))
         {

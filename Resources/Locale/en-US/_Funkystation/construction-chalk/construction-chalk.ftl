@@ -66,3 +66,12 @@ chalk-entry-sensor-pipe = Pipe sensor
 
 # Persistence:
 chalk-entry-heat-pump = Heat pump
+chalk-entry-firelock-glass = Glass firelock
+chalk-entry-airlock-shuttle = Shuttle airlock
+chalk-entry-airlock-shuttle-glass = Shuttle glass airlock
+chalk-entry-airlock-external = External airlock
+chalk-entry-airlock-external-glass = External glass airlock
+chalk-entry-windoor = Windoor
+chalk-entry-shuttle-wall = Shuttle wall
+chalk-entry-reinforced-wall = Reinforced wall
+chalk-entry-titanium-wall = Titanium wall

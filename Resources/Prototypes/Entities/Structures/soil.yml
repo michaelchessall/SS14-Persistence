@@ -42,6 +42,7 @@
         solution: soil
   - type: Appearance
   - type: PlantTrayVisuals
+  - type: RadiationReceiver
 
 - type: entity
   parent: [ BaseHydroponicsSoil, StructureHealthContainer ]

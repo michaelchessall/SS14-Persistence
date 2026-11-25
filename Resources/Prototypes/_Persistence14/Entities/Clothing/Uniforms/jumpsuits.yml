@@ -79,7 +79,7 @@
   parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitNCC
   name: nexus central council's jumpsuit
-  description: Beautiful crafted garb for the commanding officers of the Eclipse Station.
+  description: Beautiful crafted garb for the commanding officers of the NCC.
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/ncc.rsi
@@ -90,7 +90,7 @@
   parent: [ClothingUniformBase, BaseCommandContraband]
   id: ClothingUniformJumpsuitCOSNCC
   name: chief of staff's jumpsuit
-  description: Beautiful crafted garb for the Chief of Staff of the Eclipse Station.
+  description: Beautiful crafted garb for the NCC's Chief of Staff.
   components:
   - type: Sprite
     sprite: _Persistence14/Clothing/Uniforms/Jumpsuit/cosncc.rsi

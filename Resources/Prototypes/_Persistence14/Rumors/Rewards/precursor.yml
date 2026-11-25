@@ -99,7 +99,6 @@
     sprite: Objects/Tools/access_breaker.rsi
     state: syndi-icon
 
-
 - type: rumorReward
   id: PrecursorDecoy
   name: Decoy Kit
@@ -109,16 +108,6 @@
   icon:
     sprite: Objects/Tools/Decoys/operative_decoy.rsi
     state: folded
-
-- type: rumorReward
-  id: PrecursorSoapSyndie
-  name: Soap
-  description: "An untrustworthy bar of soap. Smells of fear."
-  price: 800
-  product: SoapSyndie
-  icon:
-    sprite: Objects/Specific/Janitorial/soap.rsi
-    state: syndie-4
 
 - type: rumorReward
   id: PrecursorSoapSyndieCluster
@@ -204,16 +193,6 @@
   product: ClothingShoesBootsMagSyndie
   icon:
     sprite: Clothing/Shoes/Boots/magboots-syndicate.rsi
-    state: icon
-
-- type: rumorReward
-  id: PrecursorSyndieEva
-  name: Syndicate EVA Suit
-  description: "A simple EVA suit that offers no protection other than what's needed to survive in space."
-  price: 5000
-  product: ClothingBackpackDuffelSyndicateEVABundle
-  icon:
-    sprite: Clothing/OuterClothing/Suits/eva_syndicate.rsi
     state: icon
 
 - type: rumorReward

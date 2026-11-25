@@ -224,6 +224,17 @@ public sealed partial class PlantTraySystem : EntitySystem
         DirtyField(ent, nameof(ent.Comp.Nutrients));
     }
 
+    /// <summary>
+    /// Persistence: Gets the tray's level of a specified nutrient.
+    /// </summary>
+    [PublicAPI]
+    public FixedPoint2 GetNutrient(Entity<PlantTrayComponent?> ent, ProtoId<PlantNutrientPrototype> nutrient)
+    {
+        return Resolve(ent.Owner, ref ent.Comp, false)
+            ? ent.Comp.Nutrients.GetValueOrDefault(nutrient)
+            : FixedPoint2.Zero;
+    }
+
     /* Persistence: Plant nutrient rework
     /// <summary>
     /// Adjusts the water level of the tray.

@@ -19,3 +19,14 @@
   objectType: Structure
   placementMode: SnapgridCenter
   canBuildInImpassable: false
+
+- type: construction
+  id: Trough
+  name: construction-recipe-trough
+  graph: TroughGraph
+  startNode: start
+  targetNode: trough
+  category: construction-category-storage
+  objectType: Structure
+  placementMode: SnapgridCenter
+  canBuildInImpassable: false
