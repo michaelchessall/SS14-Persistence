@@ -58,7 +58,7 @@ public sealed partial class UpgradesSystem : SharedUpgradesSystem
     [Dependency] private EntityQuery<BatteryComponent> _batteryQuery = default!;
     [Dependency] private EntityQuery<TelecomServerComponent> _telecomServerQuery = default!;
     [Dependency] private EntityQuery<LatheComponent> _latheQuery = default!;
-    [Dependency] private EntityQuery<MicrowaveComponent> _microwaveQuery = default!;
+    [Dependency] private EntityQuery<CookingDeviceComponent> _microwaveQuery = default!;
     [Dependency] private EntityQuery<GasTankComponent> _gasTankQuery = default!;
     [Dependency] private EntityQuery<ReagentGrinderComponent> _reagentGrinderQuery = default!;
     [Dependency] private EntityQuery<GasCanisterComponent> _gasCanisterQuery = default!;

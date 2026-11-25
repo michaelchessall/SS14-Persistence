@@ -1,7 +1,7 @@
 ### Persistence 14 Healing Recipes ###
 
 # Necrospray
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeNecrospray
   name: necrospray_recipe
   result: Necrospray

@@ -5,10 +5,10 @@ using Robust.Shared.Prototypes;
 namespace Content.Shared.Kitchen
 {
     /// <summary>
-    ///    A recipe for space microwaves.
+    ///    A recipe for food preperation.
     /// </summary>
-    [Prototype("microwaveMealRecipe")]
-    public sealed partial class FoodRecipePrototype : IPrototype
+    [Prototype]
+    public sealed partial class FoodRecipePrototype : IPrototype // Persi14: Renamed for Cooking Rework
     {
         [ViewVariables]
         [IdDataField]
@@ -16,6 +16,9 @@ namespace Content.Shared.Kitchen
 
         [DataField("name")]
         private string _name = string.Empty;
+
+        [DataField]
+        public EntProtoId CookingDevice = "KitchenMicrowave"; // Persi14: Cooking Rework
 
         [DataField]
         public string Group = "Other";

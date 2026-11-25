@@ -10,7 +10,7 @@ using System.Linq;
 namespace Content.Client.Guidebook.Controls;
 
 /// <summary>
-/// Control for listing microwave recipes in a guidebook
+/// Control for listing cooking recipes in a guidebook
 /// </summary>
 [UsedImplicitly]
 public sealed partial class GuideMicrowaveGroupEmbed : BoxContainer, IDocumentTag
@@ -56,7 +56,7 @@ public sealed partial class GuideMicrowaveGroupEmbed : BoxContainer, IDocumentTa
 
         foreach (var recipe in prototypes)
         {
-            var embed = new GuideMicrowaveEmbed(recipe);
+            var embed = new GuideCookingDeviceEmbed(recipe); // Persi14: Cooking Rework, automated rename
             AddChild(embed);
         }
     }

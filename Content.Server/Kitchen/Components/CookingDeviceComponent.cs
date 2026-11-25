@@ -7,7 +7,7 @@ using Robust.Shared.Prototypes;
 namespace Content.Server.Kitchen.Components
 {
     [RegisterComponent]
-    public sealed partial class MicrowaveComponent : Component
+    public sealed partial class CookingDeviceComponent : Component // Renamed by Persi14
     {
         [DataField]
         public float CookTimeMultiplier = 1;

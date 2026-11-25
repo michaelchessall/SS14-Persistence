@@ -26,7 +26,7 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
     [Dependency] private IRobustRandom _random = default!;
     [Dependency] private IAdminLogManager _adminLogger = default!;
     [Dependency] private ChatSystem _chat = default!;
-    [Dependency] private MicrowaveSystem _microwave = default!;
+    [Dependency] private CookingSystem _cooking = default!; // Persi14: Cooking Device Rework, auto rename
     [Dependency] private CrewMetaRecordsSystem _crewMeta = default!;
     [Dependency] private StationSystem _station = default!;
 
@@ -67,7 +67,7 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
 
     private void OnMicrowaved(EntityUid uid, IdCardComponent component, BeingMicrowavedEvent args)
     {
-        if (!component.CanMicrowave || !TryComp<MicrowaveComponent>(args.Microwave, out var micro) || micro.Broken)
+        if (!component.CanMicrowave || !TryComp<CookingDeviceComponent>(args.Microwave, out var micro) || micro.Broken)
             return;
 
         if (TryComp<AccessComponent>(uid, out var access))
@@ -94,7 +94,7 @@ public sealed partial class IdCardSystem : SharedIdCardSystem
             //Explode if the microwave can't handle it
             if (!micro.CanMicrowaveIdsSafely)
             {
-                _microwave.Explode((args.Microwave, micro));
+                _cooking.Explode((args.Microwave, micro));
                 return;
             }
 

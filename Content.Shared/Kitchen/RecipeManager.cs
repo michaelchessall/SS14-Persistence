@@ -5,7 +5,7 @@ namespace Content.Shared.Kitchen;
 
 public sealed partial class RecipeManager : EntitySystem
 {
-    public List<FoodRecipePrototype> Recipes { get; private set; } = new();
+    public Dictionary<EntProtoId, List<FoodRecipePrototype>> Recipes { get; private set; } = new(); // Persi14: Type changed for cooking rework
 
     public override void Initialize()
     {
@@ -25,8 +25,12 @@ public sealed partial class RecipeManager : EntitySystem
     {
         Recipes = ProtoMan
             .EnumeratePrototypes<FoodRecipePrototype>()
-            .Where(x => !x.SecretRecipe)
-            .OrderByDescending(x => x.IngredientCount())
-            .ToList();
+            .GroupBy(i => i.CookingDevice)
+            .ToDictionary( // Persi14: Convert to new type
+                group => group.Key,
+                group => group.Where(x => !x.SecretRecipe)
+                    .OrderByDescending(x => x.IngredientCount())
+                    .ToList()
+            );
     }
 }

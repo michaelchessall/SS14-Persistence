@@ -1,4 +1,6 @@
-﻿- type: microwaveMealRecipe
+# Persi14: All prototypes replaced with food recipe. It was renamed.
+
+- type: foodRecipe
   id: RecipeBun
   name: bun_recipe
   result: FoodBreadBun
@@ -7,7 +9,7 @@
   solids:
     FoodDoughSlice: 1 # one third of a standard bread dough recipe
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonBun
   name: cotton_bun_recipe
   result: FoodCottonBun
@@ -17,7 +19,7 @@
     FoodDoughCottonSlice: 1
 
 #Bagels
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBagel
   name: bagel_recipe
   result: FoodBagel
@@ -26,7 +28,7 @@
   solids:
     FoodDoughRope: 1 # created by rolling a dough slice.
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBagelPoppy
   name: poppyseed_bagel_recipe
   result: FoodBagelPoppy
@@ -36,7 +38,7 @@
     FoodDoughRope: 1
     PoppySeeds: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBagelCotton
   name: cotton_bagel_recipe
   result: FoodBagelCotton
@@ -47,7 +49,7 @@
 
 #Burgers
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeAppendixBurger
   name: appendix_burger_recipe
   result: FoodBurgerAppendix
@@ -57,7 +59,7 @@
     FoodBreadBun: 1
     OrganHumanAppendix: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBaconBurger
   name: bacon_burger_recipe
   result: FoodBurgerBacon
@@ -68,7 +70,7 @@
     FoodMeatBacon: 1
     FoodCheeseSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBaseballBurger
   name: baseball_burger_recipe
   result: FoodBurgerBaseball
@@ -78,7 +80,7 @@
     FoodBreadBun: 1
     BaseBallBat: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBearger
   name: bearger_recipe
   result: FoodBurgerBear
@@ -88,7 +90,7 @@
     FoodBreadBun: 1
     FoodMeatBear: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBigBiteBurger
   name: big_bite_burger_recipe
   result: FoodBurgerBig
@@ -101,7 +103,7 @@
     FoodTomato: 1
     FoodOnionSlice: 2
 
-- type: microwaveMealRecipe #Added to metamorph recipes
+- type: foodRecipe #Added to metamorph recipes
   id: RecipeBrainBurger
   name: brain_burger_recipe
   result: FoodBurgerBrain
@@ -112,7 +114,7 @@
     OrganHumanBrain: 1
 
 #Series of organ burger
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeLungBurger
   name: lung_burger_recipe
   result: FoodBurgerLung
@@ -123,7 +125,7 @@
     OrganAnimalLungs: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeLiverBurger
   name: liver_burger_recipe
   result: FoodBurgerLiver
@@ -134,7 +136,7 @@
     OrganAnimalLiver: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeStomachBurger
   name: stomach_burger_recipe
   result: FoodBurgerStomach
@@ -145,7 +147,7 @@
     OrganAnimalStomach: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeKidneyBurger
   name: kidney_burger_recipe
   result: FoodBurgerKidneys
@@ -156,7 +158,7 @@
     OrganAnimalKidneys: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeHeartBurger
   name: heart_burger_recipe
   result: FoodBurgerHeart
@@ -168,7 +170,7 @@
     FoodCheeseSlice: 1
 
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCatBurger
   name: cat_burger_recipe
   result: FoodBurgerCat
@@ -179,7 +181,7 @@
     FoodMeat: 1
     ClothingHeadHatCatEars: 1
 
-- type: microwaveMealRecipe #Added to metamorph recipes
+- type: foodRecipe #Added to metamorph recipes
   id: RecipeCheeseburger
   name: cheeseburger_recipe
   result: FoodBurgerCheese
@@ -190,7 +192,7 @@
     FoodMeat: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe #Added to metamorph recipes
+- type: foodRecipe #Added to metamorph recipes
   id: RecipeChickenSandwich
   name: chicken_sandwich_recipe
   result: FoodBurgerChicken
@@ -202,7 +204,7 @@
     FoodBreadBun: 1
     FoodMeatChicken: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeClownBurger
   name: clownburger_recipe
   result: FoodBurgerClown
@@ -212,7 +214,7 @@
     FoodBreadBun: 1
     ClothingMaskClown: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCorgiBurger
   name: corgi_burger_recipe
   result: FoodBurgerCorgi
@@ -222,7 +224,7 @@
     FoodBreadBun: 1
     FoodMeatCorgi: 1
 
-- type: microwaveMealRecipe #Added to metamorph recipes
+- type: foodRecipe #Added to metamorph recipes
   id: RecipeCrabBurger
   name: crab_burger_recipe
   result: FoodBurgerCrab
@@ -232,7 +234,7 @@
     FoodBreadBun: 1
     FoodMeatCrab: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCrazyHamburger
   name: crazy_hamburger_recipe
   result: FoodBurgerCrazy
@@ -249,7 +251,7 @@
     CrayonGreen: 1
     Flare: 1
 
-- type: microwaveMealRecipe #Added to metamorph recipes
+- type: foodRecipe #Added to metamorph recipes
   id: RecipeDuckBurger
   name: duck_sandwich_recipe
   result: FoodBurgerDuck
@@ -260,7 +262,7 @@
     FoodMeatDuck: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeEmpoweredBurger
   name: empowered_burger_recipe
   result: FoodBurgerEmpowered
@@ -270,7 +272,7 @@
     FoodBreadBun: 1
     SheetPlasma1: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCarpBurger
   name: fillet-o-carp_burger_recipe
   result: FoodBurgerCarp
@@ -281,7 +283,7 @@
     FoodMeatFish: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFiveBurger
   name: five_alarm_burger_recipe
   result: FoodBurgerFive
@@ -292,7 +294,7 @@
     FoodMeat: 1
     FoodChiliPepper: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeGhostBurger
   name: ghost_burger_recipe
   result: FoodBurgerGhost
@@ -302,7 +304,7 @@
     FoodBreadBun: 1
     Ectoplasm: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeHumanBurger
   name: human_burger_recipe
   result: FoodBurgerHuman
@@ -312,7 +314,7 @@
     FoodBreadBun: 1
     FoodMeatHuman: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeJellyBurger
   name: jelly_burger_recipe
   result: FoodBurgerJelly
@@ -322,7 +324,7 @@
     FoodBreadBun: 1
     FoodJellyAmanita: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBurgerMcguffin
   name: McGuffin_recipe
   result: FoodBurgerMcguffin
@@ -334,7 +336,7 @@
     FoodBreadBun: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBurgerMcrib
   name: BBQ_rib_sandwich_recipe
   result: FoodBurgerMcrib
@@ -345,7 +347,7 @@
     FoodMealRibs: 1
     FoodOnionSlice: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMimeBurger
   name: mime_burger_recipe
   result: FoodBurgerMime
@@ -355,7 +357,7 @@
     FoodBreadBun: 1
     ClothingMaskMime: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePlainBurger
   name: plain_burger_recipe
   result: FoodBurgerPlain
@@ -365,7 +367,7 @@
     FoodBreadBun: 1
     FoodMeat: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRatBurger
   name: rat_burger_recipe
   result: FoodBurgerRat
@@ -375,7 +377,7 @@
     FoodBreadBun: 1
     FoodMeatRat: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRobotBurger
   name: roburger_recipe
   result: FoodBurgerRobot
@@ -386,7 +388,7 @@
     MicroManipulatorStockPart: 2
     # i would add steel to this recipe but the microwave explodes
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSoylentBurger
   name: soylent_burger_recipe
   result: FoodBurgerSoy
@@ -397,7 +399,7 @@
     FoodCheeseSlice: 1
     FoodSoybeans: 2 #replace with soylent green when those become craftable
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSpellBurger
   name: spell_burger_recipe
   result: FoodBurgerSpell
@@ -407,7 +409,7 @@
     FoodBreadBun: 1
     ClothingHeadHatWizard: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSuperBiteBurger
   name: super_bite_burger_recipe
   result: FoodBurgerSuper
@@ -423,7 +425,7 @@
     FoodCheeseSlice: 1
     FoodTomato: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTofuBurger
   name: tofu_burger_recipe
   result: FoodBurgerTofu
@@ -433,7 +435,7 @@
     FoodBreadBun: 1
     FoodTofuSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeXenoburger
   name: xenoburger_recipe
   result: FoodBurgerXeno
@@ -443,7 +445,7 @@
     FoodBreadBun: 1
     FoodMeatXeno: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMothRoachburger
   name: mothroachburger_recipe
   result: FoodBurgerMothRoach
@@ -454,7 +456,7 @@
 
 #Breads & Sandwiches
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBananaBread
   name: banana_bread_recipe
   result: FoodBreadBanana
@@ -464,7 +466,7 @@
     FoodDough: 1
     FoodBanana: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCornbread
   name: cornbread_recipe
   result: FoodBreadCorn
@@ -473,7 +475,7 @@
   solids:
     FoodDoughCornmeal: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCreamCheeseBread
   name: cream_cheese_bread_recipe
   result: FoodBreadCreamcheese
@@ -485,7 +487,7 @@
     FoodDough: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMeatBread
   name: meat_bread_recipe
   result: FoodBreadMeat
@@ -496,7 +498,7 @@
     FoodMeatCutlet: 2
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMimanaBread
   name: mimana_bread_recipe
   result: FoodBreadMimana
@@ -508,7 +510,7 @@
     FoodDough: 1
     FoodMimana: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBread
   name: bread_recipe
   result: FoodBreadPlain
@@ -517,7 +519,7 @@
   solids:
     FoodDough: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBreadCotton
   name: cotton_bread_recipe
   result: FoodBreadCotton
@@ -526,7 +528,7 @@
   solids:
     FoodDoughCotton: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSausageBread
   name: sausage_bread_recipe
   result: FoodBreadSausage
@@ -536,7 +538,7 @@
     FoodDough: 1
     FoodMeat: 1 #replace with sausage
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSpiderMeatBread
   name: spider_meat_bread_recipe
   result: FoodBreadMeatSpider
@@ -547,7 +549,7 @@
     FoodMeatSpiderCutlet: 2
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTofuBread
   name: tofu_bread_recipe
   result: FoodBreadTofu
@@ -557,7 +559,7 @@
     FoodDough: 1
     FoodTofuSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeXenoMeatBread
   name: xeno_meat_bread_recipe
   result: FoodBreadMeatXeno
@@ -570,7 +572,7 @@
 
 #Slices Only
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBaguette
   name: baguette_recipe
   result: FoodBreadBaguette
@@ -582,7 +584,7 @@
   solids:
     FoodDough: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBaguetteCotton
   name: baguette_recipe_cotton
   result: FoodBreadBaguetteCotton
@@ -594,7 +596,7 @@
   solids:
     FoodDoughCotton: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBaguetteSword
   name: baguette_sword_recipe
   result: WeaponBaguette
@@ -608,7 +610,7 @@
     FoodDough: 1
     PartRodMetal1: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeButteredToast
   name: buttered_toast_recipe
   result: FoodBreadButteredToast
@@ -618,7 +620,7 @@
     FoodBreadPlainSlice: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFrenchToast
   name: french_toast_recipe
   result: FoodBreadFrenchToast
@@ -630,7 +632,7 @@
   solids:
     FoodBreadPlainSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeGarlicBread
   name: garlic_bread_slice_recipe
   result: FoodBreadGarlicSlice
@@ -641,7 +643,7 @@
     FoodGarlic: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeJellyToast
   name: jelly_toast_recipe
   result: FoodBreadJellySlice
@@ -651,7 +653,7 @@
     FoodBreadPlainSlice: 1
     FoodJellyAmanita: 1 #replace with jelly
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMoldyBreadSlice
   name: moldy_bread_slice_recipe
   result: FoodBreadMoldySlice
@@ -661,7 +663,7 @@
     FoodBreadPlainSlice: 1
     FoodFlyAmanita: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTwoBreadSlice
   name: two_slice_recipe
   result: FoodBreadTwoSlice
@@ -672,7 +674,7 @@
   solids:
     FoodBreadPlainSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeOnionRings
   name: onion_rings_recipe
   result: FoodOnionRings
@@ -681,7 +683,7 @@
   solids:
     FoodOnionSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeOnionGoggles
   name: onion_Goggles_recipe
   result: ClothingEyesHudFriedOnion
@@ -692,7 +694,7 @@
     ClothingEyesGlasses: 1
 
 #Pizzas TODO: contruction graph based pizza
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMargheritaPizza
   name: margherita_pizza_recipe
   result: FoodPizzaMargherita
@@ -703,7 +705,7 @@
     FoodCheeseSlice: 1
     FoodTomato: 4
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMushroomPizza
   name: mushroom_pizza_recipe
   result: FoodPizzaMushroom
@@ -713,7 +715,7 @@
     FoodDoughFlat: 1
     FoodMushroom: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMeatPizza
   name: meat_pizza_recipe
   result: FoodPizzaMeat
@@ -725,7 +727,7 @@
     FoodCheeseSlice: 1
     FoodTomato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeVegetablePizza
   name: vegetable_pizza_recipe
   result: FoodPizzaVegetable
@@ -738,7 +740,7 @@
     FoodCorn: 1
     FoodTomato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeHawaiianPizza
   name: hawaiian_pizza_recipe
   result: FoodPizzaPineapple
@@ -749,7 +751,7 @@
     FoodMeatChickenCutlet: 3
     FoodPineappleSlice: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDankPizza
   name: dank_pizza_recipe
   result: FoodPizzaDank
@@ -761,7 +763,7 @@
     FoodCheeseSlice: 1
     FoodTomato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkpocketPizza
   name: donk-pocket_pizza_recipe
   result: FoodPizzaDonkpocket
@@ -773,7 +775,7 @@
     FoodCheeseSlice: 1
     FoodTomato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeUraniumPizza
   name: spicy_rock_pizza_recipe
   result: FoodPizzaUranium
@@ -785,7 +787,7 @@
     FoodTomato: 2
     SheetUranium1: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonPizza
   name: cotton_pizza_recipe
   result: FoodPizzaCotton
@@ -795,7 +797,7 @@
     FoodDoughCottonFlat: 1
     CottonBol: 4
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWorldpeasPizza
   name: world_peazza_recipe
   result: FoodPizzaWorldpeas
@@ -805,7 +807,7 @@
     FoodWorldPeas: 3
 
 #Italian
-#- type: microwaveMealRecipe
+#- type: foodRecipe
 #  id: RecipeBoiledSpaghetti
 #  name: boiled_spaghetti_recipe
 #  result: FoodNoodlesBoiled
@@ -816,7 +818,7 @@
 #    Egg: 6
 #    OilOlive: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePastaTomato
   name: pasta_tomato_recipe
   result: FoodNoodles
@@ -826,7 +828,7 @@
     FoodNoodlesBoiled: 1
     FoodTomato: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMeatballSpaghetti
   name: spaghetti_and_meatballs_recipe
   result: FoodNoodlesMeatball
@@ -836,7 +838,7 @@
     FoodNoodlesBoiled: 1
     FoodMeatMeatball: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeButterNoodles
   name: butter_noodles_recipe
   result: FoodNoodlesButter
@@ -846,7 +848,7 @@
     FoodNoodlesBoiled: 1
     FoodButterSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeChowMein
   name: chow_mein_recipe
   result: FoodNoodlesChowmein
@@ -860,7 +862,7 @@
     FoodCarrot: 1
     FoodCorn: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeOatmeal
   name: oatmeal_recipe
   result: FoodOatmeal
@@ -872,7 +874,7 @@
   solids:
     FoodBowlBig: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBoiledRice
   name: boiled_rice_recipe
   result: FoodRiceBoiled
@@ -884,7 +886,7 @@
   solids:
     FoodBowlBig: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRicePudding
   name: rice_pudding_recipe
   result: FoodRicePudding
@@ -898,7 +900,7 @@
   solids:
     FoodBowlBig: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRicePork
   name: rice_and_pork_recipe
   result: FoodRicePork
@@ -908,7 +910,7 @@
     FoodRiceBoiled: 1
     FoodMeatCutlet: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRiceGumbo
   name: black-eyed_gumbo_recipe
   result: FoodRiceGumbo
@@ -919,7 +921,7 @@
     FoodMeatCutlet: 2
     FoodChiliPepper: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeEggRice
   name: egg-fried_rice_recipe
   result: FoodRiceEgg
@@ -931,7 +933,7 @@
     FoodRiceBoiled: 1
     FoodCarrot: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCopypasta
   name: copypasta_recipe
   result: FoodNoodlesCopy
@@ -942,7 +944,7 @@
     FoodPlateSmall: 2
 
 #Soups & Stew
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBisque
   name: bisque_recipe
   result: FoodSoupBisque
@@ -956,7 +958,7 @@
     FoodMushroom: 1
     FoodMeatFish: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMeatballSoup
   name: meatball_soup_recipe
   result: FoodSoupMeatball
@@ -970,7 +972,7 @@
     FoodCarrot: 1
     FoodPotato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeNettleSoup
   name: nettle_soup_recipe
   result: FoodSoupNettle
@@ -985,7 +987,7 @@
     FoodAmbrosiaDeus: 1
     FoodPotato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeEyeballSoup
   name: eyeball_soup_recipe
   result: FoodSoupEyeball
@@ -999,7 +1001,7 @@
     FoodCarrot: 1
     FoodPotato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeAmanitaJelly
   name: amanita_jelly_recipe
   result: FoodJellyAmanita
@@ -1011,7 +1013,7 @@
   solids:
     FoodFlyAmanita: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeOnionSoup
   name: onion_soup_recipe
   result: FoodSoupOnion
@@ -1024,7 +1026,7 @@
     FoodOnionSlice: 5
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMushroomSoup
   name: mushroom_soup_recipe
   result: FoodSoupMushroom
@@ -1037,7 +1039,7 @@
     FoodBowlBig: 1
     FoodMushroom: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeStewSoup
   name: stew_recipe
   result: FoodSoupStew
@@ -1054,7 +1056,7 @@
     FoodEggplant: 1
     FoodMushroom: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTomatoSoup
   name: tomato_soup_recipe
   result: FoodSoupTomato
@@ -1066,7 +1068,7 @@
     FoodBowlBig: 1
     FoodTomato: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTomatoBloodSoup
   name: tomato_blood_soup_recipe
   result: FoodSoupTomatoBlood
@@ -1078,7 +1080,7 @@
     FoodBowlBig: 1
     FoodBloodTomato: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWingFangChuSoup
   name: wing_fang_chu_recipe
   result: FoodSoupWingFangChu
@@ -1090,7 +1092,7 @@
     FoodBowlBig: 1
     FoodMeatXenoCutlet: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWingFangChuSoupSpider
   name: wing_fang_chu_recipe_spider
   result: FoodSoupWingFangChu
@@ -1102,7 +1104,7 @@
     FoodBowlBig: 1
     FoodMeatSpider: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeVegetableSoup
   name: vegetable_soup_recipe
   result: FoodSoupVegetable
@@ -1117,7 +1119,7 @@
     FoodPotato: 1
     FoodEggplant: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeClownTearsSoup
   name: clown_tears_soup_recipe
   result: FoodSoupClown
@@ -1132,7 +1134,7 @@
     ShardGlass: 1
     #idk probably replace shard with someting bananium when #14663 merged
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMonkeysDelightSoup
   name: monkeys_delight_recipe
   result: FoodSoupMonkey
@@ -1147,7 +1149,7 @@
     FoodBanana: 1
     MonkeyCube: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBungoSoup
   name: bungo_soup_recipe
   result: FoodSoupBungo
@@ -1160,7 +1162,7 @@
     FoodBungo: 2
     FoodChiliPepper: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBoiledSnail
   name: boiled_snail_recipe
   result: FoodMeatSnailCooked
@@ -1171,7 +1173,7 @@
   solids:
     MobSnail: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeEscargotSoup
   name: escargot_recipe
   result: FoodSoupEscargot
@@ -1188,7 +1190,7 @@
 
 #Pies
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeAmanitaPie
   name: amanita_pie_recipe
   result: FoodPieAmanita
@@ -1199,7 +1201,7 @@
     FoodFlyAmanita: 1
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeApplePie
   name: apple_pie_recipe
   result: FoodPieApple
@@ -1210,7 +1212,7 @@
     FoodApple: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBaklava
   name: baklava_recipe
   result: FoodPieBaklava
@@ -1221,7 +1223,7 @@
     FoodSnackPistachios: 1 #i'd rather use a botany crop but we don't have nuts yet
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBananaCreamPie
   name: banana_cream_pie_recipe
   result: FoodPieBananaCream
@@ -1232,7 +1234,7 @@
     FoodBanana: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBerryClafoutis
   name: berry_clafoutis_recipe
   result: FoodPieClafoutis
@@ -1243,7 +1245,7 @@
     FoodBerries: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCherryPie
   name: cherry_pie_recipe
   result: FoodPieCherry
@@ -1254,7 +1256,7 @@
     FoodCherry: 5
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFrostyPie
   name: frosty_pie_recipe
   result: FoodPieFrosty
@@ -1265,7 +1267,7 @@
     FoodChillyPepper: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMeatPie
   name: meat_pie_recipe
   result: FoodPieMeat
@@ -1276,7 +1278,7 @@
     FoodMeat: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePumpkinPie
   name: pumpkin_pie_recipe
   result: FoodPiePumpkin
@@ -1287,7 +1289,7 @@
     FoodPumpkin: 1
     FoodPlateTin: 1
 
-#- type: microwaveMealRecipe
+#- type: foodRecipe
 #  id: RecipePlumpPie
 #  name: plump pie recipe
 #  result: FoodPiePlump
@@ -1297,7 +1299,7 @@
 #    FoodPlumpHelmet: 3 #a big part of me wants to veto this because the item description is a dick joke but i'll write the placeholder anyway
 #    FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeXenoPie
   name: xeno_pie_recipe
   result: FoodPieXeno
@@ -1310,7 +1312,7 @@
 
 #Tarts
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCocoTart
   name: chocolate_lava_tart_recipe
   result: FoodTartCoco
@@ -1324,7 +1326,7 @@
     FoodSnackChocolateBar: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeGappleTart
   name: golden_apple_streusel_tart_recipe
   result: FoodTartGapple
@@ -1339,7 +1341,7 @@
     FoodApple: 2 #in absence of the real gapple i'm substituting one apple with 10u gold (one ingot)
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeGrapeTart
   name: grape_tart_recipe
   result: FoodTartGrape
@@ -1353,7 +1355,7 @@
     FoodGrape: 3
     FoodPlateTin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMimeTart
   name: mime_tart_recipe
   result: FoodTartMime
@@ -1369,7 +1371,7 @@
 
 #Other
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCubanCarp
   name: Cuban_carp_recipe
   result: FoodMealCubancarp
@@ -1381,7 +1383,7 @@
     FoodChiliPepper: 1
     FoodMeatFish: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSashimi
   name: sashimi_recipe
   result: FoodMealSashimi
@@ -1392,7 +1394,7 @@
   solids:
     FoodMeatFish: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMisoColaSoup
   name: salty_sweet_misocola_soup_recipe
   result: DisgustingSweptSoup
@@ -1403,7 +1405,7 @@
   solids:
     FoodSoupMiso: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeLoadedBakedPotato
   name: loaded_baked_potato_recipe
   result: FoodMealPotatoLoaded
@@ -1413,7 +1415,7 @@
     FoodPotato: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFries
   name: space_fries_recipe
   result: FoodMealFries
@@ -1424,7 +1426,7 @@
   solids:
     FoodPotato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCheesyFries
   name: cheesy_fries_recipe
   result: FoodMealFriesCheesy
@@ -1436,7 +1438,7 @@
     FoodPotato: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCarrotFries
   name: carrot_fries_recipe
   result: FoodMealFriesCarrot
@@ -1447,7 +1449,7 @@
   solids:
     FoodCarrot: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeNachos
   name: nachos_recipe
   result: FoodMealNachos
@@ -1459,7 +1461,7 @@
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeNachosCheesy
   name: cheesy_nachos_recipe
   result: FoodMealNachosCheesy
@@ -1472,7 +1474,7 @@
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeNachosCuban
   name: cuban_nachos_recipe
   result: FoodMealNachosCuban
@@ -1485,7 +1487,7 @@
     FoodDoughTortillaFlat: 1
     FoodPlateSmall: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePopcorn
   name: popcorn_recipe
   result: FoodSnackPopcorn
@@ -1494,7 +1496,7 @@
   solids:
     FoodCorn: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePancake
   name: pancake_recipe
   result: FoodBakedPancake
@@ -1505,7 +1507,7 @@
     Milk: 5
     Egg: 6
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBlueberryPancake
   name: blueberry_pancake_recipe
   result: FoodBakedPancakeBb
@@ -1518,7 +1520,7 @@
   solids:
     FoodBerries: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWaffles
   name: waffle_recipe
   result: FoodBakedWaffle
@@ -1530,7 +1532,7 @@
     Egg: 6
     SodaWater: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWaffleSoy
   name: soy_waffle_recipe
   result: FoodBakedWaffleSoy
@@ -1542,7 +1544,7 @@
     Egg: 6
     SodaWater: 5
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCookie
   name: cookie_recipe
   result: FoodBakedCookie
@@ -1555,7 +1557,7 @@
     FoodButterSlice: 1
     FoodSnackChocolateBar: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSugarCookie
   name: sugar_cookie_recipe
   result: FoodBakedCookieSugar
@@ -1568,7 +1570,7 @@
     FoodButterSlice: 1
 
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRaisinCookie
   name: raisin_cookie_recipe
   result: FoodBakedCookieRaisin
@@ -1580,7 +1582,7 @@
   solids:
     FoodSnackRaisins: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCookieOatmeal
   name: oatmeal_cookie_recipe
   result: FoodBakedCookieOatmeal
@@ -1592,7 +1594,7 @@
   solids:
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBananaCookie
   name: banana_cookie_recipe
   result: FoodBakedCookieBanana
@@ -1605,7 +1607,7 @@
     FoodButterSlice: 1
     FoodBanana: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonCookie
   name: cotton_cookie_recipe
   result: FoodBakedCookieCotton
@@ -1618,7 +1620,7 @@
   solids:
     CottonBol: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeChocolateChipPancake
   name: chocolate_chip_pancake_recipe
   result: FoodBakedPancakeCc
@@ -1631,7 +1633,7 @@
   solids:
     FoodSnackChocolateBar: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeAppleCake
   name: apple_cake_recipe
   result: FoodCakeApple
@@ -1641,7 +1643,7 @@
     FoodCakePlain: 1
     FoodApple: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCarrotCake
   name: carrot_cake_recipe
   result: FoodCakeCarrot
@@ -1651,7 +1653,7 @@
     FoodCakePlain: 1
     FoodCarrot: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeLemonCake
   name: lemon_cake_recipe
   result: FoodCakeLemon
@@ -1661,7 +1663,7 @@
     FoodCakePlain: 1
     FoodLemon: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeLemoonCake
   name: lemoon_cake_recipe
   result: FoodCakeLemoon
@@ -1672,7 +1674,7 @@
     FoodLemoon: 1
     FoodBerries: 1 #dark colouring
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeOrangeCake
   name: orange_cake_recipe
   result: FoodCakeOrange
@@ -1682,7 +1684,7 @@
     FoodCakePlain: 1
     FoodOrange: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBlueberryCake
   name: blueberry_cake_recipe
   result: FoodCakeBlueberry
@@ -1692,7 +1694,7 @@
     FoodCakePlain: 1
     FoodBerries: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeLimeCake
   name: lime_cake_recipe
   result: FoodCakeLime
@@ -1702,7 +1704,7 @@
     FoodCakePlain: 1
     FoodLime: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCheeseCake
   name: cheese_cake_recipe
   result: FoodCakeCheese
@@ -1714,7 +1716,7 @@
     FoodCakePlain: 1
     FoodCheeseSlice: 3
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePumpkinCake
   name: pumpkin_cake_recipe
   result: FoodCakePumpkin
@@ -1724,7 +1726,7 @@
     FoodCakePlain: 1
     FoodPumpkin: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeClownCake
   name: clown_cake_recipe
   result: FoodCakeClown
@@ -1734,7 +1736,7 @@
     ClothingMaskClown: 1
     FoodCakePlain: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCake
   name: cake_recipe
   result: FoodCakePlain
@@ -1743,7 +1745,7 @@
   solids:
     FoodCakeBatter: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBirthdayCake
   name: birthday_cake_recipe
   result: FoodCakeBirthday
@@ -1754,7 +1756,7 @@
   solids:
     FoodCakePlain: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeChocolateCake
   name: chocolate_cake_recipe
   result: FoodCakeChocolate
@@ -1764,7 +1766,7 @@
     FoodCakePlain: 1
     FoodSnackChocolateBar: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBrainCake
   name: brain_cake_recipe
   result: FoodCakeBrain
@@ -1774,7 +1776,7 @@
     FoodCakePlain: 1
     OrganHumanBrain: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSlimeCake
   name: slime_cake_recipe
   result: FoodCakeSlime
@@ -1785,7 +1787,7 @@
   solids:
     FoodCakePlain: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCatCake
   name: cat_cake_recipe
   result: MobCatCake
@@ -1799,7 +1801,7 @@
     FoodSnackRaisins: 1
     OrganAnimalHeart: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBerryDelight
   name: berry_delight_recipe
   result: FoodCakeBerryDelight
@@ -1811,7 +1813,7 @@
   reagents:
     Milk: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBreadDog
   name: bread_dog_recipe
   result: MobBreadDog
@@ -1824,7 +1826,7 @@
     OrganAnimalHeart: 1
     FoodSpaceshroomCooked: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDumplings
   name: dumplings_recipe
   result: FoodBakedDumplings
@@ -1836,7 +1838,7 @@
   solids:
     FoodDoughSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBrownies
   name: brownie_recipe
   result: FoodBakedBrownieBatch
@@ -1851,7 +1853,7 @@
     FoodSnackChocolateBar: 2
 
 #Donks i guess
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWarmDonkpocket
   name: warm_donk_pocket_recipe
   result: FoodDonkpocketWarm
@@ -1860,7 +1862,7 @@
   solids:
     FoodDonkpocket: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWarmDankpocket
   name: warm_dank_pocket_recipe
   result: FoodDonkpocketDankWarm
@@ -1869,7 +1871,7 @@
   solids:
     FoodDonkpocketDank: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWarmDonkpocketSpicy
   name: warm_spicy_donk-pocket_recipe
   result: FoodDonkpocketSpicyWarm
@@ -1878,7 +1880,7 @@
   solids:
     FoodDonkpocketSpicy: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWarmDonkpocketTeriyaki
   name: warm_teriyaki-pocket_recipe
   result: FoodDonkpocketTeriyakiWarm
@@ -1887,7 +1889,7 @@
   solids:
     FoodDonkpocketTeriyaki: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWarmDonkpocketPizza
   name: warm_pizza-pocket_recipe
   result: FoodDonkpocketPizzaWarm
@@ -1896,7 +1898,7 @@
   solids:
     FoodDonkpocketPizza: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkpocketHonk
   name: warm_honk-pocket_recipe
   result: FoodDonkpocketHonkWarm
@@ -1905,7 +1907,7 @@
   solids:
     FoodDonkpocketHonk: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkpocketBerry
   name: warm_berry-pocket_recipe
   result: FoodDonkpocketBerryWarm
@@ -1914,7 +1916,7 @@
   solids:
     FoodDonkpocketBerry: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkpocketStonk
   name: warm_stonk-pocket_recipe
   result: FoodDonkpocketStonkWarm
@@ -1923,7 +1925,7 @@
   solids:
     FoodDonkpocketStonk: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkpocketCarp
   name: warm_carp-pocket_recipe
   result: FoodDonkpocketCarpWarm
@@ -1932,7 +1934,7 @@
   solids:
     FoodDonkpocketCarp: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkpocketMoth
   name: warm_moth-pocket_recipe
   result: FoodDonkpocketMothWarm
@@ -1940,7 +1942,7 @@
   solids:
     FoodDonkpocketMoth: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeHotChili
   name: hot_chili_recipe
   result: FoodSoupChiliHot
@@ -1953,7 +1955,7 @@
     FoodOnionSlice: 1
     FoodTomato: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeColdChili
   name: cold_chili_recipe
   result: FoodSoupChiliCold
@@ -1964,7 +1966,7 @@
   solids:
     FoodSoupChiliHot: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeClownTears
   name: clowns_tears_recipe
   result: FoodSoupClown
@@ -1976,7 +1978,7 @@
     FoodTomato: 1
     BikeHorn: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeChiliClown
   name: chili_con_carnival_recipe
   result: FoodSoupChiliClown
@@ -1990,7 +1992,7 @@
     FoodTomato: 1
     ClothingShoesClown: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeQueso
   name: queso_recipe
   result: FoodMealQueso
@@ -2003,7 +2005,7 @@
     FoodChiliPepper: 1
     FoodCheeseSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeRibs
   name: BBQ_ribs_recipe
   result: FoodMealRibs
@@ -2015,7 +2017,7 @@
     FoodMeat: 2
     FoodKebabSkewer: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeEnchiladas
   name: enchiladas_recipe
   result: FoodMealEnchiladas
@@ -2027,7 +2029,7 @@
     FoodDoughTortillaFlat: 1
 
 # SALADS: These should be moved out of the microwave as soon as possible
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeHerbSalad
   name: herb_salad_recipe
   result: FoodSaladHerb
@@ -2038,7 +2040,7 @@
     FoodAmbrosiaVulgaris: 3
     FoodApple: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeValidSalad
   name: valid_salad_recipe
   result: FoodSaladValid
@@ -2050,7 +2052,7 @@
     FoodPotato: 1
     FoodMeatMeatball: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeColeslaw
   name: coleslaw_recipe
   result: FoodSaladColeslaw
@@ -2063,7 +2065,7 @@
     FoodOnionRed: 2
     FoodCabbage: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCaesarSalad
   name: caesar_salad_recipe
   result: FoodSaladCaesar
@@ -2078,7 +2080,7 @@
     FoodCheeseSlice: 1
     FoodCabbage: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCitrusSalad
   name: citrus_salad_recipe
   result: FoodSaladCitrus
@@ -2090,7 +2092,7 @@
     FoodLemon: 1
     FoodLime: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeKimchiSalad
   name: kimchi_salad_recipe
   result: FoodSaladKimchi
@@ -2104,7 +2106,7 @@
     FoodCabbage: 2
     FoodGarlic: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFruitSalad
   name: fruit_salad_recipe
   result: FoodSaladFruit
@@ -2117,7 +2119,7 @@
     FoodGrape: 1
     FoodWatermelonSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeJungleSalad
   name: jungle_salad_recipe
   result: FoodSaladJungle
@@ -2130,7 +2132,7 @@
     FoodGrape: 1
     FoodWatermelonSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWatermelonFruitBowlSalad
   name: watermelon_fruit_bowl_recipe
   result: FoodSaladWatermelonFruitBowl
@@ -2146,7 +2148,7 @@
 
 # Muffins
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMuffin
   name: muffin_recipe
   result: FoodBakedMuffin
@@ -2158,7 +2160,7 @@
   reagents:
     Sugar: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMuffinChocolate
   name: chocolate_muffin_recipe
   result: FoodBakedMuffinChocolate
@@ -2171,7 +2173,7 @@
   reagents:
     Sugar: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMuffinBerry
   name: berry_muffin_recipe
   result: FoodBakedMuffinBerry
@@ -2184,7 +2186,7 @@
   reagents:
     Sugar: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMuffinBanana
   name: banana_muffin_recipe
   result: FoodBakedMuffinBanana
@@ -2197,7 +2199,7 @@
   reagents:
     Sugar: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMuffinCherry
   name: cherry_muffin_recipe
   result: FoodBakedMuffinCherry
@@ -2212,7 +2214,7 @@
 
 # NOT ACTUAL FOOD
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDriedTeaLeaves
   name: dried_tea_leaves_recipe
   result: LeavesTeaDried
@@ -2220,7 +2222,7 @@
   solids:
     LeavesTea: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDriedTobacco
   name: dried_tobacco_leaves_recipe
   result: LeavesTobaccoDried
@@ -2229,7 +2231,7 @@
   solids:
     LeavesTobacco: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDriedCannabis
   name: dried_cannabis_leaves_recipe
   result: LeavesCannabisDried
@@ -2238,7 +2240,7 @@
   solids:
     LeavesCannabis: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDriedCannabisRainbow
   name: dried_rainbow_cannabis_leaves_recipe
   result: LeavesCannabisRainbowDried
@@ -2247,7 +2249,7 @@
   solids:
     LeavesCannabisRainbow: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTrashBakedBananaPeel
   name: baked_banana_peel_recipe
   result: TrashBakedBananaPeel
@@ -2256,7 +2258,7 @@
     TrashBananaPeel: 1
 
 # Suppermatter
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeSuppermatter
   name: suppermatter_recipe
   result: FoodCakeSuppermatter
@@ -2268,7 +2270,7 @@
     Nitrogen: 10
     Plasma: 10
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFoodBakedChevreChaud
   name: chevre_chaud_recipe
   result: FoodBakedChevreChaud
@@ -2278,7 +2280,7 @@
     FoodChevreSlice: 1
     FoodBreadBaguetteSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFoodBakedChevreChaudCotton
   name: cotton_chevre_chaud_recipe
   result: FoodBakedChevreChaudCotton
@@ -2288,7 +2290,7 @@
     FoodChevreSlice: 1
     FoodBreadBaguetteCottonSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCannabisButter
   name: cannabis_butter_recipe
   result: FoodCannabisButter
@@ -2297,7 +2299,7 @@
     FoodButter: 1
     LeavesCannabis: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCannabisBrownies
   name: cannabis_brownie_recipe
   result: FoodBakedCannabisBrownieBatch
@@ -2311,7 +2313,7 @@
     FoodCannabisButter: 1
     FoodSnackChocolateBar: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCornInButter
   name: corn_in_butter_recipe
   result: FoodMealCornInButter
@@ -2322,7 +2324,7 @@
     FoodPlate: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipePeaSoup
   name: pea_soup_recipe
   result: FoodSoupPea
@@ -2334,7 +2336,7 @@
   reagents:
     Water: 20
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoShell
   name: taco_shell_recipe
   result: FoodTacoShell
@@ -2343,7 +2345,7 @@
   solids:
     FoodDoughTortillaFlat: 1 # one eighth a standard bread dough recipe
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoBeef
   name: beef_taco_recipe
   result: FoodTacoBeef
@@ -2354,7 +2356,7 @@
     FoodMeatCutlet: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoChicken
   name: chicken_taco_recipe
   result: FoodTacoChicken
@@ -2365,7 +2367,7 @@
     FoodMeatChickenCutlet: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoFish
   name: fish_taco_recipe
   result: FoodTacoFish
@@ -2378,7 +2380,7 @@
     FoodTomato: 1
     FoodCabbage: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoRat
   name: rat_taco_recipe
   result: FoodTacoRat
@@ -2389,7 +2391,7 @@
     FoodCheeseSlice: 1
     FoodMeatRat: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoBeefSupreme
   name: beef_taco_supreme_recipe_beef
   result: FoodTacoBeefSupreme
@@ -2403,7 +2405,7 @@
     FoodCabbage: 1
     FoodOnionSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoChickenSupreme
   name: beef_taco_supreme_recipe_chicken
   result: FoodTacoChickenSupreme
@@ -2417,7 +2419,7 @@
     FoodCabbage: 1
     FoodOnionSlice: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeTacoDragon
   name: draco_recipe
   result: FoodTacoDragon
@@ -2428,7 +2430,7 @@
     FoodMeatDragonCutlet: 2
     FoodChiliPepper: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCroissant
   name: croissant_recipe
   result: FoodBakedCroissant
@@ -2438,7 +2440,7 @@
     FoodCroissantRaw: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCroissantCotton
   name: cotton_croissant_recipe
   result: FoodBakedCroissantCotton
@@ -2448,7 +2450,7 @@
     FoodCroissantRawCotton: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeThrowingCroissant
   name: throwing_croissant_recipe
   result: WeaponCroissant
@@ -2460,7 +2462,7 @@
     FoodButterSlice: 1
     ShardGlass: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeInertAnomalyMeat
   name: inert_meat_anomaly_recipe
   result: FoodMeatAnomaly
@@ -2469,7 +2471,7 @@
   solids:
     AnomalyCoreFleshInert: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeAnomalyMeat
   name: meat_anomaly_recipe
   result: FoodMeatAnomaly
@@ -2478,7 +2480,7 @@
   solids:
     AnomalyCoreFlesh: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeAnomalyMeatCooked
   name: cooked_meat_anomaly_recipe
   result: FoodMeatAnomalyCooked
@@ -2487,7 +2489,7 @@
   solids:
     FoodMeatAnomaly: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeGrilledCheeseSandwich
   name: grilled_cheese_sandwich_recipe
   result: FoodBakedGrilledCheeseSandwich
@@ -2498,7 +2500,7 @@
     FoodCheeseSlice: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeGrilledCheeseSandwichCotton
   name: cotton_grilled_cheese_sandwich_recipe
   result: FoodBakedGrilledCheeseSandwichCotton
@@ -2509,7 +2511,7 @@
     FoodCheeseSlice: 1
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBreakfastAmerican
   name: full_american_breakfast_recipe
   result: FoodBreakfastAmerican
@@ -2522,7 +2524,7 @@
     FoodPotato: 1
     FoodBakedPancake: 2
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBreakfastEnglish
   name: full_english_breakfast_recipe
   result: FoodBreakfastEnglish
@@ -2536,7 +2538,7 @@
     FoodTomato: 1
     FoodSoybeans: 2 # replace these with green beans once those become a thing
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeMoproach # TODO: Move this to be an actual surgery instead, once surgery gets implemented.
   name: moproach_recipe
   result: MobMoproach
@@ -2549,7 +2551,7 @@
     OrganAnimalHeart: 1
     MoproachShoes: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeCottonCake
   name: cotton_cake_recipe
   result: FoodCakeCotton
@@ -2565,7 +2567,7 @@
 #Persistence 14 added recipes and foods
 
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeBloodredBurger
   name: bloodred_burger_recipe
   result: FoodBurgerBloodred
@@ -2578,7 +2580,7 @@
     FoodMeat: 2
     FoodCabbage: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeWeedChicken
   name: weed_chicken_recipe
   result: FoodWeedChicken
@@ -2588,7 +2590,7 @@
     FoodMeatChickenCutlet: 1
     LeavesCannabis: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeFoodPaste
   name: food_paste_recipe
   result: FoodPaste
@@ -2599,7 +2601,7 @@
     FoodMeat: 1
     DrinkGlass: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeNukeCookie
   name: nuke_cookie_recipe
   result: FoodBakedCookieNuke
@@ -2612,7 +2614,7 @@
   solids:
     FoodButterSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketPlain
   name: donk_pocket_recipe
   result: FoodDonkpocket
@@ -2623,7 +2625,7 @@
     FoodAmbrosiaDeus: 1
     FoodDoughSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketDank
   name: donk_pocket_recipe_dank
   result: FoodDonkpocketDank
@@ -2635,7 +2637,7 @@
     FoodDoughSlice: 1
     LeavesCannabis: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketSpicy
   name: donk_pocket_recipe_spicy
   result: FoodDonkpocketSpicy
@@ -2647,7 +2649,7 @@
     FoodDoughSlice: 1
     FoodChiliPepper: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketTeriyaki
   name: donk_pocket_recipe_teriyaki
   result: FoodDonkpocketTeriyaki
@@ -2661,7 +2663,7 @@
     FoodDoughSlice: 1
     FoodMeatCutlet: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketPizza
   name: donk_pocket_recipe_pizza
   result: FoodDonkpocketPizza
@@ -2674,7 +2676,7 @@
     FoodTomato: 1
     FoodCheeseSlice: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketHonk
   name: donk_pocket_recipe_honk
   result: FoodDonkpocketHonk
@@ -2686,7 +2688,7 @@
     FoodDoughSlice: 1
     FoodBanana: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketBerry
   name: donk_pocket_recipe_berry
   result: FoodDonkpocketBerry
@@ -2698,7 +2700,7 @@
     FoodDoughSlice: 1
     FoodBerries: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketStonk
   name: donk_pocket_recipe_stonk
   result: FoodDonkpocketStonk
@@ -2710,7 +2712,7 @@
     FoodDoughSlice: 1
     SpaceCash: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketCarp
   name: donk_pocket_recipe_carp
   result: FoodDonkpocketCarp
@@ -2722,7 +2724,7 @@
     FoodDoughSlice: 1
     FoodMeatFish: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketDink
   name: donk_pocket_recipe_dink
   result: FoodDonkpocketDink
@@ -2734,7 +2736,7 @@
     FoodDoughSlice: 1
     FoodCarrot: 1
 
-- type: microwaveMealRecipe
+- type: foodRecipe
   id: RecipeDonkPocketMoth
   name: donk_pocket_recipe_moth
   result: FoodDonkpocketMoth
