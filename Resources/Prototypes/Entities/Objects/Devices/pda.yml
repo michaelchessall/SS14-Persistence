@@ -98,6 +98,7 @@
         - id: NotekeeperCartridge
         - id: NanoTaskCartridge
         - id: NewsReaderCartridge
+        - id: AstroNavCartridge
   - type: ActivatableUI
     key: enum.PdaUiKey.Key
     singleUser: true
@@ -164,6 +165,7 @@
         - id: NanoTaskCartridge
         - id: NewsReaderCartridge
         - id: WantedListCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -179,6 +181,7 @@
         - id: NanoTaskCartridge
         - id: NewsReaderCartridge
         - id: MedTekCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: BasePDA
@@ -439,6 +442,7 @@
         children:
         - id: CrewManifestCartridge
         - id: NewsReaderCartridge
+        - id: AstroNavCartridge
   - type: PermanentStatusEffects # for random sentience event
     statusEffects:
     - TraitStatusEffectMuted
@@ -897,6 +901,7 @@
         - id: NewsReaderCartridge
         - id: WantedListCartridge
         - id: LogProbeCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: BaseSecurityPDA
@@ -1117,6 +1122,7 @@
         children:
         - id: NotekeeperCartridge
         - id: NanoTaskCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: [ SyndiPDA, BaseSyndicateContraband ]
@@ -1156,6 +1162,7 @@
         - id: NotekeeperCartridge
         - id: NanoTaskCartridge
         - id: MedTekCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: [ SyndiOperativePDA, BaseSyndicateContraband ]
@@ -1395,6 +1402,7 @@
         - id: NewsReaderCartridge
         - id: WantedListCartridge
         - id: LogProbeCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: BaseMedicalPDA
@@ -1425,6 +1433,7 @@
         - id: NewsReaderCartridge
         - id: WantedListCartridge
         - id: MedTekCartridge
+        - id: AstroNavCartridge
 
 - type: entity
   parent: ClownPDA
