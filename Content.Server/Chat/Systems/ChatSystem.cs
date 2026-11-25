@@ -24,7 +24,8 @@ using Robust.Shared.Replays;
 using Content.Shared.Mobs; // funky
 using Content.Shared.Mobs.Components; // funky
 using Robust.Shared.Utility;
-using Content.Shared._RMC14.Chat; // Persistence: Chat stacking from RMC14 - pull/7587
+using Content.Shared._RMC14.Chat;
+using Content.Server._Persistence14.Admin; // Persistence: Chat stacking from RMC14 - pull/7587
 
 namespace Content.Server.Chat.Systems;
 
@@ -50,6 +51,7 @@ public sealed partial class ChatSystem : SharedChatSystem
     [Dependency] private ReplacementAccentSystem _wordreplacement = default!;
     [Dependency] private ExamineSystemShared _examineSystem = default!;
     [Dependency] private EntityQuery<GhostHearingComponent> _ghostHearingQuery = default!;
+    [Dependency] private LoocMuteSystem _loocMute = default!;
 
     private bool _loocEnabled = true;
     private bool _deadLoocEnabled;
@@ -282,6 +284,10 @@ public sealed partial class ChatSystem : SharedChatSystem
 
         // If crit player LOOC is disabled, don't send the message at all.
         if (!_critLoocEnabled && _mobStateSystem.IsCritical(source))
+            return;
+
+        // If player is unable to send Looc chats, no.
+        if (sendType is InGameOOCChatType.Looc && _loocMute.IsPlayerMuted(player.UserId, true))
             return;
 
         // Systems can differentiate Looc and DeadChat by type, and cancel the speak attempt if necessary.
