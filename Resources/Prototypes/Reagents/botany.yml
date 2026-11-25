@@ -193,7 +193,7 @@
   physicalDesc: reagent-physical-desc-bubbling
   plantMetabolism:
     - !type:PlantAdjustNutrient
-      amount: 4
+      amount: 0.4
       nutrient: Toxin
     - !type:PlantAdjustWeeds
       amount: -6
@@ -221,7 +221,7 @@
   plantMetabolism:
   - !type:PlantAdjustNutrient
     amount: 1
-    nutrient: Nutrient
+    nutrient: Fertilizer
   - !type:PlantAdjustHealth
     amount: 0.5
   metabolisms:

@@ -134,15 +134,15 @@
 
 - type: plantChemQuantity
   id: BluePumpkinAmmonia
-  baseAmount: 10
+  baseAmount: 5
   requirements:
     Nutrient:
       requirement: 5
     Water:
-      requirement: 5
+      requirement: 3
     Protein:
       bonusRequirement: 5
-      bonusAmount: 5
+      bonusAmount: 10
 
 - type: plantChemQuantity
   id: BluePumpkinChlorine

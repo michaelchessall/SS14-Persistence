@@ -147,4 +147,68 @@ Entries:
   id: 19
   time: '2026-11-22T16:50:50.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1015
+- author: stinkiestdog
+  changes:
+  - message: '"Undock All" button in the shuttle console works again.'
+    type: Fix
+  id: 20
+  time: '2026-11-23T01:31:40.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1022
+- author: stinkiestdog
+  changes:
+  - message: SSD indicators are trustworthy again.
+    type: Tweak
+  id: 21
+  time: '2026-11-23T01:38:50.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1023
+- author: Beridot
+  changes:
+  - message: Chickens can now eat food again!
+    type: Fix
+  id: 22
+  time: '2026-11-23T20:45:43.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1024
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Growing ammonia from blue pumpkins produces 5-15 units, instead of 10-15, and requires slightly less water.
+    type: Tweak
+  - message: When added to hydroponics tray, ammonia is converted into fertilizer instead compost.
+    type: Tweak
+  - message: Weed killer no longer adds 10 times the amount of toxins to plants as it's supposed to.
+    type: Fix
+  id: 23
+  time: '2026-11-23T20:47:08.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1025
+- author: Wolfkey-SomeoneElseTookMyUsername
+  changes:
+  - message: Most reagent bounties have had their quantities changed to match the size of containers.
+    type: Tweak
+  id: 24
+  time: '2026-11-23T20:48:12.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1026
+- author: Zetaplx
+  changes:
+  - message: T-Ray Scanners can now see under walls
+    type: Tweak
+  - message: Spray Painters can paint pipes under walls and tiles with an Alternative Verb (alt-click)
+    type: Tweak
+  id: 25
+  time: '2026-11-23T20:51:07.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1028
+- author: stinkiestdog
+  changes:
+  - message: Advanced topicals can only be used when the patient is above 90 damage in respective damage type.
+    type: Fix
+  id: 26
+  time: '2026-11-23T22:25:56.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1029
+- author: stinkiestdog
+  changes:
+  - message: Firebots work again.
+    type: Fix
+  - message: Prayer rumors can be completed again.
+    type: Fix
+  id: 27
+  time: '2026-11-24T20:41:30.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1032
 Order: 0

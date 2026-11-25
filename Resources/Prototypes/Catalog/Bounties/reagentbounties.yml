@@ -1,11 +1,11 @@
 - type: cargoBounty
   id: BountyUnstableMutagen
-  reward: 9000
+  reward: 10800
   description: bounty-description-artifact
   group: ReagentBounty
   condition:
     reagent: UnstableMutagen
-    quantity: 300
+    quantity: 360 # 1 bucket
 
 - type: cargoBounty
   id: BountyAmmonia
@@ -14,7 +14,7 @@
   group: ReagentBounty
   condition:
     reagent: Ammonia
-    quantity: 2000
+    quantity: 1920 # 2 reagent tanks
 
 - type: cargoBounty
   id: BountyFrostOil
@@ -23,7 +23,7 @@
   group: ReagentBounty
   condition:
     reagent: FrostOil
-    quantity: 1000
+    quantity: 960 # 1 reagent tank
 
 - type: cargoBounty
   id: BountyWeldingFuel
@@ -32,7 +32,7 @@
   group: ReagentBounty
   condition:
     reagent: WeldingFuel
-    quantity: 4000
+    quantity: 3840 # 4 reagent tanks
 
 - type: cargoBounty
   id: BountyAcetone
@@ -41,7 +41,7 @@
   group: ReagentBounty
   condition:
     reagent: Acetone
-    quantity: 2500
+    quantity: 2400 # 2 reagent tanks + 2 jugs
 
 - type: cargoBounty
   id: BountyArithrazine
@@ -59,13 +59,13 @@
   group: ReagentBounty
   condition:
     reagent: Epinephrine
-    quantity: 1000
+    quantity: 960 # 1 reagent tank
 
 - type: cargoBounty
   id: BountyOpporozidone
-  reward: 10000
+  reward: 12000
   description: bounty-description-artifact
   group: ReagentBounty
   condition:
     reagent: Opporozidone
-    quantity: 200
+    quantity: 240 # 1 jug

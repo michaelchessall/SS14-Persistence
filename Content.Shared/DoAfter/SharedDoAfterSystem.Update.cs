@@ -237,6 +237,7 @@ public abstract partial class SharedDoAfterSystem : EntitySystem
         {
             if (args.DistanceThreshold != null)
             {
+
                 if (!_interaction.InRangeUnobstructed(args.User,
                         args.Used.Value,
                         args.DistanceThreshold.Value))
