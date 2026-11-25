@@ -62,7 +62,7 @@
       enum.WiresUiKey.Key:
         type: WiresBoundUserInterface
   - type: Computer
-    board: StationModComputerCircuitboard
+    board: MessageBoardCircuitboard
   - type: PointLight
     radius: 1.5
     energy: 1.6
