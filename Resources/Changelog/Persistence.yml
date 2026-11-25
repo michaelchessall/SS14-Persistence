@@ -218,4 +218,11 @@ Entries:
   id: 28
   time: '2026-11-25T20:26:57.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1037
+- author: Zetaplx
+  changes:
+  - message: New characters will now spawn with an AstroNav in their PDA
+    type: Tweak
+  id: 29
+  time: '2026-11-25T20:29:13.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1034
 Order: 0
