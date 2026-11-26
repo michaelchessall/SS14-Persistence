@@ -56,6 +56,8 @@
     messages: WindowMessages
   - type: StaticPrice
     price: 150
+  - type: StructureLeak
+    messages: StructureLeakMessages
 
 - type: entity
   parent: ShuttleWindow

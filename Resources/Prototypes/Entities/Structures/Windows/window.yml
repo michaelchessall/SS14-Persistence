@@ -97,6 +97,8 @@
   - type: StaticPrice
     price: 100
   - type: BlockWeather
+  - type: StructureLeak
+    messages: StructureLeakMessages
 
 - type: entity
   parent: Window
@@ -116,6 +118,8 @@
   - type: Occluder
   - type: StaticPrice
     price: 70
+  - type: StructureLeak
+    messages: StructureLeakMessages
 
 - type: entity
   id: WindowRCDResistant
