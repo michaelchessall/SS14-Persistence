@@ -59,6 +59,7 @@ public sealed class BookPublisherSystem : EntitySystem
     private Font? _smallFont;
     private Dictionary<(float size, bool bold, bool italic), Font> _fontCache = new();
     private const float SS14_DEFAULT_SIZE = 16f;
+    private const int MaxBookNameLength = 64;
     private static readonly Regex SS14TagRegex = new Regex(@"\[([/]?)([a-zA-Z]+)(?:=([^\]]*))?\]", RegexOptions.Compiled);
 
     private void LoadFonts()
@@ -715,6 +716,12 @@ public sealed class BookPublisherSystem : EntitySystem
         if (string.IsNullOrWhiteSpace(newName))
         {
             _popup.PopupEntity(Loc.GetString("book-publisher-empty-name"), ent.Owner, msg.Actor);
+            return;
+        }
+
+        if (newName.Length > MaxBookNameLength)
+        {
+            _popup.PopupEntity(Loc.GetString("book-publisher-name-too-long", ("max", MaxBookNameLength)), ent.Owner, msg.Actor);
             return;
         }
 

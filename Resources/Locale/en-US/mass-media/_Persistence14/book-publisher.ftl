@@ -11,3 +11,4 @@ book-publisher-no-paper = No paper content found in book
 book-publisher-publishing = Publishing book: {$title}
 book-publisher-renamed = Book renamed to: {$name}
 book-publisher-empty-name = You must enter a name before renaming
+book-publisher-name-too-long = Book name must be {$max} characters or fewer
