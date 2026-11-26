@@ -41,7 +41,16 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 80
+          damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -107,7 +116,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 200
+            damage: 350
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -116,7 +125,7 @@
                 collection: MetalBreak
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 250
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
@@ -198,7 +207,7 @@
                 collection: MetalBreak
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 150
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
@@ -242,7 +251,7 @@
                 collection: MetalBreak
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 150
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
