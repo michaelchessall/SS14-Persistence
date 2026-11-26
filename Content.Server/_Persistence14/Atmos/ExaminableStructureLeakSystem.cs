@@ -4,7 +4,7 @@ using Content.Shared.Examine;
 
 namespace Content.Server._Persistence14.Atmos;
 
-public sealed partial class ExaminableAirtightSystem : EntitySystem
+public sealed partial class ExaminableStructureLeakSystem : EntitySystem
 {
 
     public override void Initialize()
