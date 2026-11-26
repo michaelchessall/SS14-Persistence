@@ -22,6 +22,7 @@
         <!-- Actions -->
         <BoxContainer Orientation="Horizontal">
             <Button Name="PublishButton" Text="{Loc 'book-publisher-publish'}" Margin="0 0 10 0"/>
+            <Button Name="RenameButton" Text="{Loc 'book-publisher-rename'}" Margin="0 0 10 0"/>
             <Button Name="EjectButton" Text="{Loc 'book-publisher-eject'}"/>
         </BoxContainer>
     </BoxContainer>

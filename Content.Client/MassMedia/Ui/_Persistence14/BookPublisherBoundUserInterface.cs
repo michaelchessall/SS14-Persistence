@@ -18,6 +18,7 @@ public sealed class BookPublisherBoundUserInterface : BoundUserInterface
 
         _window = this.CreateWindow<BookPublisherWindow>();
         _window.PublishButtonPressed += OnPublish;
+        _window.RenameButtonPressed += OnRename;
         _window.EjectButtonPressed += OnEject;
     }
 
@@ -33,6 +34,11 @@ public sealed class BookPublisherBoundUserInterface : BoundUserInterface
     private void OnPublish(string title)
     {
         SendMessage(new BookPublisherPublishMessage(title));
+    }
+
+    private void OnRename(string name)
+    {
+        SendMessage(new BookPublisherRenameMessage(name));
     }
 
     private void OnEject()

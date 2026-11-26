@@ -14,16 +14,23 @@ public sealed partial class BookPublisherWindow : FancyWindow
         RobustXamlLoader.Load(this);
         PublishButton.OnPressed += OnPublishClicked;
         EjectButton.OnPressed += OnEjectClicked;
+        RenameButton.OnPressed += OnRenameClicked;
     }
 
     public string TitleInputText => TitleInput.Text;
 
     public event Action<string>? PublishButtonPressed;
+    public event Action<string>? RenameButtonPressed;
     public event Action? EjectButtonPressed;
 
     private void OnPublishClicked(BaseButton.ButtonEventArgs e)
     {
         PublishButtonPressed?.Invoke(TitleInputText);
+    }
+
+    private void OnRenameClicked(BaseButton.ButtonEventArgs e)
+    {
+        RenameButtonPressed?.Invoke(TitleInputText);
     }
 
     private void OnEjectClicked(BaseButton.ButtonEventArgs e)
@@ -39,6 +46,7 @@ public sealed partial class BookPublisherWindow : FancyWindow
             BookStatus.Text = Loc.GetString("book-publisher-no-book");
 
         PublishButton.Disabled = !canPublish || !bookInserted;
+        RenameButton.Disabled = !bookInserted;
         EjectButton.Disabled = !bookInserted;
     }
 }
