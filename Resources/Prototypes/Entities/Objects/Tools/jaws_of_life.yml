@@ -22,7 +22,7 @@
   - type: Tool
     qualities:
       - Prying
-    powerUsage: 5
+    powerUsage: 5 #Persi change - Using tools consumes power =]
     useSound: !type:SoundPathSpecifier
       path: /Audio/Items/jaws_pry.ogg
       params:
@@ -68,6 +68,7 @@
         Blunt: 10
     soundHit:
       collection: MetalThud
+  # PERSI CHANGES - Start
   - type: PhysicalComposition
     materialComposition:
       Steel: 500
@@ -86,6 +87,7 @@
   - type: Upgradeable
     chooseOneUpgrades:
       ToolSpeedGreen : 0
+  # PERSI CHANGES - End
 
 - type: entity
   name: syndicate jaws of death

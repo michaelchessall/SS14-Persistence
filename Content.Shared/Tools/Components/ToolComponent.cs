@@ -22,7 +22,7 @@ public sealed partial class ToolComponent : Component
     public SoundSpecifier? UseSound;
 
     [DataField]
-    public float? PowerUsage = null;
+    public float? PowerUsage = null; //Persi change
 
 }
 

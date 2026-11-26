@@ -49,9 +49,9 @@ public abstract partial class SharedToolSystem : EntitySystem
         SubscribeLocalEvent<ToolComponent, ExaminedEvent>(OnExamine);
     }
 
-    public void SetToolSpeedModifier(Entity<ToolComponent> ent, float speedModifier)
+    public void SetToolSpeedModifier(EntityUid uid, ToolComponent tool, float speedModifier)
     {
-        ent.Comp.SpeedModifier = speedModifier;
+        tool.SpeedModifier = speedModifier;
     }
 
     private void OnDoAfter(EntityUid uid, ToolComponent tool, ToolDoAfterEvent args)
@@ -161,8 +161,10 @@ public abstract partial class SharedToolSystem : EntitySystem
         if (!CanStartToolUse(tool, user, target, fuel, toolQualitiesNeeded, toolComponent))
             return false;
 
+        //PERSI CHANGE - Start
         if (!TryComp<ToolComponent>(tool, out var toolComp) || toolComp.PowerUsage is { } usage && !_powerCell.TryUseCharge(tool, usage))
             return false;
+        //PERSI CHANGE - Finish
 
         string examineText;
         var qualitiesText = GetQualitiesText(toolQualitiesNeeded, true);
