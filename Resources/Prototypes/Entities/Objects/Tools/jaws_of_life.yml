@@ -86,6 +86,7 @@
   - type: Upgradeable
     chooseOneUpgrades:
       ToolSpeedGreen : 0
+
 - type: entity
   name: syndicate jaws of death
   parent: [ JawsOfLife, BaseSyndicateContraband]
