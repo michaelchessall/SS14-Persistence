@@ -18,10 +18,7 @@
         mask:
         - MachineMask
         layer:
-        - HighImpassable
-        - MidImpassable
-        - InteractImpassable
-  - type: Climbable
+        - GlassAirlockLayer
   - type: InteractionOutline
 
 - type: entity
