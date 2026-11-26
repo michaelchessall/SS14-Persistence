@@ -37,7 +37,6 @@ public sealed partial class SSDIndicatorComponent : Component
     /// Persistence: Whether the entity has marked itself as SSD (SSD Command)
     /// </summary>
     [AutoNetworkedField]
-    [DataField]
     public bool ManualSSD = false;
 
     /// <summary>
