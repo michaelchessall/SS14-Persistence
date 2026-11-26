@@ -10,6 +10,12 @@
     prefix: comp-structure-airtight-
     count: 2
 
+- type: localizedDataset # Persi 14 - Added for structure leaks =]
+  id: StructureDamageMessages
+  values:
+    prefix: comp-structure-wall-damage-
+    count: 5
+
 - type: localizedDataset
   id: ShieldMessages
   values:

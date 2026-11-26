@@ -67,7 +67,7 @@
       map: [ "leaking" ]
   - type: Appearance # Damage visuals for normal walls
   - type: ExaminableDamage
-    messages: WindowMessages
+    messages: StructureDamageMessages
   - type: Repairable
     fuelCost: 2
     damageValue: -40
