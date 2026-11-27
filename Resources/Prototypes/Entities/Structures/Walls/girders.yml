@@ -13,13 +13,15 @@
       fix1:
         shape:
           !type:PhysShapeAabb
-          bounds: "-0.45,-0.45,0.45,0.45"
+          bounds: "-0.3,-0.3,0.3,0.3"
         density: 60
         mask:
         - MachineMask
         layer:
-        - GlassAirlockLayer
+        - LowImpassable
+        - MidImpassable
   - type: InteractionOutline
+  - type: Climbable
 
 - type: entity
   parent: [ BaseGirder, StructureHealthBarrier ]
@@ -39,7 +41,16 @@
     thresholds:
     - trigger:
         !type:DamageTrigger
-        damage: 80
+          damage: 250
+      behaviors:
+      - !type:DoActsBehavior
+        acts: [ "Destruction" ]
+      - !type:PlaySoundBehavior
+        sound:
+          collection: MetalBreak
+    - trigger:
+        !type:DamageTrigger
+        damage: 150
       behaviors:
       - !type:SpawnEntitiesBehavior
         spawn:
@@ -105,7 +116,7 @@
       thresholds:
         - trigger:
             !type:DamageTrigger
-            damage: 200
+            damage: 350
           behaviors:
             - !type:DoActsBehavior
               acts: [ "Destruction" ]
@@ -114,7 +125,7 @@
                 collection: MetalBreak
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 250
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
@@ -196,7 +207,7 @@
                 collection: MetalBreak
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 150
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
@@ -240,7 +251,7 @@
                 collection: MetalBreak
         - trigger:
             !type:DamageTrigger
-            damage: 50
+            damage: 150
           behaviors:
             - !type:SpawnEntitiesBehavior
               spawn:
