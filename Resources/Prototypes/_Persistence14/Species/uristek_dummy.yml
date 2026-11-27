@@ -1,0 +1,52 @@
+- type: species
+  id: UrisTekDummy
+  name: species-name-uristek-dummy
+  roundStart: false
+  prototype: MobUrisTekDummy
+  skinColoration: Hues
+  dollPrototype: AppearanceUrisTekDummy
+  defaultSoundsBySex:
+  - MaleHuman
+  - FemaleHuman
+  - MaleHuman
+  voices:
+  - MaleHuman
+  - FemaleHuman
+
+- type: entity
+  parent: BaseSpeciesAppearance
+  id: AppearanceUrisTekDummy
+  categories: [ HideSpawnMenu ]
+  name: UrisTek appearance
+  components:
+  - type: Inventory
+    femaleDisplacements:
+      jumpsuit:
+        sizeMaps:
+          32:
+            sprite: Mobs/Species/Human/displacement.rsi
+            state: jumpsuit-female
+  - type: InitialBody
+    organs:
+      Torso: OrganHumanTorso # its definitely not weird that they have human organs
+      Head: OrganHumanHead
+      ArmLeft: OrganHumanArmLeft
+      ArmRight: OrganHumanArmRight
+      HandRight: OrganHumanHandRight
+      HandLeft: OrganHumanHandLeft
+      LegLeft: OrganHumanLegLeft
+      LegRight: OrganHumanLegRight
+      FootLeft: OrganHumanFootLeft
+      FootRight: OrganHumanFootRight
+      Brain: OrganHumanBrain
+      Eyes: OrganHumanEyes
+      Tongue: OrganHumanTongue
+      Appendix: OrganHumanAppendix
+      Ears: OrganHumanEars
+      Lungs: OrganHumanLungs
+      Heart: OrganHumanHeart
+      Stomach: OrganHumanStomach
+      Liver: OrganHumanLiver
+      Kidneys: OrganHumanKidneys
+  - type: HumanoidProfile
+    species: UrisTekDummy

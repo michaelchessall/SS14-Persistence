@@ -1,0 +1,8 @@
+- type: entity
+  parent: RehydratableAnimalCube
+  id: UristekCube
+  name: UrisTek Dummy Cube
+  components:
+  - type: Rehydratable
+    possibleSpawns:
+    - MobUrisTekDummy

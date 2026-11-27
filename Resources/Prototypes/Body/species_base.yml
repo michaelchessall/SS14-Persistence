@@ -199,6 +199,7 @@
         damage: 40
       behaviors:
       - !type:VomitBehavior
+
 #there are new to Perisitence 14 changes below.
 - type: entity
   save: true

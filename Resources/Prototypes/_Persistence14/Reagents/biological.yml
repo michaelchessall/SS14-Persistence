@@ -1,0 +1,10 @@
+- type: reagent
+  parent: Blood
+  id: SynthBlood
+  name: reagent-name-synth-blood
+  group: Biological
+  desc: reagent-desc-synth-blood
+  flavor: horrible
+  color: "#3dffc8"
+  recognizable: true
+  physicalDesc: reagent-physical-desc-slimy
