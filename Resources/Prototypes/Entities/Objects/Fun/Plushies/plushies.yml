@@ -1298,6 +1298,49 @@
 
 - type: entity
   parent: BasePlushie
+  id: PlushieAvali
+  name: avali plushie
+  description: A small stuffed avali plushie, hold them gently like hamburger.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Avali.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieAvaliSound
+      path: /Audio/_Starlight/Voice/Resomi/resomi_squawk_1.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnLand
+    sound:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_chirp2.ogg
+      params:
+        volume: -5
+  - type: EmitSoundOnActivate
+    sound: *PlushieAvaliSound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieAvaliSound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/_Starlight/Voice/Resomi/resomi_cry_3.ogg
+      params:
+        volume: -5
+  - type: MeleeWeapon
+    soundHit: *PlushieAvaliSound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Avali.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieAvali
+
+- type: entity
+  parent: BasePlushie
   id: PlushieMeera
   name: Meera plushie
   description: Meera is always happy to help whether thats killing monkeys fixing the TEG or murder shes willing to put in the hours.
@@ -1818,6 +1861,60 @@
   - type: FoodSequenceElement
     entries:
       CottonBurger: PlushieDies
+
+- type: entity
+  parent: BasePlushie
+  id: PlushieRuby
+  name: Ruby plushie
+  description: Eclipse Station's own Medical Director, Ruby Whitewitch! It smells like something is burning...
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Objects/Fun/Plushies/Ruby.rsi
+    state: icon
+  - type: EmitSoundOnUse
+    sound: &PlushieRubySound
+      path: /Audio/Voice/Moth/moth_chitter.ogg
+  - type: EmitSoundOnLand
+    sound: *PlushieRubySound
+  - type: EmitSoundOnActivate
+    sound: *PlushieRubySound
+  - type: EmitSoundOnTrigger
+    sound: *PlushieRubySound
+  - type: Edible
+    requiresSpecialDigestion: true
+    useSound:
+      path: /Audio/Voice/Moth/moth_scream.ogg
+      params:
+        volume: -5
+    transferAmount: 10
+  - type: Extractable
+    juiceSolution:
+      reagents:
+      - ReagentId: Dermaline
+        Quantity: 5
+  - type: Solution
+    solution:
+      maxVol: 15
+      reagents:
+      - ReagentId: Fiber
+        Quantity: 10
+      - ReagentId: Dermaline
+        Quantity: 5
+
+  - type: MeleeWeapon
+    soundHit: *PlushieRubySound
+  - type: Clothing
+    quickEquip: false
+    sprite: _Persistence14/Objects/Fun/Plushies/Ruby.rsi
+    slots:
+    - HEAD
+    clothingVisuals:
+      head:
+      - state: equipped-HELMET
+  - type: FoodSequenceElement
+    entries:
+      CottonBurger: PlushieRuby
+
 
 - type: entity
   parent: BasePlushie

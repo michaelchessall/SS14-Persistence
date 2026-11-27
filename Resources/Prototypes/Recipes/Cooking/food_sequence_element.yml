@@ -1557,6 +1557,16 @@
   - sprite: Objects/Fun/Plushies/vulp.rsi
     state: icon
 
+#AvaliPlushie
+
+- type: foodSequenceElement
+  id: PlushieAvali
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-avali
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Avali.rsi
+    state: icon
+
 #Meera Plushie
 
 - type: foodSequenceElement
@@ -1657,6 +1667,16 @@
   name: food-sequence-cotton-burger-content-plushie-madeline
   sprites:
   - sprite: _Persistence14/Objects/Fun/Plushies/Madeline.rsi
+    state: icon
+
+#RubyPlushie
+
+- type: foodSequenceElement
+  id: PlushieRuby
+  scale: 0.8, 0.8
+  name: food-sequence-cotton-burger-content-plushie-ruby
+  sprites:
+  - sprite: _Persistence14/Objects/Fun/Plushies/Ruby.rsi
     state: icon
 
 #Ian Toy

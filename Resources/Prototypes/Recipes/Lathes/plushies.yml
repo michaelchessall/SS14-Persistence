@@ -245,6 +245,11 @@
   result: PlushieVulp
 
 - type: latheRecipe
+  parent: BasePlushieRecipe
+  id: PlushieAvali
+  result: PlushieAvali
+
+- type: latheRecipe
   id: PlushieMeera
   parent: BasePlushieRecipe
   result: PlushieMeera
@@ -283,6 +288,16 @@
     Cloth: 300
     Cotton: 1000
     Plasma: 50
+
+- type: latheRecipe
+  id: PlushieRuby
+  parent: BasePlushieRecipe
+  result: PlushieRuby
+  completetime: 5
+  materials:
+    Cloth: 300
+    Cotton: 1000
+    Plasma: 100
 
 - type: latheRecipe
   id: PlushieKamryn

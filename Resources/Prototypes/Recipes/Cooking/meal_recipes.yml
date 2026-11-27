@@ -1381,6 +1381,8 @@
     FoodChiliPepper: 1
     FoodMeatFish: 2
 
+#Persistence 14 Replaced table salt with soy sauce
+
 - type: microwaveMealRecipe
   id: RecipeSashimi
   name: sashimi_recipe
@@ -1388,7 +1390,7 @@
   time: 15
   group: Savory
   reagents:
-    TableSalt: 1
+    Soysauce: 1
   solids:
     FoodMeatFish: 1
 
