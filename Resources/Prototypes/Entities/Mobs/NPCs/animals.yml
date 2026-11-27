@@ -237,6 +237,7 @@
     - VimPilot
   - type: Reproductive
     breedChance: 0.05
+    gestationDuration: 1200
     birthPopup: reproductive-laid-egg-popup
     makeOffspringInfant: false
     minHungerThreshold: Peckish
@@ -358,9 +359,9 @@
     - MobChicken
     - MobChicken1
     - MobChicken2
-    intervalSeconds: 20
+    intervalSeconds: 6000
   - type: TimedDespawn #delete the egg after the chicken spawns
-    lifetime: 21
+    lifetime: 6001
 
 - type: entity
   abstract: true
@@ -707,6 +708,7 @@
     - VimPilot
   - type: Reproductive
     breedChance: 0.05
+    gestationDuration: 1200
     birthPopup: reproductive-laid-egg-popup
     makeOffspringInfant: false
     minHungerThreshold: Peckish
@@ -814,9 +816,9 @@
       - MobDuckMallard
       - MobDuckWhite
       - MobDuckBrown
-      intervalSeconds: 20
+      intervalSeconds: 6000
     - type: TimedDespawn #delete the egg after the chicken spawns
-      lifetime: 21
+      lifetime: 6001
 
 - type: entity
   name: butterfly
@@ -1181,6 +1183,8 @@
   components:
   - type: Solution
     id: wool
+    solution:
+      maxVol: 75
   - type: SatiationProduction
     producer: Parent
     minimumSatiationThreshold: Peckish
