@@ -58,3 +58,13 @@
     sprite: Objects/Misc/bureaucracy.rsi
     state: paper_dotmatrix_words
     color: DarkGray
+
+- type: rumorReward
+  id: ShadowLeviathanHardsuit
+  name: Leviathan Hardsuit
+  description: "Materials were collected from the WhaleFall impact site and melded with dark alchemy at the infernal forge of Nar'sie, this hardsuit was made to withstand the strongest forces of the threshold."
+  price: 30000
+  product: CrateShadowHardsuit
+  icon:
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/leviathan.rsi
+    state: icon
