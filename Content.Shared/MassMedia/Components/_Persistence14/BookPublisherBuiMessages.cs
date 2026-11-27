@@ -37,6 +37,17 @@ public sealed class BookPublisherPublishMessage : BoundUserInterfaceMessage
 }
 
 [Serializable, NetSerializable]
+public sealed class BookPublisherRenameMessage : BoundUserInterfaceMessage
+{
+    public readonly string Name;
+
+    public BookPublisherRenameMessage(string name)
+    {
+        Name = name;
+    }
+}
+
+[Serializable, NetSerializable]
 public sealed class BookPublisherEjectMessage : BoundUserInterfaceMessage
 {
 }

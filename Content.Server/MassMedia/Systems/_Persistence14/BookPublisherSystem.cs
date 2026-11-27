@@ -44,6 +44,7 @@ public sealed class BookPublisherSystem : EntitySystem
     [Dependency] private readonly AccessReaderSystem _accessReader = default!;
     [Dependency] private readonly SharedAudioSystem _audio = default!;
     [Dependency] private readonly UserInterfaceSystem _ui = default!;
+    [Dependency] private readonly MetaDataSystem _metaData = default!;
     [Dependency] private readonly DiscordWebhook _discord = default!;
     [Dependency] private readonly IConfigurationManager _cfg = default!;
     [Dependency] private readonly IResourceManager _resManager = default!;
@@ -58,6 +59,7 @@ public sealed class BookPublisherSystem : EntitySystem
     private Font? _smallFont;
     private Dictionary<(float size, bool bold, bool italic), Font> _fontCache = new();
     private const float SS14_DEFAULT_SIZE = 16f;
+    private const int MaxBookNameLength = 64;
     private static readonly Regex SS14TagRegex = new Regex(@"\[([/]?)([a-zA-Z]+)(?:=([^\]]*))?\]", RegexOptions.Compiled);
 
     private void LoadFonts()
@@ -223,6 +225,7 @@ public sealed class BookPublisherSystem : EntitySystem
         Subs.BuiEvents<BookPublisherComponent>(BookPublisherUiKey.Key, subs =>
         {
             subs.Event<BookPublisherPublishMessage>(OnPublish);
+            subs.Event<BookPublisherRenameMessage>(OnRename);
             subs.Event<BookPublisherEjectMessage>(OnEject);
             subs.Event<BookPublisherRefreshMessage>(OnRefresh);
         });
@@ -695,6 +698,41 @@ public sealed class BookPublisherSystem : EntitySystem
             _fontCache[key] = new Font(_fontFamily.Value, size, style);
         }
         return _fontCache[key];
+    }
+
+    private void OnRename(Entity<BookPublisherComponent> ent, ref BookPublisherRenameMessage msg)
+    {
+        if (!CanUse(msg.Actor, ent.Owner))
+            return;
+
+        var bookSlot = ent.Comp.BookSlot;
+        if (bookSlot.Item == null)
+        {
+            _popup.PopupEntity(Loc.GetString("book-publisher-no-book"), ent.Owner, msg.Actor);
+            return;
+        }
+
+        var newName = msg.Name.Trim();
+        if (string.IsNullOrWhiteSpace(newName))
+        {
+            _popup.PopupEntity(Loc.GetString("book-publisher-empty-name"), ent.Owner, msg.Actor);
+            return;
+        }
+
+        if (newName.Length > MaxBookNameLength)
+        {
+            _popup.PopupEntity(Loc.GetString("book-publisher-name-too-long", ("max", MaxBookNameLength)), ent.Owner, msg.Actor);
+            return;
+        }
+
+        _metaData.SetEntityName(bookSlot.Item.Value, newName);
+        _audio.PlayPvs(ent.Comp.ConfirmSound, ent.Owner);
+        _popup.PopupEntity(Loc.GetString("book-publisher-renamed", ("name", newName)), ent.Owner, msg.Actor);
+        _adminLogger.Add(
+            LogType.Chat,
+            LogImpact.Low,
+            $"{ToPrettyString(msg.Actor):actor} renamed book in BookPublisher to {newName}");
+        UpdateUi(ent);
     }
 
     private void OnEject(Entity<BookPublisherComponent> ent, ref BookPublisherEjectMessage msg)
