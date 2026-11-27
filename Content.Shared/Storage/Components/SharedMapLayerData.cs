@@ -35,7 +35,8 @@ namespace Content.Shared.Storage.Components
     }
 
     [Serializable, NetSerializable]
-    public sealed class ShowLayerData : ICloneable
+    [DataDefinition] // Persistence: For photocamera persistence
+    public sealed partial class ShowLayerData : ICloneable
     {
         public readonly IReadOnlyList<string> QueuedEntities;
 
