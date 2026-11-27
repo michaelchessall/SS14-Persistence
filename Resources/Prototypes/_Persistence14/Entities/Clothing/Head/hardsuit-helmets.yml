@@ -315,3 +315,31 @@
     sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/ERThelmets/ertpaladin.rsi
   - type: PointLight
     color: "#ffffff"
+
+
+#Leviathan hardsuit helmet
+- type: entity
+  parent: [ ClothingHeadHardsuitBase, ClothingHeadSuitWithLightBase ]
+  id: ClothingHeadHelmetHardsuitLeviathan
+  name: Leviathan hardsuit helmet
+  description: The carapace helmet hums with otherworldly whispers.
+  components:
+  - type: Sprite
+    sprite: _Persistence14/Clothing/Head/Helmets/Hardsuits/leviathan.rsi
+  - type: PointLight
+    color: red
+    radius: 7
+    energy: 6
+  - type: PressureProtection
+    highPressureMultiplier: 0.3
+    lowPressureMultiplier: 1000
+  - type: Armor
+    modifiers:
+      coefficients:
+        Blunt: 0.9
+        Slash: 0.9
+        Piercing: 0.9
+        Heat: 0.9
+  - type: Tag
+    tags:
+    - WhitelistChameleon
