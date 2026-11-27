@@ -54,6 +54,8 @@
   - type: Construction
     graph: Window
     node: miningWindow
+  - type: StructureLeak
+    messages: StructureLeakMessages
 
 - type: entity
   parent: MiningWindow

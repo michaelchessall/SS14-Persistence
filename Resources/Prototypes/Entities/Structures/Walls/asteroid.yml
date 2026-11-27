@@ -6,7 +6,7 @@
 #Asteroid rock
 - type: entity
   id: AsteroidRock
-  parent: BaseWall
+  parent: BaseAsteroidWall
   name: asteroid rock
   description: A rocky asteroid.
   components:
@@ -1031,7 +1031,7 @@
 # Brown rocks
 - type: entity
   id: WallRock
-  parent: BaseWall
+  parent: BaseAsteroidWall
   name: rock
   suffix: planetmap
   components:

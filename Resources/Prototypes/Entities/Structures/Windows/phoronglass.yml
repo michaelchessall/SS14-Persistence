@@ -53,6 +53,8 @@
     price: 100
   - type: RadiationBlocker
     resistance: 2
+  - type: StructureLeak
+    messages: StructureLeakMessages
 
 - type: entity
   id: ReinforcedPhoronGlassWindow

@@ -56,6 +56,8 @@
       sprite: Structures/Windows/cracks.rsi
   - type: StaticPrice
     price: 132
+  - type: StructureLeak
+    messages: StructureLeakMessages
 
 - type: entity
   id: PlasmaReinforcedWindowDirectional

@@ -57,19 +57,29 @@
   id: BaseWall
   components:
   - type: Occluder # Breaks on diagonal walls
-# PERSI change START
+# PERSI change START - Damage visuals & leaks for walls!
+  - type: Sprite
+    sprite: _Persistence14/Structures/walls/wall_damage.rsi
+    layers:
+    - state: DamageLeak
+      sprite: _Persistence14/Structures/walls/wall_damage.rsi
+      visible: false
+      map: [ "leaking" ]
   - type: Appearance # Damage visuals for normal walls
   - type: ExaminableDamage
-    messages: WindowMessages
+    messages: StructureDamageMessages
   - type: Repairable
-    fuelCost: 15
-    doAfterDelay: 8
+    fuelCost: 2
+    damageValue: -40
+    doAfterDelay: 2
   - type: DamageVisuals # Diagonal walls need a diff texture for the damagevisuals
-    thresholds: [5, 10, 20, 30, 40, 50, 60]
-    damageDivisor: 3
+    thresholds: [15, 30, 60, 90]
     trackAllDamage: true
     damageOverlay:
       sprite: _Persistence14/Structures/walls/wall_damage.rsi
+  - type: StructureLeak
+    leakThreshold: 0.50
+    messages: StructureLeakMessages
 # PERSI change END
   - type: PlacementReplacement
     key: walls
@@ -77,6 +87,15 @@
     pylons:
     - Door
     - Firelock
+
+
+- type: entity
+  abstract: true
+  parent: BaseWall
+  id: BaseAsteroidWall
+  components:
+  - type: StructureLeak
+    breakSound: /Audio/Effects/break_stone.ogg
 
 - type: entity
   abstract: true
@@ -511,7 +530,7 @@
 
 
 - type: entity
-  parent: BaseWall
+  parent: BaseStructureWall
   id: WallPlastitaniumIndestructible
   name: plastitanium wall
   suffix: indestructible
@@ -987,6 +1006,8 @@
   - type: Construction
     graph: Girder
     node: wall
+  - type: DamageVisuals
+    damageDivisor: 2.3
   - type: Icon
     sprite: Structures/Walls/solid.rsi
   - type: RCDDeconstructable
