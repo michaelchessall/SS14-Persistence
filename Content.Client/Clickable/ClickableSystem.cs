@@ -98,8 +98,13 @@ public sealed partial class ClickableSystem : EntitySystem
             // Check the layer's texture, if it has one
             if (layer.Texture != null)
             {
+                layer.GetLayerDrawMatrix(Robust.Shared.Graphics.RSI.RsiDirection.South, out var textureMatrix);
+                Matrix3x2.Invert(textureMatrix, out var inverseTextureMatrix);
+
+                var textureLocal = Vector2.Transform(localPos, inverseTextureMatrix);
+
                 // Convert to image coordinates
-                var imagePos = (Vector2i)(localPos * EyeManager.PixelsPerMeter * new Vector2(1, -1) + layer.Texture.Size / 2f);
+                var imagePos = (Vector2i)(textureLocal * EyeManager.PixelsPerMeter * new Vector2(1, -1) + layer.Texture.Size / 2f);
 
                 if (_clickMapManager.IsOccluding(layer.Texture, imagePos))
                     return true;
