@@ -1773,5 +1773,12 @@ Entries:
   id: 238
   time: '2026-11-21T01:08:27.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1008
+- author: stinkiestdog
+  changes:
+  - message: Manual SSD indicators wont get stuck on disconnected characters after a save/load.
+    type: Fix
+  id: 239
+  time: '2026-11-27T05:51:05.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1041
 Name: Admin
 Order: 3
