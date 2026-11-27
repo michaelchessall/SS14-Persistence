@@ -16,6 +16,7 @@ using Robust.Shared.Prototypes;
 using Robust.Shared.Serialization;
 using Robust.Shared.Timing;
 using Robust.Shared.Utility;
+using Content.Shared.PowerCell; // Persistence
 
 namespace Content.Shared.Tools.Systems;
 
@@ -34,6 +35,7 @@ public abstract partial class SharedToolSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transformSystem = default!;
     [Dependency] private TileSystem _tiles = default!;
     [Dependency] private TurfSystem _turfs = default!;
+    [Dependency] private PowerCellSystem _powerCell = default!; // Persistence
 
     public const string CutQuality = "Cutting";
     public const string PulseQuality = "Pulsing";
@@ -158,6 +160,11 @@ public abstract partial class SharedToolSystem : EntitySystem
 
         if (!CanStartToolUse(tool, user, target, fuel, toolQualitiesNeeded, toolComponent))
             return false;
+
+        //PERSI CHANGE - Start
+        if (!TryComp<ToolComponent>(tool, out var toolComp) || toolComp.PowerUsage is { } usage && !_powerCell.TryUseCharge(tool, usage))
+            return false;
+        //PERSI CHANGE - Finish
 
         string examineText;
         var qualitiesText = GetQualitiesText(toolQualitiesNeeded, true);

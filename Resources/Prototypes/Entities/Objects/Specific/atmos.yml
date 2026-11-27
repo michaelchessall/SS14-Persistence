@@ -1,6 +1,6 @@
 ﻿- type: entity
   name: gas analyzer
-  parent: BaseItem
+  parent: [ BaseItem, BaseHandheldComputer ] #Persi change
   id: GasAnalyzer
   description: A hand-held environmental scanner which reports current gas levels.
   components:
@@ -13,7 +13,6 @@
   - type: ActivatableUI
     inHandsOnly: true
     singleUser: true
-    requireActiveHand: false
     key: enum.GasAnalyzerUiKey.Key
   - type: UserInterface
     interfaces:
@@ -38,3 +37,20 @@
     - PipeNetworks
     - Pipes
     - GasCanisters
+  # PERSI CHANGE - Start
+  - type: PowerCellDraw
+    drawRate: 1.5
+  - type: ToggleCellDraw
+
+  - type: ActivatableUIRequiresPowerCell
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # PERSI CHANGE - Finish

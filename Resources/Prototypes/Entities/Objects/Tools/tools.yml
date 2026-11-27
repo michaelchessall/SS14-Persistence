@@ -271,6 +271,7 @@
   - type: Tool
     qualities:
       - Screwing
+    powerUsage: 5 #Persi change - electric tools now use powaaaa =]
     speedModifier: 1.5
     useSound: !type:SoundPathSpecifier
       path: /Audio/Items/drill_use.ogg
@@ -317,9 +318,21 @@
         Piercing: 10
     soundHit:
       path: "/Audio/Items/drill_hit.ogg"
+  # PERSI CHANGES - Start
   - type: Upgradeable
     upgrades:
       ToolSpeedGreen : 0
+  - type: ContainerContainer
+    containers:
+      cell_slot: !type:ContainerSlot {}
+  - type: PowerCellSlot
+    cellSlotId: cell_slot
+  - type: ItemSlots
+    slots:
+      cell_slot:
+        name: power-cell-slot-component-slot-name-default
+        startingItem: PowerCellMedium
+  # PERSI CHANGES - End
 
 - type: entity
   id: RCD
