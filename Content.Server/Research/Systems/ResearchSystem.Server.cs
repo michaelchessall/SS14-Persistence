@@ -1,14 +1,18 @@
 using Content.Server.Power.EntitySystems;
+using Content.Shared._Persistence14.CCVars;
 using Content.Shared._Persistence14.PersistentIdentifier;
 using Content.Shared.GridControl.Components;
 using Content.Shared.Research.Components;
 using Content.Shared.Research.Prototypes;
+using Robust.Shared.Configuration;
 using Robust.Shared.Prototypes;
 
 namespace Content.Server.Research.Systems;
 
 public sealed partial class ResearchSystem
 {
+    [Dependency] private IConfigurationManager _config = default!;
+
     [SubscribeLocalEvent]
     private void OnServerDatabaseModified(EntityUid uid, ResearchServerComponent component, ref TechnologyDatabaseModifiedEvent args)
     {
@@ -118,9 +122,9 @@ public sealed partial class ResearchSystem
         // If we ever have this be live calculated by the total number of disciplines... then this will need to be changed.
         var ln4 = 1.386294361f;
         entropy = -entropy / ln4; // Normalize the Shannon Entropy by the current number of disciplines
-        entropy = MathF.Pow(entropy, 5); // Making the curve sharper
+        entropy = MathF.Pow(entropy, _config.GetCVar(PersistenceCVars.EntropyScalingCoefficient)); // Making the curve sharper
 
-        return 1 + server.MaxDiversityPenalty * entropy;
+        return 1 + (_config.GetCVar(PersistenceCVars.MaxEntropyResearchMultiplier) - 1) * entropy;
     }
 
     /// <summary>
