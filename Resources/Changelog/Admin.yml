@@ -1780,5 +1780,12 @@ Entries:
   id: 239
   time: '2026-11-27T05:51:05.0000000+00:00'
   url: https://github.com/michaelchessall/SS14-Persistence/pull/1041
+- author: Zetaplx
+  changes:
+  - message: Max Entropy Multiplier and Entropy Expansion Coefficient available as CVars
+    type: Tweak
+  id: 240
+  time: '2026-11-27T22:57:10.0000000+00:00'
+  url: https://github.com/michaelchessall/SS14-Persistence/pull/1030
 Name: Admin
 Order: 3
