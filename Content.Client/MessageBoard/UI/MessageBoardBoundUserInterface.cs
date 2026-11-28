@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Content.Shared._Persistence14.CCVars;
 using static Robust.Client.UserInterface.Controls.MenuBar;
 
 namespace Content.Client.MessageBoard.UI;
@@ -89,7 +90,7 @@ public sealed class MessageBoardBoundUserInterface : BoundUserInterface
             {
                 bool delete = false;
                 if (isAdmin || playerName == entry.Author) delete = true;
-                var adjustedTime = entry.CreationTime.AddYears(_cfg.GetCVar(CCVars.YearOffset));
+                var adjustedTime = entry.CreationTime.AddYears(_cfg.GetCVar(PersistenceCVars.YearOffset));
                 EntryHeader header = new EntryHeader(entry.Title, entry.Author, $"{adjustedTime.ToString()}", entry.Comments.Count, delete);
                 panel.PublicBoardEntriesBC.AddChild(header);
                 header.DeleteButton.OnPressed += (args) =>

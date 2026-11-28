@@ -1,7 +1,7 @@
 using System.Text;
+using Content.Shared._Persistence14.CCVars;
 using Content.Shared.Access.Components;
 using Content.Shared.Administration.Logs;
-using Content.Shared.CCVar;
 using Content.Shared.Database;
 using Content.Shared.Hands.EntitySystems;
 using Content.Shared.Interaction;
@@ -109,7 +109,7 @@ public sealed partial class LogProbeCartridgeSystem : EntitySystem
         var number = 1;
         foreach (var log in ent.Comp.PulledAccessLogs)
         {
-            var yearOffset = _cfgManager.GetCVar(CCVars.YearOffset);
+            var yearOffset = _cfgManager.GetCVar(PersistenceCVars.YearOffset);
             var finalTime = log.Time.AddYears(yearOffset);
             var time = finalTime.ToString();
             builder.AppendLine(Loc.GetString("log-probe-printout-entry", ("number", number), ("time", time), ("accessor", log.Accessor)));

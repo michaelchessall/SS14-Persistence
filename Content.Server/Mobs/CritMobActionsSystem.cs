@@ -5,8 +5,8 @@ using Content.Server.GameTicking;
 using Content.Server.Popups;
 using Content.Server.Preferences.Managers;
 using Content.Server.Radio.EntitySystems;
+using Content.Shared._Persistence14.CCVars;
 using Content.Shared.AcceptDeath;
-using Content.Shared.CCVar;
 using Content.Shared.Chat;
 using Content.Shared.Mind;
 using Content.Shared.Mobs;
@@ -194,8 +194,8 @@ public sealed partial class CritMobActionsSystem : EntitySystem
         var commonID = "Common";
         var common = _protoMan.Index<RadioChannelPrototype>(commonID);
         _radio.SendRadioMessage(speaker, message, common, speaker, escapeMarkup: true, useNetworkOverride: true, transmitterRange: float.PositiveInfinity);
-        var respawnTime = TimeSpan.FromSeconds(_configurationManager.GetCVar(CCVars.AcceptDeathTime));
-        component.SOSCooldown = _timing.CurTime + respawnTime;
+        var cooldown = TimeSpan.FromSeconds(_configurationManager.GetCVar(PersistenceCVars.SOSCooldown));
+        component.SOSCooldown = _timing.CurTime + cooldown;
         UpdateUserInterface(uid, uid, component);
     }
 
