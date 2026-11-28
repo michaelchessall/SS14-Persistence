@@ -4,7 +4,6 @@ using Content.Server.Mapping;
 using Content.Server.Persistence.Systems;
 using Content.Server.Popups;
 using Content.Server.Shuttles.Systems;
-using Content.Shared.CCVar;
 using Content.Shared.Coordinates;
 using Content.Shared.Database;
 using Content.Shared.GridControl.Components;
@@ -24,6 +23,7 @@ using System.IO;
 using System.Linq;
 using System.Numerics;
 using System.Text.RegularExpressions;
+using Content.Shared._Persistence14.CCVars;
 
 namespace Content.Server.GridControl.Systems;
 
@@ -74,7 +74,7 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
                 continue;
             }
 
-            var remainingTime = key.RoutineStartTime.GetValueOrDefault() + TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.BluespaceParkingParkDelay)) - _timing.CurTime;
+            var remainingTime = key.RoutineStartTime.GetValueOrDefault() + TimeSpan.FromSeconds(_cfg.GetCVar(PersistenceCVars.BluespaceParkingParkDelay)) - _timing.CurTime;
             if (!comp.RampingUp && remainingTime.TotalSeconds <= 8)
             {
                 // Do some crazy nonsense
@@ -102,7 +102,7 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
                 RemCompDeferred<BSPAnchorKeyUnparkingComponent>(uid);
                 continue;
             }
-            var remainingTime = key.RoutineStartTime.GetValueOrDefault() + TimeSpan.FromSeconds(_cfg.GetCVar(CCVars.BluespaceParkingUnparkDelay)) - _timing.CurTime;
+            var remainingTime = key.RoutineStartTime.GetValueOrDefault() + TimeSpan.FromSeconds(_cfg.GetCVar(PersistenceCVars.BluespaceParkingUnparkDelay)) - _timing.CurTime;
             if (remainingTime.TotalSeconds <= 0)
             {
                 Entity<BSPAnchorKeyComponent> ent = (uid, key);
@@ -140,7 +140,7 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
 
         var curPos = _transform.GetWorldPosition(entity);
         var vector = entity.Comp.SavedParkedPosition.GetValueOrDefault() - curPos;
-        if (vector.Length() > _cfg.GetCVar(CCVars.BluespaceUnparkMaxDistance))
+        if (vector.Length() > _cfg.GetCVar(PersistenceCVars.BluespaceUnparkMaxDistance))
             return;
 
         var position = _transform.GetWorldPosition(entity);
@@ -302,13 +302,13 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
 
     private string EnsureSavesDirectory()
     {
-        var saveDir = Path.Combine(_cfg.GetCVar(CCVars.BluespaceParkingDirectory)).Replace(Path.DirectorySeparatorChar, '/');
+        var saveDir = Path.Combine(_cfg.GetCVar(PersistenceCVars.BluespaceParkingDirectory)).Replace(Path.DirectorySeparatorChar, '/');
         _resMan.UserData.CreateDir(new ResPath(saveDir).ToRootedPath());
         return saveDir;
     }
     private string EnsureBackupsDirectory()
     {
-        var backupsDir = Path.Combine(_cfg.GetCVar(CCVars.BluespaceParkingDirectory), "Backups").Replace(Path.DirectorySeparatorChar, '/');
+        var backupsDir = Path.Combine(_cfg.GetCVar(PersistenceCVars.BluespaceParkingDirectory), "Backups").Replace(Path.DirectorySeparatorChar, '/');
         _resMan.UserData.CreateDir(new ResPath(backupsDir).ToRootedPath());
         return backupsDir;
     }

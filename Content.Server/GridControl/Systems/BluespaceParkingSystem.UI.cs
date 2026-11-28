@@ -2,7 +2,6 @@ using Content.Server.Cargo.Components;
 using Content.Server.Station.Systems;
 using Content.Shared.Access.Components;
 using Content.Shared.Cargo.Components;
-using Content.Shared.CCVar;
 using Content.Shared.GridControl.Components;
 using Content.Shared.GridControl.Systems;
 using Content.Shared.Station.Components;
@@ -11,6 +10,7 @@ using Robust.Shared.Configuration;
 using Robust.Shared.Map.Components;
 using Robust.Shared.Prototypes;
 using System.Linq;
+using Content.Shared._Persistence14.CCVars;
 
 namespace Content.Server.GridControl.Systems;
 
@@ -74,7 +74,7 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
             return null;
 
         var inFilledState = component.State == BSPState.Parked || component.State == BSPState.Unparking;
-        var tileLimit = _cfg.GetCVar(CCVars.BluespaceParkingMaxTiles);
+        var tileLimit = _cfg.GetCVar(PersistenceCVars.BluespaceParkingMaxTiles);
 
         var gridOwnerTotalTiles = 0;
         EntityUid? station = null;
@@ -166,8 +166,8 @@ public sealed partial class BluespaceParkingSystem : SharedBluespaceParkingSyste
             ownerName, gridName, privilegedIdName,
             gridTileCount, gridOwnerTotalTiles, tileLimit, errMsg,
             component.RoutineStartTime,
-            _cfg.GetCVar(CCVars.BluespaceParkingParkDelay), _cfg.GetCVar(CCVars.BluespaceParkingUnparkDelay),
-            component.SavedParkedPosition, _cfg.GetCVar(CCVars.BluespaceUnparkMaxDistance), component.SavedClearOwnership
+            _cfg.GetCVar(PersistenceCVars.BluespaceParkingParkDelay), _cfg.GetCVar(PersistenceCVars.BluespaceParkingUnparkDelay),
+            component.SavedParkedPosition, _cfg.GetCVar(PersistenceCVars.BluespaceUnparkMaxDistance), component.SavedClearOwnership
         );
     }
 

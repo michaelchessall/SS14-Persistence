@@ -1,6 +1,6 @@
+using Content.Shared._Persistence14.CCVars;
 using Content.Shared.Actions;
 using Content.Shared.Actions.Components;
-using Content.Shared.CCVar;
 using Content.Shared.Mobs.Components;
 using Robust.Shared;
 using Robust.Shared.Configuration;
@@ -61,7 +61,7 @@ public sealed partial class MobStateActionsSystem : EntitySystem
         }
         if (newMobState == MobState.Dead)
         {
-            var respawnTime = TimeSpan.FromSeconds(_configurationManager.GetCVar(CCVars.AcceptDeathTime));
+            var respawnTime = TimeSpan.FromSeconds(_configurationManager.GetCVar(PersistenceCVars.AcceptDeathTime));
             component.AcceptDeathCooldown = _timing.CurTime + respawnTime;
         }
     }
